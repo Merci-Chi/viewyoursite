@@ -252,13 +252,15 @@
         .claim-checkout p { color: #aaa; line-height: 1.5; }
         .claim-plan-group { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; background: #181818; }
         .claim-plan-group label { display: block; margin-bottom: .55rem; color: #ddd; font-weight: 700; }
-        .claim-plan-select { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; }
-        .claim-plan-purchase { width: 100%; margin-top: .7rem; }
+        .claim-checkout .available-plans { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1rem; }
+        .claim-checkout .plan-option.selected { margin-inline: -.45rem; padding-inline: .45rem; border-radius: 9px; background: #292929; }
+        .claim-checkout .plan-link { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; }
+        .claim-selected-note { margin-top: .75rem; color: #bdbdbd; font-size: .88rem; }
         .purchase-confirmation { display: flex; align-items: flex-start; gap: .6rem; margin-top: .8rem; color: #aaa; line-height: 1.4; }
         .purchase-confirmation input { width: 18px; height: 18px; margin-top: .15rem; padding: 0; accent-color: #f1f1f1; }
         body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
         body.light-mode .claim-plan-group label { color: #222; }
-        body.light-mode .claim-plan-select { border-color: #ccc; background: #fff; color: #222; }
+        body.light-mode .claim-checkout .plan-option.selected { background: #ecece8; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .plan-group { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .plan-group h4 { margin-bottom: .85rem; font-size: 1rem; }
@@ -493,7 +495,7 @@
                     <div class="claim-checkout" id="claimCheckout">
                         <h3>Select Required Hosting</h3>
                         <p>Choose a plan and complete its Square checkout. You can submit the claim after confirming the purchase.</p>
-                        <div id="claimCheckoutLinks"></div>
+                        <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
                         <textarea id="claimMessage" placeholder="Tell us how you are connected to these businesses" required></textarea>
@@ -586,13 +588,13 @@
         const hostingCheckoutPlans = {
             standard: [
                 { key: "standard-1", label: "$50/month — 1 month plan", url: "https://square.link/u/s2TANsa8" },
-                { key: "standard-6", label: "$30/month — 6 month plan ($180)", url: "https://square.link/u/F6Tx8EUc" },
-                { key: "standard-12", label: "$20/month — 12 month plan ($240)", url: "https://square.link/u/YpNWBSJZ" }
+                { key: "standard-6", label: "$30/month — 6 month plan · $180 billed every 6 months", url: "https://square.link/u/F6Tx8EUc" },
+                { key: "standard-12", label: "$20/month — 12 month plan · $240 billed every 12 months", url: "https://square.link/u/YpNWBSJZ" }
             ],
             backend: [
                 { key: "backend-1", label: "$60/month — 1 month plan", url: "https://square.link/u/RkUQIBGg" },
-                { key: "backend-6", label: "$40/month — 6 month plan ($240)", url: "https://square.link/u/KTXBdTbR" },
-                { key: "backend-12", label: "$30/month — 12 month plan ($360)", url: "https://square.link/u/H5nLaKC0" }
+                { key: "backend-6", label: "$40/month — 6 month plan · $240 billed every 6 months", url: "https://square.link/u/KTXBdTbR" },
+                { key: "backend-12", label: "$30/month — 12 month plan · $360 billed every 12 months", url: "https://square.link/u/H5nLaKC0" }
             ]
         };
         function applyTheme(theme) {
@@ -666,24 +668,10 @@
 
             requiredTypes.forEach(type => {
                 claimPlanSelections.set(type, { plan: null, confirmed: false });
-                const group = document.createElement("div");
-                group.className = "claim-plan-group";
-                const label = document.createElement("label");
-                label.textContent = `${type === "backend" ? "Backend" : "Standard"} Hosting Plan`;
-                const select = document.createElement("select");
-                select.className = "claim-plan-select";
-                select.innerHTML = '<option value="">Select a subscription</option>';
-                (hostingCheckoutPlans[type] || []).forEach(plan => {
-                    const option = document.createElement("option");
-                    option.value = plan.key;
-                    option.textContent = plan.label;
-                    select.appendChild(option);
-                });
-                const purchaseButton = document.createElement("button");
-                purchaseButton.className = "portal-primary claim-plan-purchase";
-                purchaseButton.type = "button";
-                purchaseButton.textContent = "Purchase Subscription";
-                purchaseButton.disabled = true;
+                const group = document.createElement("article");
+                group.className = "plan-group";
+                const heading = document.createElement("h4");
+                heading.textContent = `${type === "backend" ? "Backend" : "Standard"} Website Hosting`;
                 const confirmation = document.createElement("label");
                 confirmation.className = "purchase-confirmation";
                 confirmation.hidden = true;
@@ -692,27 +680,48 @@
                 const confirmationText = document.createElement("span");
                 confirmationText.textContent = "I completed the Square subscription purchase.";
                 confirmation.append(checkbox, confirmationText);
+                const selectedNote = document.createElement("p");
+                selectedNote.className = "claim-selected-note";
+                selectedNote.textContent = "Choose a subscription to continue.";
+                group.appendChild(heading);
 
-                select.addEventListener("change", () => {
-                    const plan = (hostingCheckoutPlans[type] || []).find(item => item.key === select.value) || null;
-                    claimPlanSelections.set(type, { plan, confirmed: false });
-                    purchaseButton.disabled = !plan;
-                    confirmation.hidden = true;
-                    checkbox.checked = false;
-                    updateClaimSubmitAvailability();
-                });
-                purchaseButton.addEventListener("click", () => {
-                    const selection = claimPlanSelections.get(type);
-                    if (!selection?.plan) return;
-                    window.open(selection.plan.url, "_blank", "noopener");
-                    confirmation.hidden = false;
+                (hostingCheckoutPlans[type] || []).forEach(plan => {
+                    const row = document.createElement("div");
+                    row.className = "plan-option";
+                    const copy = document.createElement("div");
+                    const title = document.createElement("span");
+                    title.className = "plan-name";
+                    const details = document.createElement("span");
+                    details.className = "plan-price";
+                    const parts = plan.label.split(" — ");
+                    title.textContent = parts[0];
+                    details.textContent = parts[1] || "Hosting plan";
+                    copy.append(title, details);
+                    const chooseButton = document.createElement("button");
+                    chooseButton.className = "plan-link";
+                    chooseButton.type = "button";
+                    chooseButton.textContent = "Choose";
+                    chooseButton.addEventListener("click", () => {
+                        group.querySelectorAll(".plan-option").forEach(option => option.classList.remove("selected"));
+                        group.querySelectorAll(".plan-link").forEach(button => { button.textContent = "Choose"; });
+                        row.classList.add("selected");
+                        chooseButton.textContent = "Selected";
+                        claimPlanSelections.set(type, { plan, confirmed: false });
+                        checkbox.checked = false;
+                        confirmation.hidden = false;
+                        selectedNote.textContent = `${plan.label} selected. Complete checkout, then confirm below.`;
+                        updateClaimSubmitAvailability();
+                        window.open(plan.url, "_blank", "noopener");
+                    });
+                    row.append(copy, chooseButton);
+                    group.appendChild(row);
                 });
                 checkbox.addEventListener("change", () => {
                     const selection = claimPlanSelections.get(type);
                     if (selection) selection.confirmed = checkbox.checked;
                     updateClaimSubmitAvailability();
                 });
-                group.append(label, select, purchaseButton, confirmation);
+                group.append(selectedNote, confirmation);
                 claimCheckoutLinks.appendChild(group);
             });
         }
