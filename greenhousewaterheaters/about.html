@@ -22,7 +22,8 @@ body.modal-open{overflow:hidden}
 <header class="site-header">
 <div class="container nav-wrap">
 <a aria-label="Green House Water Heaters home" class="brand" href="index.html">
-<img alt="Green House Water Heaters" src="assets/logo.png"/>
+<img alt="Green House Water Heaters icon" class="brand-logo-icon" src="assets/header-logo-icon.png"/>
+<img alt="Green House Water Heaters text logo" class="brand-logo-text" src="assets/header-logo-text.png"/>
 </a>
 <button aria-expanded="false" aria-label="Toggle navigation" class="menu-toggle"><i data-lucide="menu"></i></button>
 <nav aria-label="Primary navigation" class="main-nav">
@@ -33,21 +34,21 @@ body.modal-open{overflow:hidden}
 <a href="contact.html">Contact</a>
 </nav>
 <div class="nav-actions">
-<a aria-haspopup="dialog" class="phone-pill" data-locked="true" href="tel:+17023052598"><i data-lucide="phone"></i><strong>(702) 305-2598</strong></a>
-<a aria-haspopup="dialog" class="btn btn-solid" data-locked="true" href="tel:+17023052598">Call Now</a>
+<a aria-haspopup="dialog" class="phone-pill private-inline-lock" data-locked="true" href="tel:+17023052598"><span><i data-lucide="phone"></i><strong>(702) 305-2598</strong></span></a>
+<a aria-haspopup="dialog" class="btn btn-solid private-inline-lock" data-locked="true" href="tel:+17023052598"><span>Call Now</span></a>
 </div>
 </div>
 </header>
 <main>
 <section class="about section" id="about">
 <div class="container about-grid">
-<div class="owner-photo owner-photo-small"><img alt="Green House Water Heaters owner" src="assets/owner-profile.jpg"/></div>
+<div class="owner-photo owner-photo-small private-locked" data-locked="true" aria-label="Locked owner photo" role="button" tabindex="0"><div class="private-locked-content"><img alt="Green House Water Heaters owner" src="assets/owner-profile.jpg"/></div></div>
 <div class="about-copy">
 <p class="eyebrow">About Us</p>
 <h2>Local. Honest. Committed to You.</h2>
-<p>I'm Joseph Fazio, owner and operator of Green House Water Heaters.</p>
+<div class="private-locked" data-locked="true" aria-label="Locked owner name" role="button" tabindex="0"><div class="private-locked-content"><p>I'm Joseph Fazio, owner and operator of Green House Water Heaters.</p></div></div>
 <p>We're a licensed and insured Nevada contractor dedicated to providing reliable water heater solutions with upfront pricing and exceptional service. From installation to repair and maintenance, we do the job right the first time—every time.</p>
-<div class="signature">Joseph Fazio</div>
+<div class="private-inline-lock signature" data-locked="true" aria-label="Locked owner name" role="button" tabindex="0"><span>Joseph Fazio</span></div>
 <strong class="owner-title">Owner / Operator</strong>
 </div>
 <div aria-label="Locked business highlights" class="locked-preview" data-locked="true" role="button" tabindex="0"><div class="locked-preview-content"><div class="about-stats">
@@ -58,17 +59,40 @@ body.modal-open{overflow:hidden}
 </div></div><div class="locked-preview-overlay"><span class="locked-preview-icon"><i data-lucide="lock-keyhole"></i></span><strong>Locked Preview</strong><small>Purchase the site to unlock</small></div></div>
 </div>
 </section>
+<section class="benefits-strip">
+<div class="container benefits-grid">
+<div><span><i data-lucide="badge-dollar-sign"></i></span><p><strong>Upfront Pricing</strong><small>No Surprises</small></p></div>
+<div><span><i data-lucide="award"></i></span><p><strong>Quality Work</strong><small>Done Right the First Time</small></p></div>
+<div><span><i data-lucide="leaf"></i></span><p><strong>Energy Efficient</strong><small>Save Money &amp; Energy</small></p></div>
+<div><span><i data-lucide="clock-3"></i></span><p><strong>Same-Day Service</strong><small>When You Need It Most</small></p></div>
+</div>
+</section>
 </main>
-<footer class="footer">
-<div class="container footer-grid">
-<div class="footer-brand"><img alt="Green House Water Heaters" src="assets/logo.png"/><p>Licensed • Insured • Trusted in Las Vegas</p></div>
-<div><h4>Quick Links</h4><a href="index.html">Home</a><a href="services.html">Services</a><a href="specials.html">Specials</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></div>
-<div><h4>Services</h4><a href="services.html">Water Heater Installation</a><a href="services.html">Water Heater Repair</a><a href="services.html">Water Heater Maintenance</a><a href="services.html">Tune-Up &amp; Flush</a><a href="services.html">Tank &amp; Tankless Systems</a></div>
-<div><h4>Contact</h4><p class="footer-contact"><i data-lucide="phone"></i> (702) 305-2598</p><p class="footer-contact"><i data-lucide="mail"></i> greenhouseplumbing@yahoo.com</p><p class="footer-contact"><i data-lucide="map-pin"></i> Las Vegas, NV</p><p class="footer-contact"><i data-lucide="shield-check"></i> NV License #0095795</p></div>
-<div><h4>Service Area</h4><p>Las Vegas, North Las Vegas, Henderson, Boulder City and surrounding areas.</p></div>
+<footer class="footer footer-locked" data-locked="true" aria-label="Locked footer preview" role="button" tabindex="0"><div class="footer-locked-content">
+<div class="container footer-main">
+  <div class="footer-brand">
+    <img alt="Green House Water Heaters" src="assets/logo.png"/>
+    <p>Licensed • Insured • Trusted in Las Vegas</p>
+  </div>
+  <div class="footer-content">
+    <div class="footer-services">
+      <span class="footer-label">Services</span>
+      <div class="footer-service-links">
+        <a href="services.html">Installation</a>
+        <a href="services.html">Repair</a>
+        <a href="services.html">Maintenance</a>
+        <a href="services.html">Tune-Up &amp; Flush</a>
+        <a href="services.html">Tank &amp; Tankless</a>
+      </div>
+    </div>
+    <div class="footer-area">
+      <span class="footer-label">Serving</span>
+      <p>Las Vegas • North Las Vegas • Henderson • Boulder City • Surrounding Areas</p>
+    </div>
+  </div>
 </div>
 <div class="container footer-bottom">© 2024 Green House Water Heaters. All Rights Reserved.</div>
-</footer>
+</div></footer>
 <div aria-hidden="true" class="locked-modal-backdrop" id="lockedModal">
 <div aria-describedby="lockedModalMessage" aria-labelledby="lockedModalTitle" aria-modal="true" class="locked-modal" role="dialog">
 <h2 id="lockedModalTitle">This is currently locked.</h2>

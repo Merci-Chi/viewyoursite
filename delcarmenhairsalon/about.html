@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Del Carmen Hair Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html" aria-label="Go to home">
+    <img src="https://z-cdn-media.chatglm.cn/files/3dcd9335-5b73-46e8-b876-b7c09bd20209.png?auth_key=1887606027-5587df5555504015b7afcba0523150e9-0-35bd78d852e7c5d6e0228a0deb07cae6" alt="Del Carmen logo">
+    <div class="nav-logo-text">Del Carmen <span>Hair Salon</span></div>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="work.html">Our Work</a>
+    <a href="menu.html">Menu & Pricing</a>
+    <a href="about.html" class="active">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a class="nav-cta" href="#" onclick="event.preventDefault();pop()">Book Now</a>
+  </div>
+
+  <button class="hamburger" type="button" onclick="mobOpen()" aria-label="Open menu">
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
+
+<div class="mob-bg" id="mobBg" onclick="mobClose()"></div>
+
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" type="button" onclick="mobClose()" aria-label="Close menu">
+    <i class="fas fa-times"></i>
+  </button>
+  <a href="index.html" onclick="mobClose()">Home</a>
+  <a href="work.html" onclick="mobClose()">Our Work</a>
+  <a href="menu.html" onclick="mobClose()">Menu & Pricing</a>
+  <a href="about.html" class="active" onclick="mobClose()">About</a>
+  <a href="reviews.html" onclick="mobClose()">Reviews</a>
+  <a href="contact.html" onclick="mobClose()">Contact</a>
+  <a href="#" onclick="event.preventDefault();mobClose();pop()">Book Now</a>
+</div>
+
+
+<main class="page-main">
+<section class="page-hero">
+  <a class="home-button" href="index.html"><i class="fas fa-house"></i> Home</a>
+  <div class="sec-label">About Us</div>
+  <h1 class="sec-title">About Del Carmen Hair Salon</h1>
+  <p class="sec-desc">Professional hair services in the Las Vegas community.</p>
+  <div class="divider"></div>
+</section>
+<section style="padding-top:1rem;">
+  <div class="about-grid">
+    <div class="about-img rv"><img src="https://z-cdn-media.chatglm.cn/files/40c54e60-e5ed-4a41-a775-7a6c96881e11.png?auth_key=1887606027-5802f121cb9d4298a5d4f87663546d51-0-0f2e8eb22064ab6f792282955eb8c1e4" alt="Del Carmen Hair Salon storefront"></div>
+    <div class="about-text rv">
+      <div class="sec-label private-info" onclick="pop()">Santa Fe Plaza</div>
+      <h2 class="sec-title">Located on <span class="private-info" onclick="pop()">N Jones Blvd</span></h2>
+      <p>Del Carmen Hair Salon is a professional hair salon serving the Las Vegas community. Known for quality cuts, color, and styling in a clean and welcoming environment.</p>
+      <ul class="about-details">
+        <li><i class="fas fa-check"></i> 4.5 star rating with 19 reviews on Google</li>
+        <li><i class="fas fa-check"></i> Located at <span class="private-info" onclick="pop()">Santa Fe Plaza on N Jones Blvd</span></li>
+        <li><i class="fas fa-check"></i> <span class="private-info" onclick="pop()">Open daily - closes at 8 PM</span></li>
+        <li><i class="fas fa-check"></i> Walk-ins welcome</li>
+      </ul>
+      <button class="btn btn-fill" onclick="pop()">Learn More</button>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer>
+  <div class="foot-logo">
+    <img src="https://z-cdn-media.chatglm.cn/files/3dcd9335-5b73-46e8-b876-b7c09bd20209.png?auth_key=1887606027-5587df5555504015b7afcba0523150e9-0-35bd78d852e7c5d6e0228a0deb07cae6" alt="Del Carmen logo">
+    <div class="foot-logo-text">Del Carmen <span>Hair Salon</span></div>
+  </div>
+  <div class="foot-info private-info" onclick="pop()">1449 N Jones Blvd, Las Vegas, NV 89108 &middot; (702) 636-8532 &middot; Santa Fe Plaza</div>
+  <div class="foot-links">
+    <a href="work.html">Our Work</a>
+    <a href="menu.html">Menu & Pricing</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+  </div>
+</footer>
+
+<div class="modal-bg" id="modal" onclick="popOut(event)">
+  <div class="modal-card">
+    <button class="modal-x" onclick="popClose()" aria-label="Close"><i class="fas fa-times"></i></button>
+    <div class="modal-icon"><i class="fas fa-lock"></i></div>
+    <h3>Full Site Available</h3>
+    <p>Purchase the complete website to unlock all features including online booking, full menu & pricing, client reviews, and everything else.</p>
+    <button class="btn btn-fill" onclick="popClose()" style="width:100%;">Got It</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

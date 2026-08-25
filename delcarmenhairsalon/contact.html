@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Del Carmen Hair Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="index.html" aria-label="Go to home">
+    <img src="https://z-cdn-media.chatglm.cn/files/3dcd9335-5b73-46e8-b876-b7c09bd20209.png?auth_key=1887606027-5587df5555504015b7afcba0523150e9-0-35bd78d852e7c5d6e0228a0deb07cae6" alt="Del Carmen logo">
+    <div class="nav-logo-text">Del Carmen <span>Hair Salon</span></div>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="work.html">Our Work</a>
+    <a href="menu.html">Menu & Pricing</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a class="nav-cta" href="#" onclick="event.preventDefault();pop()">Book Now</a>
+  </div>
+
+  <button class="hamburger" type="button" onclick="mobOpen()" aria-label="Open menu">
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
+
+<div class="mob-bg" id="mobBg" onclick="mobClose()"></div>
+
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" type="button" onclick="mobClose()" aria-label="Close menu">
+    <i class="fas fa-times"></i>
+  </button>
+  <a href="index.html" onclick="mobClose()">Home</a>
+  <a href="work.html" onclick="mobClose()">Our Work</a>
+  <a href="menu.html" onclick="mobClose()">Menu & Pricing</a>
+  <a href="about.html" onclick="mobClose()">About</a>
+  <a href="reviews.html" onclick="mobClose()">Reviews</a>
+  <a href="contact.html" class="active" onclick="mobClose()">Contact</a>
+  <a href="#" onclick="event.preventDefault();mobClose();pop()">Book Now</a>
+</div>
+
+
+<main class="page-main page-contact">
+<section class="page-hero">
+  <a class="home-button" href="index.html"><i class="fas fa-house"></i> Home</a>
+  <div class="sec-label">Get In Touch</div>
+  <h1 class="sec-title">Visit or Call Us</h1>
+  <p class="sec-desc">Location, phone, hours, and directions in one place.</p>
+  <div class="divider"></div>
+</section>
+<section style="padding-top:1rem;">
+  <div class="contact-grid">
+    <div class="contact-card rv" onclick="pop()"><i class="fas fa-map-marker-alt"></i><h3>Location</h3><p class="private-info">1449 N Jones Blvd<br>Las Vegas, NV 89108<br><span class="highlight">Santa Fe Plaza</span></p></div>
+    <div class="contact-card rv" onclick="pop()"><i class="fas fa-phone-alt"></i><h3>Phone</h3><p><span class="highlight private-info">(702) 636-8532</span><br>Call to book or ask questions</p></div>
+    <div class="contact-card rv" onclick="pop()"><i class="fas fa-clock"></i><h3>Hours</h3><p><span class="highlight private-info">Open - Closes 8 PM</span><br>Contact us for specific day hours</p></div>
+    <div class="contact-card rv" onclick="pop()"><i class="fas fa-directions"></i><h3>Directions</h3><p>Get directions to<br><span class="highlight private-info">Santa Fe Plaza</span> on Google Maps</p></div>
+  </div>
+</section>
+</main>
+
+
+<footer>
+  <div class="foot-logo">
+    <img src="https://z-cdn-media.chatglm.cn/files/3dcd9335-5b73-46e8-b876-b7c09bd20209.png?auth_key=1887606027-5587df5555504015b7afcba0523150e9-0-35bd78d852e7c5d6e0228a0deb07cae6" alt="Del Carmen logo">
+    <div class="foot-logo-text">Del Carmen <span>Hair Salon</span></div>
+  </div>
+  <div class="foot-info private-info" onclick="pop()">1449 N Jones Blvd, Las Vegas, NV 89108 &middot; (702) 636-8532 &middot; Santa Fe Plaza</div>
+  <div class="foot-links">
+    <a href="work.html">Our Work</a>
+    <a href="menu.html">Menu & Pricing</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+  </div>
+</footer>
+
+<div class="modal-bg" id="modal" onclick="popOut(event)">
+  <div class="modal-card">
+    <button class="modal-x" onclick="popClose()" aria-label="Close"><i class="fas fa-times"></i></button>
+    <div class="modal-icon"><i class="fas fa-lock"></i></div>
+    <h3>Full Site Available</h3>
+    <p>Purchase the complete website to unlock all features including online booking, full menu & pricing, client reviews, and everything else.</p>
+    <button class="btn btn-fill" onclick="popClose()" style="width:100%;">Got It</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
