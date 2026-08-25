@@ -1,0 +1,416 @@
+/* ============================================
+   ViewYourSite - Template Showcase Styles
+   Styles for template preview cards and displays
+   ============================================ */
+
+/* Template Card Variants */
+.template-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-slow);
+}
+
+.template-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.template-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+.template-card:hover::before {
+  opacity: 1;
+}
+
+/* Template Preview Container */
+.template-preview-container {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+  background: var(--light-gray);
+}
+
+.template-preview-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transform-origin: top center;
+  background: var(--white);
+}
+
+/* Template Thumbnail (Static Preview) */
+.template-thumbnail {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Business Template Thumbnail */
+.thumbnail-business {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.thumbnail-business .thumb-header {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thumb-logo {
+  font-weight: 700;
+  color: white;
+  font-size: 14px;
+}
+
+.thumb-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.thumb-nav span {
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+}
+
+.thumbnail-business .thumb-hero {
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.thumb-hero-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.thumb-hero-subtitle {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 16px;
+}
+
+.thumb-cta {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--primary);
+  color: white;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.thumbnail-business .thumb-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 20px;
+}
+
+.thumb-feature {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.thumb-feature-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.thumb-feature-text {
+  font-size: 9px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Portfolio Template Thumbnail */
+.thumbnail-portfolio {
+  background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+}
+
+.thumbnail-portfolio .thumb-hero-full {
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 24px;
+}
+
+.thumb-hero-large {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.thumb-hero-tagline {
+  font-size: 11px;
+  color: rgba(255,255,255,0.8);
+  max-width: 200px;
+}
+
+.thumbnail-portfolio .thumb-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 16px;
+  height: 40%;
+}
+
+.thumb-gallery-item {
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+
+/* Restaurant Template Thumbnail */
+.thumbnail-restaurant {
+  background: linear-gradient(180deg, #2c1810 0%, #4a2c2a 100%);
+}
+
+.thumbnail-restaurant .thumb-header-elegant {
+  padding: 20px 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,215,0,0.3);
+}
+
+.thumb-restaurant-name {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  color: #d4af37;
+  letter-spacing: 2px;
+}
+
+.thumbnail-restaurant .thumb-menu-preview {
+  padding: 16px 24px;
+}
+
+.thumb-menu-category {
+  color: #d4af37;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.thumb-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.thumb-menu-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: rgba(255,255,255,0.8);
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(255,255,255,0.2);
+}
+
+.thumbnail-restaurant .thumb-gallery-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px 24px;
+}
+
+.thumb-food-img {
+  aspect-ratio: 1;
+  background: rgba(212,175,55,0.2);
+  border-radius: 4px;
+}
+
+/* Landing Page Template Thumbnail */
+.thumbnail-landing {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.thumbnail-landing .thumb-product-showcase {
+  padding: 30px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thumb-product-badge {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 8px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.thumb-product-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.thumb-product-desc {
+  font-size: 10px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 16px;
+  max-width: 180px;
+}
+
+.thumb-price-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  min-width: 140px;
+}
+
+.thumb-price {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.thumb-price-period {
+  font-size: 10px;
+  color: var(--gray);
+}
+
+.thumbnail-landing .thumb-features-list {
+  padding: 16px 24px;
+}
+
+.thumb-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 6px;
+}
+
+.thumb-check {
+  color: #28C840;
+}
+
+/* Template Info Overlay */
+.template-info-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-lg);
+  z-index: 2;
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.template-card:hover .template-info-overlay {
+  transform: translateY(0);
+}
+
+.template-info-overlay h3 {
+  color: var(--white);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-xs);
+}
+
+.template-info-overlay p {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-md);
+}
+
+/* Template Tags */
+.template-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.template-tag {
+  padding: 2px 8px;
+  background: rgba(232, 93, 76, 0.15);
+  color: var(--primary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+/* Template Card Footer */
+.template-card-footer {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--white);
+  border-top: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template-name {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.template-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Featured Badge */
+.featured-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  padding: 4px 10px;
+  background: var(--gradient-primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  z-index: 3;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Template Grid */
+@media (max-width: 768px) {
+  .templates-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .template-thumbnail {
+    transform: scale(1);
+  }
+}
+
+/* Animation for template cards */
+@keyframes templateFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.template-card:nth-child(odd):hover {
+  animation: templateFloat 2s ease-in-out infinite;
+}

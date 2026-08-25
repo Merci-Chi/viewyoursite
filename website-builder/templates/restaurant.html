@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Template - ViewYourSite</title>
+  <meta name="description" content="Elegant restaurant template for fine dining establishments">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f4cf67;
+      --dark-brown: #2c1810;
+      --brown: #4a2c2a;
+      --cream: #faf8f5;
+      --dark: #1A202C;
+      --gray: #666;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: var(--cream);
+    }
+    
+    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; }
+    
+    /* Header */
+    header {
+      background: linear-gradient(180deg, var(--dark-brown) 0%, var(--brown) 100%);
+      padding: 24px 32px;
+      text-align: center;
+      border-bottom: 1px solid rgba(212,175,55,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .restaurant-name {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-size: 1.75rem;
+      margin-bottom: 6px;
+    }
+    
+    .tagline {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    
+    /* Hero Banner */
+    .hero-banner {
+      height: 70vh;
+      min-height: 450px;
+      background: 
+        linear-gradient(rgba(44,24,16,0.7), rgba(44,24,16,0.8)),
+        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&h=900&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 40px 24px;
+    }
+    
+    .hero-banner p:first-child {
+      letter-spacing: 3px;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+    
+    .hero-banner h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 18px;
+      line-height: 1.15;
+    }
+    
+    .hero-banner > p:last-child {
+      max-width: 520px;
+      margin: 0 auto 32px;
+      opacity: 0.95;
+      font-size: 1.1rem;
+    }
+    
+    .reserve-btn {
+      display: inline-block;
+      padding: 16px 42px;
+      background: var(--gold);
+      color: var(--dark-brown);
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-size: 0.95rem;
+    }
+    
+    .reserve-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212,175,55,0.35);
+    }
+    
+    /* Menu Section */
+    .menu-section { padding: 80px 24px; }
+    .menu-header { text-align: center; margin-bottom: 56px; }
+    .menu-label { color: var(--gold); letter-spacing: 3px; font-size: 0.85rem; margin-bottom: 10px; }
+    .menu-header h2 { font-size: 2.25rem; color: var(--dark-brown); }
+    
+    .menu-container { max-width: 900px; margin: 0 auto; }
+    
+    .menu-category { margin-bottom: 48px; }
+    .category-title {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 12px;
+      margin-bottom: 28px;
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+    }
+    
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px dashed #d0d0d0;
+      gap: 20px;
+    }
+    
+    .menu-item-info h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    
+    .menu-item-info p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      font-style: italic;
+    }
+    
+    .menu-price {
+      color: var(--gold);
+      font-weight: 700;
+      white-space: nowrap;
+      font-size: 1.05rem;
+    }
+    
+    /* Gallery Section */
+    .gallery-section {
+      padding: 80px 24px;
+      background: var(--dark-brown);
+    }
+    
+    .gallery-header { text-align: center; margin-bottom: 48px; }
+    .gallery-header .menu-label { color: var(--gold); }
+    .gallery-header h2 { color: white; font-size: 2rem; }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .gallery-img {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-img:nth-child(1) { background: linear-gradient(45deg, #8B4513, #D2691E); }
+    .gallery-img:nth-child(2) { background: linear-gradient(45deg, #CD853F, #DEB887); }
+    .gallery-img:nth-child(3) { background: linear-gradient(45deg, #A0522D, #BC8F8F); }
+    .gallery-img:nth-child(4) { background: linear-gradient(45deg, #6B4423, #8B7355); }
+    .gallery-img:nth-child(5) { background: linear-gradient(45deg, #D2691E, #F4A460); }
+    .gallery-img:nth-child(6) { background: linear-gradient(45deg, #8B6914, #DAA520); }
+    .gallery-img:nth-child(7) { background: linear-gradient(45deg, #654321, #8B4513); }
+    .gallery-img:nth-child(8) { background: linear-gradient(45deg, #B8860B, #FFD700); }
+    
+    .gallery-img:hover { transform: scale(1.03); }
+    
+    /* Reservation CTA */
+    .reservation-cta {
+      padding: 80px 24px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      text-align: center;
+    }
+    
+    .reservation-cta h2 {
+      color: var(--dark-brown);
+      font-size: 2.25rem;
+      margin-bottom: 16px;
+    }
+    
+    .reservation-cta p {
+      color: var(--brown);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      font-size: 1.08rem;
+    }
+    
+    .info-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .info-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: var(--dark-brown);
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    
+    /* Location & Hours */
+    .info-section { padding: 80px 24px; }
+    .info-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 48px;
+      text-align: center;
+    }
+    
+    .info-block h3 {
+      color: var(--dark-brown);
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+    
+    .info-block p {
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    
+    .info-block strong { color: var(--dark); }
+    
+    /* Footer */
+    footer {
+      background: #1a0f0a;
+      color: rgba(255,255,255,0.7);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    
+    footer .restaurant-name {
+      display: block;
+      margin-bottom: 12px;
+    }
+    
+    footer p { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      
+      .menu-item { flex-direction: column; gap: 6px; }
+      .menu-price { align-self: flex-start; }
+      
+      .info-cards { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="restaurant-name">La Belle Cuisine</div>
+    <p class="tagline">Fine Dining Experience</p>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <p>Welcome to</p>
+    <h1>An Exquisite Culinary Journey</h1>
+    <p>Experience the finest French cuisine crafted with passion and the freshest ingredients.</p>
+    <a href="#reservation" class="reserve-btn">RESERVE A TABLE</a>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="menu-header">
+      <p class="menu-label">Discover</p>
+      <h2>Our Menu</h2>
+    </div>
+    
+    <div class="menu-container">
+      <!-- Starters -->
+      <div class="menu-category">
+        <h3 class="category-title">Starters</h3>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>French Onion Soup</h4>
+            <p>Gruyère cheese, croutons, fresh herbs</p>
+          </div>
+          <span class="menu-price">$14</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Escargots de Bourgogne</h4>
+            <p>Garlic butter, parsley, traditional preparation</p>
+          </div>
+          <span class="menu-price">$18</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Tartare de Saumon</h4>
+            <p>Fresh salmon, avocado, citrus dressing</p>
+          </div>
+          <span class="menu-price">$19</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Foie Gras Terrine</h4>
+            <p>Sauternes jelly, brioche toast</p>
+          </div>
+          <span class="menu-price">$24</span>
+        </div>
+      </div>
+      
+      <!-- Main Courses -->
+      <div class="menu-category">
+        <h3 class="category-title">Main Courses</h3>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Boeuf Bourguignon</h4>
+            <p>Slow-cooked beef, red wine, mushrooms</p>
+          </div>
+          <span class="menu-price">$34</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Sautéed Duck Breast</h4>
+            <p>Cherry reduction, seasonal vegetables</p>
+          </div>
+          <span class="menu-price">$38</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Pan-Seared Sea Bass</h4>
+            <p>Lemon beurre blanc, asparagus, risotto</p>
+          </div>
+          <span class="menu-price">$36</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Filet Mignon</h4>
+            <p>Truffle mash, red wine jus, vegetables</p>
+          </div>
+          <span class="menu-price">$44</span>
+        </div>
+      </div>
+      
+      <!-- Desserts -->
+      <div class="menu-category">
+        <h3 class="category-title">Desserts</h3>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Crème Brûlée</h4>
+            <p>Classic vanilla bean, caramelized sugar</p>
+          </div>
+          <span class="menu-price">$12</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Chocolate Soufflé</h4>
+            <p>Dark chocolate, crème anglaise</p>
+          </div>
+          <span class="menu-price">$14</span>
+        </div>
+        
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <h4>Tarte Tatin</h4>
+            <p>Caramelized apple, puff pastry, cream</p>
+          </div>
+          <span class="menu-price">$13</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="gallery-header">
+      <p class="menu-label">Gallery</p>
+      <h2>A Visual Feast</h2>
+    </div>
+    
+    <div class="gallery-grid">
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+      <div class="gallery-img"></div>
+    </div>
+  </section>
+
+  <!-- Reservation CTA -->
+  <section class="reservation-cta" id="reservation">
+    <h2>Reserve Your Table</h2>
+    <p>Join us for an unforgettable dining experience. Book your table today.</p>
+    
+    <div class="info-cards">
+      <div class="info-card">📞 Call (555) 123-4567</div>
+      <div class="info-card">🕐 Open Tue-Sun 5PM-11PM</div>
+    </div>
+  </section>
+
+  <!-- Location & Hours -->
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-block">
+        <h3>📍 Location</h3>
+        <p>
+          123 Gourmet Avenue<br>
+          Culinary District<br>
+          San Francisco, CA 94102
+        </p>
+      </div>
+      
+      <div class="info-block">
+        <h3>🕐 Hours</h3>
+        <p>
+          Tuesday - Thursday: 5PM - 10PM<br>
+          Friday - Saturday: 5PM - 11PM<br>
+          Sunday: 4PM - 9PM<br><br>
+          <strong>Monday: Closed</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="restaurant-name">La Belle Cuisine</span>
+    <p>© 2024 La Belle Cuisine. All rights reserved. Built with ❤️ using ViewYourSite</p>
+  </footer>
+
+</body>
+</html>

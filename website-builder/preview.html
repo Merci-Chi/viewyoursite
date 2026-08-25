@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview - ViewYourSite</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  
+  <style>
+    /* Preview-specific styles */
+    .preview-container {
+      min-height: 100vh;
+      background: var(--light-gray);
+    }
+    
+    .preview-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-sm) var(--space-lg);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--light-gray);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .preview-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .preview-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
+    
+    .preview-frame-container {
+      padding-top: 60px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      background: #E8E8E8;
+    }
+    
+    #previewFrame {
+      width: 100%;
+      min-height: calc(100vh - 60px);
+      border: none;
+      background: white;
+    }
+    
+    /* Device frame options */
+    .device-toggle {
+      display: flex;
+      background: var(--light-gray);
+      border-radius: var(--radius-sm);
+      padding: 3px;
+    }
+    
+    .device-toggle button {
+      padding: var(--space-xs) var(--space-md);
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all var(--transition-fast);
+    }
+    
+    .device-toggle button.active {
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-container">
+    <!-- Preview Header -->
+    <header class="preview-header">
+      <div class="preview-brand">
+        <span>🎨</span>
+        <span>ViewYourSite Preview</span>
+      </div>
+      
+      <div class="device-toggle">
+        <button id="prevDesktop" class="active" onclick="setDevice('desktop')">🖥️ Desktop</button>
+        <button id="prevTablet" onclick="setDevice('tablet')">📱 Tablet</button>
+        <button id="prevMobile" onclick="setDevice('mobile')">📲 Mobile</button>
+      </div>
+      
+      <div class="preview-actions">
+        <a href="editor.html" class="btn btn-secondary">
+          ← Back to Editor
+        </a>
+      </div>
+    </header>
+    
+    <!-- Preview Frame -->
+    <div class="preview-frame-container">
+      <iframe id="previewFrame"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Get saved content from localStorage
+    const savedContent = localStorage.getItem('viewyoursite_content');
+    
+    // Set preview content
+    const previewFrame = document.getElementById('previewFrame');
+    
+    if (savedContent) {
+      previewFrame.srcdoc = savedContent;
+    } else {
+      // Show empty state
+      previewFrame.srcdoc = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body {
+              font-family: 'Inter', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              min-height: 100vh;
+              margin: 0;
+              background: #f5f5f5;
+              color: #666;
+            }
+            .empty-state {
+              text-align: center;
+              padding: 40px;
+            }
+            .empty-state h2 {
+              margin-bottom: 10px;
+              color: #333;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="empty-state">
+            <h2>No Content to Preview</h2>
+            <p>Go back to the editor and add some content first.</p>
+          </div>
+        </body>
+        </html>
+      `;
+    }
+    
+    // Device toggle functions
+    function setDevice(device) {
+      const buttons = document.querySelectorAll('.device-toggle button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById('prev' + device.charAt(0).toUpperCase() + device.slice(1)).classList.add('active');
+      
+      switch(device) {
+        case 'desktop':
+          previewFrame.style.maxWidth = '100%';
+          break;
+        case 'tablet':
+          previewFrame.style.maxWidth = '768px';
+          break;
+        case 'mobile':
+          previewFrame.style.maxWidth = '375px';
+          break;
+      }
+    }
+  </script>
+</body>
+</html>

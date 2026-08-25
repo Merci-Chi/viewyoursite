@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViewYourSite - Beautiful Website Builder</title>
+  <meta name="description" content="Create stunning websites in minutes with our free drag-and-drop website builder. No coding required.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/templates.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="#" class="navbar-brand">
+        <div class="logo-icon">🎨</div>
+        <span>ViewYourSite</span>
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#templates">Templates</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+      </ul>
+      <a href="editor.html" class="btn btn-primary">
+        🚀 Start Building
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge animate-in">
+          Free & Open Source Website Builder
+        </div>
+        
+        <h1 class="hero-title animate-in animate-delay-1">
+          Build Beautiful Websites 
+          <span class="highlight">Without Code</span>
+        </h1>
+        
+        <p class="hero-description animate-in animate-delay-2">
+          Create stunning, professional websites in minutes. Choose from beautiful templates, 
+          customize everything with our intuitive editor, and export clean HTML ready for GitHub Pages.
+        </p>
+        
+        <div class="hero-actions animate-in animate-delay-3">
+          <a href="editor.html" class="btn btn-primary btn-lg">
+            ✨ Start Building Free
+          </a>
+          <a href="#templates" class="btn btn-secondary btn-lg">
+            Browse Templates →
+          </a>
+        </div>
+        
+        <div class="hero-stats animate-in animate-delay-4">
+          <div class="stat-item">
+            <div class="stat-value">4+</div>
+            <div class="stat-label">Templates</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Free Forever</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Customization</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hero Visual - Browser Mockup -->
+      <div class="hero-visual">
+        <div class="browser-mockup">
+          <div class="browser-header">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+            <div class="browser-url">yoursite.github.io</div>
+          </div>
+          <div class="browser-content">
+            <div class="mockup-element mockup-hero"></div>
+            <div class="mockup-element mockup-text" style="margin-top: 16px;"></div>
+            <div class="mockup-element mockup-text short"></div>
+            <div class="mockup-cards">
+              <div class="mockup-card"></div>
+              <div class="mockup-card"></div>
+              <div class="mockup-card"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">✨ Features</span>
+        <h2 class="section-title">Everything You Need to Build Amazing Sites</h2>
+        <p class="section-description">
+          Powerful features that make website creation simple, fast, and enjoyable.
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🖱️</div>
+          <h3>Drag & Drop Editor</h3>
+          <p>Intuitive visual editor that lets you build pages by simply dragging elements where you want them.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Beautiful Templates</h3>
+          <p>Start with professionally designed templates for business, portfolio, restaurant, and landing pages.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">⚙️</div>
+          <h3>Full Customization</h3>
+          <p>Change colors, fonts, spacing, and every detail to match your brand perfectly.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Responsive Design</h3>
+          <p>Your sites look great on desktop, tablet, and mobile. Preview in different sizes instantly.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">💾</div>
+          <h3>Auto-Save</h3>
+          <p>Your work is automatically saved to browser storage. Never lose your progress again.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📤</div>
+          <h3>Export to HTML</h3>
+          <p>Download clean, standalone HTML files ready to deploy anywhere - GitHub Pages, Netlify, or any host.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates Section -->
+  <section id="templates" class="templates-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">📋 Templates</span>
+        <h2 class="section-title">Start With a Beautiful Template</h2>
+        <p class="section-description">
+          Choose from our collection of professionally designed templates. Each one is fully customizable.
+        </p>
+      </div>
+      
+      <div class="templates-grid" id="templatesGrid">
+        <!-- Template cards will be dynamically loaded by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">🚀 How It Works</span>
+        <h2 class="section-title">Build Your Site in 3 Simple Steps</h2>
+        <p class="section-description">
+          No technical skills required. Just follow these simple steps.
+        </p>
+      </div>
+      
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Choose a Template</h3>
+          <p>Browse our collection of beautiful templates and pick one that fits your needs.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Customize Everything</h3>
+          <p>Use our drag-and-drop editor to change text, images, colors, and layout.</p>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Export & Publish</h3>
+          <p>Download your finished site as HTML and deploy it to GitHub Pages or anywhere else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Build Your Dream Website?</h2>
+        <p>
+          Start creating now. It's completely free, no sign-up required, 
+          and you can export your work anytime.
+        </p>
+        <a href="editor.html" class="btn btn-primary btn-lg">
+          🎨 Start Building Now — It's Free
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span>🎨 ViewYourSite</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Report Issue</a></li>
+      </ul>
+      <p style="font-size: 0.85rem;">
+        Made with ❤️ for the open source community
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/templates.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
