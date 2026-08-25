@@ -440,9 +440,15 @@
 
             // ---------- API calls ----------
             async function fetchSites() {
-                const res = await fetch(`${API_BASE}/sites`);
-                if (!res.ok) throw new Error('Failed to fetch sites');
-                return res.json();
+                const res = await fetch('./sites-data.json');
+
+                if (!res.ok) {
+                    throw new Error('Failed to load sites-data.json');
+                }
+
+                const data = await res.json();
+
+                return data.sites;
             }
 
             async function createSite(name, html) {
