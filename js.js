@@ -1,9 +1,9 @@
 const sites = [
-    { name: "Del Carmen Hair Salon", path: "DelCarmeHairSalon" },
-    { name: "Shop Vezzy", path: "SHOPVEZZY" },
-    { name: "Studio 47 Hair Salon", path: "Studio47HairSalon" },
+    { name: "Del Carmen Hair Salon", path: "delcarmenhairsalon" },
+    { name: "Shop Vezzy", path: "shopvezzy" },
+    { name: "Studio 47 Hair Salon", path: "studio47hairsalon" },
     { name: "Favorite Place to Shop", path: "favoriteplacetoshop" },
-    { name: "Green House Water Heaters", path: "GreenHouseWaterHeaters" }
+    { name: "Green House Water Heaters", path: "greenhousewaterheaters" }
 ];
 
 const gallery = document.getElementById("gallery");
