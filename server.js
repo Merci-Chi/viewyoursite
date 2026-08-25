@@ -115,7 +115,7 @@ app.delete('/api/sites/:path', (req, res) => {
   if (siteIndex === -1) {
     return res.status(404).json({ error: 'Site not found' });
   }
-
+/* Okiiii */
   data.sites.splice(siteIndex, 1);
   delete data.htmlContent[sitePath];
   writeData(data);
