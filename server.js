@@ -7,9 +7,11 @@ const path = require('path');
 const app = express();
 const PORT = 3001;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' }));
+app.use(express.static(__dirname));
+
+const DATA_FILE = path.join(__dirname, 'sites-data.json');
 
 // Path to our data file
 const DATA_FILE = path.join(__dirname, 'sites-data.json');
@@ -115,7 +117,7 @@ app.delete('/api/sites/:path', (req, res) => {
   if (siteIndex === -1) {
     return res.status(404).json({ error: 'Site not found' });
   }
-/* Okiiii */
+
   data.sites.splice(siteIndex, 1);
   delete data.htmlContent[sitePath];
   writeData(data);
