@@ -70,7 +70,7 @@
             gap: 1.8rem;
         }
 
-        /* card with iframe preview - no scrollbars */
+        /* card with iframe preview - no scrollbars anywhere */
         .site-card {
             background: #141414;
             border: 1px solid #2a2a2a;
@@ -88,12 +88,12 @@
             transform: translateY(-3px);
         }
 
-        /* iframe wrapper to hide scrollbars cleanly */
+        /* iframe wrapper - clips any scrollbar that might appear */
         .preview-wrap {
             width: 100%;
             aspect-ratio: 16 / 10;
             background: #1a1a1a;
-            overflow: hidden;          /* hides any scrollbar that might appear */
+            overflow: hidden;
             position: relative;
         }
 
@@ -102,17 +102,24 @@
             height: 100%;
             border: none;
             display: block;
-            pointer-events: none;      /* prevent interaction inside preview */
-            /* hide scrollbars on all browsers */
-            scrollbar-width: none;     /* Firefox */
-            -ms-overflow-style: none;  /* IE / Edge */
+            pointer-events: none;
+            /* aggressively hide scrollbars */
+            overflow: hidden !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
         }
 
-        /* hide scrollbar for WebKit (Chrome, Safari, Edge) */
+        /* WebKit scrollbar hiding */
         .preview-frame::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        /* additional safety for any child elements that might scroll */
+        .preview-frame body::-webkit-scrollbar {
+            display: none !important;
         }
 
         .card-label {
@@ -182,9 +189,6 @@
 
     <script>
         (function() {
-            // --------------------------------------------------------------
-            // site data – name (display) + path (relative folder)
-            // --------------------------------------------------------------
             const sites = [
                 { name: 'Del Carmen Hair Salon', path: 'DelCarmeHairSalon' },
                 { name: 'Shop Vezzy', path: 'SHOPVEZZY' },
@@ -196,7 +200,6 @@
             const gallery = document.getElementById('gallery');
             const searchInput = document.getElementById('searchInput');
 
-            // ---------- build cards ----------
             function buildCards(filterText = '') {
                 gallery.innerHTML = '';
 
@@ -216,13 +219,11 @@
                     return;
                 }
 
-                // create card for each site
                 filtered.forEach(site => {
                     const card = document.createElement('a');
                     card.className = 'site-card';
                     card.href = `./${site.path}/`;
 
-                    // ----- iframe wrapper (hides scrollbars) -----
                     const wrap = document.createElement('div');
                     wrap.className = 'preview-wrap';
 
@@ -231,15 +232,14 @@
                     iframe.src = `./${site.path}/`;
                     iframe.loading = 'lazy';
                     iframe.setAttribute('aria-hidden', 'true');
-                    // extra safety: prevent scrollbars via style
-                    iframe.style.scrollbarWidth = 'none';      // Firefox
-                    iframe.style.overflow = 'hidden';          // fallback
-                    // webkit scrollbar hiding (already via CSS, but double‑check)
-                    iframe.style.webkitScrollbar = 'none';
-
+                    
+                    // Force no scrollbars on the iframe itself
+                    iframe.style.overflow = 'hidden';
+                    iframe.style.scrollbarWidth = 'none';
+                    iframe.style.msOverflowStyle = 'none';
+                    
                     wrap.appendChild(iframe);
 
-                    // label
                     const label = document.createElement('div');
                     label.className = 'card-label';
                     label.textContent = site.name;
@@ -250,7 +250,6 @@
                 });
             }
 
-            // ---------- search handler ----------
             let searchTimeout = null;
             function handleSearch() {
                 const query = searchInput.value;
@@ -260,13 +259,10 @@
                 }, 120);
             }
 
-            // ---------- initial render ----------
             buildCards('');
 
-            // ---------- attach events ----------
             searchInput.addEventListener('input', handleSearch);
 
-            // escape key clears search
             searchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     searchInput.value = '';
