@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Websites - Steady Hands Operation</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websites · Steady Hands Operation</title>
     <style>
         * {
             margin: 0;
@@ -12,89 +12,139 @@
         }
 
         body {
+            background: #0f0f0f;
+            color: #e0e0e0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #000000;
-            color: #003333;
             min-height: 100vh;
             padding: 2rem 1rem;
         }
 
         .container {
-            max-width: 100px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 300;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        /* search row */
+        .search-row {
+            max-width: 480px;
+            margin: 0 auto 2rem auto;
         }
 
-        .site-card {
-            aspect-ratio: 1;
+        #searchInput {
+            width: 100%;
+            padding: 0.75rem 1.2rem;
             background: #1a1a1a;
             border: 1px solid #333;
-            border-radius: 4px;
-            padding: 1rem;
+            border-radius: 40px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        #searchInput:focus {
+            border-color: #777;
+        }
+
+        #searchInput::placeholder {
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* gallery grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.8rem;
+        }
+
+        /* card with iframe preview */
+        .site-card {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border 0.2s, transform 0.2s;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
         }
 
         .site-card:hover {
-            background: #003333;
-            border-color: #555;
-            transform: translateY(-4px);
+            border-color: #4a4a4a;
+            transform: translateY(-3px);
         }
 
-        .site-card h2 {
-            font-size: 1rem;
-            font-weight: 300;
-            word-break: break-word;
+        .preview-frame {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border: none;
+            background: #1a1a1a;
+            display: block;
+            pointer-events: none;  /* prevent interaction inside preview */
         }
 
-        .empty-state {
+        .card-label {
+            padding: 0.9rem 0.8rem 0.8rem 0.8rem;
+            background: #141414;
+            border-top: 1px solid #282828;
+            font-size: 0.95rem;
+            font-weight: 450;
+            letter-spacing: 0.2px;
             text-align: center;
-            padding: 4rem 2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #d0d0d0;
+        }
+
+        /* empty state */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 1.5rem;
             color: #666;
         }
 
         .empty-state h2 {
-            margin-bottom: 1rem;
+            font-weight: 400;
             font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+        .empty-state p {
+            font-size: 0.95rem;
+            color: #555;
+        }
 
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+        /* responsive */
+        @media (max-width: 700px) {
+            h1 { font-size: 2rem; }
+            .gallery { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .preview-frame { aspect-ratio: 16 / 11; }
+            .card-label { font-size: 0.8rem; padding: 0.6rem 0.4rem; }
+        }
 
-            .site-card {
-                aspect-ratio: auto;
-                min-height: 120px;
-            }
+        @media (max-width: 480px) {
+            .gallery { grid-template-columns: 1fr; }
+        }
+
+        /* hide cards when filtered out */
+        .site-card.hidden {
+            display: none;
         }
     </style>
 </head>
@@ -102,43 +152,110 @@
     <div class="container">
         <header>
             <h1>Websites</h1>
+            <div class="search-row">
+                <input type="text" id="searchInput" placeholder="Filter websites by name" autocomplete="off">
+            </div>
         </header>
 
         <div class="gallery" id="gallery">
-            <div class="empty-state" style="grid-column: 1 / -1;">
-                <h2>Loading websites...</h2>
-            </div>
+            <!-- cards will be injected -->
         </div>
     </div>
 
     <script>
-        const sites = [
-            { name: 'Del Carmen Hair Salon', path: 'DelCarmeHairSalon' },
-            { name: 'Shop Vezzy', path: 'SHOPVEZZY' },
-            { name: 'Studio 47 Hair Salon', path: 'Studio47HairSalon' },
-            { name: 'Favorite Place to Shop', path: 'favoriteplacetoshop' },
-            { name: 'Green House Water Heaters', path: 'GreenHouseWaterHeaters' }
-        ];
+        (function() {
+            // --------------------------------------------------------------
+            // site data – each entry: name (display) + path (relative folder)
+            // --------------------------------------------------------------
+            const sites = [
+                { name: 'Del Carmen Hair Salon', path: 'DelCarmeHairSalon' },
+                { name: 'Shop Vezzy', path: 'SHOPVEZZY' },
+                { name: 'Studio 47 Hair Salon', path: 'Studio47HairSalon' },
+                { name: 'Favorite Place to Shop', path: 'favoriteplacetoshop' },
+                { name: 'Green House Water Heaters', path: 'GreenHouseWaterHeaters' }
+            ];
 
-        const gallery = document.getElementById('gallery');
-        gallery.innerHTML = '';
+            const gallery = document.getElementById('gallery');
+            const searchInput = document.getElementById('searchInput');
 
-        if (sites.length === 0) {
-            gallery.innerHTML = `
-                <div class="empty-state" style="grid-column: 1 / -1;">
-                    <h2>No websites yet</h2>
-                    <p>Add folders to the preview directory to see them here.</p>
-                </div>
-            `;
-        } else {
-            sites.forEach(site => {
-                const card = document.createElement('a');
-                card.href = `./${site.path}/`;
-                card.className = 'site-card';
-                card.innerHTML = `<h2>${site.name}</h2>`;
-                gallery.appendChild(card);
+            // ---------- build cards ----------
+            function buildCards(filterText = '') {
+                // clear gallery
+                gallery.innerHTML = '';
+
+                const lowerFilter = filterText.toLowerCase().trim();
+
+                // filter sites
+                const filtered = sites.filter(site => 
+                    site.name.toLowerCase().includes(lowerFilter)
+                );
+
+                if (filtered.length === 0) {
+                    gallery.innerHTML = `
+                        <div class="empty-state">
+                            <h2>No matching websites</h2>
+                            <p>Try a different search term</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // create card for each site
+                filtered.forEach(site => {
+                    const card = document.createElement('a');
+                    card.className = 'site-card';
+                    // link to the folder (relative path)
+                    card.href = `./${site.path}/`;
+
+                    // iframe preview – shows the actual site (same-origin)
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'preview-frame';
+                    iframe.src = `./${site.path}/`;
+                    iframe.loading = 'lazy';
+                    iframe.setAttribute('aria-hidden', 'true');
+                    // prevent iframe from capturing clicks (so card remains clickable)
+                    iframe.style.pointerEvents = 'none';
+
+                    // label
+                    const label = document.createElement('div');
+                    label.className = 'card-label';
+                    label.textContent = site.name;
+
+                    card.appendChild(iframe);
+                    card.appendChild(label);
+                    gallery.appendChild(card);
+                });
+            }
+
+            // ---------- search handler ----------
+            let searchTimeout = null;
+            function handleSearch() {
+                const query = searchInput.value;
+                // debounce quick typing
+                if (searchTimeout) clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    buildCards(query);
+                }, 120);
+            }
+
+            // ---------- initial render ----------
+            buildCards('');
+
+            // ---------- attach events ----------
+            searchInput.addEventListener('input', handleSearch);
+
+            // optional: if user clears with Escape, rebuild
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchInput.value = '';
+                    buildCards('');
+                    searchInput.blur();
+                }
             });
-        }
+
+            // when clicking on a card, the link will navigate to the site folder.
+            // if you want to keep previews "alive", we do nothing else.
+        })();
     </script>
 </body>
 </html>
