@@ -726,13 +726,24 @@
         async function loadSubscriptions() {
             subscriptionStatusTitle.textContent = "Checking your account";
             subscriptionMessage.textContent = "Loading your subscriptions…"; subscriptionList.replaceChildren();
-            const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", { method: "GET" });
+            const { data, error } = await portalSupabase
+                .from("hosting_subscriptions")
+                .select("id, plan_name, amount_cents, billing_cadence, status, charged_through_date")
+                .order("created_at", { ascending: false });
             if (error) {
                 subscriptionStatusTitle.textContent = "Unable to load subscriptions";
                 subscriptionMessage.textContent = "We couldn’t load your subscriptions right now.";
                 return;
             }
-            renderSubscriptions(data?.subscriptions || []);
+            const subscriptions = (data || []).map(subscription => ({
+                id: subscription.id,
+                planName: subscription.plan_name,
+                amountCents: subscription.amount_cents,
+                billingCadence: subscription.billing_cadence,
+                status: subscription.status,
+                chargedThroughDate: subscription.charged_through_date
+            }));
+            renderSubscriptions(subscriptions);
         }
         async function updatePortal(session) {
             const isLoggedIn = Boolean(session?.user);
