@@ -141,7 +141,7 @@
         .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-bottom: 1rem; padding: .3rem; border-radius: 10px; background: #202020; }
         .auth-tab { padding: .7rem; border: 0; border-radius: 8px; background: transparent; color: #888; cursor: pointer; font: inherit; }
         .auth-tab.active { background: #333; color: #fff; }
-        .social-auth { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1rem; }
+        .social-auth { display: grid; grid-template-columns: 1fr; gap: .75rem; margin-bottom: 1rem; }
         .social-auth button { padding: .8rem; border: 1px solid #3a3a3a; border-radius: 9px; background: #202020; color: #fff; cursor: pointer; font: inherit; }
         .social-auth button:hover { border-color: #777; }
         .auth-divider { display: flex; align-items: center; gap: .75rem; margin: 1rem 0; color: #666; font-size: .8rem; text-transform: uppercase; }
@@ -275,7 +275,6 @@
                 </div>
                 <div class="social-auth">
                     <button id="googleAuth" type="button">Continue with Google</button>
-                    <button id="appleAuth" type="button">Continue with Apple</button>
                 </div>
                 <div class="auth-divider">or use email</div>
                 <form class="portal-form" id="portalLoginForm">
@@ -339,7 +338,7 @@
             loginMessage.textContent = "";
         }
         async function signInWithProvider(provider) {
-            loginMessage.textContent = `Opening ${provider === "google" ? "Google" : "Apple"}…`;
+            loginMessage.textContent = "Opening Google…";
             const { error } = await portalSupabase.auth.signInWithOAuth({
                 provider,
                 options: { redirectTo: "https://viewyoursite.today" }
@@ -386,7 +385,6 @@
         loginTab.addEventListener("click", () => setAuthMode("login"));
         signupTab.addEventListener("click", () => setAuthMode("signup"));
         document.getElementById("googleAuth").addEventListener("click", () => signInWithProvider("google"));
-        document.getElementById("appleAuth").addEventListener("click", () => signInWithProvider("apple"));
         loginForm.addEventListener("submit", async event => {
             event.preventDefault();
             const email = document.getElementById("portalEmail").value.trim();
