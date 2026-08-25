@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espinoza Notary Services</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#0d0d0d;color:#f5f1e8;overflow-x:hidden;}
+
+:root{
+  --gold:#c9a227;
+  --white:#ffffff;
+  --grey:#b0b0b0;
+  --dark:#0d0d0d;
+}
+
+/* FLOATING SIDE NAV */
+.side-nav{position:fixed;top:50%;right:2rem;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:1.5rem;text-align:right;}
+.side-nav a{color:var(--grey);text-decoration:none;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:color .3s;}
+.side-nav a:hover{color:var(--gold);}
+
+/* MOBILE NAV */
+.mob-bg{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9998;opacity:0;pointer-events:none;transition:opacity .3s;}
+.mob-bg.open{opacity:1;pointer-events:all;}
+.mob-nav{position:fixed;top:0;right:-300px;width:280px;height:100vh;background:var(--dark);z-index:9999;padding:5rem 2rem;transition:right .4s;display:flex;flex-direction:column;gap:1rem;}
+.mob-nav.open{right:0;}
+.mob-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;}
+.mob-close:hover{color:var(--gold);}
+.mob-nav a{color:var(--grey);text-decoration:none;font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:color .2s;}
+.mob-nav a:hover{color:var(--gold);}
+.mobile-toggle{position:fixed;top:1.5rem;right:1.5rem;z-index:1001;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;display:none;}
+
+/* HERO */
+.hero{min-height:50vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:6rem 4rem 2rem;text-align:left;}
+.hero h1{font-size:clamp(3rem,10vw,9rem);font-weight:900;color:var(--white);line-height:.9;margin-bottom:1.5rem;letter-spacing:-3px;}
+.hero h1 span{color:var(--gold);}
+.hero p{font-size:1.1rem;color:var(--grey);max-width:650px;margin-bottom:2rem;line-height:1.8;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:2rem;margin-bottom:2rem;font-size:.9rem;color:var(--grey);}
+.hero-meta span{display:flex;align-items:center;gap:.5rem;}
+.btn{padding:1rem 2.5rem;font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all .3s;background:var(--gold);color:var(--dark);}
+.btn:hover{background:var(--white);color:var(--dark);}
+
+/* SECTIONS */
+section{padding:5rem 4rem;max-width:1200px;margin:0 auto;}
+.st-tag{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;margin-bottom:1rem;}
+.st-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:2rem;}
+
+/* SERVICES */
+.services-list{display:flex;flex-direction:column;gap:2rem;}
+.service-row{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:2rem;cursor:pointer;transition:color .3s;}
+.service-row:hover{color:var(--gold);}
+.service-row h3{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--white);transition:color .3s;}
+.service-row:hover h3{color:var(--gold);}
+.service-row p{font-size:1rem;color:var(--grey);max-width:400px;text-align:right;line-height:1.6;}
+.services-more{display:flex;justify-content:flex-start;margin-top:2rem;}
+
+/* GALLERY */
+.gallery-wrap{position:relative;max-width:1200px;}
+.gallery-scroll{display:flex;gap:1rem;overflow-x:auto;padding-bottom:2rem;scrollbar-width:none;filter:blur(8px);opacity:.3;pointer-events:none;user-select:none;}
+.gallery-scroll::-webkit-scrollbar{display:none;}
+.gallery-scroll img{width:300px;height:200px;object-fit:cover;flex-shrink:0;}
+.gallery-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:background .3s;}
+.gallery-lock:hover{background:rgba(201,162,39,.03);}
+.gallery-lock i{font-size:2rem;color:var(--gold);margin-bottom:1rem;}
+.gallery-lock h3{font-size:1.2rem;font-weight:900;color:var(--white);margin-bottom:.5rem;}
+.gallery-lock p{font-size:.8rem;color:var(--grey);}
+
+/* WHO WE ARE */
+.about-block{max-width:800px;cursor:pointer;}
+.about-block p{font-size:1.2rem;color:var(--grey);line-height:2;margin-bottom:2rem;}
+.about-pills{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.about-pill{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+
+/* REVIEWS */
+.rev-empty{max-width:600px;cursor:pointer;padding:3rem 0;}
+.rev-empty h3{font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:1rem;}
+.rev-empty p{font-size:1rem;color:var(--grey);line-height:1.8;margin-bottom:2rem;}
+
+/* CTA */
+.cta-huge{padding:6rem 4rem;text-align:center;cursor:pointer;}
+.cta-huge h2{font-size:clamp(2.5rem,8vw,6rem);font-weight:900;color:var(--white);line-height:1;letter-spacing:-2px;margin-bottom:2rem;}
+.cta-huge h2 span{color:var(--gold);}
+
+/* FOOTER */
+footer{background:#0d0d0d;padding:3rem 4rem;text-align:left;}
+.foot-name{font-size:1rem;font-weight:900;letter-spacing:5px;text-transform:uppercase;color:var(--white);margin-bottom:.5rem;}
+.foot-name span{color:var(--gold);}
+.foot-addr{font-size:.8rem;color:var(--grey);margin-bottom:1.5rem;}
+.foot-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.foot-links a{color:var(--grey);text-decoration:none;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:color .2s;}
+.foot-links a:hover{color:var(--gold);}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(13,13,13,.97);z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-bg.open{opacity:1;pointer-events:all;}
+.modal-card{background:#0d0d0d;padding:4rem 3rem;max-width:500px;width:95%;text-align:center;position:relative;}
+.modal-x{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--grey);font-size:1.5rem;cursor:pointer;transition:color .2s;}
+.modal-x:hover{color:var(--gold);}
+.modal-icon{width:60px;height:60px;background:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;color:var(--dark);font-size:1.5rem;}
+.modal-card h3{font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:.5rem;}
+.modal-card p{font-size:1rem;color:var(--grey);line-height:1.8;margin-bottom:2rem;}
+
+/* REVEAL ANIMATION */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+.rv.show{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .side-nav{display:none;}
+  .mobile-toggle{display:block;}
+  .hero{padding:4rem 2rem 2rem;}
+  section{padding:4rem 2rem;}
+  .cta-huge{padding:4rem 2rem;}
+  footer{padding:3rem 2rem;}
+  .service-row{flex-direction:column;gap:.5rem;}
+  .service-row p{text-align:left;}
+}
+</style>
+</head>
+<body id="page">
+
+<!-- MOBILE TOGGLE -->
+<button class="mobile-toggle" onclick="mobOpen()" aria-label="Menu">&#9776;</button>
+
+<!-- FLOATING SIDE NAV (ADDED About, Contact, Appointments) -->
+<div class="side-nav">
+  <a onclick="popup()">Book</a>
+  <a onclick="popup()">More Info</a>
+  <a onclick="popup()">Privacy</a>
+  <a onclick="popup()">About</a>
+  <a onclick="popup()">Contact</a>
+  <a onclick="popup()">Appointments</a>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mob-bg" id="mobBg" onclick="mobClose()"></div>
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" onclick="mobClose()" aria-label="Close">&times;</button>
+  <a onclick="mobClose();popup()">Book</a>
+  <a onclick="mobClose();popup()">More Info</a>
+  <a onclick="mobClose();popup()">Privacy</a>
+  <a onclick="mobClose();popup()">About</a>
+  <a onclick="mobClose();popup()">Contact</a>
+  <a onclick="mobClose();popup()">Appointments</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>ESPINOZA<br><span>NOTARY</span></h1>
+  <p>Notary public for documents as well as a real estate consultant and mobile service provider. Serving Las Vegas, Clark County, and Nevada.</p>
+  <div class="hero-meta">
+    <span>1500 S Maryland Pkwy, Las Vegas, NV 89104</span>
+    <span>(702) 810-4669</span>
+    <span>Open Closes 5PM</span>
+  </div>
+  <button class="btn" onclick="popup()">Book Now</button>
+</header>
+
+<!-- WHAT WE DO -->
+<section id="services">
+  <div class="st-tag rv">What We Do</div>
+  <h2 class="st-title rv">Our Services</h2>
+  <div class="services-list">
+    <div class="service-row rv" onclick="popup()">
+      <h3>Notary Public</h3>
+      <p>Certified notary for all types of documents, including loan documents, contracts, and legal papers.</p>
+    </div>
+    <div class="service-row rv" onclick="popup()">
+      <h3>Real Estate Consultant</h3>
+      <p>Expert consulting for real estate transactions, signings, and closings.</p>
+    </div>
+    <div class="service-row rv" onclick="popup()">
+      <h3>Mobile Service</h3>
+      <p>We come to you. Mobile notary services available across Las Vegas and surrounding areas.</p>
+    </div>
+  </div>
+  <div class="services-more rv" onclick="popup()">
+    <button class="btn">More</button>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="st-tag rv">Gallery</div>
+  <h2 class="st-title rv">Our Work</h2>
+  <div class="gallery-wrap rv">
+    <div class="gallery-scroll">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmT-lIc9nbVWYTvS9mcgrv4d6FMaMHOon3tzTEm_heKe0J1nAn-Kh2tv_b-AIVfV5-HCd9W3QIj2T5KvxEKvqD_EnVP3uAhDOPZGEN8pBL8FnxFdn9xLZDsuK-e_nWlRMv0kZ-a=w101-h72-n-k-no-nu" alt="Office">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWni7kQRlFdbc3yumFVF_922AOKQqTdunvIGVEXpPOPC5Gsp06230WK1aMAlBZLBhLjtcQs3qs-Nnf0L-DoWWGDJhRKVeyjypGmnuuN17ptHq78z_DuCCUCrAKmSukWY1QRklguG=w132-h110-n-k-no-nu" alt="Conference">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmApe3gV4P7TemCLVFXK8jzn9elzSEWGx52D9raR_oXZCPZqDzSlJXEvJ4xSNFhxB4VegPQlR5WNyJknkMEht-1C1CmNIFQMAjmX6DwITnW30x6UqSBeIN1NyNwFIxat9mB93TmAA=w101-h84-n-k-no-nu" alt="Sign">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlzf5K7Yw-YzBXf2Nsylfwz-S8Qi2xMR6Wr9iXXNWJv0WkjQcPWXeZKW8g6MX34LU4_YDp1-Kcq8D-oGKIMz2i_1GBBx5IrFR8SJo8bNvN2216Ej_cr7Guy-ola2ZCObS2ienhO=w101-h126-n-k-no-nu" alt="Team">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnST3Avnw5NojfoPjIMMzT4UdbylwQbrWyou3ritZqUbYIycqZQdRZM88rPWlqRz5K7k1BHnhvlEqreQTEmJaOkQ2ctGXL4di2_d-SnOfDKcwsvfWk6pARATOEoQHEtU_54p5kX=w101-h72-n-k-no-nu" alt="Team 2">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmT-lIc9nbVWYTvS9mcgrv4d6FMaMHOon3tzTEm_heKe0J1nAn-Kh2tv_b-AIVfV5-HCd9W3QIj2T5KvxEKvqD_EnVP3uAhDOPZGEN8pBL8FnxFdn9xLZDsuK-e_nWlRMv0kZ-a=w101-h72-n-k-no-nu" alt="Office 2">
+    </div>
+    <div class="gallery-lock" onclick="popup()">
+      <i>&#128274;</i>
+      <h3>Unlock Full Gallery</h3>
+      <p>Purchase the complete site to view photos</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section id="who-we-are">
+  <div class="st-tag rv">Who We Are</div>
+  <h2 class="st-title rv">Our Team</h2>
+  <div class="about-block rv" onclick="popup()">
+    <p>Espinoza Notary Services is a trusted notary public for documents as well as a real estate consultant and mobile service provider in Clark County, Nevada. With a 4.9 star rating from 238 Google reviews, we are dedicated to providing fast, professional, and flexible service to every client.</p>
+    <div class="about-pills">
+      <span class="about-pill">4.9 Star Rating</span>
+      <span class="about-pill">238 Reviews</span>
+      <span class="about-pill">Mobile Service</span>
+    </div>
+    <button class="btn">Learn More</button>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="st-tag rv">Testimonials</div>
+  <h2 class="st-title rv">Client Reviews</h2>
+  <div class="rev-empty rv" onclick="popup()">
+    <h3>Reviews Unlocked with Full Site</h3>
+    <p>This section displays real client reviews and testimonials. Purchase the complete website to see all 238 reviews.</p>
+    <button class="btn">Unlock Reviews</button>
+  </div>
+</section>
+
+<!-- HUGE CTA -->
+<div class="cta-huge rv" onclick="popup()">
+  <h2>BOOK YOUR <span>SIGNING</span></h2>
+  <button class="btn">Call Now</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-name">ESPINOZA <span>NOTARY</span></div>
+  <div class="foot-addr">1500 S Maryland Pkwy, Las Vegas, NV 89104 &middot; (702) 810-4669</div>
+  <div class="foot-links">
+    <a onclick="popup()">Book</a>
+    <a onclick="popup()">More Info</a>
+    <a onclick="popup()">Privacy</a>
+    <a onclick="popup()">About</a>
+    <a onclick="popup()">Contact</a>
+    <a onclick="popup()">Appointments</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal" onclick="popOut(event)">
+  <div class="modal-card">
+    <button class="modal-x" onclick="popClose()" aria-label="Close">&times;</button>
+    <div class="modal-icon">&#128274;</div>
+    <h3>Full Site Available</h3>
+    <p>This feature is part of the complete website. Purchase the full version to unlock all functionality, including online booking, full gallery, 238 reviews, and more.</p>
+    <button class="btn" onclick="popClose()" style="width:100%;">Got It</button>
+  </div>
+</div>
+
+<script>
+var m=document.getElementById('modal');
+function popup(){m.classList.add('open');document.body.style.overflow='hidden';}
+function popClose(){m.classList.remove('open');document.body.style.overflow='';}
+function popOut(e){if(e.target===m)popClose();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){popClose();mobClose();}});
+
+function mobOpen(){document.getElementById('mobNav').classList.add('open');document.getElementById('mobBg').classList.add('open');document.body.style.overflow='hidden';}
+function mobClose(){document.getElementById('mobNav').classList.remove('open');document.getElementById('mobBg').classList.remove('open');document.body.style.overflow='';}
+
+var allRv=document.querySelectorAll('.rv');
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('show');});},{threshold:.1,rootMargin:'0px 0px -25px 0px'});
+allRv.forEach(function(el){obs.observe(el);});
+</script>
+</body>
+</html>
