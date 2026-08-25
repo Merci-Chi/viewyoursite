@@ -329,35 +329,39 @@
     </div>
 
     <script>
-        const GITHUB_USER = "Merci-chi";
-        const GITHUB_REPO = "viewyoursite"; 
+// REPLACE 'your-repo-name' with your actual GitHub repo name
+const GITHUB_USER = "Merci-Chi";
+const GITHUB_REPO = "viewyoursite"; // <-- CHANGE THIS to your repo name
 
-        let sites = [];
+let sites = []; // Changed to let so it can be updated after fetching
 
-        async function fetchSites() {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
-                if (!response.ok) throw new Error("API failed");
-                const data = await response.json();
+async function fetchSites() {
+    try {
+        const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
+        if (!response.ok) throw new Error("API failed");
+        const data = await response.json();
 
-                sites = data
-                    .filter(item => item.type === "dir") // Only folders
-                    .map(folder => {
-                        const prettyName = folder.name
-                            .replace(/-/g, " ")
-                            .replace(/\b\w/g, c => c.toUpperCase());
-                        // Default hostingType to "standard" since we don't know it from the folder name
-                        return { name: prettyName, path: folder.name, hostingType: "standard" };
-                    });
+        sites = data
+            .filter(item => item.type === "dir") // Only folders
+            .map(folder => {
+                const prettyName = folder.name
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, c => c.toUpperCase());
+                // Default hostingType to "standard" since we don't know it from the folder name
+                return { name: prettyName, path: `./${folder.name}/`, hostingType: "standard" };
+            });
 
-                renderSites(); // Render the sites after fetching
-            } catch (error) {
-                console.error("Failed to fetch sites:", error);
-                // Fallback to empty list if API fails
-                sites = [];
-                renderSites();
-            }
-        }
+        renderSites(); // Render the sites after fetching
+    } catch (error) {
+        console.error("Failed to fetch sites:", error);
+        // Fallback to empty list if API fails
+        sites = [];
+        renderSites();
+    }
+}
+
+// Call fetchSites instead of using the hardcoded list
+fetchSites();
 
 
         const gallery = document.getElementById("gallery");
