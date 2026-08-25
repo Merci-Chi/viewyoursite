@@ -138,6 +138,14 @@
         .portal-form { display: grid; gap: 1rem; }
         .portal-form input { width: 100%; padding: .85rem 1rem; border: 1px solid #333; border-radius: 9px; outline: none; background: #1d1d1d; color: #fff; font: inherit; }
         .portal-form input:focus { border-color: #777; }
+        .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-bottom: 1rem; padding: .3rem; border-radius: 10px; background: #202020; }
+        .auth-tab { padding: .7rem; border: 0; border-radius: 8px; background: transparent; color: #888; cursor: pointer; font: inherit; }
+        .auth-tab.active { background: #333; color: #fff; }
+        .social-auth { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1rem; }
+        .social-auth button { padding: .8rem; border: 1px solid #3a3a3a; border-radius: 9px; background: #202020; color: #fff; cursor: pointer; font: inherit; }
+        .social-auth button:hover { border-color: #777; }
+        .auth-divider { display: flex; align-items: center; gap: .75rem; margin: 1rem 0; color: #666; font-size: .8rem; text-transform: uppercase; }
+        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: #303030; }
         .portal-primary, .portal-secondary { padding: .85rem 1rem; border-radius: 9px; cursor: pointer; font: inherit; }
         .portal-primary { border: 0; background: #f1f1f1; color: #111; font-weight: 700; }
         .portal-secondary { border: 1px solid #3a3a3a; background: #202020; color: #ddd; }
@@ -259,11 +267,22 @@
         <section class="portal-dialog" role="dialog" aria-modal="true" aria-labelledby="portalTitle">
             <button class="portal-close" id="portalClose" type="button" aria-label="Close">×</button>
             <div id="portalLoginView">
-                <h2 id="portalTitle">Client Login</h2>
-                <p class="portal-description">Enter the email used for your hosting subscription. We’ll send you a secure login link.</p>
+                <h2 id="portalTitle">Client Account</h2>
+                <p class="portal-description">Sign up or log in using the same email used for your hosting subscription.</p>
+                <div class="auth-tabs" role="tablist" aria-label="Account access">
+                    <button class="auth-tab active" id="loginTab" type="button" role="tab" aria-selected="true">Log In</button>
+                    <button class="auth-tab" id="signupTab" type="button" role="tab" aria-selected="false">Sign Up</button>
+                </div>
+                <div class="social-auth">
+                    <button id="googleAuth" type="button">Continue with Google</button>
+                    <button id="appleAuth" type="button">Continue with Apple</button>
+                </div>
+                <div class="auth-divider">or use email</div>
                 <form class="portal-form" id="portalLoginForm">
+                    <input id="portalFullName" type="text" placeholder="Full name" autocomplete="name" hidden>
                     <input id="portalEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
-                    <button class="portal-primary" type="submit">Send Login Link</button>
+                    <input id="portalPassword" type="password" placeholder="Password" autocomplete="current-password" minlength="8" required>
+                    <button class="portal-primary" id="emailAuthSubmit" type="submit">Log In</button>
                 </form>
                 <p class="portal-message" id="portalLoginMessage"></p>
             </div>
@@ -294,12 +313,39 @@
         const accountView = document.getElementById("portalAccountView");
         const loginForm = document.getElementById("portalLoginForm");
         const loginMessage = document.getElementById("portalLoginMessage");
+        const loginTab = document.getElementById("loginTab");
+        const signupTab = document.getElementById("signupTab");
+        const fullNameInput = document.getElementById("portalFullName");
+        const passwordInput = document.getElementById("portalPassword");
+        const emailAuthSubmit = document.getElementById("emailAuthSubmit");
         const accountEmail = document.getElementById("portalAccountEmail");
         const subscriptionList = document.getElementById("subscriptionList");
         const subscriptionMessage = document.getElementById("subscriptionMessage");
 
+        let authMode = "login";
         function openPortal() { portalOverlay.hidden = false; document.body.style.overflow = "hidden"; }
         function closePortal() { portalOverlay.hidden = true; document.body.style.overflow = ""; }
+        function setAuthMode(mode) {
+            authMode = mode;
+            const signingUp = mode === "signup";
+            loginTab.classList.toggle("active", !signingUp);
+            signupTab.classList.toggle("active", signingUp);
+            loginTab.setAttribute("aria-selected", String(!signingUp));
+            signupTab.setAttribute("aria-selected", String(signingUp));
+            fullNameInput.hidden = !signingUp;
+            fullNameInput.required = signingUp;
+            passwordInput.autocomplete = signingUp ? "new-password" : "current-password";
+            emailAuthSubmit.textContent = signingUp ? "Create Account" : "Log In";
+            loginMessage.textContent = "";
+        }
+        async function signInWithProvider(provider) {
+            loginMessage.textContent = `Opening ${provider === "google" ? "Google" : "Apple"}…`;
+            const { error } = await portalSupabase.auth.signInWithOAuth({
+                provider,
+                options: { redirectTo: "https://viewyoursite.today" }
+            });
+            if (error) loginMessage.textContent = error.message;
+        }
         function formatMoney(cents) { return typeof cents === "number" ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100) : "See Square invoice"; }
         function formatCadence(cadence) { return ({ MONTHLY: "Every month", EVERY_SIX_MONTHS: "Every 6 months", ANNUAL: "Every year" })[cadence] || cadence || "Not available"; }
         function addRow(card, label, value) {
@@ -337,12 +383,36 @@
         accountButton.addEventListener("click", async () => { openPortal(); const { data: { session } } = await portalSupabase.auth.getSession(); await updatePortal(session); });
         portalClose.addEventListener("click", closePortal);
         portalOverlay.addEventListener("click", event => { if (event.target === portalOverlay) closePortal(); });
+        loginTab.addEventListener("click", () => setAuthMode("login"));
+        signupTab.addEventListener("click", () => setAuthMode("signup"));
+        document.getElementById("googleAuth").addEventListener("click", () => signInWithProvider("google"));
+        document.getElementById("appleAuth").addEventListener("click", () => signInWithProvider("apple"));
         loginForm.addEventListener("submit", async event => {
             event.preventDefault();
             const email = document.getElementById("portalEmail").value.trim();
-            loginMessage.textContent = "Sending secure login link…";
-            const { error } = await portalSupabase.auth.signInWithOtp({ email, options: { emailRedirectTo: "https://viewyoursite.today" } });
-            loginMessage.textContent = error ? error.message : "Check your email for your secure login link.";
+            const password = passwordInput.value;
+            loginMessage.textContent = authMode === "signup" ? "Creating your account…" : "Logging you in…";
+            let result;
+            if (authMode === "signup") {
+                result = await portalSupabase.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: { full_name: fullNameInput.value.trim() },
+                        emailRedirectTo: "https://viewyoursite.today"
+                    }
+                });
+            } else {
+                result = await portalSupabase.auth.signInWithPassword({ email, password });
+            }
+            if (result.error) {
+                loginMessage.textContent = result.error.message;
+            } else if (authMode === "signup" && !result.data.session) {
+                loginMessage.textContent = "Account created. Check your email to confirm it, then log in.";
+            } else {
+                loginMessage.textContent = "Success.";
+                await updatePortal(result.data.session);
+            }
         });
         document.getElementById("refreshSubscriptions").addEventListener("click", loadSubscriptions);
         document.getElementById("portalSignOut").addEventListener("click", async () => { await portalSupabase.auth.signOut(); await updatePortal(null); });
