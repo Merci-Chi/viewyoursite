@@ -85,6 +85,21 @@
             border-color: #4a4a4a;
         }
 
+        .selection-mode .site-card { position: relative; cursor: pointer; }
+        .selection-mode .site-card::after { content: "Select"; position: absolute; top: .7rem; right: .7rem; padding: .35rem .6rem; border: 1px solid #555; border-radius: 999px; background: rgba(15,15,15,.9); color: #fff; font-size: .75rem; font-weight: 700; }
+        .selection-mode .site-card.selected { border-color: #f1f1f1; box-shadow: 0 0 0 2px #f1f1f1; }
+        .selection-mode .site-card.selected::after { content: "Selected ✓"; background: #f1f1f1; color: #111; }
+        .hosting-type-label { display: none; padding: .45rem .75rem .75rem; color: #8e8e8e; text-align: center; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+        .selection-mode .hosting-type-label { display: block; }
+        .claim-selection-bar { position: fixed; z-index: 800; left: 50%; bottom: 1.25rem; display: flex; width: min(620px, calc(100% - 2rem)); align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 14px; background: rgba(24,24,24,.96); box-shadow: 0 16px 45px rgba(0,0,0,.45); transform: translateX(-50%); }
+        .claim-selection-bar[hidden] { display: none !important; }
+        .claim-selection-count { padding-left: .35rem; color: #bbb; }
+        .claim-selection-actions { display: flex; gap: .55rem; }
+        .claim-selection-actions button { padding: .7rem .9rem; border-radius: 9px; cursor: pointer; font: inherit; }
+        .claim-cancel { border: 1px solid #444; background: transparent; color: #ddd; }
+        .claim-add { border: 0; background: #f1f1f1; color: #111; font-weight: 700; }
+        .claim-add:disabled { cursor: not-allowed; opacity: .45; }
+
         .preview-wrapper {
             aspect-ratio: 16 / 10;
             overflow: hidden;
@@ -141,7 +156,7 @@
             display: inline-flex !important;
         }
 
-        .account-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; margin-top: 1rem; }
+        .account-nav { display: flex; width: 100%; flex-wrap: wrap; align-items: center; justify-content: center; gap: .65rem; margin: 1rem auto 0; }
         .account-button:hover { border-color: #777; background: #292929; }
         .portal-overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 1rem; background: rgba(0,0,0,.84); }
         .portal-overlay[hidden], [hidden] { display: none !important; }
@@ -150,8 +165,8 @@
         .portal-dialog h2 { margin-bottom: .5rem; font-weight: 500; }
         .portal-description { margin-bottom: 1.5rem; color: #888; line-height: 1.5; }
         .portal-form { display: grid; gap: 1rem; }
-        .portal-form input { width: 100%; padding: .85rem 1rem; border: 1px solid #333; border-radius: 9px; outline: none; background: #1d1d1d; color: #fff; font: inherit; }
-        .portal-form input:focus { border-color: #777; }
+        .portal-form input, .portal-form textarea { width: 100%; padding: .85rem 1rem; border: 1px solid #333; border-radius: 9px; outline: none; background: #1d1d1d; color: #fff; font: inherit; }
+        .portal-form input:focus, .portal-form textarea:focus { border-color: #777; }
         .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-bottom: 1rem; padding: .3rem; border-radius: 10px; background: #202020; }
         .auth-tab { padding: .7rem; border: 0; border-radius: 8px; background: transparent; color: #888; cursor: pointer; font: inherit; }
         .auth-tab.active { background: #333; color: #fff; }
@@ -175,13 +190,65 @@
         .account-summary p, .site-summary p { color: #aaa; line-height: 1.6; }
         .section-heading { margin: 1.5rem 0 .75rem; font-size: 1.05rem; font-weight: 600; }
         .subscription-list { display: grid; gap: 1rem; }
+        .current-subscriptions-box { margin-top: .85rem; padding: 1.15rem; border: 1px solid #303030; border-radius: 14px; background: linear-gradient(145deg, #1d1d1d, #181818); }
+        .subscription-status-row { display: flex; align-items: center; gap: .85rem; }
+        .subscription-status-icon { display: grid; flex: 0 0 auto; width: 42px; height: 42px; place-items: center; border: 1px solid #3a3a3a; border-radius: 50%; background: #252525; color: #aaa; font-size: 1.15rem; }
+        .subscription-status-copy { min-width: 0; }
+        .subscription-status-copy strong { display: block; margin-bottom: .2rem; color: #eee; }
+        .subscription-status-copy .portal-message { min-height: 0; margin: 0; }
+        .subscription-refresh { margin-top: 1rem; }
         .subscription-card { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .subscription-card h3 { margin-bottom: .75rem; font-size: 1.05rem; }
         .subscription-row { display: flex; justify-content: space-between; gap: 1rem; padding: .35rem 0; color: #aaa; }
         .subscription-row strong { color: #eee; text-align: right; }
+        .cancel-subscription { margin-top: .85rem; padding: .65rem .8rem; border: 1px solid #653737; border-radius: 8px; background: transparent; color: #e39a9a; cursor: pointer; font: inherit; }
+        .cancel-verification { margin-top: .85rem; padding: .9rem; border: 1px solid #553737; border-radius: 9px; background: #251a1a; }
+        .cancel-verification p { margin-bottom: .75rem; color: #d1aaaa; line-height: 1.45; }
+        .cancel-verification-actions { display: flex; gap: .55rem; }
+        .cancel-verification-actions button { padding: .6rem .75rem; border-radius: 8px; cursor: pointer; font: inherit; }
+        .cancellation-notice { margin-top: .85rem; padding: .85rem; border: 1px solid #48563a; border-radius: 9px; background: #1b2418; color: #bed5ac; line-height: 1.5; }
         .portal-actions { display: flex; gap: .75rem; margin-top: 1.5rem; }
         .portal-actions button { flex: 1; }
         .site-link, .plan-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 1rem; padding: .75rem 1rem; border-radius: 9px; background: #f1f1f1; color: #111; font-weight: 700; text-decoration: none; }
+        button.site-link { border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+        #claimYourSite { margin: 1rem 0 0 .55rem; }
+        .theme-setting { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
+        .theme-setting-copy strong { display: block; margin-bottom: .25rem; }
+        .theme-setting-copy span { color: #888; font-size: .9rem; }
+        .theme-toggle { position: relative; flex: 0 0 auto; width: 58px; height: 32px; border: 1px solid #444; border-radius: 999px; background: #292929; cursor: pointer; }
+        .theme-toggle::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #f4f4f4; transition: transform .2s ease; }
+        body.light-mode .theme-toggle::after { transform: translateX(26px); background: #222; }
+
+        body.light-mode { background: #f3f3f1; color: #181818; }
+        body.light-mode #searchInput { border-color: #ccc; background: #fff; color: #181818; }
+        body.light-mode .site-card { border-color: #d5d5d2; background: #fff; }
+        body.light-mode .card-label { border-color: #ddd; color: #333; }
+        body.light-mode .account-button { border-color: #ccc; background: #fff; color: #181818; }
+        body.light-mode .portal-overlay { background: rgba(25,25,25,.55); }
+        body.light-mode .portal-dialog { border-color: #d4d4d0; background: #f8f8f6; box-shadow: 0 24px 70px rgba(0,0,0,.2); }
+        body.light-mode .portal-close { background: #e7e7e3; color: #222; }
+        body.light-mode .portal-nav, body.light-mode .auth-tabs { background: #e9e9e5; }
+        body.light-mode .portal-nav-button, body.light-mode .auth-tab { color: #666; }
+        body.light-mode .portal-nav-button.active, body.light-mode .auth-tab.active { background: #fff; color: #111; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+        body.light-mode .account-summary, body.light-mode .site-summary, body.light-mode .subscription-card, body.light-mode .plan-group, body.light-mode .theme-setting { border-color: #d7d7d2; background: #fff; }
+        body.light-mode .current-subscriptions-box { border-color: #d7d7d2; background: linear-gradient(145deg, #fff, #f2f2ef); }
+        body.light-mode .subscription-status-icon { border-color: #d3d3cf; background: #ecece8; color: #555; }
+        body.light-mode .subscription-status-copy strong, body.light-mode .subscription-card h3, body.light-mode .theme-setting-copy strong { color: #222; }
+        body.light-mode .portal-description, body.light-mode .portal-account-email, body.light-mode .portal-message, body.light-mode .account-summary p, body.light-mode .site-summary p, body.light-mode .plan-price, body.light-mode .theme-setting-copy span { color: #666; }
+        body.light-mode .portal-secondary { border-color: #ccc; background: #fff; color: #222; }
+        body.light-mode .portal-form input, body.light-mode .portal-form textarea { border-color: #ccc; background: #fff; color: #222; }
+        body.light-mode .theme-toggle { border-color: #bbb; background: #ddd; }
+        body.light-mode .claim-selection-bar { border-color: #ccc; background: rgba(255,255,255,.96); }
+        body.light-mode .claim-selection-count { color: #555; }
+        body.light-mode .claim-cancel { border-color: #ccc; color: #333; }
+        body.light-mode .cancel-verification { border-color: #e2bcbc; background: #fff5f5; }
+        body.light-mode .cancel-verification p { color: #7b3434; }
+        .claim-list { display: grid; gap: .65rem; margin-bottom: 1rem; }
+        .claim-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem; border: 1px solid #303030; border-radius: 9px; background: #1c1c1c; }
+        .claim-item span:last-child { color: #999; font-size: .82rem; font-weight: 700; text-transform: uppercase; }
+        .claim-form textarea { min-height: 105px; resize: vertical; }
+        .claim-checkout { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; }
+        .claim-checkout p { color: #aaa; line-height: 1.5; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .plan-group { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .plan-group h4 { margin-bottom: .85rem; font-size: 1rem; }
@@ -232,28 +299,37 @@
 
             <div class="account-nav">
                 <button class="account-button" id="clientAccountButton" type="button">Log In</button>
+                <button class="account-button client-nav-button" type="button" data-open-panel="sitePanel">My Site</button>
                 <button class="account-button client-nav-button" type="button" data-open-panel="subscriptionsPanel">Manage Subscriptions</button>
                 <button class="account-button client-nav-button" type="button" data-open-panel="accountPanel">Settings</button>
-                <button class="account-button client-nav-button" type="button" data-open-panel="sitePanel">My Site</button>
             </div>
         </header>
 
         <section class="gallery" id="gallery"></section>
     </main>
 
+    <div class="claim-selection-bar" id="claimSelectionBar" hidden>
+        <span class="claim-selection-count" id="claimSelectionCount">0 sites selected</span>
+        <div class="claim-selection-actions">
+            <button class="claim-cancel" id="cancelSiteSelection" type="button">Cancel</button>
+            <button class="claim-add" id="addSelectedSites" type="button" disabled>Add Selected Sites</button>
+        </div>
+    </div>
+
     <script>
         const sites = [
-            { name: "Del Carmen Hair Salon", path: "delcarmenhairsalon" },
-            { name: "Shop Vezzy", path: "shopvezzy" },
-            { name: "Studio 47 Hair Salon", path: "studio47hairsalon" },
-            { name: "Favorite Place to Shop", path: "favoriteplacetoshop" },
-            { name: "AJ Landscaping", path: "ajlandscaping" },
-            { name: "Espinoza Notary", path: "espinozanotary" },
-            { name: "Green House Water Heaters", path: "greenhousewaterheaters" }
+            { name: "Del Carmen Hair Salon", path: "delcarmenhairsalon", hostingType: "standard" },
+            { name: "Shop Vezzy", path: "shopvezzy", hostingType: "standard" },
+            { name: "Studio 47 Hair Salon", path: "studio47hairsalon", hostingType: "standard" },
+            { name: "Favorite Place to Shop", path: "favoriteplacetoshop", hostingType: "standard" },
+            { name: "AJ Landscaping", path: "ajlandscaping", hostingType: "standard" },
+            { name: "Espinoza Notary", path: "espinozanotary", hostingType: "standard" },
+            { name: "Green House Water Heaters", path: "greenhousewaterheaters", hostingType: "standard" }
         ];
 
         const gallery = document.getElementById("gallery");
         const searchInput = document.getElementById("searchInput");
+        const selectedSitePaths = new Set();
 
         function renderSites(filter = "") {
             const search = filter.trim().toLowerCase();
@@ -275,6 +351,7 @@
 
                 card.className = "site-card";
                 card.href = `./${site.path}/`;
+                card.dataset.sitePath = site.path;
 
                 card.innerHTML = `
                     <div class="preview-wrapper">
@@ -289,7 +366,18 @@
                     </div>
 
                     <div class="card-label">${site.name}</div>
+                    <div class="hosting-type-label">${site.hostingType} hosting</div>
                 `;
+
+                card.classList.toggle("selected", selectedSitePaths.has(site.path));
+                card.addEventListener("click", event => {
+                    if (!document.body.classList.contains("selection-mode")) return;
+                    event.preventDefault();
+                    if (selectedSitePaths.has(site.path)) selectedSitePaths.delete(site.path);
+                    else selectedSitePaths.add(site.path);
+                    card.classList.toggle("selected", selectedSitePaths.has(site.path));
+                    updateSelectionBar();
+                });
 
                 gallery.appendChild(card);
             });
@@ -334,9 +422,9 @@
                 </header>
 
                 <nav class="portal-nav" aria-label="Client portal">
+                    <button class="portal-nav-button" type="button" data-portal-panel="sitePanel">My Site</button>
                     <button class="portal-nav-button" type="button" data-portal-panel="subscriptionsPanel">Manage Subscriptions</button>
                     <button class="portal-nav-button active" type="button" data-portal-panel="accountPanel">Settings</button>
-                    <button class="portal-nav-button" type="button" data-portal-panel="sitePanel">My Site</button>
                 </nav>
 
                 <section class="portal-panel" id="accountPanel">
@@ -344,6 +432,13 @@
                         <h3>Settings</h3>
                         <p>Signed in as <strong id="accountSummaryEmail"></strong></p>
                         <p>Use the same email address at Square checkout so your subscription can be connected automatically.</p>
+                    </div>
+                    <div class="theme-setting">
+                        <div class="theme-setting-copy">
+                            <strong>Appearance</strong>
+                            <span id="themeLabel">Dark mode</span>
+                        </div>
+                        <button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Switch to light mode"></button>
                     </div>
                     <div class="portal-actions">
                         <button class="portal-secondary" id="portalSignOut" type="button">Sign Out</button>
@@ -354,15 +449,41 @@
                     <div class="site-summary">
                         <h3>My Site</h3>
                         <p>Your website will appear here once it has been connected to your account.</p>
-                        <a class="site-link" href="https://viewyoursite.today" target="_blank" rel="noopener">Open My Site</a>
+                        <button class="site-link" id="openMySite" type="button">Open My Site</button>
+                        <button class="portal-secondary" id="claimYourSite" type="button">Claim Your Site</button>
+                        <p class="portal-message" id="siteMessage" role="status"></p>
+                    </div>
+                </section>
+
+                <section class="portal-panel" id="claimPanel" hidden>
+                    <h3>Claim Your Sites</h3>
+                    <p class="portal-description">Submit your request, then purchase the required hosting plan. Your claim will be reviewed before the sites are connected to your account.</p>
+                    <div class="claim-list" id="claimList"></div>
+                    <form class="portal-form claim-form" id="claimForm">
+                        <textarea id="claimMessage" placeholder="Tell us how you are connected to these businesses" required></textarea>
+                        <button class="portal-primary" type="submit">Submit Claim Request</button>
+                    </form>
+                    <p class="portal-message" id="claimMessageStatus" role="status"></p>
+                    <div class="claim-checkout" id="claimCheckout" hidden>
+                        <h3>Purchase Required Hosting</h3>
+                        <p>Your claim is not complete until the appropriate hosting subscription is purchased.</p>
+                        <div id="claimCheckoutLinks"></div>
                     </div>
                 </section>
 
                 <section class="portal-panel" id="subscriptionsPanel" hidden>
                     <h3>Current Subscriptions</h3>
-                    <div class="subscription-list" id="subscriptionList"></div>
-                    <p class="portal-message" id="subscriptionMessage"></p>
-                    <button class="portal-secondary" id="refreshSubscriptions" type="button">Refresh Subscriptions</button>
+                    <div class="current-subscriptions-box">
+                        <div class="subscription-status-row">
+                            <div class="subscription-status-icon" aria-hidden="true">↻</div>
+                            <div class="subscription-status-copy">
+                                <strong id="subscriptionStatusTitle">Checking your account</strong>
+                                <p class="portal-message" id="subscriptionMessage"></p>
+                            </div>
+                        </div>
+                        <div class="subscription-list" id="subscriptionList"></div>
+                        <button class="portal-secondary subscription-refresh" id="refreshSubscriptions" type="button">Refresh Subscriptions</button>
+                    </div>
 
                     <h3 class="section-heading">Add a Subscription</h3>
                     <div class="available-plans">
@@ -412,11 +533,78 @@
         const accountSummaryEmail = document.getElementById("accountSummaryEmail");
         const subscriptionList = document.getElementById("subscriptionList");
         const subscriptionMessage = document.getElementById("subscriptionMessage");
+        const subscriptionStatusTitle = document.getElementById("subscriptionStatusTitle");
+        const openMySiteButton = document.getElementById("openMySite");
+        const siteMessage = document.getElementById("siteMessage");
+        const themeToggle = document.getElementById("themeToggle");
+        const themeLabel = document.getElementById("themeLabel");
+        const claimSelectionBar = document.getElementById("claimSelectionBar");
+        const claimSelectionCount = document.getElementById("claimSelectionCount");
+        const addSelectedSitesButton = document.getElementById("addSelectedSites");
+        const claimList = document.getElementById("claimList");
+        const claimForm = document.getElementById("claimForm");
+        const claimMessageStatus = document.getElementById("claimMessageStatus");
+        const claimCheckout = document.getElementById("claimCheckout");
+        const claimCheckoutLinks = document.getElementById("claimCheckoutLinks");
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
+        let currentClientSiteUrl = "";
+        function applyTheme(theme) {
+            const isLight = theme === "light";
+            document.body.classList.toggle("light-mode", isLight);
+            themeToggle.setAttribute("aria-checked", String(isLight));
+            themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+            themeLabel.textContent = isLight ? "Light mode" : "Dark mode";
+        }
+
+        const savedTheme = localStorage.getItem("viewYourSiteTheme");
+        applyTheme(savedTheme === "light" ? "light" : "dark");
         function setClientMenuLoggedIn(isLoggedIn) {
             document.body.classList.toggle("client-is-logged-in", isLoggedIn);
+        }
+
+        function updateSelectionBar() {
+            const count = selectedSitePaths.size;
+            claimSelectionCount.textContent = `${count} ${count === 1 ? "site" : "sites"} selected`;
+            addSelectedSitesButton.disabled = count === 0;
+        }
+
+        function exitSiteSelection() {
+            document.body.classList.remove("selection-mode");
+            claimSelectionBar.hidden = true;
+            selectedSitePaths.clear();
+            renderSites(searchInput.value);
+        }
+
+        function enterSiteSelection() {
+            closePortal();
+            selectedSitePaths.clear();
+            document.body.classList.add("selection-mode");
+            claimSelectionBar.hidden = false;
+            searchInput.value = "";
+            renderSites();
+            updateSelectionBar();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function renderClaimSelection() {
+            const selectedSites = sites.filter(site => selectedSitePaths.has(site.path));
+            claimList.replaceChildren();
+            selectedSites.forEach(site => {
+                const item = document.createElement("div");
+                item.className = "claim-item";
+                const name = document.createElement("span");
+                name.textContent = site.name;
+                const type = document.createElement("span");
+                type.textContent = `${site.hostingType} hosting`;
+                item.append(name, type);
+                claimList.appendChild(item);
+            });
+            claimMessageStatus.textContent = "";
+            claimCheckout.hidden = true;
+            showPortalPanel("claimPanel");
+            openPortal();
         }
 
         setClientMenuLoggedIn(false);
@@ -452,6 +640,12 @@
         }
         function formatMoney(cents) { return typeof cents === "number" ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100) : "See Square invoice"; }
         function formatCadence(cadence) { return ({ MONTHLY: "Every month", EVERY_SIX_MONTHS: "Every 6 months", ANNUAL: "Every year" })[cadence] || cadence || "Not available"; }
+        function formatAccessDate(value) {
+            if (!value) return "the end of your current billing period";
+            const date = new Date(`${value}T12:00:00`);
+            if (Number.isNaN(date.getTime())) return value;
+            return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(date);
+        }
         function addRow(card, label, value) {
             const row = document.createElement("div"); row.className = "subscription-row";
             const left = document.createElement("span"); left.textContent = label;
@@ -460,7 +654,12 @@
         }
         function renderSubscriptions(subscriptions) {
             subscriptionList.replaceChildren();
-            if (!subscriptions.length) { subscriptionMessage.textContent = "No hosting subscription was found for this email."; return; }
+            if (!subscriptions.length) {
+                subscriptionStatusTitle.textContent = "No active subscriptions";
+                subscriptionMessage.textContent = "No hosting subscription was found for this email.";
+                return;
+            }
+            subscriptionStatusTitle.textContent = subscriptions.length === 1 ? "1 active subscription" : `${subscriptions.length} active subscriptions`;
             subscriptionMessage.textContent = "";
             subscriptions.forEach(subscription => {
                 const card = document.createElement("article"); card.className = "subscription-card";
@@ -469,13 +668,70 @@
                 addRow(card, "Price", formatMoney(subscription.amountCents));
                 addRow(card, "Billing", formatCadence(subscription.billingCadence));
                 addRow(card, "Paid through", subscription.chargedThroughDate || "Not available");
+                if (String(subscription.status || "").toUpperCase().includes("CANCEL")) {
+                    const notice = document.createElement("div");
+                    notice.className = "cancellation-notice";
+                    notice.textContent = `Your auto renewal has been cancelled. You will still have access to the site until ${formatAccessDate(subscription.chargedThroughDate)}.`;
+                    card.appendChild(notice);
+                } else {
+                    const cancelButton = document.createElement("button");
+                    cancelButton.className = "cancel-subscription";
+                    cancelButton.type = "button";
+                    cancelButton.textContent = "Cancel Subscription";
+                    cancelButton.addEventListener("click", () => showCancellationVerification(card, subscription, cancelButton));
+                    card.appendChild(cancelButton);
+                }
                 subscriptionList.appendChild(card);
             });
         }
+        function showCancellationVerification(card, subscription, cancelButton) {
+            cancelButton.hidden = true;
+            const verification = document.createElement("div");
+            verification.className = "cancel-verification";
+            const message = document.createElement("p");
+            message.textContent = "Are you sure? This will stop automatic renewal. Your site will remain available through the paid-through date.";
+            const actions = document.createElement("div");
+            actions.className = "cancel-verification-actions";
+            const keepButton = document.createElement("button");
+            keepButton.className = "portal-secondary";
+            keepButton.type = "button";
+            keepButton.textContent = "Keep Subscription";
+            const confirmButton = document.createElement("button");
+            confirmButton.className = "cancel-subscription";
+            confirmButton.type = "button";
+            confirmButton.textContent = "Yes, Cancel Auto Renewal";
+            keepButton.addEventListener("click", () => { verification.remove(); cancelButton.hidden = false; });
+            confirmButton.addEventListener("click", async () => {
+                confirmButton.disabled = true;
+                confirmButton.textContent = "Cancelling…";
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "cancel", subscriptionId: subscription.id }
+                });
+                if (error || !data?.success) {
+                    message.textContent = "We couldn’t cancel this subscription. Please contact support@steadyhandsop.com.";
+                    confirmButton.disabled = false;
+                    confirmButton.textContent = "Try Again";
+                    return;
+                }
+                const accessUntil = data.accessUntil || subscription.chargedThroughDate;
+                verification.className = "cancellation-notice";
+                verification.replaceChildren();
+                verification.textContent = `Your auto renewal has been cancelled. You will still have access to the site until ${formatAccessDate(accessUntil)}.`;
+            });
+            actions.append(keepButton, confirmButton);
+            verification.append(message, actions);
+            card.appendChild(verification);
+        }
         async function loadSubscriptions() {
-            subscriptionMessage.textContent = "Loading your subscription…"; subscriptionList.replaceChildren();
+            subscriptionStatusTitle.textContent = "Checking your account";
+            subscriptionMessage.textContent = "Loading your subscriptions…"; subscriptionList.replaceChildren();
             const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", { method: "GET" });
-            if (error) { subscriptionMessage.textContent = "We couldn’t load your subscription right now."; return; }
+            if (error) {
+                subscriptionStatusTitle.textContent = "Unable to load subscriptions";
+                subscriptionMessage.textContent = "We couldn’t load your subscriptions right now.";
+                return;
+            }
             renderSubscriptions(data?.subscriptions || []);
         }
         async function updatePortal(session) {
@@ -489,6 +745,8 @@
                 return;
             }
             loginView.hidden = true; accountView.hidden = false; accountEmail.textContent = session.user.email || ""; accountSummaryEmail.textContent = session.user.email || "";
+            currentClientSiteUrl = session.user.user_metadata?.site_url || session.user.app_metadata?.site_url || "";
+            siteMessage.textContent = "";
             showPortalPanel(pendingPanel);
             await loadSubscriptions();
         }
@@ -540,6 +798,70 @@
             }
         });
         document.getElementById("refreshSubscriptions").addEventListener("click", loadSubscriptions);
+        document.getElementById("claimYourSite").addEventListener("click", enterSiteSelection);
+        document.getElementById("cancelSiteSelection").addEventListener("click", exitSiteSelection);
+        addSelectedSitesButton.addEventListener("click", () => {
+            if (!selectedSitePaths.size) return;
+            document.body.classList.remove("selection-mode");
+            claimSelectionBar.hidden = true;
+            renderClaimSelection();
+        });
+        claimForm.addEventListener("submit", async event => {
+            event.preventDefault();
+            const selectedSites = sites.filter(site => selectedSitePaths.has(site.path));
+            if (!selectedSites.length) {
+                claimMessageStatus.textContent = "Select at least one site first.";
+                return;
+            }
+            const submitButton = claimForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting…";
+            claimMessageStatus.textContent = "Submitting your claim request…";
+            const { data, error } = await portalSupabase.functions.invoke("site-claims", {
+                method: "POST",
+                body: {
+                    sites: selectedSites.map(site => ({ path: site.path, name: site.name, hostingType: site.hostingType })),
+                    message: document.getElementById("claimMessage").value.trim()
+                }
+            });
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit Claim Request";
+            if (error || !data?.success) {
+                claimMessageStatus.textContent = "We couldn’t submit your claim right now. Please contact support@steadyhandsop.com.";
+                return;
+            }
+            claimMessageStatus.textContent = "Your claim request was submitted. Purchase the required hosting plan below to complete it.";
+            claimCheckoutLinks.replaceChildren();
+            const requiredTypes = new Set(selectedSites.map(site => site.hostingType));
+            requiredTypes.forEach(type => {
+                const button = document.createElement("button");
+                button.className = "site-link";
+                button.type = "button";
+                button.textContent = `Choose ${type === "backend" ? "Backend" : "Standard"} Hosting Plan`;
+                button.addEventListener("click", () => showPortalPanel("subscriptionsPanel"));
+                claimCheckoutLinks.appendChild(button);
+            });
+            claimCheckout.hidden = false;
+        });
+        themeToggle.addEventListener("click", () => {
+            const nextTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+            localStorage.setItem("viewYourSiteTheme", nextTheme);
+            applyTheme(nextTheme);
+        });
+        openMySiteButton.addEventListener("click", () => {
+            if (!currentClientSiteUrl) {
+                siteMessage.textContent = "There is no site to view.";
+                return;
+            }
+
+            try {
+                const siteUrl = new URL(currentClientSiteUrl, window.location.origin);
+                window.open(siteUrl.href, "_blank", "noopener");
+                siteMessage.textContent = "";
+            } catch (_error) {
+                siteMessage.textContent = "There is no site to view.";
+            }
+        });
         document.getElementById("portalSignOut").addEventListener("click", async () => { await portalSupabase.auth.signOut(); await updatePortal(null); });
         portalSupabase.auth.onAuthStateChange((_event, session) => {
             window.setTimeout(() => updatePortal(session), 0);
