@@ -246,9 +246,19 @@
         .claim-list { display: grid; gap: .65rem; margin-bottom: 1rem; }
         .claim-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem; border: 1px solid #303030; border-radius: 9px; background: #1c1c1c; }
         .claim-item span:last-child { color: #999; font-size: .82rem; font-weight: 700; text-transform: uppercase; }
+        .claim-form { margin-top: 1rem; }
         .claim-form textarea { min-height: 105px; resize: vertical; }
         .claim-checkout { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; }
         .claim-checkout p { color: #aaa; line-height: 1.5; }
+        .claim-plan-group { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; background: #181818; }
+        .claim-plan-group label { display: block; margin-bottom: .55rem; color: #ddd; font-weight: 700; }
+        .claim-plan-select { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; }
+        .claim-plan-purchase { width: 100%; margin-top: .7rem; }
+        .purchase-confirmation { display: flex; align-items: flex-start; gap: .6rem; margin-top: .8rem; color: #aaa; line-height: 1.4; }
+        .purchase-confirmation input { width: 18px; height: 18px; margin-top: .15rem; padding: 0; accent-color: #f1f1f1; }
+        body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
+        body.light-mode .claim-plan-group label { color: #222; }
+        body.light-mode .claim-plan-select { border-color: #ccc; background: #fff; color: #222; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .plan-group { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .plan-group h4 { margin-bottom: .85rem; font-size: 1rem; }
@@ -457,18 +467,18 @@
 
                 <section class="portal-panel" id="claimPanel" hidden>
                     <h3>Claim Your Sites</h3>
-                    <p class="portal-description">Submit your request, then purchase the required hosting plan. Your claim will be reviewed before the sites are connected to your account.</p>
+                    <p class="portal-description">Select and purchase the required hosting subscription before submitting your claim. Your purchase will be verified before the sites are connected to your account.</p>
                     <div class="claim-list" id="claimList"></div>
-                    <form class="portal-form claim-form" id="claimForm">
-                        <textarea id="claimMessage" placeholder="Tell us how you are connected to these businesses" required></textarea>
-                        <button class="portal-primary" type="submit">Submit Claim Request</button>
-                    </form>
-                    <p class="portal-message" id="claimMessageStatus" role="status"></p>
-                    <div class="claim-checkout" id="claimCheckout" hidden>
-                        <h3>Purchase Required Hosting</h3>
-                        <p>Your claim is not complete until the appropriate hosting subscription is purchased.</p>
+                    <div class="claim-checkout" id="claimCheckout">
+                        <h3>Select Required Hosting</h3>
+                        <p>Choose a plan and complete its Square checkout. You can submit the claim after confirming the purchase.</p>
                         <div id="claimCheckoutLinks"></div>
                     </div>
+                    <form class="portal-form claim-form" id="claimForm">
+                        <textarea id="claimMessage" placeholder="Tell us how you are connected to these businesses" required></textarea>
+                        <button class="portal-primary" id="submitClaimButton" type="submit" disabled>Submit Claim Request</button>
+                    </form>
+                    <p class="portal-message" id="claimMessageStatus" role="status"></p>
                 </section>
 
                 <section class="portal-panel" id="subscriptionsPanel" hidden>
@@ -489,15 +499,15 @@
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name">Monthly</span><span class="plan-price">$50 every month</span></div><a class="plan-link" href="https://square.link/u/s2TANsa8" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">6 Months</span><span class="plan-price">$180 every 6 months · $30/month</span></div><a class="plan-link" href="https://square.link/u/F6Tx8EUc" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">Annual</span><span class="plan-price">$240 every year · $20/month</span></div><a class="plan-link" href="https://square.link/u/YpNWBSJZ" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$50/month</span><span class="plan-price">1 month plan</span></div><a class="plan-link" href="https://square.link/u/s2TANsa8" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">6 month plan · $180 billed every 6 months</span></div><a class="plan-link" href="https://square.link/u/F6Tx8EUc" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$20/month</span><span class="plan-price">12 month plan · $240 billed every 12 months</span></div><a class="plan-link" href="https://square.link/u/YpNWBSJZ" target="_blank" rel="noopener">Choose</a></div>
                         </article>
                         <article class="plan-group">
                             <h4>Backend Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name">Monthly</span><span class="plan-price">$60 every month</span></div><a class="plan-link" href="https://square.link/u/RkUQIBGg" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">6 Months</span><span class="plan-price">$240 every 6 months · $40/month</span></div><a class="plan-link" href="https://square.link/u/KTXBdTbR" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">Annual</span><span class="plan-price">$360 every year · $30/month</span></div><a class="plan-link" href="https://square.link/u/H5nLaKC0" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$60/month</span><span class="plan-price">1 month plan</span></div><a class="plan-link" href="https://square.link/u/RkUQIBGg" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$40/month</span><span class="plan-price">6 month plan · $240 billed every 6 months</span></div><a class="plan-link" href="https://square.link/u/KTXBdTbR" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">12 month plan · $360 billed every 12 months</span></div><a class="plan-link" href="https://square.link/u/H5nLaKC0" target="_blank" rel="noopener">Choose</a></div>
                         </article>
                     </div>
                 </section>
@@ -546,10 +556,24 @@
         const claimMessageStatus = document.getElementById("claimMessageStatus");
         const claimCheckout = document.getElementById("claimCheckout");
         const claimCheckoutLinks = document.getElementById("claimCheckoutLinks");
+        const submitClaimButton = document.getElementById("submitClaimButton");
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
         let currentClientSiteUrl = "";
+        const claimPlanSelections = new Map();
+        const hostingCheckoutPlans = {
+            standard: [
+                { key: "standard-1", label: "$50/month — 1 month plan", url: "https://square.link/u/s2TANsa8" },
+                { key: "standard-6", label: "$30/month — 6 month plan ($180)", url: "https://square.link/u/F6Tx8EUc" },
+                { key: "standard-12", label: "$20/month — 12 month plan ($240)", url: "https://square.link/u/YpNWBSJZ" }
+            ],
+            backend: [
+                { key: "backend-1", label: "$60/month — 1 month plan", url: "https://square.link/u/RkUQIBGg" },
+                { key: "backend-6", label: "$40/month — 6 month plan ($240)", url: "https://square.link/u/KTXBdTbR" },
+                { key: "backend-12", label: "$30/month — 12 month plan ($360)", url: "https://square.link/u/H5nLaKC0" }
+            ]
+        };
         function applyTheme(theme) {
             const isLight = theme === "light";
             document.body.classList.toggle("light-mode", isLight);
@@ -602,9 +626,74 @@
                 claimList.appendChild(item);
             });
             claimMessageStatus.textContent = "";
-            claimCheckout.hidden = true;
+            document.getElementById("claimMessage").value = "";
+            renderClaimPlanChoices(selectedSites);
             showPortalPanel("claimPanel");
             openPortal();
+        }
+
+        function updateClaimSubmitAvailability() {
+            const ready = claimPlanSelections.size > 0 && [...claimPlanSelections.values()].every(selection => selection.plan && selection.confirmed);
+            submitClaimButton.disabled = !ready;
+        }
+
+        function renderClaimPlanChoices(selectedSites) {
+            claimCheckoutLinks.replaceChildren();
+            claimPlanSelections.clear();
+            submitClaimButton.disabled = true;
+            const requiredTypes = [...new Set(selectedSites.map(site => site.hostingType))];
+
+            requiredTypes.forEach(type => {
+                claimPlanSelections.set(type, { plan: null, confirmed: false });
+                const group = document.createElement("div");
+                group.className = "claim-plan-group";
+                const label = document.createElement("label");
+                label.textContent = `${type === "backend" ? "Backend" : "Standard"} Hosting Plan`;
+                const select = document.createElement("select");
+                select.className = "claim-plan-select";
+                select.innerHTML = '<option value="">Select a subscription</option>';
+                (hostingCheckoutPlans[type] || []).forEach(plan => {
+                    const option = document.createElement("option");
+                    option.value = plan.key;
+                    option.textContent = plan.label;
+                    select.appendChild(option);
+                });
+                const purchaseButton = document.createElement("button");
+                purchaseButton.className = "portal-primary claim-plan-purchase";
+                purchaseButton.type = "button";
+                purchaseButton.textContent = "Purchase Subscription";
+                purchaseButton.disabled = true;
+                const confirmation = document.createElement("label");
+                confirmation.className = "purchase-confirmation";
+                confirmation.hidden = true;
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                const confirmationText = document.createElement("span");
+                confirmationText.textContent = "I completed the Square subscription purchase.";
+                confirmation.append(checkbox, confirmationText);
+
+                select.addEventListener("change", () => {
+                    const plan = (hostingCheckoutPlans[type] || []).find(item => item.key === select.value) || null;
+                    claimPlanSelections.set(type, { plan, confirmed: false });
+                    purchaseButton.disabled = !plan;
+                    confirmation.hidden = true;
+                    checkbox.checked = false;
+                    updateClaimSubmitAvailability();
+                });
+                purchaseButton.addEventListener("click", () => {
+                    const selection = claimPlanSelections.get(type);
+                    if (!selection?.plan) return;
+                    window.open(selection.plan.url, "_blank", "noopener");
+                    confirmation.hidden = false;
+                });
+                checkbox.addEventListener("change", () => {
+                    const selection = claimPlanSelections.get(type);
+                    if (selection) selection.confirmed = checkbox.checked;
+                    updateClaimSubmitAvailability();
+                });
+                group.append(label, select, purchaseButton, confirmation);
+                claimCheckoutLinks.appendChild(group);
+            });
         }
 
         setClientMenuLoggedIn(false);
@@ -638,8 +727,13 @@
             });
             if (error) loginMessage.textContent = error.message;
         }
-        function formatMoney(cents) { return typeof cents === "number" ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(cents / 100) : "See Square invoice"; }
-        function formatCadence(cadence) { return ({ MONTHLY: "Every month", EVERY_SIX_MONTHS: "Every 6 months", ANNUAL: "Every year" })[cadence] || cadence || "Not available"; }
+        function formatMoney(cents) { return typeof cents === "number" ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(cents / 100) : "See Square invoice"; }
+        function formatCadence(cadence) { return ({ MONTHLY: "1 month plan", EVERY_SIX_MONTHS: "6 month plan", ANNUAL: "12 month plan" })[cadence] || cadence || "Not available"; }
+        function formatMonthlyRate(cents, cadence) {
+            if (typeof cents !== "number") return "See Square invoice";
+            const months = ({ MONTHLY: 1, EVERY_SIX_MONTHS: 6, ANNUAL: 12 })[cadence] || 1;
+            return `${formatMoney(cents / months)}/month`;
+        }
         function formatAccessDate(value) {
             if (!value) return "the end of your current billing period";
             const date = new Date(`${value}T12:00:00`);
@@ -665,8 +759,8 @@
                 const card = document.createElement("article"); card.className = "subscription-card";
                 const title = document.createElement("h3"); title.textContent = subscription.planName || "Website Hosting"; card.appendChild(title);
                 addRow(card, "Status", subscription.status || "Unknown");
-                addRow(card, "Price", formatMoney(subscription.amountCents));
-                addRow(card, "Billing", formatCadence(subscription.billingCadence));
+                addRow(card, "Rate", formatMonthlyRate(subscription.amountCents, subscription.billingCadence));
+                addRow(card, "Plan", formatCadence(subscription.billingCadence));
                 addRow(card, "Paid through", subscription.chargedThroughDate || "Not available");
                 if (String(subscription.status || "").toUpperCase().includes("CANCEL")) {
                     const notice = document.createElement("div");
@@ -824,35 +918,34 @@
                 claimMessageStatus.textContent = "Select at least one site first.";
                 return;
             }
-            const submitButton = claimForm.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.textContent = "Submitting…";
+            const hostingSelections = [...claimPlanSelections.entries()].map(([hostingType, selection]) => ({
+                hostingType,
+                planKey: selection.plan?.key,
+                planLabel: selection.plan?.label,
+                purchaseConfirmed: selection.confirmed
+            }));
+            if (!hostingSelections.length || hostingSelections.some(selection => !selection.planKey || !selection.purchaseConfirmed)) {
+                claimMessageStatus.textContent = "Purchase and confirm the required hosting subscription before submitting.";
+                return;
+            }
+            submitClaimButton.disabled = true;
+            submitClaimButton.textContent = "Submitting…";
             claimMessageStatus.textContent = "Submitting your claim request…";
             const { data, error } = await portalSupabase.functions.invoke("site-claims", {
                 method: "POST",
                 body: {
                     sites: selectedSites.map(site => ({ path: site.path, name: site.name, hostingType: site.hostingType })),
+                    hostingSelections,
                     message: document.getElementById("claimMessage").value.trim()
                 }
             });
-            submitButton.disabled = false;
-            submitButton.textContent = "Submit Claim Request";
+            submitClaimButton.textContent = "Submit Claim Request";
             if (error || !data?.success) {
                 claimMessageStatus.textContent = "We couldn’t submit your claim right now. Please contact support@steadyhandsop.com.";
+                updateClaimSubmitAvailability();
                 return;
             }
-            claimMessageStatus.textContent = "Your claim request was submitted. Purchase the required hosting plan below to complete it.";
-            claimCheckoutLinks.replaceChildren();
-            const requiredTypes = new Set(selectedSites.map(site => site.hostingType));
-            requiredTypes.forEach(type => {
-                const button = document.createElement("button");
-                button.className = "site-link";
-                button.type = "button";
-                button.textContent = `Choose ${type === "backend" ? "Backend" : "Standard"} Hosting Plan`;
-                button.addEventListener("click", () => showPortalPanel("subscriptionsPanel"));
-                claimCheckoutLinks.appendChild(button);
-            });
-            claimCheckout.hidden = false;
+            claimMessageStatus.textContent = "Your claim request was submitted. We’ll verify the Square subscription before connecting the selected sites.";
         });
         themeToggle.addEventListener("click", () => {
             const nextTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
