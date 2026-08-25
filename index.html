@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Websites · View Your Site</title>
+    <title>Websites · Steady Hands Operation</title>
     <style>
         * {
             margin: 0;
@@ -37,7 +37,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* search row */
         .search-row {
             max-width: 480px;
             margin: 0 auto 2rem auto;
@@ -64,14 +63,12 @@
             font-weight: 300;
         }
 
-        /* gallery grid */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 1.8rem;
         }
 
-        /* card with iframe preview */
         .site-card {
             background: #141414;
             border: 1px solid #2a2a2a;
@@ -89,13 +86,34 @@
             transform: translateY(-3px);
         }
 
-        .preview-frame {
+        /* --- preview wrapper: hides scrollbars --- */
+        .preview-wrapper {
             width: 100%;
             aspect-ratio: 16 / 10;
+            background: #1a1a1a;
+            overflow: hidden;          /* cuts off scrollbars */
+            position: relative;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 100%;
             border: none;
             background: #1a1a1a;
             display: block;
             pointer-events: none;
+            /* remove scrollbars inside the iframe itself */
+            scrolling: no;
+            /* for modern browsers: hide scrollbars */
+            scrollbar-width: none;      /* Firefox */
+            -ms-overflow-style: none;   /* IE/Edge */
+        }
+
+        /* Chrome/Safari/Opera – hide scrollbars inside iframe content */
+        .preview-frame::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
         }
 
         .card-label {
@@ -112,7 +130,6 @@
             color: #d0d0d0;
         }
 
-        /* empty state */
         .empty-state {
             grid-column: 1 / -1;
             text-align: center;
@@ -131,7 +148,7 @@
             color: #555;
         }
 
-        /* ---- bottom-left tilde button ---- */
+        /* tilde button */
         .tilde-button {
             position: fixed;
             bottom: 1.8rem;
@@ -160,7 +177,7 @@
             border-color: #5a5a5a;
         }
 
-        /* ---- modal overlay (password & create) ---- */
+        /* modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -210,7 +227,7 @@
             margin-top: 1rem;
         }
 
-        .modal-box input, 
+        .modal-box input,
         .modal-box textarea {
             width: 100%;
             background: #0f0f0f;
@@ -274,8 +291,8 @@
             min-height: 1.2rem;
         }
 
-        /* password step */
-        #passwordStep, #createStep {
+        #passwordStep,
+        #createStep {
             display: block;
         }
 
@@ -283,18 +300,37 @@
             display: none;
         }
 
-        /* responsive */
         @media (max-width: 700px) {
-            h1 { font-size: 2rem; }
-            .gallery { grid-template-columns: 1fr 1fr; gap: 1rem; }
-            .preview-frame { aspect-ratio: 16 / 11; }
-            .card-label { font-size: 0.8rem; padding: 0.6rem 0.4rem; }
-            .tilde-button { width: 42px; height: 42px; font-size: 1.4rem; bottom: 1.2rem; left: 1.2rem; }
-            .modal-box { padding: 1.8rem 1.5rem; }
+            h1 {
+                font-size: 2rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .preview-wrapper {
+                aspect-ratio: 16 / 11;
+            }
+            .card-label {
+                font-size: 0.8rem;
+                padding: 0.6rem 0.4rem;
+            }
+            .tilde-button {
+                width: 42px;
+                height: 42px;
+                font-size: 1.4rem;
+                bottom: 1.2rem;
+                left: 1.2rem;
+            }
+            .modal-box {
+                padding: 1.8rem 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .gallery { grid-template-columns: 1fr; }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -307,18 +343,13 @@
             </div>
         </header>
 
-        <div class="gallery" id="gallery">
-            <!-- cards injected -->
-        </div>
+        <div class="gallery" id="gallery"></div>
     </div>
 
-    <!-- tilde button (bottom-left) -->
     <button class="tilde-button" id="tildeBtn" aria-label="admin panel">~</button>
 
-    <!-- modal overlay: password + create -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box">
-            <!-- password step -->
             <div id="passwordStep">
                 <h2>Access</h2>
                 <div class="sub">enter password to continue</div>
@@ -331,7 +362,6 @@
                 </div>
             </div>
 
-            <!-- create step (shown after correct password) -->
             <div id="createStep">
                 <h2>Add website</h2>
                 <div class="sub">enter name and HTML content</div>
@@ -352,20 +382,17 @@
 
     <script>
         (function() {
-            // ---------- site data ----------
             let sites = [
-            { name: 'Del Carmen Hair Salon', path: 'DelCarmeHairSalon' },
-            { name: 'Shop Vezzy', path: 'SHOPVEZZY' },
-            { name: 'Studio 47 Hair Salon', path: 'Studio47HairSalon' },
-            { name: 'Favorite Place to Shop', path: 'favoriteplacetoshop' },
-            { name: 'Green House Water Heaters', path: 'GreenHouseWaterHeaters' }
+                { name: 'Del Carmen Hair Salon', path: 'DelCarmeHairSalon' },
+                { name: 'Shop Vezzy', path: 'SHOPVEZZY' },
+                { name: 'Studio 47 Hair Salon', path: 'Studio47HairSalon' },
+                { name: 'Favorite Place to Shop', path: 'favoriteplacetoshop' },
+                { name: 'Green House Water Heaters', path: 'GreenHouseWaterHeaters' }
             ];
 
-            // ---------- DOM refs ----------
             const gallery = document.getElementById('gallery');
             const searchInput = document.getElementById('searchInput');
 
-            // modal
             const modalOverlay = document.getElementById('modalOverlay');
             const tildeBtn = document.getElementById('tildeBtn');
             const passwordStep = document.getElementById('passwordStep');
@@ -380,10 +407,8 @@
             const htmlContentInput = document.getElementById('htmlContentInput');
             const createError = document.getElementById('createError');
 
-            // ---------- hardcoded password ----------
             const CORRECT_PASSWORD = 'steady2026';
 
-            // ---------- render cards ----------
             function buildCards(filterText = '') {
                 gallery.innerHTML = '';
                 const lowerFilter = filterText.toLowerCase().trim();
@@ -404,25 +429,34 @@
                     card.className = 'site-card';
                     card.href = `./${site.path}/`;
 
+                    // wrapper to clip scrollbars
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'preview-wrapper';
+
                     const iframe = document.createElement('iframe');
                     iframe.className = 'preview-frame';
                     iframe.src = `./${site.path}/`;
                     iframe.loading = 'lazy';
                     iframe.setAttribute('aria-hidden', 'true');
                     iframe.style.pointerEvents = 'none';
+                    // extra guard for scrollbars
+                    iframe.setAttribute('scrolling', 'no');
+                    iframe.style.overflow = 'hidden';
+
+                    wrapper.appendChild(iframe);
 
                     const label = document.createElement('div');
                     label.className = 'card-label';
                     label.textContent = site.name;
 
-                    card.appendChild(iframe);
+                    card.appendChild(wrapper);
                     card.appendChild(label);
                     gallery.appendChild(card);
                 });
             }
 
-            // ---------- search ----------
             let searchTimeout = null;
+
             function handleSearch() {
                 if (searchTimeout) clearTimeout(searchTimeout);
                 searchTimeout = setTimeout(() => {
@@ -431,7 +465,6 @@
             }
             searchInput.addEventListener('input', handleSearch);
 
-            // ---------- modal logic ----------
             function openModal() {
                 modalOverlay.classList.add('active');
                 passwordStep.style.display = 'block';
@@ -453,21 +486,16 @@
             }
 
             tildeBtn.addEventListener('click', openModal);
-
-            // cancel buttons
             cancelPwdBtn.addEventListener('click', closeModal);
             cancelCreateBtn.addEventListener('click', closeModal);
 
-            // close on overlay click (but not on modal box)
             modalOverlay.addEventListener('click', function(e) {
                 if (e.target === modalOverlay) closeModal();
             });
 
-            // password unlock
             function tryUnlock() {
                 const pwd = passwordInput.value;
                 if (pwd === CORRECT_PASSWORD) {
-                    // switch to create step
                     passwordStep.style.display = 'none';
                     createStep.style.display = 'block';
                     passwordError.textContent = '';
@@ -484,7 +512,6 @@
                 if (e.key === 'Enter') tryUnlock();
             });
 
-            // ---------- save new site (create) ----------
             function saveNewSite() {
                 const name = siteNameInput.value.trim();
                 const html = htmlContentInput.value.trim();
@@ -498,41 +525,31 @@
                     return;
                 }
 
-                // generate a path from name (slug)
                 const slug = name
                     .toLowerCase()
                     .replace(/[^a-z0-9]+/g, '-')
                     .replace(/^-+|-+$/g, '') || 'site';
 
-                // check for duplicate path
                 const exists = sites.some(s => s.path === slug);
                 if (exists) {
                     createError.textContent = 'A site with this name already exists.';
                     return;
                 }
 
-                // add to sites array
                 sites.push({ name: name, path: slug });
 
-                // in a real scenario we would also persist the HTML to a file/folder.
-                // here we just show a confirmation and rebuild the gallery.
-                // (we also store the HTML in localStorage for demo persistence)
                 try {
                     const store = JSON.parse(localStorage.getItem('customSitesHTML') || '{}');
                     store[slug] = html;
                     localStorage.setItem('customSitesHTML', JSON.stringify(store));
                 } catch (_) {}
 
-                // rebuild gallery with current search
                 buildCards(searchInput.value);
-
-                // close modal
                 closeModal();
 
-                // optional: notify
-                // (no emoji, just a subtle message)
                 const msg = document.createElement('div');
-                msg.style.cssText = 'position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:#1a1a1a; border:1px solid #3a3a3a; padding:0.6rem 1.8rem; border-radius:40px; color:#ccc; font-size:0.9rem; z-index:999; pointer-events:none; transition:opacity 0.4s;';
+                msg.style.cssText =
+                    'position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:#1a1a1a; border:1px solid #3a3a3a; padding:0.6rem 1.8rem; border-radius:40px; color:#ccc; font-size:0.9rem; z-index:999; pointer-events:none; transition:opacity 0.4s;';
                 msg.textContent = 'Site added: ' + name;
                 document.body.appendChild(msg);
                 setTimeout(() => { msg.style.opacity = '0'; }, 2000);
@@ -541,7 +558,6 @@
 
             saveSiteBtn.addEventListener('click', saveNewSite);
 
-            // also allow Ctrl+Enter in textarea
             htmlContentInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
                     e.preventDefault();
@@ -549,18 +565,14 @@
                 }
             });
 
-            // ---------- load custom sites from localStorage (demo) ----------
             function loadCustomSites() {
                 try {
                     const stored = localStorage.getItem('customSitesHTML');
                     if (!stored) return;
                     const htmlMap = JSON.parse(stored);
-                    // for each custom site, if not already in sites, add it.
-                    // we use the slug from the key.
                     Object.keys(htmlMap).forEach(slug => {
                         const exists = sites.some(s => s.path === slug);
                         if (!exists) {
-                            // generate a readable name from slug
                             const name = slug
                                 .split('-')
                                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -572,11 +584,8 @@
             }
 
             loadCustomSites();
-
-            // ---------- initial render ----------
             buildCards('');
 
-            // also on Escape key close modal
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
                     closeModal();
