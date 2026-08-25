@@ -347,7 +347,7 @@
                             .replace(/-/g, " ")
                             .replace(/\b\w/g, c => c.toUpperCase());
                         // Default hostingType to "standard" since we don't know it from the folder name
-                        return { name: prettyName, path: `./${folder.name}/`, hostingType: "standard" };
+                        return { name: prettyName, path: folder.name, hostingType: "standard" };
                     });
 
                 renderSites(); // Render the sites after fetching
@@ -420,7 +420,7 @@
             renderSites(event.target.value);
         });
 
-        renderSites();
+        fetchSites();
     </script>
 
     <div class="portal-overlay" id="portalOverlay" hidden>
