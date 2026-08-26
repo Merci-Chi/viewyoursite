@@ -1,1 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Poetry and writing by Ava Bethan">
+  <title>Ava Bethan</title>
+  <style>
+    :root {
+      --paper: rgba(255, 250, 241, .86);
+      --ink: #392e29;
+      --muted: #6d625a;
+      --terracotta: #c85f49;
+      --sage: #838d62;
+      --rose: #ca7780;
+      --line: rgba(191, 128, 101, .5);
+      --shadow: rgba(124, 75, 50, .11);
+      --cloud-image: url("images/light-alternating-background.png");
+      --dark-cloud-image: url("images/dark-alternating-background.png");
+    }
 
+    body.dark {
+      --paper: rgba(48, 40, 61, .78);
+      --ink: #f4ddd0;
+      --muted: #d9c3bd;
+      --terracotta: #ef7c75;
+      --sage: #b8b985;
+      --rose: #e08a9d;
+      --line: rgba(224, 138, 157, .58);
+      --shadow: rgba(0, 0, 0, .34);
+      background-color: #140d22;
+      background-image: var(--dark-cloud-image);
+    }
+
+    body.dark header { background: rgba(10, 14, 42, .55); border-color: rgba(225, 133, 153, .4); }
+
+    * { box-sizing: border-box; }
+
+    html { background: #f8f1e8; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background-color: #f4d7d7;
+      background-image: var(--cloud-image);
+      background-position: center top;
+      background-size: 100% auto;
+      background-repeat: repeat-y;
+      background-attachment: scroll;
+      font-family: Georgia, "Times New Roman", serif;
+      transition: background .35s ease, color .35s ease;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 72px;
+      margin: 0;
+      padding: 0 max(34px, calc((100vw - 1390px) / 2));
+      background: rgba(255, 250, 244, .56);
+      border: 1px solid rgba(255, 255, 255, .52);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      box-shadow: inset 0 2px 2px rgba(255, 255, 255, .72), inset 0 -3px 5px rgba(130, 75, 87, .14), 0 5px 14px rgba(82, 48, 57, .16), 0 15px 32px rgba(82, 48, 57, .1);
+      -webkit-backdrop-filter: blur(18px) saturate(1.14);
+      backdrop-filter: blur(18px) saturate(1.14);
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      font-size: 25px;
+      line-height: 1;
+      letter-spacing: -.03em;
+    }
+
+    .logo span { display: none; }
+    .mode-label { color: var(--terracotta); font: 700 12px/1 Arial,sans-serif; letter-spacing: .14em; }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255, 250, 243, .62);
+      cursor: pointer;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .82), inset -2px -2px 4px rgba(132, 77, 88, .2), 0 3px 0 rgba(125, 72, 82, .13), 0 7px 15px rgba(82, 48, 57, .18);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .icon-button:hover { transform: translateY(-2px); border-color: var(--terracotta); box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .9), inset -2px -2px 4px rgba(132, 77, 88, .22), 0 4px 0 rgba(125, 72, 82, .11), 0 11px 20px rgba(82, 48, 57, .22); }
+    .icon-button svg { width: 19px; height: 19px; }
+
+    .desert-button { color: #b85f66; }
+    .desert-button.owner-active { color: #fff8ee; background: linear-gradient(135deg, #de8b75, #b95772); }
+
+    .owner-toolbar {
+      display: none;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    body.owner-mode .owner-toolbar { display: flex; }
+
+    .owner-action, .edit-post, .delete-button {
+      border: 1px solid rgba(174, 77, 103, .22);
+      border-radius: 999px;
+      background: linear-gradient(120deg, #ef9eb1, #d96f91 52%, #b84f78);
+      color: #fffaf8;
+      font: 700 12px/1 Arial, sans-serif;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .38), 0 6px 14px rgba(129, 53, 82, .2);
+    }
+
+    .owner-action { padding: 11px 17px; }
+    .owner-action.secondary { background: rgba(255, 248, 245, .65); color: var(--ink); }
+
+    .edit-post {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 5;
+      display: none;
+      padding: 9px 14px;
+    }
+
+    body.owner-mode .edit-post { display: block; }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(1390px, calc(100% - 80px));
+      margin: 0 auto;
+      padding: 48px 0 90px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .blog-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      background: linear-gradient(145deg, rgba(255, 253, 248, .86), rgba(250, 239, 235, .72));
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 10px;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .95), inset -2px -2px 4px rgba(157, 91, 103, .22), inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 -1px 0 rgba(185, 104, 118, .2), 0 3px 0 rgba(151, 85, 96, .14), 0 12px 20px rgba(91, 54, 60, .17), 0 30px 58px rgba(91, 54, 60, .2);
+      -webkit-backdrop-filter: blur(24px) saturate(1.18);
+      backdrop-filter: blur(24px) saturate(1.18);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, .9);
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .98), inset -2px -2px 4px rgba(157, 91, 103, .24), inset 0 1px 0 rgba(255, 255, 255, .96), inset 0 -1px 0 rgba(185, 104, 118, .22), 0 4px 0 rgba(151, 85, 96, .12), 0 18px 28px rgba(91, 54, 60, .2), 0 40px 72px rgba(91, 54, 60, .25);
+    }
+
+    body.dark .blog-card {
+      background: linear-gradient(145deg, rgba(88, 68, 96, .78), rgba(37, 26, 48, .73));
+      border-color: rgba(255, 220, 239, .28);
+      box-shadow: inset 2px 2px 3px rgba(255, 230, 244, .2), inset -2px -2px 4px rgba(7, 3, 13, .38), inset 0 1px 0 rgba(255, 233, 244, .24), inset 0 -1px 0 rgba(221, 124, 167, .14), 0 3px 0 rgba(9, 5, 16, .36), 0 14px 24px rgba(4, 2, 9, .4), 0 34px 64px rgba(4, 2, 9, .5);
+    }
+
+    body.dark .blog-card:hover {
+      border-color: rgba(234, 157, 197, .58);
+      box-shadow: inset 0 1px 0 rgba(255, 233, 244, .3), inset 0 -1px 0 rgba(221, 124, 167, .16), 0 4px 0 rgba(9, 5, 16, .3), 0 21px 34px rgba(4, 2, 9, .45), 0 44px 80px rgba(4, 2, 9, .58);
+    }
+
+    .blog-card.card-ivory { background: linear-gradient(145deg, rgba(255, 253, 248, .88), rgba(246, 234, 226, .76)); }
+    .blog-card.card-blush { background: linear-gradient(145deg, rgba(249, 219, 217, .88), rgba(226, 174, 181, .76)); }
+    .blog-card.card-sage { background: linear-gradient(145deg, rgba(226, 233, 210, .88), rgba(185, 198, 157, .78)); }
+    .blog-card.card-terracotta { background: linear-gradient(145deg, rgba(241, 196, 160, .88), rgba(207, 132, 91, .76)); }
+    .blog-card.card-golden { background: linear-gradient(145deg, rgba(255, 225, 157, .9), rgba(231, 181, 92, .78)); }
+    .blog-card.card-plum { background: linear-gradient(145deg, rgba(225, 190, 204, .88), rgba(164, 106, 134, .78)); }
+
+    body.dark .blog-card.card-ivory { background: linear-gradient(145deg, rgba(93, 77, 93, .82), rgba(51, 39, 61, .78)); }
+    body.dark .blog-card.card-blush { background: linear-gradient(145deg, rgba(116, 66, 83, .82), rgba(68, 38, 58, .8)); }
+    body.dark .blog-card.card-sage { background: linear-gradient(145deg, rgba(82, 91, 66, .84), rgba(43, 51, 39, .8)); }
+    body.dark .blog-card.card-terracotta { background: linear-gradient(145deg, rgba(128, 72, 52, .84), rgba(72, 39, 39, .8)); }
+    body.dark .blog-card.card-golden { background: linear-gradient(145deg, rgba(128, 96, 49, .84), rgba(68, 48, 37, .8)); }
+    body.dark .blog-card.card-plum { background: linear-gradient(145deg, rgba(105, 61, 91, .84), rgba(56, 34, 61, .8)); }
+
+    .photo-well {
+      position: relative;
+      width: calc(100% - 28px);
+      height: 230px;
+      margin: 14px 14px 0;
+      overflow: hidden;
+      background: #e9b5c1;
+      border: 1px solid rgba(139, 82, 91, .2);
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22), inset 0 0 14px rgba(64, 36, 43, .28), 0 1px 0 rgba(255, 255, 255, .75);
+    }
+
+    .photo-well::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 7px 7px 12px rgba(58, 31, 38, .24), inset -7px -7px 12px rgba(58, 31, 38, .2), inset 0 0 0 2px rgba(84, 45, 55, .16);
+    }
+
+    .media {
+      width: 100%;
+      height: 100%;
+      display: block;
+      margin: 0;
+      object-fit: cover;
+      transition: transform .45s ease, filter .3s ease;
+    }
+
+    .blog-card:hover .media { transform: scale(1.025); filter: saturate(1.06); }
+
+    .card-content {
+      flex: 1;
+      display: grid;
+      grid-template-rows: 18px auto 1fr 42px;
+      gap: 13px;
+      min-height: 252px;
+      padding: 19px 23px 23px;
+      border-top: 0;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: #b25f69;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .blog-card h2 {
+      display: -webkit-box;
+      overflow: hidden;
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      font-weight: 500;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .excerpt {
+      display: -webkit-box;
+      overflow: hidden;
+      margin: 0;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .read-button {
+      align-self: flex-start;
+      margin-top: auto;
+      min-width: 146px;
+      padding: 10px 18px;
+      border: 1px solid rgba(179, 79, 95, .1);
+      border-radius: 999px;
+      background: linear-gradient(120deg, #ef9eb1 0%, #d96f91 48%, #b84f78 100%);
+      color: #fffaf8;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(177, 76, 93, .2);
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    .read-button:hover { transform: translateY(-2px); filter: saturate(1.08); box-shadow: 0 9px 19px rgba(177, 76, 93, .3); }
+
+    body.dark .meta { color: #e29aaa; }
+    body.dark .read-button { background: linear-gradient(120deg, #f0a4bd 0%, #d877a1 48%, #a94f80 100%); color: #fff8fb; }
+
+    .settings-panel, .post-modal, .reader-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+    }
+
+    .settings-panel.open, .post-modal.open, .reader-modal.open { display: block; }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 21, 16, .58);
+    }
+
+    .settings-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(410px, 92vw);
+      height: 100%;
+      overflow-y: auto;
+      padding: 28px;
+      background: linear-gradient(160deg, rgba(255, 252, 247, .95), rgba(242, 220, 224, .92));
+      border-left: 1px solid rgba(255, 255, 255, .68);
+      box-shadow: inset 2px 0 3px rgba(255, 255, 255, .72), -18px 0 44px rgba(45, 24, 37, .25);
+      -webkit-backdrop-filter: blur(24px) saturate(1.1);
+      backdrop-filter: blur(24px) saturate(1.1);
+    }
+
+    body.dark .settings-box { background: linear-gradient(160deg, rgba(69, 51, 80, .97), rgba(25, 18, 38, .96)); }
+
+    .panel-top { display: flex; align-items: center; justify-content: space-between; }
+    .panel-top h2 { margin: 0; font-size: 34px; font-weight: 500; }
+
+    .setting {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 30px;
+      padding: 20px 0;
+      border: 1px solid rgba(184, 112, 130, .24);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(255, 250, 247, .48);
+      box-shadow: inset 1px 1px 2px rgba(255, 255, 255, .72), inset -1px -1px 3px rgba(127, 69, 83, .12), 0 9px 22px rgba(84, 47, 61, .1);
+    }
+
+    .setting strong, .setting small { display: block; }
+    .setting small { margin-top: 5px; color: var(--muted); font-family: Arial, sans-serif; }
+
+    .switch {
+      position: relative;
+      width: 48px;
+      height: 27px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 20px;
+      background: var(--line);
+      cursor: pointer;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: var(--paper);
+      transition: transform .2s ease;
+    }
+
+    body.dark .switch { background: #d96f91; }
+    body.dark .switch::after { transform: translateX(21px); }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px 18px;
+      border: 1px solid rgba(167, 72, 101, .18);
+      border-radius: 12px;
+      background: linear-gradient(120deg, #ef9eb1, #d96f91 52%, #b84f78);
+      color: #fff9ef;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .36), 0 8px 18px rgba(131, 53, 83, .22);
+    }
+
+    .form-actions { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; }
+    .form-actions .submit-button { margin-top: 0; }
+    .delete-button { display: none; padding: 14px 18px; background: linear-gradient(120deg, #9f455f, #762f4c); }
+    .delete-button.visible { display: block; }
+
+    select[name="accent"] {
+      background: #f4c3d0;
+      border-color: #d77898;
+      color: #6f2948;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    body.dark select[name="accent"] {
+      background: #5c2949;
+      border-color: #d778a4;
+      color: #fff0f7;
+    }
+
+    .modal-box, .reader-box {
+      position: relative;
+      width: min(780px, calc(100% - 28px));
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      margin: 20px auto;
+      padding: 34px;
+      background: linear-gradient(145deg, rgba(255, 252, 247, .94), rgba(245, 226, 225, .88));
+      border: 1px solid rgba(255, 255, 255, .74);
+      border-radius: 24px;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .86), inset -2px -2px 4px rgba(139, 77, 92, .16), 0 26px 70px rgba(42, 22, 35, .34);
+      -webkit-backdrop-filter: blur(24px) saturate(1.12);
+      backdrop-filter: blur(24px) saturate(1.12);
+    }
+
+    body.dark .modal-box, body.dark .reader-box { background: linear-gradient(145deg, rgba(72, 54, 82, .96), rgba(27, 19, 40, .94)); border-color: rgba(255, 219, 239, .24); }
+
+    .modal-box h2 { margin: 0 0 25px; font-size: 36px; font-weight: 500; }
+
+    form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 18px; }
+    .form-wide, .form-actions { grid-column: 1 / -1; }
+    label { display: grid; gap: 8px; color: var(--muted); font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .field-hint { display: flex; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 11px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+    input, textarea, select { width: 100%; padding: 13px 14px; border: 1px solid rgba(181, 111, 126, .34); border-radius: 12px; outline: 0; background: rgba(255, 250, 247, .7); color: var(--ink); box-shadow: inset 0 2px 6px rgba(99, 55, 67, .08), 0 1px 0 rgba(255, 255, 255, .62); }
+    input:focus, textarea:focus, select:focus { border-color: #d77898; box-shadow: inset 0 2px 6px rgba(99, 55, 67, .08), 0 0 0 3px rgba(215, 120, 152, .13); }
+    body.dark input, body.dark textarea, body.dark select { background: rgba(25, 18, 36, .56); }
+    textarea { min-height: 110px; resize: vertical; }
+    #content { min-height: 210px; }
+
+    .reader-box { width: min(920px, calc(100% - 28px)); padding: 0 0 64px; border-radius: 26px; }
+    .reader-close { position: absolute; top: 18px; right: 18px; z-index: 5; background: rgba(255, 250, 247, .78); }
+    .reader-media { width: 100%; max-height: 470px; display: block; object-fit: cover; background: var(--sage); border-radius: 26px 26px 0 0; }
+    .reader-copy { width: min(700px, calc(100% - 48px)); margin: 0 auto; padding-top: 44px; }
+    .reader-kicker { display: flex; align-items: center; gap: 12px; color: #bc6675; font: 700 11px/1 Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+    .reader-kicker .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+    .reader-copy h2 { margin: 18px 0 16px; font-size: clamp(42px, 7vw, 72px); line-height: .98; letter-spacing: -.05em; font-weight: 500; }
+    .reader-description { max-width: 620px; margin: 0; color: var(--rose); font-size: 19px; font-style: italic; line-height: 1.55; }
+    .reader-rule { width: 72px; height: 2px; margin: 30px 0 34px; background: linear-gradient(90deg, #d96f91, transparent); }
+    .reader-writing { white-space: pre-wrap; font-size: 19px; line-height: 1.88; }
+    .reader-poem .reader-writing { max-width: 570px; font-size: 21px; line-height: 2; }
+    .reader-writing-type .reader-writing { max-width: 680px; }
+
+    .empty { grid-column: 1 / -1; padding: 70px 25px; text-align: center; border: 1px solid var(--line); background: var(--paper); }
+
+    @media (max-width: 920px) {
+      .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      header { top: 8px; height: 64px; width: calc(100% - 24px); margin-top: 8px; padding: 0 18px; }
+      main { width: calc(100% - 30px); padding: 26px 0 60px; }
+      .blog-grid { grid-template-columns: 1fr; gap: 18px; }
+      .photo-well { height: 235px; }
+      .card-content { padding: 22px; }
+      .blog-card h2 { font-size: 32px; }
+      .modal-box { padding: 22px; }
+      form { grid-template-columns: 1fr; }
+      form > * { grid-column: 1 / -1; }
+      .reader-copy { width: calc(100% - 40px); padding-top: 34px; }
+      .reader-box { padding-bottom: 44px; }
+      .reader-copy h2 { font-size: 43px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="icon-button desert-button" id="desertOwner" aria-label="Desert" title="Desert">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17.5" cy="6.5" r="2.5"></circle><path d="M3 19h18M5 19c2.4-4.2 4.8-5.5 7.1-3.8 2.1 1.5 3.8.5 6.9-2.2M9 15V8.5a2 2 0 0 1 4 0V10M9 11H6.5V8.5M13 13h2.5v-2.5"></path></svg>
+    </button>
+    <h1 class="logo">Ava Bethan<span>.</span></h1>
+    <button class="icon-button" id="settingsOpen" aria-label="Open settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.1A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H3v-4h.1A1.7 1.7 0 0 0 4.6 8.6a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V3h4v.1A1.7 1.7 0 0 0 15.4 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.13.37.35.7.64.96.3.25.67.39 1.06.4h.1v4h-.1a1.7 1.7 0 0 0-1.7.64Z"></path></svg>
+    </button>
+  </header>
+
+  <main>
+    <div class="owner-toolbar" id="ownerToolbar"><button class="owner-action" id="newPost">New post</button><button class="owner-action secondary" id="ownerLogout">Log out</button></div>
+    <section class="blog-grid" id="blogGrid" aria-label="Blogs"></section>
+  </main>
+
+  <aside class="settings-panel" id="settingsPanel" aria-hidden="true">
+    <div class="overlay" data-close="settings"></div>
+    <div class="settings-box">
+      <div class="panel-top"><h2>Settings</h2><button class="icon-button" data-close="settings" aria-label="Close settings">×</button></div>
+      <div class="setting"><div><strong>Desert night</strong><small>Switch between daytime and nighttime colors</small></div><button class="switch" id="themeSwitch" aria-label="Toggle dark mode"></button></div>
+    </div>
+  </aside>
+
+  <div class="post-modal" id="postModal" aria-hidden="true">
+    <div class="overlay" data-close="post"></div>
+    <div class="modal-box">
+      <div class="panel-top"><h2 id="postModalTitle">New blog</h2><button class="icon-button" data-close="post" aria-label="Close post form">×</button></div>
+      <form id="postForm">
+        <label>Post type<select name="postType"><option value="poem">Poem</option><option value="writing">Writing</option></select></label>
+        <label>Card color<select name="cardColor"><option value="ivory">Desert ivory</option><option value="blush">Cactus blush</option><option value="sage">Soft sage</option><option value="terracotta">Terracotta</option><option value="golden">Golden flower</option><option value="plum">Desert plum</option></select></label>
+        <label class="form-wide">Title<input name="title" required placeholder="Title of your poem or writing"></label>
+        <label class="form-wide">Description — optional<textarea name="description" maxlength="140" placeholder="A short description for the card"></textarea><span class="field-hint"><span>Maximum 140 characters</span><span id="descriptionCount">0 / 140</span></span></label>
+        <label class="form-wide"><span id="contentLabelText">Poem</span><textarea id="content" name="content" required placeholder="Write your poem here..."></textarea></label>
+        <label>Photo or video<input name="media" type="file" accept="image/*,video/*"></label>
+        <label>Accent color<select name="accent"><option value="#db605c">Coral</option><option value="#346095">Desert blue</option><option value="#aa7580">Dusty rose</option><option value="#712c44">Burgundy</option></select></label>
+        <div class="form-actions"><button class="submit-button" id="savePostButton" type="submit">Post blog</button><button class="delete-button" id="deletePostButton" type="button">Delete</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="reader-modal" id="readerModal" aria-hidden="true">
+    <div class="overlay" data-close="reader"></div>
+    <article class="reader-box" id="readerBox"></article>
+  </div>
+
+  <script>
+    const samples = [
+      {
+        title: "Where the Desert Keeps the Rain",
+        description: "A poem about waiting, memory, and the quiet promise hidden beneath dry ground.",
+        content: "The desert does not beg the sky.\nIt keeps its empty hands open,\npalms warm with afternoon,\nknowing every silence\nis only rain taking its time.\n\nI have learned patience here—\nfrom stone, from wind,\nfrom roots that hold their small green breath\nfar below the light.",
+        media: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1800&q=85",
+        mediaType: "image",
+        date: "August 24, 2026",
+        accent: "#db605c"
+      },
+      {
+        title: "The Color of Dusk",
+        description: "When daylight leaves slowly, every ordinary thing becomes part of the poem.",
+        content: "Dusk lays a violet hand\nacross the hills.\nThe last birds stitch themselves\ninto the distance,\nand even the road grows quiet\nenough to hear me thinking of you.",
+        media: "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=1200&q=85",
+        mediaType: "image",
+        date: "August 17, 2026",
+        accent: "#aa7580"
+      },
+      {
+        title: "Small Green Things",
+        description: "A reflection on the brave, unnoticed life that continues in difficult places.",
+        content: "Between two stones,\na flower no larger than a thumbnail\nturns its whole face toward morning.\nNo audience. No applause.\nOnly the beautiful work\nof continuing.",
+        media: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1200&q=85",
+        mediaType: "image",
+        date: "August 9, 2026",
+        accent: "#346095"
+      },
+      {
+        title: "After the Heat",
+        description: "Even the stone seems to exhale when the sun begins to lower.",
+        content: "Even the stone exhales\nwhen the sun begins to lower.\nThe road remembers shade,\nand every thorn holds\none final thread of gold.",
+        media: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1200&q=85",
+        mediaType: "image",
+        date: "August 2, 2026",
+        accent: "#ad606b"
+      },
+      {
+        title: "A Quiet Horizon",
+        description: "Out here, the horizon is not a line, but a promise.",
+        content: "The horizon asks for nothing.\nIt simply keeps becoming—\nrose, then amber,\nthen the soft violet\nof a thought left unfinished.",
+        media: "https://images.unsplash.com/photo-1533130061792-64b345e4a833?auto=format&fit=crop&w=1200&q=85",
+        mediaType: "image",
+        date: "July 26, 2026",
+        accent: "#712c44"
+      },
+      {
+        title: "What the Wind Remembered",
+        description: "The wind carries more than dust and light—it carries what we forget.",
+        content: "The wind crossed the dry lake\nwithout leaving a name.\nStill, the grass bent toward it\nas if recognizing\nsomeone who had come home.",
+        media: "https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&w=1200&q=85",
+        mediaType: "image",
+        date: "July 18, 2026",
+        accent: "#c49088"
+      }
+    ];
+
+    let posts = JSON.parse(localStorage.getItem("avaBethanPosts") || "null") || samples;
+    let ownerMode = sessionStorage.getItem("avaBethanOwner") === "1";
+    let editingIndex = null;
+    const grid = document.getElementById("blogGrid");
+    const postForm = document.getElementById("postForm");
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>'"]/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
+    }
+
+    function mediaHTML(post, className = "media") {
+      if (!post.media) return className === "media" ? '<div class="photo-well" aria-hidden="true"></div>' : "";
+      const media = post.mediaType === "video"
+        ? `<video class="${className}" src="${post.media}" controls preload="metadata"></video>`
+        : `<img class="${className}" src="${post.media}" alt="" loading="lazy">`;
+      return className === "media" ? `<div class="photo-well">${media}</div>` : media;
+    }
+
+    function renderPosts() {
+      if (!posts.length) { grid.innerHTML = '<div class="empty">No blogs have been posted yet.</div>'; return; }
+      const cardColors = ["ivory", "blush", "sage", "terracotta", "golden", "plum"];
+      grid.innerHTML = posts.map((post, index) => `
+        <article class="blog-card card-${cardColors.includes(post.cardColor) ? post.cardColor : cardColors[index % cardColors.length]}" style="--card-color:${post.accent}">
+          <button class="edit-post" type="button" onclick="openPostEditor(${index})">Edit</button>
+          ${mediaHTML(post)}
+          <div class="card-content">
+            <div class="meta"><time>${escapeHTML(post.date)}</time><span>${post.postType === "writing" ? "Writing" : "Poem"}</span></div>
+            <h2>${escapeHTML(post.title)}</h2>
+            <p class="excerpt">${escapeHTML((post.description.trim() || post.content).slice(0, 140))}</p>
+            <button class="read-button" onclick="openReader(${index})">Read this ${post.postType === "writing" ? "writing" : "poem"}</button>
+          </div>
+        </article>`).join("");
+    }
+
+    function openReader(index) {
+      const post = posts[index];
+      const type = post.postType === "writing" ? "Writing" : "Poem";
+      const readerBox = document.getElementById("readerBox");
+      readerBox.className = `reader-box ${type === "Poem" ? "reader-poem" : "reader-writing-type"}`;
+      readerBox.innerHTML = `
+        <button class="icon-button reader-close" data-close="reader" aria-label="Close ${type.toLowerCase()}">×</button>
+        ${mediaHTML(post, "reader-media")}
+        <div class="reader-copy"><div class="reader-kicker"><span>${type}</span><span class="dot"></span><time>${escapeHTML(post.date)}</time></div><h2>${escapeHTML(post.title)}</h2>${post.description ? `<p class="reader-description">${escapeHTML(post.description)}</p>` : ""}<div class="reader-rule"></div><div class="reader-writing">${escapeHTML(post.content)}</div></div>`;
+      openModal("reader");
+    }
+
+    function openModal(name) {
+      const element = document.getElementById(name + (name === "settings" ? "Panel" : "Modal"));
+      element.classList.add("open");
+      element.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(name) {
+      const element = document.getElementById(name + (name === "settings" ? "Panel" : "Modal"));
+      element.classList.remove("open");
+      element.setAttribute("aria-hidden", "true");
+      if (!document.querySelector(".open")) document.body.style.overflow = "";
+    }
+
+    function setOwnerMode(active) {
+      ownerMode = active;
+      document.body.classList.toggle("owner-mode", active);
+      document.getElementById("desertOwner").classList.toggle("owner-active", active);
+      document.getElementById("desertOwner").title = active ? "Owner controls" : "Desert";
+      if (active) sessionStorage.setItem("avaBethanOwner", "1"); else sessionStorage.removeItem("avaBethanOwner");
+      renderPosts();
+    }
+
+    function openNewPost() {
+      if (!ownerMode) return;
+      editingIndex = null;
+      postForm.reset();
+      descriptionCount.textContent = "0 / 140";
+      updateEditorCopy();
+      document.getElementById("deletePostButton").classList.remove("visible");
+      openModal("post");
+    }
+
+    function openPostEditor(index) {
+      if (!ownerMode || !posts[index]) return;
+      editingIndex = index;
+      const post = posts[index];
+      postForm.reset();
+      postForm.elements.postType.value = post.postType === "writing" ? "writing" : "poem";
+      postForm.elements.cardColor.value = post.cardColor || ["ivory", "blush", "sage", "terracotta", "golden", "plum"][index % 6];
+      postForm.elements.title.value = post.title || "";
+      postForm.elements.description.value = (post.description || "").slice(0, 140);
+      postForm.elements.content.value = post.content || "";
+      postForm.elements.accent.value = post.accent || "#db605c";
+      descriptionCount.textContent = `${postForm.elements.description.value.length} / 140`;
+      updateEditorCopy();
+      document.getElementById("deletePostButton").classList.add("visible");
+      openModal("post");
+    }
+
+    document.getElementById("settingsOpen").onclick = () => openModal("settings");
+    document.getElementById("newPost").onclick = openNewPost;
+    document.getElementById("ownerLogout").onclick = () => { closeModal("post"); setOwnerMode(false); };
+    let desertClicks = 0;
+    let desertClickTimer;
+    function promptOwnerLogin() {
+      const username = prompt("Owner username:");
+      if (username === null) return;
+      const password = prompt("Owner password:");
+      if (username === "owner" && password === "desertrose") setOwnerMode(true);
+      else alert("Incorrect owner login.");
+    }
+    document.getElementById("desertOwner").onclick = () => {
+      if (ownerMode) { openNewPost(); return; }
+      desertClicks += 1;
+      clearTimeout(desertClickTimer);
+      if (desertClicks >= 2) { desertClicks = 0; promptOwnerLogin(); }
+      else desertClickTimer = setTimeout(() => { desertClicks = 0; }, 650);
+    };
+    document.addEventListener("click", event => { const name = event.target.dataset.close; if (name) closeModal(name); });
+
+    const savedTheme = localStorage.getItem("avaBethanTheme");
+    if (savedTheme === "dark") document.body.classList.add("dark");
+    const modeLabel = document.getElementById("modeLabel");
+    const updateModeLabel = () => {};
+    updateModeLabel();
+    document.getElementById("themeSwitch").onclick = () => { document.body.classList.toggle("dark"); localStorage.setItem("avaBethanTheme", document.body.classList.contains("dark") ? "dark" : "light"); updateModeLabel(); };
+
+    const descriptionInput = document.querySelector('[name="description"]');
+    const descriptionCount = document.getElementById("descriptionCount");
+    descriptionInput.addEventListener("input", () => { descriptionCount.textContent = `${descriptionInput.value.length} / 140`; });
+    const postTypeSelect = postForm.elements.postType;
+    function updateEditorCopy() {
+      const type = postTypeSelect.value === "writing" ? "writing" : "poem";
+      document.getElementById("contentLabelText").textContent = type === "poem" ? "Poem" : "Writing";
+      postForm.elements.content.placeholder = type === "poem" ? "Write your poem here..." : "Write your story, essay, or reflection here...";
+      document.getElementById("postModalTitle").textContent = `${editingIndex === null ? "New" : "Edit"} ${type}`;
+      document.getElementById("savePostButton").textContent = editingIndex === null ? `Publish ${type}` : `Save ${type}`;
+    }
+    postTypeSelect.addEventListener("change", updateEditorCopy);
+
+    postForm.addEventListener("submit", event => {
+      event.preventDefault();
+      if (!ownerMode) return;
+      const form = new FormData(event.currentTarget);
+      const file = form.get("media");
+      const savePost = media => {
+        const previousPosts = posts.slice();
+        const existing = editingIndex === null ? null : posts[editingIndex];
+        const post = { postType: form.get("postType"), cardColor: form.get("cardColor"), title: form.get("title").trim(), description: form.get("description").trim().slice(0, 140), content: form.get("content").trim(), media: media || existing?.media || "", mediaType: file && file.size ? (file.type.startsWith("video/") ? "video" : "image") : (existing?.mediaType || "image"), date: existing?.date || new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }), accent: form.get("accent") };
+        if (editingIndex === null) posts.unshift(post); else posts[editingIndex] = post;
+        try { localStorage.setItem("avaBethanPosts", JSON.stringify(posts)); } catch (_) { alert("That media file is too large for this standalone demo. Try a smaller file."); posts = previousPosts; return; }
+        renderPosts(); event.currentTarget.reset(); descriptionCount.textContent = "0 / 140"; closeModal("post");
+      };
+      if (file && file.size) { const reader = new FileReader(); reader.onload = () => savePost(reader.result); reader.readAsDataURL(file); } else savePost(editingIndex === null ? "" : posts[editingIndex].media);
+    });
+
+    document.getElementById("deletePostButton").onclick = () => {
+      if (!ownerMode || editingIndex === null || !posts[editingIndex]) return;
+      if (!confirm("Delete this post?")) return;
+      posts.splice(editingIndex, 1);
+      localStorage.setItem("avaBethanPosts", JSON.stringify(posts));
+      editingIndex = null;
+      renderPosts();
+      closeModal("post");
+    };
+
+    document.addEventListener("keydown", event => { if (event.key === "Escape") ["settings", "post", "reader"].forEach(closeModal); });
+    setOwnerMode(ownerMode);
+  </script>
+</body>
+</html>
