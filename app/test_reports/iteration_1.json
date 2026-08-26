@@ -1,0 +1,23 @@
+{
+  "summary": "Full frontend E2E of Wix-like local-only builder. Tested: Landing (empty→editor, existing→sites), Sites dashboard (empty state, Create dialog), Editor mount + starter elements (heading/text/button), auto-save via reload, TopBar (all preview modes, zoom, grid, Pages/Media/Site/Export buttons), floating Add popup (all 19 element types present, click adds and closes popup), right-click context menu with all actions (Duplicate + Delete verified functional), Inspector floating panel with layout/text style/link/visibility per-breakpoint, Pages panel with Main navigation + Not linked and add-page dialog, Page settings dialog with all 5 tabs (General/SEO/Security/Code/QR) and Save persistence, Media gallery, Site Settings, Export dialog (HTML contains <main>, header, footer, site name), Preview overlay iframe (Escape closes), Import HTML from /sites → editor, keyboard shortcuts (Ctrl+Z undo, Ctrl+Y redo). No emoji characters detected in editor UI. No non-posthog console errors observed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Editor canvas (default state)", "issues": ["Inspector floating panel overlaps the newly added element on the right side of canvas because element defaults to x=200,y=200,w=480 while inspector is fixed on right; not blocking but partially covers newly-added heading until user drags it."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Page-row action buttons (Preview/Settings/Duplicate/Move/Delete) rely only on title attribute — no data-testid on each action button. Adding data-testid='page-row-<id>-settings' etc. would make automated testing more robust (as noted in review_request spec).",
+    "Import HTML textarea and add-page title input lack data-testid attributes; tests must fall back to generic selectors."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None. All tests clear localStorage first.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend URL is https://bold-chatterjee-6.preview.emergentagent.com (NOT the URL mentioned in review_request). All flows pass. localStorage key: 'nest.sites.v1'. When adding a new page via Pages panel, active page switches to the new one so canvas appears empty — this is expected behavior."
+}
