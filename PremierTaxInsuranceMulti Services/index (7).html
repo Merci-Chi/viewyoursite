@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premier Tax & Insurance Multi Services - Official Business Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0e2a;
+  font-family: 'EB Garamond', Georgia, serif;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.passport-frame {
+  background: #1a237e;
+  max-width: 800px;
+  width: 100%;
+  border: 4px solid #ffd700;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.15), 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Inner border decoration */
+.passport-frame::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Decorative corner flourishes */
+.corner-flourish {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 215, 0, 0.5);
+  z-index: 2;
+  pointer-events: none;
+}
+.corner-flourish.tl { top: 12px; left: 12px; border-top: 3px solid; border-left: 3px solid; }
+.corner-flourish.tr { top: 12px; right: 12px; border-top: 3px solid; border-right: 3px solid; }
+.corner-flourish.bl { bottom: 12px; left: 12px; border-bottom: 3px solid; border-left: 3px solid; }
+.corner-flourish.br { bottom: 12px; right: 12px; border-bottom: 3px solid; border-right: 3px solid; }
+
+.passport-content {
+  padding: 40px 50px 30px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Top header */
+.top-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.united-states-text {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: #ffd700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+.divider-line {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ffd700, transparent);
+  margin: 0 auto 20px;
+}
+
+.business-name {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffd700;
+  line-height: 1.3;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+}
+
+.business-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: #e0e0e0;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Main body layout */
+.document-body {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 25px;
+}
+
+/* Seal section */
+.seal-section {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.official-seal {
+  width: 140px;
+  height: 140px;
+  border: 3px solid #ffd700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: radial-gradient(circle, #0d1654 60%, #1a237e 100%);
+}
+
+.official-seal::before {
+  content: '';
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  border: 1.5px solid rgba(255, 215, 0, 0.5);
+  border-radius: 50%;
+}
+
+.official-seal::after {
+  content: '';
+  position: absolute;
+  width: 108px;
+  height: 108px;
+  border: 1px dashed rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+}
+
+.seal-inner {
+  text-align: center;
+  z-index: 1;
+}
+
+.seal-inner .seal-icon {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: #ffd700;
+  display: block;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.seal-inner .seal-text {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: #ffd700;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Rating badge */
+.rating-badge {
+  width: 140px;
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  padding: 10px 12px;
+  background: #0d1654;
+  text-align: center;
+}
+
+.rating-badge .rating-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #ffd700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+.rating-badge .rating-value {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffd700;
+  line-height: 1;
+}
+
+.rating-badge .stars {
+  margin-top: 6px;
+  color: #ffd700;
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+/* Info fields */
+.info-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-field {
+  display: flex;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.info-field:last-child {
+  border-bottom: none;
+}
+
+.field-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #ffd700;
+  text-transform: uppercase;
+  width: 110px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.field-value {
+  font-family: 'EB Garamond', serif;
+  font-size: 17px;
+  color: #e0e0e0;
+  line-height: 1.4;
+}
+
+.field-value a {
+  color: #e0e0e0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.field-value a:hover {
+  color: #ffd700;
+}
+
+/* Attribute badges */
+.attributes-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.attribute-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #ffd700;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 3px;
+  background: rgba(255, 215, 0, 0.05);
+}
+
+/* Section divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  margin: 30px 0 20px;
+}
+
+/* Reviews section */
+.reviews-section {
+  margin-top: 10px;
+}
+
+.reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.reviews-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #ffd700;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.official-stamp {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255, 215, 0, 0.5);
+  text-transform: uppercase;
+  border: 1.5px solid rgba(255, 215, 0, 0.3);
+  padding: 3px 10px;
+  transform: rotate(-2deg);
+}
+
+.review-bar {
+  position: relative;
+  height: 52px;
+  background: #0d1654;
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.review-bar:hover {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.review-bar .blurred-content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, #0d1654 0%, #1a237e 20%, #1a237e 80%, #0d1654 100%);
+  filter: blur(0px);
+  z-index: 1;
+}
+
+.review-bar .blurred-content::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 10%; right: 10%;
+  height: 8px;
+  transform: translateY(-50%);
+  background: rgba(224, 224, 224, 0.12);
+  border-radius: 4px;
+}
+
+.review-bar .blurred-content::after {
+  content: '';
+  position: absolute;
+  top: 70%; left: 15%; right: 25%;
+  height: 6px;
+  transform: translateY(-50%);
+  background: rgba(224, 224, 224, 0.07);
+  border-radius: 3px;
+}
+
+.review-bar .unlock-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: rgba(13, 22, 84, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.review-bar:hover .unlock-overlay {
+  opacity: 1;
+}
+
+.unlock-text {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #ffd700;
+  text-transform: uppercase;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 3px;
+}
+
+/* Footer nav */
+.document-footer {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 2px solid rgba(255, 215, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #ffd700;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+/* Document number */
+.doc-number {
+  font-family: 'EB Garamond', serif;
+  font-size: 10px;
+  color: rgba(224, 224, 224, 0.3);
+  text-align: center;
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-box {
+  background: #1a237e;
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  max-width: 420px;
+  width: 100%;
+  padding: 40px 35px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-box::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.modal-seal {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #ffd700;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #0d1654 60%, #1a237e 100%);
+}
+
+.modal-seal-text {
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: #ffd700;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.modal-desc {
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  opacity: 0.8;
+}
+
+.modal-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #1a237e;
+  background: #ffd700;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.modal-btn:hover {
+  background: #ffec80;
+  transform: scale(1.02);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: #ffd700;
+  cursor: pointer;
+  background: none;
+  border: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  padding: 4px;
+}
+
+.modal-close:hover {
+  opacity: 1;
+}
+
+/* Watermark */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-family: 'Cinzel', serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(255, 215, 0, 0.03);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 20px;
+}
+
+/* Hours table */
+.hours-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 20px;
+  margin-top: 4px;
+}
+
+.hours-day {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: rgba(224, 224, 224, 0.6);
+}
+
+.hours-time {
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .passport-content { padding: 30px 25px 24px; }
+  .business-name { font-size: 20px; }
+  .document-body { flex-direction: column; gap: 25px; align-items: center; }
+  .seal-section { flex-direction: row; gap: 20px; justify-content: center; }
+  .official-seal { width: 100px; height: 100px; }
+  .official-seal::before { width: 84px; height: 84px; }
+  .official-seal::after { width: 76px; height: 76px; }
+  .seal-inner .seal-icon { font-size: 20px; }
+  .seal-inner .seal-text { font-size: 6px; letter-spacing: 2px; }
+  .rating-badge { width: 100px; padding: 8px 10px; }
+  .rating-badge .rating-value { font-size: 24px; }
+  .info-field { padding: 8px 0; }
+  .field-label { width: 90px; font-size: 9px; }
+  .field-value { font-size: 15px; }
+  .document-footer { gap: 16px; }
+  .watermark { font-size: 40px; letter-spacing: 10px; }
+  .hours-grid { grid-template-columns: 1fr; gap: 2px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="passport-frame">
+  <div class="corner-flourish tl"></div>
+  <div class="corner-flourish tr"></div>
+  <div class="corner-flourish bl"></div>
+  <div class="corner-flourish br"></div>
+  <div class="watermark">CERTIFIED</div>
+
+  <div class="passport-content">
+    <!-- Header -->
+    <div class="top-header">
+      <div class="united-states-text">United States of Business</div>
+      <div class="divider-line"></div>
+      <h1 class="business-name">Premier Tax & Insurance<br>Multi Services</h1>
+      <div class="business-subtitle">Department of Licensed Commerce</div>
+    </div>
+
+    <!-- Body -->
+    <div class="document-body">
+      <!-- Left: Seal & Rating -->
+      <div class="seal-section">
+        <div class="official-seal">
+          <div class="seal-inner">
+            <span class="seal-icon">PT</span>
+            <span class="seal-text">Certified</span>
+          </div>
+        </div>
+        <div class="rating-badge">
+          <div class="rating-label">Rating</div>
+          <div class="rating-value">4.9</div>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+      </div>
+
+      <!-- Right: Info fields -->
+      <div class="info-section">
+        <div class="info-field">
+          <span class="field-label">Type</span>
+          <span class="field-value">Tax & Insurance Services</span>
+        </div>
+        <div class="info-field">
+          <span class="field-label">Classification</span>
+          <span class="field-value">Tax Preparation Services</span>
+        </div>
+        <div class="info-field">
+          <span class="field-label">Address</span>
+          <span class="field-value">845 N Eastern Ave, Las Vegas, NV 89101</span>
+        </div>
+        <div class="info-field">
+          <span class="field-label">Telephone</span>
+          <span class="field-value"><a class="paywall-trigger" href="#">+1 702-834-4155</a></span>
+        </div>
+        <div class="info-field">
+          <span class="field-label">Hours</span>
+          <div class="field-value">
+            <div class="hours-grid">
+              <span class="hours-day">Monday</span><span class="hours-time">10:30 AM - 6:00 PM</span>
+              <span class="hours-day">Tuesday</span><span class="hours-time">10:30 AM - 6:00 PM</span>
+              <span class="hours-day">Wednesday</span><span class="hours-time">10:30 AM - 6:00 PM</span>
+              <span class="hours-day">Thursday</span><span class="hours-time">10:30 AM - 6:00 PM</span>
+              <span class="hours-day">Friday</span><span class="hours-time">10:30 AM - 6:00 PM</span>
+              <span class="hours-day">Saturday</span><span class="hours-time">10:30 AM - 6:00 PM</span>
+              <span class="hours-day">Sunday</span><span class="hours-time">Closed</span>
+            </div>
+          </div>
+        </div>
+        <div class="attributes-row">
+          <span class="attribute-badge">Accessible Entrance</span>
+          <span class="attribute-badge">NV Licensed</span>
+          <span class="attribute-badge">845-NE Block</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="section-divider"></div>
+    <div class="reviews-section">
+      <div class="reviews-header">
+        <span class="reviews-title">Customer Reviews</span>
+        <span class="official-stamp">Official Use Only</span>
+      </div>
+      <div class="review-bar paywall-trigger">
+        <div class="blurred-content"></div>
+        <div class="unlock-overlay"><span class="unlock-text">Unlock Review</span></div>
+      </div>
+      <div class="review-bar paywall-trigger">
+        <div class="blurred-content"></div>
+        <div class="unlock-overlay"><span class="unlock-text">Unlock Review</span></div>
+      </div>
+      <div class="review-bar paywall-trigger">
+        <div class="blurred-content"></div>
+        <div class="unlock-overlay"><span class="unlock-text">Unlock Review</span></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="document-footer">
+      <a class="footer-link paywall-trigger" href="#">Directions</a>
+      <a class="footer-link paywall-trigger" href="#">Website</a>
+      <a class="footer-link paywall-trigger" href="#">Services</a>
+      <a class="footer-link paywall-trigger" href="#">Contact</a>
+      <a class="footer-link paywall-trigger" href="#">Insurance</a>
+    </div>
+
+    <div class="doc-number">DOC-2024-LV-0845NE &middot; VERIFIED &middot; LAS VEGAS, NEVADA</div>
+  </div>
+</div>
+
+<!-- Paywall Modal -->
+<div class="modal-overlay" id="paywallModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-seal">
+      <span class="modal-seal-text">Access<br>Granted</span>
+    </div>
+    <h2 class="modal-title">Access Required</h2>
+    <p class="modal-desc">This section requires a verified business subscription to view the full content.</p>
+    <button class="modal-btn" id="modalSubscribe">Subscribe Now</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  const modal = document.getElementById('paywallModal');
+  const closeBtn = document.getElementById('modalClose');
+  const subBtn = document.getElementById('modalSubscribe');
+
+  document.querySelectorAll('.paywall-trigger').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.classList.add('active');
+    });
+  });
+
+  closeBtn.addEventListener('click', function() {
+    modal.classList.remove('active');
+  });
+
+  subBtn.addEventListener('click', function() {
+    modal.classList.remove('active');
+  });
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      modal.classList.remove('active');
+    }
+  });
+})();
+</script>
+</body>
+</html>

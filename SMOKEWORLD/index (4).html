@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMOKE WORLD - Smoke & Vape Shop | Las Vegas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #1a1a1a;
+  --fg: #f5e6c8;
+  --accent: #ff4444;
+  --dark-accent: #cc2222;
+  --muted: #8a7d6b;
+  --card: #222222;
+  --border: #333333;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'Barlow Condensed', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: 'LAS VEGAS';
+  position: fixed;
+  top: 50%;
+  left: -50%;
+  transform: rotate(-90deg) translateX(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14rem;
+  color: rgba(255, 68, 68, 0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.1em;
+}
+
+body::after {
+  content: 'NEVADA';
+  position: fixed;
+  bottom: 10%;
+  right: -30%;
+  transform: rotate(-90deg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10rem;
+  color: rgba(245, 230, 200, 0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.15em;
+}
+
+.poster-container {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Top decorative stripe */
+.top-stripe {
+  width: 100%;
+  height: 8px;
+  background: var(--accent);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.top-stripe::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--fg);
+  opacity: 0.3;
+}
+
+/* Pre-title tagline */
+.pre-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+}
+
+/* Main business name - MASSIVE */
+.business-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 10vw, 6.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 0;
+  position: relative;
+}
+
+.business-name .line-2 {
+  display: block;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-top: -0.1em;
+}
+
+/* Rating block */
+.rating-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  margin: 1.5rem 0;
+  transform: rotate(-1deg);
+  position: relative;
+}
+
+.rating-block::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid var(--fg);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.rating-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.rating-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.stars {
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+/* Location section */
+.location-section {
+  margin: 2rem 0;
+  border-top: 3px solid var(--fg);
+  border-bottom: 3px solid var(--fg);
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.location-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.location-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  line-height: 1.4;
+}
+
+.location-text a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1px;
+  cursor: pointer;
+}
+
+.phone-section {
+  margin-top: 1rem;
+}
+
+.phone-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+.phone-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
+  color: var(--fg);
+}
+
+.phone-text a {
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.phone-text a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.phone-text a:hover::after {
+  width: 100%;
+}
+
+/* Photo section */
+.photo-section {
+  margin: 2rem 0;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.photo-frame {
+  border: 6px solid var(--accent);
+  padding: 4px;
+  background: var(--accent);
+  transform: rotate(1.5deg);
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.photo-frame::after {
+  content: 'SMOKE SHOP';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.photo-frame img {
+  display: block;
+  width: 187px;
+  height: 140px;
+  object-fit: cover;
+  filter: contrast(1.1) saturate(0.9);
+}
+
+.photo-caption {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 2px dashed var(--border);
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Hours banner */
+.hours-banner {
+  background: var(--accent);
+  padding: 1.25rem 2rem;
+  margin: 2.5rem 0;
+  position: relative;
+  transform: rotate(-0.5deg);
+  overflow: hidden;
+}
+
+.hours-banner::before {
+  content: '24/7';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6rem;
+  color: rgba(255,255,255,0.1);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.hours-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+}
+
+.hours-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Type badge */
+.type-badge {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--fg);
+  padding: 0.35rem 1rem;
+  margin: 1rem 0 0;
+}
+
+/* Navigation */
+.nav-section {
+  margin: 3rem 0 1rem;
+}
+
+.nav-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.nav-link {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-right: none;
+  position: relative;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.nav-link:nth-child(2n) {
+  border-right: 1px solid var(--border);
+}
+
+.nav-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.nav-link::after {
+  content: '\2192';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s, right 0.2s;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+  right: 0.75rem;
+}
+
+/* Reviews section */
+.reviews-section {
+  margin: 3rem 0 1rem;
+}
+
+.reviews-header {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.review-bar {
+  position: relative;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.review-bar-inner {
+  width: 100%;
+  height: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  filter: blur(5px);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.review-bar-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.review-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 0.2rem 0.75rem;
+  background: rgba(26, 26, 26, 0.9);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Accessibility tag */
+.access-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 1rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+.access-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--muted);
+}
+
+/* Decorative elements */
+.deco-line {
+  width: 100%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--border) 0px,
+    var(--border) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  margin: 1.5rem 0;
+}
+
+.corner-mark {
+  position: fixed;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+ text-transform: uppercase;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.corner-mark.tl { top: 1rem; left: 1rem; }
+.corner-mark.br { bottom: 1rem; right: 1rem; }
+
+/* Footer */
+.footer-section {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 4px solid var(--accent);
+  text-align: center;
+}
+
+.footer-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Paywall modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--bg);
+  border: 3px solid var(--accent);
+  max-width: 420px;
+  width: 90%;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  letter-spacing: 0.1em;
+  color: var(--fg);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.modal-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.modal-btn {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  padding: 0.75rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-btn:hover {
+  background: var(--dark-accent);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--fg);
+}
+
+/* Large decorative text overlay */
+.big-overlay-text {
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  color: rgba(245, 230, 200, 0.03);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.big-overlay-text.top-right {
+  top: 5rem;
+  right: -2rem;
+  font-size: 7rem;
+  transform: rotate(6deg);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .poster-container { padding: 1.25rem 1rem; }
+  .nav-grid { grid-template-columns: 1fr; }
+  .nav-link:nth-child(2n) { border-right: 1px solid var(--border); }
+  .photo-section { flex-direction: column; }
+  .business-name { font-size: 3.5rem; }
+  .business-name .line-2 { font-size: 1.5rem; }
+  .hours-text { font-size: 2rem; }
+  .rating-number { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Corner marks -->
+<span class="corner-mark tl">No. 033</span>
+<span class="corner-mark br">Las Vegas, NV</span>
+
+<div class="poster-container">
+
+  <!-- Top red stripe -->
+  <div class="top-stripe"></div>
+
+  <!-- Pre-title -->
+  <div class="pre-title">Smoke & Vape Shop</div>
+
+  <!-- Massive business name -->
+  <h1 class="business-name">
+    SMOKE
+    WORLD
+    <span class="line-2">(SMOKE AND VAPE SHOP)</span>
+  </h1>
+
+  <!-- Rating block -->
+  <div class="rating-block">
+    <span class="rating-number">4.9</span>
+    <div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rating-label">Google Rating</div>
+    </div>
+  </div>
+
+  <!-- Type badge -->
+  <div class="type-badge">Tobacco Shop</div>
+
+  <!-- Decorative line -->
+  <div class="deco-line"></div>
+
+  <!-- Photo -->
+  <div class="photo-section">
+    <div class="photo-frame" onclick="openModal()">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnTp7ncZ3IlQnlie9vZAqQiIPqR4MWWFeV0b9IW369CLD3yHPZp8YiXFFHirDZFYa6cRaaZMOpNoM7oDzfhuLoAUKJ41jKOIsinkq7YqZ_VS50wDbAxxOlGpXNc5AF3RBHTQAs=w187-h140-k-no" alt="SMOKE WORLD storefront" loading="lazy">
+    </div>
+    <div class="photo-caption">
+      Your premier destination for smoke and vape products on East Flamingo Road in the heart of Las Vegas.
+      <div class="access-tag">
+        <svg class="access-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/><path d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" fill="var(--bg)"/></svg>
+        Wheelchair Accessible Entrance
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative line -->
+  <div class="deco-line"></div>
+
+  <!-- Location -->
+  <div class="location-section">
+    <div class="location-label">Location</div>
+    <div class="location-text">
+      <a href="javascript:void(0)" onclick="openModal()">280 E Flamingo Rd Ste A-1, Las Vegas, NV 89169</a>
+    </div>
+    <div class="phone-section">
+      <div class="phone-label">Call Now</div>
+      <div class="phone-text">
+        <a href="javascript:void(0)" onclick="openModal()">+1 702-202-4421</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hours banner -->
+  <div class="hours-banner">
+    <div class="hours-label">Hours of Operation</div>
+    <div class="hours-text">Open 24 Hours</div>
+  </div>
+
+  <!-- Decorative line -->
+  <div class="deco-line"></div>
+
+  <!-- Navigation -->
+  <div class="nav-section">
+    <div class="nav-label">Navigate</div>
+    <div class="nav-grid">
+      <a href="javascript:void(0)" class="nav-link" onclick="openModal()">Get Directions</a>
+      <a href="javascript:void(0)" class="nav-link" onclick="openModal()">View Website</a>
+      <a href="javascript:void(0)" class="nav-link" onclick="openModal()">Call Us</a>
+      <a href="javascript:void(0)" class="nav-link" onclick="openModal()">Read Reviews</a>
+    </div>
+  </div>
+
+  <!-- Decorative line -->
+  <div class="deco-line"></div>
+
+  <!-- Reviews (blurred with stamp) -->
+  <div class="reviews-section">
+    <div class="reviews-header">Customer Reviews</div>
+    <div class="review-bar" onclick="openModal()">
+      <div class="review-bar-inner">
+        <span class="review-bar-text">Best smoke shop in Las Vegas, great selection and friendly staff...</span>
+      </div>
+      <div class="review-stamp">Tickets Required</div>
+    </div>
+    <div class="review-bar" onclick="openModal()">
+      <div class="review-bar-inner">
+        <span class="review-bar-text">Always open when I need them, huge variety of vapes and accessories...</span>
+      </div>
+      <div class="review-stamp">Tickets Required</div>
+    </div>
+    <div class="review-bar" onclick="openModal()">
+      <div class="review-bar-inner">
+        <span class="review-bar-text">Amazing prices and the guys working there really know their stuff...</span>
+      </div>
+      <div class="review-stamp">Tickets Required</div>
+    </div>
+    <div class="review-bar" onclick="openModal()">
+      <div class="review-bar-inner">
+        <span class="review-bar-text">My go-to spot on Flamingo, clean store and good product range...</span>
+      </div>
+      <div class="review-stamp">Tickets Required</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-section">
+    <div class="footer-text">SMOKE WORLD &mdash; 280 E Flamingo Rd, Las Vegas, NV 89169</div>
+  </div>
+
+</div>
+
+<!-- Paywall Modal -->
+<div class="modal-overlay" id="paywallModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-title">Access Required</div>
+    <div class="modal-subtitle">Full access to this listing requires a premium membership.</div>
+    <button class="modal-btn" onclick="closeModal()">Unlock Now</button>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('paywallModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('paywallModal').classList.remove('active');
+}
+document.getElementById('paywallModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
