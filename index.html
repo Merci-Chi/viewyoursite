@@ -255,8 +255,17 @@
         .discount-code-field { margin: 0 0 1rem; padding: .85rem; border: 1px solid #303030; border-radius: 10px; background: #181818; }
         .discount-code-field[hidden] { display: none; }
         .discount-code-field label { display: block; margin-bottom: .45rem; color: #ddd; font-weight: 700; }
-        .discount-code-field input { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; text-transform: uppercase; }
+        .discount-code-row { display: flex; gap: .6rem; }
+        .discount-code-field input { flex: 1; min-width: 0; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; text-transform: uppercase; }
+        .discount-apply { padding: .8rem 1rem; border: 0; border-radius: 8px; background: #f1f1f1; color: #111; cursor: pointer; font: inherit; font-weight: 700; }
         .discount-code-field small { display: block; margin-top: .4rem; color: #888; line-height: 1.4; }
+        .discount-message { min-height: 1.2rem; margin-top: .55rem; font-size: .88rem; }
+        .discount-message.success { color: #a8d99b; }
+        .discount-message.error { color: #e39a9a; }
+        .discount-plan { margin-bottom: 1rem; padding: 1rem; border: 1px solid #4b5d3d; border-radius: 12px; background: #1b2418; }
+        .discount-plan[hidden] { display: none; }
+        .discount-plan h4 { margin-bottom: .45rem; }
+        .discount-plan .plan-option { border-top: 0; padding: 0; }
         .claim-plan-group { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; background: #181818; }
         .claim-plan-group label { display: block; margin-bottom: .55rem; color: #ddd; font-weight: 700; }
         .claim-checkout .available-plans { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1rem; }
@@ -270,6 +279,7 @@
         body.light-mode .discount-code-field label { color: #222; }
         body.light-mode .discount-code-field input { border-color: #ccc; background: #fff; color: #222; }
         body.light-mode .discount-code-field { border-color: #d7d7d2; background: #fff; }
+        body.light-mode .discount-plan { border-color: #b9c9aa; background: #f2f8ed; }
         body.light-mode .have-code-button { color: #555; }
         body.light-mode .claim-checkout .plan-option.selected { background: #ecece8; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -506,6 +516,26 @@
                     <div class="claim-checkout" id="claimCheckout">
                         <h3>Select Required Hosting</h3>
                         <p>Choose a plan and complete its Square checkout. You can submit the claim after confirming the purchase.</p>
+                        <div class="section-heading-row">
+                            <span class="claim-selected-note">Choose a subscription to continue.</span>
+                            <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
+                        </div>
+                        <div class="discount-code-field" data-discount-field="claim" hidden>
+                            <label for="claimDiscountCode">Discount Code</label>
+                            <div class="discount-code-row">
+                                <input id="claimDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                                <button class="discount-apply" type="button" data-discount-apply="claim">Apply</button>
+                            </div>
+                            <div class="discount-message" data-discount-message="claim" role="status"></div>
+                        </div>
+                        <article class="discount-plan" data-discount-plan="claim" hidden>
+                            <h4>Founding Client Membership</h4>
+                            <div class="plan-option">
+                                <div><span class="plan-name">Free for 6 months</span><span class="plan-price">Then $20/month</span></div>
+                                <a class="plan-link" href="https://square.link/u/18caRdoK" target="_blank" rel="noopener">Choose</a>
+                            </div>
+                            <label class="purchase-confirmation"><input id="claimDiscountConfirm" type="checkbox"><span>I completed the Square subscription purchase.</span></label>
+                        </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
@@ -530,14 +560,24 @@
                     </div>
 
                     <div class="section-heading-row">
-                        <h3 class="section-heading">Add a Subscription</h3>
-                        <button class="have-code-button" id="haveCodeButton" type="button" aria-expanded="false" aria-controls="discountCodeField">Have a code?</button>
+                        <h3 class="section-heading">Choose a subscription to continue.</h3>
+                        <button class="have-code-button" type="button" data-discount-toggle="subscriptions" aria-expanded="false">Have a code?</button>
                     </div>
-                    <div class="discount-code-field" id="discountCodeField" hidden>
-                        <label for="discountCodeInput">Discount Code</label>
-                        <input id="discountCodeInput" name="discountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
-                        <small>Your code will be included for verification.</small>
+                    <div class="discount-code-field" data-discount-field="subscriptions" hidden>
+                        <label for="subscriptionDiscountCode">Discount Code</label>
+                        <div class="discount-code-row">
+                            <input id="subscriptionDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                            <button class="discount-apply" type="button" data-discount-apply="subscriptions">Apply</button>
+                        </div>
+                        <div class="discount-message" data-discount-message="subscriptions" role="status"></div>
                     </div>
+                    <article class="discount-plan" data-discount-plan="subscriptions" hidden>
+                        <h4>Founding Client Membership</h4>
+                        <div class="plan-option">
+                            <div><span class="plan-name">Free for 6 months</span><span class="plan-price">Then $20/month</span></div>
+                            <a class="plan-link" href="https://square.link/u/18caRdoK" target="_blank" rel="noopener">Choose</a>
+                        </div>
+                    </article>
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
@@ -599,9 +639,8 @@
         const claimCheckout = document.getElementById("claimCheckout");
         const claimCheckoutLinks = document.getElementById("claimCheckoutLinks");
         const submitClaimButton = document.getElementById("submitClaimButton");
-        const discountCodeInput = document.getElementById("discountCodeInput");
-        const discountCodeField = document.getElementById("discountCodeField");
-        const haveCodeButton = document.getElementById("haveCodeButton");
+        const claimDiscountConfirm = document.getElementById("claimDiscountConfirm");
+        let appliedDiscountCode = "";
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
@@ -629,12 +668,51 @@
 
         const savedTheme = localStorage.getItem("viewYourSiteTheme");
         applyTheme(savedTheme === "light" ? "light" : "dark");
-        haveCodeButton.addEventListener("click", () => {
-            const willOpen = discountCodeField.hidden;
-            discountCodeField.hidden = !willOpen;
-            haveCodeButton.setAttribute("aria-expanded", String(willOpen));
-            haveCodeButton.textContent = willOpen ? "Hide code" : "Have a code?";
-            if (willOpen) discountCodeInput.focus();
+        document.querySelectorAll("[data-discount-toggle]").forEach(button => {
+            button.addEventListener("click", () => {
+                const scope = button.dataset.discountToggle;
+                const field = document.querySelector(`[data-discount-field="${scope}"]`);
+                const willOpen = field.hidden;
+                field.hidden = !willOpen;
+                button.setAttribute("aria-expanded", String(willOpen));
+                button.textContent = willOpen ? "Hide code" : "Have a code?";
+                if (willOpen) field.querySelector("input").focus();
+            });
+        });
+        document.querySelectorAll("[data-discount-apply]").forEach(button => {
+            button.addEventListener("click", () => {
+                const scope = button.dataset.discountApply;
+                const field = document.querySelector(`[data-discount-field="${scope}"]`);
+                const input = field.querySelector("input");
+                const message = document.querySelector(`[data-discount-message="${scope}"]`);
+                const plan = document.querySelector(`[data-discount-plan="${scope}"]`);
+                const accepted = input.value.trim().toUpperCase() === "MAPLE01";
+                plan.hidden = !accepted;
+                message.textContent = accepted ? "Code accepted. Your special plan is available above." : "Invalid discount code.";
+                message.className = `discount-message ${accepted ? "success" : "error"}`;
+                if (scope === "claim") appliedDiscountCode = accepted ? "MAPLE01" : "";
+            });
+        });
+        document.querySelectorAll("[data-discount-field] input").forEach(input => {
+            input.addEventListener("keydown", event => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    input.closest(".discount-code-field").querySelector("[data-discount-apply]").click();
+                }
+            });
+        });
+        claimDiscountConfirm.addEventListener("change", () => {
+            const foundingPlan = {
+                key: "founding-client",
+                label: "Free for 6 months — then $20/month",
+                url: "https://square.link/u/18caRdoK"
+            };
+            claimPlanSelections.forEach((_selection, type) => {
+                claimPlanSelections.set(type, claimDiscountConfirm.checked
+                    ? { plan: foundingPlan, confirmed: true }
+                    : { plan: null, confirmed: false });
+            });
+            updateClaimSubmitAvailability();
         });
         function setClientMenuLoggedIn(isLoggedIn) {
             document.body.classList.toggle("client-is-logged-in", isLoggedIn);
@@ -692,6 +770,7 @@
         function renderClaimPlanChoices(selectedSites) {
             claimCheckoutLinks.replaceChildren();
             claimPlanSelections.clear();
+            claimDiscountConfirm.checked = false;
             submitClaimButton.disabled = true;
             const requiredTypes = [...new Set(selectedSites.map(site => site.hostingType))];
 
@@ -736,6 +815,7 @@
                         row.classList.add("selected");
                         chooseButton.textContent = "Selected";
                         claimPlanSelections.set(type, { plan, confirmed: false });
+                        claimDiscountConfirm.checked = false;
                         checkbox.checked = false;
                         confirmation.hidden = false;
                         selectedNote.textContent = `${plan.label} selected. Complete checkout, then confirm below.`;
@@ -995,7 +1075,7 @@
                 body: {
                     sites: selectedSites.map(site => ({ path: site.path, name: site.name, hostingType: site.hostingType })),
                     hostingSelections,
-                    discountCode: discountCodeInput.value.trim().toUpperCase() || null,
+                    discountCode: appliedDiscountCode || null,
                     message: document.getElementById("claimMessage").value.trim()
                 }
             });
