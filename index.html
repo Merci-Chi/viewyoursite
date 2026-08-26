@@ -188,7 +188,9 @@
         .portal-panel h3 { margin-bottom: .75rem; font-weight: 500; }
         .account-summary, .site-summary { padding: 1.1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .account-summary p, .site-summary p { color: #aaa; line-height: 1.6; }
-        .section-heading { margin: 1.5rem 0 .75rem; font-size: 1.05rem; font-weight: 600; }
+        .section-heading { margin: 0; font-size: 1.05rem; font-weight: 600; }
+        .section-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.5rem 0 .75rem; }
+        .have-code-button { padding: 0; border: 0; background: transparent; color: #aaa; cursor: pointer; font: inherit; font-size: .9rem; text-decoration: underline; text-underline-offset: 3px; }
         .subscription-list { display: grid; gap: 1rem; }
         .current-subscriptions-box { margin-top: .85rem; padding: 1.15rem; border: 1px solid #303030; border-radius: 14px; background: linear-gradient(145deg, #1d1d1d, #181818); }
         .subscription-status-row { display: flex; align-items: center; gap: .85rem; }
@@ -250,7 +252,8 @@
         .claim-form textarea { min-height: 105px; resize: vertical; }
         .claim-checkout { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; }
         .claim-checkout p { color: #aaa; line-height: 1.5; }
-        .discount-code-field { margin-top: 1rem; }
+        .discount-code-field { margin: 0 0 1rem; padding: .85rem; border: 1px solid #303030; border-radius: 10px; background: #181818; }
+        .discount-code-field[hidden] { display: none; }
         .discount-code-field label { display: block; margin-bottom: .45rem; color: #ddd; font-weight: 700; }
         .discount-code-field input { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; text-transform: uppercase; }
         .discount-code-field small { display: block; margin-top: .4rem; color: #888; line-height: 1.4; }
@@ -266,6 +269,8 @@
         body.light-mode .claim-plan-group label { color: #222; }
         body.light-mode .discount-code-field label { color: #222; }
         body.light-mode .discount-code-field input { border-color: #ccc; background: #fff; color: #222; }
+        body.light-mode .discount-code-field { border-color: #d7d7d2; background: #fff; }
+        body.light-mode .have-code-button { color: #555; }
         body.light-mode .claim-checkout .plan-option.selected { background: #ecece8; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .plan-group { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
@@ -502,11 +507,6 @@
                         <h3>Select Required Hosting</h3>
                         <p>Choose a plan and complete its Square checkout. You can submit the claim after confirming the purchase.</p>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
-                        <div class="discount-code-field">
-                            <label for="discountCodeInput">Discount Code <span aria-hidden="true">(optional)</span></label>
-                            <input id="discountCodeInput" name="discountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
-                            <small>The code will be included with your claim and verified before your subscription is connected.</small>
-                        </div>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
                         <textarea id="claimMessage" placeholder="Tell us how you are connected to these businesses" required></textarea>
@@ -529,7 +529,15 @@
                         <button class="portal-secondary subscription-refresh" id="refreshSubscriptions" type="button">Refresh Subscriptions</button>
                     </div>
 
-                    <h3 class="section-heading">Add a Subscription</h3>
+                    <div class="section-heading-row">
+                        <h3 class="section-heading">Add a Subscription</h3>
+                        <button class="have-code-button" id="haveCodeButton" type="button" aria-expanded="false" aria-controls="discountCodeField">Have a code?</button>
+                    </div>
+                    <div class="discount-code-field" id="discountCodeField" hidden>
+                        <label for="discountCodeInput">Discount Code</label>
+                        <input id="discountCodeInput" name="discountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                        <small>Your code will be included for verification.</small>
+                    </div>
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
@@ -592,6 +600,8 @@
         const claimCheckoutLinks = document.getElementById("claimCheckoutLinks");
         const submitClaimButton = document.getElementById("submitClaimButton");
         const discountCodeInput = document.getElementById("discountCodeInput");
+        const discountCodeField = document.getElementById("discountCodeField");
+        const haveCodeButton = document.getElementById("haveCodeButton");
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
@@ -619,6 +629,13 @@
 
         const savedTheme = localStorage.getItem("viewYourSiteTheme");
         applyTheme(savedTheme === "light" ? "light" : "dark");
+        haveCodeButton.addEventListener("click", () => {
+            const willOpen = discountCodeField.hidden;
+            discountCodeField.hidden = !willOpen;
+            haveCodeButton.setAttribute("aria-expanded", String(willOpen));
+            haveCodeButton.textContent = willOpen ? "Hide code" : "Have a code?";
+            if (willOpen) discountCodeInput.focus();
+        });
         function setClientMenuLoggedIn(isLoggedIn) {
             document.body.classList.toggle("client-is-logged-in", isLoggedIn);
         }
