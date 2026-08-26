@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewYourSite - Builder</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header id="topbar">
+        <div class="topbar-left">
+            <span class="logo">V</span>
+            <span class="project-name" id="projectName" contenteditable="true">My Website</span>
+        </div>
+        <div class="topbar-center">
+            <button class="view-btn active" data-view="desktop" title="Desktop">&#9634;</button>
+            <button class="view-btn" data-view="tablet" title="Tablet">&#9635;</button>
+            <button class="view-btn" data-view="mobile" title="Mobile">&#9635;&#9635;</button>
+        </div>
+        <div class="topbar-right">
+            <button id="undoBtn" title="Undo (Ctrl+Z)">&#8630;</button>
+            <button id="redoBtn" title="Redo (Ctrl+Y)">&#8631;</button>
+            <button id="previewBtn" title="Preview">&#9742;</button>
+            <button id="exportBtn" class="primary" title="Export">&#8681;</button>
+        </div>
+    </header>
+
+    <!-- Left Toolbar -->
+    <aside id="toolbar">
+        <button class="tool-btn active" data-tool="select" title="Select (V)">&#8596;</button>
+        <button class="tool-btn" id="addBtn" title="Add Element (+)">+</button>
+        <hr>
+        <button class="tool-btn" data-category="text" title="Text">T</button>
+        <button class="tool-btn" data-category="media" title="Media">&#9673;</button>
+        <button class="tool-btn" data-category="shapes" title="Shapes">&#9633;</button>
+        <button class="tool-btn" data-category="interactive" title="Interactive">&#9655;</button>
+        <hr>
+        <button class="tool-btn" id="pagesBtn" title="Pages">&#9780;</button>
+        <button class="tool-btn" id="mediaBtn" title="Media Library">&#9783;</button>
+        <hr>
+        <button class="tool-btn" id="settingsBtn" title="Settings">&#9881;</button>
+    </aside>
+
+    <!-- Canvas -->
+    <main id="canvasArea">
+        <div id="canvasWrapper">
+            <div id="canvas"></div>
+        </div>
+        <div id="zoomControls">
+            <button id="zoomOut">-</button>
+            <span id="zoomLevel">100%</span>
+            <button id="zoomIn">+</button>
+        </div>
+    </main>
+
+    <!-- Properties Panel -->
+    <aside id="propsPanel">
+        <div class="panel-header">
+            <span>Properties</span>
+            <button id="closeProps">&times;</button>
+        </div>
+        <div id="propsContent">
+            <p class="empty-msg">Select an element</p>
+        </div>
+    </aside>
+
+    <!-- Add Elements Popup -->
+    <div id="addPopup" class="popup hidden">
+        <input type="text" id="elementSearch" placeholder="Search elements..." class="popup-search">
+        <div id="elementList" class="element-list"></div>
+    </div>
+
+    <!-- Pages Popup -->
+    <div id="pagesPopup" class="popup hidden">
+        <div class="popup-title">Pages</div>
+        <div id="pagesList"></div>
+        <button id="addPageBtn">+ New Page</button>
+    </div>
+
+    <!-- Media Popup -->
+    <div id="mediaPopup" class="popup hidden">
+        <div class="popup-title">Media Library</div>
+        <button id="uploadBtn">Upload File</button>
+        <input type="file" id="fileInput" accept="image/*,video/*" multiple hidden>
+        <div id="mediaGrid" class="media-grid"></div>
+    </div>
+
+    <!-- Settings Popup -->
+    <div id="settingsPopup" class="popup hidden">
+        <div class="popup-title">Settings</div>
+        <div class="setting-item">
+            <label>Snap to Grid</label>
+            <input type="checkbox" id="snapToggle">
+        </div>
+        <div class="setting-item">
+            <label>Grid Size</label>
+            <input type="number" id="gridSize" value="10" min="5" max="50">
+        </div>
+        <div class="setting-item">
+            <label>Auto Save</label>
+            <input type="checkbox" id="autoSaveToggle" checked>
+        </div>
+        <button id="clearDataBtn" class="danger">Clear All Data</button>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Preview</span>
+                <select id="previewDevice">
+                    <option value="desktop">Desktop</option>
+                    <option value="tablet">Tablet</option>
+                    <option value="mobile">Mobile</option>
+                </select>
+                <button id="closePreview">&times;</button>
+            </div>
+            <iframe id="previewFrame"></iframe>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal hidden">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <span>Export</span>
+                <button id="closeExport">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Download your website as:</p>
+                <button id="downloadHTML" class="primary block">Download HTML</button>
+                <button id="downloadZIP" class="block">Download ZIP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="ctxMenu" class="ctx-menu hidden">
+        <div data-action="duplicate">Duplicate</div>
+        <div data-action="copy">Copy</div>
+        <hr>
+        <div data-action="front">Bring to Front</div>
+        <div data-action="back">Send to Back</div>
+        <hr>
+        <div data-action="lock">Lock</div>
+        <div data-action="hide">Hide</div>
+        <hr>
+        <div data-action="delete" class="danger">Delete</div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
