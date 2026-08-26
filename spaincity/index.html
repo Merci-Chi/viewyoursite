@@ -3,259 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin City Laundromat | Las Vegas, NV</title>
-    <meta name="description" content="Spin City Laundromat - Self-service laundromat at 5950 W Charleston Blvd #140, Las Vegas, NV 89146. Open 7 AM - 9 PM.">
+    <title>Rainbow Laundromat | Las Vegas, NV</title>
+    <meta name="description" content="Rainbow Laundromat - Self-service laundromat at 2247 S Rainbow Blvd, Las Vegas, NV 89146.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600&display=swap');
 
         :root {
-            --bg: #f4f6f8;
-            --white: #ffffff;
-            --text: #1a1d23;
-            --muted: #7c8291;
-            --accent: #2b7de9;
-            --accent-soft: #e8f1fd;
-            --border: #e2e6ec;
+            --bg: #f7f3ee;
+            --text: #2a2520;
+            --muted: #9e958a;
+            --accent: #c45d3e;
+            --line: #d9d2c8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
         }
 
-        /* Top bar */
-        .topbar {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .topbar-brand {
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--accent);
-            letter-spacing: -0.5px;
-        }
-        .topbar-links {
-            display: flex;
-            gap: 1.8rem;
-            list-style: none;
-        }
-        .topbar-links a {
-            font-size: 0.82rem;
-            color: var(--muted);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .topbar-links a:hover { color: var(--accent); }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            height: 70vh;
-            min-height: 450px;
-            overflow: hidden;
-        }
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: saturate(0.85);
-        }
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(26,29,35,0.75) 0%, transparent 60%);
-        }
-        .hero-text {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 3rem 2.5rem;
-            color: white;
-        }
-        .hero-text .tag {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border-radius: 3px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-        .hero-text h1 {
-            font-family: 'Space Mono', monospace;
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 0.6rem;
-        }
-        .hero-text .sub {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            font-weight: 300;
-        }
-
-        /* Content */
-        .content {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-top: -2rem;
-            position: relative;
-            z-index: 2;
-        }
-        .card-grid {
+        /* Small photo row */
+        .photo-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 6px;
+            margin-bottom: 1.8rem;
         }
-        .card-item {
-            padding: 1.2rem 0;
-            border-bottom: 1px solid var(--border);
+        .photo-row img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+            opacity: 0.85;
         }
-        .card-item:last-child { border-bottom: none; }
-        .card-label {
-            font-size: 0.6rem;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
+
+        /* Centered content */
+        .center-content {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem;
+            text-align: center;
         }
-        .card-value {
-            font-size: 0.95rem;
+
+        .center-content h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+            line-height: 1.05;
+            margin-bottom: 0.5rem;
             color: var(--text);
-            line-height: 1.5;
+            padding-top: 0;
         }
-        .card-value a {
+        .center-content .rating-line {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 2.5rem;
+        }
+
+        .divider {
+            width: 40px;
+            height: 1.5px;
+            background: var(--accent);
+            margin: 2rem auto;
+        }
+
+        /* Info items */
+        .info-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .info-item:last-of-type { border-bottom: none; }
+        .info-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .info-value {
+            font-size: 1rem;
+            color: var(--text);
+        }
+        .info-value a {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
         }
-        .card-value a:hover { color: var(--accent); }
-        .card-value .big-phone {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        .info-value a:hover { color: var(--accent); }
+        .phone-big {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
         }
-        .card-value .stars {
-            color: #f0a828;
-            font-size: 0.85rem;
-        }
-        .card-value .stars span {
-            color: var(--muted);
-            font-size: 0.8rem;
-            margin-left: 0.3rem;
-        }
+        .clickable { cursor: pointer; transition: color 0.2s; }
+        .clickable:hover { color: var(--accent); }
 
-        .hours-row {
+        .hours-mini {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 2.5rem;
             font-size: 0.85rem;
-            padding: 0.35rem 0;
+            margin-top: 0.3rem;
         }
-        .hours-day { color: var(--muted); }
-        .hours-time { color: var(--text); font-weight: 500; font-family: 'Space Mono', monospace; font-size: 0.8rem; }
+        .hours-mini span { color: var(--muted); }
+        .hours-mini strong { color: var(--text); font-weight: 500; }
 
-        /* Locked sections */
-        .locked-section {
-            margin-top: 2rem;
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        .locked-section .section-head {
-            padding: 1.2rem 2rem;
-            border-bottom: 1px solid var(--border);
+        /* Locked nav */
+        .nav-row {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
         }
-        .locked-section .section-head h3 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .locked-section .section-head .lock-badge {
-            font-size: 0.6rem;
+        .nav-pill {
+            font-size: 0.75rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid var(--accent-soft);
-            background: var(--accent-soft);
-            padding: 0.25rem 0.7rem;
-            border-radius: 3px;
-            font-weight: 600;
+            color: var(--muted);
             cursor: pointer;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid transparent;
             transition: all 0.2s;
         }
-        .locked-section .section-head .lock-badge:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
+        .nav-pill:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
         }
-        .locked-section .blurred-content {
-            padding: 1.5rem 2rem;
+
+        /* Locked reviews */
+        .reviews-area {
+            position: relative;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--line);
+        }
+        .reviews-area .blurred {
             filter: blur(4px);
             pointer-events: none;
             user-select: none;
         }
-        .bar {
-            height: 8px;
-            background: var(--border);
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
+        .rev-block { padding: 1.2rem 0; }
+        .rev-stars {
+            width: 70px;
+            height: 10px;
+            background: #e8dcc8;
+            border-radius: 2px;
+            margin-bottom: 0.6rem;
         }
-        .bar.w70 { width: 70%; }
-        .bar.w85 { width: 85%; }
-        .bar.w50 { width: 50%; }
-        .bar.w60 { width: 60%; }
-        .bar.w40 { width: 40%; }
-        .bar.w90 { width: 90%; }
-        .bar.accent-bar { background: #f0c840; width: 70px; height: 10px; margin-bottom: 0.8rem; }
-        .review-block { padding: 1rem 0; border-bottom: 1px solid var(--border); }
-        .review-block:last-child { border-bottom: none; }
+        .rev-line {
+            height: 7px;
+            background: var(--line);
+            border-radius: 3px;
+            margin-bottom: 0.4rem;
+        }
+        .reviews-area .overlay {
+            position: absolute;
+            inset: 0;
+            top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: rgba(247,243,238,0.5);
+        }
+        .overlay svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+        .overlay p {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 500;
+        }
 
         .footer {
             text-align: center;
-            padding: 3rem 2rem;
-            font-size: 0.7rem;
+            padding: 2.5rem 2rem;
+            font-size: 0.65rem;
             color: var(--muted);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         /* Modal */
         .modal-bg {
-            position: fixed;
-            inset: 0;
-            background: rgba(26,29,35,0.6);
-            backdrop-filter: blur(6px);
+            position: fixed; inset: 0;
+            background: rgba(42,37,32,0.55);
+            backdrop-filter: blur(5px);
             z-index: 9999;
             display: none;
             align-items: center;
@@ -263,190 +207,118 @@
             padding: 2rem;
         }
         .modal-bg.active { display: flex; }
-        .modal {
-            background: var(--white);
-            border-radius: 12px;
+        .modal-box {
+            background: var(--bg);
+            border-radius: 10px;
             padding: 2.5rem;
-            max-width: 380px;
+            max-width: 360px;
             width: 100%;
             text-align: center;
         }
-        .modal svg {
-            width: 36px;
-            height: 36px;
-            stroke: var(--accent);
-            margin-bottom: 1.2rem;
-        }
-        .modal h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-        }
-        .modal p {
-            font-size: 0.82rem;
-            color: var(--muted);
-            margin-bottom: 1.8rem;
-            line-height: 1.6;
-        }
-        .modal button {
+        .modal-box svg { width: 32px; height: 32px; stroke: var(--accent); margin-bottom: 1rem; }
+        .modal-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .modal-box p { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+        .modal-box button {
             background: none;
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.8rem;
-            border-radius: 6px;
-            font-size: 0.78rem;
+            border: 1px solid var(--line);
             color: var(--muted);
+            padding: 0.5rem 1.6rem;
+            border-radius: 5px;
+            font-size: 0.75rem;
             cursor: pointer;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Outfit', sans-serif;
             transition: all 0.2s;
         }
-        .modal button:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+        .modal-box button:hover { border-color: var(--accent); color: var(--accent); }
 
         /* Mobile call */
-        .call-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 50px;
-            height: 50px;
+        .call-fab {
+            position: fixed; bottom: 24px; right: 24px;
+            width: 48px; height: 48px;
             background: var(--accent);
-            border-radius: 10px;
-            display: none;
-            align-items: center;
-            justify-content: center;
+            border-radius: 50%;
+            display: none; align-items: center; justify-content: center;
             text-decoration: none;
-            box-shadow: 0 4px 16px rgba(43,125,233,0.3);
+            box-shadow: 0 3px 14px rgba(196,93,62,0.3);
             z-index: 100;
             transition: transform 0.2s;
         }
-        .call-btn:hover { transform: scale(1.05); }
-        .call-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: white;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+        .call-fab:hover { transform: scale(1.06); }
+        .call-fab svg { width: 20px; height: 20px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
         @media (max-width: 768px) {
-            .topbar-links { display: none; }
-            .hero-text { padding: 2rem 1.5rem; }
-            .content { padding: 0 1.2rem; }
-            .card { padding: 1.5rem; }
-            .card-grid { grid-template-columns: 1fr; gap: 0; }
-            .card-value .big-phone { font-size: 1.1rem; }
-            .call-btn { display: flex; }
+            .photo-row { grid-template-columns: 1fr; }
+            .photo-row img { height: 110px; }
+            .center-content { padding: 2.5rem 1.5rem; }
+            .call-fab { display: flex; }
         }
     </style>
 </head>
 <body>
 
-    <div class="topbar">
-        <div class="topbar-brand">SPIN CITY</div>
-        <ul class="topbar-links">
-            <a onclick="showModal()">Services</a>
-            <a onclick="showModal()">Pricing</a>
-            <a onclick="showModal()">Reviews</a>
-            <a onclick="showModal()">Contact</a>
-        </ul>
-    </div>
-
-    <section class="hero">
-        <img class="hero-img" src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnCJsWQYNtN7-0ZIFHWK6TEuxrRe_tXkla1XpJR5-WmADSCtAQK7JlXztmYoV9YuFTjdhApOtJ9avahKbYx3GDXiVETz1k1cTFj-tjoiKRltpx_82u0qBaWgkbCoSawxmeEuS_UDXJ0nGw=w1920-h2560-k-no" alt="Spin City Laundromat">
-        <div class="hero-overlay"></div>
-        <div class="hero-text">
-            <div class="tag">Self-Service Laundromat</div>
-            <h1>Spin City<br>Laundromat</h1>
-            <div class="sub">Charleston Market Place, Las Vegas</div>
+    <div class="center-content">
+        <div class="photo-row">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmfWcOqp2N-_5mTadfVNCZtbdseCsyQr7OCih_p0binO5mY6-gznaaOeXYoJyDby8x7pCJAR71cyIv2P3fe14NAt2Khp2woIWN2IJF2co742QxkFbTZ2n2WGXH0Y8EviPa438iY=w800-h800-k-no" alt="Rainbow Laundromat">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlXCqWXDKYW9lMuU2biQMnX1kqcQnGzgR33MUBF4vzUtqb8Ikt4h-5zggamsnAObu-m2KAL6LQzbYeiVqi5ppawkpw_quwslbQyrxUPFVBAmqu-91rBUMtVEfipJJwKnOX-IrWWdoufSbCl=w800-h800-k-no" alt="Rainbow Laundromat">
         </div>
-    </section>
+        <h1>Rainbow<br>Laundromat</h1>
+        <div class="rating-line">4.2 out of 5 stars</div>
 
-    <div class="content">
-        <div class="card">
-            <div class="card-grid">
-                <div>
-                    <div class="card-item">
-                        <div class="card-label">Phone</div>
-                        <div class="card-value"><a href="tel:+17028804344" class="big-phone">(702) 880-4344</a></div>
-                    </div>
-                    <div class="card-item">
-                        <div class="card-label">Address</div>
-                        <div class="card-value" style="cursor:pointer" onclick="showModal()">5950 W Charleston Blvd #140<br>Las Vegas, NV 89146</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="card-item">
-                        <div class="card-label">Rating</div>
-                        <div class="card-value"><span class="stars">4.2 <span>/ 5</span></span></div>
-                    </div>
-                    <div class="card-item">
-                        <div class="card-label">Hours</div>
-                        <div class="card-value">
-                            <div class="hours-row"><span class="hours-day">Wed</span><span class="hours-time">7:00 AM - 9:00 PM</span></div>
-                            <div class="hours-row" style="cursor:pointer" onclick="showModal()"><span class="hours-day">Full week</span><span class="hours-time" style="color:var(--accent)">Unlock</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="info-item">
+            <div class="info-label">Phone</div>
+            <div class="info-value"><a href="tel:+17023332340" class="phone-big">(702) 333-2340</a></div>
         </div>
 
-        <div class="locked-section">
-            <div class="section-head">
-                <h3>Customer Reviews</h3>
-                <span class="lock-badge" onclick="showModal()">Unlock</span>
-            </div>
-            <div class="blurred-content">
-                <div class="review-block">
-                    <div class="bar accent-bar"></div>
-                    <div class="bar w85"></div>
-                    <div class="bar w70"></div>
-                    <div class="bar w40"></div>
-                </div>
-                <div class="review-block">
-                    <div class="bar accent-bar"></div>
-                    <div class="bar w70"></div>
-                    <div class="bar w90"></div>
-                    <div class="bar w50"></div>
-                </div>
-                <div class="review-block">
-                    <div class="bar accent-bar"></div>
-                    <div class="bar w60"></div>
-                    <div class="bar w85"></div>
-                    <div class="bar w40"></div>
-                </div>
-            </div>
+        <div class="info-item">
+            <div class="info-label">Address</div>
+            <div class="info-value clickable" onclick="showModal()">2247 S Rainbow Blvd<br>Las Vegas, NV 89146</div>
         </div>
 
-        <div class="locked-section">
-            <div class="section-head">
-                <h3>Services & Pricing</h3>
-                <span class="lock-badge" onclick="showModal()">Unlock</span>
+        <div class="info-item">
+            <div class="info-label">Hours</div>
+            <div class="hours-mini">
+                <div><span>Open </span><strong>6:00 AM</strong></div>
+                <div><span>Close </span><strong>11:00 PM</strong></div>
             </div>
-            <div class="blurred-content">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-                    <div class="bar w90"></div>
-                    <div class="bar w40"></div>
-                    <div class="bar w70"></div>
-                    <div class="bar w50"></div>
-                    <div class="bar w85"></div>
-                    <div class="bar w40"></div>
+            <div class="nav-pill" style="margin:0.8rem auto 0;font-size:0.65rem;color:var(--accent)" onclick="showModal()">View full weekly hours</div>
+        </div>
+
+        <div class="nav-row">
+            <span class="nav-pill" onclick="showModal()">Services</span>
+            <span class="nav-pill" onclick="showModal()">Pricing</span>
+            <span class="nav-pill" onclick="showModal()">Directions</span>
+        </div>
+
+        <div class="reviews-area">
+            <div class="blurred">
+                <div class="rev-block">
+                    <div class="rev-stars"></div>
+                    <div class="rev-line" style="width:85%"></div>
+                    <div class="rev-line" style="width:65%"></div>
+                    <div class="rev-line" style="width:35%"></div>
                 </div>
+                <div class="rev-block">
+                    <div class="rev-stars"></div>
+                    <div class="rev-line" style="width:75%"></div>
+                    <div class="rev-line" style="width:90%"></div>
+                    <div class="rev-line" style="width:45%"></div>
+                </div>
+            </div>
+            <div class="overlay" onclick="showModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <p>Buy the full site to unlock</p>
             </div>
         </div>
     </div>
 
-    <div class="footer">2026 Spin City Laundromat</div>
+    <div class="footer">2026 Rainbow Laundromat</div>
 
-    <a href="tel:+17028804344" class="call-btn">
+    <a href="tel:+17023332340" class="call-fab">
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     </a>
 
     <div class="modal-bg" id="modal">
-        <div class="modal">
+        <div class="modal-box">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
             <h3>Unlock This Feature</h3>
             <p>This is a preview of the website. Purchase the full site to unlock all features, pages, and content.</p>
