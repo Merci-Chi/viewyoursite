@@ -535,9 +535,9 @@
                             <div class="discount-message" data-discount-message="claim" role="status"></div>
                         </div>
                         <article class="discount-plan" data-discount-plan="claim" hidden>
-                            <h4>Founding Client Membership</h4>
+                            <h4 data-discount-plan-heading>Special Membership</h4>
                             <div class="plan-option">
-                                <div><span class="plan-name">Founding Clients Membership</span><span class="plan-price">$20/month</span></div>
+                                <div><span class="plan-name" data-discount-plan-name>Special Membership</span><span class="plan-price" data-discount-plan-price></span></div>
                                 <button class="plan-link" type="button" data-discount-checkout="claim">Choose</button>
                             </div>
                             <p class="payment-state" id="claimDiscountStatus">Choose this plan to open secure checkout.</p>
@@ -578,9 +578,9 @@
                         <div class="discount-message" data-discount-message="subscriptions" role="status"></div>
                     </div>
                     <article class="discount-plan" data-discount-plan="subscriptions" hidden>
-                        <h4>Founding Client Membership</h4>
+                        <h4 data-discount-plan-heading>Special Membership</h4>
                         <div class="plan-option">
-                            <div><span class="plan-name">Founding Clients Membership</span><span class="plan-price">$20/month</span></div>
+                            <div><span class="plan-name" data-discount-plan-name>Special Membership</span><span class="plan-price" data-discount-plan-price></span></div>
                             <button class="plan-link" type="button" data-discount-checkout="subscriptions">Choose</button>
                         </div>
                     </article>
@@ -659,6 +659,7 @@
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
+        const appliedDiscountPlans = { claim: null, subscriptions: null };
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
@@ -679,7 +680,6 @@
         const checkoutPlansByUrl = new Map([
             ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.url, plan])
         ]);
-        const foundingClientPlan = { key: "founding-client", label: "Founding Clients Membership — $20/month" };
         function applyTheme(theme) {
             const isLight = theme === "light";
             document.body.classList.toggle("light-mode", isLight);
@@ -718,9 +718,15 @@
                 button.disabled = false;
                 const accepted = !error && data?.valid === true;
                 plan.hidden = !accepted;
+                if (accepted && data.plan) {
+                    plan.querySelector("[data-discount-plan-heading]").textContent = data.plan.label;
+                    plan.querySelector("[data-discount-plan-name]").textContent = data.plan.label;
+                    plan.querySelector("[data-discount-plan-price]").textContent = data.plan.price || "";
+                }
                 message.textContent = accepted ? "Code accepted. Your special plan is available above." : "Invalid discount code.";
                 message.className = `discount-message ${accepted ? "success" : "error"}`;
                 appliedDiscountCodes[scope] = accepted ? code : "";
+                appliedDiscountPlans[scope] = accepted ? { key: data.plan.key, label: `${data.plan.label} — ${data.plan.price}` } : null;
                 if (scope === "claim") appliedDiscountCode = appliedDiscountCodes[scope];
             });
         });
@@ -838,14 +844,15 @@
             button.addEventListener("click", () => {
                 const scope = button.dataset.discountCheckout;
                 const code = appliedDiscountCodes[scope];
-                if (!code) return;
+                const discountPlan = appliedDiscountPlans[scope];
+                if (!code || !discountPlan) return;
                 const isClaimPlan = scope === "claim";
                 if (isClaimPlan) {
                     claimPlanSelections.forEach((_selection, type) => {
-                        claimPlanSelections.set(type, { plan: foundingClientPlan, confirmed: false });
+                        claimPlanSelections.set(type, { plan: discountPlan, confirmed: false });
                     });
                 }
-                startVerifiedCheckout(foundingClientPlan, {
+                startVerifiedCheckout(discountPlan, {
                     discountCode: code,
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
