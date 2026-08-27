@@ -274,6 +274,12 @@
         .claim-selected-note { margin-top: .75rem; color: #bdbdbd; font-size: .88rem; }
         .purchase-confirmation { display: flex; align-items: flex-start; gap: .6rem; margin-top: .8rem; color: #aaa; line-height: 1.4; }
         .purchase-confirmation input { width: 18px; height: 18px; margin-top: .15rem; padding: 0; accent-color: #f1f1f1; }
+        .payment-state { margin-top: .8rem; color: #aaa; line-height: 1.45; }
+        .payment-state.verifying { color: #e5c875; }
+        .payment-state.verified { color: #9bd38f; }
+        .purchase-dialog { width: min(460px, 100%); text-align: center; }
+        .purchase-check { display: grid; width: 64px; height: 64px; margin: 0 auto 1.1rem; place-items: center; border-radius: 50%; background: #244424; color: #baf0ae; font-size: 2rem; }
+        .purchase-dialog .portal-primary { width: 100%; margin-top: 1rem; }
         body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
         body.light-mode .claim-plan-group label { color: #222; }
         body.light-mode .discount-code-field label { color: #222; }
@@ -515,27 +521,10 @@
                     <div class="claim-list" id="claimList"></div>
                     <div class="claim-checkout" id="claimCheckout">
                         <h3>Select Required Hosting</h3>
-                        <p>Choose a plan and complete its Square checkout. You can submit the claim after confirming the purchase.</p>
+                        <p>Choose a plan and complete its Square checkout. Your purchase is verified automatically before the claim can be submitted.</p>
                         <div class="section-heading-row">
                             <span class="claim-selected-note">Choose a subscription to continue.</span>
-                            <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
                         </div>
-                        <div class="discount-code-field" data-discount-field="claim" hidden>
-                            <label for="claimDiscountCode">Discount Code</label>
-                            <div class="discount-code-row">
-                                <input id="claimDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
-                                <button class="discount-apply" type="button" data-discount-apply="claim">Apply</button>
-                            </div>
-                            <div class="discount-message" data-discount-message="claim" role="status"></div>
-                        </div>
-                        <article class="discount-plan" data-discount-plan="claim" hidden>
-                            <h4>Founding Client Membership</h4>
-                            <div class="plan-option">
-                                <div><span class="plan-name">Founding Clients Membership</span><span class="plan-price">$20/month</span></div>
-                                <a class="plan-link" href="https://square.link/u/H7ILoctX" target="_blank" rel="noopener">Choose</a>
-                            </div>
-                            <label class="purchase-confirmation"><input id="claimDiscountConfirm" type="checkbox"><span>I completed the Square subscription purchase.</span></label>
-                        </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
@@ -561,23 +550,7 @@
 
                     <div class="section-heading-row">
                         <h3 class="section-heading">Choose a subscription to continue.</h3>
-                        <button class="have-code-button" type="button" data-discount-toggle="subscriptions" aria-expanded="false">Have a code?</button>
                     </div>
-                    <div class="discount-code-field" data-discount-field="subscriptions" hidden>
-                        <label for="subscriptionDiscountCode">Discount Code</label>
-                        <div class="discount-code-row">
-                            <input id="subscriptionDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
-                            <button class="discount-apply" type="button" data-discount-apply="subscriptions">Apply</button>
-                        </div>
-                        <div class="discount-message" data-discount-message="subscriptions" role="status"></div>
-                    </div>
-                    <article class="discount-plan" data-discount-plan="subscriptions" hidden>
-                        <h4>Founding Client Membership</h4>
-                        <div class="plan-option">
-                            <div><span class="plan-name">Founding Clients Membership</span><span class="plan-price">$20/month</span></div>
-                            <a class="plan-link" href="https://square.link/u/H7ILoctX" target="_blank" rel="noopener">Choose</a>
-                        </div>
-                    </article>
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
@@ -596,6 +569,15 @@
             </div>
         </section>
     </div>
+
+    <section class="portal-overlay" id="purchaseCompleteOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="purchaseCompleteTitle">
+        <div class="portal-dialog purchase-dialog">
+            <div class="purchase-check" aria-hidden="true">✓</div>
+            <h2 id="purchaseCompleteTitle">Purchase complete</h2>
+            <p class="portal-description" id="purchaseCompleteMessage">Your Square subscription is active and linked to your account.</p>
+            <button class="portal-primary" id="purchaseCompleteClose" type="button">Continue</button>
+        </div>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -639,7 +621,9 @@
         const claimCheckout = document.getElementById("claimCheckout");
         const claimCheckoutLinks = document.getElementById("claimCheckoutLinks");
         const submitClaimButton = document.getElementById("submitClaimButton");
-        const claimDiscountConfirm = document.getElementById("claimDiscountConfirm");
+        const purchaseCompleteOverlay = document.getElementById("purchaseCompleteOverlay");
+        const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
+        const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
 
         let authMode = "login";
@@ -658,6 +642,9 @@
                 { key: "backend-12", label: "$30/month — 12 month plan · $360 billed every 12 months", url: "https://square.link/u/H5nLaKC0" }
             ]
         };
+        const checkoutPlansByUrl = new Map([
+            ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.url, plan])
+        ]);
         function applyTheme(theme) {
             const isLight = theme === "light";
             document.body.classList.toggle("light-mode", isLight);
@@ -701,18 +688,98 @@
                 }
             });
         });
-        claimDiscountConfirm.addEventListener("change", () => {
-            const foundingPlan = {
-                key: "founding-client",
-                label: "$20/month",
-                url: "https://square.link/u/H7ILoctX"
-            };
-            claimPlanSelections.forEach((_selection, type) => {
-                claimPlanSelections.set(type, claimDiscountConfirm.checked
-                    ? { plan: foundingPlan, confirmed: true }
-                    : { plan: null, confirmed: false });
+        function showPurchaseComplete(planLabel) {
+            purchaseCompleteMessage.textContent = `${planLabel || "Your subscription"} is active and linked to your signed-in account.`;
+            purchaseCompleteOverlay.hidden = false;
+            document.body.style.overflow = "hidden";
+        }
+
+        async function verifyPendingCheckout(pending, statusElement) {
+            if (!pending?.checkoutId) return false;
+            if (statusElement) {
+                statusElement.className = "payment-state verifying";
+                statusElement.textContent = "Waiting for Square to confirm your subscription…";
+            }
+            const deadline = Date.now() + 10 * 60 * 1000;
+            while (Date.now() < deadline) {
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "verify-checkout", checkoutId: pending.checkoutId }
+                });
+                if (!error && data?.verified) {
+                    sessionStorage.removeItem(PURCHASE_PENDING_KEY);
+                    if (statusElement) {
+                        statusElement.className = "payment-state verified";
+                        statusElement.textContent = "Purchase verified and linked to your account ✓";
+                    }
+                    if (pending.claimType === "all") {
+                        claimPlanSelections.forEach(selection => { selection.confirmed = true; });
+                        updateClaimSubmitAvailability();
+                    } else if (pending.claimType && claimPlanSelections.has(pending.claimType)) {
+                        claimPlanSelections.get(pending.claimType).confirmed = true;
+                        updateClaimSubmitAvailability();
+                    }
+                    await loadSubscriptions();
+                    showPurchaseComplete(pending.planLabel);
+                    return true;
+                }
+                await new Promise(resolve => window.setTimeout(resolve, 3000));
+            }
+            if (statusElement) {
+                statusElement.className = "payment-state";
+                statusElement.textContent = "Payment is still processing. Use Refresh Subscriptions in a moment; no success is shown until Square confirms it.";
+            }
+            return false;
+        }
+
+        async function startVerifiedCheckout(plan, options = {}) {
+            const { data: { session } } = await portalSupabase.auth.getSession();
+            if (!session?.user) {
+                pendingPanel = "subscriptionsPanel";
+                openPortal();
+                await updatePortal(null);
+                loginMessage.textContent = "Log in first so the Square subscription can be linked to your account.";
+                return;
+            }
+            const statusElement = options.statusElement || subscriptionMessage;
+            statusElement.className = "payment-state verifying";
+            statusElement.textContent = "Creating your secure Square checkout…";
+            const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                method: "POST",
+                body: {
+                    action: "create-checkout",
+                    planKey: plan.key,
+                    returnUrl: `${window.location.origin}${window.location.pathname}?square_checkout=return`
+                }
             });
-            updateClaimSubmitAvailability();
+            if (error || !data?.checkoutUrl || !data?.checkoutId) {
+                statusElement.className = "payment-state";
+                statusElement.textContent = data?.message || "We couldn’t start checkout. Please try again.";
+                return;
+            }
+            const pending = { checkoutId: data.checkoutId, planKey: plan.key, planLabel: plan.label, claimType: options.claimType || null };
+            sessionStorage.setItem(PURCHASE_PENDING_KEY, JSON.stringify(pending));
+            window.open(data.checkoutUrl, "_blank", "noopener");
+            await verifyPendingCheckout(pending, statusElement);
+        }
+
+        document.querySelectorAll('a.plan-link[href^="https://square.link/"]').forEach(link => {
+            const plan = checkoutPlansByUrl.get(link.href);
+            if (!plan) return;
+            link.removeAttribute("target");
+            link.addEventListener("click", event => {
+                event.preventDefault();
+                const isClaimPlan = Boolean(link.closest("#claimPanel"));
+                if (isClaimPlan) {
+                    claimPlanSelections.forEach((_selection, type) => {
+                        claimPlanSelections.set(type, { plan, confirmed: false });
+                    });
+                }
+                startVerifiedCheckout(plan, {
+                    claimType: isClaimPlan ? "all" : null,
+                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
+                });
+            });
         });
         function setClientMenuLoggedIn(isLoggedIn) {
             document.body.classList.toggle("client-is-logged-in", isLoggedIn);
@@ -770,7 +837,6 @@
         function renderClaimPlanChoices(selectedSites) {
             claimCheckoutLinks.replaceChildren();
             claimPlanSelections.clear();
-            claimDiscountConfirm.checked = false;
             submitClaimButton.disabled = true;
             const requiredTypes = [...new Set(selectedSites.map(site => site.hostingType))];
 
@@ -780,16 +846,8 @@
                 group.className = "plan-group";
                 const heading = document.createElement("h4");
                 heading.textContent = `${type === "backend" ? "Backend" : "Standard"} Website Hosting`;
-                const confirmation = document.createElement("label");
-                confirmation.className = "purchase-confirmation";
-                confirmation.hidden = true;
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                const confirmationText = document.createElement("span");
-                confirmationText.textContent = "I completed the Square subscription purchase.";
-                confirmation.append(checkbox, confirmationText);
                 const selectedNote = document.createElement("p");
-                selectedNote.className = "claim-selected-note";
+                selectedNote.className = "payment-state";
                 selectedNote.textContent = "Choose a subscription to continue.";
                 group.appendChild(heading);
 
@@ -815,22 +873,14 @@
                         row.classList.add("selected");
                         chooseButton.textContent = "Selected";
                         claimPlanSelections.set(type, { plan, confirmed: false });
-                        claimDiscountConfirm.checked = false;
-                        checkbox.checked = false;
-                        confirmation.hidden = false;
-                        selectedNote.textContent = `${plan.label} selected. Complete checkout, then confirm below.`;
+                        selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
-                        window.open(plan.url, "_blank", "noopener");
+                        startVerifiedCheckout(plan, { claimType: type, statusElement: selectedNote });
                     });
                     row.append(copy, chooseButton);
                     group.appendChild(row);
                 });
-                checkbox.addEventListener("change", () => {
-                    const selection = claimPlanSelections.get(type);
-                    if (selection) selection.confirmed = checkbox.checked;
-                    updateClaimSubmitAvailability();
-                });
-                group.append(selectedNote, confirmation);
+                group.append(selectedNote);
                 claimCheckoutLinks.appendChild(group);
             });
         }
@@ -1042,6 +1092,10 @@
             }
         });
         document.getElementById("refreshSubscriptions").addEventListener("click", loadSubscriptions);
+        document.getElementById("purchaseCompleteClose").addEventListener("click", () => {
+            purchaseCompleteOverlay.hidden = true;
+            document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
+        });
         document.getElementById("claimYourSite").addEventListener("click", enterSiteSelection);
         document.getElementById("cancelSiteSelection").addEventListener("click", exitSiteSelection);
         addSelectedSitesButton.addEventListener("click", () => {
@@ -1118,6 +1172,16 @@
                 return;
             }
             await updatePortal(session);
+            const rawPending = sessionStorage.getItem(PURCHASE_PENDING_KEY);
+            if (session?.user && rawPending) {
+                try {
+                    const pending = JSON.parse(rawPending);
+                    const statusElement = pending.claimType ? claimMessageStatus : subscriptionMessage;
+                    verifyPendingCheckout(pending, statusElement);
+                } catch (_error) {
+                    sessionStorage.removeItem(PURCHASE_PENDING_KEY);
+                }
+            }
         }
 
         initializeClientMenu();
