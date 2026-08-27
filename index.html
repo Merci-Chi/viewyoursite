@@ -524,7 +524,24 @@
                         <p>Choose a plan and complete its Square checkout. Your purchase is verified automatically before the claim can be submitted.</p>
                         <div class="section-heading-row">
                             <span class="claim-selected-note">Choose a subscription to continue.</span>
+                            <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
                         </div>
+                        <div class="discount-code-field" data-discount-field="claim" hidden>
+                            <label for="claimDiscountCode">Discount Code</label>
+                            <div class="discount-code-row">
+                                <input id="claimDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                                <button class="discount-apply" type="button" data-discount-apply="claim">Apply</button>
+                            </div>
+                            <div class="discount-message" data-discount-message="claim" role="status"></div>
+                        </div>
+                        <article class="discount-plan" data-discount-plan="claim" hidden>
+                            <h4>Founding Client Membership</h4>
+                            <div class="plan-option">
+                                <div><span class="plan-name">Founding Clients Membership</span><span class="plan-price">$20/month</span></div>
+                                <button class="plan-link" type="button" data-discount-checkout="claim">Choose</button>
+                            </div>
+                            <p class="payment-state" id="claimDiscountStatus">Choose this plan to open secure checkout.</p>
+                        </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
@@ -550,7 +567,23 @@
 
                     <div class="section-heading-row">
                         <h3 class="section-heading">Choose a subscription to continue.</h3>
+                        <button class="have-code-button" type="button" data-discount-toggle="subscriptions" aria-expanded="false">Have a code?</button>
                     </div>
+                    <div class="discount-code-field" data-discount-field="subscriptions" hidden>
+                        <label for="subscriptionDiscountCode">Discount Code</label>
+                        <div class="discount-code-row">
+                            <input id="subscriptionDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                            <button class="discount-apply" type="button" data-discount-apply="subscriptions">Apply</button>
+                        </div>
+                        <div class="discount-message" data-discount-message="subscriptions" role="status"></div>
+                    </div>
+                    <article class="discount-plan" data-discount-plan="subscriptions" hidden>
+                        <h4>Founding Client Membership</h4>
+                        <div class="plan-option">
+                            <div><span class="plan-name">Founding Clients Membership</span><span class="plan-price">$20/month</span></div>
+                            <button class="plan-link" type="button" data-discount-checkout="subscriptions">Choose</button>
+                        </div>
+                    </article>
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
@@ -625,6 +658,7 @@
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
+        const appliedDiscountCodes = { claim: "", subscriptions: "" };
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
@@ -645,6 +679,7 @@
         const checkoutPlansByUrl = new Map([
             ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.url, plan])
         ]);
+        const foundingClientPlan = { key: "founding-client", label: "Founding Clients Membership — $20/month" };
         function applyTheme(theme) {
             const isLight = theme === "light";
             document.body.classList.toggle("light-mode", isLight);
@@ -667,17 +702,26 @@
             });
         });
         document.querySelectorAll("[data-discount-apply]").forEach(button => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", async () => {
                 const scope = button.dataset.discountApply;
                 const field = document.querySelector(`[data-discount-field="${scope}"]`);
                 const input = field.querySelector("input");
                 const message = document.querySelector(`[data-discount-message="${scope}"]`);
                 const plan = document.querySelector(`[data-discount-plan="${scope}"]`);
-                const accepted = input.value.trim().toUpperCase() === "MAPLE01";
+                const code = input.value.trim().toUpperCase();
+                button.disabled = true;
+                message.textContent = "Checking code…";
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "validate-discount-code", code }
+                });
+                button.disabled = false;
+                const accepted = !error && data?.valid === true;
                 plan.hidden = !accepted;
                 message.textContent = accepted ? "Code accepted. Your special plan is available above." : "Invalid discount code.";
                 message.className = `discount-message ${accepted ? "success" : "error"}`;
-                if (scope === "claim") appliedDiscountCode = accepted ? "MAPLE01" : "";
+                appliedDiscountCodes[scope] = accepted ? code : "";
+                if (scope === "claim") appliedDiscountCode = appliedDiscountCodes[scope];
             });
         });
         document.querySelectorAll("[data-discount-field] input").forEach(input => {
@@ -749,6 +793,7 @@
                 body: {
                     action: "create-checkout",
                     planKey: plan.key,
+                    discountCode: options.discountCode || null,
                     returnUrl: `${window.location.origin}${window.location.pathname}?square_checkout=return`
                 }
             });
@@ -776,6 +821,24 @@
                     });
                 }
                 startVerifiedCheckout(plan, {
+                    claimType: isClaimPlan ? "all" : null,
+                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
+                });
+            });
+        });
+        document.querySelectorAll("[data-discount-checkout]").forEach(button => {
+            button.addEventListener("click", () => {
+                const scope = button.dataset.discountCheckout;
+                const code = appliedDiscountCodes[scope];
+                if (!code) return;
+                const isClaimPlan = scope === "claim";
+                if (isClaimPlan) {
+                    claimPlanSelections.forEach((_selection, type) => {
+                        claimPlanSelections.set(type, { plan: foundingClientPlan, confirmed: false });
+                    });
+                }
+                startVerifiedCheckout(foundingClientPlan, {
+                    discountCode: code,
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
                 });
