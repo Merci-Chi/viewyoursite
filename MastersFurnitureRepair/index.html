@@ -1,578 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Master's Furniture Repair | Las Vegas, NV</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background-color: #e8e4dd;
-    min-height: 100vh;
-    font-family: 'Merriweather', Georgia, serif;
-    color: #2d2416;
-    overflow-x: hidden;
-    padding: 40px 20px 60px;
-  }
-
-  .collage-container {
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  /* --- Torn paper base styles --- */
-  .torn {
-    position: relative;
-    background: #fff;
-    box-shadow: 3px 4px 14px rgba(45, 36, 22, 0.18), 1px 1px 4px rgba(45, 36, 22, 0.10);
-    padding: 28px 32px;
-    width: 100%;
-    max-width: 620px;
-    transition: box-shadow 0.2s ease;
-  }
-
-  .torn:hover {
-    box-shadow: 5px 6px 20px rgba(45, 36, 22, 0.25), 2px 2px 6px rgba(45, 36, 22, 0.14);
-  }
-
-  /* --- Individual torn edge clip-paths --- */
-  .torn-name {
-    background: #fff;
-    clip-path: polygon(
-      0% 3%, 2% 1%, 5% 4%, 8% 1%, 12% 3%, 15% 0%, 18% 3%,
-      22% 1%, 26% 4%, 30% 2%, 34% 0%, 38% 3%, 42% 1%, 46% 3%,
-      50% 0%, 54% 2%, 58% 4%, 62% 1%, 66% 3%, 70% 0%, 74% 2%,
-      78% 4%, 82% 1%, 86% 3%, 90% 0%, 94% 2%, 97% 4%, 100% 1%,
-      100% 96%, 98% 99%, 95% 97%, 92% 100%, 88% 97%, 85% 99%,
-      82% 96%, 78% 100%, 74% 97%, 70% 99%, 66% 96%, 62% 100%,
-      58% 97%, 54% 99%, 50% 96%, 46% 100%, 42% 98%, 38% 100%,
-      34% 97%, 30% 99%, 26% 96%, 22% 100%, 18% 97%, 14% 99%,
-      10% 96%, 6% 100%, 2% 98%, 0% 100%
-    );
-    transform: rotate(-1deg);
-    z-index: 3;
-    padding: 38px 36px 34px;
-    margin-bottom: -18px;
-  }
-
-  .torn-rating {
-    background: #f9f6f0;
-    clip-path: polygon(
-      0% 4%, 3% 1%, 7% 3%, 11% 0%, 15% 4%, 19% 1%,
-      23% 3%, 27% 0%, 31% 4%, 35% 1%, 39% 3%, 43% 0%, 47% 4%,
-      51% 1%, 55% 3%, 59% 0%, 63% 4%, 67% 1%, 71% 3%, 75% 0%,
-      79% 4%, 83% 1%, 87% 3%, 91% 0%, 95% 4%, 98% 2%, 100% 3%,
-      100% 95%, 97% 98%, 93% 96%, 89% 99%, 85% 97%, 81% 99%,
-      77% 96%, 73% 100%, 69% 97%, 65% 99%, 61% 96%, 57% 100%,
-      53% 97%, 49% 99%, 45% 96%, 41% 100%, 37% 97%, 33% 99%,
-      29% 96%, 25% 100%, 21% 97%, 17% 99%, 13% 96%, 9% 100%,
-      5% 97%, 1% 99%, 0% 97%
-    );
-    transform: rotate(1.5deg);
-    z-index: 4;
-    width: 200px;
-    align-self: center;
-    margin-left: 140px;
-    margin-bottom: -10px;
-    padding: 14px 24px 12px;
-  }
-
-  .torn-address {
-    background: #f0ece4;
-    clip-path: polygon(
-      0% 2%, 4% 0%, 8% 3%, 12% 1%, 16% 4%, 20% 0%,
-      24% 3%, 28% 1%, 32% 4%, 36% 0%, 40% 2%, 44% 4%,
-      48% 0%, 52% 3%, 56% 1%, 60% 4%, 64% 0%, 68% 3%,
-      72% 1%, 76% 4%, 80% 0%, 84% 2%, 88% 4%, 92% 1%,
-      96% 3%, 100% 0%, 100% 97%, 97% 100%, 93% 97%, 89% 99%,
-      85% 96%, 81% 100%, 77% 97%, 73% 99%, 69% 96%, 65% 100%,
-      61% 97%, 57% 99%, 53% 96%, 49% 100%, 45% 98%, 41% 100%,
-      37% 97%, 33% 99%, 29% 96%, 25% 100%, 21% 97%, 17% 100%,
-      13% 97%, 9% 100%, 5% 97%, 1% 99%, 0% 98%
-    );
-    transform: rotate(-0.6deg);
-    z-index: 2;
-    max-width: 520px;
-    margin-bottom: -14px;
-    padding: 20px 28px 18px;
-    align-self: flex-start;
-    margin-left: 20px;
-  }
-
-  .torn-phone {
-    background: #fff;
-    clip-path: polygon(
-      0% 3%, 3% 0%, 6% 4%, 10% 1%, 14% 3%, 18% 0%,
-      22% 4%, 26% 1%, 30% 3%, 34% 0%, 38% 4%, 42% 1%,
-      46% 3%, 50% 0%, 54% 4%, 58% 1%, 62% 3%, 66% 0%,
-      70% 4%, 74% 1%, 78% 3%, 82% 0%, 86% 4%, 90% 1%,
-      94% 3%, 97% 0%, 100% 2%, 100% 96%, 97% 99%, 94% 97%,
-      90% 100%, 86% 97%, 82% 99%, 78% 96%, 74% 100%, 70% 97%,
-      66% 99%, 62% 96%, 58% 100%, 54% 97%, 50% 99%, 46% 96%,
-      42% 100%, 38% 97%, 34% 99%, 30% 96%, 26% 100%, 22% 97%,
-      18% 99%, 14% 96%, 10% 100%, 6% 97%, 2% 99%, 0% 97%
-    );
-    transform: rotate(0.8deg);
-    z-index: 2;
-    max-width: 380px;
-    margin-bottom: -16px;
-    padding: 18px 28px 16px;
-    align-self: flex-end;
-    margin-right: 10px;
-  }
-
-  .torn-photo {
-    background: #f9f6f0;
-    clip-path: polygon(
-      0% 2%, 3% 0%, 7% 3%, 11% 1%, 14% 4%, 18% 0%,
-      22% 2%, 26% 4%, 30% 0%, 34% 3%, 38% 1%, 42% 4%,
-      46% 0%, 50% 2%, 54% 4%, 58% 0%, 62% 3%, 66% 1%,
-      70% 4%, 74% 0%, 78% 2%, 82% 4%, 86% 0%, 90% 3%,
-      94% 1%, 97% 4%, 100% 2%, 100% 97%, 97% 100%, 93% 98%,
-      89% 100%, 85% 97%, 81% 100%, 77% 98%, 73% 100%, 69% 97%,
-      65% 100%, 61% 98%, 57% 100%, 53% 97%, 49% 100%, 45% 98%,
-      41% 100%, 37% 97%, 33% 100%, 29% 98%, 25% 100%, 21% 97%,
-      17% 100%, 13% 98%, 9% 100%, 5% 97%, 1% 99%, 0% 98%
-    );
-    transform: rotate(-0.4deg);
-    z-index: 1;
-    padding: 36px 30px 28px;
-    margin-bottom: -12px;
-  }
-
-  /* Tape pseudo-element on photo */
-  .torn-photo::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 90px;
-    height: 28px;
-    background: rgba(200, 190, 170, 0.55);
-    border: 1px solid rgba(180, 170, 150, 0.3);
-    z-index: 5;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  }
-
-  .torn-photo img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 2px;
-  }
-
-  .torn-hours {
-    background: #fff;
-    clip-path: polygon(
-      0% 4%, 4% 1%, 8% 3%, 12% 0%, 16% 4%, 20% 1%,
-      24% 3%, 28% 0%, 32% 4%, 36% 1%, 40% 3%, 44% 0%, 48% 4%,
-      52% 1%, 56% 3%, 60% 0%, 64% 4%, 68% 1%, 72% 3%, 76% 0%,
-      80% 4%, 84% 1%, 88% 3%, 92% 0%, 96% 4%, 100% 2%,
-      100% 96%, 96% 99%, 92% 97%, 88% 100%, 84% 97%, 80% 99%,
-      76% 96%, 72% 100%, 68% 97%, 64% 99%, 60% 96%, 56% 100%,
-      52% 97%, 48% 99%, 44% 96%, 40% 100%, 36% 97%, 32% 99%,
-      28% 96%, 24% 100%, 20% 97%, 16% 99%, 12% 96%, 8% 100%,
-      4% 97%, 0% 99%
-    );
-    transform: rotate(0.5deg);
-    z-index: 2;
-    max-width: 400px;
-    margin-bottom: -14px;
-    padding: 20px 28px 18px;
-    align-self: flex-start;
-    margin-left: 50px;
-  }
-
-  .torn-nav {
-    background: #f0ece4;
-    clip-path: polygon(
-      0% 3%, 3% 0%, 7% 4%, 11% 1%, 15% 3%, 19% 0%,
-      23% 4%, 27% 1%, 31% 3%, 35% 0%, 39% 4%, 43% 1%,
-      47% 3%, 51% 0%, 55% 4%, 59% 1%, 63% 3%, 67% 0%,
-      71% 4%, 75% 1%, 79% 3%, 83% 0%, 87% 4%, 91% 1%,
-      95% 3%, 100% 0%, 100% 97%, 97% 100%, 93% 97%, 89% 99%,
-      85% 96%, 81% 100%, 77% 97%, 73% 99%, 69% 96%, 65% 100%,
-      61% 97%, 57% 99%, 53% 96%, 49% 100%, 45% 98%, 41% 100%,
-      37% 97%, 33% 99%, 29% 96%, 25% 100%, 21% 97%, 17% 100%,
-      13% 97%, 9% 100%, 5% 97%, 1% 99%, 0% 98%
-    );
-    transform: rotate(-1.2deg);
-    z-index: 3;
-    max-width: 340px;
-    margin-bottom: -10px;
-    padding: 16px 26px 14px;
-    align-self: flex-end;
-    margin-right: 30px;
-  }
-
-  .torn-reviews {
-    background: #f9f6f0;
-    clip-path: polygon(
-      0% 2%, 4% 0%, 8% 3%, 12% 1%, 16% 4%, 20% 0%,
-      24% 2%, 28% 4%, 32% 0%, 36% 3%, 40% 1%, 44% 4%,
-      48% 0%, 52% 2%, 56% 4%, 60% 0%, 64% 3%, 68% 1%,
-      72% 4%, 76% 0%, 80% 2%, 84% 4%, 88% 0%, 92% 3%,
-      96% 1%, 100% 3%, 100% 97%, 97% 100%, 93% 97%, 89% 99%,
-      85% 96%, 81% 100%, 77% 98%, 73% 100%, 69% 97%, 65% 99%,
-      61% 96%, 57% 100%, 53% 97%, 49% 100%, 45% 98%, 41% 100%,
-      37% 97%, 33% 100%, 29% 98%, 25% 100%, 21% 97%, 17% 100%,
-      13% 98%, 9% 100%, 5% 97%, 1% 99%, 0% 98%
-    );
-    transform: rotate(0.3deg);
-    z-index: 1;
-    max-width: 560px;
-    margin-bottom: 0;
-    padding: 24px 30px 22px;
-  }
-
-  /* --- Typography --- */
-  .handwritten {
-    font-family: 'Caveat', cursive;
-  }
-
-  .torn-name h1 {
-    font-family: 'Caveat', cursive;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #2d2416;
-    line-height: 1.1;
-    text-align: center;
-  }
-
-  .torn-name .subtitle {
-    font-family: 'Merriweather', serif;
-    font-size: 0.85rem;
-    color: #8b4513;
-    text-align: center;
-    margin-top: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .torn-rating {
-    text-align: center;
-  }
-  .torn-rating .stars {
-    font-size: 1.3rem;
-    color: #8b4513;
-    letter-spacing: 2px;
-  }
-  .torn-rating .number {
-    font-family: 'Caveat', cursive;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2d2416;
-  }
-  .torn-rating .label {
-    font-family: 'Caveat', cursive;
-    font-size: 0.95rem;
-    color: #6b5a48;
-  }
-
-  .torn-address .label {
-    font-family: 'Caveat', cursive;
-    font-size: 1rem;
-    color: #8b4513;
-    margin-bottom: 4px;
-  }
-  .torn-address .value {
-    font-size: 0.92rem;
-    color: #2d2416;
-    line-height: 1.5;
-  }
-  .torn-address .attribute {
-    font-family: 'Caveat', cursive;
-    font-size: 0.9rem;
-    color: #6b5a48;
-    margin-top: 6px;
-    font-style: italic;
-  }
-
-  .torn-phone .label {
-    font-family: 'Caveat', cursive;
-    font-size: 1rem;
-    color: #8b4513;
-    margin-bottom: 4px;
-  }
-  .torn-phone a {
-    font-size: 1.15rem;
-    color: #2d2416;
-    text-decoration: none;
-    border-bottom: 1px dashed #8b4513;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .torn-phone a:hover {
-    color: #8b4513;
-  }
-
-  .torn-photo .photo-label {
-    font-family: 'Caveat', cursive;
-    font-size: 1.1rem;
-    color: #8b4513;
-    text-align: center;
-    margin-top: 12px;
-  }
-
-  .torn-hours .label {
-    font-family: 'Caveat', cursive;
-    font-size: 1.1rem;
-    color: #8b4513;
-    margin-bottom: 6px;
-  }
-  .torn-hours .hours-text {
-    font-size: 0.9rem;
-    color: #2d2416;
-    line-height: 1.6;
-  }
-
-  .torn-nav .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-  }
-  .torn-nav .nav-links a {
-    font-family: 'Caveat', cursive;
-    font-size: 1.1rem;
-    color: #8b4513;
-    text-decoration: none;
-    padding: 2px 6px;
-    border-bottom: 1px dashed #8b4513;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .torn-nav .nav-links a:hover {
-    color: #2d2416;
-    border-bottom-color: #2d2416;
-  }
-
-  /* --- Review blur bars --- */
-  .torn-reviews .reviews-label {
-    font-family: 'Caveat', cursive;
-    font-size: 1.2rem;
-    color: #8b4513;
-    margin-bottom: 14px;
-  }
-  .review-bar {
-    position: relative;
-    height: 42px;
-    background: linear-gradient(90deg, #c4b8a6, #bfb39f, #c8bcaa, #b8ac98, #c4b8a6);
-    border-radius: 3px;
-    margin-bottom: 10px;
-    filter: blur(4px);
-    overflow: hidden;
-  }
-  .review-bar::after {
-    content: 'Unlock to read reviews';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Caveat', cursive;
-    font-size: 1rem;
-    color: #6b5a48;
-    background: rgba(249, 246, 240, 0.6);
-    filter: none;
-    cursor: pointer;
-    border-radius: 3px;
-  }
-  .review-bar:last-child {
-    margin-bottom: 0;
-  }
-
-  /* --- Second tape on reviews --- */
-  .torn-reviews::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    right: 60px;
-    transform: rotate(3deg);
-    width: 70px;
-    height: 24px;
-    background: rgba(200, 190, 170, 0.45);
-    border: 1px solid rgba(180, 170, 150, 0.25);
-    z-index: 5;
-  }
-
-  /* --- Modal --- */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(45, 36, 22, 0.55);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(3px);
-  }
-  .modal-overlay.active {
-    display: flex;
-  }
-  .modal-box {
-    background: #fff;
-    max-width: 380px;
-    width: 90%;
-    padding: 36px 30px 28px;
-    position: relative;
-    clip-path: polygon(
-      0% 3%, 3% 0%, 7% 4%, 11% 1%, 15% 3%, 20% 0%,
-      24% 3%, 28% 0%, 32% 4%, 36% 1%, 40% 3%, 44% 0%, 48% 4%,
-      52% 0%, 56% 3%, 60% 1%, 64% 4%, 68% 0%, 72% 3%, 76% 0%,
-      80% 4%, 84% 1%, 88% 3%, 92% 0%, 96% 4%, 100% 1%,
-      100% 97%, 96% 100%, 92% 97%, 88% 100%, 84% 97%, 80% 100%,
-      76% 97%, 72% 100%, 68% 97%, 64% 100%, 60% 97%, 56% 100%,
-      52% 97%, 48% 100%, 44% 97%, 40% 100%, 36% 97%, 32% 100%,
-      28% 97%, 24% 100%, 20% 97%, 16% 100%, 12% 97%, 8% 100%,
-      4% 97%, 0% 99%
-    );
-    box-shadow: 4px 5px 20px rgba(45, 36, 22, 0.3);
-    text-align: center;
-    transform: rotate(-0.5deg);
-    border: 2px solid #8b4513;
-    animation: modalIn 0.25s ease;
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: rotate(-0.5deg) scale(0.92); }
-    to { opacity: 1; transform: rotate(-0.5deg) scale(1); }
-  }
-  .modal-box h2 {
-    font-family: 'Caveat', cursive;
-    font-size: 1.6rem;
-    color: #2d2416;
-    margin-bottom: 10px;
-  }
-  .modal-box p {
-    font-family: 'Merriweather', serif;
-    font-size: 0.88rem;
-    color: #6b5a48;
-    margin-bottom: 22px;
-    line-height: 1.5;
-  }
-  .modal-close {
-    font-family: 'Caveat', cursive;
-    font-size: 1.15rem;
-    background: none;
-    border: 2px solid #8b4513;
-    color: #8b4513;
-    padding: 8px 28px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .modal-close:hover {
-    background: #8b4513;
-    color: #fff;
-  }
-
-  /* --- Responsive --- */
-  @media (max-width: 600px) {
-    body { padding: 24px 10px 40px; }
-    .torn { padding: 20px 18px 18px; max-width: 100%; }
-    .torn-name { padding: 28px 20px 24px; }
-    .torn-name h1 { font-size: 1.9rem; }
-    .torn-rating { margin-left: 80px; width: 180px; }
-    .torn-address, .torn-phone, .torn-hours, .torn-nav, .torn-reviews {
-      align-self: center;
-      margin-left: 0;
-      margin-right: 0;
-      max-width: 100%;
-    }
-    .modal-box { max-width: 320px; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Furniture repair, refinishing and antique restoration in Las Vegas.">
+  <title>Master’s Furniture Repair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="gallery.css">
 </head>
 <body>
+  <header class="topbar paper">
+    <a class="brand" href="#top" aria-label="Master's Furniture Repair home"><span>M</span><b>MASTER’S<small>FURNITURE REPAIR</small></b></a>
+    <button class="menu" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav>
+      <a href="#services">Services</a><a href="#work">Our Work</a><a href="#process">Process</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="phone icon-link" href="tel:+17029369776"><i data-lucide="phone"></i> (702) 936-9776</a>
+    <a class="button small" href="#contact">Get a Free Estimate</a>
+  </header>
 
-<div class="collage-container">
+  <main id="top">
+    <section class="hero charcoal">
+      <div class="spiral" aria-hidden="true"></div>
+      <div class="hero-copy torn paper reveal">
+        <span class="clip" aria-hidden="true"></span>
+        <p class="eyebrow">LAS VEGAS • FURNITURE RESTORATION</p>
+        <h1>Furniture worth keeping. Craftsmanship worth trusting.</h1>
+        <p>Expert repair, refinishing, veneer work, and restoration for the pieces that matter most.</p>
+        <div class="actions"><a class="button" href="#contact">Request an Estimate</a><a class="button outline" href="#work">View Our Work</a></div>
+        <p class="location icon-link"><i data-lucide="map-pin"></i> Las Vegas · Monday–Friday, 7AM–5PM</p>
+        <span class="scribble">good bones<br>last forever →</span>
+      </div>
+      <figure class="hero-photo photo-card reveal"><span class="tape t1"></span><span class="tape t2"></span><img src="images/project-table.jpeg" alt="Restored live-edge wood tabletop with artistic resin inlay"></figure>
+      <div class="olive-scrap" aria-hidden="true"></div>
+    </section>
 
-  <!-- Business Name Piece -->
-  <div class="torn torn-name">
-    <h1>Master's Furniture Repair</h1>
-    <div class="subtitle">Furniture Repair</div>
-  </div>
+    <section id="services" class="section paper torn-top">
+      <h2>Restored with care. Built to last.</h2>
+      <div class="cards">
+        <article class="note reveal"><span class="tape"></span><i class="service-icon" data-lucide="armchair"></i><h3>Furniture Repair</h3><p>Structural repairs, loose joints, broken parts, and more—built solid again.</p></article>
+        <article class="note reveal"><span class="tape"></span><i class="service-icon" data-lucide="paintbrush"></i><h3>Refinishing & Restaining</h3><p>Beautiful finishes that bring out the best in your wood and protect it for years.</p></article>
+        <article class="note reveal"><span class="tape"></span><i class="service-icon" data-lucide="archive-restore"></i><h3>Veneer & Antique Restoration</h3><p>Veneer repair, touch-ups, and careful restoration for cherished antique pieces.</p></article>
+      </div>
+    </section>
 
-  <!-- Rating Piece -->
-  <div class="torn torn-rating">
-    <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
-    <div class="number">4.6</div>
-    <div class="label">Google Rating</div>
-  </div>
+    <section id="work" class="section paper work">
+      <h2><span class="kraft-label">Recent transformations</span></h2>
+      <div class="gallery">
+        <figure class="photo-card tilt-left reveal"><span class="tape"></span><img src="images/project-restaurant.jpeg" alt="Refinished tables and seating in a restaurant"></figure>
+        <figure class="photo-card reveal"><span class="tape"></span><img src="images/project-deck.jpeg" alt="Freshly restored wood surface"></figure>
+        <figure class="photo-card tilt-right reveal"><span class="tape"></span><img src="images/project-doors.jpeg" alt="Wood doors prepared for refinishing"></figure>
+      </div>
+      <blockquote>“Fast, easy, professional repair. They fixed it perfectly.” <span>★★★★★</span></blockquote>
+    </section>
 
-  <!-- Address Piece -->
-  <div class="torn torn-address">
-    <div class="label">Where to find us</div>
-    <div class="value">3110 Polaris Ave Ste 40 & 41<br>Las Vegas, NV 89102</div>
-    <div class="attribute">Wheelchair accessible entrance</div>
-  </div>
+    <section class="hanging-gallery paper torn-top" aria-labelledby="gallery-title">
+      <div class="gallery-intro">
+        <p class="eyebrow">THE FULL WORKSHOP WALL</p>
+        <h2 id="gallery-title">Every project tells a story</h2>
+        <p>Scroll through the complete collection. Each photograph is clipped to the workshop line and moves with a barely-there natural sway.</p>
+      </div>
+      <div class="gallery-controls" aria-label="Gallery controls">
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="View previous projects"><i data-lucide="arrow-left"></i></button>
+        <span>Drag, swipe, scroll, or use the arrows</span>
+        <button class="gallery-arrow gallery-next" type="button" aria-label="View next projects"><i data-lucide="arrow-right"></i></button>
+      </div>
+      <div class="hanging-viewport" tabindex="0" aria-label="Scrollable restoration project gallery">
+      <div class="hanging-row">
+        <figure class="hanging-photo"><img src="images/gallery-01.png" alt="Furniture restoration project 1"><figcaption>Restored with care</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-02.png" alt="Furniture restoration project 2"><figcaption>Workshop detail</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-03.png" alt="Furniture restoration project 3"><figcaption>Made beautiful again</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-04.png" alt="Furniture restoration project 4"><figcaption>Precision repair</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-05.png" alt="Furniture restoration project 5"><figcaption>Old-world craft</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-06.png" alt="Furniture restoration project 6"><figcaption>Built to last</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-07.png" alt="Furniture restoration project 7"><figcaption>Attention to detail</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-08.png" alt="Furniture restoration project 8"><figcaption>Finish renewed</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-09.png" alt="Furniture restoration project 9"><figcaption>Craft in progress</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-10.png" alt="Furniture restoration project 10"><figcaption>Form restored</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-11.png" alt="Furniture restoration project 11"><figcaption>A second life</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-12.png" alt="Furniture restoration project 12"><figcaption>Surface perfected</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-13.png" alt="Furniture restoration project 13"><figcaption>Carefully refinished</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-14.png" alt="Furniture restoration project 14"><figcaption>Character preserved</figcaption></figure>
+        <figure class="hanging-photo"><img src="images/gallery-15.png" alt="Furniture restoration project 15"><figcaption>Ready for home</figcaption></figure>
+      </div>
+      </div>
+    </section>
 
-  <!-- Phone Piece -->
-  <div class="torn torn-phone">
-    <div class="label">Call us</div>
-    <a href="tel:+17029369776" onclick="openModal(event)">+1 702-936-9776</a>
-  </div>
+    <section id="process" class="section process torn-top">
+      <h2><span class="kraft-label">The restoration process</span></h2>
+      <div class="process-grid">
+        <div class="steps">
+          <article><b>01</b><i data-lucide="camera"></i><h3>Share Your Piece</h3><p>Send photos and details about the item and the issue you’re seeing.</p></article>
+          <article><b>02</b><i data-lucide="clipboard-list"></i><h3>Receive an Estimate</h3><p>We’ll review your piece and provide a clear, honest estimate.</p></article>
+          <article><b>03</b><i data-lucide="hammer"></i><h3>Expert Restoration</h3><p>Our skilled craftsman repairs and refinishes with precision and care.</p></article>
+          <article><b>04</b><i data-lucide="package-check"></i><h3>Delivery & Reveal</h3><p>We return your piece beautifully restored and built to last.</p></article>
+        </div>
+        <figure class="photo-card reveal"><span class="tape t1"></span><span class="tape t2"></span><img src="images/project-table.jpeg" alt="Furniture restoration work in progress"></figure>
+      </div>
+    </section>
 
-  <!-- Photo Piece -->
-  <div class="torn torn-photo">
-    <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWm22K-Va5B2drfMh4HTWFbg7rWj41OvCPsXbljUn3bsHiovd6SFU1rSdW-iiU6l6z-qcldElp26n1S7NrR1gsaJeS3umTmWnLl-MorW26XnW6fE36fpgusdda95Y8sDZuKv3kS0nA=w187-h140-k-no" alt="Master's Furniture Repair storefront">
-    <div class="photo-label">Our workshop</div>
-  </div>
+    <section class="detail paper torn-top">
+      <img src="images/project-deck.jpeg" alt="Close detail of richly restored wood grain">
+      <div class="kraft-note reveal"><h2>Craftsmanship in every detail</h2><p>From sturdy structural repairs to flawless finishes, we treat every piece with the respect it deserves.</p><p>Our work includes expert repair, refinishing, veneer work, and antique restoration—always focused on preserving beauty, function, and lasting value.</p><i class="sketch" data-lucide="armchair"></i></div>
+    </section>
 
-  <!-- Hours Piece -->
-  <div class="torn torn-hours">
-    <div class="label">Hours</div>
-    <div class="hours-text">Wednesday: 7:00 AM - 5:00 PM</div>
-  </div>
+    <section id="reviews" class="section paper reviews torn-top">
+      <h2>Trusted with pieces that matter</h2>
+      <div class="cards">
+        <blockquote class="note">“They brought our dining table back to life. The craftsmanship is outstanding.”<span>★★★★★</span></blockquote>
+        <blockquote class="note">“Fast, easy, professional repair. They fixed it perfectly.”<span>★★★★★</span></blockquote>
+        <blockquote class="note">“Honest, reliable, and meticulous attention to detail.”<span>★★★★★</span></blockquote>
+      </div>
+    </section>
 
-  <!-- Nav Piece -->
-  <div class="torn torn-nav">
-    <div class="nav-links">
-      <a href="#" onclick="openModal(event)">Services</a>
-      <a href="#" onclick="openModal(event)">Gallery</a>
-      <a href="#" onclick="openModal(event)">About</a>
-      <a href="#" onclick="openModal(event)">Contact</a>
-    </div>
-  </div>
+    <section id="contact" class="cta torn-top">
+      <i class="pencil-chair" data-lucide="armchair"></i><h2>Ready to restore what matters?</h2><p>Send us a few photos and tell us about your piece.</p>
+      <div class="actions"><a class="button icon-link" href="mailto:hello@example.com?subject=Furniture%20Repair%20Estimate"><i data-lucide="send"></i> Request a Free Estimate</a><a class="button outline light icon-link" href="tel:+17029369776"><i data-lucide="phone"></i> Call (702) 936-9776</a></div>
+    </section>
+  </main>
 
-  <!-- Reviews Piece -->
-  <div class="torn torn-reviews">
-    <div class="reviews-label">Customer Reviews</div>
-    <div class="review-bar" onclick="openModal(event)"></div>
-    <div class="review-bar" onclick="openModal(event)"></div>
-    <div class="review-bar" onclick="openModal(event)"></div>
-  </div>
-
-</div>
-
-<!-- Paywall Modal -->
-<div class="modal-overlay" id="paywallModal">
-  <div class="modal-box">
-    <h2>Full Access Required</h2>
-    <p>Upgrade to view all business details, reviews, photos, and contact information.</p>
-    <button class="modal-close" onclick="closeModal()">Close</button>
-  </div>
-</div>
-
-<script>
-  function openModal(e) {
-    e.preventDefault();
-    document.getElementById('paywallModal').classList.add('active');
-  }
-  function closeModal() {
-    document.getElementById('paywallModal').classList.remove('active');
-  }
-  document.getElementById('paywallModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-</script>
-
+  <footer class="paper">
+    <div class="brand"><span>M</span><b>MASTER’S<small>FURNITURE REPAIR</small></b></div>
+    <address><i data-lucide="map-pin"></i> 3110 Polaris Ave, Ste 40 & 41<br>Las Vegas, NV 89102<br><i data-lucide="clock-3"></i> Monday–Friday, 7AM–5PM<br><i data-lucide="phone"></i> <a href="tel:+17029369776">(702) 936-9776</a></address>
+    <div><b>Navigation</b><a href="#services">Services</a><a href="#work">Our Work</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></div>
+    <div><b>Services</b><span>Furniture Repair</span><span>Refinishing & Restaining</span><span>Veneer & Antique Restoration</span></div>
+    <small>© <span id="year"></span> Master’s Furniture Repair. All rights reserved.</small>
+  </footer>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
