@@ -777,8 +777,10 @@
         }
 
         async function startVerifiedCheckout(plan, options = {}) {
+            const checkoutWindow = window.open("about:blank", "_blank");
             const { data: { session } } = await portalSupabase.auth.getSession();
             if (!session?.user) {
+                checkoutWindow?.close();
                 pendingPanel = "subscriptionsPanel";
                 openPortal();
                 await updatePortal(null);
@@ -798,13 +800,19 @@
                 }
             });
             if (error || !data?.checkoutUrl || !data?.checkoutId) {
+                checkoutWindow?.close();
                 statusElement.className = "payment-state";
                 statusElement.textContent = data?.message || "We couldn’t start checkout. Please try again.";
                 return;
             }
             const pending = { checkoutId: data.checkoutId, planKey: plan.key, planLabel: plan.label, claimType: options.claimType || null };
             sessionStorage.setItem(PURCHASE_PENDING_KEY, JSON.stringify(pending));
-            window.open(data.checkoutUrl, "_blank", "noopener");
+            if (checkoutWindow) {
+                checkoutWindow.opener = null;
+                checkoutWindow.location.replace(data.checkoutUrl);
+            } else {
+                window.location.assign(data.checkoutUrl);
+            }
             await verifyPendingCheckout(pending, statusElement);
         }
 
