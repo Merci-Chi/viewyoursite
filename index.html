@@ -587,15 +587,11 @@
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name">$50/month</span><span class="plan-price">1 month plan</span></div><a class="plan-link" href="https://square.link/u/s2TANsa8" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">6 month plan · $180 billed every 6 months</span></div><a class="plan-link" href="https://square.link/u/F6Tx8EUc" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">$20/month</span><span class="plan-price">12 month plan · $240 billed every 12 months</span></div><a class="plan-link" href="https://square.link/u/YpNWBSJZ" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly">Choose</button></div>
                         </article>
                         <article class="plan-group">
                             <h4>Backend Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name">$60/month</span><span class="plan-price">1 month plan</span></div><a class="plan-link" href="https://square.link/u/RkUQIBGg" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">$40/month</span><span class="plan-price">6 month plan · $240 billed every 6 months</span></div><a class="plan-link" href="https://square.link/u/KTXBdTbR" target="_blank" rel="noopener">Choose</a></div>
-                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">12 month plan · $360 billed every 12 months</span></div><a class="plan-link" href="https://square.link/u/H5nLaKC0" target="_blank" rel="noopener">Choose</a></div>
+                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly">Choose</button></div>
                         </article>
                     </div>
                 </section>
@@ -667,18 +663,14 @@
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
-                { key: "standard-1", label: "$50/month — 1 month plan", url: "https://square.link/u/s2TANsa8" },
-                { key: "standard-6", label: "$30/month — 6 month plan · $180 billed every 6 months", url: "https://square.link/u/F6Tx8EUc" },
-                { key: "standard-12", label: "$20/month — 12 month plan · $240 billed every 12 months", url: "https://square.link/u/YpNWBSJZ" }
+                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
             ],
             backend: [
-                { key: "backend-1", label: "$60/month — 1 month plan", url: "https://square.link/u/RkUQIBGg" },
-                { key: "backend-6", label: "$40/month — 6 month plan · $240 billed every 6 months", url: "https://square.link/u/KTXBdTbR" },
-                { key: "backend-12", label: "$30/month — 12 month plan · $360 billed every 12 months", url: "https://square.link/u/H5nLaKC0" }
+                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly" }
             ]
         };
-        const checkoutPlansByUrl = new Map([
-            ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.url, plan])
+        const checkoutPlansByKey = new Map([
+            ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.key, plan])
         ]);
         function applyTheme(theme) {
             const isLight = theme === "light";
@@ -822,8 +814,8 @@
             await verifyPendingCheckout(pending, statusElement);
         }
 
-        document.querySelectorAll('a.plan-link[href^="https://square.link/"]').forEach(link => {
-            const plan = checkoutPlansByUrl.get(link.href);
+        document.querySelectorAll("[data-hosting-plan]").forEach(link => {
+            const plan = checkoutPlansByKey.get(link.dataset.hostingPlan);
             if (!plan) return;
             link.removeAttribute("target");
             link.addEventListener("click", event => {
