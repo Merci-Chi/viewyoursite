@@ -37,3 +37,57 @@
 
 /* Custom contact form controls. */
 .custom-select{position:relative;min-width:0}.custom-select-button{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:13px 15px;border:1px solid #cfd8ce;border-radius:9px;background:#fbfcfb;color:#747b77;text-align:left;cursor:pointer}.custom-select-button.has-value{color:var(--ink)}.custom-select-button svg{transition:transform .2s}.custom-select.open .custom-select-button{border-color:#6ca255;box-shadow:0 0 0 3px rgba(47,123,21,.11);background:#fff}.custom-select.open .custom-select-button svg{transform:rotate(180deg)}.custom-select-menu{position:absolute;z-index:20;top:calc(100% + 7px);right:0;left:0;display:none;overflow:hidden;padding:6px;border:1px solid #d5ddd4;border-radius:11px;background:#fff;box-shadow:0 16px 36px rgba(20,45,24,.16)}.custom-select.open .custom-select-menu{display:grid}.custom-select-menu button{padding:11px 12px;border:0;border-radius:7px;background:#fff;color:var(--ink);text-align:left;cursor:pointer}.custom-select-menu button:hover,.custom-select-menu button.selected{color:var(--green);background:#edf5e9}.contact-preference{margin:0;padding:0;border:0}.contact-preference legend{margin-bottom:7px;color:#4f5853;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.preference-toggle{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:5px;border:1px solid #d6ded5;border-radius:11px;background:#f5f7f4}.preference-option{display:flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:8px;border:0;border-radius:8px;background:transparent;color:#667069;font-size:.78rem;font-weight:800;cursor:pointer}.preference-option.active{color:#fff;background:var(--green);box-shadow:0 5px 12px rgba(47,123,21,.2)}.contact-value-field input{transition:opacity .15s}.btn-form svg{font-size:1.05rem}@media(max-width:560px){.preference-toggle{grid-template-columns:1fr}.preference-option{min-height:44px}}
+
+/* Public-site visual refresh: 60% white, 30% dark green, 10% light green. */
+:root{--green:#378f21;--green-dark:#123d28;--deep:#08291b;--soft:#e8f4df;--light-green:#b9dc9e;--shadow:0 18px 44px rgba(8,41,27,.11)}
+body{background:#fff}
+.section{padding:88px 0}
+.site-header{border-bottom-color:rgba(18,61,40,.12);box-shadow:0 8px 28px rgba(8,41,27,.07)}
+.btn{border-radius:12px}.btn-solid{background:linear-gradient(135deg,#4fae2e,#287a1a);box-shadow:0 10px 24px rgba(55,143,33,.28)}
+
+/* Rotating project-photo hero. */
+.hero{position:relative;isolation:isolate;min-height:610px;color:#fff;background:var(--deep);border:0}
+.hero-photo-rotator,.hero-overlay,.hero-photo{position:absolute;inset:0}
+.hero-photo-rotator{z-index:-3;overflow:hidden}
+.hero-photo{opacity:0;background-position:center;background-size:cover;animation:hero-photo-cycle 18s infinite ease-in-out;transform:scale(1.04)}
+.hero-photo-one{background-image:url("assets/tankless-water-heater-installation.jpg")}
+.hero-photo-two{background-image:url("assets/water-softener-installation.jpg");animation-delay:6s}
+.hero-photo-three{background-image:url("assets/tankless-installation-wide.jpg");animation-delay:12s}
+.hero-overlay{z-index:-2;background:linear-gradient(90deg,rgba(5,34,22,.94) 0%,rgba(9,48,30,.83) 48%,rgba(9,42,28,.35) 100%)}
+@keyframes hero-photo-cycle{0%{opacity:0;transform:scale(1.04)}5%,29%{opacity:1}34%,100%{opacity:0;transform:scale(1.12)}}
+.hero-grid{grid-template-columns:minmax(0,760px);min-height:610px}
+.hero-copy{padding:78px 0}.hero-art{display:none}
+.hero .eyebrow{color:var(--light-green)}
+.hero h1{max-width:760px;text-shadow:0 4px 28px rgba(0,0,0,.24)}
+.hero h1 span{color:#aee688}
+.hero .lead{max-width:640px;color:rgba(255,255,255,.84)}
+.hero .btn-outline{color:#fff;border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.hero .trust-row{max-width:760px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18)}
+.hero .trust-item>span{color:#b9e59e;border-color:#8cc56b;background:rgba(8,41,27,.42)}
+.hero .trust-item small{color:rgba(255,255,255,.7)}
+
+/* White content surfaces with light-green accents. */
+.services{background:#fff}.section-heading .eyebrow,.about .eyebrow{color:var(--green)}
+.service-card{border-color:#dce9d6;border-radius:20px;box-shadow:0 16px 40px rgba(8,41,27,.08);transition:transform .25s,box-shadow .25s}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(8,41,27,.14)}
+.service-icon{background:var(--soft)}
+.project-grid img{border-radius:18px;box-shadow:0 16px 34px rgba(8,41,27,.14)}
+.benefits-strip{border:0;background:var(--soft)}
+.benefits-grid{padding:22px 0}.benefits-grid span{border-color:#b8d5aa;background:#fff}
+.about{background:#fff}.owner-photo{outline:8px solid var(--soft)}
+
+/* Dark-green feature sections make up the secondary color block. */
+.special{background:var(--deep)}
+.special-bg{background:linear-gradient(90deg,rgba(8,41,27,.48),rgba(8,41,27,.97) 58%),url("assets/special-leaf.png") center/cover no-repeat}
+.offer-badge{border-color:#b9dc9e;background:rgba(74,157,43,.62)}
+.contact{color:#fff;border:0;background:radial-gradient(circle at 10% 10%,#1a5b38 0,var(--deep) 46%,#061f15 100%)}
+.contact .eyebrow{color:#b9dc9e}.contact-copy p:last-child{color:rgba(255,255,255,.72)}
+.contact-method{color:#fff;border-color:rgba(185,220,158,.22);background:rgba(255,255,255,.07);box-shadow:none;backdrop-filter:blur(6px)}
+.contact-method:hover{background:rgba(255,255,255,.12)}
+.method-icon{color:#173f20;background:#c7e6ae}.method-copy small{color:rgba(255,255,255,.65)}
+.estimate-form{color:var(--ink);border:0;border-top:6px solid var(--light-green);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.footer{background:#041b12;border-top-color:#78b75a}
+
+@media(max-width:800px){.hero,.hero-grid{min-height:560px}.hero-copy{padding:64px 0}.hero-overlay{background:linear-gradient(90deg,rgba(5,34,22,.94),rgba(9,48,30,.72))}.section{padding:70px 0}}
+@media(max-width:560px){.hero,.hero-grid{min-height:600px}.hero-copy{padding:58px 0}.hero .trust-row{padding-top:20px}.section{padding:60px 0}.project-grid img{border-radius:15px}.estimate-form{border-radius:18px}}
+@media(prefers-reduced-motion:reduce){.hero-photo{animation:none;opacity:0;transform:none}.hero-photo-one{opacity:1}}
