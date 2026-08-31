@@ -284,19 +284,18 @@
         .agreement-summary div { padding: .75rem; border: 1px solid #303030; border-radius: 9px; background: #1c1c1c; }
         .agreement-summary span { display:block; color:#888; font-size:.75rem; text-transform:uppercase; }
         .agreement-summary strong { display:block; margin-top:.2rem; }
-        .agreement-terms { max-height: 260px; overflow:auto; padding: 1rem; border:1px solid #303030; border-radius:10px; background:#111; color:#bbb; line-height:1.5; }
-        .agreement-terms h3 { margin: 0 0 .7rem; color:#eee; }
-        .agreement-terms ol { padding-left:1.25rem; }
-        .agreement-terms li { margin-bottom:.55rem; }
+        .agreement-document { padding: 1rem; border:1px solid #303030; border-radius:10px; background:#111; }
+        .agreement-document-link { color:#fff; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
+        .agreement-document p { margin:.65rem 0 0; color:#999; line-height:1.5; }
         .agreement-fields { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:1rem; }
         .agreement-fields label { color:#aaa; font-size:.85rem; }
         .agreement-fields input { margin-top:.35rem; }
         .agreement-consent { display:flex; align-items:flex-start; gap:.65rem; margin-top:1rem; color:#ccc; line-height:1.45; }
         .agreement-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:.15rem; accent-color:#f1f1f1; }
         .agreement-error { min-height:1.35rem; margin-top:.65rem; color:#e39a9a; }
-        body.light-mode .agreement-summary div, body.light-mode .agreement-terms { border-color:#d7d7d2; background:#fff; }
-        body.light-mode .agreement-terms, body.light-mode .agreement-consent, body.light-mode .agreement-fields label { color:#555; }
-        body.light-mode .agreement-terms h3 { color:#222; }
+        body.light-mode .agreement-summary div, body.light-mode .agreement-document { border-color:#d7d7d2; background:#fff; }
+        body.light-mode .agreement-document-link { color:#111; }
+        body.light-mode .agreement-consent, body.light-mode .agreement-fields label { color:#555; }
         .purchase-check { display: grid; width: 64px; height: 64px; margin: 0 auto 1.1rem; place-items: center; border-radius: 50%; background: #244424; color: #baf0ae; font-size: 2rem; }
         .purchase-dialog .portal-primary { width: 100%; margin-top: 1rem; }
         body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
@@ -632,22 +631,9 @@
                 <div><span>Billing</span><strong id="agreementBilling"></strong></div>
                 <div><span>Term</span><strong>Month-to-month · 30-day written cancellation notice</strong></div>
             </div>
-            <div class="agreement-terms" tabindex="0">
-                <h3>Hosting terms</h3>
-                <ol>
-                    <li>Payment is due on the same calendar date each month through Square. Hosting renews automatically one month at a time.</li>
-                    <li>Either party may end hosting with at least 30 days' written notice. Paid partial months are not prorated or refunded unless required by law.</li>
-                    <li>Late payment may result in website suspension after applicable notice or grace period. Suspension does not erase unpaid charges.</li>
-                    <li>Hosting includes the hosted website, SSL while supported and configured, the provider's backup process, and basic hosting support.</li>
-                    <li>Redesigns, new pages or features, large changes, migrations, custom coding, and significant repairs require a separate quote and approval.</li>
-                    <li>Domains and third-party services are separate unless expressly included. The client retains ownership of original business content it supplies.</li>
-                    <li>The client is responsible for supplied content and confirms it has all rights and permissions needed to publish it. Disputed, harmful, or illegal content may be restricted or removed.</li>
-                    <li>The client must protect credentials and promptly report suspected unauthorized access. Reasonable security is used, but uninterrupted or completely secure service is not guaranteed.</li>
-                    <li>Backups can be incomplete or unavailable and do not replace the client's own records. The provider is not responsible for failures caused by third parties or changes made by others.</li>
-                    <li>The client is responsible for its business, advertising, privacy, accessibility, communications, and other legal compliance.</li>
-                    <li>To the extent allowed by law, indirect, incidental, punitive, special, and consequential damages are excluded. Specific liability limits, file-retention/export details, and any separately negotiated terms must be recorded in writing.</li>
-                    <li>Nevada law governs. Electronic acceptance and signatures may be treated as originals, and the signer confirms authority to bind the named client.</li>
-                </ol>
+            <div class="agreement-document">
+                <a class="agreement-document-link" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Terms and Conditions</a>
+                <p>Open and review the complete 5-page agreement PDF before signing. Square will not open until this agreement is accepted and saved.</p>
             </div>
             <div class="agreement-fields">
                 <label>Full legal name<input id="agreementSignerName" type="text" autocomplete="name" required></label>
@@ -655,7 +641,7 @@
                 <label>Email<input id="agreementEmail" type="email" readonly required></label>
                 <label>Electronic signature<input id="agreementSignature" type="text" placeholder="Type your full legal name" required></label>
             </div>
-            <label class="agreement-consent"><input id="agreementConsent" type="checkbox" required><span>I have read and agree to these Web Hosting Client Agreement terms, authorize recurring billing for the selected plan, and intend my typed name to be my electronic signature.</span></label>
+            <label class="agreement-consent"><input id="agreementConsent" type="checkbox" required><span>I have read and agree to the <a class="agreement-document-link" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Terms and Conditions</a>, authorize recurring billing for the selected plan, and intend my typed name to be my electronic signature.</span></label>
             <p class="agreement-error" id="agreementError" role="alert"></p>
             <button class="portal-primary" id="agreementSubmit" type="submit">Agree, Sign &amp; Continue to Square</button>
         </form>
@@ -936,10 +922,10 @@
                 electronic_signature: signature,
                 plan_key: plan.key,
                 plan_label: plan.label,
-                terms_version: "2026-08-31",
+                terms_version: "Web Hosting Client Agreement (2026-08-31)",
                 signed_at: signedAt,
                 accepted: true,
-                agreement_snapshot: agreementForm.querySelector(".agreement-terms").innerText.trim()
+                agreement_snapshot: "Web-Hosting-Client-Agreement.pdf"
             }).select("id").single();
             if (error || !data?.id) {
                 checkoutWindow?.close();
