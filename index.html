@@ -654,7 +654,7 @@
             <div class="agreement-fields">
                 <label><span class="agreement-field-title"><span>Full legal name *</span></span><input id="agreementSignerName" type="text" placeholder="Enter your full legal name" autocomplete="name" required></label>
                 <label><span class="agreement-field-title"><span>Business name</span><span class="agreement-optional">Optional</span></span><input id="agreementBusinessName" type="text" placeholder="Enter business name" autocomplete="organization"></label>
-                <label class="agreement-email-field"><span class="agreement-field-title"><span>Email *</span></span><input id="agreementEmail" type="email" readonly required></label>
+                <label class="agreement-email-field"><span class="agreement-field-title"><span>Email *</span></span><input id="agreementEmail" type="email" placeholder="Enter the email for your signed agreement" autocomplete="email" required></label>
                 <div class="signature-field"><span class="agreement-field-title"><span>Signature *</span></span>
                     <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas><div class="signature-actions"><button class="signature-clear" id="agreementSignatureClear" type="button">Clear</button></div></div>
                     <input id="agreementSignature" type="hidden" required>
@@ -1003,7 +1003,7 @@
                 user_id: session.user.id,
                 signer_name: signerName,
                 business_name: document.getElementById("agreementBusinessName").value.trim() || signerName,
-                signer_email: session.user.email,
+                signer_email: document.getElementById("agreementEmail").value.trim(),
                 electronic_signature: signature,
                 plan_key: plan.key,
                 plan_label: plan.label,
