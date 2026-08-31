@@ -278,6 +278,25 @@
         .payment-state.verifying { color: #e5c875; }
         .payment-state.verified { color: #9bd38f; }
         .purchase-dialog { width: min(460px, 100%); text-align: center; }
+        .agreement-dialog { width: min(780px, 100%); }
+        .agreement-dialog header { margin: 0 2.5rem 1rem 0; text-align: left; }
+        .agreement-summary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem; margin-bottom: 1rem; }
+        .agreement-summary div { padding: .75rem; border: 1px solid #303030; border-radius: 9px; background: #1c1c1c; }
+        .agreement-summary span { display:block; color:#888; font-size:.75rem; text-transform:uppercase; }
+        .agreement-summary strong { display:block; margin-top:.2rem; }
+        .agreement-terms { max-height: 260px; overflow:auto; padding: 1rem; border:1px solid #303030; border-radius:10px; background:#111; color:#bbb; line-height:1.5; }
+        .agreement-terms h3 { margin: 0 0 .7rem; color:#eee; }
+        .agreement-terms ol { padding-left:1.25rem; }
+        .agreement-terms li { margin-bottom:.55rem; }
+        .agreement-fields { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:1rem; }
+        .agreement-fields label { color:#aaa; font-size:.85rem; }
+        .agreement-fields input { margin-top:.35rem; }
+        .agreement-consent { display:flex; align-items:flex-start; gap:.65rem; margin-top:1rem; color:#ccc; line-height:1.45; }
+        .agreement-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:.15rem; accent-color:#f1f1f1; }
+        .agreement-error { min-height:1.35rem; margin-top:.65rem; color:#e39a9a; }
+        body.light-mode .agreement-summary div, body.light-mode .agreement-terms { border-color:#d7d7d2; background:#fff; }
+        body.light-mode .agreement-terms, body.light-mode .agreement-consent, body.light-mode .agreement-fields label { color:#555; }
+        body.light-mode .agreement-terms h3 { color:#222; }
         .purchase-check { display: grid; width: 64px; height: 64px; margin: 0 auto 1.1rem; place-items: center; border-radius: 50%; background: #244424; color: #baf0ae; font-size: 2rem; }
         .purchase-dialog .portal-primary { width: 100%; margin-top: 1rem; }
         body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
@@ -298,6 +317,7 @@
         .plan-link { flex: 0 0 auto; margin-top: 0; padding: .55rem .8rem; font-size: .85rem; }
 
         @media (max-width: 700px) {
+            .agreement-summary, .agreement-fields { grid-template-columns:1fr; }
             h1 {
                 font-size: 2rem;
             }
@@ -599,6 +619,48 @@
         </section>
     </div>
 
+    <section class="portal-overlay" id="agreementOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="agreementTitle">
+        <form class="portal-dialog agreement-dialog" id="agreementForm">
+            <button class="portal-close" id="agreementClose" type="button" aria-label="Close">×</button>
+            <header>
+                <h2 id="agreementTitle">Web Hosting Client Agreement</h2>
+                <p class="portal-description">Review and electronically sign before continuing to Square.</p>
+            </header>
+            <div class="agreement-summary">
+                <div><span>Provider</span><strong>Steady Hands Operations</strong></div>
+                <div><span>Selected service</span><strong id="agreementPlan"></strong></div>
+                <div><span>Billing</span><strong id="agreementBilling"></strong></div>
+                <div><span>Term</span><strong>Month-to-month · 30-day written cancellation notice</strong></div>
+            </div>
+            <div class="agreement-terms" tabindex="0">
+                <h3>Hosting terms</h3>
+                <ol>
+                    <li>Payment is due on the same calendar date each month through Square. Hosting renews automatically one month at a time.</li>
+                    <li>Either party may end hosting with at least 30 days' written notice. Paid partial months are not prorated or refunded unless required by law.</li>
+                    <li>Late payment may result in website suspension after applicable notice or grace period. Suspension does not erase unpaid charges.</li>
+                    <li>Hosting includes the hosted website, SSL while supported and configured, the provider's backup process, and basic hosting support.</li>
+                    <li>Redesigns, new pages or features, large changes, migrations, custom coding, and significant repairs require a separate quote and approval.</li>
+                    <li>Domains and third-party services are separate unless expressly included. The client retains ownership of original business content it supplies.</li>
+                    <li>The client is responsible for supplied content and confirms it has all rights and permissions needed to publish it. Disputed, harmful, or illegal content may be restricted or removed.</li>
+                    <li>The client must protect credentials and promptly report suspected unauthorized access. Reasonable security is used, but uninterrupted or completely secure service is not guaranteed.</li>
+                    <li>Backups can be incomplete or unavailable and do not replace the client's own records. The provider is not responsible for failures caused by third parties or changes made by others.</li>
+                    <li>The client is responsible for its business, advertising, privacy, accessibility, communications, and other legal compliance.</li>
+                    <li>To the extent allowed by law, indirect, incidental, punitive, special, and consequential damages are excluded. Specific liability limits, file-retention/export details, and any separately negotiated terms must be recorded in writing.</li>
+                    <li>Nevada law governs. Electronic acceptance and signatures may be treated as originals, and the signer confirms authority to bind the named client.</li>
+                </ol>
+            </div>
+            <div class="agreement-fields">
+                <label>Full legal name<input id="agreementSignerName" type="text" autocomplete="name" required></label>
+                <label>Business / client name<input id="agreementBusinessName" type="text" autocomplete="organization" required></label>
+                <label>Email<input id="agreementEmail" type="email" readonly required></label>
+                <label>Electronic signature<input id="agreementSignature" type="text" placeholder="Type your full legal name" required></label>
+            </div>
+            <label class="agreement-consent"><input id="agreementConsent" type="checkbox" required><span>I have read and agree to these Web Hosting Client Agreement terms, authorize recurring billing for the selected plan, and intend my typed name to be my electronic signature.</span></label>
+            <p class="agreement-error" id="agreementError" role="alert"></p>
+            <button class="portal-primary" id="agreementSubmit" type="submit">Agree, Sign &amp; Continue to Square</button>
+        </form>
+    </section>
+
     <section class="portal-overlay" id="purchaseCompleteOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="purchaseCompleteTitle">
         <div class="portal-dialog purchase-dialog">
             <div class="purchase-check" aria-hidden="true">✓</div>
@@ -652,6 +714,9 @@
         const submitClaimButton = document.getElementById("submitClaimButton");
         const purchaseCompleteOverlay = document.getElementById("purchaseCompleteOverlay");
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
+        const agreementOverlay = document.getElementById("agreementOverlay");
+        const agreementForm = document.getElementById("agreementForm");
+        const agreementError = document.getElementById("agreementError");
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -661,6 +726,7 @@
         let pendingPanel = "accountPanel";
         let currentClientSiteUrl = "";
         const claimPlanSelections = new Map();
+        let pendingAgreementCheckout = null;
         const hostingCheckoutPlans = {
             standard: [
                 { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
@@ -775,7 +841,7 @@
         }
 
         async function startVerifiedCheckout(plan, options = {}) {
-            const checkoutWindow = window.open("about:blank", "_blank");
+            const checkoutWindow = options.checkoutWindow || window.open("about:blank", "_blank");
             const { data: { session } } = await portalSupabase.auth.getSession();
             if (!session?.user) {
                 checkoutWindow?.close();
@@ -793,6 +859,7 @@
                 body: {
                     action: "create-checkout",
                     planKey: plan.key,
+                    agreementId: options.agreementId,
                     discountCode: options.discountCode || null,
                     returnUrl: `${window.location.origin}${window.location.pathname}?square_checkout=return`
                 }
@@ -814,6 +881,80 @@
             await verifyPendingCheckout(pending, statusElement);
         }
 
+        async function requestAgreement(plan, options = {}) {
+            const { data: { session } } = await portalSupabase.auth.getSession();
+            if (!session?.user) {
+                pendingPanel = "subscriptionsPanel";
+                openPortal();
+                await updatePortal(null);
+                loginMessage.textContent = "Log in first so your signed agreement and Square subscription can be linked to your account.";
+                return;
+            }
+            pendingAgreementCheckout = { plan, options };
+            const planAmount = plan.label.match(/\$[\d.]+\/month/i)?.[0] || plan.label;
+            document.getElementById("agreementPlan").textContent = plan.label;
+            document.getElementById("agreementBilling").textContent = `${planAmount} · recurring card payment through Square`;
+            document.getElementById("agreementEmail").value = session.user.email || "";
+            document.getElementById("agreementSignerName").value = session.user.user_metadata?.full_name || "";
+            document.getElementById("agreementBusinessName").value = "";
+            document.getElementById("agreementSignature").value = "";
+            document.getElementById("agreementConsent").checked = false;
+            agreementError.textContent = "";
+            agreementOverlay.hidden = false;
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeAgreement() {
+            agreementOverlay.hidden = true;
+            pendingAgreementCheckout = null;
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("agreementClose").addEventListener("click", closeAgreement);
+        agreementOverlay.addEventListener("click", event => { if (event.target === agreementOverlay) closeAgreement(); });
+        agreementForm.addEventListener("submit", async event => {
+            event.preventDefault();
+            if (!pendingAgreementCheckout) return;
+            const signerName = document.getElementById("agreementSignerName").value.trim();
+            const signature = document.getElementById("agreementSignature").value.trim();
+            if (signature.toLocaleLowerCase() !== signerName.toLocaleLowerCase()) {
+                agreementError.textContent = "Your electronic signature must match your full legal name.";
+                return;
+            }
+            const submit = document.getElementById("agreementSubmit");
+            const checkoutWindow = window.open("about:blank", "_blank");
+            submit.disabled = true;
+            submit.textContent = "Saving signed agreement…";
+            const { plan, options } = pendingAgreementCheckout;
+            const { data: { session } } = await portalSupabase.auth.getSession();
+            const signedAt = new Date().toISOString();
+            const { data, error } = await portalSupabase.from("hosting_agreements").insert({
+                user_id: session.user.id,
+                signer_name: signerName,
+                business_name: document.getElementById("agreementBusinessName").value.trim(),
+                signer_email: session.user.email,
+                electronic_signature: signature,
+                plan_key: plan.key,
+                plan_label: plan.label,
+                terms_version: "2026-08-31",
+                signed_at: signedAt,
+                accepted: true,
+                agreement_snapshot: agreementForm.querySelector(".agreement-terms").innerText.trim()
+            }).select("id").single();
+            if (error || !data?.id) {
+                checkoutWindow?.close();
+                agreementError.textContent = error?.message || "The agreement could not be saved. Square checkout was not opened.";
+                submit.disabled = false;
+                submit.textContent = "Agree, Sign & Continue to Square";
+                return;
+            }
+            agreementOverlay.hidden = true;
+            pendingAgreementCheckout = null;
+            submit.disabled = false;
+            submit.textContent = "Agree, Sign & Continue to Square";
+            await startVerifiedCheckout(plan, { ...options, agreementId: data.id, checkoutWindow });
+        });
+
         document.querySelectorAll("[data-hosting-plan]").forEach(link => {
             const plan = checkoutPlansByKey.get(link.dataset.hostingPlan);
             if (!plan) return;
@@ -826,7 +967,7 @@
                         claimPlanSelections.set(type, { plan, confirmed: false });
                     });
                 }
-                startVerifiedCheckout(plan, {
+                requestAgreement(plan, {
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
                 });
@@ -844,7 +985,7 @@
                         claimPlanSelections.set(type, { plan: discountPlan, confirmed: false });
                     });
                 }
-                startVerifiedCheckout(discountPlan, {
+                requestAgreement(discountPlan, {
                     discountCode: code,
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
@@ -945,7 +1086,7 @@
                         claimPlanSelections.set(type, { plan, confirmed: false });
                         selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
-                        startVerifiedCheckout(plan, { claimType: type, statusElement: selectedNote });
+                        requestAgreement(plan, { claimType: type, statusElement: selectedNote });
                     });
                     row.append(copy, chooseButton);
                     group.appendChild(row);
