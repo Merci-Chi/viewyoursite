@@ -280,20 +280,23 @@
         .purchase-dialog { width: min(460px, 100%); text-align: center; }
         .agreement-dialog { width: min(780px, 100%); }
         .agreement-dialog header { margin: 0 2.5rem 1rem 0; text-align: left; }
-        .agreement-summary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .65rem; margin-bottom: 1rem; }
-        .agreement-summary div { padding: .75rem; border: 1px solid #303030; border-radius: 9px; background: #1c1c1c; }
-        .agreement-summary span { display:block; color:#888; font-size:.75rem; text-transform:uppercase; }
-        .agreement-summary strong { display:block; margin-top:.2rem; }
         .agreement-document { padding: 1rem; border:1px solid #303030; border-radius:10px; background:#111; }
         .agreement-document-link { color:#fff; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
         .agreement-document p { margin:.65rem 0 0; color:#999; line-height:1.5; }
         .agreement-fields { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:1rem; }
-        .agreement-fields label { color:#aaa; font-size:.85rem; }
+        .agreement-fields label { display:grid; gap:.4rem; color:#ddd; font-size:.88rem; font-weight:700; }
         .agreement-fields input { margin-top:.35rem; }
+        .agreement-optional { color:#777; font-size:.78rem; font-weight:500; }
+        .agreement-email-note { color:#888; font-size:.76rem; font-weight:500; line-height:1.35; }
+        .signature-field { grid-column:1 / -1; }
+        .signature-pad-wrap { overflow:hidden; border:1px solid #3a3a3a; border-radius:10px; background:#fff; }
+        .signature-pad { display:block; width:100%; height:150px; cursor:crosshair; touch-action:none; }
+        .signature-actions { display:flex; justify-content:flex-end; margin-top:.45rem; }
+        .signature-clear { padding:.4rem .65rem; border:1px solid #444; border-radius:7px; background:transparent; color:#aaa; cursor:pointer; font:inherit; font-size:.78rem; }
         .agreement-consent { display:flex; align-items:flex-start; gap:.65rem; margin-top:1rem; color:#ccc; line-height:1.45; }
         .agreement-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:.15rem; accent-color:#f1f1f1; }
         .agreement-error { min-height:1.35rem; margin-top:.65rem; color:#e39a9a; }
-        body.light-mode .agreement-summary div, body.light-mode .agreement-document { border-color:#d7d7d2; background:#fff; }
+        body.light-mode .agreement-document { border-color:#d7d7d2; background:#fff; }
         body.light-mode .agreement-document-link { color:#111; }
         body.light-mode .agreement-consent, body.light-mode .agreement-fields label { color:#555; }
         .purchase-check { display: grid; width: 64px; height: 64px; margin: 0 auto 1.1rem; place-items: center; border-radius: 50%; background: #244424; color: #baf0ae; font-size: 2rem; }
@@ -316,7 +319,7 @@
         .plan-link { flex: 0 0 auto; margin-top: 0; padding: .55rem .8rem; font-size: .85rem; }
 
         @media (max-width: 700px) {
-            .agreement-summary, .agreement-fields { grid-template-columns:1fr; }
+            .agreement-fields { grid-template-columns:1fr; }
             h1 {
                 font-size: 2rem;
             }
@@ -625,21 +628,19 @@
                 <h2 id="agreementTitle">Web Hosting Client Agreement</h2>
                 <p class="portal-description">Review and electronically sign before continuing to Square.</p>
             </header>
-            <div class="agreement-summary">
-                <div><span>Provider</span><strong>Steady Hands Operations</strong></div>
-                <div><span>Selected service</span><strong id="agreementPlan"></strong></div>
-                <div><span>Billing</span><strong id="agreementBilling"></strong></div>
-                <div><span>Term</span><strong>Month-to-month · 30-day written cancellation notice</strong></div>
-            </div>
             <div class="agreement-document">
                 <a class="agreement-document-link" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Terms and Conditions</a>
                 <p>Open and review the complete 5-page agreement PDF before signing. Square will not open until this agreement is accepted and saved.</p>
             </div>
             <div class="agreement-fields">
                 <label>Full legal name<input id="agreementSignerName" type="text" autocomplete="name" required></label>
-                <label>Business / client name<input id="agreementBusinessName" type="text" autocomplete="organization" required></label>
-                <label>Email<input id="agreementEmail" type="email" readonly required></label>
-                <label>Electronic signature<input id="agreementSignature" type="text" placeholder="Type your full legal name" required></label>
+                <label>Business name <span class="agreement-optional">Optional</span><input id="agreementBusinessName" type="text" autocomplete="organization"></label>
+                <label>Email<input id="agreementEmail" type="email" readonly required><span class="agreement-email-note">A copy of the signed agreement will be sent here.</span></label>
+                <label class="signature-field">Signature
+                    <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas></div>
+                    <div class="signature-actions"><button class="signature-clear" id="agreementSignatureClear" type="button">Clear signature</button></div>
+                    <input id="agreementSignature" type="hidden" required>
+                </label>
             </div>
             <label class="agreement-consent"><input id="agreementConsent" type="checkbox" required><span>I have read and agree to the <a class="agreement-document-link" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Terms and Conditions</a>, authorize recurring billing for the selected plan, and intend my typed name to be my electronic signature.</span></label>
             <p class="agreement-error" id="agreementError" role="alert"></p>
@@ -703,6 +704,11 @@
         const agreementOverlay = document.getElementById("agreementOverlay");
         const agreementForm = document.getElementById("agreementForm");
         const agreementError = document.getElementById("agreementError");
+        const agreementSignaturePad = document.getElementById("agreementSignaturePad");
+        const agreementSignatureInput = document.getElementById("agreementSignature");
+        const agreementSignatureContext = agreementSignaturePad.getContext("2d");
+        let agreementSignatureDrawing = false;
+        let agreementSignatureHasInk = false;
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -713,6 +719,53 @@
         let currentClientSiteUrl = "";
         const claimPlanSelections = new Map();
         let pendingAgreementCheckout = null;
+
+        function sizeAgreementSignaturePad() {
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            const rect = agreementSignaturePad.getBoundingClientRect();
+            agreementSignaturePad.width = Math.max(1, Math.round(rect.width * ratio));
+            agreementSignaturePad.height = Math.max(1, Math.round(rect.height * ratio));
+            agreementSignatureContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+            agreementSignatureContext.lineWidth = 2.25;
+            agreementSignatureContext.lineCap = "round";
+            agreementSignatureContext.lineJoin = "round";
+            agreementSignatureContext.strokeStyle = "#111";
+        }
+
+        function clearAgreementSignature() {
+            sizeAgreementSignaturePad();
+            agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
+            agreementSignatureInput.value = "";
+            agreementSignatureHasInk = false;
+        }
+
+        function signaturePoint(event) {
+            const rect = agreementSignaturePad.getBoundingClientRect();
+            return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+        }
+
+        agreementSignaturePad.addEventListener("pointerdown", event => {
+            agreementSignatureDrawing = true;
+            agreementSignaturePad.setPointerCapture(event.pointerId);
+            const point = signaturePoint(event);
+            agreementSignatureContext.beginPath();
+            agreementSignatureContext.moveTo(point.x, point.y);
+        });
+        agreementSignaturePad.addEventListener("pointermove", event => {
+            if (!agreementSignatureDrawing) return;
+            const point = signaturePoint(event);
+            agreementSignatureContext.lineTo(point.x, point.y);
+            agreementSignatureContext.stroke();
+            agreementSignatureHasInk = true;
+        });
+        function finishAgreementSignature() {
+            if (!agreementSignatureDrawing) return;
+            agreementSignatureDrawing = false;
+            if (agreementSignatureHasInk) agreementSignatureInput.value = agreementSignaturePad.toDataURL("image/png");
+        }
+        agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
+        agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
+        document.getElementById("agreementSignatureClear").addEventListener("click", clearAgreementSignature);
         const hostingCheckoutPlans = {
             standard: [
                 { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
@@ -877,17 +930,15 @@
                 return;
             }
             pendingAgreementCheckout = { plan, options };
-            const planAmount = plan.label.match(/\$[\d.]+\/month/i)?.[0] || plan.label;
-            document.getElementById("agreementPlan").textContent = plan.label;
-            document.getElementById("agreementBilling").textContent = `${planAmount} · recurring card payment through Square`;
             document.getElementById("agreementEmail").value = session.user.email || "";
             document.getElementById("agreementSignerName").value = session.user.user_metadata?.full_name || "";
             document.getElementById("agreementBusinessName").value = "";
-            document.getElementById("agreementSignature").value = "";
+            clearAgreementSignature();
             document.getElementById("agreementConsent").checked = false;
             agreementError.textContent = "";
             agreementOverlay.hidden = false;
             document.body.style.overflow = "hidden";
+            window.requestAnimationFrame(clearAgreementSignature);
         }
 
         function closeAgreement() {
@@ -902,9 +953,9 @@
             event.preventDefault();
             if (!pendingAgreementCheckout) return;
             const signerName = document.getElementById("agreementSignerName").value.trim();
-            const signature = document.getElementById("agreementSignature").value.trim();
-            if (signature.toLocaleLowerCase() !== signerName.toLocaleLowerCase()) {
-                agreementError.textContent = "Your electronic signature must match your full legal name.";
+            const signature = document.getElementById("agreementSignature").value;
+            if (!signature) {
+                agreementError.textContent = "Please sign inside the signature box before continuing.";
                 return;
             }
             const submit = document.getElementById("agreementSubmit");
@@ -917,7 +968,7 @@
             const { data, error } = await portalSupabase.from("hosting_agreements").insert({
                 user_id: session.user.id,
                 signer_name: signerName,
-                business_name: document.getElementById("agreementBusinessName").value.trim(),
+                business_name: document.getElementById("agreementBusinessName").value.trim() || signerName,
                 signer_email: session.user.email,
                 electronic_signature: signature,
                 plan_key: plan.key,
