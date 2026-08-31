@@ -303,8 +303,7 @@
         .signature-pad-wrap { position:relative; overflow:hidden; border:1px solid #d5d5d5; border-radius:10px; background:#fff; }
         .signature-pad-wrap::after { content:""; position:absolute; right:18px; bottom:20px; left:18px; border-bottom:1px dashed #c8c8c8; pointer-events:none; }
         .signature-pad { display:block; width:100%; height:145px; cursor:crosshair; touch-action:none; }
-        .signature-actions { position:absolute; z-index:2; top:.65rem; right:.65rem; margin:0; }
-        .signature-clear { padding:.4rem .65rem; border:1px solid #d0d0d0; border-radius:7px; background:#fff; color:#666; cursor:pointer; font:inherit; font-size:.78rem; }
+        .signature-pad path { fill:none; stroke:#111; stroke-width:2.25; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
         .agreement-consent { display:flex; align-items:flex-start; gap:.65rem; margin-top:1rem; color:#ccc; line-height:1.45; }
         .agreement-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:.15rem; accent-color:#f1f1f1; }
         .agreement-error { min-height:1.35rem; margin-top:.65rem; color:#e39a9a; }
@@ -654,7 +653,7 @@
                 <label><span class="agreement-field-title"><span>Business name</span><span class="agreement-optional">Optional</span></span><input id="agreementBusinessName" type="text" placeholder="Enter business name" autocomplete="organization"></label>
                 <label class="agreement-email-field"><span class="agreement-field-title"><span>Email *</span></span><input id="agreementEmail" type="email" readonly required></label>
                 <label class="signature-field"><span class="agreement-field-title"><span>Signature *</span></span>
-                    <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas><div class="signature-actions"><button class="signature-clear" id="agreementSignatureClear" type="button">Clear</button></div></div>
+                    <div class="signature-pad-wrap"><svg class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature" role="img"></svg></div>
                     <input id="agreementSignature" type="hidden" required>
                 </label>
             </div>
@@ -722,12 +721,9 @@
         const agreementError = document.getElementById("agreementError");
         const agreementSignaturePad = document.getElementById("agreementSignaturePad");
         const agreementSignatureInput = document.getElementById("agreementSignature");
-        const agreementSignatureContext = agreementSignaturePad.getContext("2d");
         let agreementSignatureDrawing = false;
         let agreementSignatureHasInk = false;
-        let agreementSignatureStrokes = [];
-        let agreementCurrentStroke = null;
-        let agreementSignatureRatio = 1;
+        let agreementSignaturePath = null;
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -739,37 +735,12 @@
         const claimPlanSelections = new Map();
         let pendingAgreementCheckout = null;
 
-        function sizeAgreementSignaturePad() {
-            agreementSignatureRatio = Math.max(window.devicePixelRatio || 1, 1);
+        function prepareAgreementSignaturePad() {
             const rect = agreementSignaturePad.getBoundingClientRect();
-            agreementSignaturePad.width = Math.max(1, Math.round(rect.width * agreementSignatureRatio));
-            agreementSignaturePad.height = Math.max(1, Math.round(rect.height * agreementSignatureRatio));
-            drawAgreementSignature();
-        }
-
-        function drawAgreementSignature() {
-            agreementSignatureContext.setTransform(1, 0, 0, 1, 0, 0);
-            agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
-            agreementSignatureContext.setTransform(agreementSignatureRatio, 0, 0, agreementSignatureRatio, 0, 0);
-            agreementSignatureContext.lineWidth = 2.25;
-            agreementSignatureContext.lineCap = "round";
-            agreementSignatureContext.lineJoin = "round";
-            agreementSignatureContext.strokeStyle = "#111";
-            agreementSignatureStrokes.forEach(stroke => {
-                if (!stroke.length) return;
-                agreementSignatureContext.beginPath();
-                agreementSignatureContext.moveTo(stroke[0].x, stroke[0].y);
-                stroke.slice(1).forEach(point => agreementSignatureContext.lineTo(point.x, point.y));
-                agreementSignatureContext.stroke();
-            });
-        }
-
-        function clearAgreementSignature() {
-            agreementSignatureStrokes = [];
-            agreementCurrentStroke = null;
-            sizeAgreementSignaturePad();
-            agreementSignatureInput.value = "";
-            agreementSignatureHasInk = false;
+            if (!agreementSignaturePad.hasAttribute("viewBox") && rect.width && rect.height) {
+                agreementSignaturePad.setAttribute("viewBox", `0 0 ${rect.width} ${rect.height}`);
+                agreementSignaturePad.setAttribute("preserveAspectRatio", "none");
+            }
         }
 
         function signaturePoint(event) {
@@ -778,31 +749,34 @@
         }
 
         agreementSignaturePad.addEventListener("pointerdown", event => {
+            prepareAgreementSignaturePad();
             agreementSignatureDrawing = true;
             agreementSignaturePad.setPointerCapture(event.pointerId);
             const point = signaturePoint(event);
-            agreementCurrentStroke = [point];
-            agreementSignatureStrokes.push(agreementCurrentStroke);
+            agreementSignaturePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            agreementSignaturePath.setAttribute("d", `M ${point.x} ${point.y}`);
+            agreementSignaturePad.appendChild(agreementSignaturePath);
             event.preventDefault();
         });
         agreementSignaturePad.addEventListener("pointermove", event => {
-            if (!agreementSignatureDrawing || !agreementCurrentStroke) return;
-            agreementCurrentStroke.push(signaturePoint(event));
-            drawAgreementSignature();
+            if (!agreementSignatureDrawing || !agreementSignaturePath) return;
+            const point = signaturePoint(event);
+            agreementSignaturePath.setAttribute("d", `${agreementSignaturePath.getAttribute("d")} L ${point.x} ${point.y}`);
             agreementSignatureHasInk = true;
             event.preventDefault();
         });
         function finishAgreementSignature() {
             if (!agreementSignatureDrawing) return;
             agreementSignatureDrawing = false;
-            agreementCurrentStroke = null;
-            drawAgreementSignature();
-            if (agreementSignatureHasInk) agreementSignatureInput.value = agreementSignaturePad.toDataURL("image/png");
+            agreementSignaturePath = null;
+            if (agreementSignatureHasInk) {
+                const serialized = new XMLSerializer().serializeToString(agreementSignaturePad);
+                agreementSignatureInput.value = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(serialized)}`;
+            }
         }
         agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
         agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
         agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
-        document.getElementById("agreementSignatureClear").addEventListener("click", clearAgreementSignature);
         const hostingCheckoutPlans = {
             standard: [
                 { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
@@ -974,7 +948,7 @@
             agreementError.textContent = "";
             agreementOverlay.hidden = false;
             document.body.style.overflow = "hidden";
-            clearAgreementSignature();
+            prepareAgreementSignaturePad();
         }
 
         function closeAgreement() {
