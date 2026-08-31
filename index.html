@@ -970,12 +970,11 @@
             document.getElementById("agreementEmail").value = session.user.email || "";
             document.getElementById("agreementSignerName").value = session.user.user_metadata?.full_name || "";
             document.getElementById("agreementBusinessName").value = "";
-            clearAgreementSignature();
             document.getElementById("agreementConsent").checked = false;
             agreementError.textContent = "";
             agreementOverlay.hidden = false;
             document.body.style.overflow = "hidden";
-            window.requestAnimationFrame(clearAgreementSignature);
+            clearAgreementSignature();
         }
 
         function closeAgreement() {
