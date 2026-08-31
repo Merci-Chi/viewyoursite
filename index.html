@@ -303,6 +303,9 @@
         .signature-pad-wrap { position:relative; overflow:hidden; border:1px solid #d5d5d5; border-radius:10px; background:#fff; }
         .signature-pad-wrap::after { content:""; position:absolute; right:18px; bottom:20px; left:18px; border-bottom:1px dashed #c8c8c8; pointer-events:none; }
         .signature-pad { display:block; width:100%; height:145px; cursor:crosshair; touch-action:none; }
+        .signature-actions { position:absolute; z-index:2; top:.65rem; right:.65rem; }
+        .signature-clear { padding:.4rem .7rem; border:1px solid #d0d0d0; border-radius:7px; background:#fff; color:#666; cursor:pointer; font:inherit; font-size:.78rem; }
+        .signature-clear:hover { border-color:#aaa; color:#222; }
         .agreement-consent { display:flex; align-items:flex-start; gap:.65rem; margin-top:1rem; color:#ccc; line-height:1.45; }
         .agreement-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:.15rem; accent-color:#f1f1f1; }
         .agreement-error { min-height:1.35rem; margin-top:.65rem; color:#e39a9a; }
@@ -652,7 +655,7 @@
                 <label><span class="agreement-field-title"><span>Business name</span><span class="agreement-optional">Optional</span></span><input id="agreementBusinessName" type="text" placeholder="Enter business name" autocomplete="organization"></label>
                 <label class="agreement-email-field"><span class="agreement-field-title"><span>Email *</span></span><input id="agreementEmail" type="email" readonly required></label>
                 <label class="signature-field"><span class="agreement-field-title"><span>Signature *</span></span>
-                    <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas></div>
+                    <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas><div class="signature-actions"><button class="signature-clear" id="agreementSignatureClear" type="button">Clear</button></div></div>
                     <input id="agreementSignature" type="hidden" required>
                 </label>
             </div>
@@ -782,6 +785,15 @@
         agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
         agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
         agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
+        document.getElementById("agreementSignatureClear").addEventListener("click", () => {
+            agreementSignatureContext.save();
+            agreementSignatureContext.setTransform(1, 0, 0, 1, 0, 0);
+            agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
+            agreementSignatureContext.restore();
+            agreementSignatureDrawing = false;
+            agreementSignatureHasInk = false;
+            agreementSignatureInput.value = "";
+        });
         const hostingCheckoutPlans = {
             standard: [
                 { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
