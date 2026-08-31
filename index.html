@@ -786,9 +786,7 @@
         agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
         agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
         agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
-        document.getElementById("agreementSignatureClear").addEventListener("click", event => {
-            event.preventDefault();
-            event.stopPropagation();
+        function resetAgreementSignature() {
             agreementSignatureContext.save();
             agreementSignatureContext.setTransform(1, 0, 0, 1, 0, 0);
             agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
@@ -796,6 +794,11 @@
             agreementSignatureDrawing = false;
             agreementSignatureHasInk = false;
             agreementSignatureInput.value = "";
+        }
+        document.getElementById("agreementSignatureClear").addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            resetAgreementSignature();
         });
         const hostingCheckoutPlans = {
             standard: [
@@ -974,6 +977,7 @@
         function closeAgreement() {
             agreementOverlay.hidden = true;
             pendingAgreementCheckout = null;
+            resetAgreementSignature();
             document.body.style.overflow = "";
         }
 
@@ -1017,6 +1021,7 @@
             }
             agreementOverlay.hidden = true;
             pendingAgreementCheckout = null;
+            resetAgreementSignature();
             submit.disabled = false;
             submit.textContent = "Agree, Sign & Continue to Square";
             await startVerifiedCheckout(plan, { ...options, agreementId: data.id, checkoutWindow });
