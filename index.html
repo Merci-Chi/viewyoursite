@@ -280,7 +280,8 @@
         .purchase-dialog { width: min(460px, 100%); text-align: center; }
         .agreement-dialog { width:min(760px,100%); padding:1.65rem; border-color:#3a3a3a; border-radius:18px; background:linear-gradient(145deg,#191919,#111); }
         .agreement-dialog header { display:flex; align-items:center; gap:.9rem; margin:0 2.5rem 1.25rem 0; text-align:left; }
-        .agreement-header-icon { display:grid; width:50px; height:50px; flex:0 0 auto; place-items:center; border:1px solid #484848; border-radius:13px; color:#f2f2f2; font-size:1.45rem; }
+        .agreement-header-icon { display:grid; width:50px; height:50px; flex:0 0 auto; place-items:center; border:1px solid #484848; border-radius:13px; color:#f2f2f2; }
+        .agreement-header-icon svg { width:25px; height:25px; }
         .agreement-dialog header h2 { margin:0 0 .25rem; font-size:1.55rem; }
         .agreement-dialog header .portal-description { margin:0; }
         .agreement-document { display:flex; align-items:center; gap:.85rem; padding:1rem; border:1px solid #363636; border-radius:12px; background:#151515; }
@@ -290,8 +291,12 @@
         .agreement-document p { margin:.35rem 0 0; color:#999; font-size:.84rem; line-height:1.4; }
         .agreement-document-arrow { color:#ddd; font-size:1.35rem; text-decoration:none; }
         .agreement-fields { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.15rem; }
-        .agreement-fields label { display:grid; gap:.4rem; color:#ddd; font-size:.88rem; font-weight:700; }
-        .agreement-fields input { min-height:48px; margin:0; }
+        .agreement-fields label { display:grid; align-content:start; gap:.4rem; color:#ddd; font-size:.88rem; font-weight:700; }
+        .agreement-field-title { display:flex; min-height:20px; align-items:center; justify-content:space-between; gap:.5rem; }
+        .agreement-fields input:not([type="hidden"]) { width:100%; height:48px; min-height:48px; margin:0; padding:.8rem 1rem; border:1px solid #3d3d3d; border-radius:9px; outline:none; background:#242424; color:#f3f3f3; font:inherit; font-weight:400; }
+        .agreement-fields input:not([type="hidden"]):focus { border-color:#777; box-shadow:0 0 0 2px rgba(255,255,255,.07); }
+        .agreement-fields input:not([type="hidden"])::placeholder { color:#858585; opacity:1; }
+        .agreement-fields input[readonly] { background:#242424; color:#d8d8d8; }
         .agreement-optional { color:#777; font-size:.78rem; font-weight:500; }
         .agreement-email-note { color:#888; font-size:.76rem; font-weight:500; line-height:1.35; }
         .agreement-email-field, .signature-field { grid-column:1 / -1; }
@@ -307,6 +312,7 @@
         body.light-mode .agreement-document { border-color:#d7d7d2; background:#fff; }
         body.light-mode .agreement-document-link { color:#111; }
         body.light-mode .agreement-consent, body.light-mode .agreement-fields label { color:#555; }
+        body.light-mode .agreement-fields input:not([type="hidden"]), body.light-mode .agreement-fields input[readonly] { border-color:#c9c9c6; background:#e7e7e4; color:#222; }
         .purchase-check { display: grid; width: 64px; height: 64px; margin: 0 auto 1.1rem; place-items: center; border-radius: 50%; background: #244424; color: #baf0ae; font-size: 2rem; }
         .purchase-dialog .portal-primary { width: 100%; margin-top: 1rem; }
         body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
@@ -633,7 +639,7 @@
         <form class="portal-dialog agreement-dialog" id="agreementForm">
             <button class="portal-close" id="agreementClose" type="button" aria-label="Close">×</button>
             <header>
-                <div class="agreement-header-icon" aria-hidden="true">▤</div>
+                <div class="agreement-header-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.75h7l5 5V21.25H6z"/><path d="M13 2.75v5h5M9 12h6M9 15.5h6"/></svg></div>
                 <div><h2 id="agreementTitle">Web Hosting Agreement</h2>
                 <p class="portal-description">Review and sign before continuing</p></div>
             </header>
@@ -644,10 +650,10 @@
                 <a class="agreement-document-arrow" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener" aria-label="Open Terms and Conditions">›</a>
             </div>
             <div class="agreement-fields">
-                <label>Full legal name *<input id="agreementSignerName" type="text" placeholder="Enter your full legal name" autocomplete="name" required></label>
-                <label>Business name <span class="agreement-optional">Optional</span><input id="agreementBusinessName" type="text" placeholder="Enter business name" autocomplete="organization"></label>
-                <label class="agreement-email-field">Email *<input id="agreementEmail" type="email" readonly required></label>
-                <label class="signature-field">Signature
+                <label><span class="agreement-field-title"><span>Full legal name *</span></span><input id="agreementSignerName" type="text" placeholder="Enter your full legal name" autocomplete="name" required></label>
+                <label><span class="agreement-field-title"><span>Business name</span><span class="agreement-optional">Optional</span></span><input id="agreementBusinessName" type="text" placeholder="Enter business name" autocomplete="organization"></label>
+                <label class="agreement-email-field"><span class="agreement-field-title"><span>Email *</span></span><input id="agreementEmail" type="email" readonly required></label>
+                <label class="signature-field"><span class="agreement-field-title"><span>Signature *</span></span>
                     <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas><div class="signature-actions"><button class="signature-clear" id="agreementSignatureClear" type="button">Clear</button></div></div>
                     <input id="agreementSignature" type="hidden" required>
                 </label>
@@ -719,6 +725,9 @@
         const agreementSignatureContext = agreementSignaturePad.getContext("2d");
         let agreementSignatureDrawing = false;
         let agreementSignatureHasInk = false;
+        let agreementSignatureStrokes = [];
+        let agreementCurrentStroke = null;
+        let agreementSignatureRatio = 1;
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -731,20 +740,34 @@
         let pendingAgreementCheckout = null;
 
         function sizeAgreementSignaturePad() {
-            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            agreementSignatureRatio = Math.max(window.devicePixelRatio || 1, 1);
             const rect = agreementSignaturePad.getBoundingClientRect();
-            agreementSignaturePad.width = Math.max(1, Math.round(rect.width * ratio));
-            agreementSignaturePad.height = Math.max(1, Math.round(rect.height * ratio));
-            agreementSignatureContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+            agreementSignaturePad.width = Math.max(1, Math.round(rect.width * agreementSignatureRatio));
+            agreementSignaturePad.height = Math.max(1, Math.round(rect.height * agreementSignatureRatio));
+            drawAgreementSignature();
+        }
+
+        function drawAgreementSignature() {
+            agreementSignatureContext.setTransform(1, 0, 0, 1, 0, 0);
+            agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
+            agreementSignatureContext.setTransform(agreementSignatureRatio, 0, 0, agreementSignatureRatio, 0, 0);
             agreementSignatureContext.lineWidth = 2.25;
             agreementSignatureContext.lineCap = "round";
             agreementSignatureContext.lineJoin = "round";
             agreementSignatureContext.strokeStyle = "#111";
+            agreementSignatureStrokes.forEach(stroke => {
+                if (!stroke.length) return;
+                agreementSignatureContext.beginPath();
+                agreementSignatureContext.moveTo(stroke[0].x, stroke[0].y);
+                stroke.slice(1).forEach(point => agreementSignatureContext.lineTo(point.x, point.y));
+                agreementSignatureContext.stroke();
+            });
         }
 
         function clearAgreementSignature() {
+            agreementSignatureStrokes = [];
+            agreementCurrentStroke = null;
             sizeAgreementSignaturePad();
-            agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
             agreementSignatureInput.value = "";
             agreementSignatureHasInk = false;
         }
@@ -758,23 +781,27 @@
             agreementSignatureDrawing = true;
             agreementSignaturePad.setPointerCapture(event.pointerId);
             const point = signaturePoint(event);
-            agreementSignatureContext.beginPath();
-            agreementSignatureContext.moveTo(point.x, point.y);
+            agreementCurrentStroke = [point];
+            agreementSignatureStrokes.push(agreementCurrentStroke);
+            event.preventDefault();
         });
         agreementSignaturePad.addEventListener("pointermove", event => {
-            if (!agreementSignatureDrawing) return;
-            const point = signaturePoint(event);
-            agreementSignatureContext.lineTo(point.x, point.y);
-            agreementSignatureContext.stroke();
+            if (!agreementSignatureDrawing || !agreementCurrentStroke) return;
+            agreementCurrentStroke.push(signaturePoint(event));
+            drawAgreementSignature();
             agreementSignatureHasInk = true;
+            event.preventDefault();
         });
         function finishAgreementSignature() {
             if (!agreementSignatureDrawing) return;
             agreementSignatureDrawing = false;
+            agreementCurrentStroke = null;
+            drawAgreementSignature();
             if (agreementSignatureHasInk) agreementSignatureInput.value = agreementSignaturePad.toDataURL("image/png");
         }
         agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
         agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
+        agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
         document.getElementById("agreementSignatureClear").addEventListener("click", clearAgreementSignature);
         const hostingCheckoutPlans = {
             standard: [
