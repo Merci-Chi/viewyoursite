@@ -1,0 +1,24 @@
+{
+  "users": [{
+    "id": "admin-seed",
+    "name": "Admin",
+    "email": "admin@sitedesk.local",
+    "password": "admin123",
+    "role": "admin",
+    "head": true,
+    "active": true,
+    "defaultBuilderId": null,
+    "createdAt": 1,
+    "theme": { "bg": "#000000", "accent": "#0A84FF" }
+  }],
+  "leads": [],
+  "notes": [],
+  "history": [],
+  "threads": [],
+  "messages": [],
+  "reads": {},
+  "activity": [],
+  "session": null,
+  "rev": 1,
+  "leadsWiped": true
+}

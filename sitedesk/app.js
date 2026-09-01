@@ -160,7 +160,18 @@ function hydrateLead(lead) {
 }
 
 function seed() {
-  const admin = { id: uid(), name: "Admin", email: "admin@sitedesk.local", password: "admin123", role: "admin", head: true, active: true, createdAt: now(), theme: { bg: "#000000", accent: "#0A84FF" } };
+  const admin = {
+    id: "admin-seed",
+    name: "Admin",
+    email: "admin@sitedesk.local",
+    password: "admin123",
+    role: "admin",
+    head: true,
+    active: true,
+    defaultBuilderId: null,
+    createdAt: 1,
+    theme: { bg: "#000000", accent: "#0A84FF" },
+  };
   return {
     users: [admin],
     leads: [],
@@ -171,6 +182,7 @@ function seed() {
     reads: {},
     activity: [],
     session: null,
+    rev: 1,
     leadsWiped: true,
   };
 }
@@ -432,36 +444,9 @@ function githubMessage(status, text) {
   return `GitHub API error (${status}): ${extra || "unknown"}`;
 }
 
-const DATA_BRANCH = "sitedesk-data";
-function branchFor(path) {
-  return String(path || "").startsWith("sitedesk-data/") ? DATA_BRANCH : "main";
-}
-
-let dataBranchReady = false;
-async function ensureDataBranch(token) {
-  if (dataBranchReady) return;
-  const { owner, repo } = githubRepo();
-  const headers = githubHeaders(token);
-  const refUrl = `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${DATA_BRANCH}`;
-  const got = await fetch(refUrl, { headers });
-  if (got.ok) { dataBranchReady = true; return; }
-  if (got.status !== 404) throw new Error(githubMessage(got.status, await got.text()));
-  const main = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/main`, { headers });
-  if (!main.ok) throw new Error(githubMessage(main.status, await main.text()));
-  const sha = (await main.json()).object.sha;
-  const made = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
-    method: "POST",
-    headers: { ...headers, "Content-Type": "application/json" },
-    body: JSON.stringify({ ref: `refs/heads/${DATA_BRANCH}`, sha }),
-  });
-  if (!made.ok && made.status !== 422) throw new Error(githubMessage(made.status, await made.text()));
-  dataBranchReady = true;
-}
-
 async function putContent({ token, path, contentB64, message, branch }) {
   const { owner, repo } = githubRepo();
-  const useBranch = branch || branchFor(path);
-  if (useBranch === DATA_BRANCH) await ensureDataBranch(token);
+  const useBranch = branch || "main";
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
   const headers = githubHeaders(token);
   let sha;
@@ -495,7 +480,7 @@ async function putContent({ token, path, contentB64, message, branch }) {
   return put.json();
 }
 
-const DATA_PATH = "sitedesk-data/state.json";
+const DATA_PATH = "sitedesk/db.json";
 
 function emptyDesk() {
   return {
@@ -505,18 +490,22 @@ function emptyDesk() {
 }
 
 function photoPath(leadId, filename) {
-  return `sitedesk-data/photos/${leadId}/${filename}`;
+  return `sitedesk/photos/${leadId}/${filename}`;
+}
+
+function chatPath(threadId, filename) {
+  return `sitedesk/chat/${threadId}/${filename}`;
 }
 
 function deskFileUrl(path, v) {
   const { owner, repo } = githubRepo();
-  return `https://raw.githubusercontent.com/${owner}/${repo}/${DATA_BRANCH}/${path}?v=${v || Date.now()}`;
+  return `https://raw.githubusercontent.com/${owner}/${repo}/main/${path}?v=${v || Date.now()}`;
 }
 function photoSrc(im, lead) {
   if (im?.dataUrl) return im.dataUrl;
   const t = im?.updatedAt || db.rev || Date.now();
   if (im?.path) {
-    if (String(im.path).startsWith("sitedesk-data/")) return deskFileUrl(im.path, t);
+    if (String(im.path).startsWith("sitedesk/")) return deskFileUrl(im.path, t);
     return `${PUBLIC_ORIGIN}/${im.path}?v=${t}`;
   }
   if (lead && im?.filename) return deskFileUrl(photoPath(lead.id, im.filename), t);
@@ -721,6 +710,7 @@ let pendingPush = false;
 let pollTimer = null;
 let cloudRev = 0;
 let cloudReady = false;
+let tokenWarnShown = false;
 
 function persist() {
   db.rev = now();
@@ -759,7 +749,7 @@ function looksHashed(pw) {
 async function getFile(path, branch) {
   const token = getToken();
   const { owner, repo } = githubRepo();
-  const useBranch = branch || branchFor(path);
+  const useBranch = branch || "main";
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(useBranch)}`;
   const headers = githubHeaders(token);
   const get = await fetch(url, { headers });
@@ -783,7 +773,8 @@ function publicStateUrls() {
   const { owner, repo } = githubRepo();
   const t = Date.now();
   return [
-    `https://raw.githubusercontent.com/${owner}/${repo}/${DATA_BRANCH}/sitedesk-data/state.json?v=${t}`,
+    `db.json?v=${t}`,
+    `https://raw.githubusercontent.com/${owner}/${repo}/main/sitedesk/db.json?v=${t}`,
   ];
 }
 
@@ -797,6 +788,18 @@ async function fetchPublicState() {
   return null;
 }
 
+async function hashDeskPasswords(state) {
+  for (const u of state.users) {
+    if (u.password && !looksHashed(u.password)) {
+      u.password = await sha256Hex(u.password);
+    }
+  }
+  for (const u of db.users) {
+    const s = state.users.find((x) => x.id === u.id);
+    if (s) u.password = s.password;
+  }
+}
+
 async function pushCloud() {
   const token = getToken();
   if (!token) return;
@@ -805,15 +808,7 @@ async function pushCloud() {
   try {
     const state = stripDesk(db);
     state.rev = db.rev || now();
-    for (const u of state.users) {
-      if (u.password && !looksHashed(u.password)) {
-        u.password = await sha256Hex(u.password);
-      }
-    }
-    for (const u of db.users) {
-      const s = state.users.find((x) => x.id === u.id);
-      if (s) u.password = s.password;
-    }
+    await hashDeskPasswords(state);
     await putContent({
       token,
       path: DATA_PATH,
@@ -837,6 +832,40 @@ function unionById(remoteArr, localArr) {
   for (const x of remoteArr || []) if (x && x.id) m.set(x.id, x);
   for (const x of localArr || []) if (x && x.id) m.set(x.id, x);
   return [...m.values()];
+}
+
+function ingestRemote(remote, opts = {}) {
+  if (!remote || !remote.users) return { empty: true };
+  const incoming = remote.rev || remote.updatedAt || 0;
+  const localNewer = incoming && db.rev && incoming < db.rev;
+  if (localNewer) {
+    remote.users = unionById(remote.users, db.users);
+    remote.leads = unionById(remote.leads, db.leads);
+    remote.threads = unionById(remote.threads, db.threads);
+    remote.messages = unionById(remote.messages, db.messages);
+  }
+  if (opts.quiet && incoming && cloudRev && incoming <= cloudRev && !localNewer) {
+    return { skipped: true, localNewer };
+  }
+  const urls = rememberDataUrls();
+  const session = db.session;
+  const localUsers = db.users || [];
+  const localLeads = db.leads || [];
+  const localMsgs = db.messages || [];
+  const localThreads = db.threads || [];
+  remote.users = unionById(remote.users, localUsers);
+  remote.leads = unionById(remote.leads, localLeads);
+  remote.threads = unionById(remote.threads, localThreads);
+  remote.messages = unionById(remote.messages, localMsgs);
+  const next = applyDesk(remote);
+  next.session = session;
+  db = next;
+  restoreDataUrls(urls);
+  cloudRev = Math.max(incoming || 0, cloudRev || 0);
+  db.rev = Math.max(incoming || 0, db.rev || 0);
+  cacheLocal();
+  render();
+  return { localNewer };
 }
 
 async function pullCloud(opts = {}) {
@@ -863,36 +892,9 @@ async function pullCloud(opts = {}) {
     if (token && pendingPush) schedulePush();
     return;
   }
-  const incoming = remote.rev || remote.updatedAt || 0;
-  const localNewer = incoming && db.rev && incoming < db.rev;
-  if (localNewer) {
-    remote.users = unionById(remote.users, db.users);
-    remote.leads = unionById(remote.leads, db.leads);
-    remote.threads = unionById(remote.threads, db.threads);
-    remote.messages = unionById(remote.messages, db.messages);
-  }
-  if (opts.quiet && incoming && cloudRev && incoming <= cloudRev && !localNewer) return;
-  const urls = rememberDataUrls();
-  const session = db.session;
-  const localUsers = db.users || [];
-  const localLeads = db.leads || [];
-  const localMsgs = db.messages || [];
-  const localThreads = db.threads || [];
-  remote.users = unionById(remote.users, localUsers);
-  remote.leads = unionById(remote.leads, localLeads);
-  remote.threads = unionById(remote.threads, localThreads);
-  remote.messages = unionById(remote.messages, localMsgs);
-  const next = applyDesk(remote);
-  next.session = session;
-  db = next;
-  restoreDataUrls(urls);
-  cloudRev = Math.max(incoming || 0, cloudRev || 0);
-  db.rev = Math.max(incoming || 0, db.rev || 0);
+  const result = ingestRemote(remote, opts);
   cloudReady = true;
-  cacheLocal();
-  if (localNewer && token) schedulePush();
-  else if (pendingPush && token) schedulePush();
-  render();
+  if ((result.localNewer || pendingPush) && token) schedulePush();
 }
 
 function startPoll() {
@@ -2993,7 +2995,10 @@ function chatImageSrc(im) {
   if (!im) return "";
   if (im.dataUrl) return im.dataUrl;
   const t = im.updatedAt || db.rev || Date.now();
-  if (im.path) return `${PUBLIC_ORIGIN}/${im.path}?v=${t}`;
+  if (im.path) {
+    if (String(im.path).startsWith("sitedesk/")) return deskFileUrl(im.path, t);
+    return `${PUBLIC_ORIGIN}/${im.path}?v=${t}`;
+  }
   return "";
 }
 
@@ -3329,7 +3334,17 @@ function usersPage() {
     <table class="table">
       <thead><tr><th>Name</th><th>Email</th><th>Role</th><th></th></tr></thead>
       <tbody>${rows || `<tr><td colspan="4" class="muted">None</td></tr>`}</tbody>
-    </table>`;
+    </table>
+    ${isHead(me) ? `
+    <form id="token-form" style="margin-top:18px;max-width:420px">
+      <label class="field"><span>GitHub token</span>
+        <input name="token" type="password" autocomplete="off" placeholder="${getToken() ? "Saved on this device" : "Classic PAT · repo scope"}"/>
+      </label>
+      <div class="row">
+        <button class="btn tiny primary" type="submit">Save</button>
+        ${getToken() ? `<button class="btn tiny" type="button" id="clear-token">Clear</button>` : ""}
+      </div>
+    </form>` : ""}`;
 }
 
 function settingsPage(user) {
@@ -4065,14 +4080,18 @@ function bindPage(user) {
         image = { filename, dataUrl: packed.dataUrl, mime: packed.mime };
         const token = getToken();
         if (token) {
-          const path = `sitedesk-data/chat/${thread.id}/${filename}`;
-          await putContent({
-            token,
-            path,
-            contentB64: dataUrlToB64(packed.dataUrl),
-            message: "SiteDesk chat image",
-          });
-          image.path = path;
+          try {
+            const path = chatPath(thread.id, filename);
+            await putContent({
+              token,
+              path,
+              contentB64: dataUrlToB64(packed.dataUrl),
+              message: "SiteDesk chat image",
+            });
+            image.path = path;
+          } catch {
+            /* keep dataUrl — do not block sending on GitHub */
+          }
         }
       } catch (err) {
         toast(err.message || "Could not attach image", "bad");
@@ -4298,6 +4317,20 @@ function openNewUser() {
     });
     if (role === "admin") syncJobThreadAdmins();
     persist();
+    const btn = e.target.querySelector("[type=submit]");
+    if (btn) btn.disabled = true;
+    try {
+      if (!getToken()) {
+        if (!tokenWarnShown) {
+          tokenWarnShown = true;
+          toast("Desk file needs the GitHub token to save.", "warn");
+        }
+      } else {
+        await pushCloud();
+      }
+    } catch (err) {
+      toast(err.message || String(err), "bad");
+    }
     wrap.remove();
     render();
   });
