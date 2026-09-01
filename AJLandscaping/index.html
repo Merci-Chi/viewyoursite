@@ -1,0 +1,320 @@
+<!-- sitedesk-assets: logo.png, storefront.jpg, photo-1.png -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Landscaping — Residential Landscaping, Xeriscape & Weekly Maintenance</title>
+  <meta name="description" content="AJ Landscaping offers residential landscaping, xeriscape design, and weekly maintenance in the local area. Free quotes available.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              50: '#f0f7f2',
+              100: '#d9edd9',
+              200: '#b5dbb8',
+              300: '#83c28a',
+              400: '#53a45d',
+              500: '#2d6a4f',
+              600: '#245640',
+              700: '#1e4535',
+              800: '#1a382c',
+              900: '#152f25',
+              950: '#0a1a14',
+            },
+            sand: {
+              50: '#fdfcf8',
+              100: '#faf6eb',
+              200: '#f3eace',
+              300: '#e9d9a6',
+              400: '#dcc279',
+              500: '#d1aa56',
+              600: '#c09340',
+              700: '#a07535',
+              800: '#835e31',
+              900: '#6c4e2b',
+              950: '#3d2915',
+            },
+            cream: '#FAF9F5',
+            warm: '#F5F0E8',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    ::selection { background-color: #2d6a4f; color: #ffffff; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+    .nav-link.active-nav { color: #2d6a4f; }
+    .nav-link.active-nav::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2d6a4f;
+      border-radius: 1px;
+    }
+    .gallery-placeholder {
+      background: linear-gradient(135deg, #1e4535 0%, #2d6a4f 50%, #1e4535 100%);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in { animation: fadeInUp 0.6s ease-out forwards; }
+    .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+    .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+    .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+    .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+      padding: 1rem 1.5rem; border-radius: 0.75rem;
+      background: #2d6a4f; color: white; font-size: 0.875rem;
+      transform: translateY(120%); opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body class="bg-cream text-gray-800 font-sans antialiased">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 bg-cream/90 backdrop-blur-md border-b border-gray-200/50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 bg-forest-500 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+          <iconify-icon icon="lucide:trees" class="text-white text-lg"></iconify-icon>
+        </div>
+        <div class="leading-none">
+          <span class="text-lg font-semibold text-forest-900 tracking-tight">AJ</span>
+          <span class="text-lg font-light text-forest-600 tracking-tight"> Landscaping</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#" onclick="navigateTo('home'); return false;" class="nav-link active-nav relative text-sm font-medium text-gray-600 hover:text-forest-500 transition-colors duration-200" data-page="home">Home</a>
+        <a href="#" onclick="navigateTo('services'); return false;" class="nav-link relative text-sm font-medium text-gray-600 hover:text-forest-500 transition-colors duration-200" data-page="services">Services</a>
+        <a href="#" onclick="navigateTo('gallery'); return false;" class="nav-link relative text-sm font-medium text-gray-600 hover:text-forest-500 transition-colors duration-200" data-page="gallery">Gallery</a>
+        <a href="#" onclick="navigateTo('quote'); return false;" class="nav-link relative text-sm font-medium text-gray-600 hover:text-forest-500 transition-colors duration-200" data-page="quote">Get a Quote</a>
+        <a href="tel:5550102" class="inline-flex items-center gap-2 bg-forest-500 hover:bg-forest-600 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+          <iconify-icon icon="lucide:phone" class="text-sm"></iconify-icon>
+          555-0102
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
+        <iconify-icon icon="lucide:menu" class="text-xl text-gray-700" id="menuIcon"></iconify-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-100 shadow-lg">
+      <div class="px-6 py-4 flex flex-col gap-1">
+        <a href="#" onclick="navigateTo('home'); closeMobileMenu(); return false;" class="mobile-nav-link py-3 text-sm font-medium text-gray-700 hover:text-forest-500 hover:bg-forest-50 rounded-lg px-3 -mx-3 transition-colors" data-page="home">Home</a>
+        <a href="#" onclick="navigateTo('services'); closeMobileMenu(); return false;" class="mobile-nav-link py-3 text-sm font-medium text-gray-700 hover:text-forest-500 hover:bg-forest-50 rounded-lg px-3 -mx-3 transition-colors" data-page="services">Services</a>
+        <a href="#" onclick="navigateTo('gallery'); closeMobileMenu(); return false;" class="mobile-nav-link py-3 text-sm font-medium text-gray-700 hover:text-forest-500 hover:bg-forest-50 rounded-lg px-3 -mx-3 transition-colors" data-page="gallery">Gallery</a>
+        <a href="#" onclick="navigateTo('quote'); closeMobileMenu(); return false;" class="mobile-nav-link py-3 text-sm font-medium text-gray-700 hover:text-forest-500 hover:bg-forest-50 rounded-lg px-3 -mx-3 transition-colors" data-page="quote">Get a Quote</a>
+        <div class="pt-3 border-t border-gray-100 mt-2">
+          <a href="tel:5550102" class="flex items-center justify-center gap-2 bg-forest-500 text-white text-sm font-medium px-5 py-3 rounded-full">
+            <iconify-icon icon="lucide:phone" class="text-sm"></iconify-icon>
+            Call 555-0102
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ========== HOME PAGE ========== -->
+  <div id="page-home" class="page-section active">
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute top-20 right-0 w-96 h-96 bg-forest-200/30 rounded-full blur-3xl -z-10"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-sand-200/40 rounded-full blur-3xl -z-10"></div>
+
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div>
+            <div class="animate-in stagger-1">
+              <span class="inline-flex items-center gap-2 bg-forest-50 border border-forest-200 text-forest-700 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+                <iconify-icon icon="lucide:leaf" class="text-sm"></iconify-icon>
+                Local & Trusted
+              </span>
+            </div>
+            <h1 class="animate-in stagger-2 text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-forest-950 leading-[1.1] tracking-tight mb-6">
+              Landscaping that <em class="text-forest-500 not-italic">elevates</em> your home
+            </h1>
+            <p class="animate-in stagger-3 text-base md:text-lg text-gray-500 font-light leading-relaxed mb-8 max-w-lg">
+              From full residential transformations to water-wise xeriscaping and reliable weekly maintenance — AJ Landscaping brings your outdoor vision to life.
+            </p>
+            <div class="animate-in stagger-4 flex flex-wrap gap-3">
+              <a href="#" onclick="navigateTo('quote'); return false;" class="inline-flex items-center gap-2 bg-forest-500 hover:bg-forest-600 text-white text-sm font-medium px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-forest-500/20 hover:shadow-xl hover:shadow-forest-500/30">
+                Free Quote
+                <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+              </a>
+              <a href="#" onclick="navigateTo('services'); return false;" class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium px-7 py-3.5 rounded-full border border-gray-200 transition-all duration-200 hover:-translate-y-0.5">
+                Our Services
+              </a>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="animate-in stagger-4 mt-10 flex items-center gap-6 text-xs text-gray-400">
+              <div class="flex items-center gap-1.5">
+                <iconify-icon icon="lucide:check-circle" class="text-forest-400 text-sm"></iconify-icon>
+                Licensed & Insured
+              </div>
+              <div class="flex items-center gap-1.5">
+                <iconify-icon icon="lucide:check-circle" class="text-forest-400 text-sm"></iconify-icon>
+                Free Estimates
+              </div>
+              <div class="flex items-center gap-1.5">
+                <iconify-icon icon="lucide:check-circle" class="text-forest-400 text-sm"></iconify-icon>
+                Local Owner
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="relative">
+            <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-forest-900/10">
+              <img src="https://picsum.photos/seed/ajlandscaping-hero/800/1000.jpg" alt="Beautifully landscaped residential yard" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+            <!-- Floating card -->
+            <div class="absolute -bottom-4 -left-4 md:-left-8 bg-white rounded-xl shadow-lg p-4 flex items-center gap-3 border border-gray-100">
+              <div class="w-11 h-11 bg-forest-50 rounded-full flex items-center justify-center">
+                <iconify-icon icon="lucide:star" class="text-sand-500 text-lg"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-forest-900">Trusted Locally</div>
+                <div class="text-xs text-gray-400">Quality you can count on</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-20 md:py-28 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <span class="text-xs font-semibold uppercase tracking-widest text-sand-600 mb-3 block">What We Do</span>
+          <h2 class="text-3xl md:text-4xl font-serif font-medium text-forest-950 tracking-tight">Services built around your yard</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="group bg-cream rounded-2xl p-8 border border-gray-100 hover:border-forest-200 hover:shadow-xl hover:shadow-forest-500/5 transition-all duration-300 hover:-translate-y-1">
+            <div class="w-14 h-14 bg-forest-50 group-hover:bg-forest-500 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300">
+              <iconify-icon icon="lucide:home" class="text-2xl text-forest-500 group-hover:text-white transition-colors duration-300"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-serif font-medium text-forest-900 mb-3">Residential Landscaping</h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-6">Complete landscape design and installation — from sod and plants to hardscaping, irrigation, and outdoor living spaces.</p>
+            <a href="#" onclick="navigateTo('services'); return false;" class="inline-flex items-center gap-1.5 text-sm font-medium text-forest-500 hover:text-forest-600 transition-colors">
+              Learn more <iconify-icon icon="lucide:arrow-right" class="text-xs"></iconify-icon>
+            </a>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="group bg-cream rounded-2xl p-8 border border-gray-100 hover:border-sand-300 hover:shadow-xl hover:shadow-sand-500/5 transition-all duration-300 hover:-translate-y-1">
+            <div class="w-14 h-14 bg-sand-100 group-hover:bg-sand-500 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300">
+              <iconify-icon icon="lucide:droplets" class="text-2xl text-sand-600 group-hover:text-white transition-colors duration-300"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-serif font-medium text-forest-900 mb-3">Xeriscape Design</h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-6">Water-wise landscapes that thrive in our climate. Beautiful, drought-tolerant gardens that save water and look incredible year-round.</p>
+            <a href="#" onclick="navigateTo('services'); return false;" class="inline-flex items-center gap-1.5 text-sm font-medium text-forest-500 hover:text-forest-600 transition-colors">
+              Learn more <iconify-icon icon="lucide:arrow-right" class="text-xs"></iconify-icon>
+            </a>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="group bg-cream rounded-2xl p-8 border border-gray-100 hover:border-forest-200 hover:shadow-xl hover:shadow-forest-500/5 transition-all duration-300 hover:-translate-y-1">
+            <div class="w-14 h-14 bg-forest-50 group-hover:bg-forest-500 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300">
+              <iconify-icon icon="lucide:calendar-check" class="text-2xl text-forest-500 group-hover:text-white transition-colors duration-300"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-serif font-medium text-forest-900 mb-3">Weekly Maintenance</h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-6">Consistent, reliable yard care so you never have to worry. Mowing, trimming, weeding, cleanups — handled every week like clockwork.</p>
+            <a href="#" onclick="navigateTo('services'); return false;" class="inline-flex items-center gap-1.5 text-sm font-medium text-forest-500 hover:text-forest-600 transition-colors">
+              Learn more <iconify-icon icon="lucide:arrow-right" class="text-xs"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 md:py-28 bg-forest-950 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <img src="https://picsum.photos/seed/ajlandscaping-texture/1600/900.jpg" alt="" class="w-full h-full object-cover">
+      </div>
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-forest-400 mb-4 block">Why AJ Landscaping</span>
+            <h2 class="text-3xl md:text-4xl font-serif font-medium text-white tracking-tight mb-6 leading-tight">Your yard deserves more than a mow-and-blow</h2>
+            <p class="text-base text-forest-300/80 font-light leading-relaxed mb-10">We treat every property like our own. That means showing up on time, communicating clearly, and delivering results that speak for themselves.</p>
+
+            <div class="grid grid-cols-2 gap-6">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <iconify-icon icon="lucide:shield-check" class="text-forest-300 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white mb-1">Licensed & Insured</div>
+                  <div class="text-xs text-forest-400 leading-relaxed">Full coverage for your peace of mind</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <iconify-icon icon="lucide:clock" class="text-forest-300 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white mb-1">Always On Time</div>
+                  <div class="text-xs text-forest-400 leading-relaxed">We respect your schedule</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <iconify-icon icon="lucide:handshake" class="text-forest-300 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white mb-1">Honest Pricing</div>
+                  <div class="text-xs text-forest-400 leading-relaxed">No hidden fees, ever</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <iconify-icon icon="lucide:leaf" class="text-forest-300 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white mb-1">Eco-Conscious</div>
+                  <div class="text-xs text-forest-400 leading-relaxed">Smart, sustainable practices</div
+<section class="sitedesk-gallery" aria-label="Business photos">
+  <img src="logo.png" alt="logo">
+  <img src="storefront.jpg" alt="storefront">
+  <img src="photo-1.png" alt="photo">
+</section>
