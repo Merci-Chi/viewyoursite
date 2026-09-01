@@ -427,7 +427,7 @@ function githubMessage(status, text) {
     return `GitHub denied access (403). The token needs the classic repo scope on ${owner}/${repo}.`;
   }
   if (status === 409) {
-    return "GitHub conflict (409). The file changed during publish. Try again.";
+    return "Save collided. Retrying…";
   }
   return `GitHub API error (${status}): ${extra || "unknown"}`;
 }
@@ -483,12 +483,13 @@ async function putContent({ token, path, contentB64, message, branch }) {
     body: JSON.stringify(body),
   });
   let put = await send();
-  if (put.status === 409) {
-    const again = await fetch(url, { headers });
-    if (again.ok) {
-      body.sha = (await again.json()).sha;
-      put = await send();
-    }
+  for (let i = 0; i < 6 && (put.status === 409 || put.status === 422); i++) {
+    await new Promise((r) => setTimeout(r, 200 * (i + 1)));
+    const again = await fetch(`${url}?ref=${encodeURIComponent(useBranch)}`, { headers });
+    if (again.status === 404) delete body.sha;
+    else if (again.ok) body.sha = (await again.json()).sha;
+    else break;
+    put = await send();
   }
   if (!put.ok) throw new Error(githubMessage(put.status, await put.text()));
   return put.json();
@@ -733,8 +734,16 @@ function schedulePush() {
   if (!getToken() || !cloudReady) return;
   clearTimeout(persistTimer);
   persistTimer = setTimeout(() => {
-    pushCloud().catch((err) => toast(err.message || String(err), "bad"));
-  }, 700);
+    pushCloud().catch((err) => {
+      const m = err && err.message ? String(err.message) : String(err);
+      if (/409|collided|Retrying/i.test(m)) {
+        pendingPush = true;
+        schedulePush();
+        return;
+      }
+      toast(m, "bad");
+    });
+  }, 450);
 }
 
 async function sha256Hex(text) {
@@ -843,19 +852,35 @@ async function pullCloud(opts = {}) {
   }
   if (!remote || !remote.users) return;
   const incoming = remote.rev || remote.updatedAt || 0;
+  if (incoming && db.rev && incoming < db.rev && getToken()) {
+    cloudReady = true;
+    schedulePush();
+    return;
+  }
   if (opts.quiet && incoming && cloudRev && incoming <= cloudRev) return;
-  if (opts.quiet && incoming && db.rev && incoming < db.rev && getToken()) return;
   const urls = rememberDataUrls();
   const session = db.session;
+  const localMsgs = db.messages || [];
+  const localThreads = db.threads || [];
   const next = applyDesk(remote);
+  const byId = (arr) => {
+    const m = new Map();
+    for (const x of arr || []) if (x && x.id) m.set(x.id, x);
+    return m;
+  };
+  const msgs = byId(next.messages);
+  for (const x of localMsgs) if (x && x.id && !msgs.has(x.id)) msgs.set(x.id, x);
+  next.messages = [...msgs.values()];
+  const th = byId(next.threads);
+  for (const x of localThreads) if (x && x.id && !th.has(x.id)) th.set(x.id, x);
+  next.threads = [...th.values()];
   next.session = session;
   db = next;
   restoreDataUrls(urls);
   cloudRev = incoming;
-  db.rev = incoming;
+  db.rev = Math.max(incoming || 0, db.rev || 0);
   cloudReady = true;
-  if (!remote.leadsWiped) persist();
-  else cacheLocal();
+  cacheLocal();
   render();
 }
 
