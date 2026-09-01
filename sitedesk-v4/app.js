@@ -837,7 +837,7 @@ function htmlUsesAnyImage(html, images) {
 }
 
 function injectGalleryIfNeeded(html, images, usedNone) {
-  const files = (images || []).filter((im) => im.filename && im.dataUrl);
+  const files = (images || []).filter((im) => im.filename && (im.pageId || im.dataUrl));
   if (!usedNone || !files.length) return html || "";
   let out = html || "";
   const gallery = [
@@ -1891,23 +1891,24 @@ function loginView() {
     <div class="login">
       <form class="card login-card" id="login-form">
         <h1 class="display">SiteDesk</h1>
-        <p class="muted">Internal production desk. Admin, caller, builder.</p>
+        <p class="muted">Internal production desk. Same board on every phone.</p>
         <label class="field"><span>Email</span><input name="email" type="email" required autocomplete="username"/></label>
         <label class="field"><span>Password</span><input name="password" type="password" required autocomplete="current-password"/></label>
         <div class="row"><button class="btn primary" type="submit">Sign in</button></div>
-        <p class="hint">Demo: admin@sitedesk.local / admin123 · caller@sitedesk.local / caller123 · builder@sitedesk.local / builder123</p>
+        <p class="hint">Paste the business GitHub token in Settings so jobs are shared. First device: admin@sitedesk.local / admin123 — then add real people under Team.</p>
         <p id="login-err" class="hint bad-text"></p>
       </form>
     </div>`;
 }
 
 function bindLogin() {
-  $("#login-form").addEventListener("submit", (e) => {
+  $("#login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const fd = new FormData(e.target);
     const email = String(fd.get("email")).trim().toLowerCase();
     const password = String(fd.get("password"));
-    const u = db.users.find((x) => x.email === email && x.password === password && x.active !== false);
+    const hashed = looksHashed(password) ? password : await sha256Hex(password);
+    const u = db.users.find((x) => x.email === email && x.active !== false && (x.password === password || x.password === hashed));
     if (!u) {
       $("#login-err").textContent = "Wrong email or password.";
       return;
@@ -2054,11 +2055,20 @@ async function tinySaveLead(lead, { phone, email, hours, file, imageId }, user) 
     if (replacedName) {
       const im = (lead.images || []).find((x) => x.filename === replacedName);
       if (im?.dataUrl) {
+        const deskPath = im.path || photoPath(lead.id, im.filename);
+        im.path = deskPath;
+        const b64 = dataUrlToB64(im.dataUrl);
         await putContent({
           token,
           path: `${lead.slug}/${replacedName}`,
-          contentB64: dataUrlToB64(im.dataUrl),
+          contentB64: b64,
           message: `Replace ${lead.slug}/${replacedName} from SiteDesk`,
+        });
+        await putContent({
+          token,
+          path: deskPath,
+          contentB64: b64,
+          message: `Replace desk photo ${deskPath}`,
         });
       }
     }
@@ -2206,12 +2216,14 @@ function navItems(user) {
       ["/leads", "All mine"],
       ["/archive", "Archive"],
       ["/messages", msg],
+      ["/settings", "Settings"],
     ];
   }
   return [
     ["/jobs", "My jobs"],
     ["/sites", "Sites"],
     ["/messages", msg],
+    ["/settings", "Settings"],
   ];
 }
 
@@ -2230,7 +2242,10 @@ function shell(user, inner) {
           <button class="btn ghost tiny" id="logout">Log out</button>
         </div>
       </aside>
-      <main class="${mainClass}">${inner}</main>
+      <main class="${mainClass}">
+          ${getToken() ? "" : `<div class="banner">Connect the business token in Settings — this app will not store jobs only on this phone.</div>`}
+          ${inner}
+        </main>
     </div>`;
 }
 
@@ -2245,7 +2260,7 @@ function bindShell(user) {
 
 function page(user) {
   if (route.name === "users" && user.role === "admin") return usersPage();
-  if (route.name === "settings" && user.role === "admin") return settingsPage();
+  if (route.name === "settings") return settingsPage(user);
   if (route.name === "messages") return messagesPage(user);
   if (route.name === "lead" && route.id) return leadPage(user, route.id);
   if (route.name === "leads") return leadsPage(user);
@@ -2526,7 +2541,7 @@ function briefTab(lead, user, canUpload) {
               ? `<p>${esc(p.note) || "—"}</p>`
               : `<textarea data-page-note="${p.id}" placeholder="What they want on this page">${esc(p.note)}</textarea>`}
             <div class="page-thumbs">
-              ${(lead.images || []).filter((im) => im.pageId === p.id).map((im) => `<img src="${im.dataUrl}" alt="${esc(im.label || "")}">`).join("") || `<span class="muted">No photos assigned to this page.</span>`}
+              ${(lead.images || []).filter((im) => im.pageId === p.id).map((im) => `<img src="${photoSrc(im, lead)}" alt="${esc(im.label || "")}">`).join("") || `<span class="muted">No photos assigned to this page.</span>`}
             </div>
           </div>`).join("")}
       </div>`) : ""}
@@ -2587,13 +2602,13 @@ function diyBlock(lead, page, blk) {
       : `<p>${esc(blk.text || "Text")}</p>`;
   } else if (blk.type === "image") {
     const im = (lead.images || []).find((x) => x.id === blk.imageId);
-    body = on ? photoSelect(lead, blk) : (im ? `<img src="${im.dataUrl}" alt="${esc(im.label || "")}">` : `<p class="muted">Pick a photo from this lead</p>`);
+    body = on ? photoSelect(lead, blk) : (im ? `<img src="${photoSrc(im, lead)}" alt="${esc(im.label || "")}">` : `<p class="muted">Pick a photo from this lead</p>`);
   } else if (blk.type === "gallery") {
     const ids = blk.imageIds || [];
     const imgs = (lead.images || []).filter((im) => ids.includes(im.id));
     body = on
       ? gallerySelect(lead, page, blk)
-      : (imgs.length ? `<div class="row">${imgs.map((im) => `<img src="${im.dataUrl}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:6px">`).join("")}</div>` : `<p class="muted">Pick photos from this lead</p>`);
+      : (imgs.length ? `<div class="row">${imgs.map((im) => `<img src="${photoSrc(im, lead)}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:6px">`).join("")}</div>` : `<p class="muted">Pick photos from this lead</p>`);
   } else if (blk.type === "contact") {
     body = contactPreview(lead);
   } else if (blk.type === "html") {
@@ -2797,7 +2812,7 @@ function photoGrid(lead, canEdit) {
   return `<div class="photos">${imgs.map((im) => `
     <div class="photo-card">
       <div class="photo">
-        <img src="${im.dataUrl}" alt="${esc(im.label || im.kind)}" data-lightbox="${im.id}"/>
+        <img src="${photoSrc(im, lead)}" alt="${esc(im.label || im.kind)}" data-lightbox="${im.id}"/>
         <span class="cap">${esc(im.kind)}</span>
         ${canEdit ? `<button type="button" class="x" data-del-img="${im.id}" aria-label="Remove">×</button>` : ""}
       </div>
@@ -3033,7 +3048,7 @@ function usersPage() {
     </div>`;
 }
 
-function settingsPage() {
+function settingsPage(user) {
   const token = getToken();
   const { owner, repo } = githubRepo();
   const queued = db.leads.filter((l) => l.publishQueued && !l.archived);
@@ -3041,31 +3056,32 @@ function settingsPage() {
   return `
     <div class="top">
       <div>
-        <h1 class="display">Admin settings</h1>
-        <p class="muted">GitHub token lives only in this browser. Never commit it.</p>
+        <h1 class="display">Settings</h1>
+        <p class="muted">One business GitHub token. Never commit it. Everyone on the desk pastes the same token once.</p>
       </div>
     </div>
     <div class="card">
-      <h3 class="display">GitHub publish</h3>
-      <p class="help">Create a <b>classic</b> personal access token with the <b>repo</b> scope. GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic). Paste it here. Builders do not need GitHub.</p>
+      <h3 class="display">Business token</h3>
+      <p class="help">Classic PAT, <b>repo</b> scope. Publishes live folders and the shared desk file <code>sitedesk-data/state.json</code>. GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic).</p>
       <form id="token-form">
         <label class="field"><span>Personal access token</span>
           <input name="token" type="password" autocomplete="off" placeholder="${token ? "Token saved on this device — paste to replace" : "ghp_…"}"/>
         </label>
-        ${token ? `<p class="token-set muted">Saved on this device ${esc(tail)}</p>` : `<p class="warn-text">No token on this device. Publish will queue locally.</p>`}
+        ${token ? `<p class="token-set muted">On this device ${esc(tail)}</p>` : `<p class="warn-text">No token on this device. Jobs will not be shared.</p>`}
+        ${user && user.role === "admin" ? `
         <label class="field"><span>Owner (optional)</span>
           <input name="owner" value="${esc(owner)}" placeholder="${DEFAULT_OWNER}"/>
         </label>
         <label class="field"><span>Repo (optional)</span>
           <input name="repo" value="${esc(repo)}" placeholder="${DEFAULT_REPO}"/>
-        </label>
+        </label>` : ""}
         <div class="row">
-          <button class="btn primary" type="submit">Save settings</button>
+          <button class="btn primary" type="submit">Save token</button>
           <button class="btn danger" type="button" id="clear-token">Clear token</button>
         </div>
       </form>
     </div>
-    <div class="card" style="margin-top:12px">
+    ${user && user.role === "admin" ? `<div class="card" style="margin-top:12px">
       <h3 class="display">Queued sites</h3>
       <p class="muted">${queued.length} waiting to go live. Public URL pattern: ${PUBLIC_ORIGIN}/{slug}/</p>
       ${queued.length ? `
@@ -3084,7 +3100,7 @@ function settingsPage() {
         </div>
         ${!token ? `<p class="warn-text">Add a token above first.</p>` : ""}
       ` : `<p class="muted">Nothing queued.</p>`}
-    </div>`;
+    </div>` : ""}`;
 }
 
 function bindPage(user) {
@@ -3436,12 +3452,17 @@ function bindPage(user) {
     const owner = String(fd.get("owner") || "").trim();
     const repo = String(fd.get("repo") || "").trim();
     if (token) localStorage.setItem(TOKEN_KEY, token);
-    if (owner) localStorage.setItem(OWNER_KEY, owner);
-    else localStorage.removeItem(OWNER_KEY);
-    if (repo) localStorage.setItem(REPO_KEY, repo);
-    else localStorage.removeItem(REPO_KEY);
-    toast("Settings saved on this device", "ok");
+    if (e.target.owner) {
+      if (owner) localStorage.setItem(OWNER_KEY, owner);
+      else localStorage.removeItem(OWNER_KEY);
+    }
+    if (e.target.repo) {
+      if (repo) localStorage.setItem(REPO_KEY, repo);
+      else localStorage.removeItem(REPO_KEY);
+    }
+    toast("Token saved on this device", "ok");
     render();
+    pullCloud().catch((err) => toast(err.message || String(err), "bad"));
   });
 
   $("#clear-token")?.addEventListener("click", () => {
@@ -3984,3 +4005,4 @@ function openEditUser(target, actor) {
 }
 
 render();
+boot();
