@@ -1,7 +1,7 @@
 :root {
   --bg: #000;
-  --ink: #fff;
-  --muted: #8a8a8a;
+  --ink: #ffffff;
+  --muted: #ffffff;
   --ok: #32d74b;
   --warn: #ffd60a;
   --bad: #ff453a;
@@ -17,13 +17,15 @@ html, body, #app {
   height: 100%;
   margin: 0;
   background: #000;
-  color: #fff;
+  color: #ffffff;
+  color-scheme: dark;
 }
 html, body { overflow-x: hidden; }
 body {
   font-family: var(--font);
   font-size: 13px;
   line-height: 1.4;
+  color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
@@ -204,6 +206,16 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 1px 0 var(--accent);
 }
 input[type="file"] { padding: 4px 0; box-shadow: none; }
+select, select option, option, optgroup, datalist, datalist option {
+  background: #000;
+  background-color: #000;
+  color: #fff;
+  color-scheme: dark;
+}
+select {
+  -webkit-appearance: menulist;
+  appearance: auto;
+}
 .search { max-width: 240px; }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
@@ -395,7 +407,18 @@ input[type="file"] { padding: 4px 0; box-shadow: none; }
 .pair-box { margin-top: 10px; padding-top: 8px; }
 .team-legend { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
 .team-actions { display: flex; gap: 6px; flex-wrap: wrap; }
-.team-remove { display: none; }
+.team-remove {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bad);
+  background: transparent;
+  border: 0;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 36px;
+  padding: 8px 12px;
+}
+.team-remove:hover { color: #ff6961; background: transparent; }
 
 .connect-bar { margin-bottom: 10px; }
 .connect-bar form { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
@@ -463,7 +486,7 @@ input[type="file"] { padding: 4px 0; box-shadow: none; }
   background: transparent;
   margin-left: auto;
   align-self: flex-end;
-  color: #ddd;
+  color: #ffffff;
 }
 .bubble .meta { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
 .bubble.unread { box-shadow: none; }
@@ -481,6 +504,14 @@ input[type="file"] { padding: 4px 0; box-shadow: none; }
   margin: 0;
 }
 .compose-bar .btn { flex-shrink: 0; }
+.bubble img.chat-img {
+  display: block;
+  max-width: min(100%, 280px);
+  max-height: 240px;
+  margin-top: 6px;
+  cursor: zoom-in;
+}
+.compose-bar .attach { flex-shrink: 0; }
 .msg-empty {
   flex: 1;
   display: grid;

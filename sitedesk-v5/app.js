@@ -15,6 +15,11 @@ const LEADS_CSV_URLS = [
 ];
 const LEADS_CSV_PATHS = ["leads.csv", "lead2.csv"];
 
+const DEMO_EMAILS = new Set(["caller@sitedesk.local", "builder@sitedesk.local"]);
+const DEMO_NAME_RE = /^(sam caller|bee builder)$/i;
+const DEMO_LEAD_RE = /gold rush smoke shop|aj landscaping|premier tax/i;
+
+
 const STATUS_LABEL = {
   new: "New",
   assigned_caller: "Assigned to caller",
@@ -133,7 +138,7 @@ function hydrateLead(lead) {
   if (lead.publishQueued == null) lead.publishQueued = false;
   lead.brief = hydrateBrief(lead.brief);
   if (!lead.checklist) lead.checklist = emptyChecklist();
-  if (!lead.buildMode) lead.buildMode = "zai";
+  lead.buildMode = "zai";
   if (!lead.diy || !Array.isArray(lead.diy.pages)) lead.diy = { pages: [] };
   if (lead.pinned == null) lead.pinned = false;
   if (!lead.priority) lead.priority = "normal";
@@ -166,10 +171,12 @@ function seed() {
     reads: {},
     activity: [],
     session: null,
+    leadsWiped: true,
   };
 }
 
 let db = load();
+cacheLocal();
 let route = parseHash();
 let busy = false;
 let previewFile = "index.html";
@@ -189,7 +196,7 @@ function nameOf(id) {
   return userById(id)?.name || "—";
 }
 function activeUsers() {
-  return db.users.filter((u) => u.active !== false);
+  return db.users.filter((u) => u && u.id && u.active !== false && !isGhostUser(u));
 }
 function callers() {
   return activeUsers().filter((u) => u.role === "caller");
@@ -410,7 +417,7 @@ const DATA_PATH = "sitedesk-data/state.json";
 function emptyDesk() {
   return {
     users: [], leads: [], notes: [], history: [], threads: [], messages: [],
-    reads: {}, activity: [], session: null, rev: 0,
+    reads: {}, activity: [], session: null, rev: 0, leadsWiped: false,
   };
 }
 
@@ -452,10 +459,21 @@ function stripDesk(data) {
     notes: data.notes || [],
     history: data.history || [],
     threads: data.threads || [],
-    messages: data.messages || [],
+    messages: (data.messages || []).map(stripMessage),
     reads: data.reads || {},
     activity: data.activity || [],
+    leadsWiped: !!data.leadsWiped,
   };
+}
+
+function stripMessage(m) {
+  if (!m || !m.image) return m;
+  const img = {
+    filename: m.image.filename || "image.jpg",
+    path: m.image.path || "",
+  };
+  if (img.path) return { ...m, image: img };
+  return m;
 }
 
 function applyDesk(remote) {
@@ -469,7 +487,74 @@ function applyDesk(remote) {
   next.messages = remote.messages || [];
   next.reads = remote.reads || {};
   next.activity = remote.activity || [];
+  next.leadsWiped = !!remote.leadsWiped;
+  sanitizeDesk(next);
   return next;
+}
+
+function isGhostUser(u) {
+  const email = String(u?.email || "").trim().toLowerCase();
+  const name = String(u?.name || "").trim();
+  if (DEMO_EMAILS.has(email)) return true;
+  if (DEMO_NAME_RE.test(name)) return true;
+  return false;
+}
+
+function dropLeadsFromDesk(desk, ids) {
+  const gone = new Set(ids);
+  desk.leads = (desk.leads || []).filter((l) => !gone.has(l.id));
+  desk.notes = (desk.notes || []).filter((n) => !gone.has(n.leadId));
+  desk.history = (desk.history || []).filter((h) => !gone.has(h.leadId));
+  const jobIds = (desk.threads || []).filter((th) => th.type === "job" && gone.has(th.leadId)).map((th) => th.id);
+  const jobSet = new Set(jobIds);
+  desk.threads = (desk.threads || []).filter((th) => !jobSet.has(th.id));
+  desk.messages = (desk.messages || []).filter((m) => !jobSet.has(m.threadId));
+  desk.activity = (desk.activity || []).filter((a) => !a.leadId || !gone.has(a.leadId));
+}
+
+function sanitizeDesk(desk) {
+  if (!desk) return false;
+  let dirty = false;
+  const kept = [];
+  const droppedIds = new Set();
+  for (const u of desk.users || []) {
+    if (isGhostUser(u)) {
+      droppedIds.add(u.id);
+      dirty = true;
+    } else kept.push(u);
+  }
+  desk.users = kept;
+  const liveIds = new Set(kept.map((u) => u.id));
+  for (const th of desk.threads || []) {
+    const nextIds = (th.userIds || []).filter((id) => liveIds.has(id));
+    if (nextIds.length !== (th.userIds || []).length) {
+      th.userIds = nextIds;
+      dirty = true;
+    }
+  }
+  const demoLeadIds = (desk.leads || [])
+    .filter((l) => DEMO_LEAD_RE.test(String(l.businessName || "")))
+    .map((l) => l.id);
+  if (demoLeadIds.length) {
+    dropLeadsFromDesk(desk, demoLeadIds);
+    dirty = true;
+  }
+  for (const l of desk.leads || []) {
+    if (l.buildMode !== "zai") {
+      l.buildMode = "zai";
+      dirty = true;
+    }
+  }
+  if (!desk.leadsWiped) {
+    dropLeadsFromDesk(desk, (desk.leads || []).map((l) => l.id));
+    desk.leads = [];
+    desk.notes = desk.notes || [];
+    desk.history = desk.history || [];
+    desk.leadsWiped = true;
+    dirty = true;
+  }
+  if (desk.session && droppedIds.has(desk.session)) desk.session = null;
+  return dirty;
 }
 
 function rememberDataUrls() {
@@ -479,6 +564,9 @@ function rememberDataUrls() {
       if (im.dataUrl && im.filename) m.set(`${l.id}/${im.filename}`, im.dataUrl);
     }
   }
+  for (const msg of db.messages || []) {
+    if (msg.image?.dataUrl) m.set(`msg/${msg.id}`, msg.image.dataUrl);
+  }
   return m;
 }
 
@@ -487,6 +575,13 @@ function restoreDataUrls(m) {
     for (const im of l.images || []) {
       const d = m.get(`${l.id}/${im.filename}`);
       if (d) im.dataUrl = d;
+    }
+  }
+  for (const msg of db.messages || []) {
+    const d = m.get(`msg/${msg.id}`);
+    if (d) {
+      msg.image = msg.image || {};
+      msg.image.dataUrl = d;
     }
   }
 }
@@ -514,6 +609,7 @@ function load() {
       const data = JSON.parse(raw);
       const desk = applyDesk(data);
       desk.session = session || data.session || null;
+      if (desk.session && !desk.users.some((u) => u.id === desk.session && u.active !== false)) desk.session = null;
       return desk;
     } catch { /* seed */ }
   }
@@ -666,7 +762,8 @@ async function pullCloud(opts = {}) {
   cloudRev = incoming;
   db.rev = incoming;
   cloudReady = true;
-  cacheLocal();
+  if (!remote.leadsWiped) persist();
+  else cacheLocal();
   render();
 }
 
@@ -768,9 +865,52 @@ function serializePages(pages) {
   return keys.map((k) => `===== FILE: ${k} =====\n${pages[k] || ""}`).join("\n\n");
 }
 
+function foldToOneHtml(pages) {
+  const src = pages || {};
+  let index = String(src["index.html"] || "");
+  const extras = [];
+  let css = "";
+  const kept = {};
+  for (const [name, body] of Object.entries(src)) {
+    if (name === "index.html") continue;
+    if (/^styles\.css$/i.test(name)) {
+      css = String(body || "");
+      continue;
+    }
+    if (/\.html?$/i.test(name)) {
+      extras.push([name, String(body || "")]);
+      continue;
+    }
+    if (/\.(png|jpe?g|gif|webp|svg)$/i.test(name)) kept[name] = body;
+  }
+  if (!index.trim() && extras.length) index = extras.shift()[1];
+  if (css.trim()) {
+    const tag = `<style>${css}</style>`;
+    if (/<link[^>]+href=["'][^"']*styles\.css["'][^>]*>/i.test(index)) {
+      index = index.replace(/<link[^>]+href=["'][^"']*styles\.css["'][^>]*>/i, tag);
+    } else if (/<\/head>/i.test(index)) {
+      index = index.replace(/<\/head>/i, tag + "\n</head>");
+    } else {
+      index = tag + "\n" + index;
+    }
+  }
+  if (extras.length) {
+    const chunks = extras.map(([name, body]) => {
+      const m = body.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+      const inner = (m ? m[1] : body).trim();
+      const id = name.replace(/\.html?$/i, "");
+      return `<section id="${id}">\n${inner}\n</section>`;
+    }).join("\n");
+    if (/<\/body>/i.test(index)) index = index.replace(/<\/body>/i, chunks + "\n</body>");
+    else index = index + "\n" + chunks;
+  }
+  kept["index.html"] = index;
+  return kept;
+}
+
 function applyPaste(lead, text) {
-  lead.pages = parsePages(text);
-  lead.html = lead.pages["index.html"] || Object.values(lead.pages)[0] || "";
+  lead.pages = foldToOneHtml(parsePages(text));
+  lead.html = lead.pages["index.html"] || "";
   if (leadHasHtml(lead)) {
     lead.checklist = lead.checklist || emptyChecklist();
     lead.checklist.pastedHtml = true;
@@ -813,21 +953,9 @@ function rewriteImages(html, images, lead) {
 }
 
 function previewDoc(lead, pageName) {
-  if (lead.buildMode === "diy") {
-    syncDiyFromBrief(lead);
-    serializeDiy(lead);
-    const pages = lead.diy.pages || [];
-    const p = pages.find((x) => x.filename === pageName) || pages.find((x) => x.id === diyPageId) || pages[0];
-    if (!p) return "";
-    return rewriteImages(renderDiyPage(lead, p, true), lead.images, lead);
-  }
-  const pages = pagesOf(lead);
-  const htmlFiles = Object.keys(pages).filter((k) => /\.html?$/i.test(k));
-  const name = pageName && pages[pageName] ? pageName : (pages["index.html"] ? "index.html" : htmlFiles[0]);
-  let html = (name && pages[name]) || lead.html || "";
-  if (pages["styles.css"] && html && /href=["']styles\.css["']/.test(html)) {
-    html = html.replace(/<link[^>]+href=["']styles\.css["'][^>]*>/i, `<style>${pages["styles.css"]}</style>`);
-  }
+  lead.buildMode = "zai";
+  const pages = foldToOneHtml(pagesOf(lead));
+  let html = pages["index.html"] || lead.html || "";
   return rewriteImages(html, lead.images, lead);
 }
 
@@ -845,17 +973,14 @@ async function githubPublish(lead, token) {
       message: `Add ${slug}/${im.filename} from SiteDesk`,
     });
   }
-  const pages = pagesOf(lead);
-  if (!Object.keys(pages).length) pages["index.html"] = lead.html || "";
-  if (lead.phone || lead.email || lead.hours) pages["contact.json"] = contactJsonFor(lead);
-  for (const [filename, html] of Object.entries(pages)) {
-    await putContent({
-      token,
-      path: `${slug}/${filename}`,
-      contentB64: utf8ToB64(html || ""),
-      message: `Add ${slug}/${filename} from SiteDesk`,
-    });
-  }
+  const pages = foldToOneHtml(pagesOf(lead));
+  const html = pages["index.html"] || lead.html || "";
+  await putContent({
+    token,
+    path: `${slug}/index.html`,
+    contentB64: utf8ToB64(html || ""),
+    message: `Add ${slug}/index.html from SiteDesk`,
+  });
 }
 
 
@@ -878,14 +1003,12 @@ function markPublished(lead, user) {
 }
 
 async function publishLead(lead, user) {
-  if (lead.buildMode === "diy") serializeDiy(lead);
-  else {
-    const ta = $("#html-paste");
-    if (ta) applyPaste(lead, ta.value);
-  }
+  lead.buildMode = "zai";
+  const ta = $("#html-paste");
+  if (ta) applyPaste(lead, ta.value);
   persist();
   if (!leadHasHtml(lead)) {
-    toast("Nothing to publish. Paste z.ai HTML or build pages here.", "bad");
+    toast("Nothing to publish. Paste z.ai HTML.", "bad");
     return;
   }
   lead.slug = toSlug(lead.brief?.businessName || lead.businessName);
@@ -1432,13 +1555,15 @@ function markThreadRead(user, threadId) {
   persist();
 }
 
-function postMessage(user, threadId, text) {
+function postMessage(user, threadId, text, image) {
   const t = String(text || "").trim();
-  if (!t) return;
-  db.messages.push({ id: uid(), threadId, fromId: user.id, text: t, at: now() });
+  if (!t && !image) return;
+  const msg = { id: uid(), threadId, fromId: user.id, text: t, at: now() };
+  if (image) msg.image = image;
+  db.messages.push(msg);
   const thread = db.threads.find((x) => x.id === threadId);
   const label = thread ? threadTitle(thread, user) : "Messages";
-  logActivity("chat", `${user.name} in ${label}: ${t.slice(0, 80)}`, { threadId, leadId: thread?.leadId || null });
+  logActivity("chat", `${user.name} in ${label}: ${(t || (image ? "Photo" : "")).slice(0, 80)}`, { threadId, leadId: thread?.leadId || null });
   persist();
 }
 
@@ -1489,6 +1614,18 @@ function archiveLead(lead, on) {
   lead.updatedAt = now();
   logActivity("status", `${on ? "Archived" : "Restored"} ${lead.businessName}`, { leadId: lead.id });
   persist();
+}
+
+function removeUser(target) {
+  if (!target) return;
+  db.users = db.users.filter((x) => x.id !== target.id);
+  for (const th of db.threads || []) {
+    th.userIds = (th.userIds || []).filter((id) => id !== target.id);
+  }
+  for (const l of db.leads || []) {
+    if (l.assignedCallerId === target.id) l.assignedCallerId = null;
+    if (l.assignedBuilderId === target.id) l.assignedBuilderId = null;
+  }
 }
 
 function canDeleteUser(target, actor) {
@@ -1549,10 +1686,7 @@ function briefPages(lead) {
 }
 
 function listedFiles(lead) {
-  const b = lead.brief || emptyBrief();
-  if (b.siteShape !== "multi") return ["index.html"];
-  const files = briefPages(lead).map((p) => p.filename);
-  return files.length ? files : ["index.html"];
+  return ["index.html"];
 }
 
 function filledLine(label, value) {
@@ -1593,7 +1727,7 @@ function imagePromptBlock(lead) {
   for (const p of pages) {
     const list = byPage.get(p.id) || [];
     if (!list.length) continue;
-    bits.push(`PAGE ${p.filename}\n` + list.map(fmtImgRule).join("\n\n"));
+    bits.push(`SECTION ${p.name} (inside index.html)\n` + list.map(fmtImgRule).join("\n\n"));
   }
   if (any.length) bits.push("ANY / ALL PAGES\n" + any.map(fmtImgRule).join("\n\n"));
   if (unassigned.length) {
@@ -1759,14 +1893,14 @@ function serializeDiy(lead) {
 
 function zaiInstructions(lead) {
   const b = lead.brief || emptyBrief();
-  const files = listedFiles(lead);
-  const multi = b.siteShape === "multi" && briefPages(lead).length > 0;
-  const shape = multi
-    ? `SITE SHAPE: MULTI PAGE: these files only: ${files.join(", ")}\nOutput a separate HTML file for each listed filename. Shared relative nav. Do not add pages that are not listed.`
-    : `SITE SHAPE: ONE PAGE: only index.html\nThis is ONE index.html covering only the sections implied by the facts below. Do not invent extra pages.`;
+  const sections = briefPages(lead);
+  const sectionBit = sections.length
+    ? `Put these as <section> blocks inside that single file (do not create extra HTML files): ${sections.map((p) => p.name).join(", ")}.`
+    : "Cover only the sections implied by the facts below. Do not invent extra pages.";
+  const shape = `SITE SHAPE: ONE FILE — only index.html\nThis is ONE index.html. ${sectionBit}\nDo not create about.html, gallery.html, contact.html, or any other HTML page. Do not emit ===== FILE: dumps. Do not emit styles.css as a sibling file — put CSS in a <style> tag in index.html. Photos stay as separate image files.`;
 
-  const pageNotes = briefPages(lead)
-    .map((p) => filledLine(`Page ${p.filename} (${p.name})`, p.note))
+  const pageNotes = sections
+    .map((p) => filledLine(`Section ${p.name}`, p.note))
     .filter(Boolean);
 
   const facts = [
@@ -1787,7 +1921,6 @@ function zaiInstructions(lead) {
   const notes = callNotesText(lead);
   if (notes) facts.push("Call notes:\n" + notes);
 
-  const fileList = files.join(", ");
   return `Build a real local-business website. Follow every rule. Do not invent.
 
 1. ${shape}
@@ -1802,8 +1935,7 @@ ${imagePromptBlock(lead)}
 
 5. If a fact is missing, omit it from the site. Never pad with placeholder copy. Never write "none" or "TBD".
 
-6. Output ===== FILE: name ===== blocks only for: ${fileList}
-Raw HTML only. No markdown fences. Relative links between these files.
+6. Output raw HTML for index.html only. No markdown fences. No ===== FILE: blocks. No extra HTML files.
 `;
 }
 
@@ -1814,27 +1946,35 @@ function homeFor(user) {
 }
 
 function render() {
-  const root = $("#app");
-  const user = currentUser();
-  if (!user && route.name !== "login") {
-    go("/login");
-    return;
+  try {
+    const root = $("#app");
+    const user = currentUser();
+    if (!user && route.name !== "login") {
+      go("/login");
+      return;
+    }
+    if (user && route.name === "login") {
+      go(homeFor(user));
+      return;
+    }
+    if (!user) {
+      root.innerHTML = loginView();
+      bindLogin();
+      return;
+    }
+    if (route.name === "sites" || route.name === "archive") {
+      go(homeFor(user));
+      return;
+    }
+    root.innerHTML = (busy ? `<div class="busy-bar"></div>` : "") + shell(user, page(user));
+    bindShell(user);
+  } catch (err) {
+    const root = document.getElementById("app");
+    if (root) {
+      root.innerHTML = `<div class="login"><div class="card login-card"><h1 class="display">SiteDesk</h1><p class="bad-text">${String(err && err.message || err)}</p></div></div>`;
+    }
+    console.error(err);
   }
-  if (user && route.name === "login") {
-    go(homeFor(user));
-    return;
-  }
-  if (!user) {
-    root.innerHTML = loginView();
-    bindLogin();
-    return;
-  }
-  if (route.name === "sites" || route.name === "archive") {
-    go(homeFor(user));
-    return;
-  }
-  root.innerHTML = (busy ? `<div class="busy-bar"></div>` : "") + shell(user, page(user));
-  bindShell(user);
 }
 
 function loginView() {
@@ -2649,24 +2789,53 @@ function diyWorkspace(lead) {
 }
 
 function buildTab(lead, user) {
+  lead.buildMode = "zai";
   const showBuilder = canBuild(user);
-  const mode = lead.buildMode === "diy" ? "diy" : "zai";
   if (!showBuilder) {
     return callerPreview(lead);
   }
+  const prompt = zaiInstructions(lead);
   return `
     <div class="mode-row">
-      <div class="seg">
-        <button type="button" data-build-mode="zai" class="${mode === "zai" ? "on" : ""}">Use z.ai</button>
-        <button type="button" data-build-mode="diy" class="${mode === "diy" ? "on" : ""}">Build it here</button>
-      </div>
       <div class="row">
-        ${mode === "zai" ? `<a class="btn" href="${ZAI}" target="_blank" rel="noopener" data-open-zai>Open z.ai</a>` : ""}
+        <button class="btn" data-copy-brief type="button">Copy prompt</button>
+        <a class="btn" href="${ZAI}" target="_blank" rel="noopener" data-open-zai>Open z.ai</a>
         <button class="btn" type="button" data-save-html>Save draft</button>
         <button class="btn primary" type="button" data-publish ${busy ? "disabled" : ""}>${busy ? "Publishing…" : "Save / Publish"}</button>
       </div>
     </div>
-    ${mode === "diy" ? diyWorkspace(lead) : builderWorkspace(lead)}`;
+    <div class="prompt-head">
+      <p class="section-label" style="margin:0">z.ai prompt</p>
+    </div>
+    <pre class="prompt-box" id="zai-prompt">${esc(prompt)}</pre>
+    ${builderWorkspace(lead)}`;
+}
+
+function chatImageSrc(im) {
+  if (!im) return "";
+  if (im.dataUrl) return im.dataUrl;
+  const t = im.updatedAt || db.rev || Date.now();
+  if (im.path) return `${PUBLIC_ORIGIN}/${im.path}?v=${t}`;
+  return "";
+}
+
+function messageBubbleHtml(m, user, lastRead) {
+  const src = chatImageSrc(m.image);
+  return `
+    <div class="bubble ${m.fromId === user.id ? "me" : ""} ${m.at > lastRead && m.fromId !== user.id ? "unread" : ""}">
+      <div class="meta">${esc(nameOf(m.fromId))} · ${fmtShort(m.at)}</div>
+      ${m.text ? `<div>${esc(m.text)}</div>` : ""}
+      ${src ? `<img class="chat-img" src="${src}" alt="${esc(m.image.filename || "image")}" data-lightbox="${m.id}"/>` : ""}
+    </div>`;
+}
+
+function composeBarHtml(threadId) {
+  return `
+    <form class="compose-bar" id="compose-form"${threadId ? ` data-thread="${threadId}"` : ""}>
+      <label class="btn attach" title="Attach image">Photo<input type="file" name="image" accept="image/*" capture="environment" hidden/></label>
+      <textarea name="text" rows="1" placeholder="Message…"></textarea>
+      <button class="btn primary" type="submit">Send</button>
+    </form>`;
 }
 
 function leadMessagesTab(lead, user) {
@@ -2689,16 +2858,9 @@ function leadMessagesTab(lead, user) {
         <a class="btn tiny" href="#/messages/${job.id}">Open in Messages</a>
       </div>
       <div class="msg-log" id="msg-log">
-        ${msgs.map((m) => `
-          <div class="bubble ${m.fromId === user.id ? "me" : ""} ${m.at > lastRead && m.fromId !== user.id ? "unread" : ""}">
-            <div class="meta">${esc(nameOf(m.fromId))} · ${fmtShort(m.at)}</div>
-            <div>${esc(m.text)}</div>
-          </div>`).join("") || `<p class="muted">No messages yet.</p>`}
+        ${msgs.map((m) => messageBubbleHtml(m, user, lastRead)).join("") || `<p class="muted">No messages yet.</p>`}
       </div>
-      <form class="compose-bar" id="compose-form" data-thread="${job.id}">
-        <textarea name="text" rows="1" placeholder="Message…" required></textarea>
-        <button class="btn primary" type="submit">Send</button>
-      </form>
+      ${composeBarHtml(job.id)}
     </div>`;
 }
 
@@ -2811,18 +2973,14 @@ function photoGrid(lead, canEdit) {
 
 
 function builderWorkspace(lead) {
-  const pages = pagesOf(lead);
-  const files = Object.keys(pages).filter((k) => /\.html?$/i.test(k));
-  const htmlPages = Object.fromEntries(Object.entries(pages).filter(([k]) => /\.html?$/i.test(k)));
-  const paste = serializePages(htmlPages);
-  const current = files.includes(previewFile) ? previewFile : (files[0] || "index.html");
+  const pages = foldToOneHtml(pagesOf(lead));
+  const paste = pages["index.html"] || lead.html || "";
   return `
     <div>
       <label class="field"><span>HTML</span>
-        <textarea class="code" id="html-paste" spellcheck="false" placeholder="===== FILE: index.html =====">${esc(paste)}</textarea>
+        <textarea class="code" id="html-paste" spellcheck="false" placeholder="Paste one index.html from z.ai">${esc(paste)}</textarea>
       </label>
-      ${previewChrome(files.length > 1 ? `<div class="page-tabs">${files.map((f) => `
-        <button type="button" data-preview-page="${esc(f)}" class="${f === current ? "on" : ""}">${esc(f)}</button>`).join("")}</div>` : "")}
+      ${previewChrome()}
     </div>`;
 }
 
@@ -2831,14 +2989,10 @@ function callerPreview(lead) {
   if (!leadHasHtml(lead)) {
     return `<p class="muted">No preview.</p>`;
   }
-  const pages = pagesOf(lead);
-  const files = Object.keys(pages).filter((k) => /\.html?$/i.test(k));
-  const current = files.includes(previewFile) ? previewFile : (files[0] || "index.html");
   return `
     <div class="card">
       <h3 class="display">Site preview</h3>
-      ${previewChrome(files.length > 1 ? `<div class="page-tabs">${files.map((f) => `
-        <button type="button" data-preview-page="${esc(f)}" class="${f === current ? "on" : ""}">${esc(f)}</button>`).join("")}</div>` : "")}
+      ${previewChrome()}
     </div>`;
 }
 
@@ -2907,7 +3061,7 @@ function messagesPage(user) {
         <a class="thread-item ${current?.id === t.id ? "active" : ""} ${unread ? "unread" : ""}" href="#/messages/${t.id}">
           <b>${esc(threadTitle(t, user))}${unread ? `<span class="unread-dot"></span>` : ""}</b>
           <span class="when">${last ? fmtShort(last.at) : ""}</span>
-          <span class="preview">${last ? esc(last.text) : "No messages yet"}</span>
+          <span class="preview">${last ? esc(last.text || (last.image ? "Photo" : "")) : "No messages yet"}</span>
         </a>`;
     }).join("")
     : `<div class="empty">None</div>`;
@@ -2925,39 +3079,41 @@ function messagesPage(user) {
         </div>
       </div>
       <div class="msg-log" id="msg-log">
-        ${msgs.map((m) => `
-          <div class="bubble ${m.fromId === user.id ? "me" : ""} ${m.at > lastRead && m.fromId !== user.id ? "unread" : ""}">
-            <div class="meta">${esc(nameOf(m.fromId))} · ${fmtShort(m.at)}</div>
-            <div>${esc(m.text)}</div>
-          </div>`).join("") || `<p class="muted">No messages yet.</p>`}
+        ${msgs.map((m) => messageBubbleHtml(m, user, lastRead)).join("") || `<p class="muted">No messages yet.</p>`}
       </div>
-      <form class="compose-bar" id="compose-form">
-        <textarea name="text" rows="1" placeholder="Message…" required></textarea>
-        <button class="btn primary" type="submit">Send</button>
-      </form>`;
+      ${composeBarHtml(current.id)}`;
   }
 
+  const others = people.filter((u) => u.id !== user.id);
   return `
     <div class="top">
       <div>
         <h1 class="display">Messages</h1>
       </div>
     </div>
-    ${user.role === "admin" ? `
-      <div class="card connect-bar">
+    <div class="card connect-bar">
+      ${user.role === "admin" ? `
         <form id="connect-form">
           <select name="a">
             <option value="">Person</option>
             ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(u.role)}</option>`).join("")}
           </select>
-          <span class="muted">and</span>
+          <span>and</span>
           <select name="b">
             <option value="">Person</option>
             ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(u.role)}</option>`).join("")}
           </select>
           <button class="btn primary" type="submit">Connect</button>
-        </form>
-      </div>` : ""}
+        </form>` : ""}
+      <form id="dm-form">
+        <span>Message</span>
+        <select name="them">
+          <option value="">Person</option>
+          ${others.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(u.role)}</option>`).join("")}
+        </select>
+        <button class="btn primary" type="submit">Message</button>
+      </form>
+    </div>
     <div class="messenger ${mobileClass}">
       <div class="thread-list">${list}</div>
       <div class="thread-pane">${pane}</div>
@@ -2974,7 +3130,7 @@ function usersPage() {
       <td>
         <div class="team-actions">
           <button class="btn tiny" data-edit-user="${u.id}">Edit</button>
-          ${me && canDeleteUser(u, me) ? `<button class="btn tiny danger team-remove" data-delete-user="${u.id}">Remove</button>` : ""}
+          ${me && canDeleteUser(u, me) ? `<button class="btn danger team-remove" type="button" data-delete-user="${u.id}">Delete</button>` : ""}
         </div>
       </td>
     </tr>`).join("");
@@ -3264,8 +3420,8 @@ function bindPage(user) {
 
   $("[data-save-html]")?.addEventListener("click", () => {
     if (!lead) return;
-    if (lead.buildMode === "diy") serializeDiy(lead);
-    else if (ta) applyPaste(lead, ta.value);
+    if (ta) applyPaste(lead, ta.value);
+    lead.buildMode = "zai";
     lead.updatedAt = now();
     persist();
     toast("Saved on this device", "ok");
@@ -3355,8 +3511,8 @@ function bindPage(user) {
         toast(u?.id === user.id ? "You cannot remove yourself." : "Cannot remove the last remaining admin.", "warn");
         return;
       }
-      if (!confirm(`Remove ${u.name}?`)) return;
-      db.users = db.users.filter((x) => x.id !== u.id);
+      if (!confirm(`Delete ${u.name}?`)) return;
+      removeUser(u);
       persist();
       render();
     });
@@ -3370,8 +3526,8 @@ function bindPage(user) {
         toast(u?.id === user.id ? "You cannot remove yourself." : "Cannot remove the last remaining admin.", "warn");
         return;
       }
-      if (!confirm(`Remove ${u.name}?`)) return;
-      db.users = db.users.filter((x) => x.id !== u.id);
+      if (!confirm(`Delete ${u.name}?`)) return;
+      removeUser(u);
       persist();
       render();
     });
@@ -3697,16 +3853,45 @@ function bindPage(user) {
   });
 
 
-  $("#compose-form")?.addEventListener("submit", (e) => {
+  $("#compose-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!route.id) return;
     const threadId = e.target.dataset.thread || route.id;
     const thread = db.threads.find((t) => t.id === threadId);
     if (!thread || !canSeeThread(thread, user)) return;
     const text = String(new FormData(e.target).get("text") || "").trim();
-    if (!text) return;
-    postMessage(user, thread.id, text);
+    const file = e.target.querySelector('input[name="image"]')?.files?.[0];
+    let image = null;
+    if (file) {
+      try {
+        const packed = await compressImage(file, MAX_IMG);
+        const filename = `chat-${Date.now()}.${extFor(packed.mime)}`;
+        image = { filename, dataUrl: packed.dataUrl, mime: packed.mime };
+        const token = getToken();
+        if (token) {
+          const path = `sitedesk-data/chat/${thread.id}/${filename}`;
+          await putContent({
+            token,
+            path,
+            contentB64: dataUrlToB64(packed.dataUrl),
+            message: "SiteDesk chat image",
+          });
+          image.path = path;
+        }
+      } catch (err) {
+        toast(err.message || "Could not attach image", "bad");
+        return;
+      }
+    }
+    if (!text && !image) return;
+    postMessage(user, thread.id, text, image);
     render();
+  });
+
+  $("#dm-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const them = String(new FormData(e.target).get("them") || "");
+    const t = connectPeople(user.id, them);
+    if (t) go("/messages/" + t.id);
   });
 
   const log = $("#msg-log");
