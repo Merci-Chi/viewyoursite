@@ -432,12 +432,40 @@ function githubMessage(status, text) {
   return `GitHub API error (${status}): ${extra || "unknown"}`;
 }
 
-async function putContent({ token, path, contentB64, message }) {
+const DATA_BRANCH = "sitedesk-data";
+function branchFor(path) {
+  return String(path || "").startsWith("sitedesk-data/") ? DATA_BRANCH : "main";
+}
+
+let dataBranchReady = false;
+async function ensureDataBranch(token) {
+  if (dataBranchReady) return;
   const { owner, repo } = githubRepo();
+  const headers = githubHeaders(token);
+  const refUrl = `https://api.github.com/repos/${owner}/${repo}/git/ref/heads/${DATA_BRANCH}`;
+  const got = await fetch(refUrl, { headers });
+  if (got.ok) { dataBranchReady = true; return; }
+  if (got.status !== 404) throw new Error(githubMessage(got.status, await got.text()));
+  const main = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/ref/heads/main`, { headers });
+  if (!main.ok) throw new Error(githubMessage(main.status, await main.text()));
+  const sha = (await main.json()).object.sha;
+  const made = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/refs`, {
+    method: "POST",
+    headers: { ...headers, "Content-Type": "application/json" },
+    body: JSON.stringify({ ref: `refs/heads/${DATA_BRANCH}`, sha }),
+  });
+  if (!made.ok && made.status !== 422) throw new Error(githubMessage(made.status, await made.text()));
+  dataBranchReady = true;
+}
+
+async function putContent({ token, path, contentB64, message, branch }) {
+  const { owner, repo } = githubRepo();
+  const useBranch = branch || branchFor(path);
+  if (useBranch === DATA_BRANCH) await ensureDataBranch(token);
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
   const headers = githubHeaders(token);
   let sha;
-  const get = await fetch(url, { headers });
+  const get = await fetch(`${url}?ref=${encodeURIComponent(useBranch)}`, { headers });
   if (get.status === 401 || get.status === 403) {
     throw new Error(githubMessage(get.status, await get.text()));
   }
@@ -447,7 +475,7 @@ async function putContent({ token, path, contentB64, message }) {
   } else if (get.status !== 404) {
     throw new Error(githubMessage(get.status, await get.text()));
   }
-  const body = { message, content: contentB64, branch: "main" };
+  const body = { message, content: contentB64, branch: useBranch };
   if (sha) body.sha = sha;
   const send = () => fetch(url, {
     method: "PUT",
@@ -479,11 +507,18 @@ function photoPath(leadId, filename) {
   return `sitedesk-data/photos/${leadId}/${filename}`;
 }
 
+function deskFileUrl(path, v) {
+  const { owner, repo } = githubRepo();
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${DATA_BRANCH}/${path}?v=${v || Date.now()}`;
+}
 function photoSrc(im, lead) {
   if (im?.dataUrl) return im.dataUrl;
   const t = im?.updatedAt || db.rev || Date.now();
-  if (im?.path) return `${PUBLIC_ORIGIN}/${im.path}?v=${t}`;
-  if (lead && im?.filename) return `${PUBLIC_ORIGIN}/${photoPath(lead.id, im.filename)}?v=${t}`;
+  if (im?.path) {
+    if (String(im.path).startsWith("sitedesk-data/")) return deskFileUrl(im.path, t);
+    return `${PUBLIC_ORIGIN}/${im.path}?v=${t}`;
+  }
+  if (lead && im?.filename) return deskFileUrl(photoPath(lead.id, im.filename), t);
   return "";
 }
 
@@ -711,10 +746,11 @@ function looksHashed(pw) {
   return /^[a-f0-9]{64}$/i.test(String(pw || ""));
 }
 
-async function getFile(path) {
+async function getFile(path, branch) {
   const token = getToken();
   const { owner, repo } = githubRepo();
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+  const useBranch = branch || branchFor(path);
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${encodeURIComponent(useBranch)}`;
   const headers = githubHeaders(token);
   const get = await fetch(url, { headers });
   if (get.status === 404) return { notFound: true };
@@ -737,8 +773,7 @@ function publicStateUrls() {
   const { owner, repo } = githubRepo();
   const t = Date.now();
   return [
-    `${PUBLIC_ORIGIN}/sitedesk-data/state.json?v=${t}`,
-    `https://raw.githubusercontent.com/${owner}/${repo}/main/sitedesk-data/state.json?v=${t}`,
+    `https://raw.githubusercontent.com/${owner}/${repo}/${DATA_BRANCH}/sitedesk-data/state.json?v=${t}`,
   ];
 }
 
