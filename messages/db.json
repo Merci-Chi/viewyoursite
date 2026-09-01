@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "admin-seed",
+      "name": "Admin",
+      "email": "admin@messages.local",
+      "password": "admin123",
+      "role": "admin",
+      "head": true,
+      "active": true
+    }
+  ],
+  "threads": [],
+  "messages": [],
+  "reads": {},
+  "rev": 0
+}
