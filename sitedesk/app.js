@@ -731,7 +731,8 @@ function persist() {
 }
 
 function schedulePush() {
-  if (!getToken() || !cloudReady) return;
+  if (!getToken()) return;
+  if (!cloudReady) { pendingPush = true; return; }
   clearTimeout(persistTimer);
   persistTimer = setTimeout(() => {
     pushCloud().catch((err) => {
@@ -831,6 +832,13 @@ async function pushCloud() {
   }
 }
 
+function unionById(remoteArr, localArr) {
+  const m = new Map();
+  for (const x of remoteArr || []) if (x && x.id) m.set(x.id, x);
+  for (const x of localArr || []) if (x && x.id) m.set(x.id, x);
+  return [...m.values()];
+}
+
 async function pullCloud(opts = {}) {
   const token = getToken();
   let remote = null;
@@ -850,37 +858,40 @@ async function pullCloud(opts = {}) {
   if (!remote) {
     try { remote = await fetchPublicState(); } catch { remote = null; }
   }
-  if (!remote || !remote.users) return;
-  const incoming = remote.rev || remote.updatedAt || 0;
-  if (incoming && db.rev && incoming < db.rev && getToken()) {
-    cloudReady = true;
-    schedulePush();
+  if (!remote || !remote.users) {
+    cloudReady = !!token || cloudReady;
+    if (token && pendingPush) schedulePush();
     return;
   }
-  if (opts.quiet && incoming && cloudRev && incoming <= cloudRev) return;
+  const incoming = remote.rev || remote.updatedAt || 0;
+  const localNewer = incoming && db.rev && incoming < db.rev;
+  if (localNewer) {
+    remote.users = unionById(remote.users, db.users);
+    remote.leads = unionById(remote.leads, db.leads);
+    remote.threads = unionById(remote.threads, db.threads);
+    remote.messages = unionById(remote.messages, db.messages);
+  }
+  if (opts.quiet && incoming && cloudRev && incoming <= cloudRev && !localNewer) return;
   const urls = rememberDataUrls();
   const session = db.session;
+  const localUsers = db.users || [];
+  const localLeads = db.leads || [];
   const localMsgs = db.messages || [];
   const localThreads = db.threads || [];
+  remote.users = unionById(remote.users, localUsers);
+  remote.leads = unionById(remote.leads, localLeads);
+  remote.threads = unionById(remote.threads, localThreads);
+  remote.messages = unionById(remote.messages, localMsgs);
   const next = applyDesk(remote);
-  const byId = (arr) => {
-    const m = new Map();
-    for (const x of arr || []) if (x && x.id) m.set(x.id, x);
-    return m;
-  };
-  const msgs = byId(next.messages);
-  for (const x of localMsgs) if (x && x.id && !msgs.has(x.id)) msgs.set(x.id, x);
-  next.messages = [...msgs.values()];
-  const th = byId(next.threads);
-  for (const x of localThreads) if (x && x.id && !th.has(x.id)) th.set(x.id, x);
-  next.threads = [...th.values()];
   next.session = session;
   db = next;
   restoreDataUrls(urls);
-  cloudRev = incoming;
+  cloudRev = Math.max(incoming || 0, cloudRev || 0);
   db.rev = Math.max(incoming || 0, db.rev || 0);
   cloudReady = true;
   cacheLocal();
+  if (localNewer && token) schedulePush();
+  else if (pendingPush && token) schedulePush();
   render();
 }
 
@@ -895,11 +906,8 @@ function startPoll() {
 
 async function boot() {
   await pullCloud();
-  if (getToken() && !cloudReady) {
-    /* Contents API failed and public JSON missing — do not overwrite the repo. */
-  } else if (!getToken()) {
-    cloudReady = true;
-  }
+  if (getToken()) cloudReady = true;
+  if (pendingPush) schedulePush();
   startPoll();
 }
 
