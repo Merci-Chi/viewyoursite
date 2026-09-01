@@ -1,28 +1,41 @@
 # SiteDesk
 
-Internal tool for the website team. Admin assigns leads to callers. Callers gather the brief. Builders make the site in z.ai and send the URL back.
+Current SiteDesk. Compact black desk.
 
-This folder is self-contained. Do not change anything else in the repo.
+Older folders remain archives:
 
-## Open it
+- `sitedesk` (v1, after parent rename)
+- `sitedesk-v2`
+- `sitedesk-v3`
+- `sitedesk-v4`
 
-On GitHub Pages: `https://merci-chi.github.io/viewyoursite/sitedesk/`
+This app lives at `/sitedesk-v5/` (https://viewyoursite.today/sitedesk-v5/).
 
-Or open `index.html` in a browser.
+- Tool: https://viewyoursite.today/sitedesk-v5/
+- Live site: https://viewyoursite.today/{slug}/
 
-## Demo logins
+Public client sites need no login. Only SiteDesk is gated.
 
-| Role | Email | Password |
-|---|---|---|
-| Admin | admin@sitedesk.local | admin123 |
-| Caller | caller@sitedesk.local | caller123 |
-| Builder | builder@sitedesk.local | builder123 |
+Do not change anything else in the repo.
+Browser cache uses `sitedesk.v5` and `sitedesk.v5.session` (`app.css?v=5d`, `app.js?v=5d`). Desk state lives in
+`sitedesk-data/state.json`. This folder does not share v4 localStorage.
 
-Data stays in that browser (localStorage). Create real teammates under Team after you log in as admin.
+## Job path
 
-## Flow
+Call → Brief → Build → Live → Manage
 
-1. Admin adds a lead and assigns a caller.
-2. Caller logs notes, fills the brief, sends it to a builder.
-3. Builder copies the brief into z.ai (embed or new tab) and pastes the preview URL back.
-4. Caller reviews and marks it done.
+Callers call and brief. Builders build. Admin reviews after the site is built, then the caller sends the live link to the owner.
+
+Manage is this job’s live URL and republish. Messages stay as messenger.
+
+## First login
+
+`admin@sitedesk.local` / `admin123`. Empty desk. Add people under Team.
+
+## Files
+
+- `index.html` — shell (`app.css?v=5d`, `app.js?v=5d`)
+- `app.css` — compact black styles
+- `app.js` — the app
+- `logo.png` — SiteDesk mark (login and sidebar only; never on client sites)
+- `README.md` — this file
