@@ -2139,18 +2139,38 @@ function loginView() {
 function bindLogin() {
   $("#login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
+    const err = $("#login-err");
+    if (err) err.textContent = "";
     const fd = new FormData(e.target);
-    const email = String(fd.get("email")).trim().toLowerCase();
-    const password = String(fd.get("password"));
-    const hashed = looksHashed(password) ? password : await sha256Hex(password);
-    const u = db.users.find((x) => x.email === email && x.active !== false && (x.password === password || x.password === hashed));
-    if (!u) {
-      $("#login-err").textContent = "Wrong email or password.";
-      return;
+    const email = String(fd.get("email") || "").trim().toLowerCase();
+    const password = String(fd.get("password") || "");
+    const btn = e.target.querySelector("[type=submit]");
+    if (btn) btn.disabled = true;
+    try {
+      await pullCloud({ quiet: true });
+      const hashed = await sha256Hex(password);
+      const u = (db.users || []).find((x) => String(x.email || "").trim().toLowerCase() === email && x.active !== false);
+      if (!u) {
+        if (err) err.textContent = "No person with that email.";
+        return;
+      }
+      const stored = String(u.password || "");
+      const ok = stored === password || stored === hashed || stored === await sha256Hex(hashed);
+      if (!ok) {
+        if (err) err.textContent = "Wrong password.";
+        return;
+      }
+      if (stored && !looksHashed(stored)) {
+        u.password = hashed;
+      }
+      db.session = u.id;
+      persist();
+      go(homeFor(u));
+    } catch (ex) {
+      if (err) err.textContent = ex.message || "Could not sign in.";
+    } finally {
+      if (btn) btn.disabled = false;
     }
-    db.session = u.id;
-    persist();
-    go(homeFor(u));
   });
 }
 
@@ -4253,20 +4273,22 @@ function openNewUser() {
       </div>
     </form>`);
   $("[data-close]", wrap).addEventListener("click", () => wrap.remove());
-  $("#new-user", wrap).addEventListener("submit", (e) => {
+  $("#new-user", wrap).addEventListener("submit", async (e) => {
     e.preventDefault();
     const fd = new FormData(e.target);
-    const email = String(fd.get("email")).trim().toLowerCase();
-    if (db.users.some((u) => u.email === email)) {
+    const email = String(fd.get("email") || "").trim().toLowerCase();
+    if (db.users.some((u) => String(u.email || "").trim().toLowerCase() === email)) {
       toast("That email already exists.", "bad");
       return;
     }
     const role = String(fd.get("role") || "caller");
+    const password = String(fd.get("password") || "");
+    const hashed = looksHashed(password) ? password : await sha256Hex(password);
     db.users.push({
       id: uid(),
-      name: fd.get("name"),
+      name: String(fd.get("name") || "").trim() || email,
       email,
-      password: fd.get("password"),
+      password: hashed,
       role,
       head: false,
       active: true,
