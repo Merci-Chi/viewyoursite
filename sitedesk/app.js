@@ -1692,11 +1692,15 @@ function unreadTotal(user) {
   return visibleThreads(user).reduce((n, t) => n + unreadThread(user, t.id), 0);
 }
 
-function markThreadRead(user, threadId) {
+function markThreadRead(user, threadId, opts = {}) {
+  if (!user || !threadId) return;
   if (!db.reads[user.id]) db.reads[user.id] = { threads: {} };
   if (!db.reads[user.id].threads) db.reads[user.id].threads = {};
-  db.reads[user.id].threads[threadId] = now();
-  persist();
+  const prev = db.reads[user.id].threads[threadId] || 0;
+  const ts = now();
+  if (ts - prev < 2000) return;
+  db.reads[user.id].threads[threadId] = ts;
+  if (opts.persist) persist();
 }
 
 function postMessage(user, threadId, text, image) {
@@ -3270,12 +3274,7 @@ function messagesPage(user) {
   }
 
   const others = people.filter((u) => u.id !== user.id);
-  return `
-    <div class="top">
-      <div>
-        <h1 class="display">Messages</h1>
-      </div>
-    </div>
+  const picker = current ? "" : `
     <div class="card connect-bar">
       <form id="dm-form" class="dm-picker">
         <label class="field tight"><span>Message one person</span>
@@ -3303,7 +3302,14 @@ function messagesPage(user) {
             <button class="btn primary" type="submit">Connect</button>
           </form>
         </details>` : ""}
+    </div>`;
+  return `
+    <div class="top">
+      <div>
+        <h1 class="display">Messages</h1>
+      </div>
     </div>
+    ${picker}
     <div class="messenger ${mobileClass}">
       <div class="thread-list">${list}</div>
       <div class="thread-pane">${pane}</div>
@@ -4099,8 +4105,22 @@ function bindPage(user) {
       }
     }
     if (!text && !image) return;
+    const btn = e.target.querySelector("[type=submit]");
+    if (btn) btn.disabled = true;
     postMessage(user, thread.id, text, image);
+    try {
+      if (getToken()) await pushCloud();
+    } catch (err) {
+      const m = err && err.message ? String(err.message) : String(err);
+      if (!/409|collided|Retrying/i.test(m)) toast(m, "bad");
+    }
     render();
+  });
+  $("#compose-form textarea")?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      e.target.form && e.target.form.requestSubmit();
+    }
   });
 
   const filterPeople = () => {
@@ -4113,10 +4133,13 @@ function bindPage(user) {
   $("#dm-filter")?.addEventListener("input", filterPeople);
   $$("#dm-people .people-opt").forEach((btn) => {
     btn.addEventListener("click", () => {
+      const them = btn.dataset.them || "";
+      const hidden = $("#dm-them");
+      if (hidden) hidden.value = them;
       $$("#dm-people .people-opt").forEach((b) => b.classList.remove("on"));
       btn.classList.add("on");
-      const hidden = $("#dm-them");
-      if (hidden) hidden.value = btn.dataset.them || "";
+      const chat = openDm(user.id, them);
+      if (chat) go("/messages/" + chat.id);
     });
   });
   $("#dm-form")?.addEventListener("submit", (e) => {
