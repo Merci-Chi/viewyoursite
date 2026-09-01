@@ -17,8 +17,7 @@ This app lives at `/sitedesk-v5/` (https://viewyoursite.today/sitedesk-v5/).
 Public client sites need no login. Only SiteDesk is gated.
 
 Do not change anything else in the repo.
-Browser cache uses `sitedesk.v5` and `sitedesk.v5.session` (`app.css?v=db1`, `app.js?v=db1`). Desk state lives in
-`sitedesk/db.json` on `main` (this folder). This folder does not share v4 localStorage.
+Browser cache uses `sitedesk.db` and `sitedesk.db.session` (`app.css?v=db3`, `app.js?v=sb1`). Desk data (users, leads, threads, messages) lives in the free Supabase table `sitedesk_state` (row id `desk`). Client sites still publish to GitHub Pages as `{slug}/index.html` on Merci-Chi/viewyoursite `main`. This folder does not share v4 localStorage.
 
 ## Job path
 
@@ -37,6 +36,7 @@ Manage is this job’s live URL and republish. Messages stay as messenger.
 - `index.html` — shell (`app.css?v=db1`, `app.js?v=db1`)
 - `app.css` — compact black styles
 - `app.js` — the app
-- `db.json` — empty desk (seed head admin only)
+- `db.json` — local empty-desk seed only (not the live sync path)
+- `sitedesk_state.sql` — paste in the Supabase SQL editor to create the desk table
 - `logo.png` — SiteDesk mark (login and sidebar only; never on client sites)
 - `README.md` — this file

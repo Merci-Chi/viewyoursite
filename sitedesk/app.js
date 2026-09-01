@@ -3,6 +3,8 @@ const TOKEN_KEY = "sitedesk.githubToken";
 const SESSION_KEY = "sitedesk.db.session";
 const OWNER_KEY = "sitedesk.githubOwner";
 const REPO_KEY = "sitedesk.githubRepo";
+const SUPABASE_URL = "https://glonbvrcudwuzjundrii.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 const ZAI = "https://chat.z.ai";
 const PUBLIC_ORIGIN = "https://viewyoursite.today";
 const DEFAULT_OWNER = "Merci-Chi";
@@ -186,6 +188,8 @@ function seed() {
     leadsWiped: true,
   };
 }
+
+const supabase = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) || null;
 
 let db = load();
 cacheLocal();
@@ -480,8 +484,6 @@ async function putContent({ token, path, contentB64, message, branch }) {
   return put.json();
 }
 
-const DATA_PATH = "sitedesk/db.json";
-
 function emptyDesk() {
   return {
     users: [], leads: [], notes: [], history: [], threads: [], messages: [],
@@ -710,7 +712,7 @@ let pendingPush = false;
 let pollTimer = null;
 let cloudRev = 0;
 let cloudReady = false;
-let tokenWarnShown = false;
+let deskTableWarnShown = false;
 
 function persist() {
   db.rev = now();
@@ -721,12 +723,12 @@ function persist() {
 }
 
 function schedulePush() {
-  if (!getToken()) return;
+  if (!supabase) return;
   if (!cloudReady) { pendingPush = true; return; }
   clearTimeout(persistTimer);
   persistTimer = setTimeout(() => {
     pushCloud().catch((err) => {
-      const m = err && err.message ? String(err.message) : String(err);
+      const m = supabaseErr(err);
       if (/409|collided|Retrying/i.test(m)) {
         pendingPush = true;
         schedulePush();
@@ -744,6 +746,28 @@ async function sha256Hex(text) {
 
 function looksHashed(pw) {
   return /^[a-f0-9]{64}$/i.test(String(pw || ""));
+}
+
+function supabaseErr(err) {
+  const code = err && err.code ? String(err.code) : "";
+  const m = String((err && err.message) || err || "");
+  if (code === "PGRST205" || code === "42P01" || /schema cache|does not exist|sitedesk_state/i.test(m)) {
+    return "Supabase desk table is missing. Run sitedesk_state.sql.";
+  }
+  return m || "Supabase error";
+}
+
+function toastDeskError(err, opts = {}) {
+  const msg = supabaseErr(err);
+  if (!opts.quiet) {
+    toast(msg, "bad");
+    return msg;
+  }
+  if (/missing/i.test(msg) && !deskTableWarnShown) {
+    deskTableWarnShown = true;
+    toast(msg, "bad");
+  }
+  return msg;
 }
 
 async function getFile(path, branch) {
@@ -769,25 +793,6 @@ function b64ToUtf8(b64) {
   return new TextDecoder().decode(bytes);
 }
 
-function publicStateUrls() {
-  const { owner, repo } = githubRepo();
-  const t = Date.now();
-  return [
-    `db.json?v=${t}`,
-    `https://raw.githubusercontent.com/${owner}/${repo}/main/sitedesk/db.json?v=${t}`,
-  ];
-}
-
-async function fetchPublicState() {
-  for (const url of publicStateUrls()) {
-    try {
-      const res = await fetch(url, { cache: "no-store" });
-      if (res.ok) return await res.json();
-    } catch { /* next */ }
-  }
-  return null;
-}
-
 async function hashDeskPasswords(state) {
   for (const u of state.users) {
     if (u.password && !looksHashed(u.password)) {
@@ -801,20 +806,19 @@ async function hashDeskPasswords(state) {
 }
 
 async function pushCloud() {
-  const token = getToken();
-  if (!token) return;
+  if (!supabase) return;
   if (pushing) { pendingPush = true; return; }
   pushing = true;
   try {
     const state = stripDesk(db);
     state.rev = db.rev || now();
     await hashDeskPasswords(state);
-    await putContent({
-      token,
-      path: DATA_PATH,
-      contentB64: utf8ToB64(JSON.stringify(state)),
-      message: "SiteDesk desk state",
+    const { error } = await supabase.from("sitedesk_state").upsert({
+      id: "desk",
+      data: state,
+      updated_at: new Date().toISOString(),
     });
+    if (error) throw error;
     cloudRev = state.rev;
     db.rev = state.rev;
     cacheLocal();
@@ -869,32 +873,31 @@ function ingestRemote(remote, opts = {}) {
 }
 
 async function pullCloud(opts = {}) {
-  const token = getToken();
-  let remote = null;
-  if (token) {
-    try {
-      const got = await getFile(DATA_PATH);
-      if (got.notFound) {
-        cloudReady = true;
-        await pushCloud();
-        return;
-      }
-      remote = JSON.parse(got.text);
-    } catch (err) {
-      if (!opts.quiet) toast(err.message || String(err), "warn");
-    }
-  }
-  if (!remote) {
-    try { remote = await fetchPublicState(); } catch { remote = null; }
-  }
-  if (!remote || !remote.users) {
-    cloudReady = !!token || cloudReady;
-    if (token && pendingPush) schedulePush();
+  if (!supabase) {
+    if (!opts.quiet) toast("Could not load Supabase.", "warn");
     return;
   }
-  const result = ingestRemote(remote, opts);
-  cloudReady = true;
-  if ((result.localNewer || pendingPush) && token) schedulePush();
+  try {
+    const { data, error } = await supabase
+      .from("sitedesk_state")
+      .select("data, updated_at")
+      .eq("id", "desk")
+      .maybeSingle();
+    if (error) {
+      toastDeskError(error, opts);
+      return;
+    }
+    if (!data || !data.data || !data.data.users) {
+      cloudReady = true;
+      await pushCloud();
+      return;
+    }
+    const result = ingestRemote(data.data, opts);
+    cloudReady = true;
+    if (result.localNewer || pendingPush) schedulePush();
+  } catch (err) {
+    toastDeskError(err, opts);
+  }
 }
 
 function startPoll() {
@@ -908,7 +911,7 @@ function startPoll() {
 
 async function boot() {
   await pullCloud();
-  if (getToken()) cloudReady = true;
+  if (supabase) cloudReady = true;
   if (pendingPush) schedulePush();
   startPoll();
 }
@@ -1142,9 +1145,9 @@ async function publishLead(lead, user) {
   const token = getToken();
   if (!token) {
     lead.publishQueued = true;
-    lead.publishError = "";
+    lead.publishError = "No GitHub token";
     persist();
-    toast("Queued.", "warn");
+    toast("No GitHub token — cannot publish to GitHub Pages.", "bad");
     render();
     return;
   }
@@ -1703,7 +1706,7 @@ function markThreadRead(user, threadId, opts = {}) {
   if (opts.persist) persist();
 }
 
-function postMessage(user, threadId, text, image) {
+async function postMessage(user, threadId, text, image) {
   const t = String(text || "").trim();
   if (!t && !image) return;
   const msg = { id: uid(), threadId, fromId: user.id, text: t, at: now() };
@@ -1713,6 +1716,7 @@ function postMessage(user, threadId, text, image) {
   const label = thread ? threadTitle(thread, user) : "Messages";
   logActivity("chat", `${user.name} in ${label}: ${(t || (image ? "Photo" : "")).slice(0, 80)}`, { threadId, leadId: thread?.leadId || null });
   persist();
+  await pushCloud();
 }
 
 function visibleLeads(user, opts = {}) {
@@ -3340,17 +3344,7 @@ function usersPage() {
     <table class="table">
       <thead><tr><th>Name</th><th>Email</th><th>Role</th><th></th></tr></thead>
       <tbody>${rows || `<tr><td colspan="4" class="muted">None</td></tr>`}</tbody>
-    </table>
-    ${isHead(me) ? `
-    <form id="token-form" style="margin-top:18px;max-width:420px">
-      <label class="field"><span>GitHub token</span>
-        <input name="token" type="password" autocomplete="off" placeholder="${getToken() ? "Saved on this device" : "Classic PAT · repo scope"}"/>
-      </label>
-      <div class="row">
-        <button class="btn tiny primary" type="submit">Save</button>
-        ${getToken() ? `<button class="btn tiny" type="button" id="clear-token">Clear</button>` : ""}
-      </div>
-    </form>` : ""}`;
+    </table>`;
 }
 
 function settingsPage(user) {
@@ -3373,7 +3367,19 @@ function settingsPage(user) {
       <label class="field"><span>Accent</span>
         <input type="color" name="accent" id="theme-accent" value="${esc(theme.accent)}"/>
       </label>
-    </form>`;
+    </form>
+    ${isHead(user) ? `
+    <p class="section-label" style="margin-top:28px">GitHub Pages publish</p>
+    <p class="muted">Head only. Publishes client sites ({slug}/index.html and photos) to Merci-Chi/viewyoursite. Not used for login, team, or chat.</p>
+    <form id="token-form" style="max-width:420px">
+      <label class="field"><span>GitHub token for publishing sites</span>
+        <input name="token" type="password" autocomplete="off" placeholder="${getToken() ? "Saved on this device" : "Classic PAT · repo scope"}"/>
+      </label>
+      <div class="row">
+        <button class="btn tiny primary" type="submit">Save</button>
+        ${getToken() ? `<button class="btn tiny" type="button" id="clear-token">Clear</button>` : ""}
+      </div>
+    </form>` : ""}`;
 }
 
 function bindPage(user) {
@@ -3742,27 +3748,17 @@ function bindPage(user) {
 
   $("#token-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
-    const fd = new FormData(e.target);
-    const token = String(fd.get("token") || "").trim();
-    const owner = String(fd.get("owner") || "").trim();
-    const repo = String(fd.get("repo") || "").trim();
+    if (!isHead(user)) return;
+    const token = String(new FormData(e.target).get("token") || "").trim();
     if (token) localStorage.setItem(TOKEN_KEY, token);
-    if (e.target.owner) {
-      if (owner) localStorage.setItem(OWNER_KEY, owner);
-      else localStorage.removeItem(OWNER_KEY);
-    }
-    if (e.target.repo) {
-      if (repo) localStorage.setItem(REPO_KEY, repo);
-      else localStorage.removeItem(REPO_KEY);
-    }
-    toast("Token saved on this device", "ok");
+    toast("Publish token saved on this device", "ok");
     render();
-    pullCloud().catch((err) => toast(err.message || String(err), "bad"));
   });
 
   $("#clear-token")?.addEventListener("click", () => {
+    if (!isHead(user)) return;
     localStorage.removeItem(TOKEN_KEY);
-    toast("Token cleared from this device", "ok");
+    toast("Publish token cleared from this device", "ok");
     render();
   });
 
@@ -4107,12 +4103,10 @@ function bindPage(user) {
     if (!text && !image) return;
     const btn = e.target.querySelector("[type=submit]");
     if (btn) btn.disabled = true;
-    postMessage(user, thread.id, text, image);
     try {
-      if (getToken()) await pushCloud();
+      await postMessage(user, thread.id, text, image);
     } catch (err) {
-      const m = err && err.message ? String(err.message) : String(err);
-      if (!/409|collided|Retrying/i.test(m)) toast(m, "bad");
+      toastDeskError(err);
     }
     render();
   });
@@ -4343,16 +4337,9 @@ function openNewUser() {
     const btn = e.target.querySelector("[type=submit]");
     if (btn) btn.disabled = true;
     try {
-      if (!getToken()) {
-        if (!tokenWarnShown) {
-          tokenWarnShown = true;
-          toast("Desk file needs the GitHub token to save.", "warn");
-        }
-      } else {
-        await pushCloud();
-      }
+      await pushCloud();
     } catch (err) {
-      toast(err.message || String(err), "bad");
+      toastDeskError(err);
     }
     wrap.remove();
     render();
