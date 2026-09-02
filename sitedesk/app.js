@@ -189,11 +189,68 @@ function seed() {
   };
 }
 
-const supabase = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) || null;
+function sbHeaders(extra) {
+  return Object.assign({
+    apikey: SUPABASE_ANON_KEY,
+    Authorization: "Bearer " + SUPABASE_ANON_KEY,
+    "Content-Type": "application/json",
+  }, extra || {});
+}
 
-let db = load();
-cacheLocal();
-let route = parseHash();
+const supabase = {
+  from(table) {
+    const base = SUPABASE_URL + "/rest/v1/" + encodeURIComponent(table);
+    return {
+      select(cols) {
+        return {
+          eq(col, val) {
+            return {
+              async maybeSingle() {
+                const u = base + "?select=" + encodeURIComponent(cols) + "&" + encodeURIComponent(col) + "=eq." + encodeURIComponent(val);
+                const res = await fetch(u, { headers: sbHeaders() });
+                const json = await res.json().catch(() => null);
+                if (!res.ok) {
+                  const err = json && typeof json === "object" ? json : { message: res.statusText, code: String(res.status) };
+                  return { data: null, error: err };
+                }
+                const row = Array.isArray(json) ? (json[0] || null) : json;
+                return { data: row, error: null };
+              },
+            };
+          },
+        };
+      },
+      async upsert(row) {
+        const res = await fetch(base, {
+          method: "POST",
+          headers: sbHeaders({ Prefer: "resolution=merge-duplicates,return=minimal" }),
+          body: JSON.stringify(row),
+        });
+        if (!res.ok) {
+          const json = await res.json().catch(() => ({ message: res.statusText }));
+          const err = json && typeof json === "object" ? json : { message: String(json || res.statusText) };
+          err.code = err.code || String(res.status);
+          return { error: err };
+        }
+        return { error: null };
+      },
+    };
+  },
+};
+
+let db;
+let route;
+try {
+  db = load();
+  cacheLocal();
+  route = parseHash();
+} catch (err) {
+  console.error(err);
+  db = seed();
+  route = { name: "login", id: null, tab: null };
+  const slot = document.getElementById("login-err");
+  if (slot) slot.textContent = String(err && err.message || err);
+}
 let busy = false;
 let previewFile = "index.html";
 let previewLeadId = null;
