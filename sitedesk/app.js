@@ -183,6 +183,7 @@ function seed() {
     messages: [],
     reads: {},
     activity: [],
+    announcements: [],
     session: null,
     rev: 1,
     leadsWiped: true,
@@ -544,7 +545,7 @@ async function putContent({ token, path, contentB64, message, branch }) {
 function emptyDesk() {
   return {
     users: [], leads: [], notes: [], history: [], threads: [], messages: [],
-    reads: {}, activity: [], session: null, rev: 0, leadsWiped: false,
+    reads: {}, activity: [], announcements: [], session: null, rev: 0, leadsWiped: false,
   };
 }
 
@@ -601,6 +602,7 @@ function stripDesk(data) {
     messages: (data.messages || []).map(stripMessage),
     reads: data.reads || {},
     activity: data.activity || [],
+    announcements: data.announcements || [],
     leadsWiped: !!data.leadsWiped,
   };
 }
@@ -626,6 +628,7 @@ function applyDesk(remote) {
   next.messages = remote.messages || [];
   next.reads = remote.reads || {};
   next.activity = remote.activity || [];
+  next.announcements = remote.announcements || [];
   next.leadsWiped = !!remote.leadsWiped;
   sanitizeDesk(next);
   next.users = hydrateUsers(next.users);
@@ -735,7 +738,7 @@ function cacheLocal() {
     return true;
   } catch {
     try {
-      localStorage.setItem(KEY, JSON.stringify({ rev: db.rev, users: db.users, leads: [], notes: [], history: [], threads: db.threads, messages: db.messages, reads: db.reads, activity: [] }));
+      localStorage.setItem(KEY, JSON.stringify({ rev: db.rev, users: db.users, leads: [], notes: [], history: [], threads: db.threads, messages: db.messages, reads: db.reads, activity: [], announcements: db.announcements || [] }));
     } catch { /* ignore */ }
     return false;
   }
@@ -1759,7 +1762,7 @@ function unreadThread(user, threadId) {
 }
 
 function unreadTotal(user) {
-  return visibleThreads(user).reduce((n, t) => n + unreadThread(user, t.id), 0);
+  return visibleThreads(user).filter((t) => t.type === "dm").reduce((n, t) => n + unreadThread(user, t.id), 0);
 }
 
 function markThreadRead(user, threadId, opts = {}) {
@@ -2199,6 +2202,13 @@ function render() {
       go(homeFor(user));
       return;
     }
+    if (route.name === "messages" && route.id) {
+      const thread = (db.threads || []).find((t) => t.id === route.id);
+      if (thread && thread.type === "job" && thread.leadId) {
+        go(`/lead/${thread.leadId}`);
+        return;
+      }
+    }
     root.innerHTML = (busy ? `<div class="busy-bar"></div>` : "") + shell(user, page(user));
     bindShell(user);
   } catch (err) {
@@ -2542,6 +2552,7 @@ function navItems(user) {
     return [
       ["/board", "Board"],
       ["/leads", "Leads"],
+      ["/announcements", "Announcements"],
       ["/messages", msg],
       ["/users", "Team"],
       ["/settings", "Settings"],
@@ -2551,12 +2562,14 @@ function navItems(user) {
     return [
       ["/board", "My leads"],
       ["/leads", "All mine"],
+      ["/announcements", "Announcements"],
       ["/messages", msg],
       ["/settings", "Settings"],
     ];
   }
   return [
     ["/jobs", "My jobs"],
+    ["/announcements", "Announcements"],
     ["/messages", msg],
     ["/settings", "Settings"],
   ];
@@ -2618,6 +2631,7 @@ function bindShell(user) {
 function page(user) {
   if (route.name === "users" && isAdmin(user)) return usersPage();
   if (route.name === "settings") return settingsPage(user);
+  if (route.name === "announcements") return announcementsPage(user);
   if (route.name === "messages") return messagesPage(user);
   if (route.name === "lead" && route.id) return leadPage(user, route.id);
   if (route.name === "leads") return leadsPage(user);
@@ -2629,7 +2643,6 @@ function page(user) {
 function boardPage(user) {
   const leads = visibleLeads(user);
   const queued = isAdmin(user) ? db.leads.filter((l) => l.publishQueued && !l.archived).length : 0;
-  const feed = (db.activity || []).slice(0, 20);
   const cols = BOARD_COLS.map((col) => ({
     ...col,
     items: leads.filter((l) => col.statuses.includes(l.status)),
@@ -2667,14 +2680,6 @@ function boardPage(user) {
             </button>`).join("") || `<p class="empty" style="padding:12px">None</p>`}
         </section>`).join("")}
     </div>
-    </div>
-    <div class="card" style="margin-top:16px">
-      <h3 class="display">Activity</h3>
-      ${feed.length ? `<ul class="activity">${feed.map((a) => `
-        <li>
-          <div>${esc(a.text)}</div>
-          <div class="when muted">${esc(nameOf(a.by))} · ${fmtShort(a.at)}</div>
-        </li>`).join("")}</ul>` : `<p class="muted">No activity yet.</p>`}
     </div>`;
 }
 
@@ -3124,7 +3129,6 @@ function leadMessagesTab(lead, user) {
           <h2 class="display">${esc(threadTitle(job, user))}</h2>
           <div class="muted" style="font-size:.8rem">Job thread · ${(job.userIds || []).map(nameOf).map(esc).join(", ")}</div>
         </div>
-        <a class="btn tiny" href="#/messages/${job.id}">Open in Messages</a>
       </div>
       <div class="msg-log" id="msg-log">
         ${msgs.map((m) => messageBubbleHtml(m, user, lastRead)).join("") || `<p class="muted">No messages yet.</p>`}
@@ -3171,7 +3175,7 @@ function leadPage(user, id) {
           ${tel ? `<a class="btn tiny" href="tel:${esc(tel)}">Call ${esc(lead.phone)}</a>` : ""}
           ${lead.email ? `<a class="btn tiny" href="mailto:${esc(lead.email)}">Email</a>` : ""}
           ${web ? `<a class="btn tiny" href="${esc(web)}" target="_blank" rel="noopener">Website</a>` : ""}
-          ${job ? `<a class="btn tiny" href="#/messages/${job.id}">Thread</a>` : ""}
+          ${job ? `<a class="btn tiny" href="#/lead/${lead.id}/messages">Thread</a>` : ""}
         </div>
       </div>
       <div class="row">
@@ -3310,7 +3314,7 @@ function actionsFor(lead, user) {
 }
 
 function messagesPage(user) {
-  const threads = visibleThreads(user).sort((a, b) => {
+  const threads = visibleThreads(user).filter((t) => t.type === "dm").sort((a, b) => {
     const am = lastMessage(a.id)?.at || 0;
     const bm = lastMessage(b.id)?.at || 0;
     return bm - am;
@@ -3370,21 +3374,6 @@ function messagesPage(user) {
         </div>
         <div class="row"><button class="btn primary" type="submit">Message</button></div>
       </form>
-      <details class="connect-details">
-        <summary>Connect two people</summary>
-        <form id="connect-form">
-          <select name="a">
-            <option value="">Person</option>
-            ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
-          </select>
-          <span>and</span>
-          <select name="b">
-            <option value="">Person</option>
-            ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
-          </select>
-          <button class="btn primary" type="submit">Connect</button>
-        </form>
-      </details>
     </div>` : "";
   return `
     <div class="top">
@@ -3399,8 +3388,34 @@ function messagesPage(user) {
     </div>`;
 }
 
+function announcementsPage(user) {
+  const canPost = isAdmin(user);
+  const items = (db.announcements || []).slice().sort((a, b) => (b.at || 0) - (a.at || 0));
+  const list = items.length
+    ? `<ul class="activity">${items.map((a) => `
+        <li>
+          <div style="white-space:pre-wrap">${esc(a.text)}</div>
+          <div class="when muted">${esc(nameOf(a.by))} · ${fmtShort(a.at)}${canPost ? ` · <button class="btn tiny" type="button" data-del-announce="${a.id}">Delete</button>` : ""}</div>
+        </li>`).join("")}</ul>`
+    : `<p class="muted">No announcements yet.</p>`;
+  return `
+    <div class="top">
+      <div>
+        <h1 class="display">Announcements</h1>
+      </div>
+    </div>
+    ${canPost ? `<form id="announce-form" style="max-width:480px;margin:0 0 20px">
+      <label class="field"><span>Announcement</span>
+        <textarea name="text" rows="3" required></textarea>
+      </label>
+      <div class="row"><button class="btn primary" type="submit">Post</button></div>
+    </form>` : ""}
+    ${list}`;
+}
+
 function usersPage() {
   const me = currentUser();
+  const people = activeUsers();
   const rows = db.users.filter((u) => u.active !== false).map((u) => `
     <tr data-team-row="${u.id}">
       <td><b>${esc(u.name)}</b></td>
@@ -3423,7 +3438,22 @@ function usersPage() {
     <table class="table">
       <thead><tr><th>Name</th><th>Email</th><th>Role</th><th></th></tr></thead>
       <tbody>${rows || `<tr><td colspan="4" class="muted">None</td></tr>`}</tbody>
-    </table>`;
+    </table>
+    <div class="connect-bar" style="margin-top:24px">
+      <p class="section-label">Connect two people</p>
+      <form id="connect-form">
+        <select name="a">
+          <option value="">Person</option>
+          ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
+        </select>
+        <span>and</span>
+        <select name="b">
+          <option value="">Person</option>
+          ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
+        </select>
+        <button class="btn primary" type="submit">Connect</button>
+      </form>
+    </div>`;
 }
 
 function settingsPage(user) {
@@ -3596,7 +3626,7 @@ function bindPage(user) {
     const thread = ensureJobThread(lead);
     persist();
     toast("Pair connected.", "ok");
-    go("/messages/" + thread.id);
+    go("/lead/" + lead.id + "/messages");
   });
 
   $$("[data-lead-field]").forEach((el) => {
@@ -3905,6 +3935,25 @@ function bindPage(user) {
     const b = fd.get("b");
     const t = connectPeople(a, b);
     if (t) go("/messages/" + t.id);
+  });
+
+  $("#announce-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!isAdmin(user)) return;
+    const text = String(new FormData(e.target).get("text") || "").trim();
+    if (!text) return;
+    db.announcements = db.announcements || [];
+    db.announcements.unshift({ id: uid(), text, by: user.id, at: now() });
+    persist();
+    render();
+  });
+  $$("[data-del-announce]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!isAdmin(user)) return;
+      db.announcements = (db.announcements || []).filter((a) => a.id !== btn.dataset.delAnnounce);
+      persist();
+      render();
+    });
   });
 
   $$("[data-brief-field]").forEach((el) => {
