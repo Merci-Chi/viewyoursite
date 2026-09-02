@@ -1716,6 +1716,16 @@ function openDm(meId, themId) {
   }
   let t = findDm(meId, themId);
   if (t) return t;
+  const actor = db.users.find((u) => u.id === meId);
+  const jobLink = (db.threads || []).some((th) => {
+    if (th.type !== "job") return false;
+    const ids = th.userIds || [];
+    return ids.includes(meId) && ids.includes(themId);
+  });
+  if (!isAdmin(actor) && !jobLink) {
+    toast("You can only message people you are connected to.", "warn");
+    return null;
+  }
   t = { id: uid(), type: "dm", userIds: [meId, themId], title: `${nameOf(meId)} · ${nameOf(themId)}` };
   db.threads.push(t);
   persist();
@@ -1839,18 +1849,29 @@ function removeUser(target) {
 
 function canDeleteUser(target, actor) {
   if (!target || !actor) return false;
-  if (!isHead(actor)) return false;
+  if (!isAdmin(actor)) return false;
   if (target.id === actor.id) return false;
   if (isHead(target)) return false;
-  return true;
+  if (isHead(actor)) return true;
+  return target.role === "caller" || target.role === "builder";
+}
+
+function canEditUser(target, actor) {
+  if (!target || !actor) return false;
+  if (isHead(target)) return isHead(actor) && target.id === actor.id;
+  if (isHead(actor)) return true;
+  if (!isAdmin(actor)) return false;
+  return target.role === "caller" || target.role === "builder";
+}
+
+function creatableRoles(actor) {
+  if (isHead(actor)) return ["caller", "builder", "admin"];
+  if (isAdmin(actor)) return ["caller", "builder"];
+  return [];
 }
 
 function canDeactivateUser(target, actor) {
-  if (!target || !actor) return false;
-  if (!isHead(actor)) return false;
-  if (target.id === actor.id) return false;
-  if (isHead(target)) return false;
-  return true;
+  return canDeleteUser(target, actor);
 }
 
 function hydrateBrief(raw) {
@@ -3318,7 +3339,9 @@ function messagesPage(user) {
 
   let pane;
   if (!current) {
-    pane = `<div class="msg-empty"><div><b>Messages</b></div></div>`;
+    pane = (!isAdmin(user) && !threads.length)
+      ? `<div class="msg-empty"><div><p class="muted">An admin will connect you to the people you work with.</p></div></div>`
+      : `<div class="msg-empty"><div><b>Messages</b></div></div>`;
   } else {
     pane = `
       <div class="thread-head">
@@ -3335,7 +3358,7 @@ function messagesPage(user) {
   }
 
   const others = people.filter((u) => u.id !== user.id);
-  const picker = current ? "" : `
+  const picker = (!current && isAdmin(user)) ? `
     <div class="card connect-bar">
       <form id="dm-form" class="dm-picker">
         <label class="field tight"><span>Message one person</span>
@@ -3347,23 +3370,22 @@ function messagesPage(user) {
         </div>
         <div class="row"><button class="btn primary" type="submit">Message</button></div>
       </form>
-      ${isAdmin(user) ? `
-        <details class="connect-details">
-          <summary>Connect two people</summary>
-          <form id="connect-form">
-            <select name="a">
-              <option value="">Person</option>
-              ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
-            </select>
-            <span>and</span>
-            <select name="b">
-              <option value="">Person</option>
-              ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
-            </select>
-            <button class="btn primary" type="submit">Connect</button>
-          </form>
-        </details>` : ""}
-    </div>`;
+      <details class="connect-details">
+        <summary>Connect two people</summary>
+        <form id="connect-form">
+          <select name="a">
+            <option value="">Person</option>
+            ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
+          </select>
+          <span>and</span>
+          <select name="b">
+            <option value="">Person</option>
+            ${people.map((u) => `<option value="${u.id}">${esc(u.name)} · ${esc(roleLabel(u))}</option>`).join("")}
+          </select>
+          <button class="btn primary" type="submit">Connect</button>
+        </form>
+      </details>
+    </div>` : "";
   return `
     <div class="top">
       <div>
@@ -3386,7 +3408,7 @@ function usersPage() {
       <td><span class="pill">${esc(roleLabel(u))}</span></td>
       <td>
         <div class="team-actions">
-          <button class="btn tiny" data-edit-user="${u.id}">Edit</button>
+          ${me && canEditUser(u, me) ? `<button class="btn tiny" data-edit-user="${u.id}">Edit</button>` : ""}
           ${me && canDeleteUser(u, me) ? `<button class="btn danger team-remove" type="button" data-delete-user="${u.id}">Delete</button>` : ""}
         </div>
       </td>
@@ -3771,7 +3793,7 @@ function bindPage(user) {
     btn.addEventListener("click", () => {
       const u = db.users.find((x) => x.id === btn.dataset.deleteUser);
       if (!u || !canDeleteUser(u, user)) {
-        toast(u?.id === user.id ? "You cannot remove yourself." : (isHead(user) ? "Cannot remove the head." : "Only the head can delete people."), "warn");
+        toast(isHead(u) ? "The head cannot be deleted." : (u?.id === user.id ? "You cannot remove yourself." : "You can only delete callers and builders."), "warn");
         return;
       }
       if (!confirm(`Delete ${u.name}?`)) return;
@@ -3786,7 +3808,7 @@ function bindPage(user) {
       e.preventDefault();
       const u = db.users.find((x) => x.id === row.dataset.teamRow);
       if (!u || !canDeleteUser(u, user)) {
-        toast(u?.id === user.id ? "You cannot remove yourself." : (isHead(user) ? "Cannot remove the head." : "Only the head can delete people."), "warn");
+        toast(isHead(u) ? "The head cannot be deleted." : (u?.id === user.id ? "You cannot remove yourself." : "You can only delete callers and builders."), "warn");
         return;
       }
       if (!confirm(`Delete ${u.name}?`)) return;
@@ -4347,6 +4369,10 @@ function openAddLead(user, tab) {
 }
 
 function openNewUser() {
+  const me = currentUser();
+  if (!isAdmin(me)) return;
+  const allowed = creatableRoles(me);
+  const roleLabels = { caller: "Caller", builder: "Builder", admin: "Admin" };
   const wrap = modal(`
     <h3 class="display">New person</h3>
     <form id="new-user">
@@ -4355,9 +4381,7 @@ function openNewUser() {
       <label class="field"><span>Password</span><input name="password" required/></label>
       <label class="field"><span>Role</span>
         <select name="role">
-          <option value="caller">Caller</option>
-          <option value="builder">Builder</option>
-          <option value="admin">Admin</option>
+          ${allowed.map((r) => `<option value="${r}">${roleLabels[r] || r}</option>`).join("")}
         </select>
       </label>
       <div class="row">
@@ -4375,6 +4399,10 @@ function openNewUser() {
       return;
     }
     const role = String(fd.get("role") || "caller");
+    if (!creatableRoles(currentUser()).includes(role)) {
+      toast("You cannot create that role.", "warn");
+      return;
+    }
     const password = String(fd.get("password") || "");
     const hashed = looksHashed(password) ? password : await sha256Hex(password);
     db.users.push({
@@ -4404,7 +4432,15 @@ function openNewUser() {
 }
 
 function openEditUser(target, actor) {
+  if (!canEditUser(target, actor)) {
+    toast("You cannot edit this person.", "warn");
+    return;
+  }
   const lockRole = isHead(target);
+  const roleLabels = { caller: "Caller", builder: "Builder", admin: "Admin" };
+  const roleChoices = lockRole
+    ? ["admin"]
+    : (isHead(actor) ? ["caller", "builder", "admin"] : ["caller", "builder"]);
   const wrap = modal(`
     <h3 class="display">Edit ${esc(target.name)}</h3>
     <form id="edit-user">
@@ -4413,9 +4449,7 @@ function openEditUser(target, actor) {
       <label class="field"><span>Password</span><input name="password" placeholder="Leave blank to keep current"/></label>
       <label class="field"><span>Role</span>
         <select name="role" ${lockRole ? "disabled" : ""}>
-          <option value="caller" ${target.role === "caller" ? "selected" : ""}>Caller</option>
-          <option value="builder" ${target.role === "builder" ? "selected" : ""}>Builder</option>
-          <option value="admin" ${target.role === "admin" ? "selected" : ""}>Admin</option>
+          ${roleChoices.map((r) => `<option value="${r}" ${target.role === r ? "selected" : ""}>${roleLabels[r] || r}</option>`).join("")}
         </select>
       </label>
       ${lockRole ? `<p class="muted">Head cannot be changed to another role.</p>` : ""}
@@ -4425,8 +4459,12 @@ function openEditUser(target, actor) {
       </div>
     </form>`);
   $("[data-close]", wrap).addEventListener("click", () => wrap.remove());
-  $("#edit-user", wrap).addEventListener("submit", (e) => {
+  $("#edit-user", wrap).addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (!canEditUser(target, actor)) {
+      toast("You cannot edit this person.", "warn");
+      return;
+    }
     const fd = new FormData(e.target);
     const email = String(fd.get("email")).trim().toLowerCase();
     if (db.users.some((u) => u.email === email && u.id !== target.id)) {
@@ -4438,12 +4476,16 @@ function openEditUser(target, actor) {
       toast("Cannot demote the head.", "warn");
       return;
     }
+    if (!isHead(actor) && role !== "caller" && role !== "builder") {
+      toast("You cannot promote anyone to admin.", "warn");
+      return;
+    }
     target.name = fd.get("name");
     target.email = email;
     target.role = role;
     if (role !== "admin") target.head = false;
     const pw = String(fd.get("password") || "");
-    if (pw) target.password = pw;
+    if (pw) target.password = looksHashed(pw) ? pw : await sha256Hex(pw);
     hydrateUsers(db.users);
     syncJobThreadAdmins();
     persist();
