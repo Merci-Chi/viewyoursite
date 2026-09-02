@@ -1,0 +1,2608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>eez — real-time messaging</title>
+    <meta name="description" content="eez — see messages as they're being typed. A static single-file demo that runs on GitHub Pages." />
+
+    <!-- Inline SVG favicon (waves) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230ea5e9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.7 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1'/%3E%3Cpath d='M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.7 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1'/%3E%3Cpath d='M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.7 0 2.3-2 5-2 1.3 0 1.9.5 2.5 1'/%3E%3C/svg%3E"
+    />
+
+    <!--
+      eez — static single-file build
+      ---------------------------------------------------------------------
+      This is a 100% client-side port of the eez real-time messaging app.
+      It runs on GitHub Pages (or any static host) with NO backend of your own.
+
+      How "real-time" works without a server:
+        • It uses MQTT-over-WebSocket via a free, public broker
+          (wss://broker.emqx.io:8084/mqtt). No signup, no API keys.
+        • Each chat room is an MQTT topic (eez/v1/r/<roomId>). Anyone who
+          opens the same room link — on any device, anywhere — subscribes
+          to that topic and exchanges messages, typing, and presence in
+          real time, exactly like the original server-backed eez.
+
+      To deploy on GitHub Pages:
+        1. Create a repo, drop this index.html in (or in /docs).
+        2. Settings -> Pages -> Source: main branch /(root) or /docs.
+        3. Save. Your eez is live at https://<user>.github.io/<repo>/.
+        4. Share a room link (the #/g/<name> in the URL) and anyone, on any
+           device, can chat with you in real time.
+
+      Notes:
+        • The public broker is shared — don't send anything sensitive.
+          Room names are your only "secret"; pick something unguessable.
+        • Per-device message history is cached in localStorage.
+        • Images are auto-compressed; other files are capped at ~180KB.
+    -->
+
+    <!-- Tailwind CSS via Play CDN (no build step) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+      // Tailwind config mirroring the original eez design tokens
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              border: "hsl(var(--border))",
+              input: "hsl(var(--input))",
+              ring: "hsl(var(--ring))",
+              background: "hsl(var(--background))",
+              foreground: "hsl(var(--foreground))",
+              primary: {
+                DEFAULT: "hsl(var(--primary))",
+                foreground: "hsl(var(--primary-foreground))",
+              },
+              secondary: {
+                DEFAULT: "hsl(var(--secondary))",
+                foreground: "hsl(var(--secondary-foreground))",
+              },
+              destructive: {
+                DEFAULT: "hsl(var(--destructive))",
+                foreground: "hsl(var(--destructive-foreground))",
+              },
+              muted: {
+                DEFAULT: "hsl(var(--muted))",
+                foreground: "hsl(var(--muted-foreground))",
+              },
+              accent: {
+                DEFAULT: "hsl(var(--accent))",
+                foreground: "hsl(var(--accent-foreground))",
+              },
+              popover: {
+                DEFAULT: "hsl(var(--popover))",
+                foreground: "hsl(var(--popover-foreground))",
+              },
+              card: {
+                DEFAULT: "hsl(var(--card))",
+                foreground: "hsl(var(--card-foreground))",
+              },
+              "status-online": "#22c55e",
+              "status-offline": "#94a3b8",
+            },
+            borderRadius: {
+              lg: "var(--radius)",
+              md: "calc(var(--radius) - 2px)",
+              sm: "calc(var(--radius) - 4px)",
+            },
+            fontFamily: {
+              sans: [
+                "Inter",
+                "ui-sans-serif",
+                "system-ui",
+                "-apple-system",
+                "Segoe UI",
+                "Roboto",
+                "sans-serif",
+              ],
+              mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+            },
+            keyframes: {
+              "pulse-ring": {
+                "0%": { boxShadow: "0 0 0 0 hsl(var(--primary) / 0.6)" },
+                "70%": { boxShadow: "0 0 0 6px hsl(var(--primary) / 0)" },
+                "100%": { boxShadow: "0 0 0 0 hsl(var(--primary) / 0)" },
+              },
+              "fade-in": {
+                from: { opacity: "0", transform: "translateY(8px)" },
+                to: { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+            animation: {
+              "pulse-ring": "pulse-ring 1.6s cubic-bezier(0.4,0,0.6,1) infinite",
+              "fade-in": "fade-in 0.25s ease-out",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* eez color tokens — light */
+      :root {
+        --background: 200 15% 98%;
+        --foreground: 200 8% 12%;
+        --border: 200 12% 92%;
+        --card: 200 18% 96%;
+        --card-foreground: 200 8% 15%;
+        --popover: 200 18% 96%;
+        --popover-foreground: 200 8% 15%;
+        --primary: 195 85% 42%;
+        --primary-foreground: 195 85% 98%;
+        --secondary: 195 25% 86%;
+        --secondary-foreground: 195 15% 25%;
+        --muted: 195 18% 90%;
+        --muted-foreground: 195 8% 35%;
+        --accent: 188 30% 88%;
+        --accent-foreground: 188 12% 28%;
+        --destructive: 0 75% 45%;
+        --destructive-foreground: 0 75% 98%;
+        --input: 195 20% 75%;
+        --ring: 195 85% 42%;
+        --radius: 0.5rem;
+      }
+      /* eez color tokens — dark */
+      .dark {
+        --background: 200 5% 8%;
+        --foreground: 200 5% 92%;
+        --border: 200 8% 16%;
+        --card: 200 6% 10%;
+        --card-foreground: 200 5% 90%;
+        --popover: 200 6% 10%;
+        --popover-foreground: 200 5% 90%;
+        --primary: 195 85% 55%;
+        --primary-foreground: 195 85% 98%;
+        --secondary: 195 12% 18%;
+        --secondary-foreground: 195 8% 82%;
+        --muted: 195 10% 20%;
+        --muted-foreground: 195 5% 65%;
+        --accent: 188 18% 18%;
+        --accent-foreground: 188 8% 80%;
+        --destructive: 0 75% 32%;
+        --destructive-foreground: 0 75% 98%;
+        --input: 195 15% 35%;
+        --ring: 195 85% 55%;
+      }
+
+      * {
+        border-color: hsl(var(--border));
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, sans-serif;
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Loading splash shown until React mounts */
+      #boot-splash {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: hsl(var(--background));
+        z-index: 50;
+      }
+      #boot-splash .ring {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 9999px;
+        border: 2px solid hsl(var(--primary));
+        border-top-color: transparent;
+        animation: spin 0.9s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Custom scrollbar */
+      .eez-scroll::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      .eez-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .eez-scroll::-webkit-scrollbar-thumb {
+        background: hsl(var(--muted-foreground) / 0.3);
+        border-radius: 9999px;
+      }
+      .eez-scroll::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--muted-foreground) / 0.5);
+      }
+
+      /* sr-only helper (matches Tailwind) */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      /* Water shimmer keyframes (used as fallback if framer is slow to load) */
+      @keyframes float-up {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-110vh) translateX(var(--drift, 20px));
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <div id="boot-splash">
+      <div class="ring" aria-label="loading"></div>
+    </div>
+
+    <!-- Import map so we can use bare specifiers in the module script -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.3.1",
+          "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+          "react-dom": "https://esm.sh/react-dom@18.3.1",
+          "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+          "framer-motion": "https://esm.sh/framer-motion@11.3.19?deps=react@18.3.1,react-dom@18.3.1&external=react,react-dom",
+          "lucide-react": "https://esm.sh/lucide-react@0.439.0?deps=react@18.3.1&external=react"
+        }
+      }
+    </script>
+
+    <!-- mqtt.js (UMD) — public MQTT-over-WebSocket client, exposed as window.mqtt -->
+    <script src="https://unpkg.com/mqtt@4.3.7/dist/mqtt.min.js"></script>
+
+    <!-- Babel standalone: transpiles JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"></script>
+
+    <script type="text/babel" data-type="module" data-presets="react">
+      import React, {
+        useState,
+        useEffect,
+        useRef,
+        useCallback,
+        useMemo,
+      } from "react";
+      import { createRoot } from "react-dom/client";
+      import { motion, AnimatePresence } from "framer-motion";
+      import {
+        Waves,
+        Plus,
+        Users,
+        ArrowRight,
+        ArrowLeft,
+        Link2,
+        Check,
+        Sun,
+        Moon,
+        Image as ImageIcon,
+        Video,
+        FileText,
+        Paperclip,
+        X,
+        FileIcon,
+        Music,
+        FileSpreadsheet,
+        Presentation,
+        FileCode,
+        Download,
+        Play,
+        AlertCircle,
+        Info,
+        Sparkles,
+      } from "lucide-react";
+
+      /* =================================================================
+         CONSTANTS & HELPERS
+         ================================================================= */
+
+      const AVATAR_COLORS = [
+        "#0ea5e9",
+        "#06b6d4",
+        "#14b8a6",
+        "#10b981",
+        "#22c55e",
+        "#84cc16",
+        "#eab308",
+        "#f97316",
+        "#ef4444",
+        "#ec4899",
+        "#a855f7",
+        "#6366f1",
+      ];
+
+      const STORAGE_KEYS = {
+        user: "eez-user",
+        channels: "eez-channels",
+        theme: "eez-theme",
+      };
+
+      const msgStoreKey = (channelId) => `eez-msgs-${channelId}`;
+
+      function uuid() {
+        if (typeof crypto !== "undefined" && crypto.randomUUID) {
+          return crypto.randomUUID();
+        }
+        return "id_" + Date.now() + "_" + Math.random().toString(36).slice(2, 9);
+      }
+
+      function randomColor() {
+        return AVATAR_COLORS[Math.floor(Math.random() * AVATAR_COLORS.length)];
+      }
+
+      function makeUser(displayName) {
+        const username = displayName.toLowerCase().replace(/\s+/g, "_");
+        return {
+          id: "user_" + Date.now() + "_" + Math.random().toString(36).slice(2, 9),
+          username,
+          displayName,
+          avatarColor: randomColor(),
+          isTyping: false,
+          typingContent: "",
+        };
+      }
+
+      function cn(...args) {
+        return args.filter(Boolean).join(" ");
+      }
+
+      function formatTime(ts) {
+        const d = new Date(ts);
+        return d.toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit",
+        });
+      }
+
+      function formatFileSize(bytes) {
+        if (bytes < 1024) return bytes + " B";
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+        return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+      }
+
+      function dataUrlToBlob(dataUrl) {
+        try {
+          const parts = dataUrl.split(",");
+          if (parts.length !== 2) return null;
+          const mimeMatch = parts[0].match(/:(.*?);/);
+          if (!mimeMatch) return null;
+          const mime = mimeMatch[1];
+          const byteString = atob(parts[1]);
+          const ab = new ArrayBuffer(byteString.length);
+          const ia = new Uint8Array(ab);
+          for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+          return new Blob([ab], { type: mime });
+        } catch {
+          return null;
+        }
+      }
+
+      // Compress an image File to a JPEG data URL (~30-80KB typically).
+      // Public MQTT brokers cap message size, so we keep images small.
+      function compressImage(file, maxDim, quality) {
+        maxDim = maxDim || 900;
+        quality = quality || 0.72;
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          const url = URL.createObjectURL(file);
+          img.onload = () => {
+            URL.revokeObjectURL(url);
+            let width = img.naturalWidth || img.width;
+            let height = img.naturalHeight || img.height;
+            if (width > maxDim || height > maxDim) {
+              if (width >= height) {
+                height = Math.round((height * maxDim) / width);
+                width = maxDim;
+              } else {
+                width = Math.round((width * maxDim) / height);
+                height = maxDim;
+              }
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            // Fill white so transparent PNGs don't get a black background
+            // when exported as JPEG.
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height);
+            try {
+              resolve(canvas.toDataURL("image/jpeg", quality));
+            } catch (err) {
+              reject(err);
+            }
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error("Failed to load image"));
+          };
+          img.src = url;
+        });
+      }
+
+      function getFileType(fileName, contentType) {
+        const ext = (fileName.split(".").pop() || "").toLowerCase();
+        if (contentType === "application/pdf" || ext === "pdf") return "pdf";
+        if (
+          contentType.startsWith("audio/") ||
+          ["mp3", "wav", "ogg", "m4a", "aac"].includes(ext)
+        )
+          return "audio";
+        if (
+          contentType.startsWith("text/") ||
+          ["txt", "md", "rtf"].includes(ext)
+        )
+          return "text";
+        if (["xlsx", "xls", "csv", "numbers"].includes(ext))
+          return "spreadsheet";
+        if (["pptx", "ppt", "key"].includes(ext)) return "presentation";
+        if (
+          [
+            "js",
+            "ts",
+            "jsx",
+            "tsx",
+            "py",
+            "java",
+            "cpp",
+            "c",
+            "h",
+            "css",
+            "html",
+            "json",
+            "xml",
+            "yaml",
+            "yml",
+          ].includes(ext)
+        )
+          return "code";
+        return "other";
+      }
+
+      /* =================================================================
+         STORAGE HELPERS (channels + message history)
+         ================================================================= */
+
+      function loadChannels() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEYS.channels);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) {
+              // Seed a default "general" room if empty
+              if (parsed.length === 0) {
+                const general = makeChannel("general", "the main current");
+                saveChannels([general]);
+                return [general];
+              }
+              return parsed;
+            }
+          }
+        } catch {}
+        const general = makeChannel("general", "the main current");
+        saveChannels([general]);
+        return [general];
+      }
+
+      function saveChannels(channels) {
+        localStorage.setItem(STORAGE_KEYS.channels, JSON.stringify(channels));
+      }
+
+      function makeChannel(name, description) {
+        return {
+          id: name
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .slice(0, 40) || uuid(),
+          name,
+          description: description || "",
+          createdAt: Date.now(),
+        };
+      }
+
+      function loadMessages(channelId) {
+        try {
+          const raw = localStorage.getItem(msgStoreKey(channelId));
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) return parsed;
+          }
+        } catch {}
+        return [];
+      }
+
+      function appendMessage(channelId, message) {
+        try {
+          const msgs = loadMessages(channelId);
+          msgs.push(message);
+          // cap history at 100 entries per room
+          const trimmed = msgs.slice(-100);
+          localStorage.setItem(
+            msgStoreKey(channelId),
+            JSON.stringify(trimmed)
+          );
+        } catch {}
+      }
+
+      /* =================================================================
+         REALTIME CLIENT (MQTT-over-WebSocket — works across any device)
+         ---------------------------------------------------------------------
+         Uses a free, public MQTT broker (EMQX) over secure WebSocket. No
+         signup, no API keys. Each chat room is an MQTT topic:
+             eez/v1/r/<roomId>
+         Channel-list announcements go to:
+             eez/v1/c
+
+         Because MQTT does NOT echo messages back to the publisher, we also
+         dispatch locally so the sender sees their own messages immediately.
+
+         Presence:
+           • join           -> announce yourself; existing peers reply with
+                               presence_response so you learn about them.
+           • heartbeat      -> every 12s we republish join so presence
+                               survives reconnects and lets peers prune
+                               stale users (no heartbeat in ~30s = gone).
+           • leave / will   -> best-effort leave on exit + beforeunload,
+                               plus an MQTT "last will" as a safety net.
+         ================================================================= */
+
+      const MQTT_URL = "wss://broker.emqx.io:8084/mqtt";
+      const ROOM_TOPIC = (roomId) => "eez/v1/r/" + encodeURIComponent(roomId);
+      const GLOBAL_TOPIC = "eez/v1/c";
+      const PRESENCE_TIMEOUT_MS = 30000;
+      const HEARTBEAT_MS = 12000;
+
+      class RealtimeClient {
+        constructor() {
+          this.handlers = new Set();
+          this.user = null;
+          this.channelId = null;
+          this.client = null;
+          this.connected = false;
+          this.heartbeatTimer = null;
+          this.lastSeen = new Map(); // userId -> timestamp (for presence pruning)
+          this.pruneTimer = null;
+        }
+
+        _publish(topic, payload) {
+          if (!this.client || !this.client.connected) return;
+          try {
+            this.client.publish(topic, JSON.stringify(payload), { qos: 0 });
+          } catch (err) {
+            console.warn("eez: mqtt publish failed", err);
+          }
+        }
+
+        _onMessage(topic, message) {
+          let payload;
+          try {
+            payload = JSON.parse(message.toString());
+          } catch {
+            return;
+          }
+          if (!payload || !payload.type) return;
+
+          // Presence handshake: when someone joins my room, announce myself
+          // back so they see me immediately.
+          if (
+            payload.type === "join" &&
+            this.user &&
+            payload.channelId === this.channelId &&
+            payload.user &&
+            payload.user.id !== this.user.id
+          ) {
+            this._publish(ROOM_TOPIC(this.channelId), {
+              type: "presence_response",
+              user: this.user,
+              channelId: this.channelId,
+            });
+          }
+
+          // Track presence timestamps for pruning
+          if (payload.user && payload.user.id) {
+            this.lastSeen.set(payload.user.id, Date.now());
+          } else if (payload.type === "message" && payload.message?.user?.id) {
+            this.lastSeen.set(payload.message.user.id, Date.now());
+          }
+
+          this.dispatch(payload);
+        }
+
+        dispatch(msg) {
+          this.handlers.forEach((h) => h(msg));
+        }
+
+        subscribe(handler) {
+          this.handlers.add(handler);
+          return () => this.handlers.delete(handler);
+        }
+
+        isConnected() {
+          return !!(this.client && this.client.connected);
+        }
+
+        connect() {
+          if (this.client) return;
+          if (typeof window.mqtt === "undefined") {
+            console.error(
+              "eez: mqtt library failed to load. Real-time will not work."
+            );
+            return;
+          }
+          const clientId =
+            "eez_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+
+          // Last Will: if this client drops ungracefully, the broker publishes
+          // a leave on the current room (best-effort). We update the will on
+          // each join since the room can change.
+          this._will = {
+            topic: GLOBAL_TOPIC,
+            payload: JSON.stringify({
+              type: "leave",
+              userId: "unknown",
+              channelId: null,
+            }),
+            qos: 0,
+            retain: false,
+          };
+
+          try {
+            this.client = window.mqtt.connect(MQTT_URL, {
+              clientId,
+              keepalive: 30,
+              reconnectPeriod: 2500,
+              connectTimeout: 10000,
+              clean: true,
+              will: this._will,
+            });
+          } catch (err) {
+            console.error("eez: mqtt connect failed", err);
+            return;
+          }
+
+          this.client.on("connect", () => {
+            this.connected = true;
+            // subscribe to global channel announcements
+            this.client.subscribe(GLOBAL_TOPIC, { qos: 0 });
+            // re-subscribe to current room if we were in one (e.g. after reconnect)
+            if (this.channelId) {
+              this.client.subscribe(ROOM_TOPIC(this.channelId), { qos: 0 });
+              if (this.user) {
+                this._publish(ROOM_TOPIC(this.channelId), {
+                  type: "join",
+                  user: this.user,
+                  channelId: this.channelId,
+                });
+              }
+            }
+            this._startHeartbeat();
+            this._startPruner();
+            this.dispatch({ type: "_connected" });
+          });
+
+          this.client.on("reconnect", () => {
+            this.connected = false;
+            this.dispatch({ type: "_reconnecting" });
+          });
+
+          this.client.on("close", () => {
+            this.connected = false;
+            this.dispatch({ type: "_disconnected" });
+          });
+
+          this.client.on("offline", () => {
+            this.connected = false;
+          });
+
+          this.client.on("error", (err) => {
+            console.error("eez: mqtt error", err);
+          });
+
+          this.client.on("message", (topic, message) => {
+            this._onMessage(topic, message);
+          });
+        }
+
+        _startHeartbeat() {
+          if (this.heartbeatTimer) clearInterval(this.heartbeatTimer);
+          this.heartbeatTimer = setInterval(() => {
+            if (this.user && this.channelId && this.isConnected()) {
+              this._publish(ROOM_TOPIC(this.channelId), {
+                type: "join",
+                user: this.user,
+                channelId: this.channelId,
+              });
+            }
+          }, HEARTBEAT_MS);
+        }
+
+        _startPruner() {
+          if (this.pruneTimer) clearInterval(this.pruneTimer);
+          this.pruneTimer = setInterval(() => {
+            const now = Date.now();
+            const stale = [];
+            for (const [uid, ts] of this.lastSeen.entries()) {
+              if (now - ts > PRESENCE_TIMEOUT_MS) {
+                stale.push(uid);
+                this.lastSeen.delete(uid);
+              }
+            }
+            for (const uid of stale) {
+              this.dispatch({
+                type: "leave",
+                userId: uid,
+                channelId: this.channelId,
+              });
+            }
+          }, 5000);
+        }
+
+        join(user, channelId) {
+          this.user = user;
+          this.channelId = channelId;
+          this.connect();
+          if (this.client && this.client.connected) {
+            this.client.subscribe(ROOM_TOPIC(channelId), { qos: 0 });
+            this._publish(ROOM_TOPIC(channelId), {
+              type: "join",
+              user,
+              channelId,
+            });
+          }
+          // else: connect handler will subscribe + announce once connected
+        }
+
+        leave() {
+          if (this.user && this.channelId) {
+            this._publish(ROOM_TOPIC(this.channelId), {
+              type: "leave",
+              userId: this.user.id,
+              channelId: this.channelId,
+            });
+            try {
+              this.client && this.client.unsubscribe(ROOM_TOPIC(this.channelId));
+            } catch {}
+          }
+          this.channelId = null;
+        }
+
+        sendMessage(content, channelId) {
+          if (!this.user) return;
+          const message = {
+            id: uuid(),
+            content,
+            userId: this.user.id,
+            channelId,
+            timestamp: Date.now(),
+            user: {
+              id: this.user.id,
+              username: this.user.username,
+              displayName: this.user.displayName,
+              avatarColor: this.user.avatarColor,
+            },
+          };
+          this._publish(ROOM_TOPIC(channelId), { type: "message", message });
+          // local echo (MQTT does not echo to publisher)
+          this.dispatch({ type: "message", message });
+          appendMessage(channelId, message);
+        }
+
+        sendTyping(content, channelId) {
+          if (!this.user) return;
+          this._publish(ROOM_TOPIC(channelId), {
+            type: "typing",
+            indicator: {
+              userId: this.user.id,
+              username: this.user.username,
+              displayName: this.user.displayName,
+              avatarColor: this.user.avatarColor,
+              content,
+              channelId,
+            },
+          });
+        }
+
+        stopTyping(channelId) {
+          if (!this.user) return;
+          this._publish(ROOM_TOPIC(channelId), {
+            type: "typing_stop",
+            userId: this.user.id,
+            channelId,
+          });
+        }
+
+        sendMediaMessage(media) {
+          if (!this.user) return;
+          this._publish(ROOM_TOPIC(media.channelId), { type: "media", media });
+          this.dispatch({ type: "media", media });
+        }
+
+        announceChannel(channel) {
+          this._publish(GLOBAL_TOPIC, { type: "channel_created", channel });
+        }
+      }
+
+      const wsClient = new RealtimeClient();
+
+      // Best-effort: announce leave when the tab is closing
+      window.addEventListener("beforeunload", () => {
+        try {
+          wsClient.leave();
+        } catch {}
+      });
+
+      /* =================================================================
+         HOOKS
+         ================================================================= */
+
+      function useLocalUser() {
+        const [user, setUser] = useState(null);
+        const [isLoading, setIsLoading] = useState(true);
+
+        useEffect(() => {
+          try {
+            const stored = localStorage.getItem(STORAGE_KEYS.user);
+            if (stored) {
+              const parsed = JSON.parse(stored);
+              setUser({
+                ...parsed,
+                isTyping: false,
+                typingContent: "",
+              });
+            }
+          } catch {}
+          setIsLoading(false);
+        }, []);
+
+        const createUser = useCallback((displayName) => {
+          const u = makeUser(displayName);
+          localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(u));
+          setUser(u);
+          return u;
+        }, []);
+
+        return { user, isLoading, createUser };
+      }
+
+      // Tiny hash-based router: returns [path, navigate].
+      // path is everything after "#" (without the leading "#"), or "/".
+      function useHashRoute() {
+        const get = () => {
+          const h = window.location.hash.replace(/^#/, "");
+          return h || "/";
+        };
+        const [path, setPath] = useState(get());
+
+        useEffect(() => {
+          const on = () => setPath(get());
+          window.addEventListener("hashchange", on);
+          return () => window.removeEventListener("hashchange", on);
+        }, []);
+
+        const navigate = useCallback((to) => {
+          const clean = to.startsWith("#") ? to.slice(1) : to;
+          if (clean === get()) return;
+          window.location.hash = clean;
+        }, []);
+
+        return [path, navigate];
+      }
+
+      /* =================================================================
+         WATER BACKGROUND
+         ================================================================= */
+
+      function WaterBackground() {
+        const bubbles = useMemo(
+          () =>
+            Array.from({ length: 6 }).map((_, i) => ({
+              size: 4 + Math.random() * 8,
+              left: 10 + i * 15 + Math.random() * 5,
+              delay: i * 1.6 + Math.random() * 2,
+              duration: 8 + Math.random() * 4,
+              drift: (Math.random() - 0.5) * 100,
+            })),
+          []
+        );
+
+        return (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-blue-500/30 to-cyan-600/40 dark:from-sky-900/40 dark:via-blue-900/50 dark:to-cyan-900/60" />
+
+            <motion.div
+              className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%]"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(14, 165, 233, 0.15) 0%, transparent 50%)",
+              }}
+              animate={{
+                x: [0, 50, 0, -50, 0],
+                y: [0, 30, 60, 30, 0],
+                scale: [1, 1.1, 1, 0.9, 1],
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <motion.div
+              className="absolute top-0 left-0 w-full h-full"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 30% 20%, rgba(6, 182, 212, 0.2) 0%, transparent 40%)",
+              }}
+              animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <motion.div
+              className="absolute top-0 left-0 w-full h-full"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 70% 80%, rgba(56, 189, 248, 0.2) 0%, transparent 40%)",
+              }}
+              animate={{ opacity: [0.4, 0.2, 0.4], scale: [1.1, 1, 1.1] }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2,
+              }}
+            />
+
+            <motion.div
+              className="absolute bottom-0 left-0 w-full h-1/3"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(14, 165, 233, 0.1) 0%, transparent 100%)",
+              }}
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {bubbles.map((b, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-white/10"
+                style={{
+                  width: b.size,
+                  height: b.size,
+                  left: b.left + "%",
+                  bottom: -20,
+                  // @ts-ignore custom prop
+                  "--drift": b.drift + "px",
+                  animation: `float-up ${b.duration}s ${b.delay}s ease-out infinite`,
+                }}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      /* =================================================================
+         THEME TOGGLE
+         ================================================================= */
+
+      function ThemeToggle() {
+        const [theme, setTheme] = useState("light");
+
+        useEffect(() => {
+          const stored = localStorage.getItem(STORAGE_KEYS.theme);
+          const system = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+          const initial = stored || system;
+          setTheme(initial);
+          document.documentElement.classList.toggle("dark", initial === "dark");
+        }, []);
+
+        const toggle = () => {
+          const next = theme === "light" ? "dark" : "light";
+          setTheme(next);
+          localStorage.setItem(STORAGE_KEYS.theme, next);
+          document.documentElement.classList.toggle("dark", next === "dark");
+        };
+
+        return (
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            className="relative h-9 w-9 inline-flex items-center justify-center rounded-md text-foreground/80 hover:bg-white/10 transition-colors"
+            data-testid="button-theme-toggle"
+          >
+            <AnimatePresence mode="wait">
+              {theme === "light" ? (
+                <motion.span
+                  key="sun"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Sun className="h-4 w-4" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="moon"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Moon className="h-4 w-4" />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        );
+      }
+
+      /* =================================================================
+         USER AVATAR
+         ================================================================= */
+
+      const sizeClasses = {
+        sm: "h-6 w-6 text-xs",
+        md: "h-8 w-8 text-sm",
+        lg: "h-10 w-10 text-base",
+        xl: "h-16 w-16 text-xl",
+      };
+      const statusSizeClasses = {
+        sm: "h-2 w-2",
+        md: "h-2.5 w-2.5",
+        lg: "h-3 w-3",
+        xl: "h-4 w-4",
+      };
+
+      function UserAvatar({
+        displayName,
+        avatarColor,
+        size = "md",
+        showStatus = false,
+        isOnline = false,
+        isTyping = false,
+        className,
+      }) {
+        const initials = (displayName || "?")
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase()
+          .slice(0, 2);
+        return (
+          <div className={cn("relative", className)}>
+            <div
+              className={cn(
+                "rounded-full flex items-center justify-center text-white font-medium ring-2 ring-white/20 dark:ring-white/10",
+                sizeClasses[size]
+              )}
+              style={{ backgroundColor: avatarColor }}
+            >
+              {initials}
+            </div>
+            {showStatus && (
+              <span
+                className={cn(
+                  "absolute -bottom-0.5 -right-0.5 rounded-full border-2 border-background",
+                  statusSizeClasses[size],
+                  isTyping
+                    ? "bg-primary animate-pulse-ring"
+                    : isOnline
+                    ? "bg-status-online"
+                    : "bg-status-offline"
+                )}
+              />
+            )}
+          </div>
+        );
+      }
+
+      /* =================================================================
+         ONBOARDING MODAL
+         ================================================================= */
+
+      function OnboardingModal({ onComplete }) {
+        const [displayName, setDisplayName] = useState("");
+        const [isAnimating, setIsAnimating] = useState(false);
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          if (displayName.trim()) {
+            setIsAnimating(true);
+            setTimeout(() => onComplete(displayName.trim()), 280);
+          }
+        };
+
+        return (
+          <div className="fixed inset-0 flex items-center justify-center p-4 bg-background">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{
+                opacity: isAnimating ? 0 : 1,
+                scale: isAnimating ? 1.05 : 1,
+                y: isAnimating ? -20 : 0,
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="w-full max-w-sm"
+            >
+              <div className="flex flex-col items-center text-center mb-8">
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="mb-6"
+                >
+                  <div className="h-20 w-20 rounded-full bg-primary flex items-center justify-center">
+                    <Waves className="h-10 w-10 text-primary-foreground" />
+                  </div>
+                </motion.div>
+                <h1 className="text-2xl font-semibold mb-2">Welcome to eez</h1>
+                <p className="text-muted-foreground">
+                  See messages as they're being typed
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="displayName"
+                    className="text-sm font-medium block"
+                  >
+                    Your name
+                  </label>
+                  <input
+                    id="displayName"
+                    type="text"
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    placeholder="Enter your name"
+                    className="h-12 text-base w-full rounded-md border border-input bg-transparent px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
+                    autoFocus
+                    autoComplete="off"
+                    data-testid="input-display-name"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full h-12 text-base gap-2 rounded-full bg-primary text-primary-foreground inline-flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-50"
+                  disabled={!displayName.trim()}
+                    data-testid="button-start"
+                >
+                  <span>Get Started</span>
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
+
+              <p className="text-center text-xs text-muted-foreground mt-8">
+                Experience real-time messaging like never before
+              </p>
+            </motion.div>
+          </div>
+        );
+      }
+
+      /* =================================================================
+         BUBBLES (Live, Message, Media)
+         ================================================================= */
+
+      function LiveBubble({ content, isSent, isActive, showCursor = true }) {
+        if (!content && !isActive) return null;
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className={cn("flex", isSent ? "justify-end" : "justify-start")}
+          >
+            <div
+              className={cn(
+                "max-w-[75%] px-4 py-3 rounded-3xl text-[15px] leading-relaxed min-h-[44px] backdrop-blur-md shadow-lg",
+                isSent
+                  ? "bg-primary/70 text-primary-foreground rounded-br-lg"
+                  : "bg-white/50 dark:bg-white/15 text-foreground rounded-bl-lg border border-white/40 dark:border-white/20",
+                isActive && "ring-2 ring-primary/30"
+              )}
+            >
+              {content ? (
+                <span className="whitespace-pre-wrap break-words">
+                  {content}
+                  {isActive && showCursor && (
+                    <motion.span
+                      className="inline-block w-0.5 h-5 bg-current ml-0.5 align-middle"
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 0.8, repeat: Infinity }}
+                    />
+                  )}
+                </span>
+              ) : (
+                isActive &&
+                showCursor && (
+                  <motion.span
+                    className="inline-block w-0.5 h-5 bg-current align-middle"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                  />
+                )
+              )}
+            </div>
+          </motion.div>
+        );
+      }
+
+      function MessageBubble({ content, isSent, timestamp }) {
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className={cn(
+              "flex flex-col",
+              isSent ? "items-end" : "items-start"
+            )}
+          >
+            <div
+              className={cn(
+                "max-w-[75%] px-4 py-3 rounded-3xl text-[15px] leading-relaxed backdrop-blur-md shadow-lg",
+                isSent
+                  ? "bg-primary/70 text-primary-foreground rounded-br-lg"
+                  : "bg-white/50 dark:bg-white/15 text-foreground rounded-bl-lg border border-white/40 dark:border-white/20"
+              )}
+            >
+              <p className="whitespace-pre-wrap break-words">{content}</p>
+            </div>
+            {timestamp && (
+              <span className="text-[10px] text-muted-foreground mt-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                {formatTime(timestamp)}
+              </span>
+            )}
+          </motion.div>
+        );
+      }
+
+      function MediaBubble({ media, isSent }) {
+        const [videoError, setVideoError] = useState(false);
+        const [imageError, setImageError] = useState(false);
+        const [blobUrl, setBlobUrl] = useState(null);
+
+        const fileType =
+          media.type === "file"
+            ? getFileType(media.fileName, media.contentType)
+            : null;
+
+        const FileIconComp =
+          fileType === "pdf"
+            ? FileText
+            : fileType === "audio"
+            ? Music
+            : fileType === "spreadsheet"
+            ? FileSpreadsheet
+            : fileType === "presentation"
+            ? Presentation
+            : fileType === "code"
+            ? FileCode
+            : FileIcon;
+
+        useEffect(() => {
+          if (
+            (media.type === "video" || media.type === "file") &&
+            media.url &&
+            media.url.startsWith("data:")
+          ) {
+            const blob = dataUrlToBlob(media.url);
+            if (blob) {
+              const url = URL.createObjectURL(blob);
+              setBlobUrl(url);
+              return () => URL.revokeObjectURL(url);
+            }
+          }
+        }, [media.url, media.type]);
+
+        const displayUrl =
+          media.type === "video" || media.type === "file"
+            ? blobUrl || media.url
+            : media.url;
+
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className={cn("flex", isSent ? "justify-end" : "justify-start")}
+          >
+            <div
+              className={cn(
+                "max-w-[75%] rounded-3xl backdrop-blur-md shadow-lg overflow-hidden",
+                isSent
+                  ? "bg-primary/70 text-primary-foreground rounded-br-lg"
+                  : "bg-white/50 dark:bg-white/15 text-foreground rounded-bl-lg border border-white/40 dark:border-white/20"
+              )}
+            >
+              {media.type === "image" && (
+                <div className="p-1">
+                  {imageError ? (
+                    <div className="flex items-center gap-2 px-4 py-3">
+                      <AlertCircle className="h-5 w-5" />
+                      <span className="text-sm">Image failed to load</span>
+                    </div>
+                  ) : (
+                    <img
+                      src={media.url}
+                      alt={media.fileName}
+                      className="max-w-[240px] max-h-[240px] rounded-2xl object-cover"
+                      onError={() => setImageError(true)}
+                    />
+                  )}
+                </div>
+              )}
+
+              {media.type === "video" && (
+                <div className="p-1">
+                  {videoError ? (
+                    <a
+                      href={displayUrl}
+                      download={media.fileName}
+                      className="flex items-center gap-3 px-4 py-3"
+                    >
+                      <div
+                        className={cn(
+                          "p-2 rounded-full",
+                          isSent ? "bg-white/20" : "bg-primary/10"
+                        )}
+                      >
+                        <Play
+                          className={cn(
+                            "h-5 w-5",
+                            isSent ? "text-primary-foreground" : "text-primary"
+                          )}
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">
+                          {media.fileName}
+                        </p>
+                        <p
+                          className={cn(
+                            "text-xs",
+                            isSent
+                              ? "text-primary-foreground/70"
+                              : "text-muted-foreground"
+                          )}
+                        >
+                          {formatFileSize(media.fileSize)} — click to download
+                        </p>
+                      </div>
+                      <Download className="h-4 w-4 flex-shrink-0" />
+                    </a>
+                  ) : (
+                    <video
+                      src={displayUrl}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="max-w-[240px] max-h-[240px] rounded-2xl"
+                      onError={() => setVideoError(true)}
+                    >
+                      Your browser does not support video playback.
+                    </video>
+                  )}
+                </div>
+              )}
+
+              {media.type === "file" && fileType === "pdf" && (
+                <div className="p-2">
+                  <div
+                    className="flex flex-col gap-2 cursor-pointer"
+                    onClick={() =>
+                      displayUrl && window.open(displayUrl, "_blank")
+                    }
+                  >
+                    <div
+                      className={cn(
+                        "w-[200px] h-[120px] rounded-xl flex items-center justify-center",
+                        isSent ? "bg-white/20" : "bg-red-500/10"
+                      )}
+                    >
+                      <FileText
+                        className={cn(
+                          "h-12 w-12",
+                          isSent ? "text-primary-foreground" : "text-red-500"
+                        )}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">
+                          {media.fileName}
+                        </p>
+                        <p
+                          className={cn(
+                            "text-xs",
+                            isSent
+                              ? "text-primary-foreground/70"
+                              : "text-muted-foreground"
+                          )}
+                        >
+                          {formatFileSize(media.fileSize)} — tap to view
+                        </p>
+                      </div>
+                      <a
+                        href={displayUrl}
+                        download={media.fileName}
+                        onClick={(e) => e.stopPropagation()}
+                        className={cn(
+                          "p-2 rounded-full",
+                          isSent ? "hover:bg-white/20" : "hover:bg-black/10"
+                        )}
+                      >
+                        <Download className="h-4 w-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {media.type === "file" && fileType === "audio" && (
+                <div className="p-2">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div
+                      className={cn(
+                        "p-2 rounded-full",
+                        isSent ? "bg-white/20" : "bg-primary/10"
+                      )}
+                    >
+                      <Music
+                        className={cn(
+                          "h-5 w-5",
+                          isSent ? "text-primary-foreground" : "text-primary"
+                        )}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">
+                        {media.fileName}
+                      </p>
+                      <p
+                        className={cn(
+                          "text-xs",
+                          isSent
+                            ? "text-primary-foreground/70"
+                            : "text-muted-foreground"
+                        )}
+                      >
+                        {formatFileSize(media.fileSize)}
+                      </p>
+                    </div>
+                    <a
+                      href={displayUrl}
+                      download={media.fileName}
+                      className={cn(
+                        "p-1 rounded-full",
+                        isSent ? "hover:bg-white/20" : "hover:bg-black/10"
+                      )}
+                    >
+                      <Download className="h-4 w-4" />
+                    </a>
+                  </div>
+                  <audio
+                    src={displayUrl}
+                    controls
+                    className="w-full max-w-[260px]"
+                  />
+                </div>
+              )}
+
+              {media.type === "file" &&
+                fileType !== "pdf" &&
+                fileType !== "audio" && (
+                  <a
+                    href={displayUrl}
+                    download={media.fileName}
+                    className="flex items-center gap-3 px-4 py-3 cursor-pointer"
+                  >
+                    <div
+                      className={cn(
+                        "p-2 rounded-full",
+                        isSent ? "bg-white/20" : "bg-primary/10"
+                      )}
+                    >
+                      <FileIconComp
+                        className={cn(
+                          "h-5 w-5",
+                          isSent ? "text-primary-foreground" : "text-primary"
+                        )}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">
+                        {media.fileName}
+                      </p>
+                      <p
+                        className={cn(
+                          "text-xs",
+                          isSent
+                            ? "text-primary-foreground/70"
+                            : "text-muted-foreground"
+                        )}
+                      >
+                        {formatFileSize(media.fileSize)}
+                      </p>
+                    </div>
+                    <Download
+                      className={cn(
+                        "h-4 w-4 flex-shrink-0",
+                        isSent
+                          ? "text-primary-foreground/70"
+                          : "text-muted-foreground"
+                      )}
+                    />
+                  </a>
+                )}
+            </div>
+          </motion.div>
+        );
+      }
+
+      /* =================================================================
+         INSERT MENU (right-click / long-press to share media)
+         ================================================================= */
+
+      function InsertMenu({ onInsert, children }) {
+        const [isOpen, setIsOpen] = useState(false);
+        const [position, setPosition] = useState({ x: 0, y: 0 });
+        const containerRef = useRef(null);
+        const fileInputRef = useRef(null);
+        const pendingTypeRef = useRef(null);
+        const longPressTimer = useRef(null);
+
+        const openMenu = useCallback((clientX, clientY) => {
+          const container = containerRef.current;
+          if (!container) return;
+          const rect = container.getBoundingClientRect();
+          const menuWidth = 200;
+          const menuHeight = 180;
+          let x = clientX - rect.left;
+          let y = clientY - rect.top;
+          if (x + menuWidth > rect.width) x = rect.width - menuWidth - 10;
+          if (y + menuHeight > rect.height) y = rect.height - menuHeight - 10;
+          if (x < 10) x = 10;
+          if (y < 10) y = 10;
+          setPosition({ x, y });
+          setIsOpen(true);
+        }, []);
+
+        const handleContextMenu = useCallback(
+          (e) => {
+            e.preventDefault();
+            openMenu(e.clientX, e.clientY);
+          },
+          [openMenu]
+        );
+
+        const handleTouchStart = useCallback(
+          (e) => {
+            const touch = e.touches[0];
+            longPressTimer.current = setTimeout(() => {
+              openMenu(touch.clientX, touch.clientY);
+            }, 500);
+          },
+          [openMenu]
+        );
+
+        const handleTouchEnd = useCallback(() => {
+          if (longPressTimer.current) {
+            clearTimeout(longPressTimer.current);
+            longPressTimer.current = null;
+          }
+        }, []);
+
+        const handleTouchMove = useCallback(() => {
+          if (longPressTimer.current) {
+            clearTimeout(longPressTimer.current);
+            longPressTimer.current = null;
+          }
+        }, []);
+
+        const handleSelect = useCallback((type) => {
+          pendingTypeRef.current = type;
+          if (fileInputRef.current) {
+            if (type === "image") fileInputRef.current.accept = "image/*";
+            else if (type === "video") fileInputRef.current.accept = "video/*";
+            else fileInputRef.current.accept = "*/*";
+            fileInputRef.current.click();
+          }
+          setIsOpen(false);
+        }, []);
+
+        const handleFileChange = useCallback(
+          (e) => {
+            const file = e.target.files && e.target.files[0];
+            const type = pendingTypeRef.current;
+            if (file && type) onInsert(type, file);
+            e.target.value = "";
+            pendingTypeRef.current = null;
+          },
+          [onInsert]
+        );
+
+        const menuItems = [
+          { type: "image", icon: ImageIcon, label: "Photo" },
+          { type: "video", icon: Video, label: "Video" },
+          { type: "file", icon: FileText, label: "File" },
+        ];
+
+        return (
+          <div
+            ref={containerRef}
+            className="relative flex-1 flex flex-col min-h-0 overflow-hidden"
+            onContextMenu={handleContextMenu}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
+          >
+            {children}
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+
+            <AnimatePresence>
+              {isOpen && (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-40"
+                    onClick={() => setIsOpen(false)}
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.15 }}
+                    style={{ left: position.x, top: position.y }}
+                    className="absolute z-50 min-w-[180px] rounded-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl shadow-2xl border border-white/30 dark:border-white/10 overflow-hidden"
+                  >
+                    <div className="p-2">
+                      <div className="flex items-center justify-between px-3 py-2 mb-1">
+                        <span className="text-xs font-medium text-muted-foreground">
+                          Insert
+                        </span>
+                        <button
+                          onClick={() => setIsOpen(false)}
+                          className="p-1 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+                        >
+                          <X className="h-3 w-3 text-muted-foreground" />
+                        </button>
+                      </div>
+                      {menuItems.map((item) => (
+                        <button
+                          key={item.type}
+                          onClick={() => handleSelect(item.type)}
+                          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors text-sm font-medium text-foreground"
+                        >
+                          <div className="p-2 rounded-full bg-primary/10">
+                            <item.icon className="h-4 w-4 text-primary" />
+                          </div>
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      }
+
+      /* =================================================================
+         LOADING SPINNER (in-app)
+         ================================================================= */
+
+      function FullScreenSpinner() {
+        return (
+          <div className="h-screen w-full flex items-center justify-center bg-background">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className="h-8 w-8 border-2 border-primary border-t-transparent rounded-full"
+            />
+          </div>
+        );
+      }
+
+      /* =================================================================
+         HOME PAGE
+         ================================================================= */
+
+      function HomePage() {
+        const { user, isLoading, createUser } = useLocalUser();
+        const [path, setLocation] = useHashRoute();
+        const [channels, setChannels] = useState([]);
+        const [loadingChannels, setLoadingChannels] = useState(true);
+        const [createOpen, setCreateOpen] = useState(false);
+        const [name, setName] = useState("");
+        const [description, setDescription] = useState("");
+        const [creating, setCreating] = useState(false);
+
+        useEffect(() => {
+          setChannels(loadChannels());
+          setLoadingChannels(false);
+
+          // Start the MQTT connection early so channel-list announcements
+          // (from other people/devices) arrive even before entering a room.
+          wsClient.connect();
+
+          const unsub = wsClient.subscribe((msg) => {
+            if (msg.type === "channel_created" && msg.channel) {
+              setChannels((prev) => {
+                if (prev.some((c) => c.id === msg.channel.id)) return prev;
+                const next = [...prev, msg.channel];
+                saveChannels(next);
+                return next;
+              });
+            }
+          });
+          return unsub;
+        }, []);
+
+        const handleCreate = (e) => {
+          e.preventDefault();
+          const trimmed = name.trim();
+          if (!trimmed || creating) return;
+          setCreating(true);
+          const channel = makeChannel(trimmed, description.trim());
+          const next = channels.some((c) => c.id === channel.id)
+            ? channels
+            : [...channels, channel];
+          setChannels(next);
+          saveChannels(next);
+          wsClient.announceChannel(channel);
+          setCreateOpen(false);
+          setName("");
+          setDescription("");
+          setLocation("/g/" + channel.id);
+          setCreating(false);
+        };
+
+        if (isLoading) return <FullScreenSpinner />;
+        if (!user) return <OnboardingModal onComplete={createUser} />;
+
+        return (
+          <div className="h-screen w-full flex flex-col bg-background relative overflow-hidden">
+            <WaterBackground />
+
+            <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/10 backdrop-blur-sm">
+              <div className="flex items-center gap-2">
+                <Waves className="h-6 w-6 text-primary" />
+                <h1 className="text-xl font-semibold">eez</h1>
+              </div>
+              <ThemeToggle />
+            </div>
+
+            <div className="relative z-10 flex-1 overflow-y-auto eez-scroll">
+              <div className="max-w-md mx-auto p-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center mb-8"
+                >
+                  <div className="h-20 w-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-10 w-10 text-primary" />
+                  </div>
+                  <h2 className="text-2xl font-semibold mb-1">your groups</h2>
+                  <p className="text-sm text-muted-foreground">
+                    Make a room. Share the link. Watch them type.
+                  </p>
+                </motion.div>
+
+                <div className="flex gap-2 mb-6">
+                  <button
+                    className="flex-1 rounded-full gap-2 bg-primary text-primary-foreground h-11 inline-flex items-center justify-center hover:opacity-90 transition-opacity"
+                    onClick={() => setCreateOpen(true)}
+                    data-testid="button-create-group"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Create group
+                  </button>
+                  <button
+                    className="rounded-full gap-2 bg-secondary text-secondary-foreground h-11 px-4 inline-flex items-center justify-center hover:opacity-90 transition-opacity"
+                    onClick={() => setLocation("/g/general")}
+                    data-testid="button-enter-chat"
+                  >
+                    Enter Chat
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {loadingChannels && channels.length === 0 && (
+                    <div className="text-center py-8 text-sm text-muted-foreground">
+                      loading groups...
+                    </div>
+                  )}
+                  {channels.map((channel, i) => (
+                    <motion.button
+                      key={channel.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.04 }}
+                      onClick={() => setLocation("/g/" + channel.id)}
+                      className="w-full text-left rounded-2xl px-4 py-3 bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-colors"
+                      data-testid={"group-" + channel.id}
+                    >
+                      <div className="font-medium truncate">{channel.name}</div>
+                      {channel.description && (
+                        <div className="text-xs text-muted-foreground truncate mt-0.5">
+                          {channel.description}
+                        </div>
+                      )}
+                    </motion.button>
+                  ))}
+                  {!loadingChannels && channels.length === 0 && (
+                    <p className="text-center text-sm text-muted-foreground py-8">
+                      No groups yet. Create one to start.
+                    </p>
+                  )}
+                </div>
+
+                <div className="mt-10 rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/10 p-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-foreground font-medium mb-2">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    How this works
+                  </div>
+                  <ul className="space-y-1.5 list-disc list-inside">
+                    <li>
+                      <span className="text-foreground/90">Real-time, any device.</span>{" "}
+                      Chat runs over a free public MQTT broker — no signup, no
+                      server to host. Open the same room link on a phone, laptop,
+                      or another browser and chat live.
+                    </li>
+                    <li>
+                      <span className="text-foreground/90">Share the link.</span>{" "}
+                      The room name lives in the URL (<code className="px-1 py-0.5 rounded bg-muted/60 text-foreground/80">#/g/room-name</code>).
+                      Anyone who opens it joins the same room.
+                    </li>
+                    <li>
+                      Right-click (or long-press) inside a chat to drop a photo,
+                      video or file. Images auto-compress; other files cap at ~180KB.
+                    </li>
+                    <li>
+                      Your name &amp; message history are cached locally.
+                      The public broker is shared — keep room names unguessable.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-10 p-4 flex justify-center">
+              <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
+                <UserAvatar
+                  displayName={user.displayName}
+                  avatarColor={user.avatarColor}
+                  size="sm"
+                  showStatus
+                  isOnline
+                />
+                <span className="text-sm">{user.displayName}</span>
+              </div>
+            </div>
+
+            <AnimatePresence>
+              {createOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                    onClick={() => setCreateOpen(false)}
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                    className="relative w-full max-w-sm rounded-2xl bg-card text-card-foreground p-6 shadow-2xl border border-border"
+                  >
+                    <form onSubmit={handleCreate}>
+                      <div className="mb-4">
+                        <h2 className="text-lg font-semibold">
+                          Create a group
+                        </h2>
+                        <p className="text-sm text-muted-foreground">
+                          Give it a name. Share the link with anyone.
+                        </p>
+                      </div>
+                      <div className="space-y-4 py-2">
+                        <div className="space-y-2">
+                          <label
+                            htmlFor="group-name"
+                            className="text-sm font-medium block"
+                          >
+                            Name
+                          </label>
+                          <input
+                            id="group-name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="friday hang"
+                            autoFocus
+                            autoComplete="off"
+                            className="w-full h-10 rounded-md border border-input bg-transparent px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
+                            data-testid="input-group-name"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label
+                            htmlFor="group-description"
+                            className="text-sm font-medium block"
+                          >
+                            Description (optional)
+                          </label>
+                          <textarea
+                            id="group-description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="what this is about"
+                            className="min-h-[72px] resize-none w-full rounded-md border border-input bg-transparent px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
+                            data-testid="input-group-description"
+                          />
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <button
+                          type="submit"
+                          className="rounded-full w-full h-11 bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50"
+                          disabled={!name.trim() || creating}
+                          data-testid="button-submit-group"
+                        >
+                          {creating ? "Creating..." : "Create"}
+                        </button>
+                      </div>
+                    </form>
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      }
+
+      /* =================================================================
+         CHAT PAGE
+         ================================================================= */
+
+      function ChatPage({ groupId }) {
+        const { user, isLoading, createUser } = useLocalUser();
+        const [path, setLocation] = useHashRoute();
+        const [messages, setMessages] = useState([]);
+        const [currentTyping, setCurrentTyping] = useState("");
+        const [otherUsers, setOtherUsers] = useState([]);
+        const [typingUsers, setTypingUsers] = useState(new Map());
+        const [isConnected, setIsConnected] = useState(wsClient.isConnected());
+        const [mediaMessages, setMediaMessages] = useState([]);
+        const [isUploading, setIsUploading] = useState(false);
+        const [copied, setCopied] = useState(false);
+        const messagesEndRef = useRef(null);
+        const hasJoined = useRef(false);
+        const channel = useMemo(() => {
+          const all = loadChannels();
+          return all.find((c) => c.id === groupId);
+        }, [groupId]);
+
+        const scrollToBottom = useCallback(() => {
+          messagesEndRef.current &&
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }, []);
+
+        useEffect(() => {
+          scrollToBottom();
+        }, [
+          messages,
+          mediaMessages,
+          currentTyping,
+          typingUsers,
+          scrollToBottom,
+        ]);
+
+        // Reset state on channel change
+        useEffect(() => {
+          setMessages([]);
+          setMediaMessages([]);
+          setTypingUsers(new Map());
+          setOtherUsers([]);
+          setCurrentTyping("");
+          hasJoined.current = false;
+          return () => {
+            wsClient.stopTyping(groupId);
+            wsClient.leave();
+            hasJoined.current = false;
+          };
+        }, [groupId]);
+
+        // Load persisted message history on join
+        useEffect(() => {
+          if (!groupId) return;
+          const stored = loadMessages(groupId);
+          if (stored.length > 0) {
+            setMessages(
+              stored.map((m) => ({
+                id: m.id,
+                content: m.content,
+                senderId: m.userId,
+                senderName: m.user.displayName,
+                senderColor: m.user.avatarColor,
+                timestamp: new Date(m.timestamp),
+                channelId: m.channelId,
+              }))
+            );
+          }
+        }, [groupId]);
+
+        // Subscribe to realtime events
+        useEffect(() => {
+          const checkConnection = setInterval(() => {
+            setIsConnected(wsClient.isConnected());
+          }, 1000);
+
+          const unsubscribe = wsClient.subscribe((message) => {
+            switch (message.type) {
+              case "join":
+                if (message.channelId && message.channelId !== groupId) break;
+                setOtherUsers((prev) => {
+                  if (prev.find((u) => u.id === message.user.id)) return prev;
+                  if (message.user.id === user?.id) return prev;
+                  return [...prev, message.user];
+                });
+                break;
+
+              case "presence_response":
+                if (message.channelId && message.channelId !== groupId) break;
+                setOtherUsers((prev) => {
+                  if (prev.find((u) => u.id === message.user.id)) return prev;
+                  if (message.user.id === user?.id) return prev;
+                  return [...prev, message.user];
+                });
+                break;
+
+              case "leave":
+                setOtherUsers((prev) =>
+                  prev.filter((u) => u.id !== message.userId)
+                );
+                setTypingUsers((prev) => {
+                  const updated = new Map(prev);
+                  updated.delete(message.userId);
+                  return updated;
+                });
+                break;
+
+              case "message": {
+                const msg = message.message;
+                if (msg.channelId && msg.channelId !== groupId) break;
+                setMessages((prev) => {
+                  if (prev.some((m) => m.id === msg.id)) return prev;
+                  return [
+                    ...prev,
+                    {
+                      id: msg.id,
+                      content: msg.content,
+                      senderId: msg.userId,
+                      senderName: msg.user.displayName,
+                      senderColor: msg.user.avatarColor,
+                      timestamp: new Date(msg.timestamp),
+                      channelId: msg.channelId,
+                    },
+                  ];
+                });
+                setTypingUsers((prev) => {
+                  const updated = new Map(prev);
+                  updated.delete(msg.userId);
+                  return updated;
+                });
+                break;
+              }
+
+              case "typing":
+                if (
+                  message.indicator.channelId &&
+                  message.indicator.channelId !== groupId
+                )
+                  break;
+                setTypingUsers((prev) => {
+                  const updated = new Map(prev);
+                  updated.set(message.indicator.userId, message.indicator);
+                  return updated;
+                });
+                break;
+
+              case "typing_stop":
+                if (message.channelId && message.channelId !== groupId) break;
+                setTypingUsers((prev) => {
+                  const updated = new Map(prev);
+                  updated.delete(message.userId);
+                  return updated;
+                });
+                break;
+
+              case "media":
+                if (message.media.channelId && message.media.channelId !== groupId)
+                  break;
+                setMediaMessages((prev) => {
+                  if (prev.some((m) => m.id === message.media.id)) return prev;
+                  return [
+                    ...prev,
+                    {
+                      ...message.media,
+                      timestamp: new Date(message.media.timestamp),
+                    },
+                  ];
+                });
+                break;
+            }
+          });
+
+          return () => {
+            unsubscribe();
+            clearInterval(checkConnection);
+          };
+        }, [user?.id, groupId]);
+
+        // Join channel once connected + user known + channel exists
+        useEffect(() => {
+          if (
+            user &&
+            groupId &&
+            channel &&
+            wsClient.isConnected() &&
+            !hasJoined.current
+          ) {
+            const onlineUser = {
+              id: user.id,
+              username: user.username || "user",
+              displayName: user.displayName,
+              avatarColor: user.avatarColor,
+              isTyping: false,
+              typingContent: "",
+            };
+            wsClient.join(onlineUser, groupId);
+            hasJoined.current = true;
+          }
+        }, [user, groupId, channel, isConnected]);
+
+        const handleInsert = useCallback(
+          async (type, file) => {
+            if (!user) return;
+            setIsUploading(true);
+            try {
+              let url;
+              let contentType = file.type;
+              let fileSize = file.size;
+
+              if (type === "image") {
+                // Compress to JPEG — public MQTT brokers cap message size,
+                // so we keep images small enough to fit reliably.
+                url = await compressImage(file);
+                contentType = "image/jpeg";
+                // Approx decoded size of the base64 payload
+                fileSize = Math.round((url.length - url.indexOf(",") - 1) * 0.75);
+              } else {
+                // Videos and other files have a hard cap for the public broker.
+                const MAX_BYTES = 180 * 1024; // ~180KB
+                if (file.size > MAX_BYTES) {
+                  alert(
+                    "Sorry — videos and files are capped at ~180KB on the free public demo broker.\n\nImages are auto-compressed, so try sending it as a Photo instead."
+                  );
+                  return;
+                }
+                url = await new Promise((resolve, reject) => {
+                  const reader = new FileReader();
+                  reader.onload = () => resolve(reader.result);
+                  reader.onerror = reject;
+                  reader.readAsDataURL(file);
+                });
+              }
+
+              const mediaMessage = {
+                id: uuid(),
+                userId: user.id,
+                username: user.username || "user",
+                displayName: user.displayName,
+                avatarColor: user.avatarColor,
+                channelId: groupId,
+                type,
+                url,
+                fileName: file.name,
+                fileSize,
+                contentType,
+                timestamp: new Date(),
+              };
+              wsClient.sendMediaMessage(mediaMessage);
+              setMediaMessages((prev) => [...prev, mediaMessage]);
+            } catch (err) {
+              console.error("Upload failed:", err);
+              alert("Could not send that file. Try a smaller image.");
+            } finally {
+              setIsUploading(false);
+            }
+          },
+          [user, groupId]
+        );
+
+        const handleKeyDown = useCallback(
+          (e) => {
+            if (e.key === "Enter" && !e.shiftKey && currentTyping.trim()) {
+              e.preventDefault();
+              const content = currentTyping.trim();
+              wsClient.sendMessage(content, groupId);
+              wsClient.stopTyping(groupId);
+              setCurrentTyping("");
+            }
+          },
+          [currentTyping, groupId]
+        );
+
+        const handleTyping = useCallback(
+          (e) => {
+            const v = e.target.value;
+            setCurrentTyping(v);
+            if (v) wsClient.sendTyping(v, groupId);
+            else wsClient.stopTyping(groupId);
+          },
+          [groupId]
+        );
+
+        const exitChat = useCallback(() => {
+          wsClient.stopTyping(groupId);
+          wsClient.leave();
+          hasJoined.current = false;
+          setLocation("/");
+        }, [groupId, setLocation]);
+
+        const copyLink = useCallback(async () => {
+          const url =
+            window.location.origin +
+            window.location.pathname +
+            "#/g/" +
+            groupId;
+          try {
+            await navigator.clipboard.writeText(url);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          } catch {
+            alert("Invite link: " + url);
+          }
+        }, [groupId]);
+
+        if (isLoading) return <FullScreenSpinner />;
+        if (!user) return <OnboardingModal onComplete={createUser} />;
+
+        if (!groupId || !channel) {
+          return (
+            <div className="h-screen w-full flex flex-col bg-background relative overflow-hidden">
+              <WaterBackground />
+              <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/10 backdrop-blur-sm">
+                <div className="flex items-center gap-2">
+                  <Waves className="h-6 w-6 text-primary" />
+                  <h1 className="text-xl font-semibold">eez</h1>
+                </div>
+                <ThemeToggle />
+              </div>
+              <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 text-center">
+                <Users className="h-12 w-12 text-muted-foreground mb-4" />
+                <h2 className="text-xl font-semibold mb-2">group not found</h2>
+                <p className="text-sm text-muted-foreground mb-6">
+                  This link doesn't match a group.
+                </p>
+                <button
+                  className="rounded-full h-11 px-6 bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                  onClick={() => setLocation("/")}
+                  data-testid="button-back-home"
+                >
+                  Back to groups
+                </button>
+              </div>
+            </div>
+          );
+        }
+
+        const memberCount = otherUsers.length + 1;
+        const groupName = channel.name || "eez";
+
+        const combined = [
+          ...messages.map((m) => ({
+            ...m,
+            messageType: "text",
+            sortTs: new Date(m.timestamp).getTime(),
+          })),
+          ...mediaMessages.map((m) => ({
+            ...m,
+            senderId: m.userId,
+            senderName: m.displayName,
+            messageType: "media",
+            sortTs: new Date(m.timestamp).getTime(),
+          })),
+        ].sort((a, b) => a.sortTs - b.sortTs);
+
+        return (
+          <div className="h-screen w-full flex flex-col bg-background relative overflow-hidden">
+            <WaterBackground />
+
+            <div className="relative z-10 flex items-center gap-2 p-3 border-b border-white/10 backdrop-blur-sm">
+              <button
+                aria-label="Back"
+                className="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
+                onClick={exitChat}
+                data-testid="button-back"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <Waves className="h-5 w-5 text-primary shrink-0" />
+                  <h2
+                    className="font-semibold truncate"
+                    data-testid="text-group-name"
+                  >
+                    {groupName}
+                  </h2>
+                </div>
+                <p
+                  className="text-xs text-muted-foreground"
+                  data-testid="text-member-count"
+                >
+                  {memberCount} {memberCount === 1 ? "person" : "people"}
+                </p>
+              </div>
+
+              <div className="flex-1 flex items-center justify-center gap-1 min-w-0">
+                {otherUsers.slice(0, 5).map((u) => (
+                  <UserAvatar
+                    key={u.id}
+                    displayName={u.displayName}
+                    avatarColor={u.avatarColor}
+                    size="sm"
+                    showStatus
+                    isOnline
+                    isTyping={typingUsers.has(u.id)}
+                  />
+                ))}
+                {otherUsers.length > 5 && (
+                  <span className="text-xs text-muted-foreground ml-1">
+                    +{otherUsers.length - 5}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-1">
+                <button
+                  aria-label="Copy invite link"
+                  className="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
+                  onClick={copyLink}
+                  data-testid="button-copy-link"
+                  title="Copy invite link"
+                >
+                  {copied ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <Link2 className="h-4 w-4" />
+                  )}
+                </button>
+                <span
+                  className={
+                    "h-2 w-2 rounded-full " +
+                    (isConnected ? "bg-green-500" : "bg-red-500")
+                  }
+                />
+                <ThemeToggle />
+              </div>
+            </div>
+
+            <InsertMenu onInsert={handleInsert}>
+              <div
+                className="relative z-10 h-full overflow-y-auto p-4 eez-scroll"
+                onClick={() =>
+                  document.getElementById("typing-area") &&
+                  document.getElementById("typing-area").focus()
+                }
+              >
+                <div className="space-y-3 max-w-2xl mx-auto">
+                  <div className="text-center py-4">
+                    <p className="text-xs text-muted-foreground">
+                      You're in <span className="font-medium">#{groupName}</span>.
+                      Share this link to chat with anyone, on any device.
+                    </p>
+                  </div>
+
+                  {combined.map((item) => (
+                    <div
+                      key={item.id}
+                      className="group"
+                    >
+                      {item.senderId !== user.id && (
+                        <div className="flex items-center gap-2 mb-1 ml-1">
+                          <UserAvatar
+                            displayName={item.senderName}
+                            avatarColor={item.senderColor}
+                            size="sm"
+                          />
+                          <p className="text-xs text-muted-foreground">
+                            {item.senderName}
+                          </p>
+                        </div>
+                      )}
+                      {item.messageType === "text" ? (
+                        <MessageBubble
+                          content={item.content}
+                          isSent={item.senderId === user.id}
+                          timestamp={item.timestamp}
+                        />
+                      ) : (
+                        <MediaBubble
+                          media={item}
+                          isSent={item.senderId === user.id}
+                        />
+                      )}
+                    </div>
+                  ))}
+
+                  {isUploading && (
+                    <div className="flex justify-end">
+                      <div className="px-4 py-3 rounded-3xl bg-primary/50 backdrop-blur-md">
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className="h-5 w-5 border-2 border-primary-foreground border-t-transparent rounded-full"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {Array.from(typingUsers.values()).map((indicator) => (
+                    <div key={indicator.userId}>
+                      {indicator.userId !== user.id && (
+                        <div className="flex items-center gap-2 mb-1 ml-1">
+                          <UserAvatar
+                            displayName={indicator.displayName}
+                            avatarColor={indicator.avatarColor}
+                            size="sm"
+                          />
+                          <p className="text-xs text-muted-foreground">
+                            {indicator.displayName}
+                          </p>
+                        </div>
+                      )}
+                      <LiveBubble
+                        content={indicator.content}
+                        isSent={indicator.userId === user.id}
+                        isActive={true}
+                        showCursor={true}
+                      />
+                    </div>
+                  ))}
+
+                  {currentTyping && (
+                    <LiveBubble
+                      content={currentTyping}
+                      isSent={true}
+                      isActive={true}
+                      showCursor={true}
+                    />
+                  )}
+
+                  <div ref={messagesEndRef} />
+                </div>
+              </div>
+            </InsertMenu>
+
+            <textarea
+              id="typing-area"
+              value={currentTyping}
+              onChange={handleTyping}
+              onKeyDown={handleKeyDown}
+              className="sr-only"
+              autoFocus
+              data-testid="input-typing"
+            />
+
+            <div className="relative z-10 p-4 text-center">
+              <p className="text-sm text-muted-foreground/70">
+                Just start typing... Press Enter to drop.
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      /* =================================================================
+         APP (hash router)
+         ================================================================= */
+
+      function App() {
+        const [path] = useHashRoute();
+
+        // strip any leading "#"
+        const clean = path.startsWith("#") ? path.slice(1) : path;
+
+        let page;
+        if (clean === "/" || clean === "") {
+          page = <HomePage />;
+        } else {
+          const m = clean.match(/^\/g\/([^/]+)$/);
+          if (m) {
+            page = <ChatPage key={m[1]} groupId={m[1]} />;
+          } else {
+            page = (
+              <div className="h-screen w-full flex items-center justify-center bg-background">
+                <div className="text-center">
+                  <h1 className="text-2xl font-semibold mb-2">404</h1>
+                  <p className="text-sm text-muted-foreground">Not found</p>
+                </div>
+              </div>
+            );
+          }
+        }
+
+        return page;
+      }
+
+      /* =================================================================
+         MOUNT
+         ================================================================= */
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(<App />);
+
+      // Remove the boot splash once React has mounted
+      requestAnimationFrame(() => {
+        const splash = document.getElementById("boot-splash");
+        if (splash) {
+          splash.style.opacity = "0";
+          splash.style.transition = "opacity 0.3s ease";
+          setTimeout(() => splash.remove(), 320);
+        }
+      });
+    </script>
+  </body>
+</html>
