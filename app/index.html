@@ -316,8 +316,6 @@
         Download,
         Play,
         AlertCircle,
-        Info,
-        Sparkles,
       } from "lucide-react";
 
       /* =================================================================
@@ -1808,7 +1806,7 @@
           <div className="h-screen w-full flex flex-col bg-background relative overflow-hidden">
             <WaterBackground />
 
-            <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/10 backdrop-blur-sm">
+            <div className="relative z-10 flex items-center justify-between p-4 backdrop-blur-sm">
               <div className="flex items-center gap-2">
                 <Waves className="h-6 w-6 text-primary" />
                 <h1 className="text-xl font-semibold">eez</h1>
@@ -1880,34 +1878,6 @@
                       No groups yet. Create one to start.
                     </p>
                   )}
-                </div>
-
-                <div className="mt-10 rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/10 p-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2 text-foreground font-medium mb-2">
-                    <Sparkles className="h-4 w-4 text-primary" />
-                    How this works
-                  </div>
-                  <ul className="space-y-1.5 list-disc list-inside">
-                    <li>
-                      <span className="text-foreground/90">Real-time, any device.</span>{" "}
-                      Chat runs over a free public MQTT broker — no signup, no
-                      server to host. Open the same room link on a phone, laptop,
-                      or another browser and chat live.
-                    </li>
-                    <li>
-                      <span className="text-foreground/90">Share the link.</span>{" "}
-                      The room name lives in the URL (<code className="px-1 py-0.5 rounded bg-muted/60 text-foreground/80">#/g/room-name</code>).
-                      Anyone who opens it joins the same room.
-                    </li>
-                    <li>
-                      Right-click (or long-press) inside a chat to drop a photo,
-                      video or file. Images auto-compress; other files cap at ~180KB.
-                    </li>
-                    <li>
-                      Your name &amp; message history are cached locally.
-                      The public broker is shared — keep room names unguessable.
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -2024,7 +1994,22 @@
         const hasJoined = useRef(false);
         const channel = useMemo(() => {
           const all = loadChannels();
-          return all.find((c) => c.id === groupId);
+          let found = all.find((c) => c.id === groupId);
+          // If we deep-linked into a room that isn't in our local list
+          // (someone shared the link with us), auto-create it locally.
+          // Rooms are just MQTT topic names — there's no server DB — so
+          // any valid id from the URL is a real room we can join.
+          if (!found && groupId) {
+            found = {
+              id: groupId,
+              name: groupId.replace(/-/g, " "),
+              description: "",
+              createdAt: Date.now(),
+            };
+            const next = [...all, found];
+            saveChannels(next);
+          }
+          return found;
         }, [groupId]);
 
         const scrollToBottom = useCallback(() => {
@@ -2145,6 +2130,11 @@
                   message.indicator.channelId !== groupId
                 )
                   break;
+                // Never show our own typing indicator here — the sender
+                // sees their own live bubble via `currentTyping` instead,
+                // so they get exactly one bubble (same as everyone else
+                // sees of them).
+                if (message.indicator.userId === user?.id) break;
                 setTypingUsers((prev) => {
                   const updated = new Map(prev);
                   updated.set(message.indicator.userId, message.indicator);
@@ -2317,7 +2307,7 @@
           return (
             <div className="h-screen w-full flex flex-col bg-background relative overflow-hidden">
               <WaterBackground />
-              <div className="relative z-10 flex items-center justify-between p-4 border-b border-white/10 backdrop-blur-sm">
+              <div className="relative z-10 flex items-center justify-between p-4 backdrop-blur-sm">
                 <div className="flex items-center gap-2">
                   <Waves className="h-6 w-6 text-primary" />
                   <h1 className="text-xl font-semibold">eez</h1>
@@ -2364,7 +2354,7 @@
           <div className="h-screen w-full flex flex-col bg-background relative overflow-hidden">
             <WaterBackground />
 
-            <div className="relative z-10 flex items-center gap-2 p-3 border-b border-white/10 backdrop-blur-sm">
+            <div className="relative z-10 flex items-center gap-2 p-3 backdrop-blur-sm">
               <button
                 aria-label="Back"
                 className="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-white/10 transition-colors"
