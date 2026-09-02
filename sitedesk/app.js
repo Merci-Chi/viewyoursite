@@ -1,6 +1,6 @@
-const KEY = "sitedesk.db";
+const KEY = "sitedesk.desk.v3";
 const TOKEN_KEY = "sitedesk.githubToken";
-const SESSION_KEY = "sitedesk.db.session";
+const SESSION_KEY = "sitedesk.desk.v3.session";
 const OWNER_KEY = "sitedesk.githubOwner";
 const REPO_KEY = "sitedesk.githubRepo";
 const SUPABASE_URL = "https://vtlymubmyjbhuwhwojdh.supabase.co";
@@ -903,24 +903,13 @@ function ingestRemote(remote, opts = {}) {
   const incoming = remote.rev || remote.updatedAt || 0;
   const localNewer = incoming && db.rev && incoming < db.rev;
   if (localNewer) {
-    remote.users = unionById(remote.users, db.users);
-    remote.leads = unionById(remote.leads, db.leads);
-    remote.threads = unionById(remote.threads, db.threads);
-    remote.messages = unionById(remote.messages, db.messages);
+    return { skipped: true, localNewer: true };
   }
   if (opts.quiet && incoming && cloudRev && incoming <= cloudRev && !localNewer) {
     return { skipped: true, localNewer };
   }
   const urls = rememberDataUrls();
   const session = db.session;
-  const localUsers = db.users || [];
-  const localLeads = db.leads || [];
-  const localMsgs = db.messages || [];
-  const localThreads = db.threads || [];
-  remote.users = unionById(remote.users, localUsers);
-  remote.leads = unionById(remote.leads, localLeads);
-  remote.threads = unionById(remote.threads, localThreads);
-  remote.messages = unionById(remote.messages, localMsgs);
   const next = applyDesk(remote);
   next.session = session;
   db = next;
@@ -3820,7 +3809,7 @@ function bindPage(user) {
   });
 
   $$("[data-delete-user]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", async () => {
       const u = db.users.find((x) => x.id === btn.dataset.deleteUser);
       if (!u || !canDeleteUser(u, user)) {
         toast(isHead(u) ? "The head cannot be deleted." : (u?.id === user.id ? "You cannot remove yourself." : "You can only delete callers and builders."), "warn");
@@ -3829,12 +3818,13 @@ function bindPage(user) {
       if (!confirm(`Delete ${u.name}?`)) return;
       removeUser(u);
       persist();
+      await pushCloud();
       render();
     });
   });
 
   $$("[data-team-row]").forEach((row) => {
-    row.addEventListener("contextmenu", (e) => {
+    row.addEventListener("contextmenu", async (e) => {
       e.preventDefault();
       const u = db.users.find((x) => x.id === row.dataset.teamRow);
       if (!u || !canDeleteUser(u, user)) {
@@ -3844,6 +3834,7 @@ function bindPage(user) {
       if (!confirm(`Delete ${u.name}?`)) return;
       removeUser(u);
       persist();
+      await pushCloud();
       render();
     });
   });
