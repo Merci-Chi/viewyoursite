@@ -278,43 +278,6 @@
         .payment-state.verifying { color: #e5c875; }
         .payment-state.verified { color: #9bd38f; }
         .purchase-dialog { width: min(460px, 100%); text-align: center; }
-        .agreement-dialog { width:min(760px,100%); padding:1.65rem; border-color:#3a3a3a; border-radius:18px; background:linear-gradient(145deg,#191919,#111); }
-        .agreement-dialog header { display:flex; align-items:center; gap:.9rem; margin:0 2.5rem 1.25rem 0; text-align:left; }
-        .agreement-header-icon { display:grid; width:50px; height:50px; flex:0 0 auto; place-items:center; border:1px solid #484848; border-radius:13px; color:#f2f2f2; }
-        .agreement-header-icon svg { width:25px; height:25px; }
-        .agreement-dialog header h2 { margin:0 0 .25rem; font-size:1.55rem; }
-        .agreement-dialog header .portal-description { margin:0; }
-        .agreement-document { display:flex; align-items:center; gap:.85rem; padding:1rem; border:1px solid #363636; border-radius:12px; background:#151515; }
-        .agreement-pdf-icon { display:grid; width:42px; height:42px; flex:0 0 auto; place-items:center; border:1px solid #454545; border-radius:10px; color:#ddd; font-size:.75rem; font-weight:800; }
-        .agreement-document-copy { min-width:0; flex:1; }
-        .agreement-document-link { color:#fff; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
-        .agreement-document p { margin:.35rem 0 0; color:#999; font-size:.84rem; line-height:1.4; }
-        .agreement-document-arrow { color:#ddd; font-size:1.35rem; text-decoration:none; }
-        .agreement-fields { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.15rem; }
-        .agreement-fields label { display:grid; align-content:start; gap:.4rem; color:#ddd; font-size:.88rem; font-weight:700; }
-        .agreement-field-title { display:flex; min-height:20px; align-items:center; justify-content:space-between; gap:.5rem; }
-        .agreement-fields input:not([type="hidden"]) { width:100%; height:48px; min-height:48px; margin:0; padding:.8rem 1rem; border:1px solid #3d3d3d; border-radius:9px; outline:none; background:#242424; color:#f3f3f3; font:inherit; font-weight:400; }
-        .agreement-fields input:not([type="hidden"]):focus { border-color:#777; box-shadow:0 0 0 2px rgba(255,255,255,.07); }
-        .agreement-fields input:not([type="hidden"])::placeholder { color:#858585; opacity:1; }
-        .agreement-fields input[readonly] { background:#242424; color:#d8d8d8; }
-        .agreement-optional { color:#777; font-size:.78rem; font-weight:500; }
-        .agreement-email-note { color:#888; font-size:.76rem; font-weight:500; line-height:1.35; }
-        .agreement-email-field, .signature-field { grid-column:1 / -1; }
-        .signature-field { display:grid; gap:.4rem; color:#ddd; font-size:.88rem; font-weight:700; }
-        .signature-pad-wrap { position:relative; overflow:hidden; border:1px solid #d5d5d5; border-radius:10px; background:#fff; }
-        .signature-pad-wrap::after { content:""; position:absolute; right:18px; bottom:20px; left:18px; border-bottom:1px dashed #c8c8c8; pointer-events:none; }
-        .signature-pad { display:block; width:100%; height:145px; cursor:crosshair; touch-action:none; }
-        .signature-actions { position:absolute; z-index:2; top:.65rem; right:.65rem; }
-        .signature-clear { padding:.4rem .7rem; border:1px solid #d0d0d0; border-radius:7px; background:#fff; color:#666; cursor:pointer; font:inherit; font-size:.78rem; }
-        .signature-clear:hover { border-color:#aaa; color:#222; }
-        .agreement-consent { display:flex; align-items:flex-start; gap:.65rem; margin-top:1rem; color:#ccc; line-height:1.45; }
-        .agreement-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:.15rem; accent-color:#f1f1f1; }
-        .agreement-error { min-height:1.35rem; margin-top:.65rem; color:#e39a9a; }
-        .agreement-dialog > .portal-primary { width:100%; min-height:50px; }
-        body.light-mode .agreement-document { border-color:#d7d7d2; background:#fff; }
-        body.light-mode .agreement-document-link { color:#111; }
-        body.light-mode .agreement-consent, body.light-mode .agreement-fields label { color:#555; }
-        body.light-mode .agreement-fields input:not([type="hidden"]), body.light-mode .agreement-fields input[readonly] { border-color:#c9c9c6; background:#e7e7e4; color:#222; }
         .purchase-check { display: grid; width: 64px; height: 64px; margin: 0 auto 1.1rem; place-items: center; border-radius: 50%; background: #244424; color: #baf0ae; font-size: 2rem; }
         .purchase-dialog .portal-primary { width: 100%; margin-top: 1rem; }
         body.light-mode .claim-plan-group { border-color: #d7d7d2; background: #fff; }
@@ -335,7 +298,6 @@
         .plan-link { flex: 0 0 auto; margin-top: 0; padding: .55rem .8rem; font-size: .85rem; }
 
         @media (max-width: 700px) {
-            .agreement-fields { grid-template-columns:1fr; }
             h1 {
                 font-size: 2rem;
             }
@@ -637,35 +599,6 @@
         </section>
     </div>
 
-    <section class="portal-overlay" id="agreementOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="agreementTitle">
-        <form class="portal-dialog agreement-dialog" id="agreementForm">
-            <button class="portal-close" id="agreementClose" type="button" aria-label="Close">×</button>
-            <header>
-                <div class="agreement-header-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.75h7l5 5V21.25H6z"/><path d="M13 2.75v5h5M9 12h6M9 15.5h6"/></svg></div>
-                <div><h2 id="agreementTitle">Web Hosting Agreement</h2>
-                <p class="portal-description">Review and sign before continuing</p></div>
-            </header>
-            <div class="agreement-document">
-                <div class="agreement-pdf-icon" aria-hidden="true">PDF</div>
-                <div class="agreement-document-copy"><a class="agreement-document-link" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Terms and Conditions</a>
-                <p>The Terms and Conditions will be sent to your email.</p></div>
-                <a class="agreement-document-arrow" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener" aria-label="Open Terms and Conditions">›</a>
-            </div>
-            <div class="agreement-fields">
-                <label><span class="agreement-field-title"><span>Full legal name *</span></span><input id="agreementSignerName" type="text" placeholder="Enter your full legal name" autocomplete="name" required></label>
-                <label><span class="agreement-field-title"><span>Business name</span><span class="agreement-optional">Optional</span></span><input id="agreementBusinessName" type="text" placeholder="Enter business name" autocomplete="organization"></label>
-                <label class="agreement-email-field"><span class="agreement-field-title"><span>Email *</span></span><input id="agreementEmail" type="email" placeholder="Enter the email for your signed agreement" autocomplete="email" required></label>
-                <div class="signature-field"><span class="agreement-field-title"><span>Signature *</span></span>
-                    <div class="signature-pad-wrap"><canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas><div class="signature-actions"><button class="signature-clear" id="agreementSignatureClear" type="button">Clear</button></div></div>
-                    <input id="agreementSignature" type="hidden" required>
-                </div>
-            </div>
-            <label class="agreement-consent"><input id="agreementConsent" type="checkbox" required><span>I have read and agree to the <a class="agreement-document-link" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Terms and Conditions</a>.</span></label>
-            <p class="agreement-error" id="agreementError" role="alert"></p>
-            <button class="portal-primary" id="agreementSubmit" type="submit">Agree, Sign &amp; Continue to Square</button>
-        </form>
-    </section>
-
     <section class="portal-overlay" id="purchaseCompleteOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="purchaseCompleteTitle">
         <div class="portal-dialog purchase-dialog">
             <div class="purchase-check" aria-hidden="true">✓</div>
@@ -719,15 +652,6 @@
         const submitClaimButton = document.getElementById("submitClaimButton");
         const purchaseCompleteOverlay = document.getElementById("purchaseCompleteOverlay");
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
-        const agreementOverlay = document.getElementById("agreementOverlay");
-        const agreementForm = document.getElementById("agreementForm");
-        const agreementError = document.getElementById("agreementError");
-        const agreementSignaturePad = document.getElementById("agreementSignaturePad");
-        const agreementSignatureInput = document.getElementById("agreementSignature");
-        const agreementSignatureContext = agreementSignaturePad.getContext("2d");
-        let agreementSignatureDrawing = false;
-        let agreementSignatureHasInk = false;
-        let agreementSignatureInitialized = false;
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -737,69 +661,6 @@
         let pendingPanel = "accountPanel";
         let currentClientSiteUrl = "";
         const claimPlanSelections = new Map();
-        let pendingAgreementCheckout = null;
-
-        function prepareAgreementSignaturePad() {
-            if (agreementSignatureInitialized) return;
-            const rect = agreementSignaturePad.getBoundingClientRect();
-            if (!rect.width || !rect.height) return;
-            const ratio = Math.max(window.devicePixelRatio || 1, 1);
-            agreementSignaturePad.width = Math.round(rect.width * ratio);
-            agreementSignaturePad.height = Math.round(rect.height * ratio);
-            agreementSignatureContext.setTransform(ratio, 0, 0, ratio, 0, 0);
-            agreementSignatureContext.strokeStyle = "#111";
-            agreementSignatureContext.lineWidth = 2.25;
-            agreementSignatureContext.lineCap = "round";
-            agreementSignatureContext.lineJoin = "round";
-            agreementSignatureInitialized = true;
-        }
-
-        function signaturePoint(event) {
-            const rect = agreementSignaturePad.getBoundingClientRect();
-            return { x: event.clientX - rect.left, y: event.clientY - rect.top };
-        }
-
-        agreementSignaturePad.addEventListener("pointerdown", event => {
-            prepareAgreementSignaturePad();
-            agreementSignatureDrawing = true;
-            agreementSignaturePad.setPointerCapture(event.pointerId);
-            const point = signaturePoint(event);
-            agreementSignatureContext.beginPath();
-            agreementSignatureContext.moveTo(point.x, point.y);
-            event.preventDefault();
-        });
-        agreementSignaturePad.addEventListener("pointermove", event => {
-            if (!agreementSignatureDrawing) return;
-            const point = signaturePoint(event);
-            agreementSignatureContext.lineTo(point.x, point.y);
-            agreementSignatureContext.stroke();
-            agreementSignatureHasInk = true;
-            event.preventDefault();
-        });
-        function finishAgreementSignature() {
-            if (!agreementSignatureDrawing) return;
-            agreementSignatureDrawing = false;
-            if (agreementSignatureHasInk) {
-                agreementSignatureInput.value = agreementSignaturePad.toDataURL("image/png");
-            }
-        }
-        agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
-        agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
-        agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
-        function resetAgreementSignature() {
-            agreementSignatureContext.save();
-            agreementSignatureContext.setTransform(1, 0, 0, 1, 0, 0);
-            agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
-            agreementSignatureContext.restore();
-            agreementSignatureDrawing = false;
-            agreementSignatureHasInk = false;
-            agreementSignatureInput.value = "";
-        }
-        document.getElementById("agreementSignatureClear").addEventListener("click", event => {
-            event.preventDefault();
-            event.stopPropagation();
-            resetAgreementSignature();
-        });
         const hostingCheckoutPlans = {
             standard: [
                 { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
@@ -914,7 +775,8 @@
         }
 
         async function startVerifiedCheckout(plan, options = {}) {
-            const checkoutWindow = options.checkoutWindow || window.open("about:blank", "_blank");
+            const checkoutLoadingUrl = new URL("checkout-loading.html", window.location.href).href;
+            const checkoutWindow = window.open(checkoutLoadingUrl, "_blank");
             const { data: { session } } = await portalSupabase.auth.getSession();
             if (!session?.user) {
                 checkoutWindow?.close();
@@ -932,7 +794,6 @@
                 body: {
                     action: "create-checkout",
                     planKey: plan.key,
-                    agreementId: options.agreementId,
                     discountCode: options.discountCode || null,
                     returnUrl: `${window.location.origin}${window.location.pathname}?square_checkout=return`
                 }
@@ -954,79 +815,6 @@
             await verifyPendingCheckout(pending, statusElement);
         }
 
-        async function requestAgreement(plan, options = {}) {
-            const { data: { session } } = await portalSupabase.auth.getSession();
-            if (!session?.user) {
-                pendingPanel = "subscriptionsPanel";
-                openPortal();
-                await updatePortal(null);
-                loginMessage.textContent = "Log in first so your signed agreement and Square subscription can be linked to your account.";
-                return;
-            }
-            pendingAgreementCheckout = { plan, options };
-            document.getElementById("agreementEmail").value = session.user.email || "";
-            document.getElementById("agreementSignerName").value = session.user.user_metadata?.full_name || "";
-            document.getElementById("agreementBusinessName").value = "";
-            document.getElementById("agreementConsent").checked = false;
-            agreementError.textContent = "";
-            agreementOverlay.hidden = false;
-            document.body.style.overflow = "hidden";
-            prepareAgreementSignaturePad();
-        }
-
-        function closeAgreement() {
-            agreementOverlay.hidden = true;
-            pendingAgreementCheckout = null;
-            resetAgreementSignature();
-            document.body.style.overflow = "";
-        }
-
-        document.getElementById("agreementClose").addEventListener("click", closeAgreement);
-        agreementOverlay.addEventListener("click", event => { if (event.target === agreementOverlay) closeAgreement(); });
-        agreementForm.addEventListener("submit", async event => {
-            event.preventDefault();
-            if (!pendingAgreementCheckout) return;
-            const signerName = document.getElementById("agreementSignerName").value.trim();
-            const signature = document.getElementById("agreementSignature").value;
-            if (!signature) {
-                agreementError.textContent = "Please sign inside the signature box before continuing.";
-                return;
-            }
-            const submit = document.getElementById("agreementSubmit");
-            const checkoutWindow = window.open("about:blank", "_blank");
-            submit.disabled = true;
-            submit.textContent = "Saving signed agreement…";
-            const { plan, options } = pendingAgreementCheckout;
-            const { data: { session } } = await portalSupabase.auth.getSession();
-            const signedAt = new Date().toISOString();
-            const { data, error } = await portalSupabase.from("hosting_agreements").insert({
-                user_id: session.user.id,
-                signer_name: signerName,
-                business_name: document.getElementById("agreementBusinessName").value.trim() || signerName,
-                signer_email: document.getElementById("agreementEmail").value.trim(),
-                electronic_signature: signature,
-                plan_key: plan.key,
-                plan_label: plan.label,
-                terms_version: "Web Hosting Client Agreement (2026-08-31)",
-                signed_at: signedAt,
-                accepted: true,
-                agreement_snapshot: "Web-Hosting-Client-Agreement.pdf"
-            }).select("id").single();
-            if (error || !data?.id) {
-                checkoutWindow?.close();
-                agreementError.textContent = error?.message || "The agreement could not be saved. Square checkout was not opened.";
-                submit.disabled = false;
-                submit.textContent = "Agree, Sign & Continue to Square";
-                return;
-            }
-            agreementOverlay.hidden = true;
-            pendingAgreementCheckout = null;
-            resetAgreementSignature();
-            submit.disabled = false;
-            submit.textContent = "Agree, Sign & Continue to Square";
-            await startVerifiedCheckout(plan, { ...options, agreementId: data.id, checkoutWindow });
-        });
-
         document.querySelectorAll("[data-hosting-plan]").forEach(link => {
             const plan = checkoutPlansByKey.get(link.dataset.hostingPlan);
             if (!plan) return;
@@ -1039,7 +827,7 @@
                         claimPlanSelections.set(type, { plan, confirmed: false });
                     });
                 }
-                requestAgreement(plan, {
+                startVerifiedCheckout(plan, {
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
                 });
@@ -1057,7 +845,7 @@
                         claimPlanSelections.set(type, { plan: discountPlan, confirmed: false });
                     });
                 }
-                requestAgreement(discountPlan, {
+                startVerifiedCheckout(discountPlan, {
                     discountCode: code,
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
@@ -1158,7 +946,7 @@
                         claimPlanSelections.set(type, { plan, confirmed: false });
                         selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
-                        requestAgreement(plan, { claimType: type, statusElement: selectedNote });
+                        startVerifiedCheckout(plan, { claimType: type, statusElement: selectedNote });
                     });
                     row.append(copy, chooseButton);
                     group.appendChild(row);
