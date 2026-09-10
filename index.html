@@ -273,17 +273,42 @@
         .claim-checkout .plan-link { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; }
         .purchase-workflow { display: grid; gap: 1rem; margin-top: 1rem; }
         .purchase-step { position: relative; padding: 1.1rem 1.1rem 1.1rem 3.8rem; border: 1px solid #303030; border-radius: 12px; background: #181818; }
+        .purchase-step.is-collapsed { min-height: 62px; padding-top: 1.15rem; padding-bottom: 1.15rem; }
+        .purchase-step::after { content: "⌃"; position: absolute; top: 1.15rem; right: 1rem; color: #888; font-size: 1rem; }
+        .purchase-step.is-collapsed::after { content: "⌄"; }
+        .purchase-step.is-locked::after { content: ""; }
+        .purchase-step.is-collapsed > :not(.step-check):not(h4):not(.step-summary) { display: none !important; }
+        .step-summary { display: none; margin-top: .25rem; color: #91cf87; font-size: .84rem; line-height: 1.35; }
+        .purchase-step.is-collapsed .step-summary { display: block; }
         .purchase-step.is-locked { opacity: .58; }
         .step-check { position: absolute; top: 1rem; left: 1rem; display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid #555; border-radius: 50%; color: transparent; font-weight: 800; }
         .purchase-step.is-complete .step-check { border-color: #84c978; background: #244424; color: #baf0ae; }
         .purchase-step h4 { margin-bottom: .3rem; }
         .purchase-step-copy { color: #999; line-height: 1.5; }
         .agreement-form { display: grid; gap: .75rem; margin-top: 1rem; }
-        .agreement-document { display: inline-flex; width: fit-content; align-items: center; gap: .45rem; color: #fff; font-weight: 700; text-underline-offset: 3px; }
-        .agreement-form input[type="text"] { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; }
+        .agreement-required-note { color: #999; font-size: .82rem; }
+        .agreement-field { display: grid; gap: .4rem; color: #ccc; font-size: .88rem; font-weight: 700; }
+        .required-mark { color: #ef8d8d; }
+        .field-error { display: none; color: #ef8d8d; font-size: .8rem; font-weight: 600; }
+        .agreement-field.has-error .field-error, .signature-field.has-error .field-error, .agreement-check.has-error + .field-error { display: block; }
+        .agreement-field.has-error input { border-color: #d86161 !important; box-shadow: 0 0 0 2px rgba(216,97,97,.16); }
+        .signature-field.has-error .signature-pad-wrap { border-color: #d86161; box-shadow: 0 0 0 2px rgba(216,97,97,.16); }
+        .agreement-check.has-error { color: #ef8d8d; }
+        .agreement-document { display: inline-flex; width: fit-content; align-items: center; gap: .45rem; padding: 0; border: 0; background: transparent; color: #fff; cursor: pointer; font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+        .agreement-viewer { overflow: hidden; border: 1px solid #3a3a3a; border-radius: 10px; background: #fff; }
+        .agreement-viewer[hidden] { display: none; }
+        .agreement-viewer-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem .8rem; background: #242424; color: #eee; }
+        .agreement-viewer-close { padding: .45rem .65rem; border: 1px solid #4a4a4a; border-radius: 7px; background: #303030; color: #fff; cursor: pointer; font: inherit; }
+        .agreement-viewer iframe { display: block; width: 100%; height: min(62vh, 680px); border: 0; background: #fff; }
+        .agreement-form input[type="text"], .agreement-form input[type="email"] { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; }
         .agreement-check { display: flex; align-items: flex-start; gap: .65rem; color: #ccc; line-height: 1.45; }
         .agreement-check input { width: 18px; height: 18px; margin-top: .15rem; accent-color: #f1f1f1; }
         .agreement-status { min-height: 1.25rem; color: #999; font-size: .88rem; }
+        .signature-field { display: grid; gap: .45rem; color: #ccc; font-size: .88rem; font-weight: 700; }
+        .signature-pad-wrap { position: relative; overflow: hidden; border: 1px solid #d5d5d5; border-radius: 10px; background: #fff; }
+        .signature-pad-wrap::after { content: ""; position: absolute; right: 18px; bottom: 20px; left: 18px; border-bottom: 1px dashed #c8c8c8; pointer-events: none; }
+        .signature-pad { display: block; width: 100%; height: 145px; cursor: crosshair; touch-action: none; }
+        .signature-clear { position: absolute; z-index: 2; top: .65rem; right: .65rem; padding: .4rem .7rem; border: 1px solid #d0d0d0; border-radius: 7px; background: #fff; color: #555; cursor: pointer; font: inherit; font-size: .78rem; }
         .development-price { display: flex; align-items: baseline; gap: .7rem; margin: .8rem 0; }
         .development-price del { color: #888; font-size: 1.15rem; }
         .development-price strong { color: #fff; font-size: 2.35rem; line-height: 1; }
@@ -308,13 +333,22 @@
         body.light-mode .have-code-button { color: #555; }
         body.light-mode .claim-checkout .plan-option.selected { background: #ecece8; }
         body.light-mode .purchase-step { border-color: #d7d7d2; background: #fff; }
-        body.light-mode .agreement-form input[type="text"] { border-color: #ccc; background: #fff; color: #222; }
+        body.light-mode .agreement-form input[type="text"], body.light-mode .agreement-form input[type="email"] { border-color: #ccc; background: #fff; color: #222; }
         body.light-mode .agreement-check { color: #333; }
         body.light-mode .agreement-document { color: #111; }
+        body.light-mode .agreement-viewer { border-color: #ccc; }
+        body.light-mode .agreement-viewer-header { background: #e9e9e5; color: #222; }
+        body.light-mode .agreement-viewer-close { border-color: #bbb; background: #fff; color: #222; }
         body.light-mode .development-price strong { color: #111; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .plan-group { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .plan-group h4 { margin-bottom: .85rem; font-size: 1rem; }
+        .plan-heading-row { display: flex; align-items: center; gap: .5rem; }
+        .plan-help { display: inline-grid; width: 22px; height: 22px; place-items: center; border: 1px solid #555; border-radius: 50%; background: transparent; color: #ccc; cursor: pointer; font: inherit; font-size: .78rem; font-weight: 800; }
+        .help-popup-overlay { position: fixed; inset: 0; z-index: 1400; display: grid; place-items: center; padding: 1rem; background: rgba(0,0,0,.78); }
+        .help-popup { position: relative; width: min(430px,100%); padding: 1.4rem; border: 1px solid #3a3a3a; border-radius: 15px; background: #171717; box-shadow: 0 18px 60px rgba(0,0,0,.5); }
+        .help-popup h3 { margin: 0 2rem .65rem 0; }
+        .help-popup p { color: #aaa; line-height: 1.55; }
         .plan-option { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem 0; border-top: 1px solid #303030; }
         .plan-option:first-of-type { border-top: 0; padding-top: 0; }
         .plan-name { color: #ddd; }
@@ -547,19 +581,41 @@
                     <section class="purchase-step" id="agreementStep">
                         <span class="step-check" aria-hidden="true">✓</span>
                         <h4>1. Sign the Terms &amp; Agreement</h4>
+                        <p class="step-summary" id="agreementStepSummary">Agreement signed ✓</p>
                         <p class="purchase-step-copy">Review and accept the terms before making either purchase.</p>
                         <div class="agreement-form">
-                            <a class="agreement-document" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Review the Web Hosting Client Agreement ↗</a>
-                            <input id="agreementSignature" type="text" placeholder="Type your full legal name" autocomplete="name">
-                            <label class="agreement-check"><input id="agreementAccepted" type="checkbox"> <span>I have reviewed and agree to the Web Hosting Client Agreement, and I understand that typing my name serves as my electronic signature.</span></label>
+                            <p class="agreement-required-note"><span class="required-mark">*</span> Required fields</p>
+                            <button class="agreement-document" id="reviewAgreementButton" type="button" aria-expanded="false">Review the Web Hosting Client Agreement</button>
+                            <div class="agreement-viewer" id="agreementViewer" hidden>
+                                <div class="agreement-viewer-header">
+                                    <strong>Web Hosting Client Agreement</strong>
+                                    <button class="agreement-viewer-close" id="agreementViewerClose" type="button">Back to claim</button>
+                                </div>
+                                <iframe id="agreementFrame" title="Web Hosting Client Agreement" data-src="Web-Hosting-Client-Agreement.pdf"></iframe>
+                            </div>
+                            <label class="agreement-field" data-agreement-field="signer"><span>Full legal name <span class="required-mark">*</span></span><input id="agreementSigner" type="text" placeholder="Enter your full legal name" autocomplete="name" required><small class="field-error">Enter your full legal name.</small></label>
+                            <label class="agreement-field" data-agreement-field="business"><span>Business name <span class="required-mark">*</span></span><input id="agreementBusiness" type="text" placeholder="Enter your business name" autocomplete="organization" required><small class="field-error">Enter your business name.</small></label>
+                            <label class="agreement-field" data-agreement-field="email"><span>Email address <span class="required-mark">*</span></span><input id="agreementEmail" type="email" placeholder="Enter your email address" autocomplete="email" required><small class="field-error">Enter a valid email address.</small></label>
+                            <div class="signature-field">
+                                <span>Draw your signature <span class="required-mark">*</span></span>
+                                <div class="signature-pad-wrap">
+                                    <canvas class="signature-pad" id="agreementSignaturePad" aria-label="Draw your signature"></canvas>
+                                    <button class="signature-clear" id="agreementSignatureClear" type="button">Clear</button>
+                                </div>
+                                <input id="agreementSignature" type="hidden" required>
+                                <small class="field-error">Draw your signature inside the box.</small>
+                            </div>
+                            <label class="agreement-check"><input id="agreementAccepted" type="checkbox" required> <span>I have reviewed and agree to the Web Hosting Client Agreement, and I understand that my drawn signature serves as my electronic signature. <span class="required-mark">*</span></span></label>
+                            <small class="field-error" id="agreementAcceptedError">You must accept the agreement.</small>
                             <button class="portal-primary" id="signAgreementButton" type="button">Sign Agreement</button>
                             <p class="agreement-status" id="agreementStatus" role="status"></p>
                         </div>
                     </section>
-                    <div class="claim-checkout purchase-step is-locked" id="claimCheckout">
+                    <div class="claim-checkout purchase-step is-locked is-collapsed" id="claimCheckout" style="order:3">
                         <span class="step-check" aria-hidden="true">✓</span>
-                        <h4>2. Purchase Website Hosting</h4>
-                        <p>Start with the smaller recurring payment. Choose your required hosting subscription below.</p>
+                        <h4>3. Purchase Website Hosting</h4>
+                        <p class="step-summary" id="hostingStepSummary">Hosting purchase confirmed ✓</p>
+                        <p>Choose the monthly hosting plan your website needs.</p>
                         <div class="section-heading-row">
                             <span class="claim-selected-note">Choose a subscription to continue.</span>
                             <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
@@ -582,13 +638,14 @@
                         </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
-                    <section class="purchase-step is-locked" id="developmentStep">
+                    <section class="purchase-step is-locked is-collapsed" id="developmentStep" style="order:2">
                         <span class="step-check" aria-hidden="true">✓</span>
-                        <h4>3. Purchase Website Development</h4>
+                        <h4>2. Purchase Website Development</h4>
+                        <p class="step-summary" id="developmentStepSummary">Website development purchase confirmed ✓</p>
                         <p class="purchase-step-copy">One-time payment for the development of your website.</p>
                         <div class="development-price"><del>$349</del><strong>$100</strong><span>one time</span></div>
                         <button class="portal-primary step-action" id="purchaseDevelopmentButton" type="button" disabled>Purchase Website Development</button>
-                        <p class="payment-state" id="developmentStatus">Complete hosting first to continue.</p>
+                        <p class="payment-state" id="developmentStatus">Sign the agreement first to continue.</p>
                     </section>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
@@ -654,6 +711,14 @@
         </div>
     </section>
 
+    <div class="help-popup-overlay" id="hostingHelpOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="hostingHelpTitle">
+        <div class="help-popup">
+            <button class="portal-close" id="hostingHelpClose" type="button" aria-label="Close">×</button>
+            <h3 id="hostingHelpTitle"></h3>
+            <p id="hostingHelpText"></p>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = "https://glonbvrcudwuzjundrii.supabase.co";
@@ -699,12 +764,27 @@
         const purchaseCompleteOverlay = document.getElementById("purchaseCompleteOverlay");
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
         const agreementStep = document.getElementById("agreementStep");
+        const agreementSigner = document.getElementById("agreementSigner");
+        const agreementBusiness = document.getElementById("agreementBusiness");
+        const agreementEmail = document.getElementById("agreementEmail");
         const agreementSignature = document.getElementById("agreementSignature");
+        const agreementSignaturePad = document.getElementById("agreementSignaturePad");
+        const agreementSignatureContext = agreementSignaturePad.getContext("2d");
         const agreementAccepted = document.getElementById("agreementAccepted");
         const agreementStatus = document.getElementById("agreementStatus");
+        const reviewAgreementButton = document.getElementById("reviewAgreementButton");
+        const agreementViewer = document.getElementById("agreementViewer");
+        const agreementFrame = document.getElementById("agreementFrame");
         const developmentStep = document.getElementById("developmentStep");
         const purchaseDevelopmentButton = document.getElementById("purchaseDevelopmentButton");
         const developmentStatus = document.getElementById("developmentStatus");
+        const hostingHelpOverlay = document.getElementById("hostingHelpOverlay");
+        const hostingHelpTitle = document.getElementById("hostingHelpTitle");
+        const hostingHelpText = document.getElementById("hostingHelpText");
+        const hostingHelpContent = {
+            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $20 per month." },
+            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }
+        };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -714,6 +794,72 @@
         let pendingPanel = "accountPanel";
         let currentClientSiteUrl = "";
         let agreementSigned = false;
+        let signedAgreement = null;
+        let baseAgreementId = null;
+        const savedAgreementIds = new Map();
+        let agreementSignatureDrawing = false;
+        let agreementSignatureHasInk = false;
+        let agreementSignatureInitialized = false;
+        const AGREEMENT_VERSION = "Web Hosting Client Agreement (2026-08-31)";
+        function prepareAgreementSignaturePad() {
+            if (agreementSignatureInitialized) return;
+            const rect = agreementSignaturePad.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            agreementSignaturePad.width = Math.round(rect.width * ratio);
+            agreementSignaturePad.height = Math.round(rect.height * ratio);
+            agreementSignatureContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+            agreementSignatureContext.strokeStyle = "#111";
+            agreementSignatureContext.lineWidth = 2.25;
+            agreementSignatureContext.lineCap = "round";
+            agreementSignatureContext.lineJoin = "round";
+            agreementSignatureInitialized = true;
+        }
+        function signaturePoint(event) {
+            const rect = agreementSignaturePad.getBoundingClientRect();
+            return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+        }
+        function resetAgreementSignature() {
+            if (agreementSignaturePad.width) {
+                agreementSignatureContext.save();
+                agreementSignatureContext.setTransform(1, 0, 0, 1, 0, 0);
+                agreementSignatureContext.clearRect(0, 0, agreementSignaturePad.width, agreementSignaturePad.height);
+                agreementSignatureContext.restore();
+            }
+            agreementSignatureDrawing = false;
+            agreementSignatureHasInk = false;
+            agreementSignature.value = "";
+        }
+        agreementSignaturePad.addEventListener("pointerdown", event => {
+            prepareAgreementSignaturePad();
+            agreementSignatureDrawing = true;
+            agreementSignaturePad.setPointerCapture(event.pointerId);
+            const point = signaturePoint(event);
+            agreementSignatureContext.beginPath();
+            agreementSignatureContext.moveTo(point.x, point.y);
+            event.preventDefault();
+        });
+        agreementSignaturePad.addEventListener("pointermove", event => {
+            if (!agreementSignatureDrawing) return;
+            const point = signaturePoint(event);
+            agreementSignatureContext.lineTo(point.x, point.y);
+            agreementSignatureContext.stroke();
+            agreementSignatureHasInk = true;
+            event.preventDefault();
+        });
+        function finishAgreementSignature() {
+            if (!agreementSignatureDrawing) return;
+            agreementSignatureDrawing = false;
+            if (agreementSignatureHasInk) {
+                agreementSignature.value = agreementSignaturePad.toDataURL("image/png");
+                agreementSignaturePad.closest(".signature-field").classList.remove("has-error");
+                agreementSignaturePad.setAttribute("aria-invalid", "false");
+            }
+        }
+        agreementSignaturePad.addEventListener("pointerup", finishAgreementSignature);
+        agreementSignaturePad.addEventListener("pointercancel", finishAgreementSignature);
+        agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
+        document.getElementById("agreementSignatureClear").addEventListener("click", resetAgreementSignature);
         let developmentPurchaseConfirmed = false;
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
@@ -728,6 +874,16 @@
             ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.key, plan]),
             ["website-development", { key: "website-development", label: "$100 — Website Development · one-time payment" }]
         ]);
+        function showHostingHelp(type) {
+            const content = hostingHelpContent[type];
+            if (!content) return;
+            hostingHelpTitle.textContent = content.title;
+            hostingHelpText.textContent = content.text;
+            hostingHelpOverlay.hidden = false;
+        }
+        function closeHostingHelp() { hostingHelpOverlay.hidden = true; }
+        document.getElementById("hostingHelpClose").addEventListener("click", closeHostingHelp);
+        hostingHelpOverlay.addEventListener("click", event => { if (event.target === hostingHelpOverlay) closeHostingHelp(); });
         function applyTheme(theme) {
             const isLight = theme === "light";
             document.body.classList.toggle("light-mode", isLight);
@@ -814,6 +970,7 @@
                         developmentPurchaseConfirmed = true;
                         developmentStep.classList.add("is-complete");
                         developmentStatus.textContent = "Website development purchase verified ✓";
+                        updateClaimSubmitAvailability();
                     } else if (pending.claimType === "all") {
                         claimPlanSelections.forEach(selection => { selection.confirmed = true; });
                         updateClaimSubmitAvailability();
@@ -837,7 +994,7 @@
         async function startVerifiedCheckout(plan, options = {}) {
             if (options.claimType && !agreementSigned) {
                 agreementStatus.textContent = "Sign the agreement before making a purchase.";
-                agreementSignature.focus();
+                agreementSignaturePad.focus();
                 return;
             }
             const checkoutLoadingUrl = new URL("checkout-loading.html", window.location.href).href;
@@ -851,6 +1008,14 @@
                 loginMessage.textContent = "Log in first so the Square subscription can be linked to your account.";
                 return;
             }
+            let agreementId = options.agreementId || null;
+            if (options.claimType && options.claimType !== "development") {
+                agreementId = await saveHostingAgreement(plan, session.user);
+                if (!agreementId) {
+                    checkoutWindow?.close();
+                    return;
+                }
+            }
             const statusElement = options.statusElement || subscriptionMessage;
             statusElement.className = "payment-state verifying";
             statusElement.textContent = "Creating your secure Square checkout…";
@@ -859,6 +1024,7 @@
                 body: {
                     action: "create-checkout",
                     planKey: plan.key,
+                    agreementId,
                     discountCode: options.discountCode || null,
                     returnUrl: `${window.location.origin}${window.location.pathname}?square_checkout=return`
                 }
@@ -869,7 +1035,7 @@
                 statusElement.textContent = data?.message || "We couldn’t start checkout. Please try again.";
                 return;
             }
-            const pending = { checkoutId: data.checkoutId, planKey: plan.key, planLabel: plan.label, claimType: options.claimType || null };
+            const pending = { checkoutId: data.checkoutId, planKey: plan.key, planLabel: plan.label, claimType: options.claimType || null, agreementId };
             sessionStorage.setItem(PURCHASE_PENDING_KEY, JSON.stringify(pending));
             if (checkoutWindow) {
                 checkoutWindow.opener = null;
@@ -878,6 +1044,48 @@
                 window.location.assign(data.checkoutUrl);
             }
             await verifyPendingCheckout(pending, statusElement);
+        }
+
+        async function saveHostingAgreement(plan, user) {
+            if (!signedAgreement) {
+                agreementStatus.textContent = "Sign the agreement before continuing.";
+                return null;
+            }
+            if (savedAgreementIds.has(plan.key)) return savedAgreementIds.get(plan.key);
+            agreementStatus.textContent = "Saving your signed agreement…";
+            if (baseAgreementId) {
+                const { error } = await portalSupabase.from("hosting_agreements").update({
+                    plan_key: plan.key,
+                    plan_label: plan.label
+                }).eq("id", baseAgreementId).eq("user_id", user.id);
+                if (error) {
+                    agreementStatus.textContent = error.message || "The hosting choice could not be added to your agreement. Checkout was not opened.";
+                    return null;
+                }
+                savedAgreementIds.set(plan.key, baseAgreementId);
+                agreementStatus.textContent = `Signed electronically by ${signedAgreement.signer} and saved ✓`;
+                return baseAgreementId;
+            }
+            const { data, error } = await portalSupabase.from("hosting_agreements").insert({
+                user_id: user.id,
+                signer_name: signedAgreement.signer,
+                business_name: signedAgreement.business || signedAgreement.signer,
+                signer_email: signedAgreement.email,
+                electronic_signature: signedAgreement.signature,
+                plan_key: plan.key,
+                plan_label: plan.label,
+                terms_version: signedAgreement.version,
+                signed_at: signedAgreement.signedAt,
+                accepted: true,
+                agreement_snapshot: "Web-Hosting-Client-Agreement.pdf"
+            }).select("id").single();
+            if (error || !data?.id) {
+                agreementStatus.textContent = error?.message || "The signed agreement could not be saved. Checkout was not opened.";
+                return null;
+            }
+            savedAgreementIds.set(plan.key, data.id);
+            agreementStatus.textContent = `Signed electronically by ${signedAgreement.signer} and saved ✓`;
+            return data.id;
         }
 
         document.querySelectorAll("[data-hosting-plan]").forEach(link => {
@@ -906,9 +1114,8 @@
                 if (!code || !discountPlan) return;
                 const isClaimPlan = scope === "claim";
                 if (isClaimPlan) {
-                    claimPlanSelections.forEach((_selection, type) => {
-                        claimPlanSelections.set(type, { plan: discountPlan, confirmed: false });
-                    });
+                    claimPlanSelections.clear();
+                    claimPlanSelections.set(discountPlan.key.includes("backend") ? "backend" : "standard", { plan: discountPlan, confirmed: false });
                 }
                 startVerifiedCheckout(discountPlan, {
                     discountCode: code,
@@ -960,30 +1167,54 @@
             });
             claimMessageStatus.textContent = "";
             agreementSigned = false;
+            signedAgreement = null;
+            baseAgreementId = null;
+            savedAgreementIds.clear();
             developmentPurchaseConfirmed = false;
-            agreementSignature.value = "";
-            agreementSignature.disabled = false;
+            agreementSigner.value = "";
+            agreementSigner.disabled = false;
+            agreementBusiness.value = "";
+            agreementBusiness.disabled = false;
+            agreementEmail.value = accountEmail.textContent.trim();
+            agreementEmail.disabled = false;
+            resetAgreementSignature();
+            agreementSignaturePad.style.pointerEvents = "auto";
+            document.getElementById("agreementSignatureClear").disabled = false;
             agreementAccepted.checked = false;
             agreementAccepted.disabled = false;
             document.getElementById("signAgreementButton").disabled = false;
+            document.getElementById("signAgreementButton").textContent = "Sign Agreement";
             agreementStatus.textContent = "";
+            document.querySelectorAll(".agreement-form .has-error").forEach(field => field.classList.remove("has-error"));
+            document.querySelectorAll(".agreement-form [aria-invalid]").forEach(field => field.setAttribute("aria-invalid", "false"));
             agreementStep.classList.remove("is-complete");
+            agreementStep.classList.remove("is-collapsed");
             claimCheckout.classList.add("is-locked");
+            claimCheckout.classList.remove("is-complete");
+            claimCheckout.classList.add("is-collapsed");
             developmentStep.classList.add("is-locked");
             developmentStep.classList.remove("is-complete");
+            developmentStep.classList.add("is-collapsed");
             purchaseDevelopmentButton.disabled = true;
-            developmentStatus.textContent = "Complete hosting first to continue.";
+            developmentStatus.textContent = "Sign the agreement first to continue.";
             renderClaimPlanChoices(selectedSites);
             showPortalPanel("claimPanel");
             openPortal();
+            window.requestAnimationFrame(prepareAgreementSignaturePad);
         }
 
         function updateClaimSubmitAvailability() {
             const hostingReady = claimPlanSelections.size > 0 && [...claimPlanSelections.values()].every(selection => selection.plan && selection.confirmed);
             claimCheckout.classList.toggle("is-complete", hostingReady);
-            developmentStep.classList.toggle("is-locked", !hostingReady);
-            purchaseDevelopmentButton.disabled = !agreementSigned || !hostingReady || developmentPurchaseConfirmed;
-            developmentStatus.textContent = developmentPurchaseConfirmed ? "Website development purchase verified ✓" : hostingReady ? "Ready for your one-time $100 payment." : "Complete hosting first to continue.";
+            agreementStep.classList.toggle("is-collapsed", agreementSigned);
+            developmentStep.classList.toggle("is-locked", !agreementSigned);
+            developmentStep.classList.toggle("is-collapsed", !agreementSigned || developmentPurchaseConfirmed);
+            claimCheckout.classList.toggle("is-locked", !developmentPurchaseConfirmed);
+            claimCheckout.classList.toggle("is-collapsed", !developmentPurchaseConfirmed || hostingReady);
+            purchaseDevelopmentButton.disabled = !agreementSigned || developmentPurchaseConfirmed;
+            developmentStatus.textContent = developmentPurchaseConfirmed ? "Website development purchase verified ✓" : agreementSigned ? "Ready for your one-time $100 payment." : "Sign the agreement first to continue.";
+            const selectedHosting = [...claimPlanSelections.values()].find(selection => selection.plan)?.plan;
+            document.getElementById("hostingStepSummary").textContent = selectedHosting ? `${selectedHosting.label} confirmed ✓` : "Hosting purchase confirmed ✓";
             const ready = agreementSigned && hostingReady && developmentPurchaseConfirmed;
             submitClaimButton.disabled = !ready;
         }
@@ -992,31 +1223,37 @@
             claimCheckoutLinks.replaceChildren();
             claimPlanSelections.clear();
             submitClaimButton.disabled = true;
-            const requiredTypes = [...new Set(selectedSites.map(site => site.hostingType))];
+            const group = document.createElement("article");
+            group.className = "plan-group";
+            const heading = document.createElement("h4");
+            heading.textContent = "Choose one hosting plan";
+            const selectedNote = document.createElement("p");
+            selectedNote.className = "payment-state";
+            selectedNote.textContent = "Select Standard or Backend hosting to continue.";
+            group.appendChild(heading);
 
-            requiredTypes.forEach(type => {
-                claimPlanSelections.set(type, { plan: null, confirmed: false });
-                const group = document.createElement("article");
-                group.className = "plan-group";
-                const heading = document.createElement("h4");
-                heading.textContent = `${type === "backend" ? "Backend" : "Standard"} Website Hosting`;
-                const selectedNote = document.createElement("p");
-                selectedNote.className = "payment-state";
-                selectedNote.textContent = "Choose a subscription to continue.";
-                group.appendChild(heading);
-
+            ["standard", "backend"].forEach(type => {
                 (hostingCheckoutPlans[type] || []).forEach(plan => {
                     const row = document.createElement("div");
                     row.className = "plan-option";
                     const copy = document.createElement("div");
+                    const titleRow = document.createElement("div");
+                    titleRow.className = "plan-heading-row";
                     const title = document.createElement("span");
                     title.className = "plan-name";
+                    title.textContent = type === "backend" ? "Backend Website Hosting" : "Standard Website Hosting";
+                    const helpButton = document.createElement("button");
+                    helpButton.className = "plan-help";
+                    helpButton.type = "button";
+                    helpButton.textContent = "?";
+                    helpButton.setAttribute("aria-label", `Explain ${title.textContent}`);
+                    helpButton.addEventListener("click", event => { event.stopPropagation(); showHostingHelp(type); });
                     const details = document.createElement("span");
                     details.className = "plan-price";
                     const parts = plan.label.split(" — ");
-                    title.textContent = parts[0];
-                    details.textContent = parts[1] || "Hosting plan";
-                    copy.append(title, details);
+                    details.textContent = `${parts[0]} · ${parts[1] || "billed monthly"}`;
+                    titleRow.append(title, helpButton);
+                    copy.append(titleRow, details);
                     const chooseButton = document.createElement("button");
                     chooseButton.className = "plan-link";
                     chooseButton.type = "button";
@@ -1026,6 +1263,7 @@
                         group.querySelectorAll(".plan-link").forEach(button => { button.textContent = "Choose"; });
                         row.classList.add("selected");
                         chooseButton.textContent = "Selected";
+                        claimPlanSelections.clear();
                         claimPlanSelections.set(type, { plan, confirmed: false });
                         selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
@@ -1034,15 +1272,25 @@
                     row.append(copy, chooseButton);
                     group.appendChild(row);
                 });
-                group.append(selectedNote);
-                claimCheckoutLinks.appendChild(group);
             });
+            group.append(selectedNote);
+            claimCheckoutLinks.appendChild(group);
         }
 
         setClientMenuLoggedIn(false);
 
-        function openPortal() { portalOverlay.hidden = false; document.body.style.overflow = "hidden"; }
-        function closePortal() { portalOverlay.hidden = true; document.body.style.overflow = ""; }
+        function openPortal() {
+            portalOverlay.hidden = false;
+            document.body.style.overflow = "hidden";
+            sessionStorage.setItem("keepClientPortalOpen", "true");
+        }
+        function closePortal() {
+            portalOverlay.hidden = true;
+            document.body.style.overflow = "";
+            sessionStorage.removeItem("keepClientPortalOpen");
+            agreementViewer.hidden = true;
+            reviewAgreementButton.setAttribute("aria-expanded", "false");
+        }
         function setAuthMode(mode) {
             authMode = mode;
             const signingUp = mode === "signup";
@@ -1057,6 +1305,8 @@
             loginMessage.textContent = "";
         }
         function showPortalPanel(panelId) {
+            pendingPanel = panelId;
+            sessionStorage.setItem("clientPortalPanel", panelId);
             document.querySelectorAll(".portal-panel").forEach(panel => { panel.hidden = panel.id !== panelId; });
             document.querySelectorAll(".portal-nav-button").forEach(button => {
                 button.classList.toggle("active", button.dataset.portalPanel === panelId);
@@ -1212,7 +1462,17 @@
             await updatePortal(session);
         }));
         portalClose.addEventListener("click", closePortal);
-        portalOverlay.addEventListener("click", event => { if (event.target === portalOverlay) closePortal(); });
+        reviewAgreementButton.addEventListener("click", () => {
+            if (!agreementFrame.src) agreementFrame.src = agreementFrame.dataset.src;
+            agreementViewer.hidden = false;
+            reviewAgreementButton.setAttribute("aria-expanded", "true");
+            agreementViewer.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        document.getElementById("agreementViewerClose").addEventListener("click", () => {
+            agreementViewer.hidden = true;
+            reviewAgreementButton.setAttribute("aria-expanded", "false");
+            reviewAgreementButton.focus();
+        });
         loginTab.addEventListener("click", () => setAuthMode("login"));
         signupTab.addEventListener("click", () => setAuthMode("signup"));
         document.querySelectorAll(".portal-nav-button").forEach(button => button.addEventListener("click", () => showPortalPanel(button.dataset.portalPanel)));
@@ -1251,19 +1511,92 @@
             document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
         });
         document.getElementById("claimYourSite").addEventListener("click", enterSiteSelection);
-        document.getElementById("signAgreementButton").addEventListener("click", () => {
+        function validateAgreementFields() {
+            const missing = [];
+            const checks = [
+                { input: agreementSigner, wrapper: document.querySelector('[data-agreement-field="signer"]'), label: "full legal name", valid: Boolean(agreementSigner.value.trim()) },
+                { input: agreementBusiness, wrapper: document.querySelector('[data-agreement-field="business"]'), label: "business name", valid: Boolean(agreementBusiness.value.trim()) },
+                { input: agreementEmail, wrapper: document.querySelector('[data-agreement-field="email"]'), label: "valid email address", valid: Boolean(agreementEmail.value.trim()) && agreementEmail.checkValidity() }
+            ];
+            checks.forEach(check => {
+                check.wrapper.classList.toggle("has-error", !check.valid);
+                check.input.setAttribute("aria-invalid", String(!check.valid));
+                if (!check.valid) missing.push(check.label);
+            });
+            const signatureField = agreementSignaturePad.closest(".signature-field");
+            const signatureValid = Boolean(agreementSignature.value && agreementSignatureHasInk);
+            signatureField.classList.toggle("has-error", !signatureValid);
+            agreementSignaturePad.setAttribute("aria-invalid", String(!signatureValid));
+            if (!signatureValid) missing.push("drawn signature");
+            const consentValid = agreementAccepted.checked;
+            const consentLabel = agreementAccepted.closest(".agreement-check");
+            consentLabel.classList.toggle("has-error", !consentValid);
+            agreementAccepted.setAttribute("aria-invalid", String(!consentValid));
+            if (!consentValid) missing.push("agreement acceptance");
+            return missing;
+        }
+        [agreementSigner, agreementBusiness, agreementEmail].forEach(input => input.addEventListener("input", () => {
+            if (input.value.trim() && input.checkValidity()) {
+                input.closest(".agreement-field").classList.remove("has-error");
+                input.setAttribute("aria-invalid", "false");
+            }
+        }));
+        agreementAccepted.addEventListener("change", () => {
+            if (agreementAccepted.checked) agreementAccepted.closest(".agreement-check").classList.remove("has-error");
+        });
+        document.getElementById("signAgreementButton").addEventListener("click", async () => {
+            const signer = agreementSigner.value.trim();
+            const business = agreementBusiness.value.trim();
+            const email = agreementEmail.value.trim().toLowerCase();
             const signature = agreementSignature.value.trim();
-            if (!signature || !agreementAccepted.checked) {
-                agreementStatus.textContent = "Type your full legal name and accept the agreement to continue.";
+            const missing = validateAgreementFields();
+            if (missing.length) {
+                agreementStatus.textContent = `Still required: ${missing.join(", ")}.`;
+                document.querySelector(".agreement-form .has-error")?.scrollIntoView({ behavior: "smooth", block: "center" });
                 return;
             }
+            signedAgreement = { signer, business, email, signature, signedAt: new Date().toISOString(), version: AGREEMENT_VERSION };
+            const signButton = document.getElementById("signAgreementButton");
+            signButton.disabled = true;
+            signButton.textContent = "Saving signed agreement…";
+            agreementStatus.textContent = "Saving your signed agreement…";
+            const { data: { session } } = await portalSupabase.auth.getSession();
+            if (!session?.user) {
+                signButton.disabled = false;
+                signButton.textContent = "Sign Agreement";
+                agreementStatus.textContent = "Log in again before signing the agreement.";
+                return;
+            }
+            const { data: savedAgreement, error: agreementSaveError } = await portalSupabase.from("hosting_agreements").insert({
+                user_id: session.user.id,
+                signer_name: signer,
+                business_name: business,
+                signer_email: email,
+                electronic_signature: signature,
+                plan_key: "pending-hosting-selection",
+                plan_label: "Hosting plan selected after website development",
+                terms_version: AGREEMENT_VERSION,
+                signed_at: signedAgreement.signedAt,
+                accepted: true,
+                agreement_snapshot: "Web-Hosting-Client-Agreement.pdf"
+            }).select("id").single();
+            if (agreementSaveError || !savedAgreement?.id) {
+                signButton.disabled = false;
+                signButton.textContent = "Sign Agreement";
+                agreementStatus.textContent = agreementSaveError?.message || "The signed agreement could not be saved.";
+                return;
+            }
+            baseAgreementId = savedAgreement.id;
             agreementSigned = true;
-            agreementSignature.disabled = true;
+            agreementSigner.disabled = true;
+            agreementBusiness.disabled = true;
+            agreementEmail.disabled = true;
+            agreementSignaturePad.style.pointerEvents = "none";
+            document.getElementById("agreementSignatureClear").disabled = true;
             agreementAccepted.disabled = true;
-            document.getElementById("signAgreementButton").disabled = true;
+            signButton.textContent = "Agreement Signed";
             agreementStep.classList.add("is-complete");
-            claimCheckout.classList.remove("is-locked");
-            agreementStatus.textContent = `Signed electronically by ${signature} ✓`;
+            agreementStatus.textContent = `Signed electronically by ${signer} and saved ✓`;
             updateClaimSubmitAvailability();
         });
         purchaseDevelopmentButton.addEventListener("click", () => {
@@ -1294,7 +1627,7 @@
                 claimMessageStatus.textContent = "Purchase and confirm the required hosting subscription before submitting.";
                 return;
             }
-            if (!agreementSigned || !developmentPurchaseConfirmed) {
+            if (!agreementSigned || !signedAgreement || !developmentPurchaseConfirmed) {
                 claimMessageStatus.textContent = "Sign the agreement and complete both purchases before submitting.";
                 return;
             }
@@ -1306,8 +1639,25 @@
                 body: {
                     sites: selectedSites.map(site => ({ path: site.path, name: site.name, hostingType: site.hostingType })),
                     hostingSelections,
-                    agreementSignature: agreementSignature.value.trim(),
+                    agreementSigner: signedAgreement.signer,
+                    agreementBusiness: signedAgreement.business,
+                    agreementEmail: signedAgreement.email,
+                    agreementSignature: signedAgreement.signature,
                     agreementAccepted: true,
+                    agreementSignedAt: signedAgreement.signedAt,
+                    agreementPlan: hostingSelections.map(selection => selection.planLabel).join(" + "),
+                    agreementVersion: signedAgreement.version,
+                    agreementIds: Object.fromEntries(savedAgreementIds),
+                    agreement: {
+                        signer: signedAgreement.signer,
+                        business: signedAgreement.business,
+                        email: signedAgreement.email,
+                        signed_at: signedAgreement.signedAt,
+                        plan: hostingSelections.map(selection => selection.planLabel).join(" + "),
+                        version: signedAgreement.version,
+                        signature: signedAgreement.signature,
+                        accepted: true
+                    },
                     websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
                     discountCode: appliedDiscountCode || null,
                     message: ""
@@ -1320,6 +1670,7 @@
                 return;
             }
             claimMessageStatus.textContent = "Your claim request was submitted. We’ll verify the Square subscription before connecting the selected sites.";
+            closePortal();
         });
         themeToggle.addEventListener("click", () => {
             const nextTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
@@ -1346,12 +1697,15 @@
         });
 
         async function initializeClientMenu() {
+            const savedPanel = sessionStorage.getItem("clientPortalPanel");
+            if (savedPanel && document.getElementById(savedPanel)?.classList.contains("portal-panel")) pendingPanel = savedPanel;
             const { data: { session }, error } = await portalSupabase.auth.getSession();
             if (error) {
                 setClientMenuLoggedIn(false);
                 return;
             }
             await updatePortal(session);
+            if (session?.user && sessionStorage.getItem("keepClientPortalOpen") === "true") openPortal();
             const rawPending = sessionStorage.getItem(PURCHASE_PENDING_KEY);
             if (session?.user && rawPending) {
                 try {
