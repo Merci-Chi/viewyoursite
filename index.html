@@ -280,7 +280,7 @@
         .purchase-step.is-locked::after { content: ""; }
         .purchase-step.is-collapsed > :not(.step-check):not(h4):not(.step-summary) { display: none !important; }
         .step-summary { display: none; margin-top: .25rem; color: #91cf87; font-size: .84rem; line-height: 1.35; }
-        .purchase-step.is-collapsed.is-complete .step-summary { display: block; }
+        .purchase-step.is-collapsed .step-summary { display: block; }
         .purchase-step.is-locked { opacity: .58; }
         .step-check { position: absolute; top: 1rem; left: 1rem; display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid #555; border-radius: 50%; color: transparent; font-weight: 800; }
         .purchase-step.is-complete .step-check { border-color: #84c978; background: #244424; color: #baf0ae; }
@@ -1006,12 +1006,6 @@
                 agreementSignaturePad.focus();
                 return;
             }
-            const statusElement = options.statusElement || subscriptionMessage;
-            if (window.location.protocol === "file:") {
-                statusElement.className = "payment-state";
-                statusElement.textContent = "Square checkout cannot open from a downloaded file. Upload this index.html and use the published HTTPS website.";
-                return;
-            }
             const checkoutLoadingUrl = new URL("checkout-loading.html", window.location.href).href;
             const checkoutWindow = window.open(checkoutLoadingUrl, "_blank");
             const { data: { session } } = await portalSupabase.auth.getSession();
@@ -1031,6 +1025,7 @@
                     return;
                 }
             }
+            const statusElement = options.statusElement || subscriptionMessage;
             statusElement.className = "payment-state verifying";
             statusElement.textContent = "Creating your secure Square checkout…";
             const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
