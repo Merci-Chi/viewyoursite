@@ -273,13 +273,14 @@
         .claim-checkout .plan-link { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; }
         .purchase-workflow { display: grid; gap: 1rem; margin-top: 1rem; }
         .purchase-step { position: relative; padding: 1.1rem 1.1rem 1.1rem 3.8rem; border: 1px solid #303030; border-radius: 12px; background: #181818; }
+        .purchase-step, .claim-form { scroll-margin-top: 1rem; }
         .purchase-step.is-collapsed { min-height: 62px; padding-top: 1.15rem; padding-bottom: 1.15rem; }
         .purchase-step::after { content: "⌃"; position: absolute; top: 1.15rem; right: 1rem; color: #888; font-size: 1rem; }
         .purchase-step.is-collapsed::after { content: "⌄"; }
         .purchase-step.is-locked::after { content: ""; }
         .purchase-step.is-collapsed > :not(.step-check):not(h4):not(.step-summary) { display: none !important; }
         .step-summary { display: none; margin-top: .25rem; color: #91cf87; font-size: .84rem; line-height: 1.35; }
-        .purchase-step.is-collapsed .step-summary { display: block; }
+        .purchase-step.is-collapsed.is-complete .step-summary { display: block; }
         .purchase-step.is-locked { opacity: .58; }
         .step-check { position: absolute; top: 1rem; left: 1rem; display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid #555; border-radius: 50%; color: transparent; font-weight: 800; }
         .purchase-step.is-complete .step-check { border-color: #84c978; background: #244424; color: #baf0ae; }
@@ -786,6 +787,7 @@
             backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }
         };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
+        let pendingProgressScrollTarget = null;
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
         const appliedDiscountPlans = { claim: null, subscriptions: null };
@@ -947,6 +949,10 @@
             purchaseCompleteOverlay.hidden = false;
             document.body.style.overflow = "hidden";
         }
+        function smoothlyScrollToStep(target) {
+            if (!target) return;
+            window.setTimeout(() => target.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" }), 100);
+        }
 
         async function verifyPendingCheckout(pending, statusElement) {
             if (!pending?.checkoutId) return false;
@@ -971,12 +977,15 @@
                         developmentStep.classList.add("is-complete");
                         developmentStatus.textContent = "Website development purchase verified ✓";
                         updateClaimSubmitAvailability();
+                        pendingProgressScrollTarget = claimCheckout;
                     } else if (pending.claimType === "all") {
                         claimPlanSelections.forEach(selection => { selection.confirmed = true; });
                         updateClaimSubmitAvailability();
+                        pendingProgressScrollTarget = claimForm;
                     } else if (pending.claimType && claimPlanSelections.has(pending.claimType)) {
                         claimPlanSelections.get(pending.claimType).confirmed = true;
                         updateClaimSubmitAvailability();
+                        pendingProgressScrollTarget = claimForm;
                     }
                     await loadSubscriptions();
                     showPurchaseComplete(pending.planLabel);
@@ -995,6 +1004,12 @@
             if (options.claimType && !agreementSigned) {
                 agreementStatus.textContent = "Sign the agreement before making a purchase.";
                 agreementSignaturePad.focus();
+                return;
+            }
+            const statusElement = options.statusElement || subscriptionMessage;
+            if (window.location.protocol === "file:") {
+                statusElement.className = "payment-state";
+                statusElement.textContent = "Square checkout cannot open from a downloaded file. Upload this index.html and use the published HTTPS website.";
                 return;
             }
             const checkoutLoadingUrl = new URL("checkout-loading.html", window.location.href).href;
@@ -1016,7 +1031,6 @@
                     return;
                 }
             }
-            const statusElement = options.statusElement || subscriptionMessage;
             statusElement.className = "payment-state verifying";
             statusElement.textContent = "Creating your secure Square checkout…";
             const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
@@ -1509,6 +1523,9 @@
         document.getElementById("purchaseCompleteClose").addEventListener("click", () => {
             purchaseCompleteOverlay.hidden = true;
             document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
+            const target = pendingProgressScrollTarget;
+            pendingProgressScrollTarget = null;
+            smoothlyScrollToStep(target);
         });
         document.getElementById("claimYourSite").addEventListener("click", enterSiteSelection);
         function validateAgreementFields() {
@@ -1598,6 +1615,7 @@
             agreementStep.classList.add("is-complete");
             agreementStatus.textContent = `Signed electronically by ${signer} and saved ✓`;
             updateClaimSubmitAvailability();
+            smoothlyScrollToStep(developmentStep);
         });
         purchaseDevelopmentButton.addEventListener("click", () => {
             const plan = checkoutPlansByKey.get("website-development");
