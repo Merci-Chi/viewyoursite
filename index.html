@@ -271,6 +271,25 @@
         .claim-checkout .available-plans { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1rem; }
         .claim-checkout .plan-option.selected { margin-inline: -.45rem; padding-inline: .45rem; border-radius: 9px; background: #292929; }
         .claim-checkout .plan-link { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; }
+        .purchase-workflow { display: grid; gap: 1rem; margin-top: 1rem; }
+        .purchase-step { position: relative; padding: 1.1rem 1.1rem 1.1rem 3.8rem; border: 1px solid #303030; border-radius: 12px; background: #181818; }
+        .purchase-step.is-locked { opacity: .58; }
+        .step-check { position: absolute; top: 1rem; left: 1rem; display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid #555; border-radius: 50%; color: transparent; font-weight: 800; }
+        .purchase-step.is-complete .step-check { border-color: #84c978; background: #244424; color: #baf0ae; }
+        .purchase-step h4 { margin-bottom: .3rem; }
+        .purchase-step-copy { color: #999; line-height: 1.5; }
+        .agreement-form { display: grid; gap: .75rem; margin-top: 1rem; }
+        .agreement-document { display: inline-flex; width: fit-content; align-items: center; gap: .45rem; color: #fff; font-weight: 700; text-underline-offset: 3px; }
+        .agreement-form input[type="text"] { width: 100%; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 8px; background: #222; color: #fff; font: inherit; }
+        .agreement-check { display: flex; align-items: flex-start; gap: .65rem; color: #ccc; line-height: 1.45; }
+        .agreement-check input { width: 18px; height: 18px; margin-top: .15rem; accent-color: #f1f1f1; }
+        .agreement-status { min-height: 1.25rem; color: #999; font-size: .88rem; }
+        .development-price { display: flex; align-items: baseline; gap: .7rem; margin: .8rem 0; }
+        .development-price del { color: #888; font-size: 1.15rem; }
+        .development-price strong { color: #fff; font-size: 2.35rem; line-height: 1; }
+        .development-price span { color: #aaa; }
+        .step-action { margin-top: .9rem; }
+        .step-action:disabled { cursor: not-allowed; opacity: .45; }
         .claim-selected-note { margin-top: .75rem; color: #bdbdbd; font-size: .88rem; }
         .purchase-confirmation { display: flex; align-items: flex-start; gap: .6rem; margin-top: .8rem; color: #aaa; line-height: 1.4; }
         .purchase-confirmation input { width: 18px; height: 18px; margin-top: .15rem; padding: 0; accent-color: #f1f1f1; }
@@ -288,6 +307,11 @@
         body.light-mode .discount-plan { border-color: #b9c9aa; background: #f2f8ed; }
         body.light-mode .have-code-button { color: #555; }
         body.light-mode .claim-checkout .plan-option.selected { background: #ecece8; }
+        body.light-mode .purchase-step { border-color: #d7d7d2; background: #fff; }
+        body.light-mode .agreement-form input[type="text"] { border-color: #ccc; background: #fff; color: #222; }
+        body.light-mode .agreement-check { color: #333; }
+        body.light-mode .agreement-document { color: #111; }
+        body.light-mode .development-price strong { color: #111; }
         .available-plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .plan-group { padding: 1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .plan-group h4 { margin-bottom: .85rem; font-size: 1rem; }
@@ -517,11 +541,25 @@
 
                 <section class="portal-panel" id="claimPanel" hidden>
                     <h3>Claim Your Sites</h3>
-                    <p class="portal-description">Select and purchase the required hosting subscription before submitting your claim. Your purchase will be verified before the sites are connected to your account.</p>
+                    <p class="portal-description">Complete these three steps in order. Each purchase is verified before your site is connected to your account.</p>
                     <div class="claim-list" id="claimList"></div>
-                    <div class="claim-checkout" id="claimCheckout">
-                        <h3>Select Required Hosting</h3>
-                        <p>Choose a plan and complete its Square checkout. Your purchase is verified automatically before the claim can be submitted.</p>
+                    <div class="purchase-workflow">
+                    <section class="purchase-step" id="agreementStep">
+                        <span class="step-check" aria-hidden="true">✓</span>
+                        <h4>1. Sign the Terms &amp; Agreement</h4>
+                        <p class="purchase-step-copy">Review and accept the terms before making either purchase.</p>
+                        <div class="agreement-form">
+                            <a class="agreement-document" href="Web-Hosting-Client-Agreement.pdf" target="_blank" rel="noopener">Review the Web Hosting Client Agreement ↗</a>
+                            <input id="agreementSignature" type="text" placeholder="Type your full legal name" autocomplete="name">
+                            <label class="agreement-check"><input id="agreementAccepted" type="checkbox"> <span>I have reviewed and agree to the Web Hosting Client Agreement, and I understand that typing my name serves as my electronic signature.</span></label>
+                            <button class="portal-primary" id="signAgreementButton" type="button">Sign Agreement</button>
+                            <p class="agreement-status" id="agreementStatus" role="status"></p>
+                        </div>
+                    </section>
+                    <div class="claim-checkout purchase-step is-locked" id="claimCheckout">
+                        <span class="step-check" aria-hidden="true">✓</span>
+                        <h4>2. Purchase Website Hosting</h4>
+                        <p>Start with the smaller recurring payment. Choose your required hosting subscription below.</p>
                         <div class="section-heading-row">
                             <span class="claim-selected-note">Choose a subscription to continue.</span>
                             <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
@@ -544,8 +582,16 @@
                         </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
+                    <section class="purchase-step is-locked" id="developmentStep">
+                        <span class="step-check" aria-hidden="true">✓</span>
+                        <h4>3. Purchase Website Development</h4>
+                        <p class="purchase-step-copy">One-time payment for the development of your website.</p>
+                        <div class="development-price"><del>$349</del><strong>$100</strong><span>one time</span></div>
+                        <button class="portal-primary step-action" id="purchaseDevelopmentButton" type="button" disabled>Purchase Website Development</button>
+                        <p class="payment-state" id="developmentStatus">Complete hosting first to continue.</p>
+                    </section>
+                    </div>
                     <form class="portal-form claim-form" id="claimForm">
-                        <textarea id="claimMessage" placeholder="Tell us how you are connected to these businesses" required></textarea>
                         <button class="portal-primary" id="submitClaimButton" type="submit" disabled>Submit Claim Request</button>
                     </form>
                     <p class="portal-message" id="claimMessageStatus" role="status"></p>
@@ -652,6 +698,13 @@
         const submitClaimButton = document.getElementById("submitClaimButton");
         const purchaseCompleteOverlay = document.getElementById("purchaseCompleteOverlay");
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
+        const agreementStep = document.getElementById("agreementStep");
+        const agreementSignature = document.getElementById("agreementSignature");
+        const agreementAccepted = document.getElementById("agreementAccepted");
+        const agreementStatus = document.getElementById("agreementStatus");
+        const developmentStep = document.getElementById("developmentStep");
+        const purchaseDevelopmentButton = document.getElementById("purchaseDevelopmentButton");
+        const developmentStatus = document.getElementById("developmentStatus");
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
@@ -660,6 +713,8 @@
         let authMode = "login";
         let pendingPanel = "accountPanel";
         let currentClientSiteUrl = "";
+        let agreementSigned = false;
+        let developmentPurchaseConfirmed = false;
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
@@ -670,7 +725,8 @@
             ]
         };
         const checkoutPlansByKey = new Map([
-            ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.key, plan])
+            ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.key, plan]),
+            ["website-development", { key: "website-development", label: "$100 — Website Development · one-time payment" }]
         ]);
         function applyTheme(theme) {
             const isLight = theme === "light";
@@ -731,7 +787,7 @@
             });
         });
         function showPurchaseComplete(planLabel) {
-            purchaseCompleteMessage.textContent = `${planLabel || "Your subscription"} is active and linked to your signed-in account.`;
+            purchaseCompleteMessage.textContent = `${planLabel || "Your purchase"} is confirmed and linked to your signed-in account.`;
             purchaseCompleteOverlay.hidden = false;
             document.body.style.overflow = "hidden";
         }
@@ -754,7 +810,11 @@
                         statusElement.className = "payment-state verified";
                         statusElement.textContent = "Purchase verified and linked to your account ✓";
                     }
-                    if (pending.claimType === "all") {
+                    if (pending.claimType === "development") {
+                        developmentPurchaseConfirmed = true;
+                        developmentStep.classList.add("is-complete");
+                        developmentStatus.textContent = "Website development purchase verified ✓";
+                    } else if (pending.claimType === "all") {
                         claimPlanSelections.forEach(selection => { selection.confirmed = true; });
                         updateClaimSubmitAvailability();
                     } else if (pending.claimType && claimPlanSelections.has(pending.claimType)) {
@@ -775,6 +835,11 @@
         }
 
         async function startVerifiedCheckout(plan, options = {}) {
+            if (options.claimType && !agreementSigned) {
+                agreementStatus.textContent = "Sign the agreement before making a purchase.";
+                agreementSignature.focus();
+                return;
+            }
             const checkoutLoadingUrl = new URL("checkout-loading.html", window.location.href).href;
             const checkoutWindow = window.open(checkoutLoadingUrl, "_blank");
             const { data: { session } } = await portalSupabase.auth.getSession();
@@ -894,14 +959,32 @@
                 claimList.appendChild(item);
             });
             claimMessageStatus.textContent = "";
-            document.getElementById("claimMessage").value = "";
+            agreementSigned = false;
+            developmentPurchaseConfirmed = false;
+            agreementSignature.value = "";
+            agreementSignature.disabled = false;
+            agreementAccepted.checked = false;
+            agreementAccepted.disabled = false;
+            document.getElementById("signAgreementButton").disabled = false;
+            agreementStatus.textContent = "";
+            agreementStep.classList.remove("is-complete");
+            claimCheckout.classList.add("is-locked");
+            developmentStep.classList.add("is-locked");
+            developmentStep.classList.remove("is-complete");
+            purchaseDevelopmentButton.disabled = true;
+            developmentStatus.textContent = "Complete hosting first to continue.";
             renderClaimPlanChoices(selectedSites);
             showPortalPanel("claimPanel");
             openPortal();
         }
 
         function updateClaimSubmitAvailability() {
-            const ready = claimPlanSelections.size > 0 && [...claimPlanSelections.values()].every(selection => selection.plan && selection.confirmed);
+            const hostingReady = claimPlanSelections.size > 0 && [...claimPlanSelections.values()].every(selection => selection.plan && selection.confirmed);
+            claimCheckout.classList.toggle("is-complete", hostingReady);
+            developmentStep.classList.toggle("is-locked", !hostingReady);
+            purchaseDevelopmentButton.disabled = !agreementSigned || !hostingReady || developmentPurchaseConfirmed;
+            developmentStatus.textContent = developmentPurchaseConfirmed ? "Website development purchase verified ✓" : hostingReady ? "Ready for your one-time $100 payment." : "Complete hosting first to continue.";
+            const ready = agreementSigned && hostingReady && developmentPurchaseConfirmed;
             submitClaimButton.disabled = !ready;
         }
 
@@ -1168,6 +1251,25 @@
             document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
         });
         document.getElementById("claimYourSite").addEventListener("click", enterSiteSelection);
+        document.getElementById("signAgreementButton").addEventListener("click", () => {
+            const signature = agreementSignature.value.trim();
+            if (!signature || !agreementAccepted.checked) {
+                agreementStatus.textContent = "Type your full legal name and accept the agreement to continue.";
+                return;
+            }
+            agreementSigned = true;
+            agreementSignature.disabled = true;
+            agreementAccepted.disabled = true;
+            document.getElementById("signAgreementButton").disabled = true;
+            agreementStep.classList.add("is-complete");
+            claimCheckout.classList.remove("is-locked");
+            agreementStatus.textContent = `Signed electronically by ${signature} ✓`;
+            updateClaimSubmitAvailability();
+        });
+        purchaseDevelopmentButton.addEventListener("click", () => {
+            const plan = checkoutPlansByKey.get("website-development");
+            startVerifiedCheckout(plan, { claimType: "development", statusElement: developmentStatus });
+        });
         document.getElementById("cancelSiteSelection").addEventListener("click", exitSiteSelection);
         addSelectedSitesButton.addEventListener("click", () => {
             if (!selectedSitePaths.size) return;
@@ -1192,6 +1294,10 @@
                 claimMessageStatus.textContent = "Purchase and confirm the required hosting subscription before submitting.";
                 return;
             }
+            if (!agreementSigned || !developmentPurchaseConfirmed) {
+                claimMessageStatus.textContent = "Sign the agreement and complete both purchases before submitting.";
+                return;
+            }
             submitClaimButton.disabled = true;
             submitClaimButton.textContent = "Submitting…";
             claimMessageStatus.textContent = "Submitting your claim request…";
@@ -1200,8 +1306,11 @@
                 body: {
                     sites: selectedSites.map(site => ({ path: site.path, name: site.name, hostingType: site.hostingType })),
                     hostingSelections,
+                    agreementSignature: agreementSignature.value.trim(),
+                    agreementAccepted: true,
+                    websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
                     discountCode: appliedDiscountCode || null,
-                    message: document.getElementById("claimMessage").value.trim()
+                    message: ""
                 }
             });
             submitClaimButton.textContent = "Submit Claim Request";
