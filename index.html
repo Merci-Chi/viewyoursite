@@ -1249,6 +1249,10 @@
         }
 
         async function saveHostingAgreement(plan, user) {
+            if (demoMode) {
+                agreementStatus.textContent = "Agreement completed.";
+                return null;
+            }
             if (!signedAgreement) {
                 agreementStatus.textContent = "Sign the agreement before continuing.";
                 return null;
@@ -2023,6 +2027,10 @@
             if (agreementAccepted.checked) agreementAccepted.closest(".agreement-check").classList.remove("has-error");
         });
         document.getElementById("signAgreementButton").addEventListener("click", async () => {
+            if (demoMode) {
+                demoPassAgreement();
+                return;
+            }
             const signer = agreementSigner.value.trim();
             const business = agreementBusiness.value.trim();
             const email = agreementEmail.value.trim().toLowerCase();
