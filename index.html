@@ -397,15 +397,18 @@
             .portal-nav { grid-template-columns: 1fr; }
             .available-plans { grid-template-columns: 1fr; }
         }
-        .demo-test-button { position: fixed; z-index: 5000; top: 14px; right: 14px; padding: .7rem 1rem; border: 1px solid #79cfff; border-radius: 999px; background: #102b3a; color: #dff5ff; box-shadow: 0 8px 28px rgba(0,0,0,.38); cursor: pointer; font: inherit; font-weight: 800; }
-        .demo-test-button.active { border-color: #8ee382; background: #18351b; color: #dfffdc; }
-        .demo-test-menu { position: fixed; z-index: 4999; top: 66px; right: 14px; display: grid; width: min(270px, calc(100vw - 28px)); gap: .55rem; padding: .85rem; border: 1px solid #3e5966; border-radius: 14px; background: rgba(17,24,28,.98); box-shadow: 0 18px 55px rgba(0,0,0,.55); }
-        .demo-test-menu[hidden] { display: none !important; }
-        .demo-test-menu strong { color: #fff; }
-        .demo-test-menu small { color: #aebcc3; line-height: 1.4; }
-        .demo-test-menu button { padding: .7rem .8rem; border: 1px solid #40515a; border-radius: 9px; background: #233039; color: #fff; cursor: pointer; font: inherit; text-align: left; }
-        .demo-test-menu button:hover { border-color: #79cfff; }
-        .demo-test-menu .demo-reset { border-color: #674242; color: #ffcaca; }
+        .step-skip-trigger { position: fixed; z-index: 5000; top: 14px; right: 14px; width: 42px; height: 42px; padding: 0; border: 2px solid #79cfff; border-radius: 50%; background: #102b3a; box-shadow: 0 8px 28px rgba(0,0,0,.38); cursor: pointer; }
+        .step-skip-trigger::after { content: ""; display: block; width: 10px; height: 10px; margin: auto; border-radius: 50%; background: #dff5ff; }
+        .step-skip-trigger:hover, .step-skip-trigger[aria-expanded="true"] { border-color: #b6e7ff; background: #183b4d; }
+        .step-skip-panel { position: fixed; z-index: 4999; top: 66px; right: 14px; display: grid; width: min(330px, calc(100vw - 28px)); gap: .7rem; padding: 1rem; border: 1px solid #3e5966; border-radius: 14px; background: rgba(17,24,28,.98); box-shadow: 0 18px 55px rgba(0,0,0,.55); }
+        .step-skip-panel[hidden] { display: none !important; }
+        .step-skip-panel h3 { margin: 0; color: #fff; font-size: 1rem; }
+        .step-skip-panel label { display: grid; gap: .35rem; color: #c7d2d8; font-size: .82rem; font-weight: 700; }
+        .step-skip-panel textarea, .step-skip-panel input { width: 100%; padding: .7rem .75rem; border: 1px solid #40515a; border-radius: 9px; background: #10171b; color: #fff; font: inherit; }
+        .step-skip-panel textarea { min-height: 82px; resize: vertical; }
+        .step-skip-panel textarea:focus, .step-skip-panel input:focus { outline: 2px solid rgba(121,207,255,.28); border-color: #79cfff; }
+        .step-skip-submit { padding: .72rem .85rem; border: 1px solid #79cfff; border-radius: 9px; background: #1f617f; color: #fff; cursor: pointer; font: inherit; font-weight: 800; }
+        .step-skip-message { min-height: 1.2em; margin: 0; color: #ffcaca; font-size: .82rem; }
         .demo-mode-badge { display: inline-flex; margin-left: .45rem; padding: .18rem .45rem; border-radius: 999px; background: #244424; color: #baf0ae; font-size: .7rem; font-weight: 800; vertical-align: middle; }
         .management-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .management-card { padding: 1.25rem; border: 1px solid #303030; border-radius: 18px; background: linear-gradient(145deg, #202020, #181818); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
@@ -1460,6 +1463,7 @@
         agreementSignaturePad.addEventListener("lostpointercapture", finishAgreementSignature);
         document.getElementById("agreementSignatureClear").addEventListener("click", resetAgreementSignature);
         let developmentPurchaseConfirmed = false;
+        let developmentSkipNote = "";
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
@@ -1788,6 +1792,7 @@
             baseAgreementId = null;
             savedAgreementIds.clear();
             developmentPurchaseConfirmed = false;
+            developmentSkipNote = "";
             agreementSigner.value = "";
             agreementSigner.disabled = false;
             agreementBusiness.value = "";
@@ -2675,8 +2680,9 @@
                         accepted: true
                     },
                     websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
+                    websiteDevelopmentSkipped: Boolean(developmentSkipNote),
                     discountCode: appliedDiscountCode || null,
-                    message: ""
+                    message: developmentSkipNote ? `Step 2 skipped. Note: ${developmentSkipNote}` : ""
                 }
             });
             submitClaimButton.textContent = "Submit Claim Request";
@@ -2738,203 +2744,82 @@
             }
         }
 
-        // Preview controls are isolated from production writes.
+        // Keep legacy production guards inactive now that the Test menu is removed.
         let demoMode = false;
-        const demoEmail = "demo@steadyhandsop.com";
-        const previewEmail = "client@steadyhandsop.com";
-        const demoButton = document.createElement("button");
-        demoButton.type = "button";
-        demoButton.className = "demo-test-button";
-        demoButton.textContent = "Test";
-        demoButton.setAttribute("aria-expanded", "false");
-        const demoMenu = document.createElement("aside");
-        demoMenu.className = "demo-test-menu";
-        demoMenu.hidden = true;
-        demoMenu.innerHTML = `
-            <button type="button" data-demo-action="login">Open Client Portal</button>
-            <button type="button" data-demo-action="step1">Pass Step 1 · Agreement</button>
-            <button type="button" data-demo-action="step2">Pass Step 2 · Development</button>
-            <button type="button" data-demo-action="step3">Pass Step 3 · Hosting</button>
-            <button type="button" data-demo-action="all">Pass all steps</button>
-            <button type="button" class="demo-reset" data-demo-action="reset">Reset</button>`;
-        document.body.append(demoButton, demoMenu);
 
-        function ensureDemoWorkflow() {
-            if (!sites.length) sites.push({ name: "My Website", path: "my-website", hostingType: "standard" });
-            if (!selectedSitePaths.size) {
-                selectedSitePaths.add(sites[0].path);
-                renderClaimSelection();
-            }
-            showPortalPanel("claimPanel");
-            openPortal();
+        // Private shortcut for manually approving Step 2.
+        const STEP_SKIP_PASSWORD_HASH = "d461e0a2819ca527e1c006dbe69f0658321ffd00ec85489499eb697cd1dc1e0d";
+        const stepSkipTrigger = document.createElement("button");
+        stepSkipTrigger.type = "button";
+        stepSkipTrigger.className = "step-skip-trigger";
+        stepSkipTrigger.setAttribute("aria-label", "Open Step 2 skip approval");
+        stepSkipTrigger.setAttribute("aria-expanded", "false");
+
+        const stepSkipPanel = document.createElement("aside");
+        stepSkipPanel.className = "step-skip-panel";
+        stepSkipPanel.hidden = true;
+        stepSkipPanel.innerHTML = `
+            <h3>Skip Step 2</h3>
+            <label>Reason / note
+                <textarea id="stepSkipNote" maxlength="1000" placeholder="Add a note explaining why Step 2 is being skipped"></textarea>
+            </label>
+            <label>Password
+                <input id="stepSkipPassword" type="password" autocomplete="off" placeholder="Password">
+            </label>
+            <button class="step-skip-submit" id="stepSkipSubmit" type="button">Approve Skip</button>
+            <p class="step-skip-message" id="stepSkipMessage" role="status"></p>`;
+        document.body.append(stepSkipTrigger, stepSkipPanel);
+
+        async function hashStepSkipPassword(value) {
+            const bytes = new TextEncoder().encode(value);
+            const digest = await crypto.subtle.digest("SHA-256", bytes);
+            return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, "0")).join("");
         }
 
-        function activateDemoLogin() {
-            demoMode = true;
-            demoButton.classList.add("active");
-            demoButton.textContent = "Test · ON";
-            document.body.classList.add("client-is-logged-in");
-            setClientMenuLoggedIn(true);
-            loginView.hidden = true;
-            accountView.hidden = false;
-            accountEmail.textContent = previewEmail;
-            accountSummaryEmail.textContent = previewEmail;
-            loginMessage.textContent = "Welcome back.";
-            ensureDemoWorkflow();
+        function closeStepSkipPanel() {
+            stepSkipPanel.hidden = true;
+            stepSkipTrigger.setAttribute("aria-expanded", "false");
+            document.getElementById("stepSkipPassword").value = "";
         }
 
-        function demoPassAgreement() {
-            if (!demoMode) activateDemoLogin();
-            ensureDemoWorkflow();
-            agreementSigner.value = "Jordan Taylor";
-            agreementBusiness.value = "Taylor Creative LLC";
-            agreementEmail.value = previewEmail;
-            agreementAccepted.checked = true;
-            prepareAgreementSignaturePad();
-            const rect = agreementSignaturePad.getBoundingClientRect();
-            agreementSignatureContext.beginPath();
-            agreementSignatureContext.moveTo(30, Math.max(45, rect.height * .55));
-            agreementSignatureContext.bezierCurveTo(85, 10, 120, Math.max(80, rect.height * .75), 190, 35);
-            agreementSignatureContext.stroke();
-            agreementSignatureHasInk = true;
-            agreementSignature.value = agreementSignaturePad.toDataURL("image/png");
-            signedAgreement = {
-                signer: "Jordan Taylor",
-                business: "Taylor Creative LLC",
-                email: previewEmail,
-                signature: agreementSignature.value,
-                signedAt: new Date().toISOString(),
-                version: AGREEMENT_VERSION
-            };
-            // A Test pass has no database ID. If the user later deliberately
-            // starts a real hosting checkout, saveHostingAgreement will create
-            // the real agreement then and pass its valid ID to Square checkout.
-            baseAgreementId = null;
-            agreementSigned = true;
-            agreementSigner.disabled = true;
-            agreementBusiness.disabled = true;
-            agreementEmail.disabled = true;
-            agreementAccepted.disabled = true;
-            agreementSignaturePad.style.pointerEvents = "none";
-            document.getElementById("agreementSignatureClear").disabled = true;
-            document.getElementById("signAgreementButton").disabled = true;
-            document.getElementById("signAgreementButton").textContent = "Agreement Signed";
-            agreementStep.classList.add("is-complete");
-            agreementStatus.textContent = "Agreement signed ✓";
-            updateClaimSubmitAvailability();
-            smoothlyScrollToStep(developmentStep);
-        }
-
-        function demoPassDevelopment() {
-            if (!agreementSigned) demoPassAgreement();
-            developmentPurchaseConfirmed = true;
-            developmentStep.classList.add("is-complete");
-            developmentStatus.textContent = "Website development purchase confirmed ✓";
-            updateClaimSubmitAvailability();
-            smoothlyScrollToStep(claimCheckout);
-        }
-
-        function demoPassHosting() {
-            if (!developmentPurchaseConfirmed) demoPassDevelopment();
-            const plan = checkoutPlansByKey.get("standard-monthly");
-            claimPlanSelections.clear();
-            claimPlanSelections.set("standard", { plan, confirmed: true });
-            claimCheckout.classList.add("is-complete");
-            updateClaimSubmitAvailability();
-            const note = claimCheckout.querySelector(".payment-state");
-            if (note) note.textContent = "Standard Website Hosting purchase confirmed ✓";
-            claimMessageStatus.textContent = "All required steps are complete.";
-            smoothlyScrollToStep(claimForm);
-        }
-
-        async function resetDemoMode() {
-            demoMode = false;
-            demoButton.classList.remove("active");
-            demoButton.textContent = "Test";
-            demoMenu.hidden = true;
-            demoButton.setAttribute("aria-expanded", "false");
-            selectedSitePaths.clear();
-            agreementSigned = false;
-            signedAgreement = null;
-            baseAgreementId = null;
-            developmentPurchaseConfirmed = false;
-            claimPlanSelections.clear();
-            closePortal();
-            const { data: { session } } = await portalSupabase.auth.getSession();
-            await updatePortal(session);
-        }
-
-        demoButton.addEventListener("click", () => {
-            demoMenu.hidden = !demoMenu.hidden;
-            demoButton.setAttribute("aria-expanded", String(!demoMenu.hidden));
-        });
-        demoMenu.addEventListener("click", event => {
-            const action = event.target.closest("[data-demo-action]")?.dataset.demoAction;
-            if (!action) return;
-            if (action === "login") activateDemoLogin();
-            if (action === "step1") demoPassAgreement();
-            if (action === "step2") demoPassDevelopment();
-            if (action === "step3" || action === "all") demoPassHosting();
-            if (action === "reset") resetDemoMode();
-            if (action !== "reset") demoMenu.hidden = true;
+        stepSkipTrigger.addEventListener("click", () => {
+            stepSkipPanel.hidden = !stepSkipPanel.hidden;
+            stepSkipTrigger.setAttribute("aria-expanded", String(!stepSkipPanel.hidden));
+            document.getElementById("stepSkipMessage").textContent = "";
+            if (!stepSkipPanel.hidden) document.getElementById("stepSkipNote").focus();
         });
 
-        // Demo steps are passed only from the explicit buttons in the Test menu.
-        // Normal agreement and payment controls keep their production behavior.
-        document.addEventListener("click", event => {
-            if (!demoMode) return;
-            const target = event.target.closest("button, a");
-            if (!target || target === demoButton || target.closest(".demo-test-menu")) return;
-            if (target.id === "portalSignOut") {
-                event.preventDefault(); event.stopImmediatePropagation(); resetDemoMode();
-            } else if (target.classList.contains("client-nav-button")) {
-                event.preventDefault(); event.stopImmediatePropagation();
-                showPortalPanel(target.dataset.openPanel); openPortal();
-            }
-        }, true);
+        document.getElementById("stepSkipSubmit").addEventListener("click", async () => {
+            const noteInput = document.getElementById("stepSkipNote");
+            const passwordInput = document.getElementById("stepSkipPassword");
+            const message = document.getElementById("stepSkipMessage");
+            const note = noteInput.value.trim();
 
-        loginForm.addEventListener("submit", event => {
-            const email = document.getElementById("portalEmail").value.trim().toLowerCase();
-            if (email !== demoEmail) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            activateDemoLogin();
-        }, true);
-        emailAuthSubmit.addEventListener("click", event => {
-            const email = document.getElementById("portalEmail").value.trim().toLowerCase();
-            if (email !== demoEmail) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            activateDemoLogin();
-        }, true);
-
-        claimForm.addEventListener("submit", event => {
-            if (!demoMode) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            if (!(agreementSigned && developmentPurchaseConfirmed && [...claimPlanSelections.values()].some(item => item.confirmed))) {
-                claimMessageStatus.textContent = "Complete Steps 1, 2, and 3 before submitting your claim.";
+            if (!agreementSigned) {
+                message.textContent = "Complete Step 1 before skipping Step 2.";
                 return;
             }
-            const demoSites = sites.filter(site => selectedSitePaths.has(site.path)).map(site => ({
-                id: `demo-${site.path}`,
-                site_key: site.path,
-                site_name: site.name,
-                public_url: new URL(`./${site.path}/`, window.location.href).href,
-                admin_url: new URL(`./${site.path}/admin.html`, window.location.href).href,
-                status: "Active",
-                domain_name: "",
-                domain_status: "inactive"
-            }));
-            const demoSiteKeys = new Set(demoSites.map(site => site.site_key));
-            localSubmittedSites = [...localSubmittedSites.filter(site => !demoSiteKeys.has(site.site_key)), ...demoSites];
-            renderManagedSites(localSubmittedSites);
-            claimMessageStatus.textContent = "Your claim has been submitted.";
-            submitClaimButton.disabled = false;
-            submitClaimButton.textContent = "Submit Claim Request";
-            closePortal();
-            showClaimSubmitted();
-        }, true);
+            if (!note) {
+                message.textContent = "A note is required.";
+                noteInput.focus();
+                return;
+            }
+            if (await hashStepSkipPassword(passwordInput.value) !== STEP_SKIP_PASSWORD_HASH) {
+                message.textContent = "Incorrect password.";
+                passwordInput.value = "";
+                passwordInput.focus();
+                return;
+            }
+
+            developmentSkipNote = note;
+            developmentPurchaseConfirmed = true;
+            developmentStep.classList.add("is-complete");
+            updateClaimSubmitAvailability();
+            developmentStatus.textContent = "Website development payment skipped with approval ✓";
+            document.getElementById("developmentStepSummary").textContent = "Step 2 skipped with approval ✓";
+            closeStepSkipPanel();
+            smoothlyScrollToStep(claimCheckout);
+        });
 
         initializeClientMenu();
     </script>
