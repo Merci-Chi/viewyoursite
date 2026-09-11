@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vape Pirates - Las Vegas Smoke & Vape Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: #0d1b2a;
+  color: #f1faee;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.01) 40px,
+    rgba(255,255,255,0.01) 80px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ribbon-container {
+  position: relative;
+  z-index: 1;
+}
+
+.ribbon {
+  position: relative;
+  width: 120%;
+  margin-left: -10%;
+  padding: 1.2rem 3rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  z-index: 1;
+  transition: transform 0.3s ease, z-index 0s;
+}
+
+.ribbon:hover {
+  z-index: 10 !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.ribbon-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+  margin-right: 1rem;
+}
+
+.ribbon-text {
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 0.05em;
+}
+
+/* Ribbon 1 - Name (Red) */
+.ribbon-1 {
+  background: #e63946;
+  color: #f1faee;
+  transform: rotate(-2deg);
+  z-index: 5;
+  margin-top: 2rem;
+}
+.ribbon-1 .ribbon-text {
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 1;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+/* Ribbon 2 - Rating & Type (Steel Blue) */
+.ribbon-2 {
+  background: #457b9d;
+  color: #f1faee;
+  transform: rotate(1.5deg);
+  z-index: 4;
+  margin-top: -1.2rem;
+}
+.ribbon-2 .ribbon-text {
+  font-size: clamp(1.5rem, 5vw, 3.2rem);
+}
+.ribbon-2 .stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.ribbon-2 .star {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: #f1faee;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.ribbon-2 .review-count {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-left: 0.5rem;
+}
+
+/* Ribbon 3 - Address (Off-white) */
+.ribbon-3 {
+  background: #f1faee;
+  color: #0d1b2a;
+  transform: rotate(-1deg);
+  z-index: 3;
+  margin-top: -1rem;
+}
+.ribbon-3 .ribbon-text {
+  font-size: clamp(1.3rem, 4vw, 2.6rem);
+}
+
+/* Ribbon 4 - Phone (Light Teal) */
+.ribbon-4 {
+  background: #a8dadc;
+  color: #0d1b2a;
+  transform: rotate(2deg);
+  z-index: 4;
+  margin-top: -1.2rem;
+}
+.ribbon-4 .ribbon-text {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+/* Ribbon 5 - Hours (Dark Blue) */
+.ribbon-5 {
+  background: #1d3557;
+  color: #f1faee;
+  transform: rotate(-1.5deg);
+  z-index: 3;
+  margin-top: -1rem;
+}
+.ribbon-5 .ribbon-text {
+  font-size: clamp(1.3rem, 4vw, 2.8rem);
+}
+
+/* Ribbon 6 - Photo (Red) */
+.ribbon-6 {
+  background: #e63946;
+  color: #f1faee;
+  transform: rotate(1deg);
+  z-index: 4;
+  margin-top: -1rem;
+  padding: 1rem 3rem;
+  gap: 1.5rem;
+}
+.ribbon-6 .ribbon-label {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.65rem;
+}
+.ribbon-6 .photo-strip {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.ribbon-6 .photo-strip img {
+  height: 140px;
+  width: auto;
+  border-radius: 4px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+  border: 3px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.ribbon-6 .photo-strip img:hover {
+  transform: scale(1.05);
+  border-color: #f1faee;
+}
+
+/* Ribbon 7 - Nav (Steel Blue) */
+.ribbon-7 {
+  background: #457b9d;
+  color: #f1faee;
+  transform: rotate(-2.5deg);
+  z-index: 5;
+  margin-top: -1.2rem;
+  padding: 0.8rem 3rem;
+  gap: 2.5rem;
+}
+.ribbon-7 .nav-link {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: #f1faee;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.8rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.ribbon-7 .nav-link:hover {
+  border-bottom-color: #f1faee;
+  color: #a8dadc;
+}
+
+/* Ribbon 8 - Reviews (Off-white) */
+.ribbon-8 {
+  background: #f1faee;
+  color: #0d1b2a;
+  transform: rotate(0.5deg);
+  z-index: 2;
+  margin-top: -0.8rem;
+  padding: 2rem 3rem;
+}
+.ribbon-8 .reviews-header {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  margin-bottom: 1.2rem;
+  text-align: center;
+  width: 100%;
+}
+.review-blur-bar {
+  width: 100%;
+  max-width: 700px;
+  padding: 0.9rem 1.4rem;
+  margin-bottom: 0.6rem;
+  border-radius: 4px;
+  background: #d4d8dd;
+  filter: blur(4px);
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+}
+.review-blur-bar .unlock-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: none;
+  background: rgba(241,250,238,0.7);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.review-blur-bar:hover .unlock-overlay {
+  opacity: 1;
+}
+.unlock-overlay span {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1rem;
+  color: #0d1b2a;
+  letter-spacing: 0.15em;
+  background: #e63946;
+  color: #f1faee;
+  padding: 0.2rem 1rem;
+  border-radius: 2px;
+}
+
+/* Footer ribbon */
+.ribbon-footer {
+  background: #0d1b2a;
+  color: #457b9d;
+  transform: rotate(-1deg);
+  z-index: 1;
+  margin-top: -0.6rem;
+  padding: 1.5rem 3rem;
+  border-top: 3px solid #e63946;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* Paywall Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,27,42,0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.active { display: flex; }
+.modal-box {
+  background: #f1faee;
+  color: #0d1b2a;
+  border: 3px solid #e63946;
+  border-radius: 8px;
+  padding: 2.5rem 3rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+ transform: rotate(-1deg);
+}
+.modal-box h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.2rem;
+  color: #e63946;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.08em;
+}
+.modal-box p {
+  font-size: 0.95rem;
+  color: #1d3557;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+.modal-box .modal-close {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1rem;
+  background: #e63946;
+  color: #f1faee;
+  border: none;
+  padding: 0.6rem 2.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 0.12em;
+  transition: background 0.2s;
+}
+.modal-box .modal-close:hover { background: #c1121f; }
+
+/* Accessibility icon */
+.a11y-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.15);
+  padding: 0.2rem 0.7rem;
+  border-radius: 3px;
+  margin-left: 1rem;
+}
+.a11y-icon {
+  width: 14px; height: 14px;
+  fill: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .ribbon {
+    width: 110%;
+    margin-left: -5%;
+    padding: 0.8rem 1.5rem;
+  }
+  .ribbon-6 .photo-strip {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ribbon-6 .photo-strip img {
+    height: 100px;
+  }
+  .ribbon-7 { gap: 1.2rem; }
+}
+
+/* Decorative corner cuts on ribbons */
+.ribbon::before,
+.ribbon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  pointer-events: none;
+}
+.ribbon::before {
+  left: 0;
+  background: linear-gradient(135deg, #0d1b2a 49.5%, transparent 50.5%);
+}
+.ribbon::after {
+  right: 0;
+  background: linear-gradient(225deg, #0d1b2a 49.5%, transparent 50.5%);
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon-container">
+
+  <!-- Ribbon 1: Business Name (Red) -->
+  <div class="ribbon ribbon-1">
+    <span class="ribbon-text">VAPE PIRATES</span>
+  </div>
+
+  <!-- Ribbon 2: Rating & Type (Steel Blue) -->
+  <div class="ribbon ribbon-2">
+    <span class="ribbon-label">Rating</span>
+    <div class="stars">
+      <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+    </div>
+    <span class="ribbon-text">5.0</span>
+    <span class="review-count">(2,374 reviews)</span>
+    <span style="font-family:'Source Sans 3';font-size:0.8rem;opacity:0.6;margin:0 0.5rem;">|</span>
+    <span class="ribbon-label">Type</span>
+    <span class="ribbon-text" style="font-size:clamp(1rem,3vw,1.8rem);">Vape Shop</span>
+  </div>
+
+  <!-- Ribbon 3: Address (Off-white) -->
+  <div class="ribbon ribbon-3" onclick="openModal()">
+    <span class="ribbon-label">Address</span>
+    <span class="ribbon-text">3013 W Sahara Ave, Las Vegas, NV 89102</span>
+  </div>
+
+  <!-- Ribbon 4: Phone (Light Teal) -->
+  <div class="ribbon ribbon-4" onclick="openModal()">
+    <span class="ribbon-label">Phone</span>
+    <span class="ribbon-text">+1 702-331-1104</span>
+  </div>
+
+  <!-- Ribbon 5: Hours (Dark Blue) -->
+  <div class="ribbon ribbon-5" onclick="openModal()">
+    <span class="ribbon-label">Hours</span>
+    <span class="ribbon-text">Open until 10:00 PM</span>
+    <div class="a11y-badge">
+      <svg class="a11y-icon" viewBox="0 0 24 24"><path d="M12 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+      Wheelchair Accessible
+    </div>
+  </div>
+
+  <!-- Ribbon 6: Photos (Red) -->
+  <div class="ribbon ribbon-6">
+    <span class="ribbon-label">Photos</span>
+    <div class="photo-strip">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmD9PzO_VXBMMdonbqeweCp5P-WtyrE8z3a0lvHMQPXtxWKAAz_9cSoP_nfraGt3aE3CqFD9oQsh5ruuM1ILckeMzK_mGpHVLFvaJ9_NqD_N89WlhPNR_hZDtIv3sDtgfqla6UxFFreYo1a=w187-h140-k-no" alt="Vape Pirates storefront" onclick="openModal()">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkXxC1Md8mUAwEL1mGvqcpUecsGu9BboHtnSCHXjDKFXmXHo_HBZHtwokkss4EKtRdS8L49our0jWHVKuXS4taOiI9FxTuCXalB4qbQB9LVBmi0RfZwswMrh-TCJT5OyD_UvyR9=w187-h140-k-no" alt="Vape Pirates interior" onclick="openModal()">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkKaULMl_TJE5cEDdAyKCeqelERcToy74Jxa_HHeCKJOkwxcykWfZeo99RVTFBft8KaCCXHvGSqst4IhGybGqzVYBjxFtXJlw-aNZzi9OesFVrdWAVZeQFzAgYSZjVu5S_11elqTE-g57Y=w187-h140-k-no" alt="Vape Pirates products" onclick="openModal()">
+    </div>
+  </div>
+
+  <!-- Ribbon 7: Navigation (Steel Blue) -->
+  <div class="ribbon ribbon-7">
+    <a class="nav-link" onclick="openModal()">OVERVIEW</a>
+    <a class="nav-link" onclick="openModal()">REVIEWS</a>
+    <a class="nav-link" onclick="openModal()">PHOTOS</a>
+    <a class="nav-link" onclick="openModal()">DIRECTIONS</a>
+    <a class="nav-link" onclick="openModal()">WEBSITE</a>
+  </div>
+
+  <!-- Ribbon 8: Reviews (Off-white) -->
+  <div class="ribbon ribbon-8">
+    <div class="reviews-header">CUSTOMER REVIEWS</div>
+    <div class="review-blur-bar" onclick="openModal()">
+      <div class="unlock-overlay"><span>UNLOCK FULL REVIEW</span></div>
+    </div>
+    <div class="review-blur-bar" onclick="openModal()">
+      <div class="unlock-overlay"><span>UNLOCK FULL REVIEW</span></div>
+    </div>
+    <div class="review-blur-bar" onclick="openModal()">
+      <div class="unlock-overlay"><span>UNLOCK FULL REVIEW</span></div>
+    </div>
+    <div class="review-blur-bar" onclick="openModal()">
+      <div class="unlock-overlay"><span>UNLOCK FULL REVIEW</span></div>
+    </div>
+    <div class="review-blur-bar" onclick="openModal()">
+      <div class="unlock-overlay"><span>UNLOCK FULL REVIEW</span></div>
+    </div>
+  </div>
+
+  <!-- Footer Ribbon -->
+  <div class="ribbon ribbon-footer">
+    <span>VAPE PIRATES &nbsp;&bull;&nbsp; LAS VEGAS, NEVADA &nbsp;&bull;&nbsp; 390+ PHOTOS &nbsp;&bull;&nbsp; 2,374 REVIEWS</span>
+  </div>
+
+</div>
+
+<!-- Paywall Modal -->
+<div class="modal-overlay" id="paywallModal">
+  <div class="modal-box">
+    <h2>PREMIUM ACCESS</h2>
+    <p>Full business details, reviews, photos, and contact information are available with a premium membership.</p>
+    <button class="modal-close" onclick="closeModal()">CLOSE</button>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('paywallModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('paywallModal').classList.remove('active');
+}
+document.getElementById('paywallModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
