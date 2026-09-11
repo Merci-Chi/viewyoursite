@@ -418,16 +418,43 @@
         .request-item { padding: .8rem; border: 1px solid #303030; border-radius: 10px; background: #171717; }
         .request-item strong { color: #eee; }
         .request-meta { color: #888; font-size: .85rem; }
+        .support-action-bar { display: grid; grid-template-columns: 1fr 1fr 52px; gap: .7rem; margin-top: 1rem; }
+        .support-action { display: flex; align-items: center; justify-content: center; gap: .65rem; min-height: 52px; padding: .75rem; border: 1px solid #3a3a3a; border-radius: 12px; background: #252525; color: #f4f4f4; cursor: pointer; font: inherit; font-weight: 800; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+        .support-action:hover { transform: translateY(-2px); border-color: #696969; background: #2c2c2c; }
+        .support-action svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+        .support-action.icon-only { padding: .75rem; }
+        .management-modal-backdrop { position: fixed; inset: 0; z-index: 4200; display: grid; place-items: center; padding: 1rem; background: rgba(0,0,0,.76); backdrop-filter: blur(8px); }
+        .management-modal-backdrop[hidden] { display: none !important; }
+        .management-modal { position: relative; width: min(600px, 100%); max-height: min(780px, 88vh); overflow: auto; padding: 1.4rem; border: 1px solid #3b3b3b; border-radius: 20px; background: linear-gradient(145deg, #232323, #171717); box-shadow: 0 28px 90px rgba(0,0,0,.65); }
+        .management-modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+        .management-modal-heading { display: flex; align-items: center; gap: .7rem; }
+        .management-modal-heading svg { width: 24px; height: 24px; fill: none; stroke: #ddd; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+        .management-modal-close { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #3b3b3b; border-radius: 50%; background: #292929; color: #ddd; cursor: pointer; font-size: 1.25rem; }
+        .custom-select { position: relative; }
+        .custom-select-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; padding: .78rem .85rem; border: 1px solid #3a3a3a; border-radius: 10px; background: #141414; color: #fff; cursor: pointer; font: inherit; text-align: left; }
+        .custom-select-trigger::after { content: ''; width: 8px; height: 8px; border-right: 2px solid #999; border-bottom: 2px solid #999; transform: rotate(45deg) translateY(-2px); transition: transform .18s ease; }
+        .custom-select.open .custom-select-trigger::after { transform: rotate(225deg) translate(-2px,-2px); }
+        .custom-select-menu { position: absolute; z-index: 2; top: calc(100% + 7px); left: 0; right: 0; display: grid; gap: .35rem; padding: .45rem; border: 1px solid #3b3b3b; border-radius: 12px; background: #202020; box-shadow: 0 16px 38px rgba(0,0,0,.5); }
+        .custom-select-menu[hidden] { display: none !important; }
+        .custom-select-option { padding: .7rem .75rem; border: 0; border-radius: 8px; background: transparent; color: #ddd; cursor: pointer; font: inherit; text-align: left; }
+        .custom-select-option:hover, .custom-select-option.selected { background: #333; color: #fff; }
+        .history-modal .request-history { max-height: 55vh; }
         .claim-confirmation-card { text-align: center; }
         .claim-confirmation-card .purchase-check { margin-inline: auto; }
         body.light-mode .management-card, body.light-mode .request-item { border-color: #d7d7d2; background: #fff; }
         body.light-mode .management-card h3, body.light-mode .management-card h4, body.light-mode .request-item strong { color: #222; }
         body.light-mode .management-form input, body.light-mode .management-form select, body.light-mode .management-form textarea { border-color: #ccc; background: #f7f7f4; color: #222; }
         body.light-mode .managed-site-card, body.light-mode .domain-box { border-color: #d7d7d2; background: #f7f7f4; }
+        body.light-mode .support-action, body.light-mode .management-modal, body.light-mode .management-modal-close, body.light-mode .custom-select-menu { border-color: #d2d2cd; background: #fff; color: #222; }
+        body.light-mode .custom-select-trigger { border-color: #ccc; background: #f7f7f4; color: #222; }
+        body.light-mode .custom-select-option { color: #333; }
+        body.light-mode .custom-select-option:hover, body.light-mode .custom-select-option.selected { background: #ecece8; color: #111; }
         @media (max-width: 760px) {
             .management-grid, .management-form-row { grid-template-columns: 1fr; }
             .management-overview { grid-column: auto; }
             .domain-box { grid-template-columns: 1fr; }
+            .support-action-bar { grid-template-columns: 1fr 1fr 48px; }
+            .support-action span { font-size: .86rem; }
         }
     </style>
 </head>
@@ -626,28 +653,61 @@
                             <button id="openMySite" type="button" hidden>Open My Site</button>
                         </div>
                         <div class="management-card">
-                            <h3>Request an Update or Report a Bug</h3>
-                            <p>Send your request directly to the team managing your website.</p>
-                            <form class="management-form" id="siteRequestForm">
-                                <div class="management-form-row">
-                                    <label>Website <select id="siteRequestSite" required></select></label>
-                                    <label>Request type
-                                        <select id="siteRequestType" required>
-                                            <option value="update">Website update</option>
-                                            <option value="bug">Report a bug</option>
-                                        </select>
-                                    </label>
+                            <h3>Website Support</h3>
+                            <p>Request a change, report a problem, or review your previous requests.</p>
+                            <div class="support-action-bar">
+                                <button class="support-action" id="openUpdateRequest" type="button">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+                                    <span>Request an Update</span>
+                                </button>
+                                <button class="support-action" id="openBugReport" type="button">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9h8M9 4l1.2 2M15 4l-1.2 2M6 13H3M21 13h-3M6.5 8 4 6M17.5 8 20 6M8 6h8a2 2 0 0 1 2 2v7a6 6 0 0 1-12 0V8a2 2 0 0 1 2-2Z"/></svg>
+                                    <span>Report a Bug</span>
+                                </button>
+                                <button class="support-action icon-only" id="openRequestHistory" type="button" aria-label="Request history" title="Request history">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="management-modal-backdrop" id="siteRequestModal" hidden>
+                        <section class="management-modal" role="dialog" aria-modal="true" aria-labelledby="siteRequestModalTitle">
+                            <header class="management-modal-header">
+                                <div class="management-modal-heading">
+                                    <svg id="siteRequestModalIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+                                    <div><h3 id="siteRequestModalTitle">Request an Update</h3><p>Tell us exactly what you would like changed.</p></div>
                                 </div>
-                                <label>Subject <input id="siteRequestSubject" type="text" maxlength="120" required></label>
-                                <label>Details <textarea id="siteRequestDetails" maxlength="3000" required></textarea></label>
+                                <button class="management-modal-close" id="closeSiteRequestModal" type="button" aria-label="Close">×</button>
+                            </header>
+                            <form class="management-form" id="siteRequestForm">
+                                <input id="siteRequestType" type="hidden" value="update">
+                                <label>Website
+                                    <select id="siteRequestSite" hidden></select>
+                                    <div class="custom-select" id="sitePicker">
+                                        <button class="custom-select-trigger" id="sitePickerButton" type="button" aria-expanded="false">Choose your website</button>
+                                        <div class="custom-select-menu" id="sitePickerMenu" hidden></div>
+                                    </div>
+                                </label>
+                                <label>Subject <input id="siteRequestSubject" type="text" maxlength="120" placeholder="What needs attention?" required></label>
+                                <label>Details <textarea id="siteRequestDetails" maxlength="3000" placeholder="Include the page, requested change, or steps that caused the problem." required></textarea></label>
                                 <button class="portal-primary" id="siteRequestSubmit" type="submit">Submit Request</button>
                                 <p class="portal-message" id="siteRequestMessage" role="status"></p>
                             </form>
-                        </div>
-                        <div class="management-card">
-                            <h3>Recent Requests</h3>
+                        </section>
+                    </div>
+
+                    <div class="management-modal-backdrop" id="requestHistoryModal" hidden>
+                        <section class="management-modal history-modal" role="dialog" aria-modal="true" aria-labelledby="requestHistoryTitle">
+                            <header class="management-modal-header">
+                                <div class="management-modal-heading">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg>
+                                    <div><h3 id="requestHistoryTitle">Request History</h3><p>Track updates and reported problems.</p></div>
+                                </div>
+                                <button class="management-modal-close" id="closeRequestHistoryModal" type="button" aria-label="Close">×</button>
+                            </header>
                             <div class="request-history" id="siteRequestHistory"></div>
-                        </div>
+                        </section>
                     </div>
                 </section>
 
@@ -861,6 +921,13 @@
         const siteRequestSubmit = document.getElementById("siteRequestSubmit");
         const siteRequestMessage = document.getElementById("siteRequestMessage");
         const siteRequestHistory = document.getElementById("siteRequestHistory");
+        const siteRequestModal = document.getElementById("siteRequestModal");
+        const requestHistoryModal = document.getElementById("requestHistoryModal");
+        const siteRequestModalTitle = document.getElementById("siteRequestModalTitle");
+        const siteRequestModalIcon = document.getElementById("siteRequestModalIcon");
+        const sitePicker = document.getElementById("sitePicker");
+        const sitePickerButton = document.getElementById("sitePickerButton");
+        const sitePickerMenu = document.getElementById("sitePickerMenu");
         const agreementStep = document.getElementById("agreementStep");
         const agreementSigner = document.getElementById("agreementSigner");
         const agreementBusiness = document.getElementById("agreementBusiness");
@@ -1534,6 +1601,37 @@
                 return "";
             }
         }
+        function renderSitePicker() {
+            sitePickerMenu.replaceChildren();
+            const options = [...siteRequestSite.options].filter(option => option.value);
+            if (!options.length) {
+                sitePickerButton.textContent = "Website access pending";
+                sitePickerButton.disabled = true;
+                sitePickerMenu.hidden = true;
+                return;
+            }
+            sitePickerButton.disabled = false;
+            if (!siteRequestSite.value) siteRequestSite.value = options[0].value;
+            const selected = options.find(option => option.value === siteRequestSite.value) || options[0];
+            siteRequestSite.value = selected.value;
+            sitePickerButton.textContent = selected.textContent;
+            options.forEach(option => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "custom-select-option";
+                button.classList.toggle("selected", option.value === siteRequestSite.value);
+                button.textContent = option.textContent;
+                button.addEventListener("click", () => {
+                    siteRequestSite.value = option.value;
+                    sitePickerButton.textContent = option.textContent;
+                    sitePickerMenu.querySelectorAll(".custom-select-option").forEach(item => item.classList.toggle("selected", item === button));
+                    sitePickerMenu.hidden = true;
+                    sitePicker.classList.remove("open");
+                    sitePickerButton.setAttribute("aria-expanded", "false");
+                });
+                sitePickerMenu.appendChild(button);
+            });
+        }
         function renderManagedSites(siteRows) {
             currentManagedSites = siteRows;
             managedSitesList.replaceChildren();
@@ -1548,6 +1646,7 @@
                 siteRequestSite.appendChild(option);
                 siteRequestSite.disabled = true;
                 siteRequestSubmit.disabled = true;
+                renderSitePicker();
                 return;
             }
             siteRequestSite.disabled = false;
@@ -1610,6 +1709,7 @@
                 option.textContent = site.site_name || "My Website";
                 siteRequestSite.appendChild(option);
             });
+            renderSitePicker();
         }
         function renderSiteRequests(rows) {
             siteRequestHistory.replaceChildren();
@@ -1732,6 +1832,51 @@
                 const { data: { session } } = await portalSupabase.auth.getSession();
                 await loadSiteManagement(session);
             }
+        });
+        function openSiteRequest(type) {
+            const isBug = type === "bug";
+            siteRequestType.value = type;
+            siteRequestModalTitle.textContent = isBug ? "Report a Bug" : "Request an Update";
+            siteRequestModalIcon.innerHTML = isBug
+                ? '<path d="M8 9h8M9 4l1.2 2M15 4l-1.2 2M6 13H3M21 13h-3M6.5 8 4 6M17.5 8 20 6M8 6h8a2 2 0 0 1 2 2v7a6 6 0 0 1-12 0V8a2 2 0 0 1 2-2Z"/>'
+                : '<path d="M12 19V5M6 11l6-6 6 6"/>';
+            siteRequestSubject.value = "";
+            siteRequestDetails.value = "";
+            siteRequestMessage.textContent = "";
+            renderSitePicker();
+            siteRequestModal.hidden = false;
+            window.setTimeout(() => siteRequestSubject.focus(), 30);
+        }
+        function closeManagementModal(modal) {
+            modal.hidden = true;
+            sitePickerMenu.hidden = true;
+            sitePicker.classList.remove("open");
+            sitePickerButton.setAttribute("aria-expanded", "false");
+        }
+        document.getElementById("openUpdateRequest").addEventListener("click", () => openSiteRequest("update"));
+        document.getElementById("openBugReport").addEventListener("click", () => openSiteRequest("bug"));
+        document.getElementById("openRequestHistory").addEventListener("click", () => { requestHistoryModal.hidden = false; });
+        document.getElementById("closeSiteRequestModal").addEventListener("click", () => closeManagementModal(siteRequestModal));
+        document.getElementById("closeRequestHistoryModal").addEventListener("click", () => closeManagementModal(requestHistoryModal));
+        [siteRequestModal, requestHistoryModal].forEach(modal => modal.addEventListener("click", event => {
+            if (event.target === modal) closeManagementModal(modal);
+        }));
+        sitePickerButton.addEventListener("click", () => {
+            if (sitePickerButton.disabled) return;
+            sitePickerMenu.hidden = !sitePickerMenu.hidden;
+            sitePicker.classList.toggle("open", !sitePickerMenu.hidden);
+            sitePickerButton.setAttribute("aria-expanded", String(!sitePickerMenu.hidden));
+        });
+        document.addEventListener("click", event => {
+            if (sitePicker.contains(event.target)) return;
+            sitePickerMenu.hidden = true;
+            sitePicker.classList.remove("open");
+            sitePickerButton.setAttribute("aria-expanded", "false");
+        });
+        document.addEventListener("keydown", event => {
+            if (event.key !== "Escape") return;
+            if (!siteRequestModal.hidden) closeManagementModal(siteRequestModal);
+            if (!requestHistoryModal.hidden) closeManagementModal(requestHistoryModal);
         });
         siteRequestForm.addEventListener("submit", async event => {
             event.preventDefault();
