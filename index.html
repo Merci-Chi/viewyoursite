@@ -281,7 +281,6 @@
         .purchase-step.is-collapsed > :not(.step-check):not(h4):not(.step-summary) { display: none !important; }
         .step-summary { display: none; margin-top: .25rem; color: #91cf87; font-size: .84rem; line-height: 1.35; }
         .purchase-step.is-collapsed.is-complete .step-summary { display: block; }
-        .purchase-step:not(.is-complete) .step-summary { display: none !important; }
         .purchase-step.is-locked { opacity: .58; }
         .step-check { position: absolute; top: 1rem; left: 1rem; display: grid; width: 30px; height: 30px; place-items: center; border: 2px solid #555; border-radius: 50%; color: transparent; font-weight: 800; }
         .purchase-step.is-complete .step-check { border-color: #84c978; background: #244424; color: #baf0ae; }
@@ -381,6 +380,16 @@
             .portal-nav { grid-template-columns: 1fr; }
             .available-plans { grid-template-columns: 1fr; }
         }
+        .demo-test-button { position: fixed; z-index: 5000; top: 14px; right: 14px; padding: .7rem 1rem; border: 1px solid #79cfff; border-radius: 999px; background: #102b3a; color: #dff5ff; box-shadow: 0 8px 28px rgba(0,0,0,.38); cursor: pointer; font: inherit; font-weight: 800; }
+        .demo-test-button.active { border-color: #8ee382; background: #18351b; color: #dfffdc; }
+        .demo-test-menu { position: fixed; z-index: 4999; top: 66px; right: 14px; display: grid; width: min(270px, calc(100vw - 28px)); gap: .55rem; padding: .85rem; border: 1px solid #3e5966; border-radius: 14px; background: rgba(17,24,28,.98); box-shadow: 0 18px 55px rgba(0,0,0,.55); }
+        .demo-test-menu[hidden] { display: none !important; }
+        .demo-test-menu strong { color: #fff; }
+        .demo-test-menu small { color: #aebcc3; line-height: 1.4; }
+        .demo-test-menu button { padding: .7rem .8rem; border: 1px solid #40515a; border-radius: 9px; background: #233039; color: #fff; cursor: pointer; font: inherit; text-align: left; }
+        .demo-test-menu button:hover { border-color: #79cfff; }
+        .demo-test-menu .demo-reset { border-color: #674242; color: #ffcaca; }
+        .demo-mode-badge { display: inline-flex; margin-left: .45rem; padding: .18rem .45rem; border-radius: 999px; background: #244424; color: #baf0ae; font-size: .7rem; font-weight: 800; vertical-align: middle; }
     </style>
 </head>
 
@@ -732,14 +741,6 @@
                 detectSessionInUrl: true
             }
         });
-        async function invokeAuthenticatedFunction(name, body) {
-            const { data: { session } } = await portalSupabase.auth.getSession();
-            return portalSupabase.functions.invoke(name, {
-                method: "POST",
-                headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {},
-                body
-            });
-        }
         const accountButton = document.getElementById("clientAccountButton");
         const clientNavButtons = document.querySelectorAll(".client-nav-button");
         const portalOverlay = document.getElementById("portalOverlay");
@@ -926,7 +927,10 @@
                 const code = input.value.trim().toUpperCase();
                 button.disabled = true;
                 message.textContent = "Checking code…";
-                const { data, error } = await invokeAuthenticatedFunction("square-subscriptions", { action: "validate-discount-code", code });
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "validate-discount-code", code }
+                });
                 button.disabled = false;
                 const accepted = !error && data?.valid === true;
                 plan.hidden = !accepted;
@@ -968,7 +972,10 @@
             }
             const deadline = Date.now() + 10 * 60 * 1000;
             while (Date.now() < deadline) {
-                const { data, error } = await invokeAuthenticatedFunction("square-subscriptions", { action: "verify-checkout", checkoutId: pending.checkoutId });
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "verify-checkout", checkoutId: pending.checkoutId }
+                });
                 if (!error && data?.verified) {
                     sessionStorage.removeItem(PURCHASE_PENDING_KEY);
                     if (statusElement) {
@@ -1001,26 +1008,6 @@
                 statusElement.textContent = "Payment is still processing. Use Refresh Subscriptions in a moment; no success is shown until Square confirms it.";
             }
             return false;
-        }
-
-        async function getFunctionErrorMessage(error, data) {
-            if (data?.message) return data.message;
-            const context = error?.context;
-            if (context) {
-                try {
-                    const response = typeof context.clone === "function" ? context.clone() : context;
-                    const payload = await response.json();
-                    if (payload?.message) return payload.message;
-                    if (payload?.error) return typeof payload.error === "string" ? payload.error : JSON.stringify(payload.error);
-                } catch (_) {
-                    try {
-                        const response = typeof context.clone === "function" ? context.clone() : context;
-                        const text = await response.text();
-                        if (text) return text;
-                    } catch (_) {}
-                }
-            }
-            return error?.message || "We couldn’t start checkout. Please try again.";
         }
 
         async function startVerifiedCheckout(plan, options = {}) {
@@ -1056,17 +1043,20 @@
             }
             statusElement.className = "payment-state verifying";
             statusElement.textContent = "Creating your secure Square checkout…";
-            const { data, error } = await invokeAuthenticatedFunction("square-subscriptions", {
+            const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                method: "POST",
+                body: {
                     action: "create-checkout",
                     planKey: plan.key,
                     agreementId,
                     discountCode: options.discountCode || null,
                     returnUrl: `${window.location.origin}${window.location.pathname}?square_checkout=return`
+                }
             });
             if (error || !data?.checkoutUrl || !data?.checkoutId) {
                 checkoutWindow?.close();
                 statusElement.className = "payment-state";
-                statusElement.textContent = await getFunctionErrorMessage(error, data);
+                statusElement.textContent = data?.message || "We couldn’t start checkout. Please try again.";
                 return;
             }
             const pending = { checkoutId: data.checkoutId, planKey: plan.key, planLabel: plan.label, claimType: options.claimType || null, agreementId };
@@ -1425,7 +1415,10 @@
             confirmButton.addEventListener("click", async () => {
                 confirmButton.disabled = true;
                 confirmButton.textContent = "Cancelling…";
-                const { data, error } = await invokeAuthenticatedFunction("square-subscriptions", { action: "cancel", subscriptionId: subscription.id });
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "cancel", subscriptionId: subscription.id }
+                });
                 if (error || !data?.success) {
                     message.textContent = "We couldn’t cancel this subscription. Please contact support@steadyhandsop.com.";
                     confirmButton.disabled = false;
@@ -1669,7 +1662,9 @@
             submitClaimButton.disabled = true;
             submitClaimButton.textContent = "Submitting…";
             claimMessageStatus.textContent = "Submitting your claim request…";
-            const { data, error } = await invokeAuthenticatedFunction("site-claims", {
+            const { data, error } = await portalSupabase.functions.invoke("site-claims", {
+                method: "POST",
+                body: {
                     sites: selectedSites.map(site => ({ path: site.path, name: site.name, hostingType: site.hostingType })),
                     hostingSelections,
                     agreementSigner: signedAgreement.signer,
@@ -1694,6 +1689,7 @@
                     websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
                     discountCode: appliedDiscountCode || null,
                     message: ""
+                }
             });
             submitClaimButton.textContent = "Submit Claim Request";
             if (error || !data?.success) {
@@ -1749,6 +1745,195 @@
                 }
             }
         }
+
+        // Local-only demo controls. Demo mode never writes to Supabase or opens Square.
+        let demoMode = false;
+        const demoEmail = "demo@steadyhandsop.com";
+        const demoButton = document.createElement("button");
+        demoButton.type = "button";
+        demoButton.className = "demo-test-button";
+        demoButton.textContent = "Test";
+        demoButton.setAttribute("aria-expanded", "false");
+        const demoMenu = document.createElement("aside");
+        demoMenu.className = "demo-test-menu";
+        demoMenu.hidden = true;
+        demoMenu.innerHTML = `
+            <strong>Local demo mode</strong>
+            <small>Nothing completed here is sent to Supabase or Square.</small>
+            <button type="button" data-demo-action="login">Demo login</button>
+            <button type="button" data-demo-action="step1">Pass Step 1 · Agreement</button>
+            <button type="button" data-demo-action="step2">Pass Step 2 · Development</button>
+            <button type="button" data-demo-action="step3">Pass Step 3 · Hosting</button>
+            <button type="button" data-demo-action="all">Pass all steps</button>
+            <button type="button" class="demo-reset" data-demo-action="reset">Exit and reset demo</button>`;
+        document.body.append(demoButton, demoMenu);
+
+        function ensureDemoWorkflow() {
+            if (!sites.length) sites.push({ name: "Demo Website", path: "demo-website", hostingType: "standard" });
+            if (!selectedSitePaths.size) {
+                selectedSitePaths.add(sites[0].path);
+                renderClaimSelection();
+            }
+            showPortalPanel("claimPanel");
+            openPortal();
+        }
+
+        function activateDemoLogin() {
+            demoMode = true;
+            demoButton.classList.add("active");
+            demoButton.textContent = "Test · ON";
+            document.body.classList.add("client-is-logged-in");
+            setClientMenuLoggedIn(true);
+            loginView.hidden = true;
+            accountView.hidden = false;
+            accountEmail.textContent = demoEmail;
+            accountSummaryEmail.textContent = demoEmail;
+            loginMessage.textContent = "Local demo login active. No Supabase user was created.";
+            ensureDemoWorkflow();
+        }
+
+        function demoPassAgreement() {
+            if (!demoMode) activateDemoLogin();
+            ensureDemoWorkflow();
+            agreementSigner.value = "Demo Client";
+            agreementBusiness.value = "Demo Business LLC";
+            agreementEmail.value = demoEmail;
+            agreementAccepted.checked = true;
+            prepareAgreementSignaturePad();
+            const rect = agreementSignaturePad.getBoundingClientRect();
+            agreementSignatureContext.beginPath();
+            agreementSignatureContext.moveTo(30, Math.max(45, rect.height * .55));
+            agreementSignatureContext.bezierCurveTo(85, 10, 120, Math.max(80, rect.height * .75), 190, 35);
+            agreementSignatureContext.stroke();
+            agreementSignatureHasInk = true;
+            agreementSignature.value = agreementSignaturePad.toDataURL("image/png");
+            signedAgreement = {
+                signer: "Demo Client",
+                business: "Demo Business LLC",
+                email: demoEmail,
+                signature: agreementSignature.value,
+                signedAt: new Date().toISOString(),
+                version: AGREEMENT_VERSION
+            };
+            baseAgreementId = "demo-agreement-local-only";
+            agreementSigned = true;
+            agreementSigner.disabled = true;
+            agreementBusiness.disabled = true;
+            agreementEmail.disabled = true;
+            agreementAccepted.disabled = true;
+            agreementSignaturePad.style.pointerEvents = "none";
+            document.getElementById("agreementSignatureClear").disabled = true;
+            document.getElementById("signAgreementButton").disabled = true;
+            document.getElementById("signAgreementButton").textContent = "Demo Agreement Passed";
+            agreementStep.classList.add("is-complete");
+            agreementStatus.textContent = "Demo agreement completed locally ✓";
+            updateClaimSubmitAvailability();
+            smoothlyScrollToStep(developmentStep);
+        }
+
+        function demoPassDevelopment() {
+            if (!agreementSigned) demoPassAgreement();
+            developmentPurchaseConfirmed = true;
+            developmentStep.classList.add("is-complete");
+            developmentStatus.textContent = "Demo development payment passed locally ✓";
+            updateClaimSubmitAvailability();
+            smoothlyScrollToStep(claimCheckout);
+        }
+
+        function demoPassHosting() {
+            if (!developmentPurchaseConfirmed) demoPassDevelopment();
+            const plan = checkoutPlansByKey.get("standard-monthly");
+            claimPlanSelections.clear();
+            claimPlanSelections.set("standard", { plan, confirmed: true });
+            claimCheckout.classList.add("is-complete");
+            updateClaimSubmitAvailability();
+            const note = claimCheckout.querySelector(".payment-state");
+            if (note) note.textContent = "Demo Standard Hosting passed locally ✓";
+            claimMessageStatus.textContent = "All demo steps are complete. No payment or database record was created.";
+            smoothlyScrollToStep(claimForm);
+        }
+
+        async function resetDemoMode() {
+            demoMode = false;
+            demoButton.classList.remove("active");
+            demoButton.textContent = "Test";
+            demoMenu.hidden = true;
+            demoButton.setAttribute("aria-expanded", "false");
+            selectedSitePaths.clear();
+            agreementSigned = false;
+            signedAgreement = null;
+            baseAgreementId = null;
+            developmentPurchaseConfirmed = false;
+            claimPlanSelections.clear();
+            closePortal();
+            const { data: { session } } = await portalSupabase.auth.getSession();
+            await updatePortal(session);
+        }
+
+        demoButton.addEventListener("click", () => {
+            demoMenu.hidden = !demoMenu.hidden;
+            demoButton.setAttribute("aria-expanded", String(!demoMenu.hidden));
+        });
+        demoMenu.addEventListener("click", event => {
+            const action = event.target.closest("[data-demo-action]")?.dataset.demoAction;
+            if (!action) return;
+            if (action === "login") activateDemoLogin();
+            if (action === "step1") demoPassAgreement();
+            if (action === "step2") demoPassDevelopment();
+            if (action === "step3" || action === "all") demoPassHosting();
+            if (action === "reset") resetDemoMode();
+            if (action !== "reset") demoMenu.hidden = true;
+        });
+
+        // Capture demo actions before the production handlers can contact Supabase or Square.
+        document.addEventListener("click", event => {
+            if (!demoMode) return;
+            const target = event.target.closest("button, a");
+            if (!target || target === demoButton || target.closest(".demo-test-menu")) return;
+            if (target.id === "signAgreementButton") {
+                event.preventDefault(); event.stopImmediatePropagation(); demoPassAgreement();
+            } else if (target.id === "purchaseDevelopmentButton") {
+                event.preventDefault(); event.stopImmediatePropagation(); demoPassDevelopment();
+            } else if (target.matches("[data-hosting-plan], [data-discount-checkout]") || target.closest("#claimCheckoutLinks")) {
+                event.preventDefault(); event.stopImmediatePropagation(); demoPassHosting();
+            } else if (target.matches("[data-discount-apply], #refreshSubscriptions, .cancel-subscription")) {
+                event.preventDefault(); event.stopImmediatePropagation();
+                claimMessageStatus.textContent = "That network action is disabled in local demo mode.";
+            } else if (target.id === "portalSignOut") {
+                event.preventDefault(); event.stopImmediatePropagation(); resetDemoMode();
+            } else if (target.classList.contains("client-nav-button")) {
+                event.preventDefault(); event.stopImmediatePropagation();
+                showPortalPanel(target.dataset.openPanel); openPortal();
+            }
+        }, true);
+
+        loginForm.addEventListener("submit", event => {
+            const email = document.getElementById("portalEmail").value.trim().toLowerCase();
+            if (email !== demoEmail) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            activateDemoLogin();
+        }, true);
+        emailAuthSubmit.addEventListener("click", event => {
+            const email = document.getElementById("portalEmail").value.trim().toLowerCase();
+            if (email !== demoEmail) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            activateDemoLogin();
+        }, true);
+
+        claimForm.addEventListener("submit", event => {
+            if (!demoMode) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            if (!(agreementSigned && developmentPurchaseConfirmed && [...claimPlanSelections.values()].some(item => item.confirmed))) {
+                claimMessageStatus.textContent = "Pass Steps 1, 2, and 3 before completing the demo.";
+                return;
+            }
+            claimMessageStatus.textContent = "Demo claim completed locally ✓ Nothing was sent to Supabase or Square.";
+            submitClaimButton.disabled = false;
+            submitClaimButton.textContent = "Demo Complete";
+        }, true);
 
         initializeClientMenu();
     </script>
