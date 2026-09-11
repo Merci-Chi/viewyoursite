@@ -517,6 +517,24 @@
         const GITHUB_USER = "Merci-chi";
         const GITHUB_REPO = "viewyoursite";
         const SITES_FOLDER = "Sites";
+        // Rearrange these folder names to control the gallery order.
+        // New folders that are not listed here appear afterward alphabetically.
+        const SITE_ORDER = [
+            "CleaningAndLandscaping",
+            "GoldRushSmokeShop",
+            "PremierTaxInsuranceMultiServices",
+            "SMOKEWORLD",
+            "VAPEPIRATES",
+            "XOMiniMart",
+            "desertforestlandscape",
+            "espinozanotary",
+            "favoriteplacetoshop",
+            "greenhousewaterheaters",
+            "shopvezzy",
+            "spaincity",
+            "stripsmokeshop",
+            "studio47hairsalon"
+        ];
         const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/claimed_site_keys?select=site_key";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
@@ -543,7 +561,7 @@
                 if (!response.ok) throw new Error("API failed");
                 const data = await response.json();
 
-                sites = data
+                const discoveredSites = data
                     .filter(item => item.type === "dir")
                     .map(folder => {
                         const prettyName = folder.name
@@ -552,6 +570,16 @@
                         // Default hostingType to "standard" since we don't know it from the folder name
                         return { name: prettyName, path: folder.name, hostingType: "standard" };
                     });
+
+                const orderIndex = new Map(SITE_ORDER.map((path, index) => [path, index]));
+                const listedSites = discoveredSites
+                    .filter(site => orderIndex.has(site.path))
+                    .sort((a, b) => orderIndex.get(a.path) - orderIndex.get(b.path));
+                const unlistedSites = discoveredSites
+                    .filter(site => !orderIndex.has(site.path))
+                    .sort((a, b) => a.name.localeCompare(b.name));
+
+                sites = [...listedSites, ...unlistedSites];
 
                 try {
                     await fetchClaimedSitePaths();
