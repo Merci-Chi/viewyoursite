@@ -5,6 +5,12 @@ const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,
 
 Deno.serve(async(req)=>{
  if(req.method==="OPTIONS")return new Response("ok",{headers:cors});
+ if(req.method==="GET"){
+  const db=createClient(Deno.env.get("SUPABASE_URL")!,Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const{data,error}=await db.from("sites").select("sitekey").not("userid","is",null).not("sitekey","is",null);
+  if(error)return json({message:"Claim registry unavailable."},500);
+  return json(data||[]);
+ }
  if(req.method!=="POST")return json({message:"Method not allowed."},405);
  try{
   const authorization=req.headers.get("Authorization")||"";
