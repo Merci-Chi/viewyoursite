@@ -842,7 +842,7 @@
             "z-smokes-and-vapes",
         ];
 
-        const CLAIMS_API_URL = null;
+        const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/functions/v1/site-claims";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
         let sites = [];
@@ -858,7 +858,7 @@
             const rows = await response.json();
             claimedSitePaths.clear();
             rows.forEach(row => {
-                if (row?.site_key) claimedSitePaths.add(String(row.site_key));
+                if (row?.sitekey) claimedSitePaths.add(String(row.sitekey));
             });
             claimRegistryLoaded = true;
         }
