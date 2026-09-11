@@ -183,6 +183,7 @@
         .portal-account-header { margin-bottom: 1.25rem; padding-right: 2rem; text-align: left; }
         .portal-account-email { color: #888; }
         .portal-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; margin-bottom: 1.5rem; padding: .35rem; border-radius: 12px; background: #202020; }
+        .portal-nav.no-site { grid-template-columns: repeat(3, 1fr); }
         .portal-nav-button { padding: .75rem .5rem; border: 0; border-radius: 9px; background: transparent; color: #8b8b8b; cursor: pointer; font: inherit; }
         .portal-nav-button.active { background: #383838; color: #fff; }
         .portal-panel h3 { margin-bottom: .75rem; font-weight: 500; }
@@ -458,6 +459,9 @@
             .support-action-bar { grid-template-columns: 1fr 1fr 48px; }
             .support-action span { font-size: .86rem; }
         }
+        @media (max-width: 480px) {
+            .portal-nav, .portal-nav.no-site { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
@@ -486,10 +490,10 @@
     </main>
 
     <div class="claim-selection-bar" id="claimSelectionBar" hidden>
-        <span class="claim-selection-count" id="claimSelectionCount">0 sites selected</span>
+        <span class="claim-selection-count" id="claimSelectionCount">Select one site</span>
         <div class="claim-selection-actions">
             <button class="claim-cancel" id="cancelSiteSelection" type="button">Cancel</button>
-            <button class="claim-add" id="addSelectedSites" type="button" disabled>Add Selected Sites</button>
+            <button class="claim-add" id="addSelectedSites" type="button" disabled>Continue with Selected Site</button>
         </div>
     </div>
 
@@ -597,9 +601,12 @@
                 card.addEventListener("click", event => {
                     if (!document.body.classList.contains("selection-mode")) return;
                     event.preventDefault();
-                    if (selectedSitePaths.has(site.path)) selectedSitePaths.delete(site.path);
-                    else selectedSitePaths.add(site.path);
-                    card.classList.toggle("selected", selectedSitePaths.has(site.path));
+                    const wasSelected = selectedSitePaths.has(site.path);
+                    selectedSitePaths.clear();
+                    if (!wasSelected) selectedSitePaths.add(site.path);
+                    gallery.querySelectorAll(".site-card").forEach(siteCard => {
+                        siteCard.classList.toggle("selected", selectedSitePaths.has(siteCard.dataset.sitePath));
+                    });
                     updateSelectionBar();
                 });
 
@@ -645,9 +652,9 @@
                     <p class="portal-account-email" id="portalAccountEmail"></p>
                 </header>
 
-                <nav class="portal-nav" aria-label="Client portal">
+                <nav class="portal-nav no-site" id="portalNavigation" aria-label="Client portal">
                     <button class="portal-nav-button" id="portalSiteButton" type="button" data-portal-panel="sitePanel">Claim Your Site</button>
-                    <button class="portal-nav-button" type="button" data-portal-panel="subscriptionsPanel">Manage Subscription</button>
+                    <button class="portal-nav-button" id="portalSubscriptionButton" type="button" data-portal-panel="subscriptionsPanel" hidden>Manage Subscription</button>
                     <button class="portal-nav-button active" type="button" data-portal-panel="accountPanel">Settings</button>
                     <button class="portal-nav-button" type="button" data-portal-panel="helpPanel">Help</button>
                 </nav>
@@ -973,6 +980,8 @@
         const requestSubmittedOverlay = document.getElementById("requestSubmittedOverlay");
         const mainSiteButton = document.getElementById("mainSiteButton");
         const portalSiteButton = document.getElementById("portalSiteButton");
+        const portalNavigation = document.getElementById("portalNavigation");
+        const portalSubscriptionButton = document.getElementById("portalSubscriptionButton");
         const managedSitesList = document.getElementById("managedSitesList");
         const siteRequestForm = document.getElementById("siteRequestForm");
         const siteRequestSite = document.getElementById("siteRequestSite");
@@ -1381,7 +1390,7 @@
 
         function updateSelectionBar() {
             const count = selectedSitePaths.size;
-            claimSelectionCount.textContent = `${count} ${count === 1 ? "site" : "sites"} selected`;
+            claimSelectionCount.textContent = count ? "1 site selected" : "Select one site";
             addSelectedSitesButton.disabled = count === 0;
         }
 
@@ -1760,6 +1769,9 @@
             const hasManagedSite = siteRows.length > 0;
             mainSiteButton.textContent = hasManagedSite ? "My Site" : "Claim Your Site";
             portalSiteButton.textContent = hasManagedSite ? "My Site" : "Claim Your Site";
+            portalSubscriptionButton.hidden = !hasManagedSite;
+            portalNavigation.classList.toggle("no-site", !hasManagedSite);
+            if (!hasManagedSite && pendingPanel === "subscriptionsPanel") showPortalPanel("sitePanel");
             document.getElementById("claimYourSite").textContent = siteRows.length ? "Claim Another Site" : "Claim a Site";
             managedSitesList.replaceChildren();
             siteRequestSite.replaceChildren();
