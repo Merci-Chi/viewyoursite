@@ -1,0 +1,68 @@
+#	Name	Address	Phone	Rating	Business Type	Hours	Website
+1	Thrifty Vibes	2300 N Rainbow Blvd Suite 110, Las Vegas, NV 89108	+1 702-370-8081	4.9	Thrift Store	Tuesday 10:00 AM - 8:00 PM	
+2	Spin City Laundromat	5950 W Charleston Blvd #140, Las Vegas, NV 89146	+1 702-880-4344	4.2	Laundromat	7:00 AM - 9:00 PM	
+3	Rainbow Laundromat	2247 S Rainbow Blvd, Las Vegas, NV 89146	+1 702-333-2340	4.2	Laundromat	6:00 AM - 11:00 PM	
+4	Strip Smoke Shop	2233 Paradise Rd Ste 110, Las Vegas, NV 89104	+1 702-733-7665	4.8	Smoke Shop	24 Hours	
+5	Gold Rush Smoke Shop	1445 S Las Vegas Blvd, Las Vegas, NV 89104	+1 702-380-0111	4.8	Smoke Shop	24 Hours	
+6	XO Mini Mart & Liquor	953 E Sahara Ave F, Las Vegas, NV 89104	+1 702-836-9990	4.9	Liquor Store	Open until 1:00 AM	
+7	Liquor City	3711 Sammy Davis Jr Dr, Las Vegas, NV 89109	+1 702-816-2400	4.2	Liquor Store	Open until 2:00 AM	
+8	Sahara Liquor	4601 W Sahara Ave, Las Vegas, NV 89102	+1 702-901-8378	4.6	Liquor Store	Open until 1:00 AM	
+9	Best One Cleaners	2110 N Rampart Blvd #130, Las Vegas, NV 89128	+1 702-869-8883	4.8	Dry Cleaner	Open until 5:00 PM	
+10	Rose's Cleaners & Alterations	4584 Spring Mountain Rd, Las Vegas, NV 89102	+1 702-362-3629	4.7	Dry Cleaner / Alterations	Open until 5:00 PM	
+11	Master Cleaners	5965 W Sahara Ave, Las Vegas, NV 89146	+1 702-362-4085	4.8	Dry Cleaner	Open until 5:00 PM	
+12	Catherine Tailor and Alterations	4349 Stewart Ave, Las Vegas, NV 89110	+1 702-437-3038	4.6	Tailor / Alterations	Open until 7:00 PM	
+13	May's Alterations & Tailoring	4855 W Desert Inn Rd #105, Las Vegas, NV 89102	+1 702-426-3692	4.6	Tailor / Alterations	Open until 6:00 PM	
+14	Alison Alterations	1446 E Charleston Blvd, Las Vegas, NV 89104	+1 702-420-9044	4.2	Alterations	Open until 8:00 PM	
+15	Exclusive Tailoring	4440 S Durango Dr Ste F, Las Vegas, NV 89147	+1 702-220-9232	4.8	Tailor	Open until 6:00 PM	
+16	Mike's Shoe Repair	5300 W Spring Mountain Rd #108, Las Vegas, NV 89146	+1 702-362-2724	4.6	Shoe Repair	Open until 6:00 PM	
+17	The Eagle Shoe Repair	4450 N Tenaya Wy #110, Las Vegas, NV 89129	+1 702-701-9963	4.4	Shoe Repair	Open until 5:00 PM	
+18	B & L Shoe & Luggage Repair	4912 S Eastern Ave #5, Las Vegas, NV 89119	+1 725-577-9575	4.4	Shoe & Luggage Repair	Open until 6:00 PM	
+19	Tony's Alteration & Shoe Care	3370 S Hualapai Wy Suite G 130, Las Vegas, NV 89117	+1 702-538-7670	4.4	Alteration & Shoe Care	Open until 7:00 PM	
+20	Green Valley Shoe Repair	7835 S Rainbow Blvd, Las Vegas, NV 89139	+1 702-228-2337	4.5	Shoe Repair	Open until 6:00 PM	
+21	Espinoza Notary Services	1500 S Maryland Pkwy, Las Vegas, NV 89104	+1 702-810-4669	4.9	Notary Services	Open until 5:00 PM	
+22	Datas Multiservices	235 N Eastern Ave #130, Las Vegas, NV 89101	+1 702-640-0088	4.9	Notary Public / Tax Services	Open until 7:00 PM	
+23	1st Vegas Auto Body Shop	3132 Meade Ave, Las Vegas, NV 89102	+1 702-844-1777	4.7	Auto Body Shop	Open until 5:00 PM	
+24	Best Choice Collision Center Inc	3720 W Desert Inn Rd, Las Vegas, NV 89102	+1 702-364-2222	4.9	Auto Body / Collision	Open until 5:00 PM	
+25	Las Vegas Furniture Repair, Art Restoration	1655 E Charleston Blvd, Las Vegas, NV 89104	+1 702-787-0317	4.4	Furniture Repair	Open until 11:00 PM	
+26	Master's Furniture Repair	3110 Polaris Ave Ste 40 & 41, Las Vegas, NV 89102	+1 702-936-9776	4.6	Furniture Repair	Open until 5:00 PM	
+27	ABC Discount Upholstery	1700 E Fremont St, Las Vegas, NV 89101	+1 702-648-7283	4.6	Upholstery	Open until 5:00 PM	
+28	Santa Barbara Upholstery Supplies	3319 E Charleston Blvd, Las Vegas, NV 89104	+1 702-457-6100	4.9	Upholstery Supplies	Open until 4:45 PM	
+29	Muniz Upholstery LLC	3401 W Sirius Ave 10 & #44, Las Vegas, NV 89102	+1 702-439-5472	4.8	Upholstery	Open until 6:00 PM	
+30	Premier Tax & Insurance Multi Services	845 N Eastern Ave, Las Vegas, NV 89101	+1 702-834-4155	4.9	Tax & Insurance Services	Open until 6:00 PM	
+31	Reliable Tax Services	1105 S 8th St STE B, Las Vegas, NV 89104	+1 702-310-6733	4.7	Tax Services	Open until 5:00 PM	
+32	Rony Tax Multiservices	1431 E Charleston Blvd Ste.1, Las Vegas, NV 89104	+1 702-685-0427	4.5	Tax Multiservices	Open until 6:00 PM	
+33	SMOKE WORLD (SMOKE AND VAPE SHOP)	280 E Flamingo Rd Ste A-1, Las Vegas, NV 89169	+1 702-202-4421	4.9	Smoke & Vape Shop	Open until 10:00 PM	
+34	The Stash Smoke Shop 24/7	4780 W Tropicana Ave Unit 106, Las Vegas, NV 89103	+1 702-462-2383	4.7	Smoke Shop	24 Hours	
+35	Paradise Smoke & Vape Shop	553 E Twain Ave, Las Vegas, NV 89169	+1 702-862-4789	4.8	Smoke & Vape Shop	Open until 9:00 PM	
+36	Vape Pirates	3013 W Sahara Ave, Las Vegas, NV 89102	+1 702-331-1104	5	Smoke & Vape Shop	Open until 10:00 PM	
+37	THREE KINGS SMOKE SHOP, VAPE AND CIGAR STORE	3820 W Lake Mead Blvd #100, North Las Vegas, NV 89032	+1 725-204-6051	4.9	Smoke Shop / Vape / Cigar	Open until 12:00 AM	
+38	Window Tinting of Las Vegas	6810 W Cheyenne Ave, Las Vegas, NV 89108	+1 702-683-6555	4.8	Window Tinting	Open until 5:00 PM	
+39	Neighborhood Vapes & Smokes	1311 W Craig Rd Ste C, North Las Vegas, NV 89032	+1 725-217-7077	4.7	Vape & Smoke Shop	Open until 12:00 AM	
+40	Smokes And Vapes	2600 N Green Valley Pkwy, Henderson, NV 89014	+1 702-629-3510	4.3	Smoke & Vape Shop	Open until 11:00 PM	
+41	D's Smoke Shop and Gift	1999 W Sunset Rd, Henderson, NV 89014	+1 702-547-1007	4.5	Smoke Shop & Gift	Open until 8:00 PM	
+42	THE DEN SMOKE SHOP, VAPOR, PUFF BAR, CIGARZ	530 Marks St Suite#120, Henderson, NV 89014	+1 702-331-5656	4.9	Smoke Shop / Vapor / Cigars	Open until 9:00 PM	
+43	XO Liquor Boulder	700 S Boulder Hwy, Henderson, NV 89015	+1 702-433-0325	4.4	Liquor Store	Open until 10:00 PM	
+44	Newt's Tailoring & Alterations	55 S Gibson Rd #108, Henderson, NV 89012	+1 702-565-2655	4.7	Tailor / Alterations	Open until 5:30 PM	
+45	Extra Multiservices Ltd	1229 S Eastern Ave, Las Vegas, NV 89104	+1 702-907-6000	5	Multiservices	Open until 6:00 PM	
+46	Elite Multiservices LLC	3231 N Decatur Blvd Ste 225, Las Vegas, NV 89130	+1 702-780-0696	5	Multiservices	Open until 6:00 PM	
+47	Sudz Coin Laundromat	3149 N Rancho Dr, Las Vegas, NV 89130	+1 702-415-5785	4.6	Laundromat	Open until 8:30 PM	
+48	Z Smokes and Vapes	171 N Gibson Rd Ste 120, Henderson, NV 89014	+1 702-888-1820	4.9	Smoke & Vape Shop	Open until 8:30 PM	
+49	Smoke Shop & Gifts	6520 E Lake Mead Blvd Unit 102, Las Vegas, NV 89156	+1 702-437-1401	4.7	Smoke Shop	Open until 10:00 PM	
+50	Vazquez Multiservices LLC	1820 E Lake Mead Blvd, North Las Vegas, NV 89030	+1 702-331-4470	4	Multiservices	Open until 6:00 PM	
+51	Reye's Multiservices	3256 Civic Center Dr, North Las Vegas, NV 89030	+1 702-633-6200	5	Multiservices	Open until 5:00 PM	
+52	Sin City Liquor Mart	2911 S Sammy Davis Jr Dr suit 2915, Las Vegas, NV 89109	+1 702-483-5004	4.4	Liquor Store	Open until 2:00 AM	
+53	Liquor Locker	4110 S Maryland Pkwy Suite #4, Las Vegas, NV 89119	+1 702-570-7100	4.8	Liquor Store (Instagram only)	Open until 12:00 AM	
+54	Discount Liquor	5835 E Sahara Ave, Las Vegas, NV 89142	+1 702-522-8449	4.5	Liquor Store	Open until 1:00 AM	
+55	The Las Vegas Smoke Shop	3300 S Decatur Blvd suit 6, Las Vegas, NV 89102	+1 702-815-0112	4.6	Smoke Shop	24 Hours	
+56	Insane Vape & Smoke Shop	5000 W Charleston Blvd Ste 2, Las Vegas, NV 89146	+1 702-331-1955	5	Smoke & Vape Shop	Open until 11:00 PM	
+57	Clara's Alterations	5650 W Charleston Blvd #2, Las Vegas, NV 89146	+1 702-252-5272	4.5	Alterations	Open until 5:30 PM	
+58	Alterations Casa-Victoria	2202 W Charleston Blvd, Las Vegas, NV 89102	+1 702-994-1629	5	Alterations	Open until 6:00 PM	
+59	A1+ Alteration & Repair	4069 W Charleston Blvd, Las Vegas, NV 89102	+1 702-241-0966	5	Alteration & Repair	Open until 6:00 PM	
+60	Lola's Alterations	Inside the Bonanza Swapmeet, 1720 E Charleston Blvd b13, Las Vegas, NV 89104	+1 702-633-5259	4.9	Alterations	Open until 6:00 PM	
+61	Moda Fashion Tailor	2620 Regatta Dr #102, Las Vegas, NV 89128	+1 702-240-5244	4.6	Tailor	Open until 7:00 PM	
+62	El Dorado Dry Cleaners	715 N Nellis Blvd, Las Vegas, NV 89110	+1 702-459-1300	4.1	Dry Cleaner	Open until 7:00 PM	
+63	Expert Cleaners	6055 E Lake Mead Blvd p, Las Vegas, NV 89156	+1 702-453-8820	3.6	Dry Cleaner	Open until 6:00 PM	
+64	Art Cleaners	901 S Rancho Dr # 10, Las Vegas, NV 89106	+1 702-366-0177	4.5	Dry Cleaner	Open until 6:00 PM	
+65	Vapes & Smokes	3350 Novat St Ste 115, Las Vegas, NV 89129	+1 702-470-9946	4.8	Vape & Smoke Shop	24 Hours	
+66	Stash Smoke & Vape	7460 W Cheyenne Ave #140, Las Vegas, NV 89129	+1 702-330-0081	4.8	Smoke & Vape Shop	Open until 10:00 PM	
+67	Watch Repair LV	4140 Cannoli Cir Unit C, Las Vegas, NV 89103	+1 702-574-7843	4.8	Watch Repair	Open until 4:00 PM	
