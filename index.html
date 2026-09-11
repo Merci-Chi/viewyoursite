@@ -493,9 +493,26 @@
 
     <script>
         const GITHUB_USER = "Merci-chi";
-        const GITHUB_REPO = "viewyoursite"; 
+        const GITHUB_REPO = "viewyoursite";
+        const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/claimed_site_keys?select=site_key";
+        const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
         let sites = [];
+        const claimedSitePaths = new Set();
+        let claimRegistryLoaded = false;
+
+        async function fetchClaimedSitePaths() {
+            const response = await fetch(CLAIMS_API_URL, {
+                headers: { apikey: CLAIMS_API_KEY, Authorization: `Bearer ${CLAIMS_API_KEY}` }
+            });
+            if (!response.ok) throw new Error("Claim registry failed");
+            const rows = await response.json();
+            claimedSitePaths.clear();
+            rows.forEach(row => {
+                if (row?.site_key) claimedSitePaths.add(String(row.site_key));
+            });
+            claimRegistryLoaded = true;
+        }
 
         async function fetchSites() {
             try {
@@ -513,11 +530,12 @@
                         return { name: prettyName, path: folder.name, hostingType: "standard" };
                     });
 
-                renderSites(); // Render the sites after fetching
+                await fetchClaimedSitePaths();
+                renderSites();
             } catch (error) {
-                console.error("Failed to fetch sites:", error);
-                // Fallback to empty list if API fails
+                console.error("Failed to fetch available sites:", error);
                 sites = [];
+                claimRegistryLoaded = false;
                 renderSites();
             }
         }
@@ -530,15 +548,16 @@
         function renderSites(filter = "") {
             const search = filter.trim().toLowerCase();
 
-            const filteredSites = sites.filter(site =>
-                site.name.toLowerCase().includes(search)
-            );
+            const filteredSites = claimRegistryLoaded
+                ? sites.filter(site => !claimedSitePaths.has(site.path) && site.name.toLowerCase().includes(search))
+                : [];
 
             gallery.innerHTML = "";
 
             if (!filteredSites.length) {
-                gallery.innerHTML =
-                    '<div class="empty-state">No matching websites</div>';
+                gallery.innerHTML = claimRegistryLoaded
+                    ? '<div class="empty-state">No available websites match your search</div>'
+                    : '<div class="empty-state">Websites are temporarily unavailable. Please refresh.</div>';
                 return;
             }
 
@@ -2129,6 +2148,9 @@
                 updateClaimSubmitAvailability();
                 return;
             }
+            (data.sites || selectedSites).forEach(site => claimedSitePaths.add(site.path));
+            selectedSitePaths.clear();
+            renderSites();
             claimMessageStatus.textContent = "Your claim has been submitted.";
             closePortal();
             showClaimSubmitted();
@@ -2357,8 +2379,9 @@
                 claimMessageStatus.textContent = "Complete Steps 1, 2, and 3 before submitting your claim.";
                 return;
             }
-            localSubmittedSites = sites.filter(site => selectedSitePaths.has(site.path)).map((site, index) => ({
-                id: `site-${index + 1}`,
+            const demoSites = sites.filter(site => selectedSitePaths.has(site.path)).map(site => ({
+                id: `demo-${site.path}`,
+                site_key: site.path,
                 site_name: site.name,
                 public_url: new URL(`./${site.path}/`, window.location.href).href,
                 admin_url: new URL(`./${site.path}/admin/`, window.location.href).href,
@@ -2366,6 +2389,8 @@
                 domain_name: "",
                 domain_status: "inactive"
             }));
+            const demoSiteKeys = new Set(demoSites.map(site => site.site_key));
+            localSubmittedSites = [...localSubmittedSites.filter(site => !demoSiteKeys.has(site.site_key)), ...demoSites];
             renderManagedSites(localSubmittedSites);
             claimMessageStatus.textContent = "Your claim has been submitted.";
             submitClaimButton.disabled = false;
