@@ -500,6 +500,33 @@
     <script>
         const GITHUB_USER = "Merci-chi";
         const GITHUB_REPO = "viewyoursite";
+        const SITES_FOLDER = "Sites";
+        const SITE_FOLDERS = [
+            "CleaningAndLandscaping",
+            "GoldRushSmokeShop",
+            "MastersFurnitureRepair",
+            "PremierTaxInsuranceMultiServices",
+            "RonyTaxMultiservices",
+            "SMOKEWORLD",
+            "VAPEPIRATES",
+            "XOMiniMart",
+            "ajlandscaping",
+            "delcarmenhairsalon",
+            "desertforestlandscape",
+            "espinozanotary",
+            "favoriteplacetoshop",
+            "greenhousewaterheaters",
+            "poetryblog",
+            "shopvezzy",
+            "sitedesk",
+            "sitedesk-v1",
+            "sitedesk-v2",
+            "sitedesk-v3",
+            "sitedesk-v4",
+            "spaincity",
+            "stripsmokeshop",
+            "studio47hairsalon"
+        ];
         const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/claimed_site_keys?select=site_key";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
@@ -522,18 +549,11 @@
 
         async function fetchSites() {
             try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
-                if (!response.ok) throw new Error("API failed");
-                const data = await response.json();
-
-                sites = data
-                    .filter(item => item.type === "dir") // Only folders
-                    .map(folder => {
-                        const prettyName = folder.name
+                sites = SITE_FOLDERS.map(folderName => {
+                        const prettyName = folderName
                             .replace(/-/g, " ")
                             .replace(/\b\w/g, c => c.toUpperCase());
-                        // Default hostingType to "standard" since we don't know it from the folder name
-                        return { name: prettyName, path: folder.name, hostingType: "standard" };
+                        return { name: prettyName, path: folderName, hostingType: "standard" };
                     });
 
                 try {
@@ -578,14 +598,14 @@
                 const card = document.createElement("a");
 
                 card.className = "site-card";
-                card.href = `./${site.path}/`;
+                card.href = `./${SITES_FOLDER}/${site.path}/`;
                 card.dataset.sitePath = site.path;
 
                 card.innerHTML = `
                     <div class="preview-wrapper">
                         <iframe
                             class="preview-frame"
-                            src="./${site.path}/"
+                            src="./${SITES_FOLDER}/${site.path}/"
                             loading="lazy"
                             scrolling="no"
                             tabindex="-1"
