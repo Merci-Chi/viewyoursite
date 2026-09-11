@@ -516,7 +516,7 @@
     <script>
         const GITHUB_USER = "Merci-chi";
         const GITHUB_REPO = "viewyoursite";
-        const NON_SITE_FOLDERS = new Set(["app", "supabase"]);
+        const SITES_FOLDER = "Sites";
         const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/claimed_site_keys?select=site_key";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
@@ -539,12 +539,12 @@
 
         async function fetchSites() {
             try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${SITES_FOLDER}`);
                 if (!response.ok) throw new Error("API failed");
                 const data = await response.json();
 
                 sites = data
-                    .filter(item => item.type === "dir" && !NON_SITE_FOLDERS.has(item.name))
+                    .filter(item => item.type === "dir")
                     .map(folder => {
                         const prettyName = folder.name
                             .replace(/-/g, " ")
@@ -597,14 +597,14 @@
                 const card = document.createElement("a");
 
                 card.className = "site-card";
-                card.href = `./${site.path}/`;
+                card.href = `./${SITES_FOLDER}/${site.path}/`;
                 card.dataset.sitePath = site.path;
 
                 card.innerHTML = `
                     <div class="preview-wrapper">
                         <iframe
                             class="preview-frame"
-                            src="./${site.path}/"
+                            src="./${SITES_FOLDER}/${site.path}/"
                             loading="lazy"
                             scrolling="no"
                             tabindex="-1"
