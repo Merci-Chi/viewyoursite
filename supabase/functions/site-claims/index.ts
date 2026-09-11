@@ -22,10 +22,30 @@ Deno.serve(async (req) => {
     if (!body.websiteDevelopmentPurchaseConfirmed) return json({ message: "Website-development payment is required." }, 400);
     if (!Array.isArray(body.hostingSelections) || body.hostingSelections.some((item: any) => !item.purchaseConfirmed)) return json({ message: "A confirmed hosting subscription is required." }, 400);
 
+    const cleanSites = body.sites.map((site: any) => ({
+      path: String(site?.path || "").trim(),
+      name: String(site?.name || "").trim(),
+      hostingType: String(site?.hostingType || "standard").trim(),
+    }));
+    if (cleanSites.some((site: any) => !site.path || !site.name || !/^[a-zA-Z0-9_-]+$/.test(site.path))) {
+      return json({ message: "One or more selected sites are invalid." }, 400);
+    }
+    if (new Set(cleanSites.map((site: any) => site.path)).size !== cleanSites.length) {
+      return json({ message: "The same site cannot be claimed twice." }, 400);
+    }
+
     const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
-    const { data, error } = await db.from("site_claims").insert({
+    const claimId = crypto.randomUUID();
+    const { error: reservationError } = await db.from("claimed_site_keys").insert(
+      cleanSites.map((site: any) => ({ site_key: site.path, user_id: auth.user.id, claim_id: claimId }))
+    );
+    if (reservationError?.code === "23505") return json({ message: "One of these sites has already been claimed. Refresh and choose another site." }, 409);
+    if (reservationError) throw reservationError;
+
+    const { error: claimError } = await db.from("site_claims").insert({
+      id: claimId,
       user_id: auth.user.id,
-      sites: body.sites,
+      sites: cleanSites,
       hosting_selections: body.hostingSelections,
       agreement_ids: body.agreementIds || {},
       agreement_signer: body.agreementSigner,
@@ -39,9 +59,28 @@ Deno.serve(async (req) => {
       discount_code: body.discountCode || null,
       message: body.message || "",
       status: "PENDING",
-    }).select("id").single();
-    if (error) throw error;
-    return json({ success: true, claimId: data.id });
+    });
+    if (claimError) {
+      await db.from("claimed_site_keys").delete().eq("claim_id", claimId);
+      throw claimError;
+    }
+
+    const siteBaseUrl = (Deno.env.get("SITE_BASE_URL") || "https://viewyoursite.today").replace(/\/$/, "");
+    const { error: sitesError } = await db.from("client_sites").insert(
+      cleanSites.map((site: any) => ({
+        user_id: auth.user.id,
+        site_name: site.name,
+        site_key: site.path,
+        public_url: `${siteBaseUrl}/${site.path}/`,
+        status: "pending",
+      }))
+    );
+    if (sitesError) {
+      await db.from("site_claims").delete().eq("id", claimId);
+      await db.from("claimed_site_keys").delete().eq("claim_id", claimId);
+      throw sitesError;
+    }
+    return json({ success: true, claimId, sites: cleanSites });
   } catch (error) {
     console.error(error);
     return json({ message: error instanceof Error ? error.message : "Unexpected server error." }, 500);
