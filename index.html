@@ -842,7 +842,7 @@
             "z-smokes-and-vapes",
         ];
 
-        const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/claimed_site_keys?select=site_key";
+        const CLAIMS_API_URL = null;
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
         let sites = [];
@@ -850,6 +850,7 @@
         let claimRegistryLoaded = false;
 
         async function fetchClaimedSitePaths() {
+            if (!CLAIMS_API_URL) { claimRegistryLoaded = true; return; }
             const response = await fetch(CLAIMS_API_URL, {
                 headers: { apikey: CLAIMS_API_KEY, Authorization: `Bearer ${CLAIMS_API_KEY}` }
             });
@@ -1668,10 +1669,10 @@
             if (savedAgreementIds.has(plan.key)) return savedAgreementIds.get(plan.key);
             agreementStatus.textContent = "Saving your signed agreement…";
             if (baseAgreementId) {
-                const { error } = await portalSupabase.from("hosting_agreements").update({
-                    plan_key: plan.key,
-                    plan_label: plan.label
-                }).eq("id", baseAgreementId).eq("user_id", user.id);
+                const { error } = await portalSupabase.from("agreements").update({
+                    plan: plan.label,
+                    original: { plankey: plan.key }
+                }).eq("id", baseAgreementId).eq("userid", user.id);
                 if (error) {
                     agreementStatus.textContent = error.message || "The hosting choice could not be added to your agreement. Checkout was not opened.";
                     return null;
@@ -1680,18 +1681,20 @@
                 agreementStatus.textContent = `Signed electronically by ${signedAgreement.signer} and saved ✓`;
                 return baseAgreementId;
             }
-            const { data, error } = await portalSupabase.from("hosting_agreements").insert({
-                user_id: user.id,
-                signer_name: signedAgreement.signer,
-                business_name: signedAgreement.business || signedAgreement.signer,
-                signer_email: signedAgreement.email,
-                electronic_signature: signedAgreement.signature,
-                plan_key: plan.key,
-                plan_label: plan.label,
-                terms_version: signedAgreement.version,
-                signed_at: signedAgreement.signedAt,
+            const { data, error } = await portalSupabase.from("agreements").insert({
+                userid: user.id,
+                source: "portal",
+                sourceid: crypto.randomUUID(),
+                name: signedAgreement.signer,
+                company: signedAgreement.business || signedAgreement.signer,
+                email: signedAgreement.email,
+                signature: signedAgreement.signature,
+                plan: plan.label,
+                terms: signedAgreement.version,
+                signed: signedAgreement.signedAt,
                 accepted: true,
-                agreement_snapshot: "Web-Hosting-Client-Agreement.pdf"
+                document: "Web-Hosting-Client-Agreement.pdf",
+                original: { plankey: plan.key }
             }).select("id").single();
             if (error || !data?.id) {
                 agreementStatus.textContent = error?.message || "The signed agreement could not be saved. Checkout was not opened.";
@@ -2263,8 +2266,8 @@
             }
             if (!session?.user) return;
             const [{ data: siteRows, error: sitesError }, { data: requestRows, error: requestsError }] = await Promise.all([
-                portalSupabase.from("client_sites").select("id, site_key, site_name, public_url, admin_url, status, domain_name, domain_status").eq("user_id", session.user.id).order("created_at", { ascending: false }),
-                portalSupabase.from("client_site_requests").select("id, site_id, request_type, subject, details, status, created_at").eq("user_id", session.user.id).order("created_at", { ascending: false }).limit(20)
+                portalSupabase.from("sites").select("id, site_key:sitekey, site_name:name, public_url:liveurl, admin_url:adminurl, status:stage, domain_name:domain, domain_status:domainstatus").eq("userid", session.user.id).order("created", { ascending: false }),
+                portalSupabase.from("requests").select("id, site_id:siteid, request_type:type, subject, details, status, created_at:created").eq("userid", session.user.id).order("created", { ascending: false }).limit(20)
             ]);
             const metadataSite = safeExternalUrl(session.user.user_metadata?.site_url || session.user.app_metadata?.site_url);
             const metadataAdmin = safeExternalUrl(session.user.user_metadata?.admin_url || session.user.app_metadata?.admin_url);
@@ -2281,9 +2284,9 @@
             subscriptionStatusTitle.textContent = "Checking your account";
             subscriptionMessage.textContent = "Loading your subscriptions…"; subscriptionList.replaceChildren();
             const { data, error } = await portalSupabase
-                .from("hosting_subscriptions")
-                .select("id, plan_name, amount_cents, billing_cadence, status, charged_through_date")
-                .order("created_at", { ascending: false });
+                .from("square")
+                .select("id, plan_name:plan, amount_cents:amount, billing_cadence:cadence, status, charged_through_date:chargedthrough")
+                .order("created", { ascending: false });
             if (error) {
                 subscriptionStatusTitle.textContent = "Unable to load subscriptions";
                 subscriptionMessage.textContent = "We couldn’t load your subscriptions right now.";
@@ -2440,8 +2443,8 @@
                 return;
             }
             const request = {
-                site_id: site.id,
-                request_type: siteRequestType.value,
+                siteid: site.id,
+                type: siteRequestType.value,
                 subject: siteRequestSubject.value.trim(),
                 details: siteRequestDetails.value.trim(),
                 status: "submitted"
@@ -2462,9 +2465,11 @@
                 siteRequestSubmit.disabled = false;
                 return;
             }
-            const { error } = await portalSupabase.from("client_site_requests").insert({
+            const { error } = await portalSupabase.from("requests").insert({
                 ...request,
-                user_id: currentPortalUser.id
+                userid: currentPortalUser.id,
+                source: "portal",
+                sourceid: crypto.randomUUID()
             });
             if (error) {
                 siteRequestMessage.textContent = "Your request could not be submitted. Please try again.";
@@ -2575,18 +2580,20 @@
                 agreementStatus.textContent = "Log in again before signing the agreement.";
                 return;
             }
-            const { data: savedAgreement, error: agreementSaveError } = await portalSupabase.from("hosting_agreements").insert({
-                user_id: session.user.id,
-                signer_name: signer,
-                business_name: business,
-                signer_email: email,
-                electronic_signature: signature,
-                plan_key: "pending-hosting-selection",
-                plan_label: "Hosting plan selected after website development",
-                terms_version: AGREEMENT_VERSION,
-                signed_at: signedAgreement.signedAt,
+            const { data: savedAgreement, error: agreementSaveError } = await portalSupabase.from("agreements").insert({
+                userid: session.user.id,
+                source: "portal",
+                sourceid: crypto.randomUUID(),
+                name: signer,
+                company: business,
+                email,
+                signature,
+                plan: "Hosting plan selected after website development",
+                terms: AGREEMENT_VERSION,
+                signed: signedAgreement.signedAt,
                 accepted: true,
-                agreement_snapshot: "Web-Hosting-Client-Agreement.pdf"
+                document: "Web-Hosting-Client-Agreement.pdf",
+                original: { plankey: "pending-hosting-selection" }
             }).select("id").single();
             if (agreementSaveError || !savedAgreement?.id) {
                 signButton.disabled = false;
