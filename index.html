@@ -1885,21 +1885,13 @@
             if (action !== "reset") demoMenu.hidden = true;
         });
 
-        // Capture demo actions before the production handlers can contact Supabase or Square.
+        // Demo steps are passed only from the explicit buttons in the Test menu.
+        // Normal agreement and payment controls keep their production behavior.
         document.addEventListener("click", event => {
             if (!demoMode) return;
             const target = event.target.closest("button, a");
             if (!target || target === demoButton || target.closest(".demo-test-menu")) return;
-            if (target.id === "signAgreementButton") {
-                event.preventDefault(); event.stopImmediatePropagation(); demoPassAgreement();
-            } else if (target.id === "purchaseDevelopmentButton") {
-                event.preventDefault(); event.stopImmediatePropagation(); demoPassDevelopment();
-            } else if (target.matches("[data-hosting-plan], [data-discount-checkout]") || target.closest("#claimCheckoutLinks")) {
-                event.preventDefault(); event.stopImmediatePropagation(); demoPassHosting();
-            } else if (target.matches("[data-discount-apply], #refreshSubscriptions, .cancel-subscription")) {
-                event.preventDefault(); event.stopImmediatePropagation();
-                claimMessageStatus.textContent = "That network action is disabled in local demo mode.";
-            } else if (target.id === "portalSignOut") {
+            if (target.id === "portalSignOut") {
                 event.preventDefault(); event.stopImmediatePropagation(); resetDemoMode();
             } else if (target.classList.contains("client-nav-button")) {
                 event.preventDefault(); event.stopImmediatePropagation();
