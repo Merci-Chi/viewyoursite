@@ -530,7 +530,13 @@
                         return { name: prettyName, path: folder.name, hostingType: "standard" };
                     });
 
-                await fetchClaimedSitePaths();
+                try {
+                    await fetchClaimedSitePaths();
+                } catch (claimError) {
+                    console.warn("Claim registry is unavailable; showing the website directory without claim filtering.", claimError);
+                    claimedSitePaths.clear();
+                    claimRegistryLoaded = false;
+                }
                 renderSites();
             } catch (error) {
                 console.error("Failed to fetch available sites:", error);
@@ -548,9 +554,10 @@
         function renderSites(filter = "") {
             const search = filter.trim().toLowerCase();
 
-            const filteredSites = claimRegistryLoaded
-                ? sites.filter(site => !claimedSitePaths.has(site.path) && site.name.toLowerCase().includes(search))
-                : [];
+            const filteredSites = sites.filter(site =>
+                (!claimRegistryLoaded || !claimedSitePaths.has(site.path)) &&
+                site.name.toLowerCase().includes(search)
+            );
 
             gallery.innerHTML = "";
 
@@ -667,7 +674,7 @@
                             <p id="siteManagementIntro">Your websites and management tools are private to your account.</p>
                             <div id="managedSitesList"></div>
                             <div class="management-shortcuts">
-                                <button type="button" id="claimYourSite">Claim Another Site</button>
+                                <button type="button" id="claimYourSite">Claim a Site</button>
                             </div>
                             <p class="portal-message" id="siteMessage" role="status"></p>
                             <button id="openMySite" type="button" hidden>Open My Site</button>
@@ -1659,6 +1666,7 @@
         }
         function renderManagedSites(siteRows) {
             currentManagedSites = siteRows;
+            document.getElementById("claimYourSite").textContent = siteRows.length ? "Claim Another Site" : "Claim a Site";
             managedSitesList.replaceChildren();
             siteRequestSite.replaceChildren();
             if (!siteRows.length) {
@@ -1700,10 +1708,23 @@
                 adminLink.textContent = "View Admin Page";
                 adminLink.target = "_blank";
                 adminLink.rel = "noopener";
-                const adminUrl = safeExternalUrl(site.admin_url);
-                adminLink.href = adminUrl || "#";
-                adminLink.setAttribute("aria-disabled", String(!adminUrl));
-                actions.append(publicLink, adminLink);
+                actions.appendChild(publicLink);
+                const configuredAdminUrl = safeExternalUrl(site.admin_url);
+                if (configuredAdminUrl) {
+                    adminLink.href = configuredAdminUrl;
+                    actions.appendChild(adminLink);
+                } else if (site.site_key) {
+                    const folderPath = String(site.site_key).split("/").filter(Boolean).map(encodeURIComponent).join("/");
+                    const folderAdminUrl = new URL(`./${folderPath}/admin.html`, window.location.href).href;
+                    fetch(folderAdminUrl, { method: "HEAD", cache: "no-store" })
+                        .then(response => {
+                            if (response.ok && actions.isConnected) {
+                                adminLink.href = folderAdminUrl;
+                                actions.appendChild(adminLink);
+                            }
+                        })
+                        .catch(() => {});
+                }
                 const domainBox = document.createElement("div");
                 domainBox.className = "domain-box";
                 const domainInfo = document.createElement("div");
@@ -1767,7 +1788,7 @@
             }
             if (!session?.user) return;
             const [{ data: siteRows, error: sitesError }, { data: requestRows, error: requestsError }] = await Promise.all([
-                portalSupabase.from("client_sites").select("id, site_name, public_url, admin_url, status, domain_name, domain_status").eq("user_id", session.user.id).order("created_at", { ascending: false }),
+                portalSupabase.from("client_sites").select("id, site_key, site_name, public_url, admin_url, status, domain_name, domain_status").eq("user_id", session.user.id).order("created_at", { ascending: false }),
                 portalSupabase.from("client_site_requests").select("id, site_id, request_type, subject, details, status, created_at").eq("user_id", session.user.id).order("created_at", { ascending: false }).limit(20)
             ]);
             const metadataSite = safeExternalUrl(session.user.user_metadata?.site_url || session.user.app_metadata?.site_url);
@@ -2392,7 +2413,7 @@
                 site_key: site.path,
                 site_name: site.name,
                 public_url: new URL(`./${site.path}/`, window.location.href).href,
-                admin_url: new URL(`./${site.path}/admin/`, window.location.href).href,
+                admin_url: new URL(`./${site.path}/admin.html`, window.location.href).href,
                 status: "Active",
                 domain_name: "",
                 domain_status: "inactive"
