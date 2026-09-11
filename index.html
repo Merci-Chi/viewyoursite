@@ -408,7 +408,7 @@
         .domain-name { display: block; margin-top: .35rem; color: #ddd; font-size: .9rem; word-break: break-word; }
         .link-domain-button { padding: .62rem .8rem; border: 1px solid #444; border-radius: 9px; background: #292929; color: #aaa; font: inherit; font-weight: 750; }
         .management-site-actions, .management-shortcuts { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: .9rem; }
-        .management-site-actions a, .management-shortcuts button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: .65rem .9rem; border: 1px solid #454545; border-radius: 9px; background: #262626; color: #f1f1f1; cursor: pointer; font: inherit; font-weight: 700; text-decoration: none; }
+        .management-site-actions a, .management-site-actions button, .management-shortcuts button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: .65rem .9rem; border: 1px solid #454545; border-radius: 9px; background: #262626; color: #f1f1f1; cursor: pointer; font: inherit; font-weight: 700; text-decoration: none; }
         .management-site-actions a[aria-disabled="true"] { pointer-events: none; opacity: .45; }
         .management-form { display: grid; gap: .9rem; margin-top: 1rem; }
         .management-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
@@ -893,6 +893,15 @@
         </div>
     </div>
 
+    <div class="help-popup-overlay" id="adminLockedOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="adminLockedTitle">
+        <div class="help-popup">
+            <button class="portal-close" id="adminLockedClose" type="button" aria-label="Close">×</button>
+            <h3 id="adminLockedTitle">Admin site hasn’t been unlocked</h3>
+            <p id="adminLockedText"></p>
+            <button class="portal-primary" id="adminLockedAction" type="button"></button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = "https://glonbvrcudwuzjundrii.supabase.co";
@@ -973,6 +982,9 @@
         const hostingHelpOverlay = document.getElementById("hostingHelpOverlay");
         const hostingHelpTitle = document.getElementById("hostingHelpTitle");
         const hostingHelpText = document.getElementById("hostingHelpText");
+        const adminLockedOverlay = document.getElementById("adminLockedOverlay");
+        const adminLockedText = document.getElementById("adminLockedText");
+        const adminLockedAction = document.getElementById("adminLockedAction");
         const hostingHelpContent = {
             standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $20 per month." },
             backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }
@@ -988,6 +1000,7 @@
         let currentClientSiteUrl = "";
         let currentPortalUser = null;
         let currentManagedSites = [];
+        let currentSubscriptions = [];
         let localSubmittedSites = [];
         let localSiteRequests = [];
         let agreementSigned = false;
@@ -1553,6 +1566,7 @@
             row.append(left, right); card.appendChild(row);
         }
         function renderSubscriptions(subscriptions) {
+            currentSubscriptions = subscriptions;
             subscriptionList.replaceChildren();
             if (!subscriptions.length) {
                 subscriptionStatusTitle.textContent = "No active subscriptions";
@@ -1664,6 +1678,51 @@
                 sitePickerMenu.appendChild(button);
             });
         }
+        function activeHostingLevel() {
+            const active = currentSubscriptions.filter(subscription => !String(subscription.status || "").toUpperCase().includes("CANCEL"));
+            const monthlyAmount = subscription => {
+                const months = ({ MONTHLY: 1, EVERY_SIX_MONTHS: 6, ANNUAL: 12 })[subscription.billingCadence] || 1;
+                return typeof subscription.amountCents === "number" ? subscription.amountCents / months : 0;
+            };
+            if (active.some(subscription => /backend/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 3000)) return "backend";
+            if (active.some(subscription => /standard/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 2000)) return "standard";
+            return "none";
+        }
+        function closeAdminLockedPopup() {
+            adminLockedOverlay.hidden = true;
+            document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
+        }
+        function showAdminLockedPopup() {
+            const hostingLevel = activeHostingLevel();
+            adminLockedAction.onclick = null;
+            if (hostingLevel === "backend") {
+                adminLockedText.textContent = "Your $30/month Backend Website Hosting plan includes admin access. Submit a claim so we can connect and unlock your admin site.";
+                adminLockedAction.textContent = "Submit a Claim";
+                adminLockedAction.onclick = () => {
+                    closeAdminLockedPopup();
+                    enterSiteSelection();
+                };
+            } else if (hostingLevel === "standard") {
+                adminLockedText.textContent = "Your current $20/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($30/month total).";
+                adminLockedAction.textContent = "View Backend Hosting";
+                adminLockedAction.onclick = () => {
+                    closeAdminLockedPopup();
+                    showPortalPanel("subscriptionsPanel");
+                };
+            } else {
+                adminLockedText.textContent = "Admin access requires Backend Website Hosting for $30/month. Choose that plan, then submit a claim so we can connect and unlock your admin site.";
+                adminLockedAction.textContent = "View Backend Hosting";
+                adminLockedAction.onclick = () => {
+                    closeAdminLockedPopup();
+                    showPortalPanel("subscriptionsPanel");
+                };
+            }
+            adminLockedOverlay.hidden = false;
+            document.body.style.overflow = "hidden";
+        }
+        document.getElementById("adminLockedClose").addEventListener("click", closeAdminLockedPopup);
+        adminLockedOverlay.addEventListener("click", event => { if (event.target === adminLockedOverlay) closeAdminLockedPopup(); });
+
         function renderManagedSites(siteRows) {
             currentManagedSites = siteRows;
             document.getElementById("claimYourSite").textContent = siteRows.length ? "Claim Another Site" : "Claim a Site";
@@ -1704,26 +1763,51 @@
                 const publicUrl = safeExternalUrl(site.domain_status === "active" && site.domain_name ? site.domain_name : site.public_url);
                 publicLink.href = publicUrl || "#";
                 publicLink.setAttribute("aria-disabled", String(!publicUrl));
-                const adminLink = document.createElement("a");
-                adminLink.textContent = "View Admin Page";
-                adminLink.target = "_blank";
-                adminLink.rel = "noopener";
                 actions.appendChild(publicLink);
                 const configuredAdminUrl = safeExternalUrl(site.admin_url);
                 if (configuredAdminUrl) {
+                    const adminLink = document.createElement("a");
+                    adminLink.textContent = "View Admin Page";
+                    adminLink.target = "_blank";
+                    adminLink.rel = "noopener";
                     adminLink.href = configuredAdminUrl;
                     actions.appendChild(adminLink);
-                } else if (site.site_key) {
-                    const folderPath = String(site.site_key).split("/").filter(Boolean).map(encodeURIComponent).join("/");
-                    const folderAdminUrl = new URL(`./${folderPath}/admin.html`, window.location.href).href;
+                } else if (site.site_key || publicUrl) {
+                    const folderPath = String(site.site_key || "").split("/").filter(Boolean).map(encodeURIComponent).join("/");
+                    const folderAdminUrl = folderPath
+                        ? new URL(`./${folderPath}/admin.html`, window.location.href).href
+                        : new URL("admin.html", publicUrl.endsWith("/") ? publicUrl : `${publicUrl}/`).href;
                     fetch(folderAdminUrl, { method: "HEAD", cache: "no-store" })
                         .then(response => {
                             if (response.ok && actions.isConnected) {
+                                const adminLink = document.createElement("a");
+                                adminLink.textContent = "View Admin Page";
+                                adminLink.target = "_blank";
+                                adminLink.rel = "noopener";
                                 adminLink.href = folderAdminUrl;
                                 actions.appendChild(adminLink);
+                            } else if (actions.isConnected) {
+                                const lockedButton = document.createElement("button");
+                                lockedButton.type = "button";
+                                lockedButton.textContent = "Admin Site";
+                                lockedButton.addEventListener("click", showAdminLockedPopup);
+                                actions.appendChild(lockedButton);
                             }
                         })
-                        .catch(() => {});
+                        .catch(() => {
+                            if (!actions.isConnected) return;
+                            const lockedButton = document.createElement("button");
+                            lockedButton.type = "button";
+                            lockedButton.textContent = "Admin Site";
+                            lockedButton.addEventListener("click", showAdminLockedPopup);
+                            actions.appendChild(lockedButton);
+                        });
+                } else {
+                    const lockedButton = document.createElement("button");
+                    lockedButton.type = "button";
+                    lockedButton.textContent = "Admin Site";
+                    lockedButton.addEventListener("click", showAdminLockedPopup);
+                    actions.appendChild(lockedButton);
                 }
                 const domainBox = document.createElement("div");
                 domainBox.className = "domain-box";
