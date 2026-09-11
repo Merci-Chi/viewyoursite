@@ -393,6 +393,7 @@
         .management-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .management-card { padding: 1.25rem; border: 1px solid #303030; border-radius: 18px; background: linear-gradient(145deg, #202020, #181818); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
         .management-overview { grid-column: 1 / -1; }
+        .management-support { grid-column: 1 / -1; }
         .management-card h3, .management-card h4 { margin: 0 0 .45rem; color: #f2f2f2; }
         .management-card p { margin: .25rem 0; color: #aaa; line-height: 1.55; }
         .managed-site-card { margin-top: 1rem; padding: 1rem; border: 1px solid #373737; border-radius: 15px; background: #151515; }
@@ -652,7 +653,7 @@
                             <p class="portal-message" id="siteMessage" role="status"></p>
                             <button id="openMySite" type="button" hidden>Open My Site</button>
                         </div>
-                        <div class="management-card">
+                        <div class="management-card management-support">
                             <h3>Website Support</h3>
                             <p>Request a change, report a problem, or review your previous requests.</p>
                             <div class="support-action-bar">
