@@ -148,7 +148,7 @@
             justify-content: center;
         }
 
-        body.client-is-logged-in #clientAccountButton {
+        body.client-is-logged-in .auth-entry-button {
             display: none !important;
         }
 
@@ -182,7 +182,7 @@
         .portal-message { min-height: 1.5rem; margin-top: 1rem; color: #aaa; line-height: 1.5; }
         .portal-account-header { margin-bottom: 1.25rem; padding-right: 2rem; text-align: left; }
         .portal-account-email { color: #888; }
-        .portal-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: .4rem; margin-bottom: 1.5rem; padding: .35rem; border-radius: 12px; background: #202020; }
+        .portal-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; margin-bottom: 1.5rem; padding: .35rem; border-radius: 12px; background: #202020; }
         .portal-nav-button { padding: .75rem .5rem; border: 0; border-radius: 9px; background: transparent; color: #8b8b8b; cursor: pointer; font: inherit; }
         .portal-nav-button.active { background: #383838; color: #fff; }
         .portal-panel h3 { margin-bottom: .75rem; font-weight: 500; }
@@ -451,6 +451,7 @@
         body.light-mode .custom-select-option { color: #333; }
         body.light-mode .custom-select-option:hover, body.light-mode .custom-select-option.selected { background: #ecece8; color: #111; }
         @media (max-width: 760px) {
+            .portal-nav { grid-template-columns: repeat(2, 1fr); }
             .management-grid, .management-form-row { grid-template-columns: 1fr; }
             .management-overview { grid-column: auto; }
             .domain-box { grid-template-columns: 1fr; }
@@ -473,10 +474,11 @@
             >
 
             <div class="account-nav">
-                <button class="account-button" id="clientAccountButton" type="button">Log In</button>
-                <button class="account-button client-nav-button" type="button" data-open-panel="sitePanel">Site Management</button>
-                <button class="account-button client-nav-button" type="button" data-open-panel="subscriptionsPanel">Manage Subscriptions</button>
+                <button class="account-button auth-entry-button" id="clientAccountButton" type="button">Log In</button>
+                <button class="account-button auth-entry-button" id="clientSignupButton" type="button">Sign Up</button>
+                <button class="account-button client-nav-button" id="mainSiteButton" type="button" data-open-panel="sitePanel" data-claim-aware>Claim Your Site</button>
                 <button class="account-button client-nav-button" type="button" data-open-panel="accountPanel">Settings</button>
+                <button class="account-button client-nav-button" type="button" data-open-panel="helpPanel">Help</button>
             </div>
         </header>
 
@@ -644,9 +646,10 @@
                 </header>
 
                 <nav class="portal-nav" aria-label="Client portal">
-                    <button class="portal-nav-button" type="button" data-portal-panel="sitePanel">Site Management</button>
-                    <button class="portal-nav-button" type="button" data-portal-panel="subscriptionsPanel">Manage Subscriptions</button>
+                    <button class="portal-nav-button" id="portalSiteButton" type="button" data-portal-panel="sitePanel">Claim Your Site</button>
+                    <button class="portal-nav-button" type="button" data-portal-panel="subscriptionsPanel">Manage Subscription</button>
                     <button class="portal-nav-button active" type="button" data-portal-panel="accountPanel">Settings</button>
+                    <button class="portal-nav-button" type="button" data-portal-panel="helpPanel">Help</button>
                 </nav>
 
                 <section class="portal-panel" id="accountPanel">
@@ -736,6 +739,15 @@
                             <div class="request-history" id="siteRequestHistory"></div>
                         </section>
                     </div>
+                </section>
+
+                <section class="portal-panel" id="helpPanel" hidden>
+                    <div class="account-summary">
+                        <h3>Help</h3>
+                        <p>Need help with your website, account, domain, or subscription?</p>
+                        <p>Open <strong>My Site</strong> to request an update, report a bug, link a domain, or review submitted requests.</p>
+                    </div>
+                    <a class="site-link" href="mailto:support@steadyhandsop.com">Email Support</a>
                 </section>
 
                 <section class="portal-panel" id="claimPanel" hidden>
@@ -885,6 +897,15 @@
         </div>
     </section>
 
+    <section class="portal-overlay" id="requestSubmittedOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="requestSubmittedTitle">
+        <div class="portal-dialog purchase-dialog claim-confirmation-card">
+            <div class="purchase-check" aria-hidden="true">✓</div>
+            <h2 id="requestSubmittedTitle">Request submitted</h2>
+            <p class="portal-description">We received your request and will follow up with you.</p>
+            <button class="portal-primary" id="requestSubmittedClose" type="button">Done</button>
+        </div>
+    </section>
+
     <div class="help-popup-overlay" id="hostingHelpOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="hostingHelpTitle">
         <div class="help-popup">
             <button class="portal-close" id="hostingHelpClose" type="button" aria-label="Close">×</button>
@@ -914,6 +935,7 @@
             }
         });
         const accountButton = document.getElementById("clientAccountButton");
+        const signupButton = document.getElementById("clientSignupButton");
         const clientNavButtons = document.querySelectorAll(".client-nav-button");
         const portalOverlay = document.getElementById("portalOverlay");
         const portalClose = document.getElementById("portalClose");
@@ -948,6 +970,9 @@
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
         const claimSubmittedOverlay = document.getElementById("claimSubmittedOverlay");
         const claimSubmittedContinue = document.getElementById("claimSubmittedContinue");
+        const requestSubmittedOverlay = document.getElementById("requestSubmittedOverlay");
+        const mainSiteButton = document.getElementById("mainSiteButton");
+        const portalSiteButton = document.getElementById("portalSiteButton");
         const managedSitesList = document.getElementById("managedSitesList");
         const siteRequestForm = document.getElementById("siteRequestForm");
         const siteRequestSite = document.getElementById("siteRequestSite");
@@ -1732,6 +1757,9 @@
 
         function renderManagedSites(siteRows) {
             currentManagedSites = siteRows;
+            const hasManagedSite = siteRows.length > 0;
+            mainSiteButton.textContent = hasManagedSite ? "My Site" : "Claim Your Site";
+            portalSiteButton.textContent = hasManagedSite ? "My Site" : "Claim Your Site";
             document.getElementById("claimYourSite").textContent = siteRows.length ? "Claim Another Site" : "Claim a Site";
             managedSitesList.replaceChildren();
             siteRequestSite.replaceChildren();
@@ -1925,11 +1953,23 @@
 
         accountButton.addEventListener("click", async () => {
             pendingPanel = "accountPanel";
+            setAuthMode("login");
+            openPortal();
+            const { data: { session } } = await portalSupabase.auth.getSession();
+            await updatePortal(session);
+        });
+        signupButton.addEventListener("click", async () => {
+            pendingPanel = "accountPanel";
+            setAuthMode("signup");
             openPortal();
             const { data: { session } } = await portalSupabase.auth.getSession();
             await updatePortal(session);
         });
         clientNavButtons.forEach(button => button.addEventListener("click", async () => {
+            if (button.hasAttribute("data-claim-aware") && !currentManagedSites.length) {
+                enterSiteSelection();
+                return;
+            }
             pendingPanel = button.dataset.openPanel;
             openPortal();
             const { data: { session } } = await portalSupabase.auth.getSession();
@@ -1960,6 +2000,20 @@
                 const { data: { session } } = await portalSupabase.auth.getSession();
                 await loadSiteManagement(session);
             }
+        });
+        function showRequestSubmitted() {
+            closeManagementModal(siteRequestModal);
+            requestSubmittedOverlay.hidden = false;
+            document.body.style.overflow = "hidden";
+        }
+        document.getElementById("requestSubmittedClose").addEventListener("click", () => {
+            requestSubmittedOverlay.hidden = true;
+            document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
+        });
+        requestSubmittedOverlay.addEventListener("click", event => {
+            if (event.target !== requestSubmittedOverlay) return;
+            requestSubmittedOverlay.hidden = true;
+            document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
         });
         function openSiteRequest(type, preferredSiteId = "", currentDomain = "") {
             const isBug = type === "bug";
@@ -2033,8 +2087,8 @@
                 localSiteRequests.unshift({ ...request, id: crypto.randomUUID() });
                 renderSiteRequests(localSiteRequests);
                 siteRequestForm.reset();
-                siteRequestMessage.textContent = "Your request has been submitted.";
                 siteRequestSubmit.disabled = false;
+                showRequestSubmitted();
                 return;
             }
             if (!currentPortalUser) {
@@ -2052,8 +2106,8 @@
                 return;
             }
             siteRequestForm.reset();
-            siteRequestMessage.textContent = "Your request has been submitted.";
             siteRequestSubmit.disabled = false;
+            showRequestSubmitted();
             const { data: { session } } = await portalSupabase.auth.getSession();
             await loadSiteManagement(session);
         });
