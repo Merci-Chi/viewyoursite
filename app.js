@@ -313,7 +313,7 @@ function buildHTML(d) {
         case 'video':
             return d.src ? `<video src="${d.src}"${d.poster?` poster="${d.poster}"`:''} controls></video>` :
                 '<div style="color:#fff;display:flex;align-items:center;gap:8px;"><i class="fas fa-video" style="font-size:18px;"></i><span style="font-size:11px;">Add Video</span></div>';
-        case 'button': return `<button onclick="window.open('${d.href||'#}','_blank')">${esc(d.content)}</button>`;
+        case 'button': return `<button onclick="window.open('${d.href || '#'}','_blank')">${esc(d.content)}</button>`;
         case 'link': return `<a href="${d.href||'#'}">${esc(d.content)}</a>`;
         case 'icon': return `<i class="fas ${d.icon||'fa-star'}"></i>`;
         case 'divider': return '';
@@ -897,7 +897,7 @@ function selectPage(pid){
 
 function clearCanvas(){document.querySelectorAll('.c-el').forEach(el=>el.remove());S.els=[];deselect();}
 
-function savePageEls(pid){localStorage.setItem('vys_els_'+pid,JSON.stringify(S.els.map(e=>({...e,dom:null})));}
+function savePageEls(pid){localStorage.setItem('vys_els_'+pid,JSON.stringify(S.els.map(e=>({...e,dom:null}))));}
 function loadPageEls(pid){
     const raw=localStorage.getItem('vys_els_'+pid);
     if(raw){try{JSON.parse(raw).forEach(d=>makeEl(d));}catch(e){}}
@@ -1154,7 +1154,7 @@ function expEl(d){
         case'select':let o='';(d.opts||[]).forEach(opt=>o+='<option value="'+opt+'">'+opt+'</option>');return`<div class="el" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;${st}">${d.label?'<label>'+esc(d.label)+'</label>':''}<select>${o}</select></div>`;
         case'accordion':let a='';(d.items||[]).forEach(it=>a+='<div class="acc-item"><div class="acc-head">'+esc(it.title)+'<i class="fas fa-chevron-down" style="font-size:9px;"></i></div><div class="acc-body">'+it.content+'</div></div>');return`<div class="el" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;${st}">${a}</div>`;
         case'tabs':let tn='',tp='';(d.tabs||[]).forEach((t,i)=>{tn+='<button class="tab-btn'+(i===0?' active':'')+'">'+t+'</button>';tp+='<div class="tab-panel'+(i===0?' open':'')+'">Content for '+t+'</div>';});return`<div style="left:${d.x}px;top:${d.y}px;width:${d.w}px;${st}"><div class="tabs-nav">${tn}</div>${tp}</div>`;
-        case'social':const icons={facebook:'fa-facebook-f',twitter:'fa-twitter',instagram:'fa-instagram',linkedin:'fa-linkedin-in'};let sc='';(d.platforms||[]).forEach(p=>sc+='<a class="social-icon"><i class="fab '+icons[p]||'fa-link']+'"></i></a>');return`<div class="social-icons" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;${st}">${sc||'<a class="social-icon"><i class="fas fa-share-alt"></i></a>'}</div>`;
+        case'social':const icons={facebook:'fa-facebook-f',twitter:'fa-twitter',instagram:'fa-instagram',linkedin:'fa-linkedin-in'};let sc='';(d.platforms||[]).forEach(p=>sc+='<a class="social-icon"><i class="fab '+(icons[p]||'fa-link')+'"></i></a>');return`<div class="social-icons" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;${st}">${sc||'<a class="social-icon"><i class="fas fa-share-alt"></i></a>'}</div>`;
         case'map':return d.loc?`<div class="el" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;height:${d.h}px;${st}"><iframe src="https://maps.google.com/maps?q=${encodeURIComponent(d.loc)}&output=embed" width="100%" height="100%" frameborder="0"></iframe></div>`:'';
         case'embed':case'html':case'code-block':return`<div class="el ${d.type==='code-block'?'':'el-'+d.type}" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;height:${d.h}px;${st}">${esc(d.code||'')}</div>`;
         default:return`<div class="el" style="left:${d.x}px;top:${d.y}px;width:${d.w}px;height:${d.h}px;${st}">${esc(d.content||'')}</div>`;

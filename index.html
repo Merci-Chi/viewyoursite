@@ -127,9 +127,23 @@
 
         .empty-state {
             grid-column: 1 / -1;
-            padding: 4rem 1rem;
-            color: #666;
+            width: min(560px, 100%);
+            margin: 2rem auto 0;
+            padding: 3rem 1.5rem;
+            border: 1px solid #2a2a2a;
+            border-radius: 14px;
+            background: #141414;
+            color: #999;
             text-align: center;
+            line-height: 1.6;
+        }
+
+        .empty-state strong {
+            display: block;
+            margin-bottom: .35rem;
+            color: #e0e0e0;
+            font-size: 1.15rem;
+            font-weight: 500;
         }
 
         .account-button {
@@ -224,6 +238,8 @@
 
         body.light-mode { background: #f3f3f1; color: #181818; }
         body.light-mode #searchInput { border-color: #ccc; background: #fff; color: #181818; }
+        body.light-mode .empty-state { border-color: #d5d5d2; background: #fff; color: #666; }
+        body.light-mode .empty-state strong { color: #181818; }
         body.light-mode .site-card { border-color: #d5d5d2; background: #fff; }
         body.light-mode .card-label { border-color: #ddd; color: #333; }
         body.light-mode .account-button { border-color: #ccc; background: #fff; color: #181818; }
@@ -500,33 +516,7 @@
     <script>
         const GITHUB_USER = "Merci-chi";
         const GITHUB_REPO = "viewyoursite";
-        const SITES_FOLDER = "Sites";
-        const SITE_FOLDERS = [
-            "CleaningAndLandscaping",
-            "GoldRushSmokeShop",
-            "MastersFurnitureRepair",
-            "PremierTaxInsuranceMultiServices",
-            "RonyTaxMultiservices",
-            "SMOKEWORLD",
-            "VAPEPIRATES",
-            "XOMiniMart",
-            "ajlandscaping",
-            "delcarmenhairsalon",
-            "desertforestlandscape",
-            "espinozanotary",
-            "favoriteplacetoshop",
-            "greenhousewaterheaters",
-            "poetryblog",
-            "shopvezzy",
-            "sitedesk",
-            "sitedesk-v1",
-            "sitedesk-v2",
-            "sitedesk-v3",
-            "sitedesk-v4",
-            "spaincity",
-            "stripsmokeshop",
-            "studio47hairsalon"
-        ];
+        const NON_SITE_FOLDERS = new Set(["app", "supabase"]);
         const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/claimed_site_keys?select=site_key";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
 
@@ -549,11 +539,18 @@
 
         async function fetchSites() {
             try {
-                sites = SITE_FOLDERS.map(folderName => {
-                        const prettyName = folderName
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
+                if (!response.ok) throw new Error("API failed");
+                const data = await response.json();
+
+                sites = data
+                    .filter(item => item.type === "dir" && !NON_SITE_FOLDERS.has(item.name))
+                    .map(folder => {
+                        const prettyName = folder.name
                             .replace(/-/g, " ")
                             .replace(/\b\w/g, c => c.toUpperCase());
-                        return { name: prettyName, path: folderName, hostingType: "standard" };
+                        // Default hostingType to "standard" since we don't know it from the folder name
+                        return { name: prettyName, path: folder.name, hostingType: "standard" };
                     });
 
                 try {
@@ -588,9 +585,11 @@
             gallery.innerHTML = "";
 
             if (!filteredSites.length) {
-                gallery.innerHTML = claimRegistryLoaded
-                    ? '<div class="empty-state">No available websites match your search</div>'
-                    : '<div class="empty-state">Websites are temporarily unavailable. Please refresh.</div>';
+                if (search && sites.length) {
+                    gallery.innerHTML = '<div class="empty-state"><strong>No matching websites</strong>Try a different search.</div>';
+                } else {
+                    gallery.innerHTML = '<div class="empty-state"><strong>No websites are currently available.</strong>Please check back soon.</div>';
+                }
                 return;
             }
 
@@ -598,14 +597,14 @@
                 const card = document.createElement("a");
 
                 card.className = "site-card";
-                card.href = `./${SITES_FOLDER}/${site.path}/`;
+                card.href = `./${site.path}/`;
                 card.dataset.sitePath = site.path;
 
                 card.innerHTML = `
                     <div class="preview-wrapper">
                         <iframe
                             class="preview-frame"
-                            src="./${SITES_FOLDER}/${site.path}/"
+                            src="./${site.path}/"
                             loading="lazy"
                             scrolling="no"
                             tabindex="-1"
