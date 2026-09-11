@@ -1815,7 +1815,10 @@
                 signedAt: new Date().toISOString(),
                 version: AGREEMENT_VERSION
             };
-            baseAgreementId = "demo-agreement-local-only";
+            // A Test pass has no database ID. If the user later deliberately
+            // starts a real hosting checkout, saveHostingAgreement will create
+            // the real agreement then and pass its valid ID to Square checkout.
+            baseAgreementId = null;
             agreementSigned = true;
             agreementSigner.disabled = true;
             agreementBusiness.disabled = true;
