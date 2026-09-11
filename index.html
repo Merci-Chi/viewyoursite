@@ -1596,7 +1596,8 @@
         function safeExternalUrl(value) {
             if (!value) return "";
             try {
-                const url = new URL(value, window.location.origin);
+                const candidate = /^[a-z][a-z0-9+.-]*:/i.test(String(value)) ? String(value) : `https://${String(value).replace(/^\/+/, "")}`;
+                const url = new URL(candidate);
                 return ["http:", "https:"].includes(url.protocol) ? url.href : "";
             } catch (_error) {
                 return "";
@@ -1669,11 +1670,11 @@
                 publicLink.textContent = "View Website";
                 publicLink.target = "_blank";
                 publicLink.rel = "noopener";
-                const publicUrl = safeExternalUrl(site.public_url);
+                const publicUrl = safeExternalUrl(site.domain_status === "active" && site.domain_name ? site.domain_name : site.public_url);
                 publicLink.href = publicUrl || "#";
                 publicLink.setAttribute("aria-disabled", String(!publicUrl));
                 const adminLink = document.createElement("a");
-                adminLink.textContent = "Open Admin Site";
+                adminLink.textContent = "View Admin Page";
                 adminLink.target = "_blank";
                 adminLink.rel = "noopener";
                 const adminUrl = safeExternalUrl(site.admin_url);
@@ -1701,7 +1702,7 @@
                 linkDomainButton.className = "link-domain-button";
                 linkDomainButton.type = "button";
                 linkDomainButton.textContent = "Link Your Domain";
-                linkDomainButton.disabled = true;
+                linkDomainButton.addEventListener("click", () => openSiteRequest("domain", site.id, site.domain_name || ""));
                 domainBox.append(domainInfo, linkDomainButton);
                 card.append(header, actions, domainBox);
                 managedSitesList.appendChild(card);
@@ -1729,7 +1730,8 @@
                 details.textContent = request.details;
                 const meta = document.createElement("div");
                 meta.className = "request-meta";
-                meta.textContent = `${request.request_type === "bug" ? "Bug report" : "Update request"} · ${request.status || "Submitted"}`;
+                const requestLabels = { bug: "Bug report", update: "Update request", domain: "Domain request" };
+                meta.textContent = `${requestLabels[request.request_type] || "Request"} · ${request.status || "Submitted"}`;
                 item.append(title, details, meta);
                 siteRequestHistory.appendChild(item);
             });
@@ -1834,19 +1836,25 @@
                 await loadSiteManagement(session);
             }
         });
-        function openSiteRequest(type) {
+        function openSiteRequest(type, preferredSiteId = "", currentDomain = "") {
             const isBug = type === "bug";
+            const isDomain = type === "domain";
             siteRequestType.value = type;
-            siteRequestModalTitle.textContent = isBug ? "Report a Bug" : "Request an Update";
+            siteRequestModalTitle.textContent = isBug ? "Report a Bug" : isDomain ? "Link Your Domain" : "Request an Update";
             siteRequestModalIcon.innerHTML = isBug
                 ? '<path d="M8 9h8M9 4l1.2 2M15 4l-1.2 2M6 13H3M21 13h-3M6.5 8 4 6M17.5 8 20 6M8 6h8a2 2 0 0 1 2 2v7a6 6 0 0 1-12 0V8a2 2 0 0 1 2-2Z"/>'
-                : '<path d="M12 19V5M6 11l6-6 6 6"/>';
-            siteRequestSubject.value = "";
-            siteRequestDetails.value = "";
+                : isDomain
+                    ? '<path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/>'
+                    : '<path d="M12 19V5M6 11l6-6 6 6"/>';
+            if (preferredSiteId) siteRequestSite.value = String(preferredSiteId);
+            siteRequestSubject.value = isDomain ? "Connect my domain" : "";
+            siteRequestDetails.value = isDomain
+                ? (currentDomain ? `Please connect ${currentDomain} to my website.` : "Domain I want connected: ")
+                : "";
             siteRequestMessage.textContent = "";
             renderSitePicker();
             siteRequestModal.hidden = false;
-            window.setTimeout(() => siteRequestSubject.focus(), 30);
+            window.setTimeout(() => (isDomain ? siteRequestDetails : siteRequestSubject).focus(), 30);
         }
         function closeManagementModal(modal) {
             modal.hidden = true;
