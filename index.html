@@ -1722,6 +1722,13 @@
         }
         document.getElementById("adminLockedClose").addEventListener("click", closeAdminLockedPopup);
         adminLockedOverlay.addEventListener("click", event => { if (event.target === adminLockedOverlay) closeAdminLockedPopup(); });
+        function appendLockedAdminButton(actions) {
+            const lockedButton = document.createElement("button");
+            lockedButton.type = "button";
+            lockedButton.textContent = "Admin Site";
+            lockedButton.addEventListener("click", showAdminLockedPopup);
+            actions.appendChild(lockedButton);
+        }
 
         function renderManagedSites(siteRows) {
             currentManagedSites = siteRows;
@@ -1760,23 +1767,30 @@
                 publicLink.textContent = "View Website";
                 publicLink.target = "_blank";
                 publicLink.rel = "noopener";
-                const publicUrl = safeExternalUrl(site.domain_status === "active" && site.domain_name ? site.domain_name : site.public_url);
+                const folderPath = String(site.site_key || "").split("/").filter(Boolean).map(encodeURIComponent).join("/");
+                const publicUrl = safeExternalUrl(
+                    site.domain_status === "active" && site.domain_name
+                        ? site.domain_name
+                        : folderPath
+                            ? new URL(`/${folderPath}/`, window.location.origin).href
+                            : site.public_url
+                );
                 publicLink.href = publicUrl || "#";
                 publicLink.setAttribute("aria-disabled", String(!publicUrl));
                 actions.appendChild(publicLink);
                 const configuredAdminUrl = safeExternalUrl(site.admin_url);
-                if (configuredAdminUrl) {
-                    const adminLink = document.createElement("a");
-                    adminLink.textContent = "View Admin Page";
-                    adminLink.target = "_blank";
-                    adminLink.rel = "noopener";
-                    adminLink.href = configuredAdminUrl;
-                    actions.appendChild(adminLink);
-                } else if (site.site_key || publicUrl) {
-                    const folderPath = String(site.site_key || "").split("/").filter(Boolean).map(encodeURIComponent).join("/");
-                    const folderAdminUrl = folderPath
-                        ? new URL(`./${folderPath}/admin.html`, window.location.href).href
-                        : new URL("admin.html", publicUrl.endsWith("/") ? publicUrl : `${publicUrl}/`).href;
+                let folderAdminUrl = folderPath ? new URL(`/${folderPath}/admin.html`, window.location.origin).href : "";
+                if (!folderAdminUrl && configuredAdminUrl) {
+                    const configuredPath = new URL(configuredAdminUrl).pathname.toLowerCase();
+                    if (configuredPath.endsWith("/admin.html")) folderAdminUrl = configuredAdminUrl;
+                }
+                if (!folderAdminUrl && publicUrl) {
+                    const publicLocation = new URL(publicUrl);
+                    if (publicLocation.pathname !== "/") {
+                        folderAdminUrl = new URL("admin.html", publicUrl.endsWith("/") ? publicUrl : `${publicUrl}/`).href;
+                    }
+                }
+                if (folderAdminUrl) {
                     fetch(folderAdminUrl, { method: "HEAD", cache: "no-store" })
                         .then(response => {
                             if (response.ok && actions.isConnected) {
@@ -1786,28 +1800,11 @@
                                 adminLink.rel = "noopener";
                                 adminLink.href = folderAdminUrl;
                                 actions.appendChild(adminLink);
-                            } else if (actions.isConnected) {
-                                const lockedButton = document.createElement("button");
-                                lockedButton.type = "button";
-                                lockedButton.textContent = "Admin Site";
-                                lockedButton.addEventListener("click", showAdminLockedPopup);
-                                actions.appendChild(lockedButton);
-                            }
+                            } else if (actions.isConnected) appendLockedAdminButton(actions);
                         })
-                        .catch(() => {
-                            if (!actions.isConnected) return;
-                            const lockedButton = document.createElement("button");
-                            lockedButton.type = "button";
-                            lockedButton.textContent = "Admin Site";
-                            lockedButton.addEventListener("click", showAdminLockedPopup);
-                            actions.appendChild(lockedButton);
-                        });
+                        .catch(() => { if (actions.isConnected) appendLockedAdminButton(actions); });
                 } else {
-                    const lockedButton = document.createElement("button");
-                    lockedButton.type = "button";
-                    lockedButton.textContent = "Admin Site";
-                    lockedButton.addEventListener("click", showAdminLockedPopup);
-                    actions.appendChild(lockedButton);
+                    appendLockedAdminButton(actions);
                 }
                 const domainBox = document.createElement("div");
                 domainBox.className = "domain-box";
