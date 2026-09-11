@@ -390,18 +390,31 @@
         .demo-test-menu button:hover { border-color: #79cfff; }
         .demo-test-menu .demo-reset { border-color: #674242; color: #ffcaca; }
         .demo-mode-badge { display: inline-flex; margin-left: .45rem; padding: .18rem .45rem; border-radius: 999px; background: #244424; color: #baf0ae; font-size: .7rem; font-weight: 800; vertical-align: middle; }
-        .management-grid { display: grid; gap: 1rem; }
-        .management-card { padding: 1.1rem; border: 1px solid #303030; border-radius: 14px; background: #1c1c1c; }
+        .management-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        .management-card { padding: 1.25rem; border: 1px solid #303030; border-radius: 18px; background: linear-gradient(145deg, #202020, #181818); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+        .management-overview { grid-column: 1 / -1; }
         .management-card h3, .management-card h4 { margin: 0 0 .45rem; color: #f2f2f2; }
         .management-card p { margin: .25rem 0; color: #aaa; line-height: 1.55; }
+        .managed-site-card { margin-top: 1rem; padding: 1rem; border: 1px solid #373737; border-radius: 15px; background: #151515; }
+        .managed-site-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+        .managed-site-header h4 { margin: 0; font-size: 1.08rem; }
+        .site-status-pill, .domain-status-pill { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .58rem; border-radius: 999px; font-size: .78rem; font-weight: 800; }
+        .site-status-pill { background: #243527; color: #a9e5ad; }
+        .domain-status-pill.active { background: #193b2b; color: #8ee8b6; }
+        .domain-status-pill.inactive { background: #392a1c; color: #f0bd7d; }
+        .domain-box { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; margin-top: 1rem; padding: .9rem; border: 1px solid #343434; border-radius: 12px; background: #1d1d1d; }
+        .domain-label { display: block; margin-bottom: .3rem; color: #7f7f7f; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+        .domain-name { display: block; margin-top: .35rem; color: #ddd; font-size: .9rem; word-break: break-word; }
+        .link-domain-button { padding: .62rem .8rem; border: 1px solid #444; border-radius: 9px; background: #292929; color: #aaa; font: inherit; font-weight: 750; }
         .management-site-actions, .management-shortcuts { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: .9rem; }
         .management-site-actions a, .management-shortcuts button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: .65rem .9rem; border: 1px solid #454545; border-radius: 9px; background: #262626; color: #f1f1f1; cursor: pointer; font: inherit; font-weight: 700; text-decoration: none; }
         .management-site-actions a[aria-disabled="true"] { pointer-events: none; opacity: .45; }
-        .management-form { display: grid; gap: .8rem; margin-top: .9rem; }
+        .management-form { display: grid; gap: .9rem; margin-top: 1rem; }
+        .management-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
         .management-form label { display: grid; gap: .35rem; color: #d5d5d5; font-weight: 700; }
         .management-form input, .management-form select, .management-form textarea { width: 100%; padding: .75rem; border: 1px solid #3a3a3a; border-radius: 9px; background: #141414; color: #fff; font: inherit; }
         .management-form textarea { min-height: 120px; resize: vertical; }
-        .request-history { display: grid; gap: .65rem; margin-top: .8rem; }
+        .request-history { display: grid; gap: .65rem; max-height: 430px; margin-top: .8rem; overflow: auto; }
         .request-item { padding: .8rem; border: 1px solid #303030; border-radius: 10px; background: #171717; }
         .request-item strong { color: #eee; }
         .request-meta { color: #888; font-size: .85rem; }
@@ -410,6 +423,12 @@
         body.light-mode .management-card, body.light-mode .request-item { border-color: #d7d7d2; background: #fff; }
         body.light-mode .management-card h3, body.light-mode .management-card h4, body.light-mode .request-item strong { color: #222; }
         body.light-mode .management-form input, body.light-mode .management-form select, body.light-mode .management-form textarea { border-color: #ccc; background: #f7f7f4; color: #222; }
+        body.light-mode .managed-site-card, body.light-mode .domain-box { border-color: #d7d7d2; background: #f7f7f4; }
+        @media (max-width: 760px) {
+            .management-grid, .management-form-row { grid-template-columns: 1fr; }
+            .management-overview { grid-column: auto; }
+            .domain-box { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
@@ -596,13 +615,12 @@
 
                 <section class="portal-panel" id="sitePanel" hidden>
                     <div class="management-grid">
-                        <div class="management-card">
+                        <div class="management-card management-overview">
                             <h3>Site Management</h3>
                             <p id="siteManagementIntro">Your websites and management tools are private to your account.</p>
                             <div id="managedSitesList"></div>
                             <div class="management-shortcuts">
                                 <button type="button" id="claimYourSite">Claim Another Site</button>
-                                <button type="button" id="manageSiteSubscriptions">Manage Subscriptions</button>
                             </div>
                             <p class="portal-message" id="siteMessage" role="status"></p>
                             <button id="openMySite" type="button" hidden>Open My Site</button>
@@ -611,13 +629,15 @@
                             <h3>Request an Update or Report a Bug</h3>
                             <p>Send your request directly to the team managing your website.</p>
                             <form class="management-form" id="siteRequestForm">
-                                <label>Website <select id="siteRequestSite" required></select></label>
-                                <label>Request type
-                                    <select id="siteRequestType" required>
-                                        <option value="update">Website update</option>
-                                        <option value="bug">Report a bug</option>
-                                    </select>
-                                </label>
+                                <div class="management-form-row">
+                                    <label>Website <select id="siteRequestSite" required></select></label>
+                                    <label>Request type
+                                        <select id="siteRequestType" required>
+                                            <option value="update">Website update</option>
+                                            <option value="bug">Report a bug</option>
+                                        </select>
+                                    </label>
+                                </div>
                                 <label>Subject <input id="siteRequestSubject" type="text" maxlength="120" required></label>
                                 <label>Details <textarea id="siteRequestDetails" maxlength="3000" required></textarea></label>
                                 <button class="portal-primary" id="siteRequestSubmit" type="submit">Submit Request</button>
@@ -1534,11 +1554,15 @@
             siteRequestSubmit.disabled = false;
             siteRows.forEach(site => {
                 const card = document.createElement("article");
-                card.className = "management-card";
+                card.className = "managed-site-card";
+                const header = document.createElement("div");
+                header.className = "managed-site-header";
                 const title = document.createElement("h4");
                 title.textContent = site.site_name || "My Website";
-                const status = document.createElement("p");
-                status.textContent = `Status: ${site.status || "Active"}`;
+                const status = document.createElement("span");
+                status.className = "site-status-pill";
+                status.textContent = site.status || "Active";
+                header.append(title, status);
                 const actions = document.createElement("div");
                 actions.className = "management-site-actions";
                 const publicLink = document.createElement("a");
@@ -1556,7 +1580,30 @@
                 adminLink.href = adminUrl || "#";
                 adminLink.setAttribute("aria-disabled", String(!adminUrl));
                 actions.append(publicLink, adminLink);
-                card.append(title, status, actions);
+                const domainBox = document.createElement("div");
+                domainBox.className = "domain-box";
+                const domainInfo = document.createElement("div");
+                const domainLabel = document.createElement("span");
+                domainLabel.className = "domain-label";
+                domainLabel.textContent = "Domain";
+                const domainActive = site.domain_status === "active" && Boolean(site.domain_name);
+                const domainStatus = document.createElement("span");
+                domainStatus.className = `domain-status-pill ${domainActive ? "active" : "inactive"}`;
+                domainStatus.textContent = domainActive ? "Active domain" : "Inactive domain";
+                domainInfo.append(domainLabel, domainStatus);
+                if (site.domain_name) {
+                    const domainName = document.createElement("span");
+                    domainName.className = "domain-name";
+                    domainName.textContent = site.domain_name;
+                    domainInfo.appendChild(domainName);
+                }
+                const linkDomainButton = document.createElement("button");
+                linkDomainButton.className = "link-domain-button";
+                linkDomainButton.type = "button";
+                linkDomainButton.textContent = "Link Your Domain";
+                linkDomainButton.disabled = true;
+                domainBox.append(domainInfo, linkDomainButton);
+                card.append(header, actions, domainBox);
                 managedSitesList.appendChild(card);
                 const option = document.createElement("option");
                 option.value = site.id || "";
@@ -1594,12 +1641,12 @@
             }
             if (!session?.user) return;
             const [{ data: siteRows, error: sitesError }, { data: requestRows, error: requestsError }] = await Promise.all([
-                portalSupabase.from("client_sites").select("id, site_name, public_url, admin_url, status").eq("user_id", session.user.id).order("created_at", { ascending: false }),
+                portalSupabase.from("client_sites").select("id, site_name, public_url, admin_url, status, domain_name, domain_status").eq("user_id", session.user.id).order("created_at", { ascending: false }),
                 portalSupabase.from("client_site_requests").select("id, site_id, request_type, subject, details, status, created_at").eq("user_id", session.user.id).order("created_at", { ascending: false }).limit(20)
             ]);
             const metadataSite = safeExternalUrl(session.user.user_metadata?.site_url || session.user.app_metadata?.site_url);
             const metadataAdmin = safeExternalUrl(session.user.user_metadata?.admin_url || session.user.app_metadata?.admin_url);
-            const fallbackSites = metadataSite ? [{ id: "account-site", site_name: "My Website", public_url: metadataSite, admin_url: metadataAdmin, status: "Active" }] : [];
+            const fallbackSites = metadataSite ? [{ id: "account-site", site_name: "My Website", public_url: metadataSite, admin_url: metadataAdmin, status: "Active", domain_name: "", domain_status: "inactive" }] : [];
             renderManagedSites(sitesError ? fallbackSites : (siteRows?.length ? siteRows : fallbackSites));
             renderSiteRequests(requestsError ? [] : (requestRows || []));
             siteMessage.textContent = sitesError || requestsError ? "Site management setup is still being completed." : "";
@@ -1675,7 +1722,6 @@
         loginTab.addEventListener("click", () => setAuthMode("login"));
         signupTab.addEventListener("click", () => setAuthMode("signup"));
         document.querySelectorAll(".portal-nav-button").forEach(button => button.addEventListener("click", () => showPortalPanel(button.dataset.portalPanel)));
-        document.getElementById("manageSiteSubscriptions").addEventListener("click", () => showPortalPanel("subscriptionsPanel"));
         claimSubmittedContinue.addEventListener("click", async () => {
             claimSubmittedOverlay.hidden = true;
             pendingPanel = "sitePanel";
@@ -2162,7 +2208,9 @@
                 site_name: site.name,
                 public_url: new URL(`./${site.path}/`, window.location.href).href,
                 admin_url: new URL(`./${site.path}/admin/`, window.location.href).href,
-                status: "Active"
+                status: "Active",
+                domain_name: "",
+                domain_status: "inactive"
             }));
             renderManagedSites(localSubmittedSites);
             claimMessageStatus.textContent = "Your claim has been submitted.";
