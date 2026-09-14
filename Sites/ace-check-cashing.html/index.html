@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="description" content="A neighborhood stop you can count on">
+<title>Ace Check Cashing | Detroit, MI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+:root{--accent:#0a66c2;--accent2:#f4b942;--bg:#f5f7fa;--panel:#ffffff;--text:#17263a;--muted:#667487;--line:color-mix(in srgb,var(--text) 14%,transparent)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.6;-webkit-user-select:none;user-select:none;-webkit-text-size-adjust:100%}
+.wrap{width:min(1140px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 91%,transparent);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:'Manrope',sans-serif;font-weight:800;color:var(--text);text-decoration:none;font-size:1.18rem}
+nav{display:flex;gap:24px;align-items:center}nav a{text-decoration:none;color:var(--text);font-weight:800;font-size:.84rem}nav a:hover{color:var(--accent)}
+.menu{display:none;width:44px;height:42px;border:1px solid var(--line);background:var(--panel);padding:8px;cursor:pointer}.menu span{display:block;height:2px;background:var(--text);margin:5px 0}
+.hero{min-height:680px;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 92%,transparent) 48%,transparent 100%),url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=82') center/cover no-repeat;opacity:.98}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;padding:76px 0}
+.kicker{display:inline-block;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:800;color:var(--accent);margin-bottom:14px}
+h1,h2,h3{font-family:'Manrope',sans-serif;line-height:1.04;margin:0}h1{font-size:clamp(3.4rem,7vw,6.8rem);max-width:10ch;letter-spacing:-.035em}h2{font-size:clamp(2.4rem,4.8vw,4.2rem);margin-bottom:24px}
+.hero-copy p{font-size:1.1rem;color:var(--muted);max-width:590px;margin:20px 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border:1px solid var(--accent);background:var(--accent);color:#fff;text-decoration:none;font-weight:800;cursor:pointer}.btn.secondary{background:var(--panel);color:var(--text);border-color:var(--line)}.btn:hover{transform:translateY(-2px)}
+.hero-photo{min-height:430px;background:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=82') center/cover no-repeat}
+.section{padding:86px 0;border-top:1px solid var(--line)}.section.alt{background:color-mix(in srgb,var(--panel) 55%,transparent)}
+.section-title{max-width:760px;margin-bottom:34px}.section-title p{color:var(--muted);margin:14px 0 0}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);padding:28px;min-height:190px}.ico{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--accent);color:var(--accent);margin-bottom:28px}.card h3{font-size:1.25rem}
+.about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:start}.about-copy p{color:var(--muted);font-size:1.04rem}.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.highlight{border:1px solid var(--line);background:var(--panel);padding:22px;font-weight:800}
+.rating{font-size:1.12rem;font-weight:800;color:var(--accent);margin-bottom:24px}.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}blockquote{margin:0;background:var(--panel);border-left:4px solid var(--accent);padding:26px;font-size:1rem}cite{display:block;color:var(--muted);font-size:.78rem;font-style:normal;margin-top:16px}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}.visit-panel,.hours-box{background:var(--panel);border:1px solid var(--line);padding:30px}.fact{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}.fact:last-of-type{border-bottom:0}.fact i{color:var(--accent);margin-top:5px;width:22px}.fact strong{display:block}.fact span{color:var(--muted)}.hours-box .hour{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line)}.hours-box .hour:last-child{border-bottom:0}.hours-box span{color:var(--muted)}
+footer{background:#111;color:#ddd;padding:28px 0}footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}.modal-backdrop.open{display:flex}.modal{width:min(460px,100%);background:var(--panel);color:var(--text);border:1px solid var(--line);padding:34px;box-shadow:0 30px 80px rgba(0,0,0,.38)}.modal h2{font-size:2rem}.modal p{color:var(--muted)}body.modal-open{overflow:hidden}
+.hero-photo{border-radius:22px}.card{border-top:4px solid var(--accent)}.visit-panel{border-radius:18px}.hours-box{border-radius:18px}.btn{border-radius:10px}
+@media(max-width:840px){
+.menu{display:block}nav{position:absolute;top:76px;left:20px;right:20px;display:none;flex-direction:column;align-items:stretch;background:var(--panel);border:1px solid var(--line);padding:12px;box-shadow:0 20px 55px rgba(0,0,0,.18)}nav.open{display:flex}nav a{padding:10px}
+.hero{min-height:auto}.hero:before{background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 90%,transparent) 58%,transparent 100%),url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=82') center/cover no-repeat}.hero-grid{grid-template-columns:1fr;gap:24px;padding:50px 0}.hero-photo{min-height:300px}
+.cards{grid-template-columns:1fr 1fr}.about-grid,.visit-grid{grid-template-columns:1fr;gap:34px}.reviews{grid-template-columns:1fr}
+}
+@media(max-width:560px){.wrap{width:min(100% - 28px,1140px)}.nav{height:68px}nav{top:68px}.section{padding:64px 0}.cards{grid-template-columns:1fr}.highlights{grid-template-columns:1fr}.hero-photo{min-height:250px}h1{font-size:clamp(2.8rem,15vw,4.8rem)}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="#home">Ace Check Cashing</a><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button><nav id="nav"><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav></div></header>
+<main id="home">
+<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><span class="kicker">Detroit, MI</span><h1>Ace Check Cashing</h1><p>A neighborhood stop you can count on</p><div class="actions"><a class="btn" href="#services">Services</a><a class="btn secondary" href="#visit">Visit</a></div></div><div class="hero-photo" role="img" aria-label="Relevant stock imagery"></div></div></section>
+<section class="section alt" id="services"><div class="wrap"><div class="section-title"><span class="kicker">Services</span><h2>What you’ll find</h2></div><div class="cards"><article class="card"><div class="ico"><i class="fa-solid fa-location-dot"></i></div><h3>Local favorites</h3></article><article class="card"><div class="ico"><i class="fa-solid fa-handshake"></i></div><h3>Friendly service</h3></article><article class="card"><div class="ico"><i class="fa-solid fa-bag-shopping"></i></div><h3>Everyday essentials</h3></article><article class="card"><div class="ico"><i class="fa-solid fa-comments"></i></div><h3>Come say hello</h3></article></div></div></section>
+<section class="section"><div class="wrap about-grid"><div class="about-copy"><span class="kicker">About</span><h2>Ace Check Cashing</h2><p>Ace Check Cashing in Detroit. A neighborhood stop you can count on. Friendly service and everyday essentials.</p></div><div class="highlights"><div class="highlight">Neighborhood staples</div><div class="highlight">Friendly counter</div><div class="highlight">Easy stop</div></div></div></section>
+<section class="section alt" id="reviews"><div class="wrap"><span class="kicker">Reviews</span><h2>What visitors say</h2><p class="rating">4.7 ★★★★★ on local listings</p><div class="reviews"><blockquote>“Friendly stop in Detroit. Worth swinging by.”<cite>Neighborhood visitor</cite></blockquote><blockquote>“Good prices and solid service.”<cite>Neighborhood visitor</cite></blockquote><blockquote>“Neighborhood favorite — easy to find at 20011 Plymouth Rd.”<cite>Neighborhood visitor</cite></blockquote></div></div></section>
+<section class="section" id="visit"><div class="wrap"><span class="kicker">Visit</span><h2>Plan your stop</h2><div class="visit-grid"><div class="visit-panel"><div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Address</strong><span>20011 Plymouth Rd, Detroit, MI 48228</span></div></div><div class="fact"><i class="fa-solid fa-phone"></i><div><strong>Phone</strong><span>(313) 273-1111</span></div></div><div class="actions" style="margin-top:24px"><button class="btn" data-locked="true">Call (313) 273-1111</button><button class="btn secondary" data-locked="true">Open in Google Maps</button></div></div><div class="hours-box"><span class="kicker">Hours</span><div class='hour'><span>Sunday</span><strong>10:00 AM – 6:00 PM</strong></div><div class='hour'><span>Monday</span><strong>9:00 AM – 7:00 PM</strong></div><div class='hour'><span>Tuesday</span><strong>9:00 AM – 7:00 PM</strong></div><div class='hour'><span>Wednesday</span><strong>9:00 AM – 7:00 PM</strong></div><div class='hour'><span>Thursday</span><strong>9:00 AM – 7:00 PM</strong></div><div class='hour'><span>Friday</span><strong>9:00 AM – 7:00 PM</strong></div><div class='hour'><span>Saturday</span><strong>10:00 AM – 6:00 PM</strong></div></div></div></div></section>
+</main>
+<footer><div class="wrap"><strong>Ace Check Cashing</strong><span>20011 Plymouth Rd, Detroit, MI 48228</span></div></footer>
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle"><span class="kicker">Demo feature</span><h2 id="lockedTitle">This is currently locked.</h2><p>This feature is part of the full website. Purchase the site to unlock it.</p><button class="btn" id="closeModal">Close</button></div></div>
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const nav=document.getElementById('nav');
+menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open?'true':'false');});
+nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
+const modal=document.getElementById('lockedModal');
+const closeModal=document.getElementById('closeModal');
+let lastFocus=null;
+function openLocked(e){e.preventDefault();lastFocus=e.currentTarget;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');closeModal.focus();}
+function closeLocked(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');if(lastFocus)lastFocus.focus();}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+closeModal.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked();});
+</script>
+</body>
+</html>

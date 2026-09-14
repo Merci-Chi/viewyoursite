@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="description" content="Wine, beer, and spirits around the corner. Milwaukee, WI">
+<title>Beer District: Liquor Store | Milwaukee, WI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--accent:#f1a208;--accent2:#b11e31;--bg:#121315;--panel:#1b1d20;--text:#fff9e8;--muted:#c5c0b3;--line:color-mix(in srgb,var(--text) 15%,transparent)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none}
+a,button{-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+.wrap{width:min(1160px,calc(100% - 42px));margin:auto}
+header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800}
+.brand-mark{width:42px;height:42px;border:1px solid var(--accent2);display:grid;place-items:center;color:var(--accent2)}
+.brand strong{font-family:'Bebas Neue',serif;letter-spacing:.02em}
+nav{display:flex;align-items:center;gap:24px}
+nav a{text-decoration:none;font-size:.88rem;font-weight:800;letter-spacing:.03em}
+nav a:hover{color:var(--accent)}
+.menu{display:none;border:0;background:transparent;width:46px;height:46px;padding:8px;cursor:pointer}
+.menu span{display:block;height:2px;background:var(--text);margin:6px 0}
+.hero{position:relative;min-height:720px;display:grid;align-items:end;overflow:hidden;background-image:linear-gradient(90deg,color-mix(in srgb,var(--bg) 96%,transparent) 0%,color-mix(in srgb,var(--bg) 82%,transparent) 46%,rgba(0,0,0,.08) 100%),url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=82');background-size:cover;background-position:center}
+.hero:after{content:"Stock imagery";position:absolute;right:18px;bottom:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.45);padding:5px 8px}
+.hero-inner{position:relative;z-index:2;padding:110px 0 88px;max-width:760px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent2);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:900}
+h1,h2,h3{font-family:'Bebas Neue',serif;line-height:1.04;margin:0}
+h1{font-size:clamp(3.4rem,8vw,7.7rem);max-width:11ch;margin:18px 0 20px}
+.hero p{font-size:1.08rem;max-width:650px;color:var(--muted);margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--accent);background:var(--accent);color:#fff;padding:13px 19px;text-decoration:none;font-weight:900;cursor:pointer}
+.btn.secondary{background:transparent;color:var(--text);border-color:var(--accent2)}
+.factbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.facts{display:grid;grid-template-columns:1.2fr 1fr 1fr}
+.fact{padding:22px 24px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact small{display:block;text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;color:var(--muted);font-weight:900}
+.fact strong{display:block;margin-top:3px}
+.section{padding:92px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:38px}
+.section-head h2,.contact-copy h2{font-size:clamp(2.4rem,5vw,4.5rem)}
+.section-head p{max-width:600px;color:var(--muted);margin:0}
+.services{background:color-mix(in srgb,var(--panel) 76%,var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.service-card{padding:30px;min-height:235px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.service-card:nth-child(3n){border-right:0}
+.service-icon{width:50px;height:50px;display:grid;place-items:center;color:var(--accent2);border:1px solid var(--accent2);margin-bottom:34px}
+.service-card h3{font-size:1.35rem;margin-bottom:10px}
+.service-card p{margin:0;color:var(--muted);font-size:.94rem}
+.hours-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:74px;align-items:start}
+.hours-card{border-top:4px solid var(--accent);background:var(--panel);padding:30px}
+.hours-row{display:flex;justify-content:space-between;gap:24px;padding:15px 0;border-bottom:1px solid var(--line)}
+.hours-row:last-child{border-bottom:0}
+.hours-row span{color:var(--muted)}
+.review-band{background:var(--accent);color:#fff}
+.review-band .section-head p{color:rgba(255,255,255,.75)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.quote{margin:0;padding:28px;border:1px solid rgba(255,255,255,.25);min-height:190px}
+.quote blockquote{font-family:'Bebas Neue',serif;font-size:1.28rem;line-height:1.45;margin:0 0 22px}
+.quote figcaption{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.contact-panel{border:1px solid var(--line)}
+.contact-row{display:flex;gap:16px;padding:20px 22px;border-bottom:1px solid var(--line)}
+.contact-row:last-child{border-bottom:0}
+.contact-row i{color:var(--accent2);width:20px;margin-top:4px}
+.contact-row small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.67rem;font-weight:900}
+.stat{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:900}
+.stat i{color:var(--accent2)}
+footer{padding:30px 0;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);z-index:1000}
+.modal-backdrop.open{display:flex}
+.modal{width:min(460px,100%);background:var(--panel);color:var(--text);border:1px solid var(--line);padding:34px;box-shadow:0 32px 90px rgba(0,0,0,.4)}
+.modal h2{font-size:2rem;margin:8px 0 12px}
+.modal p{color:var(--muted);margin-bottom:24px}
+
+/* distinct layout treatments */
+body.arc .hero-inner{max-width:700px} body.arc .hero{border-bottom:10px solid var(--accent2)} body.arc .service-card:nth-child(even){background:color-mix(in srgb,var(--panel) 91%,var(--accent) 9%)}
+body.split .hero{background-position:center 25%} body.split h1{text-transform:uppercase;letter-spacing:-.03em} body.split .service-card{border-top:5px solid transparent} body.split .service-card:hover{border-top-color:var(--accent)}
+body.editorial .hero-inner{max-width:670px} body.editorial h1{letter-spacing:-.04em} body.editorial .factbar{box-shadow:0 12px 40px rgba(0,0,0,.06)} body.editorial .service-icon{border-radius:50%}
+body.poster .hero h1{text-transform:uppercase;letter-spacing:.01em} body.poster .hero{background-blend-mode:multiply} body.poster .service-card h3{text-transform:uppercase;letter-spacing:.03em} body.poster .btn{text-transform:uppercase;letter-spacing:.05em}
+body.soft .hero{background-image:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 88%,transparent) 48%,rgba(255,255,255,.05) 100%),url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=82')} body.soft .service-card,body.soft .hours-card,body.soft .contact-panel{border-radius:18px} body.soft .service-grid{border:0;gap:16px} body.soft .service-card{border:1px solid var(--line)!important}
+
+@media(max-width:860px){
+  .menu{display:block}
+  nav{position:absolute;left:20px;right:20px;top:78px;display:none;flex-direction:column;align-items:stretch;background:var(--panel);border:1px solid var(--line);padding:12px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  nav.open{display:flex} nav a{padding:11px}
+  .hero{min-height:620px;background-image:linear-gradient(180deg,color-mix(in srgb,var(--bg) 98%,transparent) 0%,color-mix(in srgb,var(--bg) 80%,transparent) 62%,rgba(0,0,0,.08) 100%),url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=82')}
+  .hero-inner{padding:86px 0 62px}
+  .facts{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid var(--line)} .fact:last-child{border-bottom:0}
+  .service-grid{grid-template-columns:1fr 1fr} .service-card:nth-child(3n){border-right:1px solid var(--line)} .service-card:nth-child(2n){border-right:0}
+  .hours-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
+  .review-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .wrap{width:min(100% - 28px,1160px)} .nav{height:70px} nav{top:70px}
+  .hero{min-height:560px} h1{font-size:clamp(2.9rem,17vw,5.2rem)} .section{padding:68px 0}
+  .section-head{flex-direction:column;align-items:flex-start}
+  .service-grid{grid-template-columns:1fr} .service-card{border-right:0!important;min-height:0}
+  .actions{flex-direction:column;align-items:stretch} .btn{justify-content:center}
+}
+</style>
+</head>
+<body class="poster">
+<header><div class="wrap nav">
+<a class="brand" href="#home"><span class="brand-mark"><i class="fa-solid fa-wine-bottle"></i></span><strong>Beer District</strong></a>
+<button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+<nav id="nav"><a href="#services">Services</a><a href="#hours">Hours</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+</div></header>
+<main id="home">
+<section class="hero"><div class="wrap"><div class="hero-inner">
+<span class="eyebrow"><i class="fa-solid fa-wine-bottle"></i>Wine, Beer &amp; Spirits</span>
+<h1>Beer District: Liquor Store</h1>
+<p><strong>Wine, beer, and spirits around the corner.</strong><br>Cold drinks and fair prices at 240 W Wells St in Milwaukee.</p>
+<div class="actions"><a class="btn" href="#services">Explore services</a><a class="btn secondary" href="#visit">Plan your visit</a></div>
+</div></div></section>
+
+<section class="factbar"><div class="wrap facts">
+<div class="fact"><small>Location</small><strong>240 W Wells St, Milwaukee, WI 53203</strong></div>
+<div class="fact"><small>Phone</small><strong>(414) 220-4121</strong></div>
+<div class="fact"><small>City</small><strong>Milwaukee, WI</strong><span class="stat"><i class="fa-solid fa-star"></i>4.4 on local listings</span></div>
+</div></section>
+
+<section class="section services" id="services"><div class="wrap">
+<div class="section-head"><div><span class="eyebrow">What you’ll find</span><h2>Services & offerings</h2></div><p>Cold drinks and fair prices at 240 W Wells St in Milwaukee.</p></div>
+<div class="service-grid"><article class="service-card"><span class="service-icon"><i class="fa-solid fa-wine-bottle"></i></span><h3>Wine, beer &amp; spirits</h3><p>Available in-store.</p></article>
+<article class="service-card"><span class="service-icon"><i class="fa-solid fa-basket-shopping"></i></span><h3>Everyday staples</h3><p>Available in-store.</p></article>
+<article class="service-card"><span class="service-icon"><i class="fa-solid fa-snowflake"></i></span><h3>Cold cases ready</h3><p>Available in-store.</p></article>
+<article class="service-card"><span class="service-icon"><i class="fa-solid fa-store"></i></span><h3>Friendly counter help</h3><p>Available in-store.</p></article></div>
+</div></section>
+
+<section class="section" id="hours"><div class="wrap hours-grid">
+<div><span class="eyebrow">Hours</span><h2>Plan your visit</h2><p style="color:var(--muted)">Store hours shown here come from the business information supplied for this site.</p></div>
+<div class="hours-card"><div class="hours-row"><span>Sunday</span><strong>10:00 AM – 8:00 PM</strong></div>
+<div class="hours-row"><span>Monday – Saturday</span><strong>10:00 AM – 10:00 PM</strong></div></div>
+</div></section>
+
+<section class="section review-band" id="reviews"><div class="wrap">
+<div class="section-head"><div><span class="eyebrow" style="color:#fff">Reviews</span><h2>Customer feedback</h2></div><p>Review text shown below is limited to feedback supplied in the source material.</p></div>
+<div class="review-grid"><figure class="quote"><blockquote>“Friendly stop in Milwaukee. Worth swinging by.”</blockquote><figcaption>Neighborhood visitor</figcaption></figure>
+<figure class="quote"><blockquote>“Good prices and solid liquor.”</blockquote><figcaption>Neighborhood visitor</figcaption></figure>
+<figure class="quote"><blockquote>“Neighborhood favorite — easy to find at 240 W Wells St.”</blockquote><figcaption>Neighborhood visitor</figcaption></figure></div>
+</div></section>
+
+<section class="section contact" id="visit"><div class="wrap contact-grid">
+<div class="contact-copy"><span class="eyebrow">Visit</span><h2>Milwaukee, WI</h2><p style="color:var(--muted)">Use the supplied business details below. Demo actions that would leave the page or contact the business remain locked.</p></div>
+<div>
+<div class="contact-panel">
+<div class="contact-row"><i class="fa-solid fa-location-dot"></i><div><small>Address</small><strong>240 W Wells St, Milwaukee, WI 53203</strong></div></div>
+<div class="contact-row"><i class="fa-solid fa-phone"></i><div><small>Phone</small><strong>(414) 220-4121</strong></div></div>
+</div>
+<div class="actions" style="margin-top:18px">
+<a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i>Call</a>
+<a href="#" class="btn secondary" data-locked="true"><i class="fa-solid fa-map-location-dot"></i>Open map</a>
+</div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><span>© Beer District: Liquor Store</span><span>Milwaukee, WI</span></div></footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+<span class="eyebrow">Demo feature</span>
+<h2 id="lockedTitle">This is currently locked.</h2>
+<p>This feature is part of the full website. Purchase the site to unlock it.</p>
+<button class="btn" id="closeModal">Close</button>
+</div></div>
+
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const nav=document.getElementById('nav');
+menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open?'true':'false');});
+nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
+const modal=document.getElementById('lockedModal');
+const closeModal=document.getElementById('closeModal');
+let lastFocus=null;
+function openLocked(e){e.preventDefault();lastFocus=e.currentTarget;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeModal.focus();}
+function closeLocked(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus)lastFocus.focus();}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+closeModal.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape' && modal.classList.contains('open'))closeLocked();});
+</script>
+</body>
+</html>
