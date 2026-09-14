@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Fence Doctor of Cincinnati | Fence Installation & Repair</title>
+  <meta name="description" content="Fence Doctor of Cincinnati is an owner-operated Cincinnati fence contractor offering fence installation, repair, replacement, removal, painting and staining.">
+  <meta name="theme-color" content="#20341e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1774835750723-b1e1ded2ad69?auto=format&fit=crop&w=1800&q=82">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82">
+
+  <style>
+    :root{
+      --cedar:#7a4a22;
+      --cedar-dark:#4a2c13;
+      --moss:#2c4429;
+      --moss-dark:#1a2a18;
+      --cream:#f7f2e6;
+      --paper:#efe7d2;
+      --rust:#a5401f;
+      --gold:#c9963c;
+      --ink:#2d281f;
+      --muted:#6b6256;
+      --line:rgba(45,40,31,.14);
+      --white:#fff;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Karla',sans-serif;
+      color:var(--ink);
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+      background:
+        linear-gradient(rgba(247,242,230,.91),rgba(247,242,230,.91)),
+        url("https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82") center top/cover fixed;
+    }
+    body.modal-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),92%);margin:auto}
+    h1,h2,h3{font-family:'Zilla Slab',serif;line-height:1.05}
+    h2{font-size:clamp(2.3rem,5vw,4.3rem)}
+    p{color:var(--muted)}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.5rem;
+      text-transform:uppercase;letter-spacing:.14em;
+      font-size:.74rem;font-weight:700;color:var(--rust)
+    }
+    .section{padding:84px 0}
+    .section-head{max-width:780px;margin-bottom:2rem}
+    .section-head h2{margin:.35rem 0 .8rem}
+    .btn{
+      min-height:50px;padding:.9rem 1.2rem;border:0;border-radius:3px;
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+      background:var(--rust);color:#fff;font-weight:700;cursor:pointer;
+      transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px);background:#843319}
+    .btn.ghost{background:transparent;border:2px solid currentColor}
+
+    header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(26,42,24,.97);color:white;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+    }
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.8rem}
+    .brand-mark{
+      width:48px;height:48px;display:grid;place-items:center;
+      background:var(--cedar);border:2px solid var(--gold);
+      color:#fff;font-size:1.2rem
+    }
+    .brand strong{display:block;font-size:1rem}
+    .brand span{display:block;color:#c4d2bf;font-size:.7rem;letter-spacing:.11em}
+    .nav-links{display:flex;align-items:center;gap:1.1rem}
+    .nav-links a{font-size:.9rem;font-weight:700;position:relative}
+    .nav-links a:not(.nav-cta)::after{
+      content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--gold);transition:right .2s
+    }
+    .nav-links a:not(.nav-cta):hover::after{right:0}
+    .nav-cta{background:var(--rust);padding:.7rem 1rem}
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1.5rem;cursor:pointer}
+
+    .hero{
+      min-height:760px;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(24,39,22,.90),rgba(24,39,22,.57) 56%,rgba(24,39,22,.18)),
+        url("https://images.unsplash.com/photo-1774835750723-b1e1ded2ad69?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+    .hero::after{
+      content:"";position:absolute;left:0;right:0;bottom:0;height:110px;
+      background:linear-gradient(to bottom,transparent,rgba(26,42,24,.35))
+    }
+    .hero-content{position:relative;z-index:2;max-width:840px;padding:5.7rem 0}
+    .hero .eyebrow{color:#efc66d}
+    .hero h1{font-size:clamp(3.7rem,9vw,7.5rem);margin:.5rem 0 1rem;max-width:12ch}
+    .hero h1 span{color:var(--gold)}
+    .hero p{color:#f0eee8;max-width:690px;font-size:1.08rem}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.35rem}
+    .chip{padding:.55rem .75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);font-size:.8rem}
+    .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+    .hero-note{margin-top:.85rem;font-size:.78rem;color:#c2cdbd}
+
+    .fence-band{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      background:var(--cedar-dark);color:white
+    }
+    .fence-band div{padding:1.05rem;text-align:center;border-right:1px solid rgba(255,255,255,.11);font-weight:700}
+    .fence-band i{color:var(--gold);margin-right:.45rem}
+
+    .about{
+      background:
+        linear-gradient(rgba(247,242,230,.91),rgba(247,242,230,.91)),
+        url("https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+    .about-photo{
+      min-height:520px;position:relative;
+      background:
+        linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.05)),
+        url("https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82") center/cover;
+      box-shadow:0 22px 50px rgba(41,34,24,.18)
+    }
+    .stock-tag{position:absolute;left:18px;bottom:18px;background:rgba(26,42,24,.94);color:#fff;border-left:4px solid var(--gold);padding:.65rem .8rem;font-size:.76rem}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.4rem}
+    .fact{padding:1rem 0;border-top:3px solid var(--cedar)}
+    .fact strong{display:block;margin-bottom:.2rem}
+    .fact i{color:var(--rust);margin-right:.45rem}
+
+    .services{
+      background:
+        linear-gradient(rgba(26,42,24,.91),rgba(26,42,24,.91)),
+        url("https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82") center/cover fixed;
+      color:#fff
+    }
+    .services p{color:#d5ded1}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .service{
+      min-height:330px;position:relative;overflow:hidden;isolation:isolate;
+      display:flex;align-items:flex-end;border:1px solid rgba(255,255,255,.13);
+      cursor:pointer;transition:transform .28s ease,box-shadow .28s ease
+    }
+    .service:hover{transform:translateY(-7px);box-shadow:0 20px 42px rgba(0,0,0,.28)}
+    .service-img{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .45s ease}
+    .service:hover .service-img{transform:scale(1.08)}
+    .service::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(19,32,18,.97),rgba(19,32,18,.10) 75%)}
+    .service-body{padding:1.35rem}
+    .service-body i{font-size:1.5rem;color:#efc66d;margin-bottom:.75rem}
+    .service-body h3{font-size:1.55rem;margin-bottom:.4rem}
+    .service-body p{font-size:.92rem;color:#d9e0d6}
+    .learn{display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;color:#efc66d;font-size:.82rem;font-weight:700}
+
+    .materials{
+      background:
+        linear-gradient(rgba(247,242,230,.92),rgba(247,242,230,.92)),
+        url("https://images.unsplash.com/photo-1774835750723-b1e1ded2ad69?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+    .material-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .material{
+      background:rgba(255,255,255,.88);border:1px solid var(--line);
+      padding:1.4rem;text-align:center;transition:.25s
+    }
+    .material:hover{transform:translateY(-5px)}
+    .material i{font-size:1.55rem;color:var(--cedar);margin-bottom:.7rem}
+    .material h3{margin-bottom:.3rem}
+
+    .reviews{
+      background:
+        linear-gradient(rgba(74,44,19,.92),rgba(74,44,19,.92)),
+        url("https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82") center/cover;
+      color:white
+    }
+    .reviews p{color:#e2d8c8}
+    .rating-wrap{display:grid;grid-template-columns:.68fr 1.32fr;gap:2rem;align-items:start}
+    .rating-box{background:var(--moss-dark);padding:2rem;border-top:6px solid var(--gold)}
+    .rating-big{font-family:'Zilla Slab',serif;font-size:5rem;line-height:1;color:var(--gold)}
+    .stars{color:#f4c35b;letter-spacing:.12em;margin:.4rem 0}
+    .themes{display:grid;gap:1rem}
+    .theme{background:rgba(255,255,255,.08);border-left:4px solid var(--gold);padding:1.2rem}
+    .theme h3{margin-bottom:.35rem}
+
+    .hours{
+      background:
+        linear-gradient(rgba(247,242,230,.91),rgba(247,242,230,.91)),
+        url("https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+    .hours-list{list-style:none;background:rgba(255,255,255,.9);border:1px solid var(--line);padding:1.2rem}
+    .hours-list li{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+    .hours-list li:last-child{border-bottom:0}
+    .hours-note{background:var(--moss);color:white;padding:1.5rem}
+    .hours-note p{color:#dde5da}
+
+    .faq{
+      background:
+        linear-gradient(rgba(247,242,230,.92),rgba(247,242,230,.92)),
+        url("https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+    details{background:rgba(255,255,255,.91);border:1px solid var(--line);padding:1rem 1.1rem;margin-bottom:.75rem}
+    summary{display:flex;justify-content:space-between;gap:1rem;font-weight:700;cursor:pointer;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";color:var(--rust);font-size:1.3rem}
+    details[open] summary::after{content:"−"}
+    details p{margin-top:.7rem}
+
+    .contact{
+      background:
+        linear-gradient(rgba(24,39,22,.94),rgba(24,39,22,.94)),
+        url("https://images.unsplash.com/photo-1774835750723-b1e1ded2ad69?auto=format&fit=crop&w=1800&q=82") center/cover;
+      color:white
+    }
+    .contact p{color:#d5ded1}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .protected{margin-top:1rem;padding:1rem 1.1rem;background:rgba(255,255,255,.06);border-left:4px solid var(--gold);font-weight:700}
+    .checklist{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:1.4rem}
+    .check{display:flex;gap:.8rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .check:last-child{border-bottom:0}
+    .check i{color:#efc66d;width:22px;margin-top:.18rem}
+
+    footer{
+      background:
+        linear-gradient(rgba(15,25,14,.98),rgba(15,25,14,.98)),
+        url("https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82") center/cover;
+      color:white;padding:44px 0 24px
+    }
+    footer p,footer a{color:#b8c3b4}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:2rem}
+    .footer-links{display:grid;gap:.45rem}
+    .footer-protected{margin-top:.7rem;padding:.8rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#efc66d}
+    .copyright{margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:#74806f}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    .modal-backdrop,.service-modal-backdrop{
+      position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.72);
+      display:none;align-items:center;justify-content:center;padding:1rem
+    }
+    .modal-backdrop.show,.service-modal-backdrop.show{display:flex}
+    .modal,.service-modal{
+      width:min(560px,100%);background:var(--cream);border-top:6px solid var(--rust);
+      box-shadow:0 30px 80px rgba(0,0,0,.45)
+    }
+    .modal-body,.service-modal-body{padding:1.5rem}
+    .service-modal-img{height:250px;background-size:cover;background-position:center}
+    .modal-icon{width:52px;height:52px;display:grid;place-items:center;background:#ead9c5;color:var(--rust);font-size:1.3rem;margin-bottom:1rem}
+    .modal h3,.service-modal h3{font-size:2rem;margin-bottom:.5rem}
+    .modal .btn,.service-modal .btn{width:100%;margin-top:1rem}
+
+    @media(max-width:980px){
+      .nav-links{
+        display:none;position:absolute;top:76px;left:0;right:0;background:rgba(26,42,24,.99);
+        flex-direction:column;align-items:stretch;padding:1rem 4% 1.2rem
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:.65rem 0}
+      .menu-btn{display:block}
+      .about-grid,.rating-wrap,.hours-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr 1fr}
+      .material-grid{grid-template-columns:1fr 1fr}
+      .fence-band{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:640px){
+      .nav{min-height:70px}
+      .nav-links{top:70px}
+      .brand span{display:none}
+      .hero{min-height:680px;background-position:60% center}
+      .hero-content{padding:4.3rem 0}
+      .hero h1{font-size:clamp(3.5rem,18vw,5.3rem)}
+      .section{padding:62px 0}
+      .facts,.service-grid,.material-grid,.fence-band{grid-template-columns:1fr}
+      .about-photo{min-height:360px}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand">
+      <div class="brand-mark"><i class="fa-solid fa-fence"></i></div>
+      <div><strong>Fence Doctor of Cincinnati</strong><span>CINCINNATI, OHIO</span></div>
+    </a>
+    <button class="menu-btn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" id="navMenu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#materials">Materials</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-content">
+    <div class="eyebrow"><i class="fa-solid fa-stethoscope"></i> Fence contractor • Cincinnati</div>
+    <h1>Your fence has a <span>doctor.</span></h1>
+    <p>Fence Doctor of Cincinnati is an owner-operated, family-owned fence contractor providing installation, repair, replacement, removal, painting, staining, and multiple fence-material options in Cincinnati.</p>
+    <div class="hero-meta">
+      <span class="chip"><i class="fa-solid fa-hammer"></i> Installation & repair</span>
+      <span class="chip"><i class="fa-solid fa-recycle"></i> Removal & replacement</span>
+      <span class="chip"><i class="fa-solid fa-paint-roller"></i> Painting & staining</span>
+    </div>
+    <div class="actions">
+      <a href="#services" class="btn"><i class="fa-solid fa-fence"></i> View Services</a>
+      <a href="#reviews" class="btn ghost"><i class="fa-solid fa-star"></i> Reputation</a>
+      <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-phone"></i> Contact the Fence Doctor</a>
+    </div>
+    <div class="hero-note">Stock fencing imagery is used in this demo and does not represent actual Fence Doctor projects, employees, or customers.</div>
+  </div>
+</section>
+
+<div class="fence-band">
+  <div><i class="fa-solid fa-house"></i> Residential Fencing</div>
+  <div><i class="fa-solid fa-hammer"></i> Repairs</div>
+  <div><i class="fa-solid fa-fence"></i> New Installation</div>
+  <div><i class="fa-solid fa-paint-roller"></i> Finishing</div>
+</div>
+
+<section class="section about" id="about">
+  <div class="wrap about-grid reveal">
+    <div class="about-photo"><div class="stock-tag">Stock fence image used for demo presentation</div></div>
+    <div>
+      <div class="eyebrow"><i class="fa-solid fa-id-card"></i> About</div>
+      <h2>An owner-operated Cincinnati fence shop.</h2>
+      <p>The business describes itself as owner operated and family owned, with experience in the fence business dating to 1989. Public reviews repeatedly mention direct communication, fair pricing, useful suggestions, and hands-on work.</p>
+      <div class="facts">
+        <div class="fact"><strong><i class="fa-solid fa-calendar"></i> Since 1989</strong><p>Per the business's own published description.</p></div>
+        <div class="fact"><strong><i class="fa-solid fa-people-roof"></i> Owner operated</strong><p>Family-owned, small-shop positioning.</p></div>
+        <div class="fact"><strong><i class="fa-solid fa-user-doctor"></i> Owner</strong><p>CONTACT DETAILS PROTECTED IN THIS DEMO</p></div>
+        <div class="fact"><strong><i class="fa-solid fa-location-dot"></i> Cincinnati</strong><p>Public business listing on Ridge Avenue.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="color:#efc66d"><i class="fa-solid fa-list-check"></i> Services</div>
+      <h2>Fence work from repair to replacement.</h2>
+      <p>These services are supported by the current public business listing. Click any card for more detail.</p>
+    </div>
+
+    <div class="service-grid">
+      <article class="service reveal" tabindex="0"
+        data-title="Fence Installation"
+        data-text="Current public listings explicitly advertise fence installation."
+        data-image="https://images.unsplash.com/photo-1774835750723-b1e1ded2ad69?auto=format&fit=crop&w=1800&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1774835750723-b1e1ded2ad69?auto=format&fit=crop&w=1800&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-fence"></i><h3>Fence Installation</h3><p>New fence installation is a verified current service.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Fence Repair"
+        data-text="Fence repair is explicitly included in current public listings for Fence Doctor of Cincinnati."
+        data-image="https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-hammer"></i><h3>Fence Repair</h3><p>Repair work is directly supported by current listings.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Old Fence Removal"
+        data-text="Current public listings advertise removal of old fencing."
+        data-image="https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-recycle"></i><h3>Old Fence Removal</h3><p>Removal of existing fencing is publicly advertised.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Fence Replacement"
+        data-text="Current business information describes replacement work, including removal of an old fence and installation of a new one."
+        data-image="https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-arrows-rotate"></i><h3>Fence Replacement</h3><p>Replacement work is supported by current listings and reviews.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Painting & Staining"
+        data-text="Current public business listings explicitly advertise fence painting and staining."
+        data-image="https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1679407262907-b703481b4d9a?auto=format&fit=crop&w=1800&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-paint-roller"></i><h3>Painting & Staining</h3><p>Fence finishing is a verified current service.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Mailboxes & More"
+        data-text="The current Yahoo/local listing includes mailboxes among the business's advertised offerings."
+        data-image="https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1533033344866-ac2491bd0c42?auto=format&fit=crop&w=1800&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-envelopes-bulk"></i><h3>Mailboxes & More</h3><p>Mailboxes are included in the current public service description.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section materials" id="materials">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="eyebrow"><i class="fa-solid fa-layer-group"></i> Fence materials</div>
+      <h2>Multiple fencing options.</h2>
+      <p>The current business listing explicitly advertises PVC, wood, aluminum, and chain-link fencing.</p>
+    </div>
+    <div class="material-grid">
+      <div class="material"><i class="fa-solid fa-tree"></i><h3>Wood</h3><p>Wood fencing is publicly advertised.</p></div>
+      <div class="material"><i class="fa-solid fa-border-all"></i><h3>PVC</h3><p>PVC fencing is publicly advertised.</p></div>
+      <div class="material"><i class="fa-solid fa-grip-lines-vertical"></i><h3>Aluminum</h3><p>Aluminum fencing is publicly advertised.</p></div>
+      <div class="material"><i class="fa-solid fa-link"></i><h3>Chain Link</h3><p>Chain-link fencing is publicly advertised.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap rating-wrap reveal">
+    <div class="rating-box">
+      <div class="eyebrow" style="color:#efc66d"><i class="fa-solid fa-star"></i> Current map rating</div>
+      <div class="rating-big">4.8</div>
+      <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p>Current local-business data shows 4.8 out of 5 from 47 reviews.</p>
+    </div>
+    <div>
+      <div class="section-head">
+        <div class="eyebrow" style="color:#efc66d"><i class="fa-solid fa-comments"></i> Review themes</div>
+        <h2>Customers repeatedly mention value and workmanship.</h2>
+      </div>
+      <div class="themes">
+        <div class="theme"><h3>Fair pricing</h3><p>Current review highlights repeatedly describe pricing as fair or competitive.</p></div>
+        <div class="theme"><h3>Quality work</h3><p>Customers commonly praise workmanship and completed fence quality.</p></div>
+        <div class="theme"><h3>Direct communication</h3><p>Reviews frequently mention clear expectations and easy communication with the owner/operator.</p></div>
+        <div class="theme"><h3>Practical advice</h3><p>Public review snippets mention helpful suggestions that can save customers money.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hours" id="hours">
+  <div class="wrap hours-grid reveal">
+    <div>
+      <div class="section-head">
+        <div class="eyebrow"><i class="fa-solid fa-clock"></i> Business hours</div>
+        <h2>Current listed hours.</h2>
+      </div>
+      <ul class="hours-list">
+        <li><span>Monday</span><strong>8:00 AM – 5:00 PM</strong></li>
+        <li><span>Tuesday</span><strong>8:00 AM – 5:00 PM</strong></li>
+        <li><span>Wednesday</span><strong>8:00 AM – 5:00 PM</strong></li>
+        <li><span>Thursday</span><strong>8:00 AM – 5:00 PM</strong></li>
+        <li><span>Friday</span><strong>8:00 AM – 5:00 PM</strong></li>
+        <li><span>Saturday</span><strong>8:00 AM – 12:00 PM</strong></li>
+        <li><span>Sunday</span><strong>Closed / not listed</strong></li>
+      </ul>
+    </div>
+    <div class="hours-note">
+      <i class="fa-solid fa-user-doctor" style="font-size:2rem;color:#efc66d;margin-bottom:.8rem"></i>
+      <h3 style="font-size:1.7rem;margin-bottom:.6rem">Owner-operated service</h3>
+      <p>The business presents itself as a small owner-operated shop rather than a large multi-crew franchise. Direct-contact details remain protected in this demo.</p>
+      <div class="actions"><a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Contact Fence Doctor</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="wrap reveal">
+    <div class="section-head"><div class="eyebrow"><i class="fa-solid fa-circle-question"></i> FAQ</div><h2>Common fence questions.</h2></div>
+    <details><summary>Does Fence Doctor of Cincinnati install new fences?</summary><p>Yes. New fence installation is explicitly advertised in current public listings.</p></details>
+    <details><summary>Does the company repair fences?</summary><p>Yes. Fence repair is directly listed as a current service.</p></details>
+    <details><summary>Can old fencing be removed?</summary><p>Yes. Current listings advertise removal of old fencing, and public reviews mention old-fence removal followed by new installation.</p></details>
+    <details><summary>What fence materials are available?</summary><p>Current public listings explicitly mention PVC, wood, aluminum, and chain link.</p></details>
+    <details><summary>Does Fence Doctor paint or stain fences?</summary><p>Yes. Painting and staining are explicitly included in the current public service description.</p></details>
+    <details><summary>How long has the business been operating?</summary><p>The business describes itself as being in the fence business since 1989.</p></details>
+    <details><summary>Is Fence Doctor owner operated?</summary><p>Yes. The business describes itself as owner operated and family owned.</p></details>
+    <details><summary>What do customers say?</summary><p>Current review highlights commonly mention fair pricing, quality work, clear expectations, direct communication, and practical suggestions.</p></details>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid reveal">
+    <div>
+      <div class="eyebrow" style="color:#efc66d"><i class="fa-solid fa-phone"></i> Contact</div>
+      <h2>Have a fence that needs a house call?</h2>
+      <p>Direct contact, maps, and external social actions remain protected on this demo version.</p>
+      <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      <div class="actions">
+        <a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call Fence Doctor</a>
+        <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</a>
+        <a href="#" class="btn ghost" data-locked="true"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+      </div>
+    </div>
+    <div class="checklist">
+      <h3>Helpful details for a fence quote</h3>
+      <div class="check"><i class="fa-solid fa-ruler-horizontal"></i><span>Approximate fence length or area.</span></div>
+      <div class="check"><i class="fa-solid fa-hammer"></i><span>Repair, replacement, or new installation.</span></div>
+      <div class="check"><i class="fa-solid fa-layer-group"></i><span>Preferred fence material, if known.</span></div>
+      <div class="check"><i class="fa-solid fa-camera"></i><span>Photos of damaged or existing fencing can help explain the project.</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div><h3>Fence Doctor of Cincinnati</h3><p>Owner-operated Cincinnati fence installation, repair, removal, replacement, painting, and staining.</p><div class="footer-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+    <div><h3>Explore</h3><div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#materials">Materials</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#faq">FAQ</a></div></div>
+    <div><h3>Demo notice</h3><p>This sample website keeps real-world actions locked until the full website is purchased and unlocked.</p></div>
+  </div>
+  <div class="wrap copyright">© 2026 Fence Doctor of Cincinnati. Demo website presentation.</div>
+</footer>
+
+<div class="service-modal-backdrop" id="serviceModal" aria-hidden="true">
+  <div class="service-modal" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+    <div class="service-modal-img" id="serviceModalImg"></div>
+    <div class="service-modal-body">
+      <div class="eyebrow"><i class="fa-solid fa-stethoscope"></i> Service detail</div>
+      <h3 id="serviceModalTitle"></h3>
+      <p id="serviceModalText"></p>
+      <button class="btn" id="serviceModalClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <div class="modal-body">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="closeModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const menuBtn=document.querySelector('.menu-btn');
+  const navMenu=document.getElementById('navMenu');
+  menuBtn.addEventListener('click',()=>{
+    const open=navMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+    menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+  });
+  document.querySelectorAll('#navMenu a[href^="#"]:not([data-locked])').forEach(a=>a.addEventListener('click',()=>{
+    navMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+  }));
+
+  const lockedModal=document.getElementById('lockedModal'),closeModal=document.getElementById('closeModal');
+  let lastFocus=null;
+  function openLocked(e){
+    e.preventDefault();lastFocus=document.activeElement;
+    lockedModal.classList.add('show');lockedModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');closeModal.focus()
+  }
+  function closeLocked(){
+    lockedModal.classList.remove('show');lockedModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');if(lastFocus)lastFocus.focus()
+  }
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+  closeModal.addEventListener('click',closeLocked);
+  lockedModal.addEventListener('click',e=>{if(e.target===lockedModal)closeLocked()});
+
+  const sm=document.getElementById('serviceModal'),smClose=document.getElementById('serviceModalClose'),
+        smTitle=document.getElementById('serviceModalTitle'),smText=document.getElementById('serviceModalText'),
+        smImg=document.getElementById('serviceModalImg');
+
+  function openService(card){
+    smTitle.textContent=card.dataset.title;smText.textContent=card.dataset.text;
+    smImg.style.backgroundImage=`url("${card.dataset.image}")`;
+    sm.classList.add('show');sm.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');smClose.focus()
+  }
+  function closeService(){
+    sm.classList.remove('show');sm.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open')
+  }
+  document.querySelectorAll('.service').forEach(card=>{
+    card.addEventListener('click',()=>openService(card));
+    card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openService(card)}})
+  });
+  smClose.addEventListener('click',closeService);
+  sm.addEventListener('click',e=>{if(e.target===sm)closeService()});
+
+  const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}
+  }),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(lockedModal.classList.contains('show'))closeLocked();
+      if(sm.classList.contains('show'))closeService();
+    }
+  });
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
+</script>
+</body>
+</html>

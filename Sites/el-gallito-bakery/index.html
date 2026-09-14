@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>El Gallito Bakery | Cuban Bakery in Miami, FL</title>
+  <meta name="description" content="El Gallito Bakery in Miami, Florida. Cuban bread, pastelitos, croquetas, cakes, desserts, coffee, party trays, pickup and delivery." />
+  <meta name="theme-color" content="#e12a22" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --red:#b8694f;
+      --red-dark:#7f4635;
+      --yellow:#d9a566;
+      --cream:#f7efe5;
+      --paper:#fffaf4;
+      --ink:#2f241f;
+      --muted:#75675e;
+      --line:rgba(65,49,40,.14);
+      --shadow:0 18px 50px rgba(48,35,28,.16);
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        linear-gradient(rgba(247,239,229,.86),rgba(247,239,229,.86)),
+        url("https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=2200&q=84") center top/cover fixed;
+
+      color:var(--ink);
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),92%);margin:auto}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.78rem;
+      font-weight:900;
+      color:var(--red);
+    }
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.06}
+    h2{font-size:clamp(2rem,4vw,3.5rem)}
+    p{color:var(--muted)}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(247,239,229,.90);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.85rem;
+      min-width:0;
+    }
+    .brand-mark{
+      width:48px;height:48px;border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(127,70,53,.96);color:var(--yellow);
+      border:4px solid var(--yellow);
+      box-shadow:0 6px 18px rgba(225,42,34,.22);
+      flex:0 0 auto;
+    }
+    .brand strong{display:block;font-size:1.08rem}
+    .brand span{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.09em}
+    .desktop-nav{display:flex;align-items:center;gap:1.2rem}
+    .desktop-nav a{font-size:.93rem;font-weight:800}
+    .nav-cta{
+      padding:.8rem 1rem;
+      background:var(--red);
+      color:white;
+      border-radius:10px;
+    }
+    .menu-btn{
+      display:none;
+      border:0;background:transparent;
+      color:var(--ink);
+      font-size:1.5rem;
+      cursor:pointer;
+    }
+
+    .hero{
+      position:relative;
+      min-height:740px;
+      display:flex;
+      align-items:center;
+      color:white;
+      background:
+        linear-gradient(90deg,rgba(42,30,24,.84),rgba(42,30,24,.58) 58%,rgba(42,30,24,.22)),
+        url("https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1900&q=88") center/cover;
+      isolation:isolate;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:auto 0 0;height:130px;
+      background:linear-gradient(to bottom,transparent,rgba(247,239,229,.38));
+      z-index:-1;
+    }
+    .hero-content{max-width:760px;padding:6rem 0 8rem}
+    .hero .eyebrow{color:#f0c58f}
+    .hero h1{
+      font-size:clamp(3.4rem,8vw,7rem);
+      margin:.6rem 0 1rem;
+      max-width:800px;
+      text-shadow:0 5px 24px rgba(0,0,0,.28);
+    }
+    .hero p{color:#fff7ef;max-width:650px;font-size:1.1rem}
+    .actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.7rem}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      min-height:50px;
+      padding:.9rem 1.15rem;
+      border-radius:10px;
+      font-weight:900;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#e5c39c;color:#271c14}
+    .btn-secondary{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4);color:white;backdrop-filter:blur(8px)}
+    .mini-note{font-size:.78rem;color:#efe1d4;margin-top:.9rem}
+
+    section{padding:86px 0}
+    .section-head{max-width:740px;margin-bottom:2rem}
+    .section-head h2{margin:.4rem 0 .8rem}
+
+    .intro{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2.2rem;
+      align-items:center;
+    }
+    .image-panel{
+      min-height:540px;
+      background:
+        linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),
+        url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=85") center/cover;
+      border:8px solid white;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    .image-tag{
+      position:absolute;
+      left:20px;bottom:20px;
+      background:rgba(255,255,255,.92);
+      padding:.65rem .85rem;
+      font-size:.78rem;
+      font-weight:800;
+      color:var(--ink);
+      border-left:4px solid var(--red);
+    }
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1rem;
+      margin-top:1.4rem;
+    }
+    .fact{
+      padding:1rem 0;
+      border-top:2px solid var(--yellow);
+    }
+    .fact i{color:var(--red);margin-right:.45rem}
+    .fact strong{display:block;margin-bottom:.2rem}
+
+    .menu-section{
+      background:
+        linear-gradient(rgba(255,250,244,.84),rgba(255,250,244,.84)),
+        url("https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1900&q=84") center/cover fixed;
+    }
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1rem;
+    }
+    .product{
+      background:white;
+      border:1px solid var(--line);
+      overflow:hidden;
+      box-shadow:0 12px 28px rgba(34,27,22,.08);
+    }
+    .product img{width:100%;height:210px;object-fit:cover}
+    .product-body{padding:1.15rem}
+    .product h3{font-size:1.35rem;margin-bottom:.35rem}
+    .product p{font-size:.92rem}
+    .price{
+      display:inline-block;
+      margin-top:.7rem;
+      font-weight:900;
+      color:var(--red-dark);
+      font-size:.88rem;
+    }
+
+    .band{
+      background:var(--red);
+      color:white;
+      padding:26px 0;
+    }
+    .band-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+    .band-item{
+      display:flex;align-items:center;gap:.9rem;
+      padding:.5rem 1rem;
+      border-right:1px solid rgba(255,255,255,.25);
+    }
+    .band-item:last-child{border-right:0}
+    .band-item i{font-size:1.4rem;color:var(--yellow)}
+    .band-item strong{display:block}
+    .band-item span{font-size:.85rem;color:#eadad2}
+
+    .visit{
+      background:
+        linear-gradient(rgba(28,21,16,.87),rgba(28,21,16,.87)),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085e?auto=format&fit=crop&w=1800&q=85") center/cover;
+      color:white;
+    }
+    .visit p{color:#ede3db}
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+      align-items:start;
+    }
+    .hours{list-style:none;margin-top:1.1rem}
+    .hours li{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      padding:.72rem 0;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .protected{
+      margin-top:1rem;
+      padding:1rem;
+      background:rgba(255,255,255,.08);
+      border-left:4px solid var(--yellow);
+      font-weight:900;
+      color:#fff9e7;
+    }
+    .protected small{display:block;font-weight:500;color:#eaded7;margin-top:.25rem}
+
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:.75fr 1.25fr;
+      gap:2rem;
+      align-items:start;
+    }
+    .rating-box{
+      background:var(--yellow);
+      padding:2rem;
+      box-shadow:var(--shadow);
+    }
+    .rating-big{
+      font-family:Georgia,serif;
+      font-size:4.6rem;
+      line-height:1;
+      margin:.5rem 0;
+    }
+    .stars{color:var(--red);letter-spacing:.12em}
+    .review-points{display:grid;gap:1rem}
+    .review-point{
+      border-left:4px solid var(--red);
+      padding:1rem 1.2rem;
+      background:white;
+    }
+
+    .faq{
+      background:
+        linear-gradient(rgba(247,239,229,.88),rgba(247,239,229,.88)),
+        url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1900&q=82") center/cover;
+    }
+    .faq details{
+      background:white;
+      border:1px solid var(--line);
+      margin-bottom:.75rem;
+      padding:1rem 1.15rem;
+    }
+    .faq summary{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      cursor:pointer;
+      font-weight:900;
+      list-style:none;
+    }
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"+";color:var(--red);font-size:1.2rem}
+    .faq details[open] summary::after{content:"−"}
+    .faq details p{margin-top:.7rem}
+
+    .cta{
+      background:
+        linear-gradient(rgba(90,55,42,.82),rgba(90,55,42,.82)),
+        url("https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1900&q=84") center/cover;
+      color:white;
+      padding:70px 0;
+      text-align:center;
+    }
+    .cta .eyebrow{color:#f0c58f}
+    .cta p{color:#f6e9df}
+    .cta p{max-width:650px;margin:.7rem auto 0}
+
+    footer{
+      background:
+        linear-gradient(rgba(36,27,22,.94),rgba(36,27,22,.94)),
+        url("https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1900&q=82") center/cover;
+      color:white;
+      padding:48px 0 28px;
+    }
+    footer p,footer a{color:#d9cbc2}
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      gap:2rem;
+    }
+    footer h3{margin-bottom:.6rem}
+    .footer-links{display:grid;gap:.45rem}
+    .footer-protected{
+      padding:.8rem 1rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.09);
+      margin-top:.6rem;
+      font-size:.84rem;
+      color:#f8e5bf;
+    }
+    .copyright{
+      margin-top:2rem;
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,.09);
+      font-size:.8rem;
+      color:#9f9188;
+    }
+
+    .modal-backdrop{
+      position:fixed;inset:0;
+      background:rgba(10,8,6,.72);
+      z-index:999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:1rem;
+    }
+    .modal-backdrop.show{display:flex}
+    .modal{
+      width:min(460px,100%);
+      background:var(--paper);
+      padding:1.6rem;
+      border-top:7px solid var(--red);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+    }
+    .modal-icon{
+      width:52px;height:52px;
+      display:grid;place-items:center;
+      background:#ead6c9;
+      color:var(--red);
+      margin-bottom:1rem;
+      font-size:1.25rem;
+    }
+    .modal h3{font-size:1.8rem;margin-bottom:.5rem}
+    .modal p{margin-bottom:1.2rem}
+    .modal .btn{background:var(--red);color:white;border:0;width:100%}
+
+    @media(max-width:980px){
+      .desktop-nav{
+        position:absolute;
+        top:82px;left:0;right:0;
+        padding:1rem 4% 1.25rem;
+        background:rgba(255,247,232,.98);
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        border-bottom:1px solid var(--line);
+      }
+      .desktop-nav.open{display:flex}
+      .desktop-nav a{padding:.65rem 0}
+      .menu-btn{display:block}
+      .intro,.visit-grid,.reviews-grid,.footer-grid{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .band-grid{grid-template-columns:1fr}
+      .band-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.2)}
+      .band-item:last-child{border-bottom:0}
+      .image-panel{min-height:440px}
+    }
+
+    @media(max-width:640px){
+      .nav{height:72px}
+      .desktop-nav{top:72px}
+      .brand span{display:none}
+      .hero{min-height:670px;background-position:58% center}
+      .hero-content{padding:4rem 0 6rem}
+      .hero h1{font-size:clamp(3rem,15vw,4.7rem)}
+      section{padding:64px 0}
+      .product-grid{grid-template-columns:1fr}
+      .product img{height:240px}
+      .facts{grid-template-columns:1fr}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%}
+      .hours li{font-size:.92rem}
+      .image-panel{min-height:360px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#home" class="brand">
+        <div class="brand-mark"><i class="fa-solid fa-drumstick-bite"></i></div>
+        <div>
+          <strong>El Gallito Bakery</strong>
+          <span>MIAMI, FLORIDA</span>
+        </div>
+      </a>
+
+      <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="desktop-nav" id="navMenu">
+        <a href="#about">About</a>
+        <a href="#favorites">Favorites</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Hours</a>
+        <a href="#" class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Call Bakery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div class="hero-content">
+          <div class="eyebrow">Cuban bakery in Miami</div>
+          <h1>El Gallito Bakery</h1>
+          <p>
+            Cuban bread, pastelitos, croquetas, coffee, cakes, desserts, savory pastries,
+            party trays, pickup, and delivery.
+          </p>
+          <div class="actions">
+            <a href="#favorites" class="btn btn-primary"><i class="fa-solid fa-bread-slice"></i> See Bakery Favorites</a>
+            <a href="#" class="btn btn-secondary" data-locked="true"><i class="fa-solid fa-location-dot"></i> Get Directions</a>
+          </div>
+          <div class="mini-note">Stock bakery imagery is used in this demo and does not represent the actual storefront or products.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap intro">
+        <div class="image-panel">
+          <div class="image-tag">Stock bakery image used for demo presentation</div>
+        </div>
+        <div>
+          <div class="eyebrow">About the bakery</div>
+          <h2>Classic Cuban bakery favorites in Miami.</h2>
+          <p>
+            El Gallito Bakery is a Miami Cuban bakery serving fresh Cuban bread, pastelitos,
+            croquetas, coffee, cakes, desserts, savory pastries, and party-style bakery items.
+          </p>
+
+          <div class="facts">
+            <div class="fact">
+              <strong><i class="fa-solid fa-location-dot"></i> Miami</strong>
+              <p>Public listings place the bakery on SW 27th Avenue in Miami, Florida.</p>
+            </div>
+            <div class="fact">
+              <strong><i class="fa-solid fa-bag-shopping"></i> Pickup & Delivery</strong>
+              <p>Current DoorDash and Uber Eats listings offer pickup and delivery.</p>
+            </div>
+            <div class="fact">
+              <strong><i class="fa-solid fa-cake-candles"></i> Sweet & Savory</strong>
+              <p>Public menu data includes pastries, desserts, cakes, croquetas, empanadas, and more.</p>
+            </div>
+            <div class="fact">
+              <strong><i class="fa-solid fa-box"></i> Party Trays</strong>
+              <p>Current menus list trays of croquetas, pastries, mini stuffed potatoes, and mini sandwiches.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="favorites">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Bakery favorites</div>
+          <h2>From Cuban bread to party trays.</h2>
+          <p>Items below are supported by the provided research. Delivery-platform pricing can differ from in-store pricing.</p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85" alt="Fresh bread stock image">
+            <div class="product-body">
+              <h3>Cuban Bread</h3>
+              <p>Fresh Cuban bread is one of the products most frequently praised by customers.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=85" alt="Pastries stock image">
+            <div class="product-body">
+              <h3>Pastelitos</h3>
+              <p>Cuban pastries are a core specialty and are frequently mentioned in reviews.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1625943553852-781c6dd46faa?auto=format&fit=crop&w=900&q=85" alt="Savory fried snacks stock image">
+            <div class="product-body">
+              <h3>Croquetas</h3>
+              <p>Regular croquetas and party-size croquette trays are publicly listed.</p>
+              <span class="price">25 ham croquettes: approx. $12 on DoorDash</span>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=85" alt="Dessert cake stock image">
+            <div class="product-body">
+              <h3>Tres Leches</h3>
+              <p>Family-size desserts include tres leches.</p>
+              <span class="price">$12 on current DoorDash listing</span>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85" alt="Cake stock image">
+            <div class="product-body">
+              <h3>Cakes</h3>
+              <p>Cakes are advertised publicly and are also referenced in customer reviews.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85" alt="Empanadas stock image">
+            <div class="product-body">
+              <h3>Empanadas</h3>
+              <p>Current delivery menus list empanadas.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=88" alt="Coffee stock image">
+            <div class="product-body">
+              <h3>Coffee</h3>
+              <p>Coffee is repeatedly mentioned among the bakery's well-known offerings.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85" alt="Assorted pastries stock image">
+            <div class="product-body">
+              <h3>Party Trays</h3>
+              <p>Public menu data includes trays of croquetas, mixed pastries, mini stuffed potatoes, and mini sandwiches.</p>
+              <span class="price">Pricing varies by tray</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="wrap band-grid">
+        <div class="band-item">
+          <i class="fa-solid fa-bread-slice"></i>
+          <div><strong>Cuban Bakery Favorites</strong><span>Bread, pastelitos, croquetas, cakes and more</span></div>
+        </div>
+        <div class="band-item">
+          <i class="fa-solid fa-box-open"></i>
+          <div><strong>Party Orders</strong><span>Publicly listed trays for groups and gatherings</span></div>
+        </div>
+        <div class="band-item">
+          <i class="fa-solid fa-motorcycle"></i>
+          <div><strong>Pickup & Delivery</strong><span>Available through current third-party listings</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="reviews">
+      <div class="wrap reviews-grid">
+        <div class="rating-box">
+          <div class="eyebrow">Public review data</div>
+          <div class="rating-big">4.6</div>
+          <div class="stars">★★★★★</div>
+          <p>Approximately 4.6/5 on Google according to multiple public review aggregators. Exact review counts vary by platform and update date.</p>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <div class="eyebrow">What customers mention</div>
+            <h2>Fresh bread, pastries, and neighborhood service.</h2>
+          </div>
+          <div class="review-points">
+            <div class="review-point"><strong>Fresh Cuban bread</strong><p>Frequently praised in public reviews.</p></div>
+            <div class="review-point"><strong>Pastelitos & croquetas</strong><p>Repeatedly mentioned as customer favorites.</p></div>
+            <div class="review-point"><strong>Friendly service</strong><p>Public reviews often describe employees as warm and attentive.</p></div>
+            <div class="review-point"><strong>Good value</strong><p>Value and long-term customer loyalty are common positive themes.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <div class="eyebrow" style="color:#f0c58f">Hours</div>
+          <h2>Business hours</h2>
+          <ul class="hours">
+            <li><span>Monday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Tuesday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Wednesday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Thursday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Friday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Saturday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Sunday</span><strong>7:00 AM – 3:00 PM</strong></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="eyebrow" style="color:#f0c58f">Contact & location</div>
+          <h2>Visit El Gallito Bakery</h2>
+          <div class="protected">
+            CONTACT DETAILS PROTECTED IN THIS DEMO
+            <small>Phone number, address, and named contacts are intentionally hidden on the demo version.</small>
+          </div>
+          <div class="actions">
+            <a href="#" class="btn btn-primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call Bakery</a>
+            <a href="#" class="btn btn-secondary" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Frequently asked questions</div>
+          <h2>Helpful information before you order.</h2>
+        </div>
+
+        <details>
+          <summary>Is El Gallito Bakery a Cuban bakery?</summary>
+          <p>Yes. Current public listings categorize it as a Cuban bakery and Cuban restaurant.</p>
+        </details>
+
+        <details>
+          <summary>Do they sell Cuban bread?</summary>
+          <p>Yes. Cuban bread is one of the bakery's most frequently praised products.</p>
+        </details>
+
+        <details>
+          <summary>Do they sell pastelitos and croquetas?</summary>
+          <p>Yes. Both appear prominently in current menu and review data.</p>
+        </details>
+
+        <details>
+          <summary>Can I order party trays?</summary>
+          <p>Yes. Current menus include trays of croquetas, mixed pastries, mini stuffed potatoes, and mini sandwiches.</p>
+        </details>
+
+        <details>
+          <summary>Do they offer cakes?</summary>
+          <p>Yes. Cakes are publicly advertised, but exact current custom-cake options should be confirmed directly with the bakery.</p>
+        </details>
+
+        <details>
+          <summary>Can I order pickup or delivery?</summary>
+          <p>Yes. Current DoorDash and Uber Eats listings show pickup and delivery availability.</p>
+        </details>
+
+        <details>
+          <summary>Do they make custom birthday or event cakes?</summary>
+          <p>This is unverified. Cakes are clearly sold, but detailed custom-cake policies, sizes, lead times, and customization options were not confirmed.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="eyebrow">El Gallito Bakery</div>
+        <h2>Fresh Cuban bakery favorites in Miami.</h2>
+        <p>Call, visit, or check current third-party ordering platforms for availability and current menu options.</p>
+        <div class="actions" style="justify-content:center">
+          <a href="#" class="btn" style="background:#b8694f;color:white" data-locked="true"><i class="fa-solid fa-phone"></i> Call Bakery</a>
+          <a href="#" class="btn" style="background:#2f241f;color:white" data-locked="true"><i class="fa-solid fa-bag-shopping"></i> Order Online</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>El Gallito Bakery</h3>
+        <p>Cuban bakery in Miami, Florida.</p>
+        <div class="footer-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#favorites">Bakery Favorites</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Hours</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h3>Demo notice</h3>
+        <p>This is a sample website. Real-world actions are locked until the site is purchased and unlocked.</p>
+      </div>
+    </div>
+    <div class="wrap copyright">© 2026 El Gallito Bakery. Demo website presentation.</div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const navMenu = document.getElementById('navMenu');
+
+    menuBtn.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.innerHTML = open
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('#navMenu a[href^="#"]:not([data-locked])').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    const modal = document.getElementById('lockedModal');
+    const closeModal = document.getElementById('closeModal');
+    let previousFocus = null;
+
+    function openLockedModal(event) {
+      event.preventDefault();
+      previousFocus = document.activeElement;
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      closeModal.focus();
+    }
+
+    function closeLockedModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (previousFocus) previousFocus.focus();
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el => {
+      el.addEventListener('click', openLockedModal);
+    });
+
+    closeModal.addEventListener('click', closeLockedModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeLockedModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) closeLockedModal();
+    });
+
+    document.addEventListener('gesturestart', e => e.preventDefault());
+    document.addEventListener('dblclick', e => e.preventDefault(), {passive:false});
+  </script>
+</body>
+</html>

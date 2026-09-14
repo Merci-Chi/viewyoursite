@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northgate Panaderia | El Trigal Bakeries</title>
+<link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@500;600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+/* Northgate Trigal: toasted wheat, rye brown, cream. Andada Pro display + Hind body. Wheat sheaf motif. */
+:root{
+  --wheat:#C8A24B;
+  --wheat-soft:#EAD9A8;
+  --wheat-faint:#F6EDD6;
+  --rye:#5D4037;
+  --rye-deep:#43302A;
+  --cream:#FBF5E6;
+  --ink:#4A3A32;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Hind',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+}
+h1,h2,h3,.display{font-family:'Andada Pro',serif;}
+a{color:inherit;}
+.site-shell{min-height:100vh;display:flex;flex-direction:column;}
+main{flex:1 0 auto;}
+footer{flex-shrink:0;}
+.page{display:none;}
+.page.active{display:block;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
+
+/* Header */
+.topbar{background:var(--rye-deep);color:var(--cream);position:relative;z-index:50;}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand svg{flex-shrink:0;}
+.brand-name{font-family:'Andada Pro',serif;font-weight:800;font-size:21px;color:#fff;line-height:1.15;}
+.brand-sub{display:block;font-family:'Hind',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:2.8px;text-transform:uppercase;color:var(--wheat);}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  text-decoration:none;color:#E4D7BC;font-weight:600;font-size:14.5px;
+  padding:9px 15px;border-radius:9px;transition:background .15s,color .15s;
+}
+.nav-links a:hover{background:rgba(200,162,75,.18);color:#fff;}
+.nav-links a.on{background:var(--wheat);color:var(--rye-deep);}
+.menu-btn{
+  display:none;background:transparent;border:1.5px solid var(--wheat);color:var(--wheat);
+  width:44px;height:44px;border-radius:10px;font-size:18px;cursor:pointer;align-items:center;justify-content:center;
+}
+.menu-btn.open{background:var(--wheat);color:var(--rye-deep);}
+
+/* Status chip */
+.status-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:999px;font-weight:600;font-size:13px;
+  background:#fff;color:var(--rye);border:1.5px solid var(--wheat-soft);
+}
+.status-chip .dot{width:9px;height:9px;border-radius:50%;background:#B7A98F;flex-shrink:0;}
+.status-chip.open{background:var(--wheat-faint);border-color:var(--wheat);color:var(--rye-deep);}
+.status-chip.open .dot{background:#7A9A3D;box-shadow:0 0 0 3px rgba(122,154,61,.18);}
+.status-chip.closed .dot{background:#B7A98F;}
+
+/* Hero: split, sheaf left */
+.hero{background:linear-gradient(180deg, var(--rye-deep) 0%, var(--rye) 100%);color:var(--cream);overflow:hidden;}
+.hero .wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:34px;align-items:center;padding-top:54px;padding-bottom:58px;}
+.sheaf-panel{
+  background:radial-gradient(circle at 50% 20%, rgba(200,162,75,.28), rgba(200,162,75,.08) 60%);
+  border:1.5px solid rgba(200,162,75,.45);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;padding:30px 20px;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:9px;background:rgba(200,162,75,.15);
+  border:1px solid rgba(200,162,75,.55);color:var(--wheat-soft);
+  padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;
+}
+.hero h1{font-size:clamp(34px,5vw,52px);font-weight:800;color:#fff;line-height:1.08;margin:18px 0 14px;}
+.hero h1 .hl{color:var(--wheat);}
+.hero p.lead{font-size:16.5px;color:#DCCFAF;margin:0 0 22px;max-width:520px;}
+.hero .chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.hero-link{font-size:14.5px;font-weight:700;color:var(--wheat-soft);text-decoration:none;border-bottom:1.5px solid var(--wheat);padding-bottom:2px;}
+.hero-link:hover{color:#fff;}
+
+/* Section basics */
+.section{padding:56px 0;}
+.section.alt{background:var(--wheat-faint);border-top:1px solid var(--wheat-soft);border-bottom:1px solid var(--wheat-soft);}
+.kicker{font-size:12px;font-weight:700;letter-spacing:2.8px;text-transform:uppercase;color:#8C6B2F;margin:0 0 8px;}
+h2.sec{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin:0 0 12px;color:var(--rye-deep);}
+p.sub{margin:0 0 28px;color:#6E5B4F;max-width:660px;}
+
+/* Goods cards */
+.goods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.gcard{
+  background:#fff;border:1.5px solid var(--wheat-soft);border-radius:16px;padding:24px;
+  box-shadow:0 10px 24px rgba(93,64,55,.08);position:relative;overflow:hidden;
+}
+.gcard::after{
+  content:"";position:absolute;bottom:-18px;right:-18px;width:80px;height:80px;border-radius:50%;
+  background:var(--wheat-faint);border:1.5px solid var(--wheat-soft);
+}
+.gcard .ic{
+  width:48px;height:48px;border-radius:12px;background:var(--rye);color:var(--wheat);
+  display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;position:relative;z-index:1;
+}
+.gcard h3{font-size:20px;font-weight:800;margin:0 0 7px;color:var(--rye-deep);position:relative;z-index:1;}
+.gcard p{margin:0;font-size:14.5px;color:#6E5B4F;position:relative;z-index:1;}
+
+/* Custom cakes band */
+.cake-band{
+  background:linear-gradient(120deg, var(--wheat), #B08D3C);color:var(--rye-deep);
+  border-radius:18px;padding:26px 30px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;
+  box-shadow:0 12px 28px rgba(140,107,47,.25);
+}
+.cake-band .ic{
+  width:54px;height:54px;border-radius:50%;background:var(--cream);color:var(--rye-deep);
+  display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;
+}
+.cake-band h3{margin:0 0 4px;font-size:21px;font-weight:800;}
+.cake-band p{margin:0;font-size:15px;font-weight:500;max-width:680px;}
+
+/* Hours: 7-column dial strip */
+.hours-card{background:#fff;border:1.5px solid var(--wheat-soft);border-radius:18px;padding:26px;max-width:680px;box-shadow:0 10px 24px rgba(93,64,55,.08);}
+.hours-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+.hours-head h3{margin:0;font-size:21px;font-weight:800;color:var(--rye-deep);}
+.day-dial{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+.ddial{
+  text-align:center;border:1.5px solid var(--wheat-soft);border-radius:12px;padding:12px 4px 10px;
+  font-size:12px;font-weight:700;color:#8C6B2F;background:var(--cream);
+}
+.ddial .dn{display:block;text-transform:uppercase;letter-spacing:1.4px;font-size:10.5px;}
+.ddial .dot{display:block;width:7px;height:7px;border-radius:50%;background:var(--wheat);margin:7px auto 5px;}
+.ddial .dt{display:block;color:var(--rye-deep);font-size:12.5px;}
+.ddial.today{background:var(--rye);border-color:var(--rye);color:var(--wheat-soft);}
+.ddial.today .dt{color:#fff;}
+.ddial.today .dot{background:var(--wheat-soft);}
+
+/* Reviews */
+.rev-head{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:26px;}
+.rev-score{
+  width:108px;height:108px;border-radius:50%;background:var(--rye);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;
+  border:3px solid var(--wheat);box-shadow:0 12px 28px rgba(67,48,42,.28);
+}
+.rev-score .num{font-family:'Andada Pro',serif;font-size:36px;font-weight:800;line-height:1;color:var(--wheat-soft);}
+.rev-score .stars{font-size:10.5px;color:#E4D7BC;margin-top:6px;letter-spacing:2px;}
+.rev-note p{margin:0;color:#6E5B4F;font-size:15px;max-width:480px;}
+.rev-note strong{color:var(--rye-deep);}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.quote-card{
+  background:#fff;border:1.5px solid var(--wheat-soft);border-left:4px solid var(--wheat);
+  border-radius:14px;padding:22px 24px;box-shadow:0 10px 24px rgba(93,64,55,.07);
+}
+.quote-card.wide{grid-column:1/-1;}
+.quote-card blockquote{margin:0 0 12px;font-size:15.5px;color:var(--ink);}
+.quote-meta{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:#9C8B75;}
+.quote-meta .st{color:var(--wheat);letter-spacing:2px;font-size:12px;}
+.summary-line{margin-top:24px;font-size:15.5px;font-weight:700;color:var(--rye-deep);}
+.link-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px;}
+.link-card{
+  text-decoration:none;background:var(--rye);color:var(--cream);border-radius:12px;padding:16px 24px;
+  display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:14.5px;
+  transition:transform .15s,box-shadow .15s;box-shadow:0 10px 24px rgba(67,48,42,.22);
+}
+.link-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(67,48,42,.3);}
+.link-card .fa-brands,.link-card .fa-solid{color:var(--wheat);font-size:18px;}
+
+/* Visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+.info-card{background:#fff;border:1.5px solid var(--wheat-soft);border-radius:16px;padding:26px;box-shadow:0 10px 24px rgba(93,64,55,.08);}
+.info-card h3{margin:0 0 14px;font-size:21px;font-weight:800;color:var(--rye-deep);}
+.info-line{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--wheat-soft);font-size:14.5px;}
+.info-line:last-of-type{border-bottom:none;}
+.info-line .fa-solid{color:#8C6B2F;margin-top:3px;width:18px;text-align:center;}
+/* Wheat-stalk contact card */
+.wheat-card{
+  background:linear-gradient(150deg, var(--rye), var(--rye-deep));color:var(--cream);
+  border-radius:18px;padding:28px;position:relative;overflow:hidden;
+  box-shadow:0 14px 34px rgba(67,48,42,.3);
+}
+.wheat-card svg{position:absolute;left:12px;bottom:8px;opacity:.85;}
+.wheat-card .label{font-size:11.5px;font-weight:600;letter-spacing:2.8px;text-transform:uppercase;color:var(--wheat);margin:0 0 10px;}
+.wheat-card .phone-big{
+  display:inline-block;font-family:'Andada Pro',serif;font-weight:800;font-size:clamp(23px,3vw,30px);
+  color:#fff;text-decoration:none;letter-spacing:.5px;line-height:1.25;
+  border-bottom:2.5px solid var(--wheat);padding-bottom:4px;margin-left:34px;
+}
+.wheat-card .phone-big:hover{color:var(--wheat-soft);}
+.wheat-card .note{margin:12px 0 0 34px;font-size:14px;color:#DCCFAF;max-width:80%;}
+
+/* Form */
+.form-card{background:#fff;border:1.5px solid var(--wheat-soft);border-radius:16px;padding:26px;box-shadow:0 10px 24px rgba(93,64,55,.08);margin-top:22px;}
+.form-card h3{margin:0 0 14px;font-size:21px;font-weight:800;color:var(--rye-deep);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#8C6B2F;}
+.field input,.field textarea{
+  font-family:'Hind',sans-serif;font-size:15px;color:var(--ink);
+  border:1.5px solid var(--wheat-soft);border-radius:10px;padding:12px 14px;background:var(--cream);outline:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--wheat);background:#fff;}
+.field textarea{min-height:110px;resize:vertical;}
+.send-btn{
+  margin-top:16px;background:var(--rye);color:var(--cream);border:none;border-radius:12px;cursor:pointer;
+  font-family:'Hind',sans-serif;font-weight:700;font-size:15px;padding:14px 28px;
+  display:inline-flex;align-items:center;gap:10px;transition:background .15s,transform .15s;
+}
+.send-btn:hover{background:var(--rye-deep);transform:translateY(-1px);}
+.form-feedback{margin:12px 0 0;font-size:14px;font-weight:600;color:#5C741F;min-height:20px;}
+
+/* Footer */
+footer{background:var(--rye-deep);color:#D8C9A8;}
+.foot-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px 0 14px;}
+.foot-brand{font-family:'Andada Pro',serif;font-weight:800;font-size:19px;color:#fff;}
+.foot-brand span{color:var(--wheat);}
+.foot-quiet{font-size:13px;margin:8px 0 0;}
+.foot-quiet .fa-solid{color:var(--wheat);margin-right:7px;}
+.foot-quiet a{color:#EFE4C8;text-decoration:none;}
+.foot-bottom{border-top:1px solid rgba(200,162,75,.3);padding:14px 0 18px;text-align:center;font-size:13px;color:#B39C6E;}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;}
+  .sheaf-panel{order:-1;padding:22px 16px;}
+  .goods-grid{grid-template-columns:1fr 1fr;}
+  .visit-grid{grid-template-columns:1fr;}
+  .quote-grid{grid-template-columns:1fr;}
+}
+@media (max-width:680px){
+  .menu-btn{display:flex;}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;z-index:60;
+    background:var(--rye-deep);border-bottom:2px solid var(--wheat);
+    flex-direction:column;align-items:stretch;padding:8px 16px 16px;gap:4px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:13px 14px;border-radius:10px;}
+  .topbar .wrap{position:relative;}
+  .goods-grid{grid-template-columns:1fr;}
+  .day-dial{grid-template-columns:repeat(2,1fr);}
+  .form-grid{grid-template-columns:1fr;}
+  .section{padding:44px 0;}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#/home" data-page="home" aria-label="El Trigal Bakeries home">
+      <svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true">
+        <path d="M17 38 L17 10" stroke="#C8A24B" stroke-width="2.6" stroke-linecap="round"/>
+        <ellipse cx="12" cy="10" rx="3.4" ry="5.6" transform="rotate(-28 12 10)" fill="#C8A24B"/>
+        <ellipse cx="22" cy="10" rx="3.4" ry="5.6" transform="rotate(28 22 10)" fill="#C8A24B"/>
+        <ellipse cx="11.5" cy="18" rx="3.2" ry="5.4" transform="rotate(-28 11.5 18)" fill="#EAD9A8"/>
+        <ellipse cx="22.5" cy="18" rx="3.2" ry="5.4" transform="rotate(28 22.5 18)" fill="#EAD9A8"/>
+        <ellipse cx="17" cy="7" rx="3.4" ry="5.8" fill="#F6EDD6"/>
+      </svg>
+      <span class="brand-name">El Trigal Bakeries<span class="brand-sub">Northgate Blvd · Sacramento</span></span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#/home" data-page="home">Home</a>
+      <a href="#/panaderia" data-page="panaderia">La Panaderia</a>
+      <a href="#/reviews" data-page="reviews">Reviews</a>
+      <a href="#/visit" data-page="visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <div class="sheaf-panel">
+        <svg width="190" height="240" viewBox="0 0 190 240" aria-label="A sheaf of wheat stalks">
+          <g stroke="#C8A24B" stroke-width="3" stroke-linecap="round" fill="none">
+            <path d="M95 228 Q92 160 70 96"/>
+            <path d="M95 228 Q95 150 95 80"/>
+            <path d="M95 228 Q98 160 120 96"/>
+            <path d="M95 228 Q80 170 46 120"/>
+            <path d="M95 228 Q110 170 144 120"/>
+          </g>
+          <g fill="#C8A24B">
+            <ellipse cx="70" cy="88" rx="7" ry="13" transform="rotate(-16 70 88)"/>
+            <ellipse cx="95" cy="72" rx="7" ry="13"/>
+            <ellipse cx="120" cy="88" rx="7" ry="13" transform="rotate(16 120 88)"/>
+            <ellipse cx="46" cy="112" rx="6.5" ry="12" transform="rotate(-30 46 112)"/>
+            <ellipse cx="144" cy="112" rx="6.5" ry="12" transform="rotate(30 144 112)"/>
+          </g>
+          <g fill="#EAD9A8">
+            <ellipse cx="62" cy="106" rx="5.6" ry="10.5" transform="rotate(-22 62 106)"/>
+            <ellipse cx="128" cy="106" rx="5.6" ry="10.5" transform="rotate(22 128 106)"/>
+            <ellipse cx="82" cy="102" rx="5.6" ry="10.5" transform="rotate(-8 82 102)"/>
+            <ellipse cx="108" cy="102" rx="5.6" ry="10.5" transform="rotate(8 108 102)"/>
+          </g>
+          <path d="M60 190 Q95 206 130 190" stroke="#EAD9A8" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="95" cy="198" r="5" fill="#EAD9A8"/>
+        </svg>
+      </div>
+      <div>
+        <span class="hero-kicker"><i class="fa-solid fa-wheat-awn" aria-hidden="true"></i> Open daily 8 AM - 8 PM</span>
+        <h1>Baked at the <span class="hl">trigal</span>, every morning</h1>
+        <p class="lead">El Trigal Bakeries on Northgate Blvd is the neighborhood's Mexican bakery: pans of pan dulce through the day, bolillos for the table, and bakers glad to take on a custom cake for the next celebration.</p>
+        <div class="chips">
+          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+          <a class="hero-link" href="#/panaderia" data-page="panaderia">Inside La Panaderia <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">From the ovens</p>
+      <h2 class="sec">What fills the shelves</h2>
+      <p class="sub">The sweet bread here gets called the best some customers have ever tasted. That is a high bar, and the bakers hold it daily.</p>
+      <div class="goods-grid">
+        <div class="gcard">
+          <span class="ic"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></span>
+          <h3>Pan dulce</h3>
+          <p>Conchas, cuernos, empanadas, and the rest of the tray, baked through the day so the case stays full.</p>
+        </div>
+        <div class="gcard">
+          <span class="ic"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i></span>
+          <h3>Bolillos &amp; pan fresco</h3>
+          <p>Crusty rolls and fresh bread for the table, warm when the timing is right.</p>
+        </div>
+        <div class="gcard">
+          <span class="ic"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i></span>
+          <h3>Custom cakes</h3>
+          <p>Friendly, tasty, and open to customizations, in a reviewer's words. Ask about yours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section alt">
+    <div class="wrap">
+      <div class="cake-band">
+        <span class="ic"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i></span>
+        <div>
+          <h3>Cakes for the occasion</h3>
+          <p>Custom cakes are welcome here. Call the shop or stop by the counter and talk through sizes, flavors, and what the party needs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="hours-card">
+        <div class="hours-head">
+          <h3>Every day, 8 to 8</h3>
+          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+        </div>
+        <div class="day-dial">
+          <div class="ddial" data-day="0"><span class="dn">Sun</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="1"><span class="dn">Mon</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="2"><span class="dn">Tue</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="3"><span class="dn">Wed</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="4"><span class="dn">Thu</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="5"><span class="dn">Fri</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="6"><span class="dn">Sat</span><span class="dot"></span><span class="dt">8-8</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-panaderia">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">La Panaderia</p>
+      <h2 class="sec">Northgate's bakery</h2>
+      <p class="sub">Shop #2 on Northgate Blvd, open 8 to 8 every day of the week. El Trigal runs on the classics: Mexican sweet bread that regulars rank against any they have had, bolillos for the table, and custom cakes when the calendar calls for one.</p>
+      <div class="goods-grid">
+        <div class="gcard">
+          <span class="ic"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></span>
+          <h3>The sweet bread case</h3>
+          <p>Stocked through the day. Take a tray, take your time.</p>
+        </div>
+        <div class="gcard">
+          <span class="ic"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i></span>
+          <h3>Bolillos</h3>
+          <p>Fresh, crusty, and gone early if you are late.</p>
+        </div>
+        <div class="gcard">
+          <span class="ic"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i></span>
+          <h3>Custom cakes</h3>
+          <p>Talk to the bakers about the celebration coming up.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section alt">
+    <div class="wrap">
+      <div class="hours-card">
+        <div class="hours-head">
+          <h3>Every day, 8 to 8</h3>
+          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+        </div>
+        <div class="day-dial">
+          <div class="ddial" data-day="0"><span class="dn">Sun</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="1"><span class="dn">Mon</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="2"><span class="dn">Tue</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="3"><span class="dn">Wed</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="4"><span class="dn">Thu</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="5"><span class="dn">Fri</span><span class="dot"></span><span class="dt">8-8</span></div>
+          <div class="ddial" data-day="6"><span class="dn">Sat</span><span class="dot"></span><span class="dt">8-8</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-reviews">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">Reviews</p>
+      <h2 class="sec">What people write</h2>
+      <div class="rev-head">
+        <div class="rev-score">
+          <span class="num">4.8</span>
+          <span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></span>
+        </div>
+        <div class="rev-note">
+          <p><strong>4.8 stars across 28 Google reviews.</strong> The written ones keep landing on three things: friendly service, sweet bread worth the drive, and bakers happy to customize. All three are below, word for word.</p>
+        </div>
+      </div>
+
+      <div class="quote-grid">
+        <div class="quote-card wide">
+          <blockquote>I highly recommend this place! Friendly, tasty, and open to customizations.</blockquote>
+          <div class="quote-meta"><span class="st" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
+        </div>
+        <div class="quote-card">
+          <blockquote>I found the Mexican sweet bread here to be the best I'd ever tasted.</blockquote>
+          <div class="quote-meta"><span class="st" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
+        </div>
+        <div class="quote-card">
+          <blockquote>Great talented bakers.</blockquote>
+          <div class="quote-meta"><span class="st" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
+        </div>
+      </div>
+
+      <p class="summary-line"><i class="fa-solid fa-star" style="color:#C8A24B;" aria-hidden="true"></i> 4.8 stars with 28 reviews on Google</p>
+
+      <div class="link-row">
+        <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=El%20Trigal%20Bakeries%2C%202850%20Northgate%20Blvd%2C%20Sacramento%2C%20CA%2095833" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
+        <a class="link-card" href="https://www.yelp.com/biz/el-trigal-bakeries-sacramento" target="_blank" rel="noopener"><i class="fa-brands fa-yelp" aria-hidden="true"></i> Read the Yelp reviews</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-visit">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">Visit</p>
+      <h2 class="sec">Stop by shop #2</h2>
+      <p class="sub">2850 Northgate Blvd, shop 2, Sacramento. Open every day from 8 in the morning to 8 at night. Custom cakes are easier with a few days of notice.</p>
+
+      <div class="visit-grid">
+        <div class="info-card">
+          <h3>Bakery details</h3>
+          <div class="info-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>2850 Northgate Blvd #2, Sacramento, CA 95833</span></div>
+          <div class="info-line"><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Every day, 8:00 AM - 8:00 PM</span></div>
+          <div class="info-line"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i><span>Custom cakes welcome, ask at the counter</span></div>
+          <div class="info-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Status right now: <span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span></span></div>
+        </div>
+
+        <div class="wheat-card">
+          <svg width="52" height="66" viewBox="0 0 52 66" aria-hidden="true">
+            <path d="M26 62 L26 20" stroke="#C8A24B" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+            <g fill="#C8A24B">
+              <ellipse cx="19" cy="18" rx="3.6" ry="6.4" transform="rotate(-26 19 18)"/>
+              <ellipse cx="33" cy="18" rx="3.6" ry="6.4" transform="rotate(26 33 18)"/>
+              <ellipse cx="18" cy="30" rx="3.4" ry="6" transform="rotate(-26 18 30)"/>
+              <ellipse cx="34" cy="30" rx="3.4" ry="6" transform="rotate(26 34 30)"/>
+              <ellipse cx="26" cy="12" rx="3.6" ry="6.6" fill="#EAD9A8"/>
+            </g>
+          </svg>
+          <p class="label">Call the bakery</p>
+          <a class="phone-big" href="tel:+19165679680">(916) 567-9680</a>
+          <p class="note">Cakes, trays for the office, or what just came out, one call covers it.</p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Ask about a cake or a tray</h3>
+        <form id="contact-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-phone">Your phone</label>
+              <input id="f-phone" type="tel" autocomplete="tel" placeholder="(916) 000-0000">
+            </div>
+            <div class="field full">
+              <label for="f-msg">Message</label>
+              <textarea id="f-msg" placeholder="Hola El Trigal, I wanted to ask about a cake for..."></textarea>
+            </div>
+          </div>
+          <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the bakery</button>
+          <p class="form-feedback" id="form-feedback" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div>
+        <p class="foot-brand">El Trigal <span>Bakeries</span></p>
+        <p class="foot-quiet"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 2850 Northgate Blvd #2, Sacramento, CA 95833</p>
+        <p class="foot-quiet"><i class="fa-solid fa-clock" aria-hidden="true"></i> Open every day 8 AM - 8 PM</p>
+      </div>
+      <div>
+        <p class="foot-quiet"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+19165679680">(916) 567-9680</a></p>
+        <p class="foot-quiet"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Custom cakes welcome</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© El Trigal Bakeries · Sacramento, CA</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+var BUSINESS = "El Trigal Bakeries";
+var TITLES = { home: "Northgate Panaderia", panaderia: "La Panaderia", reviews: "Reviews", visit: "Visit" };
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = {0:[8,20],1:[8,20],2:[8,20],3:[8,20],4:[8,20],5:[8,20],6:[8,20]};
+var PHONE = "+19165679680";
+var PRETTY = "(916) 567-9680";
+
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderStatus(){
+  var s = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.toggle("open", s.open);
+    c.classList.toggle("closed", !s.open);
+    var tx = c.querySelector(".status-text");
+    if (tx) tx.textContent = s.label;
+  });
+}
+function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(r){
+    r.classList.toggle("today", Number(r.getAttribute("data-day")) === d);
+  });
+}
+renderStatus();
+highlightToday();
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinks = document.querySelector(".nav-links");
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", navLinks.classList.contains("open") ? "true" : "false");
+  });
+}
+
+var form = document.getElementById("contact-form");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var fb = document.getElementById("form-feedback");
+    var name = document.getElementById("f-name").value.trim();
+    var phone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) {
+      fb.textContent = "Please add your name and a short message.";
+      return;
+    }
+    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
+    var body = encodeURIComponent(text);
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + body;
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

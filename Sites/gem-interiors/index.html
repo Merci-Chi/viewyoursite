@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#11161b">
+  <title>Gem Interiors | Commercial Interior Construction in Milford, Ohio</title>
+  <meta name="description" content="Gem Interiors is a Milford, Ohio commercial construction company providing drywall, metal-stud framing, acoustical ceilings, insulation, doors and hardware, EIFS, siding, windows, and related interior construction services.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:title" content="Gem Interiors | Commercial Interior Construction">
+  <meta property="og:description" content="Commercial drywall, framing, ceilings, insulation and related construction services in the Greater Cincinnati Tri-State region.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --ink:#11161b;
+      --ink-2:#171e24;
+      --steel:#7b858d;
+      --paper:#f4f1ea;
+      --paper-2:#e8e4dc;
+      --white:#ffffff;
+      --copper:#c96f35;
+      --copper-2:#a75324;
+      --line:rgba(17,22,27,.15);
+      --max:1180px;
+      --shadow:0 18px 48px rgba(0,0,0,.16);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      margin:0;
+      font-family:"Inter",sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    :focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+
+    .wrap{width:min(var(--max),calc(100% - 42px));margin-inline:auto}
+    .eyebrow{
+      margin:0 0 10px;
+      font:700 .78rem/1 "Inter",sans-serif;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--copper-2);
+    }
+    h1,h2,h3{
+      font-family:"Barlow Condensed",sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+      margin:0;
+      line-height:.95;
+    }
+    h1{font-size:clamp(4rem,8vw,8rem);max-width:830px}
+    h2{font-size:clamp(2.7rem,5vw,4.8rem)}
+    h3{font-size:1.8rem}
+    p{margin:0}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(17,22,27,.96);
+      border-bottom:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(14px);
+    }
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      text-decoration:none;
+      color:var(--white);
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+    .brand-mark{
+      width:38px;height:38px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.22);
+      color:var(--copper);
+      transform:rotate(45deg);
+    }
+    .brand-mark i{transform:rotate(-45deg)}
+    .brand-text strong{
+      display:block;
+      font:700 1.32rem/1 "Barlow Condensed",sans-serif;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .brand-text span{
+      display:block;
+      font-size:.67rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:#aeb6bc;
+      margin-top:4px;
+    }
+    .nav-links{display:flex;align-items:center;gap:26px}
+    .nav-links a{
+      color:#e9edef;
+      text-decoration:none;
+      font-size:.84rem;
+      font-weight:700;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      position:relative;
+      padding:28px 0;
+    }
+    .nav-links a:not(.header-cta)::after{
+      content:"";
+      position:absolute;
+      left:0;right:100%;bottom:19px;height:2px;
+      background:var(--copper);
+      transition:right .22s ease;
+    }
+    .nav-links a:not(.header-cta):hover::after{right:0}
+    .header-cta{
+      border:1px solid rgba(255,255,255,.36);
+      padding:12px 17px!important;
+    }
+    .menu-btn{
+      display:none;
+      width:44px;height:44px;
+      border:1px solid rgba(255,255,255,.24);
+      background:transparent;
+      color:#fff;
+      font-size:1.15rem;
+      cursor:pointer;
+    }
+
+    .hero{
+      position:relative;
+      min-height:760px;
+      color:var(--white);
+      display:grid;
+      align-items:end;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(10,14,18,.97) 0%,rgba(10,14,18,.84) 44%,rgba(10,14,18,.22) 75%),
+        linear-gradient(0deg,rgba(10,14,18,.88),rgba(10,14,18,.05) 48%),
+        url("https://images.unsplash.com/photo-1768321911432-da0c5b6cf890?auto=format&fit=crop&fm=jpg&q=84&w=2200") center/cover no-repeat;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:62px 62px;
+      mask-image:linear-gradient(to right,#000,transparent 72%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:110px 0 78px;
+    }
+    .hero .eyebrow{color:#f2a36e}
+    .hero-copy{
+      max-width:720px;
+      color:#d8dee2;
+      font-size:clamp(1rem,1.5vw,1.17rem);
+      margin:28px 0 32px;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:13px 20px;
+      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:800;
+      font-size:.8rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:transform .2s ease,background .2s ease,border-color .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--copper);color:#fff}
+    .btn-primary:hover{background:#df7e40}
+    .btn-ghost{border-color:rgba(255,255,255,.42);color:#fff;background:rgba(17,22,27,.24)}
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-outline{border-color:var(--ink);color:var(--ink);background:transparent}
+
+    .hero-meta{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      max-width:820px;
+      margin-top:55px;
+      border-top:1px solid rgba(255,255,255,.25);
+      border-bottom:1px solid rgba(255,255,255,.25);
+    }
+    .hero-meta div{padding:18px 18px 18px 0}
+    .hero-meta div+div{border-left:1px solid rgba(255,255,255,.2);padding-left:22px}
+    .hero-meta strong{
+      display:block;
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:1.55rem;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+    .hero-meta span{font-size:.8rem;color:#bfc7cc}
+
+    .stock-flag{
+      position:absolute;
+      right:18px;
+      bottom:18px;
+      z-index:3;
+      color:#fff;
+      background:rgba(17,22,27,.78);
+      border:1px solid rgba(255,255,255,.22);
+      font-size:.68rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      padding:7px 10px;
+    }
+
+    section{scroll-margin-top:76px}
+    .section{padding:96px 0}
+    .intro-grid{
+      display:grid;
+      grid-template-columns:.8fr 1.2fr;
+      gap:80px;
+      align-items:start;
+    }
+    .intro-grid .lead{
+      font-size:1.18rem;
+      color:#39434a;
+      max-width:690px;
+    }
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1px;
+      background:var(--line);
+      margin-top:48px;
+      border:1px solid var(--line);
+    }
+    .fact{background:#fff;padding:26px}
+    .fact strong{
+      display:block;
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:2rem;
+      line-height:1;
+      text-transform:uppercase;
+    }
+    .fact span{display:block;margin-top:9px;color:#58636a;font-size:.82rem}
+
+    .services{
+      background:var(--ink);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .services::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(17,22,27,.96),rgba(17,22,27,.78)),
+        url("https://images.unsplash.com/photo-1768321903410-54961e343b71?auto=format&fit=crop&fm=jpg&q=78&w=2200") center/cover no-repeat;
+      opacity:.25;
+    }
+    .services .wrap{position:relative;z-index:2}
+    .services .eyebrow{color:#f2a36e}
+    .section-head{
+      display:flex;justify-content:space-between;align-items:end;
+      gap:30px;margin-bottom:46px;
+    }
+    .section-head p{max-width:560px;color:#bfc7cc}
+    .service-list{border-top:1px solid rgba(255,255,255,.19)}
+    .service-row{
+      display:grid;
+      grid-template-columns:72px 1fr auto;
+      gap:24px;
+      align-items:center;
+      padding:24px 0;
+      border-bottom:1px solid rgba(255,255,255,.16);
+      transition:padding-left .2s ease,background .2s ease;
+    }
+    .service-row:hover{padding-left:12px;background:rgba(255,255,255,.025)}
+    .service-icon{
+      width:52px;height:52px;
+      border:1px solid rgba(255,255,255,.22);
+      display:grid;place-items:center;
+      color:#f0a16c;
+      font-size:1.15rem;
+    }
+    .service-row p{font-size:.86rem;color:#aeb6bc;text-align:right}
+    .service-row h3{font-size:1.55rem}
+
+    .split-photo{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      min-height:600px;
+      background:#fff;
+    }
+    .split-image{
+      position:relative;
+      min-height:520px;
+      background:
+        linear-gradient(rgba(10,14,18,.08),rgba(10,14,18,.35)),
+        url("https://images.unsplash.com/photo-1768321903885-d0a6798485d2?auto=format&fit=crop&fm=jpg&q=82&w=1600") center/cover no-repeat;
+    }
+    .split-content{
+      padding:90px clamp(32px,6vw,92px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .split-content p{margin-top:24px;color:#4e5960;max-width:630px}
+    .check-list{
+      margin:34px 0 0;padding:0;list-style:none;
+      display:grid;gap:15px;
+    }
+    .check-list li{display:flex;gap:13px;align-items:flex-start}
+    .check-list i{color:var(--copper);margin-top:5px}
+    .split-image .stock-flag{bottom:14px;right:14px}
+
+    .areas{
+      background:var(--paper-2);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .area-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:72px;
+      align-items:start;
+    }
+    .area-copy p{margin-top:23px;color:#505b61}
+    .region-bands{display:grid;gap:12px}
+    .region{
+      display:grid;
+      grid-template-columns:52px 1fr;
+      gap:18px;
+      align-items:center;
+      padding:19px 0;
+      border-bottom:1px solid rgba(17,22,27,.16);
+    }
+    .region i{font-size:1.18rem;color:var(--copper)}
+    .region strong{display:block}
+    .region span{display:block;color:#5e686e;font-size:.85rem;margin-top:3px}
+
+    .contact{
+      background:#fff;
+    }
+    .contact-panel{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .contact-main{padding:52px}
+    .contact-main p{margin-top:18px;color:#536067}
+    .protected{
+      margin-top:32px;
+      padding:22px;
+      border-left:4px solid var(--copper);
+      background:#f5f2ec;
+    }
+    .protected strong{
+      display:block;
+      font-size:.78rem;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      color:var(--copper-2);
+      margin-bottom:8px;
+    }
+    .protected p{margin:0;color:#2f383e}
+    .contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .contact-aside{
+      background:var(--ink);
+      color:#fff;
+      padding:52px;
+    }
+    .contact-aside h3{margin-bottom:24px}
+    .contact-detail{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+    .contact-detail span{display:block;color:#9faab1;font-size:.73rem;text-transform:uppercase;letter-spacing:.12em}
+    .contact-detail strong{display:block;margin-top:6px;font-size:.96rem}
+
+    .source-notes{
+      padding:62px 0;
+      background:#ede9e1;
+      border-top:1px solid var(--line);
+    }
+    .note-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px 60px;
+      margin-top:28px;
+    }
+    .note{
+      padding-top:15px;
+      border-top:1px solid rgba(17,22,27,.18);
+      font-size:.86rem;
+      color:#4c565d;
+    }
+    .note strong{color:var(--ink)}
+    .source-notes a{color:var(--copper-2)}
+
+    footer{
+      background:#0d1115;
+      color:#9ba4aa;
+      padding:42px 0;
+    }
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:30px;
+      align-items:center;
+    }
+    footer strong{color:#fff}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer-links a{color:#cbd1d5;text-decoration:none;font-size:.82rem}
+
+    .locked-modal{
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:none;
+      place-items:center;
+      background:rgba(0,0,0,.72);
+      padding:22px;
+    }
+    .locked-modal.open{display:grid}
+    .modal-card{
+      width:min(480px,100%);
+      background:var(--paper);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 30px 80px rgba(0,0,0,.45);
+      padding:34px;
+    }
+    .modal-icon{
+      width:52px;height:52px;
+      display:grid;place-items:center;
+      background:var(--ink);
+      color:var(--copper);
+      margin-bottom:22px;
+    }
+    .modal-card h2{font-size:2.55rem}
+    .modal-card p{margin:15px 0 25px;color:#4b555b}
+    body.modal-open{overflow:hidden}
+
+    @media (max-width:900px){
+      .menu-btn{display:grid;place-items:center}
+      .nav-links{
+        display:none;
+        position:absolute;
+        left:0;right:0;top:76px;
+        background:var(--ink);
+        padding:10px 22px 24px;
+        border-top:1px solid rgba(255,255,255,.1);
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:17px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+      .nav-links a::after{display:none}
+      .header-cta{margin-top:12px;text-align:center}
+      .hero{min-height:680px;background-position:62% center}
+      .hero-meta{grid-template-columns:1fr}
+      .hero-meta div+div{border-left:0;border-top:1px solid rgba(255,255,255,.18);padding-left:0}
+      .intro-grid,.area-layout,.contact-panel{grid-template-columns:1fr;gap:42px}
+      .split-photo{grid-template-columns:1fr}
+      .split-image{min-height:430px}
+      .facts{grid-template-columns:1fr}
+      .section-head{display:block}
+      .section-head p{margin-top:18px}
+    }
+
+    @media (max-width:620px){
+      .wrap{width:min(100% - 28px,var(--max))}
+      .section{padding:72px 0}
+      .hero{min-height:700px}
+      .hero-inner{padding:88px 0 52px}
+      h1{font-size:clamp(3.45rem,17vw,5.4rem)}
+      h2{font-size:clamp(2.55rem,12vw,3.8rem)}
+      .hero-copy{font-size:.98rem}
+      .btn{width:100%}
+      .service-row{grid-template-columns:54px 1fr;gap:14px}
+      .service-row p{grid-column:2;text-align:left}
+      .service-icon{width:44px;height:44px}
+      .split-content,.contact-main,.contact-aside{padding:38px 24px}
+      .split-image{min-height:360px}
+      .note-grid{grid-template-columns:1fr}
+      .footer-row{flex-direction:column;align-items:flex-start}
+      .stock-flag{font-size:.58rem}
+    }
+  </style>
+</head>
+<body>
+  <!--
+    DEMO BUILD NOTES
+    - Business facts were limited to the supplied research.
+    - Contact details and names are intentionally protected in this demo.
+    - No reviews/testimonials are shown because reliable attributable review content was not supplied.
+    - Business hours are omitted because research sources conflict.
+    - Current license status is not advertised because it requires direct confirmation.
+    - All construction photos are STOCK images from Unsplash, not Gem Interiors projects/employees.
+  -->
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Gem Interiors home">
+        <span class="brand-mark"><i class="fa-solid fa-layer-group"></i></span>
+        <span class="brand-text">
+          <strong>Gem Interiors</strong>
+          <span>Milford, Ohio</span>
+        </span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="navLinks" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#service-area">Service Area</a>
+        <a class="header-cta" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Commercial Interior Construction • Milford, Ohio</p>
+        <h1>Built From the Inside Out.</h1>
+        <p class="hero-copy">
+          Gem Interiors is a commercial construction company providing drywall, metal-stud framing,
+          acoustical ceilings, insulation, doors and hardware, EIFS, siding, windows, and related interior construction services.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#services"><i class="fa-solid fa-layer-group"></i> View Services</a>
+          <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-file-lines"></i> Request a Bid</button>
+        </div>
+
+        <div class="hero-meta" aria-label="Business summary">
+          <div><strong>Since 1997</strong><span>Business start year reported by BBB research</span></div>
+          <div><strong>Commercial</strong><span>Nonresidential interior construction focus</span></div>
+          <div><strong>Tri-State Region</strong><span>Ohio, Kentucky and Indiana communities listed by BBB</span></div>
+        </div>
+      </div>
+      <div class="stock-flag">Stock construction image • Unsplash</div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="intro-grid">
+          <div>
+            <p class="eyebrow">Business Overview</p>
+            <h2>Commercial Trades. One Interior Scope.</h2>
+          </div>
+          <div>
+            <p class="lead">
+              Public business and court records identify Gem Interiors as a Milford, Ohio contractor working across multiple commercial interior trades.
+              The company is associated with drywall, metal framing, ceiling systems, insulation, doors and hardware, EIFS, siding, windows, and general contracting.
+            </p>
+
+            <div class="facts">
+              <div class="fact"><strong>1997</strong><span>Business start year reported by BBB.</span></div>
+              <div class="fact"><strong>Milford, Ohio</strong><span>Public business location.</span></div>
+              <div class="fact"><strong>Commercial</strong><span>Nonresidential construction classification in public business records.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2>Interior Construction Services</h2>
+          </div>
+          <p>Only services supported by the supplied research are shown. Public pricing was not found, so no prices are displayed.</p>
+        </div>
+
+        <div class="service-list">
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-border-all"></i></div>
+            <div><h3>Commercial drywall installation</h3></div>
+            <p>Commercial interior construction</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-trowel-bricks"></i></div>
+            <div><h3>Drywall hanging and finishing</h3></div>
+            <p>Gypsum-board wall installation and finishing</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+            <div><h3>Metal-stud framing</h3></div>
+            <p>Light-gauge interior framing</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-grip-lines"></i></div>
+            <div><h3>Acoustic / acoustical ceilings</h3></div>
+            <p>Commercial ceiling systems</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
+            <div><h3>Insulation</h3></div>
+            <p>Listed in public contractor classifications</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-door-open"></i></div>
+            <div><h3>Doors and hardware</h3></div>
+            <p>Commercial installation scope</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-building"></i></div>
+            <div><h3>EIFS</h3></div>
+            <p>Exterior insulation finishing systems</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-table-columns"></i></div>
+            <div><h3>Siding and windows</h3></div>
+            <p>Installation work identified in public records</p>
+          </article>
+          <article class="service-row">
+            <div class="service-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+            <div><h3>General contracting</h3></div>
+            <p>Publicly classified contractor service</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="split-photo" aria-label="Construction capabilities">
+      <div class="split-image">
+        <div class="stock-flag">Stock construction image • Unsplash</div>
+      </div>
+      <div class="split-content">
+        <p class="eyebrow">Project Fit</p>
+        <h2>Commercial Interior Work</h2>
+        <p>
+          The available public research supports a commercial and nonresidential construction focus.
+          No unsupported project counts, guarantees, customer totals, awards, or performance claims are included in this demo.
+        </p>
+        <ul class="check-list">
+          <li><i class="fa-solid fa-check"></i><span>Drywall and metal framing</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Ceiling and insulation work</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Related commercial interior construction trades</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section areas" id="service-area">
+      <div class="wrap area-layout">
+        <div class="area-copy">
+          <p class="eyebrow">Service Area</p>
+          <h2>Greater Cincinnati Tri-State Region</h2>
+          <p>
+            BBB service-area listings identify communities across Ohio, Kentucky, and Indiana.
+            The research did not provide an exact mileage radius, so this demo does not claim one.
+          </p>
+        </div>
+        <div class="region-bands">
+          <div class="region">
+            <i class="fa-solid fa-location-dot"></i>
+            <div><strong>Ohio</strong><span>Milford and Greater Cincinnati-area communities listed by BBB.</span></div>
+          </div>
+          <div class="region">
+            <i class="fa-solid fa-location-dot"></i>
+            <div><strong>Kentucky</strong><span>Northern Kentucky communities listed in the public service area.</span></div>
+          </div>
+          <div class="region">
+            <i class="fa-solid fa-location-dot"></i>
+            <div><strong>Indiana</strong><span>Indiana communities included in the public BBB service-area listing.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div class="contact-main">
+            <p class="eyebrow">Contact</p>
+            <h2>Start a Project Conversation</h2>
+            <p>This is a locked demo website. Real-world contact actions are intentionally disabled until the site is purchased or explicitly unlocked.</p>
+
+            <div class="protected">
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>Phone number, business address, and named contact details are intentionally hidden in this sample.</p>
+            </div>
+
+            <div class="contact-actions">
+              <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call Now</button>
+              <button class="btn btn-outline" type="button" data-locked="true"><i class="fa-solid fa-file-signature"></i> Request a Bid</button>
+            </div>
+          </div>
+
+          <aside class="contact-aside" aria-label="Protected contact details">
+            <h3>Business Contact</h3>
+            <div class="contact-detail">
+              <span>Primary Contact</span>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            </div>
+            <div class="contact-detail">
+              <span>Phone</span>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            </div>
+            <div class="contact-detail">
+              <span>Business Address</span>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            </div>
+            <div class="contact-detail">
+              <span>Email</span>
+              <strong>Not found in the supplied research</strong>
+            </div>
+            <div class="contact-detail">
+              <span>Business Hours</span>
+              <strong>Omitted because public sources conflict</strong>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="source-notes" id="demo-notes">
+      <div class="wrap">
+        <p class="eyebrow">Demo Asset & Approval Notes</p>
+        <h2>Items to Confirm Before Launch</h2>
+        <div class="note-grid">
+          <div class="note"><strong>Current contractor license status:</strong> requires direct confirmation before any active-license claim is published.</div>
+          <div class="note"><strong>Business hours:</strong> omitted because supplied research sources conflict.</div>
+          <div class="note"><strong>Reviews and testimonials:</strong> omitted because reliable attributable review content was not supplied.</div>
+          <div class="note"><strong>Official email and social profiles:</strong> not found reliably in the supplied research.</div>
+          <div class="note"><strong>Project photography:</strong> not supplied; all images in this demo are stock construction images and do not depict Gem Interiors projects, staff, vehicles, or facilities.</div>
+          <div class="note"><strong>Stock image source:</strong> Unsplash photos by Olek Buzunov, listed as free to use under the Unsplash License at the time of research.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div><strong>Gem Interiors</strong><br><span>Commercial Interior Construction • Milford, Ohio</span></div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#service-area">Service Area</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="locked-modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+    <div class="modal-card">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h2 id="lockedTitle">This is currently locked.</h2>
+      <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-dark" id="closeModal" type="button">Close</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      const modal = document.getElementById('lockedModal');
+      const closeModal = document.getElementById('closeModal');
+      let lastFocused = null;
+
+      function setMenu(open){
+        navLinks.classList.toggle('open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.innerHTML = open
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>';
+      }
+
+      menuBtn.addEventListener('click', () => {
+        setMenu(!navLinks.classList.contains('open'));
+      });
+
+      navLinks.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      function openLocked(){
+        lastFocused = document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        closeModal.focus();
+      }
+
+      function closeLocked(){
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if(lastFocused) lastFocused.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openLocked();
+        });
+      });
+
+      closeModal.addEventListener('click', closeLocked);
+
+      modal.addEventListener('click', e => {
+        if(e.target === modal) closeLocked();
+      });
+
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          e.preventDefault();
+          closeModal.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
