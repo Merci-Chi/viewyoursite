@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wash | Laundry Land Coin Laundromat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --copper:#B87333; --denim:#33658A; --ink:#22303C; --white:#FFFFFF;
+  --soft:#EEF4F8; --line:#CFDDE6; --deep:#254B66;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html,body{margin:0}
+body{font-family:'Mulish',sans-serif; color:var(--ink); background:var(--white); line-height:1.65}
+.site-shell{min-height:100vh; display:flex; flex-direction:column}
+main{flex:1 0 auto}
+footer{flex-shrink:0}
+h1,h2,h3,.display{font-family:'Chakra Petch',sans-serif; font-weight:700; line-height:1.2; letter-spacing:.01em}
+a{color:var(--denim)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 22px}
+/* coin slot strip */
+.slotstrip{display:flex; height:10px}
+.slotstrip span{flex:1; background:var(--denim); position:relative}
+.slotstrip span::after{content:""; position:absolute; left:50%; top:2px; width:60%; height:5px; transform:translateX(-50%); border-radius:3px; background:rgba(255,255,255,.45)}
+header{background:var(--white); border-bottom:2px solid var(--line); position:sticky; top:0; z-index:50}
+.bar{display:flex; align-items:center; justify-content:space-between; padding:12px 22px; max-width:1080px; margin:0 auto}
+.brand{display:flex; align-items:center; gap:11px; font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:1.02rem; color:var(--deep)}
+.brand .coin{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #E2A56B, var(--copper));border:3px solid #95591F;display:flex;align-items:center;justify-content:center;color:#FFF3E4;font-size:.85rem}
+.nav-links{display:flex; gap:6px; list-style:none}
+.nav-links a{color:var(--ink); text-decoration:none; padding:9px 14px; border-radius:8px; font-weight:700; font-size:.94rem}
+.nav-links a:hover{background:var(--soft)}
+#menu-btn{display:none; background:none; border:0; color:var(--deep); font-size:1.4rem; cursor:pointer; padding:6px}
+#menu-btn.open{color:var(--copper)}
+@media(max-width:760px){
+  #menu-btn{display:block}
+  .nav-links{display:none; position:absolute; top:100%; left:0; right:0; background:var(--white); flex-direction:column; padding:10px 18px 18px; gap:4px; border-bottom:2px solid var(--copper)}
+  .nav-links.open{display:flex}
+}
+.status-chip{display:inline-flex; align-items:center; gap:8px; padding:7px 15px; border-radius:8px; font-weight:700; font-size:.9rem; background:var(--soft); border:1.5px solid var(--line)}
+.status-chip .dot{width:10px;height:10px;border-radius:50%}
+.status-chip.on .dot{background:#2E9E5B}
+.status-chip.off .dot{background:#9AA5B1}
+/* hero: left text + big coin */
+.hero{background:linear-gradient(135deg,var(--denim) 0%,var(--deep) 100%); color:var(--white); padding:64px 0}
+.hero .wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.kicker{display:inline-block; background:rgba(184,115,51,.3); border:1.5px solid var(--copper); color:#F5D7B5; padding:6px 14px; border-radius:6px; font-weight:700; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:16px}
+.hero h1{font-size:clamp(1.9rem,4.8vw,3rem); margin-bottom:14px}
+.hero h1 .copper{color:#F0B37E}
+.hero p.lead{font-size:1.05rem; color:#D6E4EE; max-width:50ch}
+.hero-cta{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.btn{display:inline-block; background:var(--copper); color:var(--white); text-decoration:none; font-family:'Chakra Petch',sans-serif; font-weight:700; padding:13px 26px; border-radius:8px; border:0; cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.bigcoin{width:min(280px,70vw); aspect-ratio:1; margin:0 auto; border-radius:50%; background:radial-gradient(circle at 35% 30%, #E8B070, var(--copper) 70%); border:10px solid #95591F; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 20px 50px rgba(0,0,0,.35); position:relative}
+.bigcoin::before{content:""; position:absolute; inset:14px; border-radius:50%; border:2px dashed rgba(255,243,228,.5)}
+.bigcoin .val{font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:2.6rem; color:#FFF3E4}
+.bigcoin .lbl{font-size:.85rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#FCE8CE}
+section.page{display:none}
+section.page.active{display:block}
+.sec{padding:56px 0}
+.sec h2{font-size:1.6rem; margin-bottom:8px}
+.sec .sub{color:#5B6B76; margin-bottom:26px}
+.alt{background:var(--soft)}
+.tri{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media(max-width:860px){.tri{grid-template-columns:1fr}}
+.card{background:var(--white); border:1.5px solid var(--line); border-radius:14px; padding:24px}
+.card .ico{width:46px;height:46px;border-radius:50%;background:var(--soft);color:var(--copper);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:12px}
+.card h3{font-size:1.05rem;margin-bottom:6px}
+.card p{font-size:.95rem;color:#5B6B76}
+/* coin-pouch contact */
+.coinpouch{max-width:420px; margin:0 auto; background:linear-gradient(160deg,#F7E3CC,#EFD3B0); border:2px solid var(--copper); border-radius:16px 16px 22px 22px; padding:24px; text-align:center; position:relative; box-shadow:0 14px 36px rgba(181,115,51,.25)}
+.coinpouch::before{content:""; position:absolute; top:-12px; left:50%; transform:translateX(-50%); width:120px; height:18px; border-radius:10px; background:var(--copper)}
+.coinpouch .lbl{font-family:'Chakra Petch',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:#7A4A1B; margin-top:8px}
+.coinpouch .num{font-family:'Chakra Petch',sans-serif; font-size:1.6rem; font-weight:700; color:var(--deep); margin:4px 0}
+.coinpouch .sub{font-size:.85rem; color:#7A5A3A}
+.coinrow{display:flex; justify-content:center; gap:8px; margin-top:12px}
+.coinrow span{width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #E8B070, var(--copper));border:2px solid #95591F}
+.form-card{max-width:520px; margin:0 auto; background:var(--white); border:1.5px solid var(--line); border-radius:14px; padding:26px}
+.form-card label{display:block; font-weight:700; font-size:.9rem; margin:12px 0 6px}
+.form-card input,.form-card textarea{width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:10px; font-family:inherit; font-size:.95rem; background:var(--soft)}
+.form-card textarea{min-height:88px; resize:vertical}
+.feedback{margin-top:12px; font-weight:700; color:#1F7A46; min-height:1.4em}
+/* hours grid */
+.hoursgrid{display:grid; grid-template-columns:repeat(7,1fr); gap:10px}
+@media(max-width:860px){.hoursgrid{grid-template-columns:repeat(2,1fr)}}
+.daychip{background:var(--white); border:1.5px solid var(--line); border-radius:10px; padding:12px 8px; text-align:center}
+.daychip .d{font-weight:800; font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--denim)}
+.daychip .h{font-weight:700; font-size:.82rem; margin-top:4px}
+.daychip.today{background:var(--denim); border-color:var(--denim); color:var(--white)}
+.daychip.today .d{color:#BFD9EA}
+.confirm{font-size:.85rem; color:#7A8790; text-align:center; margin-top:14px}
+/* reviews */
+.rating-hero{text-align:center; padding:12px 0 6px}
+.rating-hero .big{font-family:'Chakra Petch',sans-serif; font-size:3.4rem; color:var(--copper)}
+.rating-hero .stars{color:#E8B33D; font-size:1.2rem; letter-spacing:4px}
+.rating-hero .cnt{color:#5B6B76; font-weight:700; margin-top:4px}
+.linkcards{display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:640px; margin:26px auto 0}
+@media(max-width:700px){.linkcards{grid-template-columns:1fr}}
+.linkcard{display:block; text-decoration:none; background:var(--deep); color:var(--white); border-radius:14px; padding:22px; text-align:center; font-weight:700}
+.linkcard i{display:block; font-size:1.5rem; margin-bottom:8px}
+.linkcard:hover{transform:translateY(-2px)}
+/* visit */
+.visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+@media(max-width:860px){.visit-grid{grid-template-columns:1fr}}
+.vrow{display:flex; gap:12px; align-items:flex-start; margin-bottom:14px}
+.vrow i{color:var(--copper); margin-top:4px; width:20px; text-align:center}
+footer{background:var(--deep); color:#C6D8E4; padding:0 0 30px; font-size:.9rem}
+footer .slotstrip{margin-bottom:26px}
+footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center}
+footer .copy{color:var(--white); font-weight:700}
+footer a{color:#F0B37E; text-decoration:none}
+@media(max-width:700px){footer .wrap{flex-direction:column; text-align:center}}
+</style>
+</head>
+<body>
+<div class="site-shell">
+<header>
+  <div class="bar">
+    <div class="brand"><span class="coin"><i class="fa-solid fa-coins"></i></span> Laundry Land Coin Laundromat</div>
+    <button id="menu-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <ul class="nav-links">
+      <li><a href="#/home" data-page="home">The Wash</a></li>
+      <li><a href="#/machines" data-page="machines">Machines</a></li>
+      <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
+      <li><a href="#/visit" data-page="visit">Visit</a></li>
+    </ul>
+  </div>
+</header>
+<main>
+
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Coin laundry on Stockton Blvd</span>
+        <h1>Quarters in. <span class="copper">Clean clothes out.</span></h1>
+        <p class="lead">Laundry Land Coin Laundromat at 5962 Stockton Blvd keeps it old school and dependable: coin-operated machines that work, open early, close at ten, every single day of the week.</p>
+        <div class="hero-cta">
+          <span class="status-chip" id="chip-home"><span class="dot"></span><span class="lbl">Loading...</span></span>
+          <a class="btn" href="#/machines" data-page="machines">The machines</a>
+        </div>
+      </div>
+      <div class="bigcoin" aria-hidden="true">
+        <span class="val">25c</span>
+        <span class="lbl">Coin Laundry</span>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <h2>Straightforward laundry days</h2>
+      <p class="sub">No apps, no cards, no nonsense. Just quarters and clean machines.</p>
+      <div class="tri">
+        <div class="card"><div class="ico"><i class="fa-solid fa-coins"></i></div><h3>Coin operated</h3><p>Everything runs on quarters, the way a neighborhood laundromat should.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-clock"></i></div><h3>6 AM to 10 PM daily</h3><p>Early birds and after-dinner washers both fit inside the window.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-broom"></i></div><h3>Kept in order</h3><p>A machine that eats a quarter is a machine that gets fixed. That is the deal.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec alt">
+    <div class="wrap" style="text-align:center">
+      <h2>Plan your wash day</h2>
+      <p class="sub" style="margin-bottom:18px">Mornings are quiet. Weekends fill up by noon.</p>
+      <span class="status-chip" id="chip-duo"><span class="dot"></span><span class="lbl">Loading...</span></span>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-machines">
+  <div class="sec">
+    <div class="wrap">
+      <span class="kicker">Machines</span>
+      <h2>Washers and dryers, ready</h2>
+      <p class="sub">A full row of coin machines for every kind of load.</p>
+      <div class="tri">
+        <div class="card"><div class="ico"><i class="fa-solid fa-shirt"></i></div><h3>Everyday washers</h3><p>Regular loads, quick cycles, no waiting forever on a Sunday.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-box"></i></div><h3>Big loaders</h3><p>Comforters, blankets and family-sized piles go in one piece.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-fire"></i></div><h3>Hot dryers</h3><p>Get everything dry in one round and head home.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec alt">
+    <div class="wrap">
+      <h2>Hours</h2>
+      <p class="sub" style="text-align:center">Every day 6 AM - 10 PM.</p>
+      <div class="hoursgrid" id="hoursgrid"></div>
+      <p class="confirm">Hours can shift around holidays. Call (916) 549-7584 to confirm.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-reviews">
+  <div class="sec">
+    <div class="wrap">
+      <span class="kicker">Reviews</span>
+      <h2>What customers say</h2>
+      <div class="rating-hero">
+        <div class="big">4.4</div>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+        <div class="cnt">stars on Google</div>
+      </div>
+      <p style="text-align:center; max-width:56ch; margin:0 auto; color:#5B6B76">Read the full reviews on Google, then bring your quarters down the hill.</p>
+      <div class="linkcards">
+        <a class="linkcard" href="https://www.google.com/maps/search/?api=1&query=Laundry%20Land%20Coin%20Laundromat%2C%205962%20Stockton%20Blvd%2C%20Sacramento%2C%20CA%2095824" rel="noopener"><i class="fa-brands fa-google"></i>See every review on Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-visit">
+  <div class="sec">
+    <div class="wrap">
+      <span class="kicker">Visit</span>
+      <h2>Find the coin laundry</h2>
+      <p class="sub">5962 Stockton Blvd, Sacramento, CA 95824.</p>
+      <div class="visit-grid">
+        <div class="card">
+          <div class="vrow"><i class="fa-solid fa-location-dot"></i><div><strong>5962 Stockton Blvd</strong><br>Sacramento, CA 95824</div></div>
+          <div class="vrow"><i class="fa-solid fa-clock"></i><div>Every day 6 AM - 10 PM</div></div>
+          <div class="vrow"><i class="fa-solid fa-phone"></i><div><a href="tel:+19165497584">(916) 549-7584</a> - machine issues, questions</div></div>
+          <div class="vrow"><i class="fa-solid fa-coins"></i><div>Bring quarters. The machines thank you.</div></div>
+        </div>
+        <div class="coinpouch">
+          <div class="lbl">Laundry Land</div>
+          <div class="num">(916) 549-7584</div>
+          <div class="sub">Call about a machine or the hours.</div>
+          <div class="coinrow"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="form-card" style="margin-top:26px">
+        <h3 style="margin-bottom:4px">Send a note</h3>
+        <p style="font-size:.9rem;color:#5B6B76">A machine down? A question about the wash? Write here.</p>
+        <form id="contact-form">
+          <label for="f-name">Your name</label>
+          <input id="f-name" type="text" required>
+          <label for="f-phone">Your phone</label>
+          <input id="f-phone" type="tel" required>
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" required></textarea>
+          <p style="margin-top:16px"><button class="btn" type="submit">Send it over</button></p>
+          <div class="feedback" id="form-feedback"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="slotstrip" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <div><span class="copy">© Laundry Land Coin Laundromat · Sacramento, CA</span><br>5962 Stockton Blvd, Sacramento, CA 95824 · Every day 6 AM - 10 PM · (916) 549-7584</div>
+    <div><a href="#/machines" data-page="machines">Machines</a> · <a href="#/reviews" data-page="reviews">Reviews</a></div>
+  </div>
+</footer>
+</div>
+<script>
+var BUSINESS = "Laundry Land Coin Laundromat";
+var TITLES = { home: "The Wash", machines: "Machines", reviews: "Reviews", visit: "Visit" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false);
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinksEl = document.querySelector(".nav-links");
+if (menuBtn && navLinksEl) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinksEl.classList.toggle("open");
+  });
+} });
+navigateTo(getPageFromHash(), false);
+
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = {0:[6,22],1:[6,22],2:[6,22],3:[6,22],4:[6,22],5:[6,22],6:[6,22]};
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderChips(){
+  var st = openState();
+  ["chip-home","chip-duo"].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("on", st.open);
+    el.classList.toggle("off", !st.open);
+    el.querySelector(".lbl").textContent = st.label;
+  });
+  var names = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var grid = document.getElementById("hoursgrid");
+  if (grid) {
+    var n = cityNow(), html = "";
+    for (var d = 0; d < 7; d++) {
+      html += '<div class="daychip' + (d === n.day ? ' today' : '') + '"><div class="d">' + names[d] + '</div><div class="h">6 AM - 10 PM</div></div>';
+    }
+    grid.innerHTML = html;
+  }
+}
+renderChips();
+
+var PHONE = "+19165497584";
+var PRETTY = "(916) 549-7584";
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  var name = document.getElementById("f-name").value.trim();
+  var phone = document.getElementById("f-phone").value.trim();
+  var msg = document.getElementById("f-msg").value.trim();
+  var text = "Hi Laundry Land Coin Laundromat! My name is " + name + ". " + msg + " (Reply to " + phone + ")";
+  var body = encodeURIComponent(text);
+  var fb = document.getElementById("form-feedback");
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    location.href = "sms:" + PHONE + "?&body=" + body;
+  } else {
+    navigator.clipboard.writeText(text).then(function(){
+      fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+    });
+  }
+});
+</script>
+</body>
+</html>

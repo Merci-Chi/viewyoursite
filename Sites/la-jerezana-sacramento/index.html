@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rio Linda Panaderia | Panaderia La Jerezana</title>
+<link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+/* Rio Linda Jerez: amontillado, cream, olive. Marck Script display + Open Sans body. Quiet, honest, thin. */
+:root{
+  --amont:#A0522D;
+  --amont-deep:#7C3E1F;
+  --olive:#6B8E23;
+  --olive-soft:#E9EFDA;
+  --cream:#FAF3E3;
+  --cream-deep:#F1E6CC;
+  --ink:#4E342E;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Open Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.7;
+}
+h1,h2,h3,.display{font-family:'Marck Script',cursive;font-weight:400;}
+a{color:inherit;}
+.site-shell{min-height:100vh;display:flex;flex-direction:column;}
+main{flex:1 0 auto;}
+footer{flex-shrink:0;}
+.page{display:none;}
+.page.active{display:block;}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px;}
+
+/* Header */
+.topbar{background:var(--cream);border-bottom:1.5px solid var(--cream-deep);position:relative;z-index:50;}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:10px;padding-bottom:10px;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand svg{flex-shrink:0;}
+.brand-name{font-family:'Marck Script',cursive;font-size:29px;color:var(--amont-deep);line-height:1;}
+.brand-sub{display:block;font-family:'Open Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.8px;text-transform:uppercase;color:var(--olive);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:14px;
+  padding:9px 15px;border-radius:999px;transition:background .15s,color .15s;
+}
+.nav-links a:hover{background:var(--olive-soft);}
+.nav-links a.on{background:var(--amont);color:var(--cream);}
+.menu-btn{
+  display:none;background:transparent;border:1.5px solid var(--amont);color:var(--amont);
+  width:44px;height:44px;border-radius:10px;font-size:18px;cursor:pointer;align-items:center;justify-content:center;
+}
+.menu-btn.open{background:var(--amont);color:var(--cream);}
+
+/* Status chip */
+.status-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:999px;font-weight:700;font-size:13px;
+  background:#fff;color:var(--amont-deep);border:1.5px solid var(--cream-deep);
+}
+.status-chip .dot{width:9px;height:9px;border-radius:50%;background:#BBA98E;flex-shrink:0;}
+.status-chip.open{background:var(--olive-soft);border-color:var(--olive);color:#3F5317;}
+.status-chip.open .dot{background:var(--olive);box-shadow:0 0 0 3px rgba(107,142,35,.18);}
+.status-chip.closed .dot{background:#BBA98E;}
+
+/* Hero: centered, quiet */
+.hero{
+  text-align:center;padding:60px 0 46px;
+  background:
+    radial-gradient(circle at 14% 22%, rgba(160,82,45,.09), transparent 30%),
+    radial-gradient(circle at 86% 30%, rgba(107,142,35,.1), transparent 26%),
+    linear-gradient(180deg, #FDF9F0 0%, var(--cream) 100%);
+}
+.hero .kicker{
+  display:inline-flex;align-items:center;gap:9px;background:#fff;border:1.5px solid var(--cream-deep);color:var(--amont-deep);
+  padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+}
+.hero h1{font-size:clamp(44px,7vw,74px);color:var(--amont-deep);margin:18px 0 4px;line-height:1.02;}
+.hero .tagline{font-size:16.5px;color:#6E5443;max-width:520px;margin:0 auto 18px;}
+.hero .chips{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+
+/* Bottle divider */
+.bottle-line{display:flex;align-items:center;justify-content:center;gap:14px;padding:6px 0;}
+.bottle-line b{width:70px;height:1.5px;background:var(--cream-deep);display:inline-block;}
+.bottle-line svg{opacity:.95;}
+
+/* Section basics */
+.section{padding:46px 0;}
+.section.alt{background:#FDF9F0;border-top:1.5px solid var(--cream-deep);border-bottom:1.5px solid var(--cream-deep);}
+.kicker{font-size:12px;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;color:var(--olive);margin:0 0 8px;text-align:center;}
+h2.sec{font-size:clamp(32px,4.4vw,46px);margin:0 0 12px;color:var(--amont-deep);text-align:center;line-height:1.1;}
+p.sub{margin:0 auto 26px;color:#6E5443;max-width:560px;text-align:center;}
+
+/* Pan dulce chips */
+.dulce-chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:640px;margin:0 auto;}
+.dchip{
+  background:#fff;border:1.5px solid var(--cream-deep);border-radius:999px;
+  padding:10px 20px;font-size:14.5px;font-weight:700;color:var(--amont-deep);
+  display:inline-flex;align-items:center;gap:9px;
+}
+.dchip .fa-solid{color:var(--olive);font-size:13px;}
+
+/* Hours strip */
+.hours-strip{
+  background:#fff;border:1.5px solid var(--cream-deep);border-radius:18px;
+  padding:22px 26px;max-width:560px;margin:0 auto;text-align:center;
+}
+.hours-strip .big{font-family:'Marck Script',cursive;font-size:32px;color:var(--amont-deep);line-height:1.15;}
+.hours-strip .meta{font-size:13.5px;font-weight:700;color:#8C745F;margin-top:6px;}
+.hours-strip .today-line{margin-top:12px;padding-top:12px;border-top:1px dashed var(--cream-deep);font-size:14px;font-weight:700;color:var(--olive);}
+
+/* Reviews */
+.rev-hero{text-align:center;margin-bottom:26px;}
+.rev-score{
+  width:104px;height:104px;border-radius:50%;margin:0 auto 12px;
+  background:var(--amont);color:var(--cream);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:3px solid var(--cream-deep);box-shadow:0 10px 24px rgba(124,62,31,.22);
+}
+.rev-score .num{font-size:34px;font-weight:800;line-height:1;}
+.rev-score .stars{font-size:10px;color:#F3D9A4;margin-top:6px;letter-spacing:2px;}
+.quote-card{
+  background:#fff;border:1.5px solid var(--cream-deep);border-radius:20px;
+  padding:30px 30px 24px;max-width:680px;margin:0 auto;text-align:center;
+  box-shadow:0 12px 28px rgba(124,62,31,.09);
+}
+.quote-card blockquote{margin:0 0 14px;font-family:'Marck Script',cursive;font-size:27px;line-height:1.4;color:var(--amont-deep);}
+.quote-meta{display:flex;align-items:center;justify-content:center;gap:10px;font-size:13px;font-weight:700;color:#8C745F;}
+.quote-meta .st{color:var(--olive);letter-spacing:2px;font-size:12px;}
+.summary-line{margin-top:26px;text-align:center;font-size:16px;font-weight:800;color:var(--ink);}
+.summary-line .plain{display:block;font-size:13.5px;font-weight:600;color:#8C745F;margin-top:4px;}
+.link-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:24px;}
+.link-card{
+  text-decoration:none;background:var(--amont);color:var(--cream);border-radius:999px;padding:15px 26px;
+  display:inline-flex;align-items:center;gap:11px;font-weight:700;font-size:14.5px;
+  transition:transform .15s,box-shadow .15s;box-shadow:0 10px 24px rgba(124,62,31,.24);
+}
+.link-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(124,62,31,.32);}
+.link-card .fa-brands,.link-card .fa-solid{color:#F3D9A4;font-size:17px;}
+
+/* Visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+.info-card{background:#fff;border:1.5px solid var(--cream-deep);border-radius:18px;padding:26px;}
+.info-card h3{margin:0 0 14px;font-size:32px;color:var(--amont-deep);line-height:1.1;}
+.info-line{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--cream-deep);font-size:14.5px;}
+.info-line:last-of-type{border-bottom:none;}
+.info-line .fa-solid{color:var(--olive);margin-top:3px;width:18px;text-align:center;}
+/* Sherry-tag contact card */
+.tag-card{
+  background:var(--amont-deep);color:var(--cream);border-radius:16px;
+  padding:34px 30px 28px;position:relative;box-shadow:0 14px 32px rgba(124,62,31,.28);
+}
+.tag-card::before{
+  content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-3deg);
+  width:60px;height:28px;border:1.5px solid var(--olive);border-radius:50%;
+  background:transparent;border-bottom-color:transparent;border-left-color:transparent;
+}
+.tag-card .hole{
+  width:16px;height:16px;border-radius:50%;background:var(--cream);
+  margin:0 auto 14px;border:3px solid var(--olive);
+}
+.tag-card .label{font-size:11.5px;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;color:#F3D9A4;margin:0 0 8px;text-align:center;}
+.tag-card .phone-big{
+  display:block;text-align:center;font-size:clamp(24px,3.2vw,31px);font-weight:800;color:#fff;
+  text-decoration:none;letter-spacing:.5px;line-height:1.2;
+}
+.tag-card .phone-big:hover{color:#F3D9A4;}
+.tag-card .note{margin:10px 0 0;text-align:center;font-size:13.5px;color:#E8CFA8;}
+
+/* Form */
+.form-card{background:#fff;border:1.5px solid var(--cream-deep);border-radius:18px;padding:26px;margin-top:22px;}
+.form-card h3{margin:0 0 14px;font-size:32px;color:var(--amont-deep);line-height:1.1;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--olive);}
+.field input,.field textarea{
+  font-family:'Open Sans',sans-serif;font-size:15px;color:var(--ink);
+  border:1.5px solid var(--cream-deep);border-radius:12px;padding:12px 14px;background:var(--cream);outline:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--amont);background:#fff;}
+.field textarea{min-height:110px;resize:vertical;}
+.send-btn{
+  margin-top:16px;background:var(--amont);color:var(--cream);border:none;border-radius:999px;cursor:pointer;
+  font-family:'Open Sans',sans-serif;font-weight:800;font-size:15px;padding:14px 28px;
+  display:inline-flex;align-items:center;gap:10px;transition:background .15s,transform .15s;
+}
+.send-btn:hover{background:var(--amont-deep);transform:translateY(-1px);}
+.form-feedback{margin:12px 0 0;font-size:14px;font-weight:700;color:#3F5317;min-height:20px;}
+
+/* Footer */
+footer{background:var(--amont-deep);color:#E8CFA8;}
+.foot-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px 0 14px;}
+.foot-brand{font-family:'Marck Script',cursive;font-size:30px;color:#fff;line-height:1.1;}
+.foot-quiet{font-size:13px;margin:8px 0 0;}
+.foot-quiet .fa-solid{color:#F3D9A4;margin-right:7px;}
+.foot-quiet a{color:#F7E7C8;text-decoration:none;}
+.foot-bottom{border-top:1px solid rgba(243,217,164,.3);padding:14px 0 18px;text-align:center;font-size:13px;color:#C89D6F;}
+
+@media (max-width:900px){
+  .visit-grid{grid-template-columns:1fr;}
+}
+@media (max-width:680px){
+  .menu-btn{display:flex;}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;z-index:60;
+    background:#fff;border-bottom:1.5px solid var(--cream-deep);
+    flex-direction:column;align-items:stretch;padding:8px 16px 16px;gap:4px;
+    box-shadow:0 12px 24px rgba(124,62,31,.12);
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:13px 14px;border-radius:12px;}
+  .topbar .wrap{position:relative;}
+  .form-grid{grid-template-columns:1fr;}
+  .section{padding:38px 0;}
+  .hero{padding:46px 0 40px;}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#/home" data-page="home" aria-label="Panaderia La Jerezana home">
+      <svg width="30" height="42" viewBox="0 0 30 42" aria-hidden="true">
+        <rect x="11" y="2" width="8" height="10" rx="2" fill="#6B8E23"/>
+        <path d="M12 12 L18 12 L24 30 Q25 38 15 38 Q5 38 6 30 Z" fill="#A0522D"/>
+        <rect x="9" y="22" width="12" height="9" rx="2" fill="#FAF3E3" opacity=".85"/>
+        <circle cx="15" cy="26" r="2.4" fill="#6B8E23"/>
+      </svg>
+      <span><span class="brand-name">La Jerezana</span><span class="brand-sub">Panaderia · Rio Linda Blvd</span></span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#/home" data-page="home">Home</a>
+      <a href="#/panaderia" data-page="panaderia">La Panaderia</a>
+      <a href="#/reviews" data-page="reviews">Reviews</a>
+      <a href="#/visit" data-page="visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <span class="kicker"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 2456 Rio Linda Blvd · Sacramento</span>
+      <h1>Panaderia La Jerezana</h1>
+      <p class="tagline">A corner panaderia with a huge pan dulce selection and a staff that walks you through it, tray in hand, until you find your favorite.</p>
+      <div class="chips">
+        <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+        <span class="status-chip"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Open daily 7 - 9</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottle-line" aria-hidden="true">
+    <b></b>
+    <svg width="18" height="34" viewBox="0 0 18 34"><rect x="6" y="1" width="6" height="8" rx="1.5" fill="#6B8E23"/><path d="M7 9 L11 9 L15 22 Q16 30 9 30 Q2 30 3 22 Z" fill="#A0522D"/></svg>
+    <b></b>
+  </div>
+
+  <div class="section" style="padding-top:30px;">
+    <div class="wrap">
+      <p class="kicker">La seleccion</p>
+      <h2 class="sec">The pan dulce wall</h2>
+      <p class="sub">This is what people come for: the sheer size of the sweet bread selection. Grab a tray and tongs at the door, and the helpful staff will guide you through it.</p>
+      <div class="dulce-chips">
+        <span class="dchip"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Conchas</span>
+        <span class="dchip"><i class="fa-solid fa-cookie" aria-hidden="true"></i> Orejas</span>
+        <span class="dchip"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Cuernos</span>
+        <span class="dchip"><i class="fa-solid fa-cookie" aria-hidden="true"></i> Empanadas</span>
+        <span class="dchip"><i class="fa-solid fa-bread-slice" aria-hidden="true"></i> Bolillos</span>
+        <span class="dchip"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Pastelitos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section alt">
+    <div class="wrap">
+      <div class="hours-strip">
+        <div class="big">Every day, 7 to 9</div>
+        <div class="meta">Open 7:00 AM - 9:00 PM, seven days a week</div>
+        <div class="today-line"><span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span> &nbsp; today is a 7 to 9 day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-panaderia">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">La Panaderia</p>
+      <h2 class="sec">What the shop is</h2>
+      <p class="sub">La Jerezana is a working Mexican bakery on Rio Linda Blvd, Suite 300. No gimmicks, just trays of pan dulce baked through the day, bolillos for the table, and a counter that will help you build a box for the family.</p>
+      <p class="sub">First time? Tell the staff what you like, sweet, fluffy, fruity, and they will hand-pick a dozen with you.</p>
+    </div>
+  </div>
+  <div class="section alt">
+    <div class="wrap">
+      <div class="hours-strip">
+        <div class="big">Every day, 7 to 9</div>
+        <div class="meta">Open 7:00 AM - 9:00 PM, seven days a week</div>
+        <div class="today-line"><span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span> &nbsp; today is a 7 to 9 day</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-reviews">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">Reviews</p>
+      <h2 class="sec">The honest score</h2>
+      <p class="sub">One written Google review says it well. The number below is shown exactly as it stands, no varnish, and the links are there so you can read everything yourself.</p>
+
+      <div class="rev-hero">
+        <div class="rev-score">
+          <span class="num">4.2</span>
+          <span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></span>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>Helpful staff will guide you through the selection , huge selection of pan dulce</blockquote>
+        <div class="quote-meta"><span class="st" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
+      </div>
+
+      <p class="summary-line">4.2 stars on Google
+        <span class="plain">Shown plainly, as it stands on the shop's Google listing.</span>
+      </p>
+
+      <div class="link-row">
+        <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Panaderia%20La%20Jerezana%2C%202456%20Rio%20Linda%20Blvd%2C%20Sacramento%2C%20CA%2095815" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-visit">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">Visit</p>
+      <h2 class="sec">Grab a tray</h2>
+      <p class="sub">Suite 300 at 2456 Rio Linda Blvd. Doors open at 7 every morning and close at 9 at night, all week.</p>
+
+      <div class="visit-grid">
+        <div class="info-card">
+          <h3>Bakery details</h3>
+          <div class="info-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>2456 Rio Linda Blvd Ste 300, Sacramento, CA 95815</span></div>
+          <div class="info-line"><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Every day, 7:00 AM - 9:00 PM</span></div>
+          <div class="info-line"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i><span>Huge pan dulce selection, trays and tongs at the door</span></div>
+          <div class="info-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Status right now: <span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span></span></div>
+        </div>
+
+        <div class="tag-card">
+          <span class="hole" aria-hidden="true"></span>
+          <p class="label">Call the bakery</p>
+          <a class="phone-big" href="tel:+19169252622">(916) 925-2622</a>
+          <p class="note">Ask what just came out of the oven, or save a box before the afternoon rush.</p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Ask the bakery</h3>
+        <form id="contact-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-phone">Your phone</label>
+              <input id="f-phone" type="tel" autocomplete="tel" placeholder="(916) 000-0000">
+            </div>
+            <div class="field full">
+              <label for="f-msg">Message</label>
+              <textarea id="f-msg" placeholder="Hola La Jerezana, I wanted to ask about..."></textarea>
+            </div>
+          </div>
+          <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the bakery</button>
+          <p class="form-feedback" id="form-feedback" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div>
+        <p class="foot-brand">Panaderia La Jerezana</p>
+        <p class="foot-quiet"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 2456 Rio Linda Blvd Ste 300, Sacramento, CA 95815</p>
+        <p class="foot-quiet"><i class="fa-solid fa-clock" aria-hidden="true"></i> Open every day 7 AM - 9 PM</p>
+      </div>
+      <div>
+        <p class="foot-quiet"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+19169252622">(916) 925-2622</a></p>
+        <p class="foot-quiet"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Pan dulce baked through the day</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© Panaderia La Jerezana · Sacramento, CA</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+var BUSINESS = "Panaderia La Jerezana";
+var TITLES = { home: "Rio Linda Panaderia", panaderia: "La Panaderia", reviews: "Reviews", visit: "Visit" };
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = {0:[7,21],1:[7,21],2:[7,21],3:[7,21],4:[7,21],5:[7,21],6:[7,21]};
+var PHONE = "+19169252622";
+var PRETTY = "(916) 925-2622";
+
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderStatus(){
+  var s = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.toggle("open", s.open);
+    c.classList.toggle("closed", !s.open);
+    var tx = c.querySelector(".status-text");
+    if (tx) tx.textContent = s.label;
+  });
+}
+function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(r){
+    r.classList.toggle("today", Number(r.getAttribute("data-day")) === d);
+  });
+}
+renderStatus();
+highlightToday();
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinks = document.querySelector(".nav-links");
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", navLinks.classList.contains("open") ? "true" : "false");
+  });
+}
+
+var form = document.getElementById("contact-form");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var fb = document.getElementById("form-feedback");
+    var name = document.getElementById("f-name").value.trim();
+    var phone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) {
+      fb.textContent = "Please add your name and a short message.";
+      return;
+    }
+    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
+    var body = encodeURIComponent(text);
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + body;
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pan Dulce on 98th Street | Panaderia Zaragoza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --cocoa:#8D6E63;
+  --cocoa-deep:#5D4037;
+  --vanilla:#FFF8F0;
+  --pink:#F8BBD0;
+  --pink-deep:#D97A9E;
+  --ink:#43302B;
+  --muted:#7A6560;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:'Nunito Sans',sans-serif;
+  background:var(--vanilla);
+  color:var(--ink);
+  line-height:1.65;
+}
+h1,h2,h3{ line-height:1.15; margin:0 0 .5rem; }
+a{ color:var(--cocoa-deep); }
+.wrap{ max-width:1100px; margin:0 auto; padding:0 20px; }
+
+/* Footer pinning shell */
+.site-shell{ min-height:100vh; display:flex; flex-direction:column; }
+main{ flex:1 0 auto; }
+footer{ flex-shrink:0; }
+
+/* Header */
+header.site{
+  background:var(--vanilla);
+  border-bottom:3px solid var(--pink);
+  position:relative;
+  z-index:20;
+}
+.bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+.brand{ text-decoration:none; color:var(--cocoa-deep); display:flex; align-items:center; gap:12px; }
+.brand-mark{
+  width:46px; height:46px;
+  border-radius:50%;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 6px, rgba(255,255,255,.55) 6px 8px),
+    repeating-linear-gradient(90deg, transparent 0 6px, rgba(255,255,255,.55) 6px 8px),
+    var(--cocoa);
+  border:3px solid var(--pink);
+  flex-shrink:0;
+}
+.brand-name{
+  font-family:'Pacifico',cursive;
+  font-size:1.3rem;
+  display:block;
+  color:var(--cocoa-deep);
+  line-height:1.2;
+}
+.brand-sub{ display:block; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--pink-deep); font-weight:800; }
+#menu-btn{
+  display:none;
+  background:transparent;
+  border:2px solid var(--cocoa);
+  border-radius:10px;
+  padding:9px 10px;
+  cursor:pointer;
+}
+#menu-btn span{
+  display:block; width:20px; height:2px;
+  background:var(--cocoa-deep); margin:4px 0;
+}
+#menu-btn.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+#menu-btn.open span:nth-child(2){ opacity:0; }
+#menu-btn.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+.nav-links{ list-style:none; display:flex; gap:26px; margin:0; padding:0; align-items:center; }
+.nav-links a{
+  color:var(--cocoa-deep); text-decoration:none;
+  font-weight:800; font-size:.9rem;
+  letter-spacing:.05em; text-transform:uppercase;
+  padding:6px 2px;
+  border-radius:8px;
+}
+.nav-links a:hover{ background:var(--pink); }
+
+/* Concha grid pattern helpers */
+.concha-bg{
+  background:
+    repeating-linear-gradient(0deg, transparent 0 26px, rgba(141,110,99,.12) 26px 28px),
+    repeating-linear-gradient(90deg, transparent 0 26px, rgba(141,110,99,.12) 26px 28px);
+}
+.concha-shell{
+  background:
+    repeating-linear-gradient(0deg, transparent 0 22px, rgba(255,255,255,.5) 22px 24px),
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(255,255,255,.5) 22px 24px),
+    var(--cocoa);
+}
+
+/* Hero (centered) */
+.hero{
+  padding:64px 0 54px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  width:340px; height:340px;
+  border-radius:50%;
+  background:var(--pink);
+  opacity:.5;
+  top:-130px; left:50%;
+  transform:translateX(-50%);
+  filter:blur(2px);
+}
+.hero-inner{ position:relative; }
+.kicker{
+  font-size:.72rem; font-weight:800;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--pink-deep); margin:0 0 12px;
+}
+.hero h1{
+  font-family:'Pacifico',cursive;
+  font-weight:400;
+  font-size:2.6rem;
+  color:var(--cocoa-deep);
+  margin-bottom:14px;
+}
+.lead{ font-size:1.05rem; color:var(--muted); max-width:56ch; margin:0 auto 22px; }
+.hero-actions{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; margin-bottom:20px; }
+.status-chip{
+  display:inline-flex; align-items:center; gap:9px;
+  background:#fff;
+  border:2px solid var(--pink);
+  border-radius:999px;
+  padding:9px 16px;
+  font-weight:800; font-size:.86rem;
+  color:var(--ink);
+  box-shadow:0 4px 10px rgba(141,110,99,.12);
+}
+.status-chip .dot{ width:10px; height:10px; border-radius:50%; background:#9AA0A6; flex-shrink:0; }
+.status-chip.open .dot{ background:#2E8B57; box-shadow:0 0 0 4px rgba(46,139,87,.16); }
+.status-chip.closed .dot{ background:#B3403F; }
+.btn{
+  display:inline-block; text-decoration:none;
+  font-weight:800; font-size:.85rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  padding:13px 26px; border-radius:999px;
+  border:2px solid var(--cocoa-deep);
+  cursor:pointer;
+}
+.btn-solid{ background:var(--cocoa-deep); color:#FFF8F0; }
+.btn-solid:hover{ background:var(--cocoa); border-color:var(--cocoa); }
+.btn-ghost{ background:transparent; color:var(--cocoa-deep); }
+.btn-ghost:hover{ background:var(--pink); border-color:var(--pink-deep); }
+.badges{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.82rem; font-weight:700;
+  background:#fff;
+  border:1px solid var(--pink);
+  border-radius:999px;
+  padding:8px 14px;
+  color:var(--ink);
+}
+.badge i{ color:var(--pink-deep); }
+
+/* Concha display tile */
+.concha-tile{
+  width:170px; height:170px;
+  margin:26px auto 0;
+  border-radius:50%;
+  border:6px solid var(--pink);
+  box-shadow:0 16px 30px rgba(141,110,99,.22);
+}
+
+/* Blocks */
+.block{ padding:56px 0; }
+.block-alt{ background:#fff; }
+.block-pink{ background:linear-gradient(180deg, #FDEDF3, var(--vanilla)); }
+.sec-head{ max-width:640px; margin:0 auto 30px; text-align:center; }
+.sec-head h2{ font-family:'Pacifico',cursive; font-weight:400; font-size:1.9rem; color:var(--cocoa-deep); }
+.sec-head p{ color:var(--muted); margin:6px 0 0; }
+.sprinkle{
+  width:74px; height:8px; border-radius:999px;
+  background:repeating-linear-gradient(90deg, var(--pink) 0 10px, var(--cocoa) 10px 20px, var(--pink-deep) 20px 30px);
+  margin:0 auto 16px;
+}
+
+/* Product cards */
+.card-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
+.bake-card{
+  background:#fff;
+  border:2px solid var(--pink);
+  border-radius:26px 26px 14px 14px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 8px 18px rgba(141,110,99,.09);
+}
+.bake-card .ic{
+  width:52px; height:52px;
+  margin:0 auto 12px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--pink);
+  color:var(--cocoa-deep);
+  font-size:1.25rem;
+}
+.bake-card h3{ font-family:'Pacifico',cursive; font-weight:400; font-size:1.2rem; color:var(--cocoa-deep); }
+.bake-card p{ margin:0; color:var(--muted); font-size:.95rem; }
+
+/* Pink quote band */
+.band-pink{
+  background:var(--cocoa-deep);
+  color:#F3E1D6;
+  border-radius:24px;
+  padding:34px 28px;
+  text-align:center;
+}
+.band-pink .pq{ font-family:'Pacifico',cursive; font-size:1.4rem; color:#F8BBD0; margin:0 0 6px; }
+.band-pink .src{ font-size:.74rem; letter-spacing:.22em; text-transform:uppercase; font-weight:800; color:#D7B8AC; margin:0; }
+
+/* Hours: concha chips */
+.hours-card{
+  background:#fff;
+  border:2px solid var(--pink);
+  border-radius:22px;
+  overflow:hidden;
+}
+.hours-head{
+  background:var(--cocoa);
+  color:#FFF8F0;
+  padding:14px 22px;
+  font-family:'Pacifico',cursive;
+  font-size:1.05rem;
+  display:flex; align-items:center; gap:10px;
+}
+.day-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:18px; }
+.day-chip{
+  background:var(--vanilla);
+  border:1px solid var(--pink);
+  border-radius:14px 14px 6px 6px;
+  padding:10px 12px;
+  display:flex; justify-content:space-between; align-items:center; gap:8px;
+  font-size:.86rem;
+}
+.day-chip .d{ font-weight:800; color:var(--cocoa-deep); }
+.day-chip .t{ color:var(--muted); font-weight:700; white-space:nowrap; }
+.day-chip.today{
+  background:var(--pink);
+  border-color:var(--pink-deep);
+}
+.day-chip.today .d::after{
+  content:" · today";
+  font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--cocoa-deep); font-weight:800;
+}
+.hours-note{
+  font-size:.84rem; color:var(--muted);
+  background:#fff;
+  border-left:4px solid var(--pink-deep);
+  border-radius:0 10px 10px 0;
+  padding:10px 14px;
+  margin:16px 0 0;
+}
+
+/* Visit layout */
+.visit-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start; }
+.info-card{ background:#fff; border:2px solid var(--pink); border-radius:18px; padding:24px; }
+.info-card h3{ font-family:'Pacifico',cursive; font-weight:400; color:var(--cocoa-deep); font-size:1.2rem; }
+.info-card p{ margin:6px 0; color:var(--muted); }
+
+/* Sugar-dust contact card */
+.sugar-card{
+  background:var(--vanilla);
+  border:2px dashed var(--cocoa);
+  border-radius:20px;
+  padding:34px 24px 28px;
+  text-align:center;
+  position:relative;
+  margin:26px 0 6px;
+  box-shadow:0 14px 26px rgba(141,110,99,.14);
+}
+.sugar-card::before, .sugar-card::after{
+  content:"";
+  position:absolute;
+  width:10px; height:10px; border-radius:50%;
+  background:var(--pink-deep);
+}
+.sugar-card::before{ top:12px; left:16px; box-shadow:18px 8px 0 -3px var(--pink), 36px 2px 0 -5px var(--cocoa); }
+.sugar-card::after{ bottom:12px; right:16px; box-shadow:-18px 8px 0 -3px var(--pink), -36px 2px 0 -5px var(--cocoa); }
+.sugar-label{
+  font-size:.68rem; font-weight:800;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--pink-deep);
+  margin:0 0 4px;
+}
+.sugar-title{
+  font-family:'Pacifico',cursive;
+  color:var(--cocoa-deep);
+  font-size:1.35rem;
+  margin:0 0 10px;
+}
+.sugar-phone{
+  display:inline-block;
+  font-weight:800;
+  font-size:1.9rem;
+  color:var(--ink);
+  text-decoration:none;
+  background:#fff;
+  border:2px solid var(--pink);
+  border-radius:999px;
+  padding:8px 24px;
+}
+.sugar-phone:hover{ border-color:var(--pink-deep); color:var(--pink-deep); }
+.sugar-sub{ margin:14px 0 0; font-size:.86rem; color:var(--muted); }
+
+/* Form */
+.form-card{ background:#fff; border:2px solid var(--pink); border-radius:18px; padding:24px; }
+.form-card h3{ font-family:'Pacifico',cursive; font-weight:400; color:var(--cocoa-deep); font-size:1.35rem; }
+.form-card .hint{ font-size:.88rem; color:var(--muted); margin-top:0; }
+.field{ margin:14px 0; }
+.field label{
+  display:block;
+  font-size:.7rem; font-weight:800;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--pink-deep);
+  margin-bottom:6px;
+}
+.field input, .field textarea{
+  width:100%;
+  border:1px solid var(--pink);
+  border-radius:12px;
+  background:var(--vanilla);
+  padding:11px 14px;
+  font-family:'Nunito Sans',sans-serif;
+  font-size:.95rem;
+  color:var(--ink);
+}
+.field input:focus, .field textarea:focus{ outline:2px solid var(--pink-deep); border-color:var(--pink-deep); }
+.send-btn{
+  display:inline-block;
+  background:var(--pink-deep);
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:13px 28px;
+  font-family:'Nunito Sans',sans-serif;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:.78rem;
+  cursor:pointer;
+}
+.send-btn:hover{ background:var(--cocoa-deep); }
+#form-feedback{ margin:12px 0 0; font-weight:800; color:var(--cocoa-deep); min-height:1.2em; font-size:.9rem; }
+
+/* Reviews */
+.quote-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
+.quote-card{
+  background:#fff;
+  border:2px solid var(--pink);
+  border-radius:20px 20px 40px 40px;
+  padding:30px 26px;
+  text-align:center;
+  box-shadow:0 8px 18px rgba(141,110,99,.1);
+}
+.quote-card .stars{ color:var(--pink-deep); letter-spacing:5px; margin-bottom:12px; }
+.quote-card blockquote{
+  margin:0 0 14px;
+  font-size:1.05rem;
+  line-height:1.55;
+  color:var(--ink);
+  font-weight:600;
+}
+.quote-card .attr{
+  font-size:.7rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--muted); font-weight:800;
+}
+.rating-hero{
+  background:var(--cocoa);
+  color:#FFF8F0;
+  border-radius:24px;
+  padding:32px 24px;
+  text-align:center;
+  margin-top:26px;
+}
+.rating-hero .score{
+  font-family:'Pacifico',cursive;
+  font-size:3.2rem; line-height:1;
+  color:var(--pink);
+}
+.rating-hero .stars{ color:#F3D3DF; letter-spacing:4px; margin:8px 0; }
+.rating-hero .src{ font-size:.86rem; letter-spacing:.18em; text-transform:uppercase; opacity:.9; font-weight:800; }
+.link-cards{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:22px; max-width:560px; margin-left:auto; margin-right:auto; }
+.review-link{
+  display:flex; align-items:center; gap:14px;
+  background:#fff;
+  border:2px solid var(--pink);
+  border-radius:16px;
+  padding:17px 20px;
+  text-decoration:none;
+  color:var(--cocoa-deep);
+}
+.review-link i{ font-size:1.5rem; color:var(--pink-deep); }
+.review-link .t{ font-weight:800; display:block; }
+.review-link .s{ display:block; font-size:.82rem; color:var(--muted); font-weight:400; }
+.review-link:hover{ border-color:var(--pink-deep); }
+
+/* Footer */
+footer.site{ background:var(--cocoa-deep); color:#D7B8AC; margin-top:44px; }
+.foot-grid{ display:grid; grid-template-columns:1fr; gap:24px; padding:38px 0 26px; }
+.foot-brand{ font-family:'Pacifico',cursive; font-size:1.5rem; color:#FFF8F0; }
+.foot-col h4{ font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:#B08D82; margin:0 0 10px; }
+.foot-col p{ margin:4px 0; font-size:.9rem; }
+.foot-col a{ color:#F8BBD0; text-decoration:none; }
+.foot-bottom{
+  border-top:1px solid rgba(255,248,240,.16);
+  padding:16px 0 20px;
+  text-align:center;
+  font-size:.85rem;
+  color:#D7B8AC;
+}
+.copyright{ margin:0; }
+
+/* Responsive */
+@media (min-width:768px){
+  .card-grid{ grid-template-columns:1fr 1fr; }
+  .quote-grid{ grid-template-columns:1fr 1fr 1fr; }
+  .visit-grid{ grid-template-columns:1.05fr .95fr; }
+  .day-grid{ grid-template-columns:repeat(3,1fr); }
+  .foot-grid{ grid-template-columns:1.4fr 1fr 1fr; }
+  .hero h1{ font-size:3.1rem; }
+}
+@media (max-width:767px){
+  #menu-btn{ display:block; }
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:var(--vanilla);
+    border-bottom:3px solid var(--pink-deep);
+    flex-direction:column;
+    gap:0;
+    padding:8px 0 14px;
+    box-shadow:0 14px 20px rgba(93,64,55,.16);
+  }
+  .nav-links.open{ display:flex; }
+  .nav-links li{ width:100%; text-align:center; }
+  .nav-links a{ display:block; padding:13px 0; }
+  .block{ padding:42px 0; }
+  .hero{ padding:48px 0 40px; }
+  .hero h1{ font-size:2.1rem; }
+  .day-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="#/home" data-page="home" aria-label="Panaderia Zaragoza home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-name">Panaderia Zaragoza</span>
+          <span class="brand-sub">803 98th St SW · Albuquerque</span>
+        </span>
+      </a>
+      <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#/panaderia" data-page="panaderia">La Panaderia</a></li>
+        <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
+        <li><a href="#/visit" data-page="visit">Visit</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section class="page" id="page-home">
+      <div class="hero concha-bg">
+        <div class="wrap hero-inner">
+          <p class="kicker">Panaderia &amp; Mexican Bakery · 98th St SW</p>
+          <h1>Pan dulce, fresh every morning</h1>
+          <p class="lead">Panaderia Zaragoza bakes on 98th Street Southwest every day of the week: conchas with real crunch on top, soft bolillos, and a sweet bread case that regulars refuse to buy anywhere else.</p>
+          <div class="hero-actions">
+            <span class="status-chip" data-status><span class="dot"></span>Checking hours</span>
+            <a class="btn btn-solid" href="#/panaderia" data-page="panaderia">La Panaderia</a>
+          </div>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-clock"></i> Open daily 7 AM - 8 PM</span>
+            <span class="badge"><i class="fa-solid fa-cake-candles"></i> Custom cakes by order</span>
+          </div>
+          <div class="concha-tile concha-shell" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sprinkle"></div>
+            <h2>From the oven</h2>
+            <p>Grab a tray and a pair of tongs at the shelf and fill it up. That is how a panaderia is supposed to work.</p>
+          </div>
+          <div class="card-grid">
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-cookie-bite"></i></div>
+              <h3>Conchas &amp; pan dulce</h3>
+              <p>The shells customers swear by, plus a rotating variety of sweet bread so the tray never gets boring.</p>
+            </div>
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-bread-slice"></i></div>
+              <h3>Bolillos &amp; fresh bread</h3>
+              <p>Crusty on the outside, soft in the middle. Baked fresh every day for tortas, molletes and the dinner table.</p>
+            </div>
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-cake-candles"></i></div>
+              <h3>Custom cakes</h3>
+              <p>Birthday cakes and celebrations by order, prepared and decorated the way you asked. Customers say the cakes are delicious.</p>
+            </div>
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-sun"></i></div>
+              <h3>Seven days a week</h3>
+              <p>Open every single day, 7 AM to 8 PM, so Sunday morning pan dulce is never out of reach.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block block-pink">
+        <div class="wrap">
+          <div class="band-pink">
+            <p class="pq">"I will not buy concha's anywhere else!"</p>
+            <p class="src">Google review · Panaderia Zaragoza</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LA PANADERIA -->
+    <section class="page" id="page-panaderia">
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sprinkle"></div>
+            <h2>La Panaderia</h2>
+            <p>A neighborhood Mexican bakery on Albuquerque's west side. Everything on the shelves is baked here, sold by the piece, and priced like a panaderia should be.</p>
+          </div>
+          <div class="card-grid">
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-store"></i></div>
+              <h3>The sweet bread case</h3>
+              <p>Conchas, orejas, cuernos, empanadas de fruta and the rest of the classic lineup. The variety is the point: there is always something new to try.</p>
+            </div>
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-wheat-awn"></i></div>
+              <h3>Breads for the table</h3>
+              <p>Bolillos and pan de agua style loaves for the week. Come early, because the fresh batches go fast.</p>
+            </div>
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-cake-candles"></i></div>
+              <h3>Cakes by order</h3>
+              <p>Tell us the occasion, the size and the style, and we prepare the order beautifully. Pick a date and call the bakery.</p>
+            </div>
+            <div class="bake-card">
+              <div class="ic"><i class="fa-solid fa-hand-holding-heart"></i></div>
+              <h3>Friendly service</h3>
+              <p>Customers mention it again and again: fantastic bread and friendly service. Simple as that.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block block-pink">
+        <div class="wrap" style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;">
+          <p style="margin:0; font-family:'Pacifico',cursive; color:var(--cocoa-deep); font-size:1.3rem;">Need a cake for the weekend? Call ahead.</p>
+          <a class="btn btn-solid" href="#/visit" data-page="visit">Hours &amp; phone</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="page" id="page-reviews">
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sprinkle"></div>
+            <h2>Kind words from the counter</h2>
+            <p>Every public quote we have collected, shown just as customers wrote it.</p>
+          </div>
+          <div class="quote-grid">
+            <div class="quote-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>"I will not buy concha's anywhere else! They bake their bread fresh everyday. They always have a very good variety of sweet bread to choose from."</blockquote>
+              <div class="attr">Google review</div>
+            </div>
+            <div class="quote-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>"Their bread was fantastic! Friendly service, excellent food."</blockquote>
+              <div class="attr">Google review</div>
+            </div>
+            <div class="quote-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>"Cakes ordered are delicious! they prepare my order beautifully!"</blockquote>
+              <div class="attr">Google review</div>
+            </div>
+          </div>
+          <div class="rating-hero">
+            <div class="score">4.4</div>
+            <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <div class="src">4.4 stars on Google</div>
+          </div>
+          <div class="link-cards">
+            <a class="review-link" href="https://www.google.com/maps/search/?api=1&query=Panaderia%20Zaragoza%2C%20803%2098th%20St%20SW%2C%20Albuquerque%2C%20NM%2087121" target="_blank" rel="noopener">
+              <i class="fa-brands fa-google"></i>
+              <span><span class="t">See every review on Google</span><span class="s">All ratings and reviews on our Google listing.</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="page" id="page-visit">
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sprinkle"></div>
+            <h2>Visit the bakery</h2>
+            <p>803 98th St SW, Albuquerque, NM 87121. Follow the smell of fresh bread down 98th Street.</p>
+          </div>
+          <div class="visit-grid">
+            <div>
+              <div class="hours-card">
+                <div class="hours-head"><i class="fa-solid fa-clock"></i> Bakery hours</div>
+                <div class="day-grid">
+                  <div class="day-chip" data-day="0"><span class="d">Sunday</span><span class="t">7 AM - 8 PM</span></div>
+                  <div class="day-chip" data-day="1"><span class="d">Monday</span><span class="t">7 AM - 8 PM</span></div>
+                  <div class="day-chip" data-day="2"><span class="d">Tuesday</span><span class="t">7 AM - 8 PM</span></div>
+                  <div class="day-chip" data-day="3"><span class="d">Wednesday</span><span class="t">7 AM - 8 PM</span></div>
+                  <div class="day-chip" data-day="4"><span class="d">Thursday</span><span class="t">7 AM - 8 PM</span></div>
+                  <div class="day-chip" data-day="5"><span class="d">Friday</span><span class="t">7 AM - 8 PM</span></div>
+                  <div class="day-chip" data-day="6"><span class="d">Saturday</span><span class="t">7 AM - 8 PM</span></div>
+                </div>
+              </div>
+              <p class="hours-note"><i class="fa-solid fa-circle-info"></i> Hours are listed from public directories. Please call to confirm holiday hours.</p>
+              <div class="info-card" style="margin-top:16px;">
+                <h3><i class="fa-solid fa-location-dot" style="color:var(--pink-deep);"></i> Find us</h3>
+                <p>803 98th St SW<br>Albuquerque, NM 87121</p>
+                <p>On 98th Street Southwest, on the west side of the city.</p>
+              </div>
+            </div>
+            <div>
+              <div class="sugar-card">
+                <p class="sugar-label">Panaderia Zaragoza</p>
+                <p class="sugar-title">Call the bakery</p>
+                <a class="sugar-phone" href="tel:+15053419617">(505) 341-9617</a>
+                <p class="sugar-sub">Cake orders, big trays and questions about today's bake: one call does it.</p>
+              </div>
+              <div class="form-card">
+                <h3>Ask about a cake</h3>
+                <p class="hint">Tell us the occasion and the date and we will get back to you.</p>
+                <form id="quote-form">
+                  <div class="field">
+                    <label for="f-name">Your name</label>
+                    <input id="f-name" type="text" autocomplete="name" placeholder="Your name">
+                  </div>
+                  <div class="field">
+                    <label for="f-phone">Your phone</label>
+                    <input id="f-phone" type="tel" autocomplete="tel" placeholder="(505) 555-0100">
+                  </div>
+                  <div class="field">
+                    <label for="f-msg">Message</label>
+                    <textarea id="f-msg" rows="4" placeholder="Hi, I need a birthday cake for Saturday, Chocolate style."></textarea>
+                  </div>
+                  <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Send note</button>
+                </form>
+                <p id="form-feedback" role="status"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">Panaderia Zaragoza</div>
+          <p>Pan dulce, bolillos and custom cakes on 98th Street Southwest.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Visit</h4>
+          <p>803 98th St SW<br>Albuquerque, NM 87121</p>
+          <p class="foot-quiet" style="font-size:.9rem;">Call: <a href="tel:+15053419617">(505) 341-9617</a></p>
+        </div>
+        <div class="foot-col">
+          <h4>Hours</h4>
+          <p>Every day<br>7 AM - 8 PM</p>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p class="copyright">© Panaderia Zaragoza · Albuquerque, NM</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+var BUSINESS = "Panaderia Zaragoza";
+var TITLES = { home: "Pan Dulce on 98th Street", panaderia: "La Panaderia", reviews: "Reviews", visit: "Visit the Bakery" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+var mb = document.getElementById("menu-btn");
+var nl = document.querySelector(".nav-links");
+mb.addEventListener("click", function(){
+  mb.classList.toggle("open");
+  nl.classList.toggle("open");
+  mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
+});
+
+var CITY_TZ = "America/Denver";
+var HOURS = { 0: [7, 20], 1: [7, 20], 2: [7, 20], 3: [7, 20], 4: [7, 20], 5: [7, 20], 6: [7, 20] };
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderChips(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.remove("open", "closed");
+    c.classList.add(st.open ? "open" : "closed");
+    c.innerHTML = '<span class="dot"></span>' + st.label;
+  });
+}
+(function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(el){
+    if (+el.getAttribute("data-day") === d) el.classList.add("today");
+  });
+})();
+renderChips();
+
+var PHONE = "+15053419617";
+var PRETTY = "(505) 341-9617";
+var form = document.getElementById("quote-form");
+var feedback = document.getElementById("form-feedback");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var fphone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
+    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Franklin Blvd Botanica | Botanica Celeste</title>
+<link href="https://fonts.googleapis.com/css2?family=Kufam:wght@500;700;900&family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+/* Franklin Celeste: star blue, gold stars, ivory. Kufam display + Assistant body. Dark theme. */
+:root{
+  --star:#1A237E;
+  --deeper:#10163F;
+  --deep2:#141B54;
+  --gold:#D9A441;
+  --gold-soft:#F0D9A8;
+  --ivory:#F7F3E8;
+  --ink:#E9E6F4;
+  --dim:#A8AFD6;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Assistant',sans-serif;
+  background:var(--deeper);
+  color:var(--ink);
+  line-height:1.7;
+}
+h1,h2,h3,.display{font-family:'Kufam',sans-serif;}
+a{color:inherit;}
+.site-shell{min-height:100vh;display:flex;flex-direction:column;}
+main{flex:1 0 auto;}
+footer{flex-shrink:0;}
+.page{display:none;}
+.page.active{display:block;}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px;}
+
+/* Header */
+.topbar{background:var(--deeper);border-bottom:1px solid rgba(217,164,65,.35);position:relative;z-index:50;}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:12px;padding-bottom:12px;}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{
+  width:40px;height:40px;border-radius:12px;background:var(--star);
+  border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:16px;flex-shrink:0;position:relative;
+}
+.brand-mark::after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold);top:5px;right:5px;}
+.brand-name{font-family:'Kufam',sans-serif;font-weight:700;font-size:17px;color:#fff;letter-spacing:.6px;line-height:1.2;}
+.brand-sub{display:block;font-family:'Assistant',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  text-decoration:none;color:var(--dim);font-weight:700;font-size:14px;
+  padding:9px 15px;border-radius:10px;transition:background .15s,color .15s;
+}
+.nav-links a:hover{background:rgba(217,164,65,.12);color:#fff;}
+.nav-links a.on{background:var(--gold);color:var(--deeper);}
+.menu-btn{
+  display:none;background:transparent;border:1.5px solid var(--gold);color:var(--gold);
+  width:44px;height:44px;border-radius:10px;font-size:18px;cursor:pointer;align-items:center;justify-content:center;
+}
+.menu-btn.open{background:var(--gold);color:var(--deeper);}
+
+/* Status chip */
+.status-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:999px;font-weight:700;font-size:13px;
+  background:rgba(255,255,255,.06);color:var(--dim);border:1px solid rgba(255,255,255,.16);
+}
+.status-chip .dot{width:9px;height:9px;border-radius:50%;background:#8B92B8;flex-shrink:0;}
+.status-chip.open{background:rgba(217,164,65,.14);border-color:rgba(217,164,65,.6);color:var(--gold-soft);}
+.status-chip.open .dot{background:#3DD68C;box-shadow:0 0 0 3px rgba(61,214,140,.18);}
+.status-chip.closed .dot{background:#8B92B8;}
+
+/* Hero: badge-first with constellation backdrop */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg, var(--deeper) 0%, var(--star) 120%);padding:64px 0 66px;text-align:center;}
+.hero svg.sky{position:absolute;inset:0;width:100%;height:100%;opacity:.6;}
+.hero .wrap{position:relative;z-index:2;}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:9px;background:rgba(217,164,65,.12);
+  border:1px solid rgba(217,164,65,.55);color:var(--gold-soft);
+  padding:8px 18px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;
+}
+.hero h1{font-size:clamp(34px,5.4vw,56px);font-weight:900;color:#fff;margin:20px 0 12px;letter-spacing:.5px;}
+.hero h1 .hl{color:var(--gold);}
+.hero p.lead{font-size:16.5px;color:var(--dim);max-width:560px;margin:0 auto 24px;}
+.hero .chips{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.hero .chips .status-chip{font-size:13.5px;padding:8px 16px;}
+
+/* Section basics */
+.section{padding:56px 0;}
+.section.panel{background:var(--deep2);border-top:1px solid rgba(217,164,65,.25);border-bottom:1px solid rgba(217,164,65,.25);}
+.kicker{font-size:12px;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;color:var(--gold);margin:0 0 8px;}
+h2.sec{font-size:clamp(24px,3.2vw,34px);font-weight:700;margin:0 0 14px;color:#fff;}
+p.sub{margin:0 0 28px;color:var(--dim);max-width:660px;}
+
+/* Constellation divider */
+.const-line{display:flex;align-items:center;gap:0;margin:6px 0 26px;}
+.const-line i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;}
+.const-line b{flex:0 0 46px;height:1px;background:linear-gradient(90deg, var(--gold), rgba(217,164,65,.15));display:inline-block;}
+.const-line b.r{background:linear-gradient(90deg, rgba(217,164,65,.15), var(--gold));}
+
+/* Shipping band */
+.ship-card{
+  background:linear-gradient(120deg, rgba(217,164,65,.16), rgba(217,164,65,.05));
+  border:1px solid rgba(217,164,65,.5);border-radius:16px;padding:26px 28px;
+  display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;
+}
+.ship-card .ic{
+  width:52px;height:52px;border-radius:14px;background:var(--gold);color:var(--deeper);
+  display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;
+}
+.ship-card h3{margin:0 0 5px;font-size:19px;color:var(--gold-soft);}
+.ship-card p{margin:0;font-size:15px;color:var(--ink);max-width:680px;}
+
+/* Goods grid */
+.goods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.goods{
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);border-radius:14px;
+  padding:20px;transition:border-color .15s,transform .15s;
+}
+.goods:hover{border-color:rgba(217,164,65,.5);transform:translateY(-3px);}
+.goods .ic{color:var(--gold);font-size:20px;margin-bottom:10px;}
+.goods h3{font-size:15.5px;margin:0 0 5px;color:#fff;}
+.goods p{margin:0;font-size:13.5px;color:var(--dim);}
+
+/* Hours: chip rows */
+.hours-card{background:rgba(255,255,255,.045);border:1px solid rgba(217,164,65,.4);border-radius:18px;padding:26px;max-width:620px;}
+.hours-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+.hours-head h3{margin:0;font-size:18px;color:#fff;}
+.hours-chips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.hchip{
+  display:flex;justify-content:space-between;gap:10px;align-items:center;
+  border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px 14px;font-size:14.5px;
+}
+.hchip .d{font-weight:800;color:#fff;}
+.hchip .t{font-weight:700;color:var(--dim);}
+.hchip.today{border-color:var(--gold);background:rgba(217,164,65,.1);}
+.hchip.today .d{color:var(--gold-soft);}
+.hchip.off{opacity:.55;}
+.confirm{margin:16px 0 0;font-size:13.5px;color:var(--gold-soft);background:rgba(217,164,65,.1);border:1px dashed rgba(217,164,65,.5);border-radius:10px;padding:10px 14px;}
+.confirm .fa-solid{margin-right:7px;}
+
+/* Reviews */
+.rev-hero{text-align:center;margin-bottom:30px;}
+.rev-score{
+  width:118px;height:118px;border-radius:50%;margin:0 auto 14px;
+  background:radial-gradient(circle at 50% 34%, var(--star), var(--deeper));
+  border:2px solid var(--gold);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 0 40px rgba(217,164,65,.22);
+}
+.rev-score .num{font-family:'Kufam',sans-serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;}
+.rev-score .stars{font-size:10.5px;color:var(--gold-soft);margin-top:7px;letter-spacing:2px;}
+.rev-hero p{margin:0 auto;max-width:520px;color:var(--dim);font-size:15.5px;}
+.link-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:640px;margin:0 auto;}
+.link-card{
+  text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(217,164,65,.45);border-radius:14px;
+  padding:20px;text-align:center;color:#fff;transition:background .15s,transform .15s;
+}
+.link-card:hover{background:rgba(217,164,65,.12);transform:translateY(-2px);}
+.link-card .fa-brands,.link-card .fa-solid{color:var(--gold);font-size:22px;margin-bottom:8px;}
+.link-card .t{display:block;font-weight:800;font-size:15px;}
+.link-card .s{display:block;font-size:12.5px;color:var(--dim);margin-top:3px;}
+.note-card{
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.14);border-left:3px solid var(--gold);
+  border-radius:12px;padding:18px 22px;margin-top:18px;font-size:14.5px;color:var(--ink);
+}
+.note-card strong{color:var(--gold-soft);}
+.summary-line{margin-top:26px;text-align:center;font-size:15.5px;font-weight:800;color:var(--gold-soft);}
+
+/* Visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+.info-card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px;}
+.info-card h3{margin:0 0 14px;font-size:18px;color:#fff;}
+.info-line{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.14);font-size:14.5px;}
+.info-line:last-of-type{border-bottom:none;}
+.info-line .fa-solid{color:var(--gold);margin-top:3px;width:18px;text-align:center;}
+/* Star-chart contact card */
+.star-card{
+  background:
+    radial-gradient(circle at 82% 12%, rgba(217,164,65,.22), transparent 40%),
+    linear-gradient(150deg, var(--star), var(--deeper));
+  border:1px solid rgba(217,164,65,.55);border-radius:18px;padding:28px;position:relative;overflow:hidden;
+  box-shadow:0 16px 38px rgba(0,0,0,.4);
+}
+.star-card svg{position:absolute;right:10px;top:10px;opacity:.9;}
+.star-card .label{font-size:11.5px;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;color:var(--gold);margin:0 0 10px;position:relative;}
+.star-card .phone-big{
+  display:inline-block;font-family:'Kufam',sans-serif;font-weight:900;font-size:clamp(22px,3vw,30px);
+  color:#fff;text-decoration:none;letter-spacing:.5px;position:relative;line-height:1.25;
+  border-bottom:2.5px solid var(--gold);padding-bottom:4px;
+}
+.star-card .phone-big:hover{color:var(--gold-soft);}
+.star-card .note{margin:12px 0 0;font-size:14px;color:var(--dim);position:relative;max-width:88%;}
+
+/* Form */
+.form-card{background:var(--ivory);border-radius:18px;padding:28px;margin-top:22px;color:#33405E;box-shadow:0 16px 38px rgba(0,0,0,.35);}
+.form-card h3{margin:0 0 14px;font-size:20px;color:var(--deeper);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--star);}
+.field input,.field textarea{
+  font-family:'Assistant',sans-serif;font-size:15px;color:#223;
+  border:1.5px solid #D5CFBC;border-radius:10px;padding:12px 14px;background:#fff;outline:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--gold);}
+.field textarea{min-height:110px;resize:vertical;}
+.send-btn{
+  margin-top:16px;background:var(--star);color:#fff;border:none;border-radius:12px;cursor:pointer;
+  font-family:'Assistant',sans-serif;font-weight:800;font-size:15px;padding:14px 28px;
+  display:inline-flex;align-items:center;gap:10px;transition:background .15s,transform .15s;
+}
+.send-btn:hover{background:var(--deeper);transform:translateY(-1px);}
+.form-feedback{margin:12px 0 0;font-size:14px;font-weight:700;color:#0E6C4A;min-height:20px;}
+
+/* Footer */
+footer{background:#0B1030;color:#9AA3CC;}
+.foot-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px 0 14px;}
+.foot-brand{font-family:'Kufam',sans-serif;font-weight:700;font-size:16px;color:#fff;letter-spacing:.6px;}
+.foot-brand span{color:var(--gold);}
+.foot-quiet{font-size:13px;margin:8px 0 0;}
+.foot-quiet .fa-solid{color:var(--gold);margin-right:7px;}
+.foot-quiet a{color:#C6CCEC;text-decoration:none;}
+.foot-bottom{border-top:1px solid rgba(217,164,65,.3);padding:14px 0 18px;text-align:center;font-size:13px;color:#7E87B4;}
+
+@media (max-width:900px){
+  .goods-grid{grid-template-columns:repeat(2,1fr);}
+  .visit-grid{grid-template-columns:1fr;}
+}
+@media (max-width:680px){
+  .menu-btn{display:flex;}
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;z-index:60;
+    background:var(--deeper);border-bottom:1px solid rgba(217,164,65,.4);
+    flex-direction:column;align-items:stretch;padding:8px 16px 16px;gap:4px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:13px 14px;border-radius:10px;}
+  .topbar .wrap{position:relative;}
+  .goods-grid{grid-template-columns:1fr;}
+  .hours-chips{grid-template-columns:1fr;}
+  .link-cards{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .section{padding:44px 0;}
+  .hero{padding:48px 0 52px;}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#/home" data-page="home" aria-label="Botanica Celeste home">
+      <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+      <span class="brand-name">Botanica Celeste<span class="brand-sub">Franklin Blvd · Sacramento</span></span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#/home" data-page="home">Home</a>
+      <a href="#/botanica" data-page="botanica">La Botanica</a>
+      <a href="#/reviews" data-page="reviews">Reviews</a>
+      <a href="#/visit" data-page="visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="page active" id="page-home">
+  <div class="hero">
+    <svg class="sky" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g stroke="#D9A441" stroke-width="1" opacity=".55">
+        <polyline points="90,340 210,240 330,290 470,170 610,220 760,120 900,190 1050,90" fill="none"/>
+        <polyline points="150,90 260,150 380,80 520,60 640,140" fill="none" opacity=".5"/>
+      </g>
+      <g fill="#D9A441">
+        <circle cx="90" cy="340" r="3.5"/><circle cx="210" cy="240" r="5"/><circle cx="330" cy="290" r="3"/>
+        <circle cx="470" cy="170" r="4.5"/><circle cx="610" cy="220" r="3"/><circle cx="760" cy="120" r="6"/>
+        <circle cx="900" cy="190" r="3.5"/><circle cx="1050" cy="90" r="4.5"/>
+        <circle cx="150" cy="90" r="2.5"/><circle cx="260" cy="150" r="3"/><circle cx="380" cy="80" r="2.5"/>
+        <circle cx="520" cy="60" r="3"/><circle cx="640" cy="140" r="2.5"/>
+      </g>
+      <g fill="#F0D9A8" opacity=".7">
+        <circle cx="1000" cy="330" r="2"/><circle cx="80" cy="140" r="2"/><circle cx="1130" cy="240" r="2.5"/>
+        <circle cx="540" cy="400" r="2"/><circle cx="720" cy="430" r="2"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <span class="hero-kicker"><i class="fa-solid fa-star" aria-hidden="true"></i> Open Tuesday through Saturday</span>
+      <h1>A little <span class="hl">constellation</span> of a shop</h1>
+      <p class="lead">Botanica Celeste is the Franklin Blvd shop for herbs, velas, remedios, and the quiet things a home altar needs. Ste B, second door, gold stars on the window.</p>
+      <div class="chips">
+        <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+        <span class="status-chip"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Shipping available</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="ship-card">
+        <span class="ic"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></span>
+        <div>
+          <h3>Can't make it to Franklin Blvd?</h3>
+          <p>The shop advertises shipping through its Instagram. Call the counter and they will arrange an order sent straight to your door.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section panel">
+    <div class="wrap">
+      <p class="kicker">On the shelves</p>
+      <h2 class="sec">What the shop carries</h2>
+      <p class="sub">A botanica in the classic sense: shelves of practical spiritual goods, chosen and stocked by people who know what each one is for.</p>
+      <div class="goods-grid">
+        <div class="goods"><div class="ic"><i class="fa-solid fa-leaf" aria-hidden="true"></i></div><h3>Herbs &amp; yerbas</h3><p>Dried and fresh herbs for baths, sweepings, and simmering pots.</p></div>
+        <div class="goods"><div class="ic"><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></div><h3>Velas</h3><p>Candles by color and intention, from small tapers to seven-day glass.</p></div>
+        <div class="goods"><div class="ic"><i class="fa-solid fa-jar" aria-hidden="true"></i></div><h3>Remedios</h3><p>Traditional remedies and preparations kept the old way.</p></div>
+        <div class="goods"><div class="ic"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div><h3>Oils &amp; perfumes</h3><p>Spiritual oils and waters for dressing candles and cleansings.</p></div>
+        <div class="goods"><div class="ic"><i class="fa-solid fa-gem" aria-hidden="true"></i></div><h3>Crystals &amp; stones</h3><p>Pieces for the pocket, the altar, or the windowsill.</p></div>
+        <div class="goods"><div class="ic"><i class="fa-solid fa-person-praying" aria-hidden="true"></i></div><h3>Statues &amp; figures</h3><p>Statues and images to set a calm, cared-for space.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="hours-card">
+        <div class="hours-head">
+          <h3><i class="fa-solid fa-calendar-week" aria-hidden="true"></i> Weekly hours</h3>
+          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+        </div>
+        <div class="hours-chips">
+          <div class="hchip off" data-day="0"><span class="d">Sunday</span><span class="t">Closed</span></div>
+          <div class="hchip off" data-day="1"><span class="d">Monday</span><span class="t">Closed</span></div>
+          <div class="hchip" data-day="2"><span class="d">Tuesday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="3"><span class="d">Wednesday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="4"><span class="d">Thursday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="5"><span class="d">Friday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="6"><span class="d">Saturday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+        </div>
+        <p class="confirm"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Hours are Tuesday through Saturday, 10 AM to 5 PM. Please call to confirm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-botanica">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">La Botanica</p>
+      <h2 class="sec">Franklin Blvd, Ste B</h2>
+      <p class="sub">Botanica Celeste keeps its doors open Tuesday through Saturday on Franklin Blvd. Inside it is all the usual comfort of a working botanica: herbs and yerbas, velas for every intention, remedios, oils, soaps, statues, and crystals, with someone at the counter who can tell you which shelf to start on.</p>
+      <div class="const-line" aria-hidden="true"><i></i><b></b><i></i><b></b><i></i><b></b><i></i></div>
+      <div class="ship-card">
+        <span class="ic"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></span>
+        <div>
+          <h3>Shipping available</h3>
+          <p>Their Instagram advertises shipping, so out-of-towners can order too. Call the shop and they will set it up with you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section panel">
+    <div class="wrap">
+      <div class="hours-card">
+        <div class="hours-head">
+          <h3><i class="fa-solid fa-calendar-week" aria-hidden="true"></i> Weekly hours</h3>
+          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
+        </div>
+        <div class="hours-chips">
+          <div class="hchip off" data-day="0"><span class="d">Sunday</span><span class="t">Closed</span></div>
+          <div class="hchip off" data-day="1"><span class="d">Monday</span><span class="t">Closed</span></div>
+          <div class="hchip" data-day="2"><span class="d">Tuesday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="3"><span class="d">Wednesday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="4"><span class="d">Thursday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="5"><span class="d">Friday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+          <div class="hchip" data-day="6"><span class="d">Saturday</span><span class="t">10:00 AM - 5:00 PM</span></div>
+        </div>
+        <p class="confirm"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Hours are Tuesday through Saturday, 10 AM to 5 PM. Please call to confirm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-reviews">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">Reviews</p>
+      <h2 class="sec">The rating, plainly</h2>
+      <p class="sub" style="text-align:center;margin-left:auto;margin-right:auto;">Botanica Celeste has not collected written Google reviews yet, so here is the honest score and the links, plus a couple of things worth knowing about the shop.</p>
+
+      <div class="rev-hero">
+        <div class="rev-score">
+          <span class="num">4.3</span>
+          <span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></span>
+        </div>
+        <p>4.3 stars on Google</p>
+      </div>
+
+      <div class="link-cards">
+        <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Botanica%20Celeste%2C%204780%20Franklin%20Blvd%2C%20Sacramento%2C%20CA%2095820" target="_blank" rel="noopener">
+          <i class="fa-brands fa-google" aria-hidden="true"></i>
+          <span class="t">See every review on Google</span>
+          <span class="s">Ratings and updates on the listing</span>
+        </a>
+        <a class="link-card" href="#/visit" data-page="visit">
+          <i class="fa-solid fa-star" aria-hidden="true"></i>
+          <span class="t">Visit the shop</span>
+          <span class="s">Franklin Blvd, Ste B · Tue - Sat</span>
+        </a>
+      </div>
+
+      <div class="note-card">
+        <strong>Shipping:</strong> the shop advertises shipping through its Instagram. Call the counter and they will arrange an order to your door.
+      </div>
+      <div class="note-card">
+        <strong>Under another name on Yelp:</strong> Yelp lists this same Ste B address as Botanica Cubayende. Same shop, older name, same shelves.
+      </div>
+
+      <p class="summary-line"><i class="fa-solid fa-star" style="color:#D9A441;" aria-hidden="true"></i> 4.3 stars on Google</p>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-visit">
+  <div class="section">
+    <div class="wrap">
+      <p class="kicker">Visit</p>
+      <h2 class="sec">Find the stars on Franklin</h2>
+      <p class="sub">Suite B at 4780 Franklin Blvd, Sacramento. Tuesday through Saturday, 10 to 5. If you are shipping an order instead, call and they will take it from there.</p>
+
+      <div class="visit-grid">
+        <div class="info-card">
+          <h3>Shop details</h3>
+          <div class="info-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>4780 Franklin Blvd Ste B, Sacramento, CA 95820</span></div>
+          <div class="info-line"><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Tuesday - Saturday, 10:00 AM - 5:00 PM · Closed Sunday and Monday</span></div>
+          <div class="info-line"><i class="fa-solid fa-box-open" aria-hidden="true"></i><span>Shipping available, arranged by phone or Instagram</span></div>
+          <div class="info-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Status right now: <span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span></span></div>
+        </div>
+
+        <div class="star-card">
+          <svg width="92" height="72" viewBox="0 0 92 72" aria-hidden="true">
+            <g stroke="#D9A441" stroke-width="1" opacity=".8">
+              <polyline points="8,60 30,34 56,48 84,12" fill="none"/>
+            </g>
+            <g fill="#D9A441">
+              <circle cx="8" cy="60" r="3"/><circle cx="30" cy="34" r="4"/><circle cx="56" cy="48" r="3"/><circle cx="84" cy="12" r="4.5"/>
+            </g>
+          </svg>
+          <p class="label">Call or text the shop</p>
+          <a class="phone-big" href="tel:+19164699210">(916) 469-9210</a>
+          <p class="note">For shelves, orders, and shipping, one call reaches the counter at Ste B.</p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Ask Botanica Celeste</h3>
+        <form id="contact-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" type="text" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="f-phone">Your phone</label>
+              <input id="f-phone" type="tel" autocomplete="tel" placeholder="(916) 000-0000">
+            </div>
+            <div class="field full">
+              <label for="f-msg">Message</label>
+              <textarea id="f-msg" placeholder="Hi Botanica Celeste, I wanted to ask about..."></textarea>
+            </div>
+          </div>
+          <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the shop</button>
+          <p class="form-feedback" id="form-feedback" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div>
+        <p class="foot-brand">BOTANICA <span>CELESTE</span></p>
+        <p class="foot-quiet"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 4780 Franklin Blvd Ste B, Sacramento, CA 95820</p>
+        <p class="foot-quiet"><i class="fa-solid fa-clock" aria-hidden="true"></i> Tue - Sat 10 AM - 5 PM · Closed Sun - Mon</p>
+      </div>
+      <div>
+        <p class="foot-quiet"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+19164699210">(916) 469-9210</a></p>
+        <p class="foot-quiet"><i class="fa-solid fa-box-open" aria-hidden="true"></i> Shipping available</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© Botanica Celeste · Sacramento, CA</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+var BUSINESS = "Botanica Celeste";
+var TITLES = { home: "Franklin Blvd Botanica", botanica: "La Botanica", reviews: "Reviews", visit: "Visit" };
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = {0:null,1:null,2:[10,17],3:[10,17],4:[10,17],5:[10,17],6:[10,17]};
+var PHONE = "+19164699210";
+var PRETTY = "(916) 469-9210";
+
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderStatus(){
+  var s = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.toggle("open", s.open);
+    c.classList.toggle("closed", !s.open);
+    var tx = c.querySelector(".status-text");
+    if (tx) tx.textContent = s.label;
+  });
+}
+function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(r){
+    r.classList.toggle("today", Number(r.getAttribute("data-day")) === d);
+  });
+}
+renderStatus();
+highlightToday();
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinks = document.querySelector(".nav-links");
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", navLinks.classList.contains("open") ? "true" : "false");
+  });
+}
+
+var form = document.getElementById("contact-form");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var fb = document.getElementById("form-feedback");
+    var name = document.getElementById("f-name").value.trim();
+    var phone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) {
+      fb.textContent = "Please add your name and a short message.";
+      return;
+    }
+    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
+    var body = encodeURIComponent(text);
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + body;
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

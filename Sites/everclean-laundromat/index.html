@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wash | Everclean Laundromat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --gum:#7EC8E3; --navy:#1D3557; --white:#FFFFFF; --ink:#12263A;
+  --soft:#EAF6FB; --line:#CFE8F3;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html,body{margin:0}
+body{font-family:'Inter',sans-serif; color:var(--ink); background:var(--white); line-height:1.6}
+.site-shell{min-height:100vh; display:flex; flex-direction:column}
+main{flex:1 0 auto}
+footer{flex-shrink:0}
+h1,h2,h3,.display{font-family:'DynaPuff',cursive; font-weight:700; line-height:1.15}
+img{max-width:100%}
+a{color:var(--navy)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 22px}
+/* header */
+header{background:var(--navy); color:var(--white); position:sticky; top:0; z-index:50}
+.bar{display:flex; align-items:center; justify-content:space-between; padding:14px 22px; max-width:1080px; margin:0 auto}
+.brand{display:flex; align-items:center; gap:10px; font-family:'DynaPuff',cursive; font-size:1.15rem}
+.brand .clockdot{width:34px;height:34px;border-radius:50%;background:var(--gum);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.nav-links{display:flex; gap:8px; list-style:none}
+.nav-links a{color:var(--white); text-decoration:none; padding:9px 14px; border-radius:999px; font-weight:600; font-size:.95rem}
+.nav-links a:hover{background:rgba(126,200,227,.25)}
+#menu-btn{display:none; background:none; border:0; color:var(--white); font-size:1.4rem; cursor:pointer; padding:6px}
+#menu-btn.open{color:var(--gum)}
+@media(max-width:760px){
+  #menu-btn{display:block}
+  .nav-links{display:none; position:absolute; top:100%; left:0; right:0; background:var(--navy); flex-direction:column; padding:10px 18px 18px; gap:4px}
+  .nav-links.open{display:flex}
+}
+/* status chip */
+.status-chip{display:inline-flex; align-items:center; gap:8px; padding:7px 15px; border-radius:999px; font-weight:700; font-size:.9rem; background:var(--soft); border:1.5px solid var(--line)}
+.status-chip .dot{width:10px;height:10px;border-radius:50%}
+.status-chip.on .dot{background:#2E9E5B}
+.status-chip.off .dot{background:#9AA5B1}
+/* hero */
+.hero{background:linear-gradient(180deg,var(--navy) 0%,#254572 100%); color:var(--white); padding:64px 0 84px; position:relative; overflow:hidden}
+.hero .wrap{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem); margin-bottom:14px}
+.hero h1 .gum{color:var(--gum)}
+.hero p.lead{font-size:1.06rem; color:#DCEBF7; max-width:46ch}
+.kicker{display:inline-block; background:rgba(126,200,227,.18); border:1.5px solid var(--gum); color:var(--gum); padding:6px 14px; border-radius:999px; font-weight:700; font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:18px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+/* clock bubble */
+.clock-bubble{background:var(--white); border-radius:50%; width:min(300px,80vw); aspect-ratio:1; margin:0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--navy); box-shadow:0 24px 60px rgba(0,0,0,.35); position:relative}
+.clock-bubble::before,.clock-bubble::after{content:""; position:absolute; border-radius:50%; background:rgba(255,255,255,.5)}
+.clock-bubble::before{width:26px;height:26px;top:6%;right:12%}
+.clock-bubble::after{width:14px;height:14px;top:16%;right:6%}
+.ring{width:170px;height:170px;border-radius:50%;border:8px solid var(--gum);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ring .num{font-family:'DynaPuff',cursive;font-size:2.6rem;line-height:1}
+.ring .lbl{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.bubble-card-under{text-align:center;margin-top:14px;color:#DCEBF7;font-weight:600}
+/* sections */
+section.page{display:none}
+section.page.active{display:block}
+.sec{padding:58px 0}
+.sec h2{font-size:1.7rem; margin-bottom:8px}
+.sec .sub{color:#51667C; margin-bottom:26px}
+.alt{background:var(--soft)}
+.tri{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media(max-width:860px){.tri{grid-template-columns:1fr}}
+.card{background:var(--white); border:1.5px solid var(--line); border-radius:18px; padding:24px}
+.card .ico{width:46px;height:46px;border-radius:14px;background:var(--soft);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:12px}
+.card h3{font-size:1.08rem;margin-bottom:6px}
+.card p{font-size:.95rem;color:#51667C}
+/* hours dial section */
+.hoursband{display:grid; grid-template-columns:auto 1fr; gap:34px; align-items:center}
+@media(max-width:860px){.hoursband{grid-template-columns:1fr; text-align:center}}
+.daylist{list-style:none; display:grid; gap:8px}
+.daylist li{display:flex; justify-content:space-between; gap:14px; padding:10px 16px; border-radius:12px; background:var(--white); border:1.5px solid var(--line); font-weight:600}
+.daylist li.today{background:var(--navy); color:var(--white); border-color:var(--navy)}
+.daylist li span:last-child{font-weight:700}
+/* washcard contact */
+.washcard{max-width:430px; margin:0 auto; background:linear-gradient(135deg,var(--navy),#2A4E7F); border-radius:20px; color:var(--white); padding:26px; box-shadow:0 18px 44px rgba(29,53,87,.35); position:relative}
+.washcard::before{content:""; position:absolute; left:26px; right:26px; top:56px; height:2px; border-top:2px dashed rgba(255,255,255,.4)}
+.washcard .wc-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:26px}
+.washcard .wc-chip{width:42px;height:30px;border-radius:6px;background:linear-gradient(135deg,#F5D06F,#E8B33D)}
+.washcard .wc-name{font-family:'DynaPuff',cursive; font-size:1.05rem}
+.washcard .wc-num{font-size:1.5rem; font-weight:700; letter-spacing:.04em; margin:6px 0 14px}
+.washcard .wc-sub{font-size:.85rem; color:#CFE3F5}
+.form-card{max-width:520px; margin:0 auto; background:var(--white); border:1.5px solid var(--line); border-radius:18px; padding:26px}
+.form-card label{display:block; font-weight:600; font-size:.9rem; margin:12px 0 6px}
+.form-card input,.form-card textarea{width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:10px; font-family:inherit; font-size:.95rem; background:var(--soft)}
+.form-card textarea{min-height:88px; resize:vertical}
+.btn{display:inline-block; background:var(--navy); color:var(--white); border:0; font-family:'DynaPuff',cursive; font-size:1rem; padding:13px 26px; border-radius:999px; cursor:pointer}
+.btn:hover{background:#254572}
+.feedback{margin-top:12px; font-weight:600; color:#1F7A46; min-height:1.4em}
+/* reviews */
+.quote{background:var(--white); border:1.5px solid var(--line); border-left:6px solid var(--gum); border-radius:14px; padding:22px 24px; margin-bottom:16px}
+.quote p{font-size:1.02rem; margin-bottom:10px}
+.quote .attr{font-size:.85rem; font-weight:700; color:#51667C; display:flex; align-items:center; gap:8px}
+.quote .stars{color:#E8B33D; letter-spacing:2px; font-size:.8rem}
+.rating-line{font-family:'DynaPuff',cursive; font-size:1.35rem; margin:6px 0 22px}
+.rating-line .big{font-size:2rem; color:var(--navy)}
+.linkcards{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+@media(max-width:700px){.linkcards{grid-template-columns:1fr}}
+.linkcard{display:block; text-decoration:none; background:var(--navy); color:var(--white); border-radius:16px; padding:22px; text-align:center; font-weight:700}
+.linkcard i{display:block; font-size:1.5rem; margin-bottom:8px}
+.linkcard.yelp{background:#B03535}
+.linkcard:hover{transform:translateY(-2px)}
+/* visit */
+.visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+@media(max-width:860px){.visit-grid{grid-template-columns:1fr}}
+.vrow{display:flex; gap:12px; align-items:flex-start; margin-bottom:14px}
+.vrow i{color:var(--navy); margin-top:4px; width:20px; text-align:center}
+/* footer */
+footer{background:var(--navy); color:#C9DAEC; padding:30px 0; font-size:.9rem}
+footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center}
+footer .copy{color:var(--white); font-weight:600}
+footer a{color:var(--gum); text-decoration:none}
+@media(max-width:700px){footer .wrap{flex-direction:column; text-align:center}}
+</style>
+</head>
+<body>
+<div class="site-shell">
+<header>
+  <div class="bar">
+    <div class="brand"><span class="clockdot"><i class="fa-solid fa-clock"></i></span> Everclean Laundromat</div>
+    <button id="menu-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <ul class="nav-links">
+      <li><a href="#/home" data-page="home">The Wash</a></li>
+      <li><a href="#/machines" data-page="machines">Machines</a></li>
+      <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
+      <li><a href="#/visit" data-page="visit">Visit</a></li>
+    </ul>
+  </div>
+</header>
+<main>
+
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Open 24 hours, every day</span>
+        <h1>Laundry that works around <span class="gum">your clock</span>, not the other way around.</h1>
+        <p class="lead">Everclean Laundromat on N Pulaski Rd is open 24 hours a day, 7 days a week, with an overnight attendant people actually mention in reviews. Big washers, a coin changer, WiFi, restrooms and parking, all under one bright roof.</p>
+        <p style="margin-top:20px"><span class="status-chip on" id="chip-home"><span class="dot"></span><span class="lbl">Open 24 hours</span></span></p>
+      </div>
+      <div>
+        <div class="clock-bubble">
+          <div class="ring"><span class="num">24</span><span class="lbl">Hours</span></div>
+        </div>
+        <div class="bubble-card-under">Wash at noon or at 2 AM. Same clean shop.</div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="wrap">
+      <h2>Why folks in Hermosa keep coming back</h2>
+      <p class="sub">We keep it simple: working machines, a clean floor, and help whenever you need it.</p>
+      <div class="tri">
+        <div class="card"><div class="ico"><i class="fa-solid fa-clock"></i></div><h3>Truly 24/7</h3><p>Night owls, night-shift workers and early birds all get the same clean shop. The overnight guy is really friendly, according to the reviews.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-soap"></i></div><h3>Machines that run</h3><p>Large-capacity washers and hot dryers, kept on a maintenance routine so a broken machine does not eat your quarters.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-wifi"></i></div><h3>The extras</h3><p>Free WiFi, a coin changer, restrooms, parking and an attendant on site. Everything the review sites list, because it is true.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec alt">
+    <div class="wrap">
+      <h2>It opened up and look this good</h2>
+      <p class="sub">A line straight out of a customer review, and we are keeping it.</p>
+      <div class="quote"><p>"This is the bomb place to wash!!! I never thought it would open up and look this good. It operates 24 hours a day."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
+      <div class="quote"><p>"This place is open 24 hours! which is really helpful since I'm always busy. I come during the night and the overnight guy is really friendly."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
+      <p style="margin-top:20px"><a class="btn" href="#/machines" data-page="machines">See the machines</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-machines">
+  <div class="sec">
+    <div class="wrap">
+      <span class="kicker">Machines</span>
+      <h2>Built for big loads and busy weeks</h2>
+      <p class="sub">From a single outfit to a family-sized mountain of towels.</p>
+      <div class="tri">
+        <div class="card"><div class="ico"><i class="fa-solid fa-shirt"></i></div><h3>Everyday loads</h3><p>Standard washers that turn around fast when you just need shirts and sheets done before work.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-box"></i></div><h3>Big-capacity washers</h3><p>Comforters, blankets, sleeping bags and laundry-day marathons. Fewer loads, less time.</p></div>
+        <div class="card"><div class="ico"><i class="fa-solid fa-fire"></i></div><h3>Hot dryers</h3><p>Dryers that actually dry, all day and all night, so a load never waits on a machine.</p></div>
+      </div>
+      <div class="card" style="margin-top:18px; display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap">
+        <div class="ico" style="margin:0"><i class="fa-solid fa-circle-info"></i></div>
+        <div><h3 style="margin-bottom:4px">Amenities on site</h3><p>Free WiFi, coin changer, restroom, parking and an attendant. Wash cards are simple to load, and staff can walk you through it any hour.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec alt">
+    <div class="wrap hoursband">
+      <div>
+        <h2>Open 24 hours</h2>
+        <p class="sub" style="max-width:44ch">Every single day, including holidays. The clock above is the only schedule you need, and the live chip always knows where you stand.</p>
+        <p><span class="status-chip on" id="chip-machines"><span class="dot"></span><span class="lbl">Open 24 hours</span></span></p>
+      </div>
+      <ul class="daylist" id="daylist"></ul>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-reviews">
+  <div class="sec">
+    <div class="wrap">
+      <span class="kicker">Reviews</span>
+      <h2>What our customers say</h2>
+      <p class="rating-line"><span class="big">4.8</span> stars on Google</p>
+      <div class="quote"><p>"This place is open 24 hours! which is really helpful since I'm always busy. I come during the night and the overnight guy is really friendly."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
+      <div class="quote"><p>"This is the bomb place to wash!!! I never thought it would open up and look this good. It operates 24 hours a day."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
+      <div class="linkcards">
+        <a class="linkcard" href="https://www.google.com/maps/search/?api=1&query=Everclean%20Laundromat%2C%20957%20N%20Pulaski%20Rd%2C%20Chicago%2C%20IL%2060651" rel="noopener"><i class="fa-brands fa-google"></i>See every review on Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-visit">
+  <div class="sec">
+    <div class="wrap">
+      <span class="kicker">Visit</span>
+      <h2>Come wash with us</h2>
+      <p class="sub">957 N Pulaski Rd, Chicago, IL 60651. Open right now, and at 3 AM too.</p>
+      <div class="visit-grid">
+        <div class="card">
+          <div class="vrow"><i class="fa-solid fa-location-dot"></i><div><strong>957 N Pulaski Rd</strong><br>Chicago, IL 60651</div></div>
+          <div class="vrow"><i class="fa-solid fa-clock"></i><div>Open 24 hours, 7 days a week</div></div>
+          <div class="vrow"><i class="fa-solid fa-phone"></i><div><a href="tel:+17736611067">(773) 661-1067</a> - questions, laundry card help, lost and found</div></div>
+          <div class="vrow"><i class="fa-solid fa-square-parking"></i><div>Free parking while you wash</div></div>
+        </div>
+        <div class="washcard">
+          <div class="wc-top"><span class="wc-name">EVERCLEAN WASH CARD</span><span class="wc-chip"></span></div>
+          <div class="wc-num">(773) 661-1067</div>
+          <div class="wc-sub">Text us your question and we will answer between loads.</div>
+        </div>
+      </div>
+      <div class="form-card" style="margin-top:26px">
+        <h3 style="margin-bottom:4px">Send us a note</h3>
+        <p style="font-size:.9rem;color:#51667C">Questions about machines, cards or big loads? Write it here.</p>
+        <form id="contact-form">
+          <label for="f-name">Your name</label>
+          <input id="f-name" type="text" required>
+          <label for="f-phone">Your phone</label>
+          <input id="f-phone" type="tel" required>
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" required></textarea>
+          <p style="margin-top:16px"><button class="btn" type="submit">Send it over</button></p>
+          <div class="feedback" id="form-feedback"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="wrap">
+    <div><span class="copy">© Everclean Laundromat · Chicago, IL</span><br>957 N Pulaski Rd, Chicago, IL 60651 · Open 24 hours · (773) 661-1067</div>
+    <div><a href="#/visit" data-page="visit">Visit</a> · <a href="#/reviews" data-page="reviews">Reviews</a></div>
+  </div>
+</footer>
+</div>
+<script>
+var BUSINESS = "Everclean Laundromat";
+var TITLES = { home: "The Wash", machines: "Machines", reviews: "Reviews", visit: "Visit" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false);
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinksEl = document.querySelector(".nav-links");
+if (menuBtn && navLinksEl) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinksEl.classList.toggle("open");
+  });
+} });
+navigateTo(getPageFromHash(), false);
+
+var CITY_TZ = "America/Chicago";
+var HOURS = {0:[0,24],1:[0,24],2:[0,24],3:[0,24],4:[0,24],5:[0,24],6:[0,24]};
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderChips(){
+  var st = openState();
+  ["chip-home","chip-machines"].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("on", st.open);
+    el.classList.toggle("off", !st.open);
+    el.querySelector(".lbl").textContent = "Open 24 hours";
+  });
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var dl = document.getElementById("daylist");
+  if (dl) {
+    var n = cityNow(), html = "";
+    for (var d = 0; d < 7; d++) {
+      html += '<li' + (d === n.day ? ' class="today"' : '') + '><span>' + names[d] + '</span><span>Open 24 hours</span></li>';
+    }
+    dl.innerHTML = html;
+  }
+}
+renderChips();
+
+var PHONE = "+17736611067";
+var PRETTY = "(773) 661-1067";
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  var name = document.getElementById("f-name").value.trim();
+  var phone = document.getElementById("f-phone").value.trim();
+  var msg = document.getElementById("f-msg").value.trim();
+  var text = "Hi Everclean Laundromat! My name is " + name + ". " + msg + " (Reply to " + phone + ")";
+  var body = encodeURIComponent(text);
+  var fb = document.getElementById("form-feedback");
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    location.href = "sms:" + PHONE + "?&body=" + body;
+  } else {
+    navigator.clipboard.writeText(text).then(function(){
+      fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+    });
+  }
+});
+</script>
+</body>
+</html>

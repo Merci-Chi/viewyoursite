@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top of Montgomery Blvd | ABQ Top Market &amp; Smoke Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --peak:#452C63;
+  --peak-deep:#33204C;
+  --peak-ink:#241A33;
+  --sunset:#E8763D;
+  --sunset-deep:#D0642C;
+  --white:#FFFFFF;
+  --mist:#F3EFF9;
+  --ink:#2B2338;
+  --muted:#6A5F7D;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--white);
+  color:var(--ink);
+  line-height:1.65;
+}
+h1,h2,h3{ line-height:1.08; margin:0 0 .5rem; }
+a{ color:var(--peak); }
+.wrap{ max-width:1100px; margin:0 auto; padding:0 20px; }
+
+/* Footer pinning shell */
+.site-shell{ min-height:100vh; display:flex; flex-direction:column; }
+main{ flex:1 0 auto; }
+footer{ flex-shrink:0; }
+
+/* Header */
+header.site{
+  background:var(--white);
+  border-bottom:3px solid var(--mist);
+  position:relative;
+  z-index:20;
+}
+.bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+.brand{ text-decoration:none; color:var(--peak-ink); display:flex; align-items:center; gap:12px; }
+.brand-mark{ width:44px; height:38px; flex-shrink:0; }
+.brand-name{
+  font-family:'Anton',sans-serif;
+  font-size:1.02rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  display:block;
+  color:var(--peak-ink);
+  line-height:1.2;
+}
+.brand-sub{ display:block; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--sunset-deep); font-weight:700; }
+#menu-btn{
+  display:none;
+  background:transparent;
+  border:2px solid var(--peak);
+  border-radius:6px;
+  padding:9px 10px;
+  cursor:pointer;
+}
+#menu-btn span{
+  display:block; width:20px; height:2px;
+  background:var(--peak); margin:4px 0;
+}
+#menu-btn.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+#menu-btn.open span:nth-child(2){ opacity:0; }
+#menu-btn.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+.nav-links{ list-style:none; display:flex; gap:26px; margin:0; padding:0; align-items:center; }
+.nav-links a{
+  color:var(--peak-ink); text-decoration:none;
+  font-weight:700; font-size:.88rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding-bottom:3px;
+  border-bottom:2px solid transparent;
+}
+.nav-links a:hover{ border-color:var(--sunset); }
+
+/* Basecamp banner */
+.basecamp{
+  background:var(--sunset);
+  color:#fff;
+  padding:10px 0;
+}
+.basecamp .inner{
+  display:flex; flex-wrap:wrap; gap:6px 26px; align-items:center; justify-content:space-between;
+  font-weight:700; font-size:.84rem;
+  letter-spacing:.14em; text-transform:uppercase;
+}
+.basecamp i{ margin-right:6px; }
+
+/* Hero (split, purple) */
+.hero{
+  background:
+    linear-gradient(180deg, var(--peak-deep) 0%, var(--peak) 62%, var(--peak) 100%);
+  color:var(--white);
+  padding:60px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{ display:grid; grid-template-columns:1fr; gap:30px; align-items:end; }
+.kicker{
+  font-size:.72rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--sunset); margin:0 0 14px;
+}
+.hero h1{
+  font-family:'Anton',sans-serif;
+  font-weight:400;
+  font-size:2.6rem;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  margin-bottom:16px;
+}
+.hero h1 em{ font-style:normal; color:var(--sunset); }
+.lead{ font-size:1.05rem; color:#D9CFEA; margin:0 0 22px; max-width:54ch; }
+.hero-actions{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:24px; }
+.status-chip{
+  display:inline-flex; align-items:center; gap:9px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  padding:9px 16px;
+  font-weight:700; font-size:.86rem;
+  color:#fff;
+}
+.status-chip .dot{ width:10px; height:10px; border-radius:50%; background:#9AA0A6; flex-shrink:0; }
+.status-chip.open .dot{ background:#5DD48A; box-shadow:0 0 0 4px rgba(93,212,138,.18); }
+.status-chip.closed .dot{ background:#E8763D; }
+.btn{
+  display:inline-block; text-decoration:none;
+  font-family:'Anton',sans-serif;
+  font-size:.84rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:13px 26px; border-radius:6px;
+  border:2px solid var(--sunset);
+  cursor:pointer;
+}
+.btn-solid{ background:var(--sunset); color:#fff; }
+.btn-solid:hover{ background:var(--sunset-deep); border-color:var(--sunset-deep); }
+.btn-ghost{ background:transparent; color:#fff; }
+.btn-ghost:hover{ background:rgba(255,255,255,.08); }
+.badges{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px; }
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.82rem; font-weight:700;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:6px;
+  padding:8px 13px;
+  color:#EDE7F6;
+}
+.badge i{ color:var(--sunset); }
+/* Summit SVG panel */
+.summit-panel{ text-align:center; }
+.summit-panel svg{ width:100%; max-width:420px; height:auto; display:block; margin:0 auto; }
+.summit-caption{
+  font-family:'Anton',sans-serif;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:#D9CFEA; font-size:.8rem;
+  margin:4px 0 0;
+}
+
+/* Blocks */
+.block{ padding:56px 0; }
+.block-mist{ background:var(--mist); }
+.block-peak{ background:var(--peak); color:#fff; }
+.sec-head{ max-width:660px; margin-bottom:30px; }
+.sec-head h2{
+  font-family:'Anton',sans-serif;
+  font-weight:400; font-size:1.7rem;
+  text-transform:uppercase;
+  color:var(--peak);
+}
+.block-peak .sec-head h2{ color:#fff; }
+.sec-head p{ color:var(--muted); margin:6px 0 0; }
+.block-peak .sec-head p{ color:#D9CFEA; }
+.sec-rule{ width:60px; height:5px; background:var(--sunset); margin:0 0 14px; }
+
+/* Cards */
+.card-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
+.peak-card{
+  background:#fff;
+  border:1px solid #E4DDEF;
+  border-radius:12px;
+  padding:22px;
+  position:relative;
+}
+.peak-card::before{
+  content:"";
+  position:absolute; top:0; left:22px;
+  border-left:9px solid transparent;
+  border-right:9px solid transparent;
+  border-top:9px solid var(--sunset);
+}
+.peak-card .ic{
+  width:44px; height:44px;
+  background:var(--mist);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--peak);
+  font-size:1.15rem;
+  margin:8px 0 12px;
+}
+.peak-card h3{
+  font-family:'Anton',sans-serif;
+  font-weight:400; font-size:1.02rem;
+  text-transform:uppercase; letter-spacing:.03em;
+  color:var(--peak-ink);
+}
+.peak-card p{ margin:0; color:var(--muted); font-size:.94rem; }
+
+/* 21+ band */
+.age-band{
+  background:var(--peak-ink);
+  color:#fff;
+  border-left:6px solid var(--sunset);
+  border-radius:0 10px 10px 0;
+  padding:18px 22px;
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px;
+}
+.age-band i{ color:var(--sunset); font-size:1.3rem; }
+.age-band p{ margin:0; font-weight:600; font-size:.95rem; }
+
+/* Hours: camp board */
+.hours-card{ background:#fff; border:1px solid #E4DDEF; border-radius:12px; overflow:hidden; }
+.hours-head{
+  background:var(--peak);
+  color:#fff;
+  padding:14px 22px;
+  font-family:'Anton',sans-serif;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:1rem;
+  display:flex; align-items:center; gap:10px;
+}
+.camp-body{ padding:22px; text-align:center; }
+.camp-big{
+  font-family:'Anton',sans-serif;
+  font-size:1.9rem;
+  color:var(--peak);
+  text-transform:uppercase;
+  margin:0 0 4px;
+}
+.camp-sub{ color:var(--muted); font-weight:600; margin:0 0 18px; }
+.camp-days{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.camp-dot{
+  width:42px; height:42px;
+  border-radius:50%;
+  border:2px solid #E4DDEF;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Anton',sans-serif;
+  font-size:.78rem;
+  color:var(--muted);
+  background:#fff;
+}
+.camp-dot.today{ background:var(--sunset); border-color:var(--sunset); color:#fff; }
+
+/* Visit layout */
+.visit-grid{ display:grid; grid-template-columns:1fr; gap:24px; align-items:start; }
+.info-card{ background:#fff; border:1px solid #E4DDEF; border-radius:12px; padding:24px; }
+.info-card h3{
+  font-family:'Anton',sans-serif; font-weight:400;
+  color:var(--peak); font-size:1.05rem;
+  text-transform:uppercase; letter-spacing:.05em;
+}
+.info-card p{ margin:6px 0; color:var(--muted); }
+
+/* Summit tag contact card */
+.summit-tag{
+  background:linear-gradient(150deg, var(--peak) 0%, var(--peak-deep) 100%);
+  border-radius:14px;
+  padding:34px 24px 28px;
+  text-align:center;
+  position:relative;
+  margin:26px 0 6px;
+  box-shadow:0 16px 28px rgba(51,32,76,.3);
+  color:#fff;
+}
+.summit-tag::before{
+  content:"";
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:12px solid var(--sunset);
+}
+.summit-tag::after{
+  content:"";
+  position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:46px; height:5px; border-radius:0 0 6px 6px;
+  background:var(--sunset);
+}
+.tag-kicker{
+  font-size:.66rem; font-weight:700;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:#D9CFEA;
+  margin:0 0 4px;
+}
+.tag-title{
+  font-family:'Anton',sans-serif;
+  font-size:1.35rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin:0 0 10px;
+}
+.tag-phone{
+  display:inline-block;
+  font-family:'Anton',sans-serif;
+  font-size:1.75rem;
+  color:var(--sunset);
+  text-decoration:none;
+  letter-spacing:.03em;
+  border-bottom:3px solid rgba(232,118,61,.45);
+  padding-bottom:2px;
+}
+.tag-phone:hover{ color:#F2976A; }
+.tag-sub{ margin:12px 0 0; font-size:.86rem; color:#D9CFEA; }
+
+/* Form */
+.form-card{ background:#fff; border:1px solid #E4DDEF; border-radius:12px; padding:24px; }
+.form-card h3{
+  font-family:'Anton',sans-serif; font-weight:400;
+  color:var(--peak); font-size:1.25rem;
+  text-transform:uppercase; letter-spacing:.04em;
+}
+.form-card .hint{ font-size:.88rem; color:var(--muted); margin-top:0; }
+.field{ margin:14px 0; }
+.field label{
+  display:block;
+  font-size:.68rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--sunset-deep);
+  margin-bottom:6px;
+}
+.field input, .field textarea{
+  width:100%;
+  border:1px solid #E4DDEF;
+  border-radius:8px;
+  background:var(--mist);
+  padding:11px 13px;
+  font-family:'Barlow',sans-serif;
+  font-size:.95rem;
+  color:var(--ink);
+}
+.field input:focus, .field textarea:focus{ outline:2px solid var(--sunset); border-color:var(--sunset); }
+.send-btn{
+  display:inline-block;
+  background:var(--peak);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:13px 28px;
+  font-family:'Anton',sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:.8rem;
+  cursor:pointer;
+}
+.send-btn:hover{ background:var(--peak-deep); }
+#form-feedback{ margin:12px 0 0; font-weight:700; color:var(--sunset-deep); min-height:1.2em; font-size:.9rem; }
+
+/* Reviews */
+.rating-hero{
+  background:linear-gradient(160deg, var(--peak) 0%, var(--peak-deep) 100%);
+  color:#fff;
+  border-radius:16px;
+  padding:44px 24px 38px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.rating-hero::after{
+  content:"";
+  position:absolute; bottom:-40px; left:50%; transform:translateX(-50%);
+  width:0; height:0;
+  border-left:130px solid transparent;
+  border-right:130px solid transparent;
+  border-bottom:120px solid rgba(232,118,61,.14);
+}
+.rating-hero .score{
+  font-family:'Anton',sans-serif;
+  font-size:4rem; line-height:1;
+  color:var(--sunset);
+}
+.rating-hero .stars{ color:#E4DDEF; letter-spacing:5px; margin:10px 0; }
+.rating-hero .src{
+  font-size:.92rem; letter-spacing:.16em; text-transform:uppercase;
+  font-weight:700; opacity:.95;
+}
+.rating-hero .note{
+  max-width:52ch; margin:14px auto 0;
+  color:#D9CFEA; font-size:.95rem;
+  position:relative; z-index:1;
+}
+.link-cards{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:24px; max-width:600px; margin-left:auto; margin-right:auto; }
+.review-link{
+  display:flex; align-items:center; gap:14px;
+  background:#fff;
+  border:1px solid #E4DDEF;
+  border-radius:10px;
+  padding:18px 20px;
+  text-decoration:none;
+  color:var(--peak);
+}
+.review-link i{ font-size:1.6rem; color:var(--sunset-deep); }
+.review-link .t{ font-weight:700; display:block; }
+.review-link .s{ display:block; font-size:.82rem; color:var(--muted); font-weight:400; }
+.review-link:hover{ border-color:var(--sunset); box-shadow:0 6px 14px rgba(51,32,76,.08); }
+
+/* Footer */
+footer.site{ background:var(--peak-ink); color:#B7A8CC; margin-top:44px; }
+.foot-grid{ display:grid; grid-template-columns:1fr; gap:24px; padding:38px 0 26px; }
+.foot-brand{ font-family:'Anton',sans-serif; font-weight:400; font-size:1.25rem; color:#fff; text-transform:uppercase; letter-spacing:.04em; }
+.foot-col h4{ font-size:.66rem; letter-spacing:.24em; text-transform:uppercase; color:#8C7BA6; margin:0 0 10px; }
+.foot-col p{ margin:4px 0; font-size:.9rem; }
+.foot-col a{ color:var(--sunset); text-decoration:none; }
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.12);
+  padding:16px 0 20px;
+  text-align:center;
+  font-size:.85rem;
+  color:#8C7BA6;
+}
+.copyright{ margin:0; }
+
+/* Responsive */
+@media (min-width:768px){
+  .hero-grid{ grid-template-columns:1.1fr .9fr; }
+  .card-grid{ grid-template-columns:1fr 1fr; }
+  .visit-grid{ grid-template-columns:1.05fr .95fr; }
+  .link-cards{ grid-template-columns:1fr 1fr; }
+  .foot-grid{ grid-template-columns:1.4fr 1fr 1fr; }
+  .hero h1{ font-size:3rem; }
+}
+@media (max-width:767px){
+  #menu-btn{ display:block; }
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:var(--white);
+    border-bottom:3px solid var(--sunset);
+    flex-direction:column;
+    gap:0;
+    padding:8px 0 14px;
+    box-shadow:0 14px 20px rgba(36,26,51,.16);
+  }
+  .nav-links.open{ display:flex; }
+  .nav-links li{ width:100%; text-align:center; }
+  .nav-links a{ display:block; padding:13px 0; }
+  .block{ padding:42px 0; }
+  .hero{ padding:46px 0 0; }
+  .hero h1{ font-size:2rem; }
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+
+  <header class="site">
+    <div class="wrap bar">
+      <a class="brand" href="#/home" data-page="home" aria-label="ABQ Top Market and Smoke Shop home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 38" role="img" aria-label="Summit peak mark">
+            <path d="M2 36 L15 8 L22 22 L28 4 L42 36 Z" fill="#452C63"/>
+            <path d="M25.5 8.6 L28 4 L30.5 8.6 L28 7.4 Z" fill="#E8763D"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name">ABQ Top Market &amp; Smoke Shop</span>
+          <span class="brand-sub">9050 Montgomery Blvd NE · Unit 1</span>
+        </span>
+      </a>
+      <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#/shop" data-page="shop">The Shop</a></li>
+        <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
+        <li><a href="#/visit" data-page="visit">Visit</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section class="page" id="page-home">
+      <div class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="kicker">Market &amp; Smoke Shop · Montgomery Blvd NE</p>
+            <h1>The top stop on <em>Montgomery</em></h1>
+            <p class="lead">ABQ Top Market &amp; Smoke Shop covers both climbs in one stop: market shelves for the everyday run and a smoke counter for the 21 and over crowd. Open late, every day of the week.</p>
+            <div class="hero-actions">
+              <span class="status-chip" data-status><span class="dot"></span>Checking hours</span>
+              <a class="btn btn-ghost" href="#/shop" data-page="shop">See the shop</a>
+            </div>
+            <div class="badges">
+              <span class="badge"><i class="fa-solid fa-clock"></i> Every day 9 AM - 11 PM</span>
+              <span class="badge"><i class="fa-solid fa-star"></i> 4.6 stars · 195 reviews</span>
+            </div>
+          </div>
+          <div class="summit-panel">
+            <svg viewBox="0 0 44 38" role="img" aria-label="Summit peak">
+              <path d="M2 36 L15 8 L22 22 L28 4 L42 36 Z" fill="#FFFFFF" opacity=".14"/>
+              <path d="M25.5 8.6 L28 4 L30.5 8.6 L28 7.4 Z" fill="#E8763D"/>
+              <path d="M22 22 L28 4 L42 36 L2 36 Z" fill="#E8763D" opacity=".85"/>
+              <path d="M2 36 L15 8 L22 22 Z" fill="#FFFFFF" opacity=".2"/>
+            </svg>
+            <p class="summit-caption">Basecamp · Unit 1 · 9050 Montgomery</p>
+          </div>
+        </div>
+        <div class="basecamp" style="margin-top:38px;">
+          <div class="wrap inner">
+            <span><i class="fa-solid fa-location-dot"></i> Basecamp: 9050 Montgomery Blvd NE #1</span>
+            <span><i class="fa-solid fa-id-card"></i> 21+ with valid ID</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-rule"></div>
+            <h2>One stop, two missions</h2>
+            <p>The market side keeps the neighborhood stocked. The smoke side keeps the 21+ crowd happy. Neither side waits for the other.</p>
+          </div>
+          <div class="card-grid">
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-basket-shopping"></i></div>
+              <h3>The market side</h3>
+              <p>Snacks, drinks and daily essentials in a small plaza unit that is easy in, easy out.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-cloud"></i></div>
+              <h3>The smoke side</h3>
+              <p>Vapes, glass, wraps, lighters and hemp selections for the 21 and over crowd, valid ID in hand.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-moon"></i></div>
+              <h3>Open late</h3>
+              <p>Until 11 PM, every single night. Late runs are the whole point.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-square-parking"></i></div>
+              <h3>Easy parking</h3>
+              <p>Unit 1 of the plaza, right off Montgomery. Pull in, load up, roll out.</p>
+            </div>
+          </div>
+          <div class="age-band" style="margin-top:26px;">
+            <i class="fa-solid fa-id-card"></i>
+            <p>21 and over, valid ID required for all tobacco, vape and related products.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE SHOP -->
+    <section class="page" id="page-shop">
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-rule"></div>
+            <h2>The Shop</h2>
+            <p>Market shelves and a smoke counter, side by side at basecamp. Here is the full route map.</p>
+          </div>
+          <div class="card-grid">
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-battery-full"></i></div>
+              <h3>Vapes &amp; disposables</h3>
+              <p>Devices and flavors restocked on a weekly cadence, sold 21+ with ID.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-gem"></i></div>
+              <h3>Glass &amp; pieces</h3>
+              <p>Pieces and accessories for the shelf and the rotation.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-joint"></i></div>
+              <h3>Cigars &amp; wraps</h3>
+              <p>Cigars, wraps and papers for the back porch or the ballgame.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-fire-flame-curved"></i></div>
+              <h3>Lighters &amp; smalls</h3>
+              <p>Torches, lighters and counter smalls that always run out at the worst time.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-leaf"></i></div>
+              <h3>CBD &amp; Delta 8/9</h3>
+              <p>Hemp selections, labeled clearly, sold responsibly with valid ID.</p>
+            </div>
+            <div class="peak-card">
+              <div class="ic"><i class="fa-solid fa-candy-cane"></i></div>
+              <h3>Market shelves</h3>
+              <p>Drinks, snacks and the everyday run, priced like a real neighborhood market.</p>
+            </div>
+          </div>
+          <div class="age-band" style="margin-top:26px;">
+            <i class="fa-solid fa-id-card"></i>
+            <p>21 and over, valid ID required at the counter for all tobacco and vape purchases.</p>
+          </div>
+        </div>
+      </div>
+      <div class="block block-peak">
+        <div class="wrap" style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;">
+          <p style="margin:0; font-family:'Anton',sans-serif; text-transform:uppercase; letter-spacing:.05em; font-size:1.3rem;">Open till 11 PM, seven days a week.</p>
+          <a class="btn btn-solid" href="#/visit" data-page="visit">Visit basecamp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="page" id="page-reviews">
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+            <div class="sec-rule" style="margin-left:auto; margin-right:auto;"></div>
+            <h2>Reviews from the summit</h2>
+            <p>We keep this page honest: our reviews live on Google and Yelp, and the links below take you straight to them.</p>
+          </div>
+          <div class="rating-hero">
+            <div class="score">4.6</div>
+            <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <div class="src">4.6 stars with 195 reviews on Google</div>
+            <p class="note">195 reviewers have weighed in on our Google listing. Every rating, every word, unedited, at the links below.</p>
+          </div>
+          <div class="link-cards">
+            <a class="review-link" href="https://www.google.com/maps/search/?api=1&query=ABQ%20Top%20Market%20%26%20Smoke%20Shop%2C%209050%20Montgomery%20Blvd%20NE%2C%20Albuquerque%2C%20NM%2087111" target="_blank" rel="noopener">
+              <i class="fa-brands fa-google"></i>
+              <span><span class="t">See every review on Google</span><span class="s">All 195 ratings and reviews on our Google listing.</span></span>
+            </a>
+            <a class="review-link" href="https://www.yelp.com/biz/abq-top-market-and-smoke-shop-no-title" target="_blank" rel="noopener">
+              <i class="fa-brands fa-yelp"></i>
+              <span><span class="t">Read the Yelp reviews</span><span class="s">More customer feedback on Yelp.</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="page" id="page-visit">
+      <div class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-rule"></div>
+            <h2>Visit basecamp</h2>
+            <p>9050 Montgomery Blvd NE #1, Albuquerque, NM 87111. Unit 1 of the plaza, right off the boulevard.</p>
+          </div>
+          <div class="visit-grid">
+            <div>
+              <div class="hours-card">
+                <div class="hours-head"><i class="fa-solid fa-clock"></i> Camp hours</div>
+                <div class="camp-body">
+                  <p class="camp-big">9 AM - 11 PM</p>
+                  <p class="camp-sub">Every day. Same board, all seven days.</p>
+                  <div class="camp-days" aria-hidden="true">
+                    <span class="camp-dot" data-day="0">S</span>
+                    <span class="camp-dot" data-day="1">M</span>
+                    <span class="camp-dot" data-day="2">T</span>
+                    <span class="camp-dot" data-day="3">W</span>
+                    <span class="camp-dot" data-day="4">T</span>
+                    <span class="camp-dot" data-day="5">F</span>
+                    <span class="camp-dot" data-day="6">S</span>
+                  </div>
+                </div>
+              </div>
+              <div class="info-card" style="margin-top:18px;">
+                <h3><i class="fa-solid fa-location-dot" style="color:var(--sunset-deep);"></i> Find us</h3>
+                <p>9050 Montgomery Blvd NE #1<br>Albuquerque, NM 87111</p>
+                <p>Unit 1 of a small plaza on Montgomery Boulevard Northeast, near the Wyoming bench of town.</p>
+              </div>
+            </div>
+            <div>
+              <div class="summit-tag">
+                <p class="tag-kicker">ABQ Top Market &amp; Smoke Shop</p>
+                <p class="tag-title">Call the counter</p>
+                <a class="tag-phone" href="tel:+15054072486">(505) 407-2486</a>
+                <p class="tag-sub">Stock check, market question or a late-run heads up: one call does it.</p>
+              </div>
+              <div class="form-card">
+                <h3>Ask Top Market</h3>
+                <p class="hint">Ask about stock or a market item and we will answer straight.</p>
+                <form id="quote-form">
+                  <div class="field">
+                    <label for="f-name">Your name</label>
+                    <input id="f-name" type="text" autocomplete="name" placeholder="Your name">
+                  </div>
+                  <div class="field">
+                    <label for="f-phone">Your phone</label>
+                    <input id="f-phone" type="tel" autocomplete="tel" placeholder="(505) 555-0100">
+                  </div>
+                  <div class="field">
+                    <label for="f-msg">Message</label>
+                    <textarea id="f-msg" rows="4" placeholder="Hi, do you have a specific item in stock?"></textarea>
+                  </div>
+                  <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Send note</button>
+                </form>
+                <p id="form-feedback" role="status"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">ABQ Top Market &amp; Smoke Shop</div>
+          <p>The market and smoke counter at the top of Montgomery. 21 and over with valid ID.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Visit</h4>
+          <p>9050 Montgomery Blvd NE #1<br>Albuquerque, NM 87111</p>
+          <p class="foot-quiet" style="font-size:.9rem;">Call: <a href="tel:+15054072486">(505) 407-2486</a></p>
+        </div>
+        <div class="foot-col">
+          <h4>Hours</h4>
+          <p>Every day<br>9 AM - 11 PM</p>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p class="copyright">© ABQ Top Market & Smoke Shop · Albuquerque, NM</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+var BUSINESS = "ABQ Top Market & Smoke Shop";
+var TITLES = { home: "Top of Montgomery Blvd", shop: "The Shop", reviews: "Reviews", visit: "Visit the Market" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+var mb = document.getElementById("menu-btn");
+var nl = document.querySelector(".nav-links");
+mb.addEventListener("click", function(){
+  mb.classList.toggle("open");
+  nl.classList.toggle("open");
+  mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
+});
+
+var CITY_TZ = "America/Denver";
+var HOURS = { 0: [9, 23], 1: [9, 23], 2: [9, 23], 3: [9, 23], 4: [9, 23], 5: [9, 23], 6: [9, 23] };
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderChips(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.remove("open", "closed");
+    c.classList.add(st.open ? "open" : "closed");
+    c.innerHTML = '<span class="dot"></span>' + st.label;
+  });
+}
+(function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(el){
+    if (+el.getAttribute("data-day") === d) el.classList.add("today");
+  });
+})();
+renderChips();
+
+var PHONE = "+15054072486";
+var PRETTY = "(505) 407-2486";
+var form = document.getElementById("quote-form");
+var feedback = document.getElementById("form-feedback");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var fphone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
+    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

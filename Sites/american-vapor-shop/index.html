@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vape &amp; Smoke Shop on N Wells St | American Vapor Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --steel:#37474F; --steel-d:#263238; --steel-l:#546E7A;
+  --teal:#26A69A; --teal-d:#1E877D; --teal-l:#80CBC4;
+  --white:#FFFFFF; --mist:#ECEFF1; --ink:#22313A; --soft:#607080;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Archivo",sans-serif;background:var(--mist);color:var(--ink);line-height:1.65;font-size:17px}
+h1,h2,h3,.stencil{font-family:"Saira Stencil One",cursive;font-weight:400;line-height:1.12;margin:0 0 12px}
+h1{font-size:clamp(34px,5vw,58px);color:#fff}
+h2{font-size:clamp(27px,3.4vw,38px);color:var(--steel-d)}
+h3{font-size:21px;color:var(--steel-d)}
+p{margin:0 0 14px}
+a{color:var(--teal-d)}
+svg{max-width:100%;height:auto}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+.site-shell{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
+footer{flex-shrink:0}
+.page{display:none}
+.page.active{display:block}
+
+/* Header */
+.site-header{background:var(--steel-d);position:sticky;top:0;z-index:40}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+.brand-ring{width:44px;height:44px;border-radius:50%;border:4px solid var(--teal);display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 0 0 3px var(--steel),0 0 0 5px var(--teal-l)}
+.brand-ring i{color:var(--teal-l);font-size:15px}
+.brand-name{font-family:"Saira Stencil One",cursive;font-size:19px;line-height:1.05;letter-spacing:.6px}
+.brand-sub{display:block;font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:2.6px;text-transform:uppercase;color:var(--teal-l);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+.nav-links a{display:block;color:#ECEFF1;text-decoration:none;font-weight:700;font-size:15px;padding:9px 14px;border-radius:8px;text-transform:uppercase;letter-spacing:.8px}
+.nav-links a:hover{background:rgba(38,166,154,.18)}
+.nav-links a[aria-current="page"]{background:var(--teal);color:#fff}
+.menu-btn{display:none;background:transparent;border:2px solid var(--teal);border-radius:8px;padding:9px 11px;cursor:pointer}
+.menu-btn span{display:block;width:20px;height:2px;background:#fff;margin:4px 0;transition:transform .2s}
+.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Buttons */
+.btn{display:inline-block;font-family:"Archivo",sans-serif;font-weight:800;font-size:16px;padding:13px 26px;border-radius:10px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s, box-shadow .15s;text-transform:uppercase;letter-spacing:.6px}
+.btn:hover{transform:translateY(-2px)}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 8px 18px rgba(38,166,154,.35)}
+.btn-teal:hover{background:var(--teal-d)}
+.btn-steel{background:transparent;border-color:var(--teal-l);color:var(--teal-l)}
+.btn-steel:hover{background:rgba(128,203,196,.12)}
+.btn-dark{background:var(--steel-d);color:#fff}
+.btn-dark:hover{background:var(--steel)}
+
+/* Status chip */
+.status-chip{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:14px;letter-spacing:.6px;padding:8px 16px;border-radius:8px;background:#fff;border:1.5px solid var(--steel-l);color:var(--ink);text-transform:uppercase}
+.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#90A4AE;flex:none}
+.status-chip.chip-open .dot{background:#2F9E5B;box-shadow:0 0 0 4px rgba(47,158,91,.18)}
+.status-chip.chip-closed .dot{background:#A5493B;box-shadow:0 0 0 4px rgba(165,73,59,.15)}
+
+/* Full-bleed hero band */
+.hero-band{position:relative;background:linear-gradient(135deg,var(--steel-d) 0%,var(--steel) 58%,var(--steel-l) 100%);overflow:hidden}
+.hero-band::after{content:"";position:absolute;right:-140px;top:-140px;width:480px;height:480px;border-radius:50%;border:3px solid rgba(128,203,196,.35);box-shadow:0 0 0 34px rgba(38,166,154,.08),0 0 0 68px rgba(38,166,154,.06),0 0 0 102px rgba(38,166,154,.05)}
+.hero{position:relative;padding:64px 0 58px}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(236,239,241,.1);border:1.5px solid rgba(128,203,196,.5);color:var(--teal-l);border-radius:999px;padding:7px 15px;font-weight:800;font-size:13px;letter-spacing:1.2px;text-transform:uppercase}
+.badge.age{border-color:#F2B96B;color:#F2C98B}
+.hero p.lede{font-size:19px;color:#CFD8DC;max-width:54ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.hero-coil{position:absolute;right:4%;top:50%;transform:translateY(-50%);width:min(300px,26vw);opacity:.9}
+
+/* Ticker strip */
+.ticker{background:var(--teal-d);color:#fff;padding:10px 0}
+.ticker .wrap{display:flex;align-items:center;justify-content:center;gap:34px;flex-wrap:wrap;font-weight:800;font-size:14px;letter-spacing:1.6px;text-transform:uppercase}
+.ticker i{color:var(--teal-l);margin-right:8px}
+
+/* Sections */
+.section{padding:54px 0}
+.section-head{max-width:680px;margin:0 auto 36px;text-align:center}
+.section-head p{color:var(--soft)}
+.screw-rule{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--teal-d);margin-bottom:14px}
+.screw-rule span{width:84px;height:3px;background:var(--teal);border-radius:2px}
+.screw-rule i{font-size:10px}
+
+/* Goods grid */
+.goods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.good{background:#fff;border-radius:14px;padding:24px 22px;border-top:4px solid var(--teal);box-shadow:0 6px 18px rgba(38,50,56,.08);transition:transform .15s, box-shadow .15s}
+.good:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(38,50,56,.14)}
+.good i{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:var(--mist);color:var(--teal-d);font-size:19px;margin-bottom:13px}
+.good p{margin:0;font-size:15.5px;color:var(--soft)}
+
+/* Age + late info cards */
+.info-duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
+.info-card{border-radius:14px;padding:22px 24px}
+.info-card.age{background:var(--steel-d);color:#ECEFF1}
+.info-card.age i{color:#F2C98B;font-size:20px}
+.info-card.age b{color:#fff}
+.info-card.late{background:#fff;border:2px solid var(--teal-l)}
+.info-card.late i{color:var(--teal-d);font-size:20px}
+.info-card p{margin:8px 0 0;font-size:15.5px;color:var(--soft)}
+.info-card.age p{color:#B0BEC5}
+
+/* Hours day grid */
+.hours-panel{background:#fff;border-radius:18px;padding:28px;max-width:900px;margin:0 auto;box-shadow:0 10px 26px rgba(38,50,56,.1)}
+.hours-panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.hours-panel-head b{font-family:"Saira Stencil One",cursive;font-weight:400;font-size:22px;color:var(--steel-d);letter-spacing:.5px}
+.late-tag{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;border-radius:999px;padding:7px 15px;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;list-style:none;margin:0;padding:0}
+.day-grid li{background:var(--mist);border-radius:11px;padding:11px 6px;text-align:center;font-weight:800;font-size:13.5px;color:var(--steel-d)}
+.day-grid li span{display:block;font-size:12px;font-weight:700;color:var(--soft);margin-top:3px}
+.day-grid li.today{background:var(--teal);color:#fff}
+.day-grid li.today span{color:#D7F0ED}
+.confirm-line{display:flex;gap:9px;align-items:flex-start;background:#FFF7EC;border:1.5px dashed #E0A54E;border-radius:10px;padding:11px 14px;font-size:14px;color:#8A5B18;font-weight:600;margin:16px 0 0}
+.confirm-line i{margin-top:3px}
+
+/* Reviews */
+.review-list{max-width:780px;margin:0 auto}
+.quote-card{background:#fff;border-radius:14px;padding:26px 28px 20px;margin-bottom:18px;box-shadow:0 8px 22px rgba(38,50,56,.09)}
+.quote-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.quote-mark{width:38px;height:38px;border-radius:50%;border:2.5px solid var(--teal);display:flex;align-items:center;justify-content:center;color:var(--teal-d);font-size:15px;flex:none}
+.quote-card blockquote{margin:0 0 14px;font-size:19px;font-weight:600;color:var(--steel-d)}
+.quote-meta{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:2px dashed var(--mist);padding-top:12px}
+.stars i{color:var(--teal-d);font-size:14px;margin-right:3px}
+.quote-src{font-size:13px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft)}
+.rating-summary{background:var(--steel-d);color:#ECEFF1;border-radius:14px;padding:24px 28px;max-width:780px;margin:6px auto 0;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.rating-summary .big{font-family:"Saira Stencil One",cursive;font-size:44px;color:var(--teal-l);line-height:1}
+.rating-summary p{margin:0;font-weight:600;color:#CFD8DC}
+.link-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:780px;margin:18px auto 0}
+.link-card{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--ink);font-weight:800;box-shadow:0 8px 22px rgba(38,50,56,.09);transition:transform .15s, box-shadow .15s}
+.link-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(38,50,56,.16)}
+.link-card i{width:42px;height:42px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--teal);color:#fff;font-size:17px}
+.link-card small{display:block;font-weight:600;color:var(--soft)}
+
+/* Visit page */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.coil-card{position:relative;background:#fff;border-radius:18px;padding:34px 30px;border:2px dashed var(--teal);box-shadow:0 12px 30px rgba(38,50,56,.1)}
+.coil-card::before,.coil-card::after{content:"";position:absolute;width:22px;height:22px;border:4px solid var(--teal);border-radius:50%;background:var(--mist)}
+.coil-card::before{top:-12px;left:-12px}
+.coil-card::after{bottom:-12px;right:-12px}
+.coil-card h3{display:flex;align-items:center;gap:10px}
+.coil-card .addr{display:flex;gap:11px;align-items:flex-start;color:var(--soft);font-weight:600;margin-bottom:18px}
+.coil-card .addr i{color:var(--teal-d);margin-top:4px}
+.tel-big{display:inline-flex;align-items:center;gap:11px;background:var(--teal);color:#fff;text-decoration:none;font-weight:800;font-size:21px;padding:13px 24px;border-radius:12px;box-shadow:0 8px 18px rgba(38,166,154,.35)}
+.tel-big:hover{background:var(--teal-d)}
+.walkin{margin:16px 0 0;font-size:14.5px;color:var(--soft);font-weight:600}
+
+/* Form */
+.form-card{background:#fff;border-radius:18px;padding:30px 28px;box-shadow:0 10px 26px rgba(38,50,56,.1)}
+.form-card h3{display:flex;align-items:center;gap:10px}
+.form-card h3 i{color:var(--teal-d)}
+.field{margin-bottom:15px}
+.field label{display:block;font-weight:800;font-size:14px;letter-spacing:.6px;margin-bottom:6px;color:var(--steel-d);text-transform:uppercase}
+.field input,.field textarea{width:100%;font-family:"Archivo",sans-serif;font-size:16px;padding:12px 14px;border:1.5px solid #CFD8DC;border-radius:10px;background:var(--mist);color:var(--ink)}
+.field input:focus,.field textarea:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.field textarea{min-height:110px;resize:vertical}
+.form-feedback{min-height:24px;font-weight:800;color:var(--teal-d);margin:12px 0 0}
+.form-fine{font-size:13px;color:var(--soft);margin:6px 0 0}
+
+/* Footer */
+.site-footer{background:var(--steel-d);color:#B0BEC5}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;padding:44px 0 26px}
+.foot-grid h4{font-family:"Saira Stencil One",cursive;color:var(--teal-l);font-size:18px;margin:0 0 10px;letter-spacing:1px}
+.foot-grid p,.foot-grid li{font-size:14.5px}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.foot-grid li{margin-bottom:7px}
+.foot-grid a{color:#ECEFF1}
+.foot-tel{display:inline-block;margin-top:8px;font-weight:800;font-size:17px;color:var(--teal-l);text-decoration:none}
+.foot-tel:hover{color:#fff}
+.copyright{text-align:center;font-size:14px;padding:16px 0 22px;border-top:1px solid rgba(236,239,241,.14);margin:0}
+.copyright p{margin:0}
+
+/* Responsive */
+@media (max-width:900px){
+  .goods{grid-template-columns:repeat(2,1fr)}
+  .info-duo{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .day-grid{grid-template-columns:repeat(4,1fr)}
+  .hero-coil{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .goods,.link-cards,.foot-grid{grid-template-columns:1fr}
+  .day-grid{grid-template-columns:repeat(2,1fr)}
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--steel-d);flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;border-bottom:3px solid var(--teal);box-shadow:0 14px 26px rgba(0,0,0,.3)}
+  .nav-links.open{display:flex}
+  .site-header{position:relative}
+  .hero{padding:46px 0 44px}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+<header class="site-header">
+  <div class="wrap head-row">
+    <a class="brand" href="#/home" data-page="home" aria-label="American Vapor Shop home">
+      <span class="brand-ring"><i class="fa-solid fa-cloud"></i></span>
+      <span class="brand-name">American Vapor Shop<span class="brand-sub">N Wells St · Chicago</span></span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#/home" data-page="home">Home</a></li>
+        <li><a href="#/shop" data-page="shop">The Shop</a></li>
+        <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
+        <li><a href="#/visit" data-page="visit">Visit</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HOME ============ -->
+<section class="page" id="page-home">
+  <div class="hero-band">
+    <svg class="hero-coil" viewBox="0 0 300 300" aria-hidden="true">
+      <circle cx="150" cy="150" r="60" fill="none" stroke="#26A69A" stroke-width="7"/>
+      <circle cx="150" cy="150" r="95" fill="none" stroke="#80CBC4" stroke-width="4" opacity=".7"/>
+      <circle cx="150" cy="150" r="130" fill="none" stroke="#26A69A" stroke-width="3" opacity=".4"/>
+      <path d="M110 150 C130 128 170 128 190 150" fill="none" stroke="#B2DFDB" stroke-width="4" stroke-linecap="round"/>
+      <path d="M96 176 C128 198 172 198 204 176" fill="none" stroke="#80CBC4" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+      <path d="M120 118 C136 100 164 100 180 118" fill="none" stroke="#B2DFDB" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    </svg>
+    <div class="wrap hero">
+      <div class="badge-row">
+        <span class="badge age"><i class="fa-solid fa-id-card"></i> 21 + valid ID</span>
+        <span class="badge"><i class="fa-regular fa-clock"></i> Thu - Sat till late</span>
+      </div>
+      <h1>Wells Street runs on clouds</h1>
+      <div class="status-chip" role="status"><span class="dot"></span>Checking hours...</div>
+      <p class="lede">American Vapor Shop is the Old Town vape and smoke counter at 1212 N Wells: real advice instead of upsells, a wall of liquids, coils that actually match your device, and doors open at 8:30 AM sharp.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-teal" href="#/shop" data-page="shop">Shop the wall</a>
+        <a class="btn btn-steel" href="#/visit" data-page="visit">Visit the counter</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="wrap">
+      <span><i class="fa-solid fa-bolt"></i> Coils &amp; pods matched to your device</span>
+      <span><i class="fa-solid fa-droplet"></i> E-liquid wall</span>
+      <span><i class="fa-solid fa-id-card"></i> 21 and over, valid ID</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="screw-rule" aria-hidden="true"><span></span><i class="fa-solid fa-screwdriver-wrench"></i><span></span></div>
+        <h2>Built for people who vape, not people who browse</h2>
+        <p>The counter is staffed by people who rebuild, refill and rotate their own gear. Ask anything.</p>
+      </div>
+      <div class="goods">
+        <div class="good"><i class="fa-solid fa-bolt"></i><h3>Vape Kits &amp; Mods</h3><p>Starter kits, pod systems and mods sorted by how hard you actually pull, not by margin.</p></div>
+        <div class="good"><i class="fa-solid fa-droplet"></i><h3>E-Liquid Wall</h3><p>Salt nic and freebase lines in the flavors Old Town keeps coming back for, in every strength on the legal shelf.</p></div>
+        <div class="good"><i class="fa-solid fa-gears"></i><h3>Coils &amp; Pods</h3><p>The replacement part that matters most. Bring your device or name it and we will hand you the right coil the first time.</p></div>
+        <div class="good"><i class="fa-solid fa-battery-full"></i><h3>Batteries &amp; Chargers</h3><p>Cells, USB-C cables and chargers so the day does not end at 40 percent.</p></div>
+        <div class="good"><i class="fa-solid fa-wind"></i><h3>Glass &amp; Smoke Side</h3><p>A compact smoke shop side: hand pipes, glass, wraps and lighters for the whole crew.</p></div>
+        <div class="good"><i class="fa-solid fa-comments"></i><h3>Honest Counter Talk</h3><p>One reviewer said it best: treated like a regular on the first visit. That is the whole business model.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:8px">
+    <div class="wrap">
+      <div class="info-duo">
+        <div class="info-card age">
+          <i class="fa-solid fa-id-card"></i>
+          <h3 style="color:#fff">21 and over. Valid ID required.</h3>
+          <p>Every product on every shelf, every visit, no exceptions. It is the law and it is how we keep the shop comfortable for everyone who is allowed in.</p>
+        </div>
+        <div class="info-card late">
+          <i class="fa-regular fa-clock"></i>
+          <h3>Doors open 8:30 AM. Late week, we stay late.</h3>
+          <p>Sun - Wed we close at midnight. Thu - Sat the lights stay on past midnight. Late-night hours can flex, so call ahead late.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ THE SHOP ============ -->
+<section class="page" id="page-shop">
+  <div class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow" style="color:var(--teal-d);font-weight:900;letter-spacing:2.4px;text-transform:uppercase;font-size:13px">The Shop</p>
+      <h2>The coil behind the counter</h2>
+      <p>A vape shop that keeps its parts stocked: the boring reason people stay loyal to this place.</p>
+    </div>
+
+    <div class="goods" style="margin-bottom:26px">
+      <div class="good"><i class="fa-solid fa-bolt"></i><h3>Disposables</h3><p>The shelf everyone asks for first, restocked through the week with the flavors that actually move.</p></div>
+      <div class="good"><i class="fa-solid fa-gears"></i><h3>Coils, pods &amp; parts</h3><p>Brand-matched coils and pods for the popular systems. Tell us your device and we will match it, or bring it in.</p></div>
+      <div class="good"><i class="fa-solid fa-droplet"></i><h3>E-liquids &amp; salts</h3><p>Nicotine strengths and flavor families laid out clearly, so picking a new all-day vape takes two minutes, not twenty.</p></div>
+      <div class="good"><i class="fa-solid fa-battery-full"></i><h3>Power &amp; accessories</h3><p>Batteries, chargers, cases and lanyards. The small stuff that keeps a good device alive for years.</p></div>
+      <div class="good"><i class="fa-solid fa-wind"></i><h3>Glass &amp; pipes</h3><p>Hand pipes and simple glass on the smoke side, priced to be used, not admired behind a case.</p></div>
+      <div class="good"><i class="fa-solid fa-fire"></i><h3>Wraps &amp; lighters</h3><p>Papers, wraps and the lighter shelf by the register for the last-minute stop before the train.</p></div>
+    </div>
+
+    <div class="info-card age" style="max-width:900px;margin:0 auto">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h3 style="color:#fff">We card every time. 21 and over, valid ID required.</h3>
+      <p>No ID, no sale, no debate. That consistency is a big part of why reviewers say we treat everyone like a regular.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="page" id="page-reviews">
+  <div class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow" style="color:var(--teal-d);font-weight:900;letter-spacing:2.4px;text-transform:uppercase;font-size:13px">Reviews</p>
+      <h2>253 reviews and counting</h2>
+      <p>Shown exactly as posted on Google, spelling and enthusiasm intact.</p>
+    </div>
+
+    <div class="review-list">
+      <div class="quote-card">
+        <div class="quote-head"><span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span></div>
+        <blockquote>"Highly, HIGHly recommend!"</blockquote>
+        <div class="quote-meta">
+          <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+          <span class="quote-src">Google review</span>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-head"><span class="quote-mark"><i class="fa-solid fa-quote-left"></i></span></div>
+        <blockquote>"they treated me as if i was a regular. Excellent Smoke shop."</blockquote>
+        <div class="quote-meta">
+          <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+          <span class="quote-src">Google review</span>
+        </div>
+      </div>
+
+      <div class="rating-summary">
+        <span class="big">4.7</span>
+        <p>4.7 stars with 253 reviews on Google. We keep the number out front because it is earned one counter visit at a time.</p>
+      </div>
+
+      <div class="link-cards">
+        <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=American%20Vapor%20Shop%2C%201212%20N%20Wells%20St%2C%20Chicago%2C%20IL%2060610" target="_blank" rel="noopener">
+          <i class="fa-brands fa-google"></i>
+          <span>See every review on Google<small>Open our Google listing</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="page" id="page-visit">
+  <div class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow" style="color:var(--teal-d);font-weight:900;letter-spacing:2.4px;text-transform:uppercase;font-size:13px">Visit</p>
+      <h2>The N Wells counter</h2>
+      <p>In Old Town, a block off the Sedgwick stop. Early open, late close, and always bring your ID.</p>
+    </div>
+
+    <div class="visit-grid">
+      <div>
+        <div class="coil-card">
+          <h3><i class="fa-solid fa-plug-circle-bolt"></i> Coil-wire contact card</h3>
+          <p class="addr"><i class="fa-solid fa-location-dot"></i> 1212 N Wells St Ste 1, Chicago, IL 60610</p>
+          <a class="tel-big" href="tel:+13126249110"><i class="fa-solid fa-phone"></i> (312) 624-9110</a>
+          <p class="walkin"><i class="fa-solid fa-door-open"></i> Opens 8:30 AM daily. Late week the close runs past midnight.</p>
+        </div>
+
+        <div class="hours-panel" style="margin-top:22px">
+          <div class="hours-panel-head">
+            <b>Week at a glance</b>
+            <span class="late-tag"><i class="fa-regular fa-clock"></i> Thu - Sat till late</span>
+          </div>
+          <ul class="day-grid">
+            <li data-day="0">Sun<span>8:30 - mid</span></li>
+            <li data-day="1">Mon<span>8:30 - mid</span></li>
+            <li data-day="2">Tue<span>8:30 - mid</span></li>
+            <li data-day="3">Wed<span>8:30 - mid</span></li>
+            <li data-day="4">Thu<span>8:30 - 2 AM</span></li>
+            <li data-day="5">Fri<span>8:30 - 3 AM</span></li>
+            <li data-day="6">Sat<span>8:30 - 3 AM</span></li>
+          </ul>
+          <p class="confirm-line"><i class="fa-solid fa-circle-info"></i> Late-night closing times vary by source and by night. Please call to confirm tonight's close before heading over late.</p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3><i class="fa-solid fa-box-open"></i> Ask about stock</h3>
+        <p style="color:var(--soft)">Need a specific coil, juice strength or device before you ride over? Send the counter a note and we will confirm it is on the shelf.</p>
+        <form id="note-form" novalidate>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Chris D.">
+          </div>
+          <div class="field">
+            <label for="f-phone">Your phone <span style="font-weight:600;color:var(--soft);text-transform:none">(optional)</span></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(312) 555-0100">
+          </div>
+          <div class="field">
+            <label for="f-msg">Device and what you need</label>
+            <textarea id="f-msg" name="message" placeholder="Do you carry coils for a Uwell Caliburn?"></textarea>
+          </div>
+          <button class="btn btn-teal" type="submit"><i class="fa-solid fa-paper-plane"></i> Send note</button>
+          <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+          <p class="form-fine">On a phone, this opens your text app with the note ready. On a computer, it copies the note so you can paste it into a text to the shop.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <h4>American Vapor Shop</h4>
+      <p>Vape and smoke shop on N Wells St in Old Town. Open early, closing late Thu - Sat. 21 and over, valid ID required.</p>
+      <a class="foot-tel" href="tel:+13126249110">(312) 624-9110</a>
+    </div>
+    <div>
+      <h4>Counter</h4>
+      <ul>
+        <li>1212 N Wells St Ste 1</li>
+        <li>Chicago, IL 60610</li>
+        <li>Old Town</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Hours</h4>
+      <ul>
+        <li>Sun - Wed: 8:30 AM - midnight</li>
+        <li>Thu - Sat: 8:30 AM - late</li>
+        <li>Call to confirm late closes</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright"><p>© American Vapor Shop · Chicago, IL</p></div>
+</footer>
+</div>
+
+<script>
+var BUSINESS = "American Vapor Shop";
+var TITLES = { home: "Vape & Smoke Shop on N Wells St", shop: "The Shop", reviews: "Reviews", visit: "Visit & Contact" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  document.querySelectorAll(".nav-links a").forEach(function(a){
+    if (a.getAttribute("data-page") === id) { a.setAttribute("aria-current", "page"); } else { a.removeAttribute("aria-current"); }
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); mb.setAttribute("aria-expanded", "false"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+var mb = document.getElementById("menu-btn");
+var nl = document.querySelector(".nav-links");
+if (mb && nl) {
+  mb.addEventListener("click", function(){
+    var open = nl.classList.toggle("open");
+    mb.classList.toggle("open", open);
+    mb.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+}
+navigateTo(getPageFromHash(), false);
+
+var CITY_TZ = "America/Chicago";
+var HOURS = {0:[8.5,24],1:[8.5,24],2:[8.5,24],3:[8.5,24],4:[8.5,26],5:[8.5,27],6:[8.5,27]};
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+(function renderStatus(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.add(st.open ? "chip-open" : "chip-closed");
+    c.innerHTML = '<span class="dot"></span>' + st.label;
+  });
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(el){
+    if (+el.getAttribute("data-day") === d) el.classList.add("today");
+  });
+})();
+
+var PHONE = "+13126249110";
+var PRETTY = "(312) 624-9110";
+var form = document.getElementById("note-form");
+var fb = document.getElementById("form-feedback");
+if (form && fb) {
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var phone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) { fb.textContent = "Add your name and what you need first."; return; }
+    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      }, function(){
+        fb.textContent = "Could not copy. Call " + PRETTY + " and the counter will confirm it.";
+      });
+    } else {
+      fb.textContent = "Copy did not work. Call " + PRETTY + " and the counter will confirm it.";
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LA Smoke Shop | Family Owned on Benson Hwy Since 2009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  :root{
+    --red:#C43E2F;
+    --red-deep:#9E2F22;
+    --sand:#E8D5B5;
+    --sand-soft:#F5EDDD;
+    --cream:#FBF6EC;
+    --ink:#3D2B24;
+    --line:#E4D5BC;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Karla',Georgia,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .site-shell{min-height:100vh;display:flex;flex-direction:column;}
+  main{flex:1 0 auto;}
+  footer{flex-shrink:0;}
+  h1,h2,h3,.script{font-family:'Lobster Two',cursive;line-height:1.15;margin:0;}
+  p{margin:0 0 1rem;}
+  .wrap{width:100%;max-width:1020px;margin:0 auto;padding:0 20px;}
+
+  /* header */
+  .site-head{
+    background:var(--sand);
+    border-bottom:4px solid var(--red);
+    position:sticky;top:0;z-index:50;
+  }
+  .head-in{
+    max-width:1020px;margin:0 auto;padding:13px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
+  .brand-mark{
+    width:44px;height:44px;border-radius:50%;background:var(--red);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Lobster Two',cursive;font-weight:700;font-size:1.15rem;
+    border:2px solid var(--cream);box-shadow:0 0 0 2px var(--red);flex-shrink:0;
+  }
+  .brand-name{font-family:'Lobster Two',cursive;font-weight:700;font-size:1.3rem;}
+  .brand-name small{display:block;font-family:'Karla',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-deep);}
+  .menu-btn{
+    display:none;background:none;border:2px solid var(--red);border-radius:10px;
+    width:46px;height:42px;cursor:pointer;padding:0;
+  }
+  .menu-btn span{display:block;width:20px;height:2px;background:var(--red);margin:4px auto;transition:transform .2s ease, opacity .2s ease;}
+  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .menu-btn.open span:nth-child(2){opacity:0;}
+  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .nav-links{display:flex;align-items:center;gap:6px;}
+  .nav-links a{
+    text-decoration:none;font-weight:700;font-size:.95rem;color:var(--ink);
+    padding:9px 15px;border-radius:9px;transition:background .15s ease,color .15s ease;
+  }
+  .nav-links a:hover{background:rgba(196,62,47,.12);color:var(--red-deep);}
+  .nav-links a.is-here{background:var(--red);color:var(--cream);}
+
+  /* pages */
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* status chip */
+  .status-chip{
+    display:inline-flex;align-items:center;gap:8px;
+    font-weight:700;font-size:.84rem;padding:6px 14px;border-radius:999px;
+    background:var(--cream);border:1.5px solid var(--line);color:var(--ink);
+  }
+  .status-chip .dot{width:9px;height:9px;border-radius:50%;background:#9AA5AA;}
+  .status-chip.is-open{border-color:var(--red);background:#F9E9E4;color:var(--red-deep);}
+  .status-chip.is-open .dot{background:#2E7D32;}
+  .status-chip.is-closed .dot{background:#B23A2E;}
+
+  /* hero: split with ribbon banner */
+  .hero{
+    background:
+      radial-gradient(900px 380px at 110% 0%, rgba(196,62,47,.12), transparent 60%),
+      linear-gradient(180deg, var(--sand) 0%, var(--sand-soft) 100%);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center;
+    padding:56px 0 60px;
+  }
+  .kicker{
+    display:inline-block;font-weight:800;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--red-deep);margin-bottom:12px;
+  }
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;color:var(--ink);margin-bottom:14px;}
+  .hero h1 .hl{color:var(--red);}
+  .hero .lead{font-size:1.06rem;color:#5C463C;max-width:33em;margin-bottom:20px;}
+  .ribbon{
+    position:relative;
+    background:var(--red);color:var(--cream);
+    font-family:'Lobster Two',cursive;font-style:italic;font-weight:700;font-size:1.05rem;
+    text-align:center;padding:11px 44px;margin:0 0 26px;
+    box-shadow:0 6px 14px rgba(158,47,34,.25);
+  }
+  .ribbon::before,.ribbon::after{
+    content:"";position:absolute;top:8px;border:16px solid var(--red-deep);z-index:-1;
+  }
+  .ribbon::before{left:-22px;border-left-color:transparent;}
+  .ribbon::after{right:-22px;border-right-color:transparent;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
+    font-weight:800;font-size:.98rem;
+    padding:13px 24px;border-radius:12px;border:2px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(61,43,36,.2);}
+  .btn-red{background:var(--red);color:var(--cream);}
+  .btn-line{border-color:var(--red);color:var(--red-deep);background:transparent;}
+  .btn-line:hover{background:rgba(196,62,47,.08);}
+
+  /* hero side: familia card */
+  .familia-card{
+    background:var(--cream);border:2px solid var(--line);border-radius:18px;
+    padding:30px;text-align:center;box-shadow:0 16px 34px rgba(61,43,36,.12);
+    position:relative;
+  }
+  .familia-card .script{font-size:1.6rem;font-style:italic;color:var(--red);}
+  .familia-card .yr{font-weight:800;letter-spacing:.14em;font-size:.85rem;color:#8A6F5C;margin:2px 0 18px;}
+  .familia-card .stars{margin-bottom:14px;}
+  .familia-card .stars i{color:var(--red);font-size:.9rem;margin-right:3px;}
+  .familia-card .score{font-weight:800;font-size:1.15rem;color:var(--ink);display:block;}
+  .familia-card .scored{color:#5C463C;font-size:.92rem;display:block;margin-top:2px;}
+  .familia-card .status-chip{margin-top:16px;}
+
+  /* sections */
+  .section{padding:56px 0;}
+  .section.tint{background:var(--sand-soft);}
+  .sec-head{margin-bottom:28px;}
+  .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.3rem);color:var(--ink);margin-bottom:8px;}
+  .sec-head h2 .hl{color:var(--red);}
+  .sec-head p{color:#5C463C;max-width:44em;}
+  .sec-head.center{text-align:center;}
+  .sec-head.center p{margin-left:auto;margin-right:auto;}
+
+  /* hours: grouped day list */
+  .hours-groups{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:760px;margin:0 auto;}
+  .hgroup{
+    background:var(--cream);border:2px solid var(--line);border-radius:16px;
+    padding:24px 26px;transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .hgroup.today{border-color:var(--red);box-shadow:0 10px 24px rgba(196,62,47,.16);}
+  .hgroup .days{font-weight:800;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red-deep);margin-bottom:6px;}
+  .hgroup .time{font-family:'Lobster Two',cursive;font-weight:700;font-size:1.5rem;color:var(--ink);}
+  .hgroup .flag{display:none;margin-top:10px;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red);}
+  .hgroup.today .flag{display:inline-block;}
+  .confirm-line{
+    max-width:760px;margin:18px auto 0;text-align:center;
+    font-size:.9rem;color:#7A5C4E;background:rgba(232,213,181,.55);
+    border:1.5px dashed var(--line);border-radius:12px;padding:11px 16px;
+  }
+  .confirm-line i{color:var(--red);margin-right:6px;}
+
+  /* shop page */
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .board-item{
+    background:var(--cream);border:2px solid var(--line);border-radius:16px;padding:22px;
+    transition:transform .15s ease,border-color .15s ease;
+  }
+  .board-item:hover{transform:translateY(-3px);border-color:var(--red);}
+  .board-item i{
+    font-size:1.2rem;color:var(--cream);background:var(--red);
+    width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+  }
+  .board-item h3{font-size:1.15rem;margin-bottom:4px;}
+  .board-item p{margin:0;font-size:.92rem;color:#5C463C;}
+  .age-strip{
+    margin-top:26px;background:var(--red);color:var(--cream);border-radius:14px;
+    padding:18px 24px;display:flex;gap:14px;align-items:center;
+  }
+  .age-strip i{font-size:1.4rem;flex-shrink:0;}
+  .age-strip h3{font-size:1.15rem;margin-bottom:2px;}
+  .age-strip p{margin:0;font-size:.92rem;color:#F3DCD5;}
+
+  /* reviews: one big poster quote */
+  .poster{
+    max-width:720px;margin:0 auto;background:var(--cream);
+    border:2px solid var(--line);border-radius:20px;
+    padding:44px 40px 34px;text-align:center;position:relative;
+    box-shadow:0 16px 34px rgba(61,43,36,.1);
+  }
+  .poster .gq{
+    position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+    width:52px;height:52px;border-radius:50%;background:var(--red);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  }
+  .poster blockquote{
+    margin:0 0 18px;font-family:'Lobster Two',cursive;font-style:italic;font-weight:700;
+    font-size:clamp(1.4rem,3.2vw,1.9rem);line-height:1.35;color:var(--ink);
+  }
+  .poster .stars i{color:var(--red);font-size:.95rem;margin-right:4px;}
+  .poster .who{display:block;margin-top:8px;font-weight:800;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#8A6F5C;}
+  .review-summary{
+    max-width:720px;margin:26px auto 0;background:var(--sand);border-radius:16px;
+    padding:20px 26px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .review-summary .score{font-family:'Lobster Two',cursive;font-weight:700;font-size:1.4rem;color:var(--red-deep);}
+  .review-summary p{margin:0;font-size:.94rem;color:#5C463C;}
+  .link-cards{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;max-width:720px;margin-left:auto;margin-right:auto;}
+  .link-card{
+    flex:1 1 240px;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);
+    background:var(--cream);border:2px solid var(--line);border-radius:14px;padding:16px 20px;
+    font-weight:700;transition:border-color .15s ease,transform .15s ease;
+  }
+  .link-card:hover{border-color:var(--red);transform:translateY(-2px);}
+  .link-card i{font-size:1.35rem;color:var(--red);}
+  .link-card small{display:block;font-weight:400;color:#8A6F5C;}
+
+  /* visit: banner-ribbon card */
+  .visit-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:32px;align-items:start;}
+  .ribbon-card{
+    background:var(--cream);border:2px solid var(--line);border-radius:18px;
+    overflow:hidden;box-shadow:0 16px 34px rgba(61,43,36,.1);
+  }
+  .ribbon-card .rc-band{
+    position:relative;background:var(--red);color:var(--cream);
+    font-family:'Lobster Two',cursive;font-style:italic;font-weight:700;font-size:1.15rem;
+    text-align:center;padding:13px 40px;margin:16px 14px 0;
+  }
+  .ribbon-card .rc-band::before,.ribbon-card .rc-band::after{
+    content:"";position:absolute;top:6px;border:13px solid var(--red-deep);z-index:-1;
+  }
+  .ribbon-card .rc-band::before{left:-18px;border-left-color:transparent;}
+  .ribbon-card .rc-band::after{right:-18px;border-right-color:transparent;}
+  .ribbon-card .rc-body{padding:24px 28px 26px;}
+  .rc-row{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1.5px dashed var(--line);}
+  .rc-row:last-of-type{border-bottom:0;}
+  .rc-row i{color:var(--red);width:20px;text-align:center;margin-top:4px;}
+  .rc-row b{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#8A6F5C;}
+  .rc-phone{
+    display:block;font-family:'Lobster Two',cursive;font-weight:700;font-size:1.5rem;
+    color:var(--red-deep);text-decoration:none;
+  }
+  .rc-phone:hover{text-decoration:underline;}
+  .rc-note{font-size:.88rem;color:#8A6F5C;margin-top:12px;}
+
+  /* form */
+  .form-card{background:var(--cream);border:2px solid var(--line);border-radius:18px;padding:28px;}
+  .form-card h3{font-size:1.35rem;color:var(--ink);margin-bottom:4px;}
+  .form-card h3 .hl{color:var(--red);}
+  .form-card .hint{font-size:.92rem;color:#5C463C;margin-bottom:18px;}
+  .field{margin-bottom:15px;}
+  .field label{display:block;font-weight:800;font-size:.86rem;margin-bottom:6px;}
+  .field input,.field textarea{
+    width:100%;padding:12px 15px;border:2px solid var(--line);border-radius:12px;
+    font-family:'Karla',sans-serif;font-size:1rem;color:var(--ink);background:var(--sand-soft);
+  }
+  .field input:focus,.field textarea:focus{outline:2px solid var(--red);border-color:var(--red);background:var(--cream);}
+  .field textarea{min-height:110px;resize:vertical;}
+  .form-card .btn{width:100%;justify-content:center;}
+  .form-feedback{margin-top:12px;font-weight:800;font-size:.92rem;color:#2E7D32;min-height:1.2em;}
+
+  /* footer */
+  .site-foot{background:var(--red-deep);color:#F3DCD5;}
+  .foot-in{
+    max-width:1020px;margin:0 auto;padding:36px 20px 20px;
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;
+  }
+  .site-foot h4{font-family:'Lobster Two',cursive;color:var(--cream);font-size:1.15rem;margin:0 0 10px;}
+  .site-foot p{font-size:.9rem;margin:0 0 6px;}
+  .site-foot a{color:var(--cream);text-decoration:none;}
+  .site-foot a:hover{color:var(--sand);}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.18);
+    max-width:1020px;margin:0 auto;padding:16px 20px 24px;font-size:.85rem;color:#D9AFA5;
+  }
+
+  /* responsive */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:32px;padding:44px 0 48px;}
+    .hours-groups{grid-template-columns:1fr;}
+    .board{grid-template-columns:1fr 1fr;}
+    .visit-grid{grid-template-columns:1fr;}
+    .foot-in{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:640px){
+    .menu-btn{display:block;}
+    .nav-links{
+      display:none;position:absolute;left:0;right:0;top:100%;
+      background:var(--sand);border-bottom:4px solid var(--red);
+      flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:13px 15px;}
+    .board{grid-template-columns:1fr;}
+    .foot-in{grid-template-columns:1fr;}
+    .section{padding:44px 0;}
+    .ribbon{padding:10px 34px;font-size:.98rem;}
+  }
+</style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-head">
+    <div class="head-in">
+      <a class="brand" href="#/home" data-page="home" aria-label="LA Smoke Shop home">
+        <span class="brand-mark" aria-hidden="true">LA</span>
+        <span class="brand-name">LA Smoke Shop<small>Benson Hwy, Tucson</small></span>
+      </a>
+      <button id="menu-btn" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#/home" data-page="home">Home</a>
+        <a href="#/shop" data-page="shop">The Shop</a>
+        <a href="#/reviews" data-page="reviews">Reviews</a>
+        <a href="#/visit" data-page="visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <span class="kicker">Family owned and operated</span>
+            <h1>The <span class="hl">familia</span> smoke shop on Benson Hwy</h1>
+            <div class="ribbon" role="note">Familia desde 2009 · Family business since 2009</div>
+            <p class="lead">LA Smoke Shop has been serving the south side from the same Benson Highway spot for over fifteen years. Same family, same counter, same straight-up service, with a deeper selection than the little shop front lets on.</p>
+            <div class="cta-row">
+              <a class="btn btn-red" href="#/shop" data-page="shop"><i class="fa-solid fa-store" aria-hidden="true"></i> The shelves</a>
+              <a class="btn btn-line" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Hours and address</a>
+            </div>
+          </div>
+          <div class="familia-card">
+            <div class="script">Established</div>
+            <div class="yr">2009, SAME SPOT ON BENSON HWY</div>
+            <div class="stars" aria-label="Rated 4.1 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <span class="score">4.1 stars on Google</span>
+            <span class="scored">across 143 reviews</span>
+            <span id="status-chip" class="status-chip"><span class="dot"></span>Checking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>Shop hours, <span class="hl">the family schedule</span></h2>
+            <p>Two simple windows to remember. Open late on the weekends, home for dinner the rest of the week.</p>
+          </div>
+          <div class="hours-groups">
+            <div class="hgroup" data-days="0,1,2,3,4">
+              <div class="days">Sunday through Thursday</div>
+              <div class="time">9 AM - 10 PM</div>
+              <span class="flag">Today</span>
+            </div>
+            <div class="hgroup" data-days="5,6">
+              <div class="days">Friday and Saturday</div>
+              <div class="time">9 AM - 11 PM</div>
+              <span class="flag">Today</span>
+            </div>
+          </div>
+          <p class="confirm-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Sources differ slightly on our hours. Please call to confirm before a late-night run.</p>
+        </div>
+      </div>
+
+      <div class="section tint">
+        <div class="wrap">
+          <div class="sec-head center">
+            <h2>Run by people, <span class="hl">not a chain</span></h2>
+            <p>All these years of regulars will tell you what to expect: someone behind the counter who knows the products, remembers your usual, and keeps the place stocked with what the neighborhood actually asks for.</p>
+          </div>
+          <div style="text-align:center;">
+            <a class="btn btn-red" href="#/reviews" data-page="reviews"><i class="fa-solid fa-star" aria-hidden="true"></i> See what regulars say</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE SHOP (category) -->
+    <section class="page" id="page-shop">
+      <div class="section">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>The Shop</h2>
+            <p>Everything a proper smoke shop carries, from the everyday staples to the piece you did not know you were looking for.</p>
+          </div>
+          <div class="board">
+            <div class="board-item">
+              <i class="fa-solid fa-battery-three-quarters" aria-hidden="true"></i>
+              <h3>Vapes</h3>
+              <p>The disposables and hardware people actually ask for.</p>
+            </div>
+            <div class="board-item">
+              <i class="fa-solid fa-jar" aria-hidden="true"></i>
+              <h3>Glass</h3>
+              <p>Hand pieces and home-shelf basics behind the case.</p>
+            </div>
+            <div class="board-item">
+              <i class="fa-solid fa-joint" aria-hidden="true"></i>
+              <h3>Wraps and papers</h3>
+              <p>A full wall of the roll-your-own essentials.</p>
+            </div>
+            <div class="board-item">
+              <i class="fa-solid fa-fire" aria-hidden="true"></i>
+              <h3>Cigars</h3>
+              <p>From quick everyday sticks to the weekend ones.</p>
+            </div>
+            <div class="board-item">
+              <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+              <h3>Lighters and tools</h3>
+              <p>Torches, lighters, and the small stuff you always forget.</p>
+            </div>
+            <div class="board-item">
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+              <h3>CBD and more</h3>
+              <p>Ask the counter what is on the shelf this week.</p>
+            </div>
+          </div>
+          <div class="age-strip">
+            <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+            <div>
+              <h3>21 and over, valid ID required</h3>
+              <p>Family shop, real rules. Bring a current valid ID for every purchase.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section tint">
+        <div class="wrap">
+          <div class="sec-head center">
+            <h2>Ask the counter, <span class="hl">they know the stock</span></h2>
+            <p>Wondering if something is in? Call before you drive. All these years behind the same counter means a fast, honest answer.</p>
+          </div>
+          <div style="text-align:center;">
+            <a class="btn btn-red" href="#/visit" data-page="visit"><i class="fa-solid fa-phone" aria-hidden="true"></i> Reach the shop</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="page" id="page-reviews">
+      <div class="section">
+        <div class="wrap">
+          <div class="sec-head center">
+            <h2>Reviews</h2>
+            <p>Real words from real customers, shown exactly as written.</p>
+          </div>
+          <div class="poster">
+            <span class="gq" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
+            <blockquote>"The Lil homie behind the counter is knowledgeable about all the utensils and products."</blockquote>
+            <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <span class="who">Google review</span>
+          </div>
+          <div class="review-summary">
+            <span class="score">4.1 stars with 143 reviews</span>
+            <p>Knowledgeable counter help is the theme, and it is the thing we work on every single day.</p>
+          </div>
+          <div class="link-cards">
+            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=LA%20Smoke%20Shop%2C%203015%20E%20Benson%20Hwy%2C%20Tucson%2C%20AZ%2085706" target="_blank" rel="noopener">
+              <i class="fa-brands fa-google" aria-hidden="true"></i>
+              <span>See every review on Google<small>Opens Google Maps in a new tab</small></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="page" id="page-visit">
+      <div class="section">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>Visit</h2>
+            <p>Right on E Benson Hwy, easy in and out from the boulevard. Open nine to close, seven days a week.</p>
+          </div>
+          <div class="visit-grid">
+            <div class="ribbon-card">
+              <div class="rc-band">La Familia at 3015 E Benson Hwy</div>
+              <div class="rc-body">
+                <div class="rc-row">
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  <div><b>The shop</b>3015 E Benson Hwy, Tucson, AZ 85706</div>
+                </div>
+                <div class="rc-row">
+                  <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                  <div><b>Call the counter</b><a class="rc-phone" href="tel:+15202941998">(520) 294-1998</a></div>
+                </div>
+                <div class="rc-row">
+                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  <div><b>Hours</b>Sun through Thu 9 AM - 10 PM, Fri and Sat 9 AM - 11 PM</div>
+                </div>
+                <div class="rc-row">
+                  <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                  <div><b>At the door</b>21 and over, valid ID required</div>
+                </div>
+                <div class="rc-note">Hours can vary by source, so a quick call before a late run is never a bad idea.</div>
+              </div>
+            </div>
+            <div class="form-card">
+              <h3>Ask about <span class="hl">stock</span></h3>
+              <p class="hint">Send the shop a note. On your phone this opens a text; on a desktop it copies the message so you can paste it into a text to the counter.</p>
+              <form id="quote-form" novalidate>
+                <div class="field">
+                  <label for="f-name">Your name</label>
+                  <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+                </div>
+                <div class="field">
+                  <label for="f-phone">Your phone number</label>
+                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(520) 555-0100">
+                </div>
+                <div class="field">
+                  <label for="f-msg">What do you need?</label>
+                  <textarea id="f-msg" name="message" required placeholder="Do you have ... in stock today?"></textarea>
+                </div>
+                <button class="btn btn-red" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the shop</button>
+                <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-in">
+      <div>
+        <h4>LA Smoke Shop</h4>
+        <p>Family owned on E Benson Hwy since 2009. Vapes, glass, wraps, cigars, lighters, CBD and the rest, with counter people who know every shelf.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>(520) 294-1998</p>
+        <p>3015 E Benson Hwy<br>Tucson, AZ 85706</p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Sun through Thu: 9 AM - 10 PM</p>
+        <p>Fri and Sat: 9 AM - 11 PM</p>
+        <p>21 and over, valid ID required</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© LA Smoke Shop · Tucson, AZ</div>
+  </footer>
+</div>
+
+<script>
+var BUSINESS = "LA Smoke Shop";
+var TITLES = { home: "Family Owned on Benson Hwy Since 2009", shop: "The Shop", reviews: "Reviews", visit: "Visit" };
+var PRETTY_PHONE = "(520) 294-1998";
+var PHONE = "+15202941998";
+var CITY_TZ = "America/Phoenix";
+var HOURS = {0:[9,22],1:[9,22],2:[9,22],3:[9,22],4:[9,22],5:[9,23],6:[9,23]};
+
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+  document.querySelectorAll(".nav-links a").forEach(function(a){
+    a.classList.toggle("is-here", a.getAttribute("data-page") === id);
+  });
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderStatus(){
+  var s = openState();
+  document.querySelectorAll(".status-chip").forEach(function(chip){
+    chip.classList.toggle("is-open", s.open);
+    chip.classList.toggle("is-closed", !s.open);
+    chip.innerHTML = '<span class="dot"></span>' + s.label;
+  });
+}
+function markToday(){
+  var day = cityNow().day;
+  document.querySelectorAll(".hgroup[data-days]").forEach(function(g){
+    var days = g.getAttribute("data-days").split(",").map(Number);
+    g.classList.toggle("today", days.indexOf(day) !== -1);
+  });
+}
+
+var mb = document.getElementById("menu-btn");
+var nl = document.querySelector(".nav-links");
+mb.addEventListener("click", function(){
+  var open = nl.classList.toggle("open");
+  mb.classList.toggle("open", open);
+  mb.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+var form = document.getElementById("quote-form");
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  var name = document.getElementById("f-name").value.trim();
+  var phone = document.getElementById("f-phone").value.trim();
+  var msg = document.getElementById("f-msg").value.trim();
+  if (!name || !phone || !msg) {
+    document.getElementById("form-feedback").textContent = "Add all three so the counter can text you back.";
+    return;
+  }
+  var note = "Stock question for " + BUSINESS + "\nName: " + name + "\nPhone: " + phone + "\n\n" + msg;
+  var body = encodeURIComponent(note);
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    location.href = "sms:" + PHONE + "?&body=" + body;
+  } else {
+    navigator.clipboard.writeText(note).then(function(){
+      document.getElementById("form-feedback").textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE + ".";
+    });
+  }
+});
+
+navigateTo(getPageFromHash(), false);
+renderStatus();
+markToday();
+</script>
+</body>
+</html>

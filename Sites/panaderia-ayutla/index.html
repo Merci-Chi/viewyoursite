@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pan Dulce &amp; Fresh Bread on Clark Street | Panaderia Ayutla</title>
+<link href="https://fonts.googleapis.com/css2?family=Oleo+Script&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --guava:#E8798A; --guava-d:#C95A6D; --guava-l:#F5B7C0;
+  --wheat:#F2E3C6; --wheat-d:#E7D2A8;
+  --cocoa:#5A3A26; --cocoa-d:#432A1A; --cream:#FFFBF3; --soft:#7A6A5C;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Nunito",sans-serif;background:var(--wheat);color:var(--cocoa);line-height:1.65;font-size:17px}
+h1,h2,h3,.display{font-family:"Oleo Script",cursive;color:var(--cocoa);line-height:1.15;margin:0 0 12px;font-weight:400}
+h1{font-size:clamp(34px,4.8vw,54px)}
+h2{font-size:clamp(27px,3.4vw,38px)}
+h3{font-size:21px}
+p{margin:0 0 14px}
+a{color:var(--guava-d)}
+svg{max-width:100%;height:auto}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+.site-shell{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
+footer{flex-shrink:0}
+.page{display:none}
+.page.active{display:block}
+
+/* Header */
+.site-header{background:var(--cream);border-bottom:3px dashed var(--guava-l)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--cocoa)}
+.brand svg{width:42px;height:42px;flex:none}
+.brand-name{font-family:"Oleo Script",cursive;font-size:22px;line-height:1}
+.brand-sub{display:block;font-family:"Nunito",sans-serif;font-size:11px;letter-spacing:2.2px;text-transform:uppercase;color:var(--guava-d);font-weight:800;margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+.nav-links a{display:block;color:var(--cocoa);text-decoration:none;font-weight:800;font-size:15px;padding:8px 14px;border-radius:999px;border:2px solid transparent}
+.nav-links a:hover{border-color:var(--guava-l)}
+.nav-links a[aria-current="page"]{background:var(--guava);color:#fff}
+.menu-btn{display:none;background:transparent;border:2px solid var(--guava);border-radius:9px;padding:9px 11px;cursor:pointer}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--cocoa);margin:4px 0;transition:transform .2s}
+.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Buttons */
+.btn{display:inline-block;font-family:"Nunito",sans-serif;font-weight:900;font-size:16px;padding:13px 26px;border-radius:999px;text-decoration:none;border:2.5px solid transparent;cursor:pointer;transition:transform .15s, box-shadow .15s}
+.btn:hover{transform:translateY(-2px) rotate(-.5deg)}
+.btn-solid{background:var(--guava);color:#fff;box-shadow:0 6px 0 var(--guava-d)}
+.btn-solid:hover{box-shadow:0 3px 0 var(--guava-d);transform:translateY(1px)}
+.btn-cocoa{background:var(--cocoa);color:var(--wheat)}
+.btn-cocoa:hover{background:var(--cocoa-d)}
+
+/* Status chip */
+.status-chip{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:14px;letter-spacing:.6px;padding:8px 16px;border-radius:999px;background:#fff;border:2px solid var(--wheat-d);color:var(--cocoa)}
+.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#9AA39B;flex:none}
+.status-chip.chip-open .dot{background:#2F9E5B;box-shadow:0 0 0 4px rgba(47,158,91,.18)}
+.status-chip.chip-closed .dot{background:#A5493B;box-shadow:0 0 0 4px rgba(165,73,59,.15)}
+
+/* Hero: art left, text right */
+.hero{padding:56px 0 46px}
+.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.oreja-badge{position:relative;background:var(--cream);border:3px solid var(--guava-l);border-radius:50%;width:min(320px,80%);aspect-ratio:1;margin:0 auto;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(90,58,38,.14)}
+.oreja-badge::after{content:"OREJAS HECHAS EN CASA";position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--guava);color:#fff;font-size:11px;letter-spacing:2.4px;font-weight:900;border-radius:999px;padding:6px 16px;white-space:nowrap}
+.eyebrow{font-size:13px;font-weight:900;letter-spacing:2.6px;text-transform:uppercase;color:var(--guava-d);margin:0 0 12px}
+.hero p.lede{font-size:19px;color:var(--soft);max-width:52ch}
+.tray-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:2px dashed var(--guava);border-radius:999px;padding:8px 18px;font-weight:900;font-size:15px;color:var(--guava-d);margin-bottom:16px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+
+/* Tray divider */
+.tray-line{display:flex;align-items:center;gap:10px;margin:6px 0}
+.tray-line::before,.tray-line::after{content:"";flex:1;border-top:3px dashed var(--guava-l)}
+.tray-line i{color:var(--guava-d);font-size:15px}
+
+/* Sections */
+.section{padding:54px 0}
+.section-head{max-width:660px;margin:0 auto 36px;text-align:center}
+.section-head p{color:var(--soft)}
+
+/* Goods trays */
+.goods{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tray-card{background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:18px 18px 22px 22px;padding:0 0 22px;overflow:hidden;transition:transform .15s, box-shadow .15s}
+.tray-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(90,58,38,.15)}
+.tray-card .tray-top{background:linear-gradient(180deg,var(--guava-l),var(--guava));padding:14px;display:flex;justify-content:center}
+.tray-card .tray-top i{color:#fff;font-size:21px}
+.tray-card h3{text-align:center;margin:16px 0 6px;padding:0 20px}
+.tray-card p{margin:0;text-align:center;padding:0 22px;font-size:15.5px;color:var(--soft)}
+
+/* Family strip */
+.family{background:var(--cocoa);color:var(--wheat);border-radius:26px;padding:40px 38px;display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center}
+.family h2{color:var(--cream)}
+.family p{color:var(--wheat-d)}
+.family .swirl-small{display:block;margin:0 auto}
+.family-facts{display:flex;gap:24px;flex-wrap:wrap;margin-top:18px}
+.fact b{display:block;font-family:"Oleo Script",cursive;font-size:28px;color:var(--guava-l);font-weight:400}
+.fact span{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--wheat-d);font-weight:800}
+
+/* La Panaderia page */
+.step-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:30px}
+.step{background:var(--cream);border:2.5px dashed var(--guava-l);border-radius:16px;padding:22px;text-align:center}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--guava);color:#fff;font-weight:900;margin-bottom:10px}
+.step h3{font-size:19px}
+.step p{margin:0;font-size:15px;color:var(--soft)}
+.shelf{background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:18px;padding:24px 26px;margin-bottom:16px}
+.shelf h3{display:flex;align-items:center;gap:12px}
+.shelf h3 i{color:var(--guava-d)}
+.shelf p{margin:0;color:var(--soft)}
+.shelf-tags{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.shelf-tags li{background:var(--wheat);border:1.5px solid var(--wheat-d);border-radius:999px;padding:5px 14px;font-size:14px;font-weight:800;color:var(--cocoa)}
+
+/* Reviews */
+.review-stack{max-width:760px;margin:0 auto}
+.quote-card{position:relative;background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:18px;padding:26px 28px 20px;margin-bottom:18px}
+.quote-card::before{content:"\201C";font-family:"Oleo Script",cursive;font-size:58px;color:var(--guava);position:absolute;top:-14px;left:18px;line-height:1}
+.quote-card blockquote{margin:14px 0 14px;font-size:18.5px;font-weight:700;color:var(--cocoa)}
+.quote-meta{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:2px dashed var(--wheat-d);padding-top:12px}
+.stars i{color:var(--guava);font-size:14px;margin-right:3px}
+.quote-src{font-size:13px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:var(--soft)}
+.rating-summary{background:var(--cocoa);color:var(--wheat);border-radius:18px;padding:24px 28px;max-width:760px;margin:8px auto 0;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.rating-summary .big{font-family:"Oleo Script",cursive;font-size:42px;color:var(--guava-l);line-height:1;font-weight:400}
+.rating-summary p{margin:0;font-weight:700;color:var(--cream)}
+.link-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:760px;margin:18px auto 0}
+.link-card{display:flex;align-items:center;gap:14px;background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:16px;padding:18px 20px;text-decoration:none;color:var(--cocoa);font-weight:900;transition:transform .15s, box-shadow .15s}
+.link-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(90,58,38,.14)}
+.link-card i{width:42px;height:42px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--guava);color:#fff;font-size:17px}
+.link-card small{display:block;font-weight:700;color:var(--soft)}
+
+/* Visit page */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.bag-card{background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:0 0 18px 18px;padding:0 28px 28px;position:relative;box-shadow:0 14px 30px rgba(90,58,38,.10)}
+.bag-top{display:block;width:calc(100% + 56px);margin:0 -28px 18px}
+.bag-card h3{text-align:center;font-size:24px}
+.bag-card .addr{display:flex;gap:10px;align-items:flex-start;justify-content:center;color:var(--soft);font-weight:800;margin-bottom:16px;text-align:center}
+.bag-card .addr i{color:var(--guava-d);margin-top:4px}
+.tel-big{display:flex;align-items:center;justify-content:center;gap:11px;background:var(--guava);color:#fff;text-decoration:none;font-weight:900;font-size:21px;padding:13px 22px;border-radius:14px;box-shadow:0 5px 0 var(--guava-d)}
+.tel-big:hover{transform:translateY(1px);box-shadow:0 3px 0 var(--guava-d)}
+.walkin{margin:16px 0 0;font-size:14.5px;color:var(--soft);font-weight:700;text-align:center}
+
+/* Hours ribbon */
+.ribbon{background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:16px;padding:20px}
+.ribbon-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ribbon-head b{font-size:18px;color:var(--cocoa)}
+.early-badge{display:inline-flex;align-items:center;gap:8px;background:var(--cocoa);color:var(--wheat);border-radius:999px;padding:7px 14px;font-weight:900;font-size:13px;letter-spacing:1px}
+.day-chips{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;list-style:none;margin:0;padding:0}
+.day-chips li{background:var(--wheat);border-radius:10px;padding:10px 6px;text-align:center;font-weight:800;font-size:13.5px;color:var(--cocoa)}
+.day-chips li span{display:block;font-size:12px;font-weight:700;color:var(--soft);margin-top:2px}
+.day-chips li.today{background:var(--guava);color:#fff}
+.day-chips li.today span{color:#FFE3E8}
+
+/* Form */
+.form-card{background:var(--cream);border:2.5px solid var(--wheat-d);border-radius:18px;padding:28px 26px}
+.form-card h3{display:flex;align-items:center;gap:10px}
+.form-card h3 i{color:var(--guava-d)}
+.field{margin-bottom:15px}
+.field label{display:block;font-weight:900;font-size:14px;letter-spacing:.6px;margin-bottom:6px;color:var(--cocoa)}
+.field input,.field textarea{width:100%;font-family:"Nunito",sans-serif;font-size:16px;padding:12px 14px;border:2px solid var(--wheat-d);border-radius:12px;background:#fff;color:var(--cocoa)}
+.field input:focus,.field textarea:focus{outline:2px solid var(--guava);border-color:var(--guava)}
+.field textarea{min-height:110px;resize:vertical}
+.form-feedback{min-height:24px;font-weight:900;color:var(--guava-d);margin:12px 0 0}
+.form-fine{font-size:13px;color:var(--soft);margin:6px 0 0}
+
+/* Footer */
+.site-footer{background:var(--cocoa);color:var(--wheat-d)}
+.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;padding:44px 0 26px}
+.foot-grid h4{font-family:"Oleo Script",cursive;color:var(--cream);font-size:19px;margin:0 0 10px;font-weight:400}
+.foot-grid p,.foot-grid li{font-size:14.5px}
+.foot-grid ul{list-style:none;margin:0;padding:0}
+.foot-grid li{margin-bottom:7px}
+.foot-grid a{color:var(--guava-l)}
+.foot-tel{display:inline-block;margin-top:8px;font-weight:900;font-size:17px;color:var(--cream);text-decoration:none}
+.foot-tel:hover{text-decoration:underline}
+.copyright{text-align:center;font-size:14px;padding:16px 0 22px;border-top:1px dashed rgba(242,227,198,.28);margin:0}
+.copyright p{margin:0}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .oreja-badge{order:-1;margin-top:6px}
+  .goods,.step-row{grid-template-columns:repeat(2,1fr)}
+  .family{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .day-chips{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .goods,.step-row,.link-cards,.foot-grid{grid-template-columns:1fr}
+  .day-chips{grid-template-columns:repeat(2,1fr)}
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:6px;border-bottom:3px dashed var(--guava-l);box-shadow:0 14px 26px rgba(0,0,0,.12)}
+  .nav-links.open{display:flex}
+  .site-header{position:relative}
+  .hero{padding:42px 0 38px}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+<header class="site-header">
+  <div class="wrap head-row">
+    <a class="brand" href="#/home" data-page="home" aria-label="Panaderia Ayutla home">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <g fill="none" stroke="#5A3A26" stroke-width="9" stroke-linecap="round">
+          <path d="M100 100 C64 92 46 66 56 38 C76 46 90 62 96 84"/>
+          <path d="M100 100 C124 74 154 70 176 88 C160 104 136 110 114 106"/>
+          <path d="M100 100 C120 122 122 150 104 170 C90 156 86 132 92 114"/>
+          <path d="M100 100 C74 108 50 124 46 152 C68 152 88 140 98 122"/>
+        </g>
+        <circle cx="100" cy="100" r="12" fill="#E8798A"/>
+        <circle cx="58" cy="34" r="4" fill="#E8798A"/><circle cx="152" cy="62" r="4" fill="#E8798A"/>
+        <circle cx="118" cy="172" r="4" fill="#E8798A"/><circle cx="42" cy="160" r="4" fill="#E8798A"/>
+      </svg>
+      <span class="brand-name">Panaderia Ayutla<span class="brand-sub">Clark St · Chicago</span></span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#/home" data-page="home">Home</a></li>
+        <li><a href="#/panaderia" data-page="panaderia">La Panaderia</a></li>
+        <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
+        <li><a href="#/visit" data-page="visit">Visit</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HOME ============ -->
+<section class="page" id="page-home">
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <figure class="oreja-badge" style="margin:0 auto">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Oreja palm pastry swirl illustration" style="width:74%">
+          <g fill="none" stroke="#C95A6D" stroke-width="9" stroke-linecap="round">
+            <path d="M100 100 C64 92 46 66 56 38 C76 46 90 62 96 84"/>
+            <path d="M100 100 C124 74 154 70 176 88 C160 104 136 110 114 106"/>
+            <path d="M100 100 C120 122 122 150 104 170 C90 156 86 132 92 114"/>
+            <path d="M100 100 C74 108 50 124 46 152 C68 152 88 140 98 122"/>
+          </g>
+          <circle cx="100" cy="100" r="12" fill="#E8798A"/>
+          <circle cx="58" cy="34" r="4" fill="#C95A6D"/><circle cx="152" cy="62" r="4" fill="#C95A6D"/>
+          <circle cx="118" cy="172" r="4" fill="#C95A6D"/><circle cx="42" cy="160" r="4" fill="#C95A6D"/>
+          <circle cx="160" cy="140" r="3" fill="#E7D2A8"/><circle cx="36" cy="76" r="3" fill="#E7D2A8"/>
+        </svg>
+      </figure>
+      <div>
+        <span class="tray-pill"><i class="fa-solid fa-hand-pointer"></i> Grab a tray, pick your favorites</span>
+        <h1>Sweet bread from a family oven on Clark Street</h1>
+        <div class="status-chip" role="status"><span class="dot"></span>Checking hours...</div>
+        <p class="lede">Panaderia Ayutla is the family-run panaderia in Rogers Park with trays of pan dulce, soft bolillos, orejas and cookies, baked fresh every morning before the doors open at 6.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="#/panaderia" data-page="panaderia">See the trays</a>
+          <a class="btn btn-cocoa" href="#/visit" data-page="visit">Plan a morning visit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap"><div class="tray-line" aria-hidden="true"><i class="fa-solid fa-cookie-bite"></i><i class="fa-solid fa-bread-slice"></i><i class="fa-solid fa-cake-candles"></i></div></div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What comes out of the oven</h2>
+        <p>Trays refill through the day, but early birds get the warm ones.</p>
+      </div>
+      <div class="goods">
+        <div class="tray-card">
+          <div class="tray-top"><i class="fa-solid fa-cookie-bite"></i></div>
+          <h3>Pan Dulce Trays</h3>
+          <p>Conchas, cuernos, puerquitos and the day's sugar-dusted batch, laid out on trays so you can pick piece by piece.</p>
+        </div>
+        <div class="tray-card">
+          <div class="tray-top"><i class="fa-solid fa-bread-slice"></i></div>
+          <h3>Bolillos &amp; Breads</h3>
+          <p>Crusty bolillos and teleras for the week's tortas, plus soft sandwich loaves the neighbors call the reason they skip the supermarket.</p>
+        </div>
+        <div class="tray-card">
+          <div class="tray-top"><i class="fa-solid fa-heart"></i></div>
+          <h3>Orejas &amp; Favorites</h3>
+          <p>The palm-pastry orejas that people come back for, layered crisp and buttery, waiting near the register where they never last.</p>
+        </div>
+        <div class="tray-card">
+          <div class="tray-top"><i class="fa-solid fa-mug-hot"></i></div>
+          <h3>Cookies</h3>
+          <p>Polvorones, sugar cookies and wedding-style cookies by the dozen for office tables and after-dinner plates.</p>
+        </div>
+        <div class="tray-card">
+          <div class="tray-top"><i class="fa-solid fa-sun"></i></div>
+          <h3>Morning Batch</h3>
+          <p>Doors open at 6 AM with the first bake already cooling. The 7 AM line knows why they came.</p>
+        </div>
+        <div class="tray-card">
+          <div class="tray-top"><i class="fa-solid fa-users"></i></div>
+          <h3>Family Counter</h3>
+          <p>A family-run bakery: the same hands that fill the trays wrap the pink paper and ring you up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="family">
+        <div>
+          <h2>Pan de cada día</h2>
+          <p>Every day at 6 in the morning the ovens go on, and by the time the doors open the cases smell like a Mexico City corner bakery. Grab a tray, walk the cases, pick what calls to you, and pay at the counter. That is how a panaderia is supposed to work.</p>
+          <div class="family-facts">
+            <div class="fact"><b>6 AM</b><span>doors open daily</span></div>
+            <div class="fact"><b>4.6</b><span>stars on Google</span></div>
+            <div class="fact"><b>7</b><span>days a week</span></div>
+          </div>
+        </div>
+        <figure style="margin:0">
+          <svg class="swirl-small" viewBox="0 0 220 150" role="img" aria-label="Bakery tray with pastries illustration">
+            <rect x="14" y="84" width="192" height="16" rx="8" fill="#E8798A"/>
+            <path d="M28 92 C18 92 14 86 16 80 M192 92 C202 92 206 86 204 80" stroke="#E8798A" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <g fill="#F2E3C6" stroke="#5A3A26" stroke-width="4">
+              <circle cx="52" cy="62" r="16"/>
+              <path d="M96 50 a14 14 0 0 1 28 0 v14 h-28 Z"/>
+              <path d="M150 76 c-4 -18 6 -30 16 -30 c10 0 20 12 16 30 Z"/>
+            </g>
+            <g fill="#5A3A26"><circle cx="46" cy="58" r="2.6"/><circle cx="58" cy="58" r="2.6"/><circle cx="110" cy="52" r="2.4"/></g>
+          </svg>
+        </figure>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ============ LA PANADERIA ============ -->
+<section class="page" id="page-panaderia">
+  <div class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow" style="text-align:center">La Panaderia</p>
+      <h2>How the tray works</h2>
+      <p>No counter ordering, no waiting. Tong in one hand, tray in the other.</p>
+    </div>
+
+    <div class="step-row">
+      <div class="step"><span class="n">1</span><h3>Grab a tray</h3><p>Tongs and trays are stacked right at the start of the cases.</p></div>
+      <div class="step"><span class="n">2</span><h3>Pick your fav items</h3><p>Walk both walls. Mix pan dulce with bolillos however you like.</p></div>
+      <div class="step"><span class="n">3</span><h3>Pay at the counter</h3><p>We wrap it in paper, bag it, and you are out the door in minutes.</p></div>
+    </div>
+
+    <div class="shelf">
+      <h3><i class="fa-solid fa-cookie-bite"></i> The dulce cases</h3>
+      <p>Two full cases of sweet bread, refilled as trays empty. What you see depends on the day's bake, and that is half the fun.</p>
+      <ul class="shelf-tags"><li>Conchas</li><li>Cuernos</li><li>Puerquitos</li><li>Dedos de novia</li><li>Seasonal trays</li></ul>
+    </div>
+
+    <div class="shelf">
+      <h3><i class="fa-solid fa-bread-slice"></i> The daily bread wall</h3>
+      <p>Bolillos and teleras in baskets, baked through the morning so the crust still crackles. Loaves and rolls by the bag for the week.</p>
+      <ul class="shelf-tags"><li>Bolillos</li><li>Teleras</li><li>Sandwich loaves</li><li>Bag rolls</li></ul>
+    </div>
+
+    <div class="shelf">
+      <h3><i class="fa-solid fa-heart"></i> Orejas &amp; the famous ones</h3>
+      <p>The orejas get their own spot near the register. Crisp, buttery palms with just enough sugar, and usually the first tray to empty.</p>
+      <ul class="shelf-tags"><li>Orejas</li><li>Polvorones</li><li>Sugar cookies</li><li>Seasonal trays</li></ul>
+    </div>
+
+    <div class="shelf">
+      <h3><i class="fa-solid fa-users"></i> Family-run since day one</h3>
+      <p>The City Clerk knows us as a family bakery and the neighborhood knows our trays. Ask whoever is at the counter what came out last: they will point you straight to it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="page" id="page-reviews">
+  <div class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow" style="text-align:center">Reviews</p>
+      <h2>What the tray-pickers say</h2>
+      <p>Real reviews from Clark Street regulars and first-timers alike.</p>
+    </div>
+
+    <div class="review-stack">
+      <div class="quote-card">
+        <blockquote>"Awesome pastries!"</blockquote>
+        <div class="quote-meta">
+          <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+          <span class="quote-src">Google review</span>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>"I love this bakery! They have a vast selection of pastries, breads, and cookies. Just grab a tray and pick out your fav items!"</blockquote>
+        <div class="quote-meta">
+          <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+          <span class="quote-src">Google review</span>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>"The bread here is so soft and delicious."</blockquote>
+        <div class="quote-meta">
+          <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+          <span class="quote-src">Google review</span>
+        </div>
+      </div>
+
+      <div class="rating-summary">
+        <span class="big">4.6</span>
+        <p>4.6 stars on Google. A family bakery judged by its trays, one review at a time.</p>
+      </div>
+
+      <div class="link-cards">
+        <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Panaderia%20Ayutla%2C%206963%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060626" target="_blank" rel="noopener">
+          <i class="fa-brands fa-google"></i>
+          <span>See every review on Google<small>Open our Google listing</small></span>
+        </a>
+        <a class="link-card" href="https://www.yelp.com/biz/panaderia-ayutla-chicago" target="_blank" rel="noopener">
+          <i class="fa-brands fa-yelp"></i>
+          <span>Read the Yelp reviews<small>Yelpers love the trays too</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="page" id="page-visit">
+  <div class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow" style="text-align:center">Visit</p>
+      <h2>Find the bakery</h2>
+      <p>On North Clark Street in Rogers Park, a short walk from the Morse red line stop. Come early for the warm trays.</p>
+    </div>
+
+    <div class="visit-grid">
+      <div>
+        <div class="bag-card">
+          <svg class="bag-top" viewBox="0 0 340 26" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 26 V12 L14 2 L28 12 L42 2 L56 12 L70 2 L84 12 L98 2 L112 12 L126 2 L140 12 L154 2 L168 12 L182 2 L196 12 L210 2 L224 12 L238 2 L252 12 L266 2 L280 12 L294 2 L308 12 L322 2 L336 12 V26 Z" fill="#E8798A"/>
+            <path d="M0 12 L14 2 L28 12 L42 2 L56 12 L70 2 L84 12 L98 2 L112 12 L126 2 L140 12 L154 2 L168 12 L182 2 L196 12 L210 2 L224 12 L238 2 L252 12 L266 2 L280 12 L294 2 L308 12 L322 2 L336 12" fill="none" stroke="#C95A6D" stroke-width="2"/>
+          </svg>
+          <h3>The paper-bag card</h3>
+          <p class="addr"><i class="fa-solid fa-location-dot"></i> 6963 N Clark St # 1, Chicago, IL 60626</p>
+          <a class="tel-big" href="tel:+17737649077"><i class="fa-solid fa-phone"></i> (773) 764-9077</a>
+          <p class="walkin"><i class="fa-solid fa-door-open"></i> Open every day 6 AM - 8 PM. Trays start full.</p>
+        </div>
+
+        <div class="ribbon" style="margin-top:22px">
+          <div class="ribbon-head">
+            <b>Every day, 6 AM - 8 PM</b>
+            <span class="early-badge"><i class="fa-solid fa-sun"></i> Ovens on at 6 AM</span>
+          </div>
+          <ul class="day-chips">
+            <li data-day="0">Sun<span>6 - 8</span></li>
+            <li data-day="1">Mon<span>6 - 8</span></li>
+            <li data-day="2">Tue<span>6 - 8</span></li>
+            <li data-day="3">Wed<span>6 - 8</span></li>
+            <li data-day="4">Thu<span>6 - 8</span></li>
+            <li data-day="5">Fri<span>6 - 8</span></li>
+            <li data-day="6">Sat<span>6 - 8</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3><i class="fa-solid fa-envelope-open-text"></i> Questions for the bakery</h3>
+        <p style="color:var(--soft)">Wondering what time a batch lands, or putting in a word for a big dozen order? Send a note and the family will answer.</p>
+        <form id="note-form" novalidate>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Rosa M.">
+          </div>
+          <div class="field">
+            <label for="f-phone">Your phone <span style="font-weight:700;color:var(--soft)">(optional)</span></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(773) 555-0100">
+          </div>
+          <div class="field">
+            <label for="f-msg">Your question or order note</label>
+            <textarea id="f-msg" name="message" placeholder="How early should I come for bolillos on Sunday?"></textarea>
+          </div>
+          <button class="btn btn-solid" type="submit"><i class="fa-solid fa-paper-plane"></i> Send note</button>
+          <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+          <p class="form-fine">On a phone, this opens your text app with the note ready. On a computer, it copies the note so you can paste it into a text to the bakery.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <h4>Panaderia Ayutla</h4>
+      <p>Family-run Mexican bakery on Clark Street. Pan dulce, bolillos, orejas and cookies, daily from 6 AM.</p>
+      <a class="foot-tel" href="tel:+17737649077">(773) 764-9077</a>
+    </div>
+    <div>
+      <h4>Find us</h4>
+      <ul>
+        <li>6963 N Clark St # 1</li>
+        <li>Chicago, IL 60626</li>
+        <li>Rogers Park</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Hours</h4>
+      <ul>
+        <li>Every day: 6 AM - 8 PM</li>
+        <li>Ovens on at 6 AM sharp</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright"><p>© Panaderia Ayutla · Chicago, IL</p></div>
+</footer>
+</div>
+
+<script>
+var BUSINESS = "Panaderia Ayutla";
+var TITLES = { home: "Pan Dulce & Fresh Bread on Clark Street", panaderia: "La Panaderia | The Trays", reviews: "Reviews", visit: "Visit & Contact" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  document.querySelectorAll(".nav-links a").forEach(function(a){
+    if (a.getAttribute("data-page") === id) { a.setAttribute("aria-current", "page"); } else { a.removeAttribute("aria-current"); }
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); mb.setAttribute("aria-expanded", "false"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+var mb = document.getElementById("menu-btn");
+var nl = document.querySelector(".nav-links");
+if (mb && nl) {
+  mb.addEventListener("click", function(){
+    var open = nl.classList.toggle("open");
+    mb.classList.toggle("open", open);
+    mb.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+}
+navigateTo(getPageFromHash(), false);
+
+var CITY_TZ = "America/Chicago";
+var HOURS = {0:[6,20],1:[6,20],2:[6,20],3:[6,20],4:[6,20],5:[6,20],6:[6,20]};
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+(function renderStatus(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.add(st.open ? "chip-open" : "chip-closed");
+    c.innerHTML = '<span class="dot"></span>' + st.label;
+  });
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(el){
+    if (+el.getAttribute("data-day") === d) el.classList.add("today");
+  });
+})();
+
+var PHONE = "+17737649077";
+var PRETTY = "(773) 764-9077";
+var form = document.getElementById("note-form");
+var fb = document.getElementById("form-feedback");
+if (form && fb) {
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var phone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) { fb.textContent = "Add your name and a short note first."; return; }
+    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){
+        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      }, function(){
+        fb.textContent = "Could not copy. Call " + PRETTY + " and the bakery will answer.";
+      });
+    } else {
+      fb.textContent = "Copy did not work. Call " + PRETTY + " and the bakery will answer.";
+    }
+  });
+}
+</script>
+</body>
+</html>

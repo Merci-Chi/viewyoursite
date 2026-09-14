@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valley Moon Smoke Shop | Open Till 2 AM, Fresno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --midnight:#0D1B2A;
+  --panel:#132537;
+  --panel-2:#0F1F30;
+  --silver:#E0E1DD;
+  --glow:#8B9DC3;
+  --line:#24405C;
+  --dim:#9AA8BC;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:var(--midnight);color:var(--silver);line-height:1.65;font-size:17px;background-image:radial-gradient(rgba(139,157,195,.08) 1px, transparent 1px);background-size:26px 26px}
+h1,h2,h3{font-family:'Metal Mania',cursive;font-weight:400;line-height:1.05;margin:0 0 14px;letter-spacing:1px}
+a{color:var(--glow)}
+.site-shell{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
+footer{flex-shrink:0}
+.page{display:none}
+.page.active{display:block}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+/* header */
+.site-head{background:var(--panel-2);border-bottom:1px solid var(--line);position:relative;z-index:40}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 22px;max-width:1060px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{display:block}
+.brand-name{font-family:'Metal Mania',cursive;font-size:1.4rem;color:var(--silver);line-height:1.05}
+.brand-name em{font-style:normal;color:var(--glow)}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-weight:600;font-size:.95rem;color:var(--dim);text-decoration:none;padding:6px 2px;border-bottom:2px solid transparent;letter-spacing:1px}
+.nav-links a:hover{color:var(--silver);border-bottom-color:var(--glow)}
+.menu-btn{display:none;background:none;border:2px solid var(--glow);border-radius:8px;padding:8px 10px;cursor:pointer}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--glow);margin:4px 0}
+.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* status chip */
+.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-weight:600;font-size:.88rem;color:var(--silver)}
+.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#6E7C90;flex-shrink:0}
+.status-chip.is-open .dot{background:#7BC98F;box-shadow:0 0 0 4px rgba(123,201,143,.18)}
+.status-chip.is-closed .dot{background:#C97B7B}
+.status-chip.lite{background:transparent}
+
+/* hero */
+.hero{padding:70px 0 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(139,157,195,.16),transparent 62%);pointer-events:none}
+.moon-wrap{width:132px;height:132px;margin:0 auto 26px;filter:drop-shadow(0 0 26px rgba(139,157,195,.55))}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--glow);color:var(--glow);border-radius:999px;padding:9px 20px;font-weight:600;letter-spacing:2px;font-size:.85rem;margin-bottom:22px;background:rgba(139,157,195,.08)}
+.hero h1{font-size:clamp(2.6rem,7vw,4.4rem);color:var(--silver);text-shadow:0 0 30px rgba(139,157,195,.35);margin-bottom:10px}
+.hero .tagline{font-size:1.2rem;font-weight:600;color:var(--glow);margin:0 0 14px}
+.hero p.lead{max-width:600px;margin:0 auto 28px;color:var(--dim)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:28px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.moon-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:999px;background:var(--glow);color:var(--midnight);text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 0 26px rgba(139,157,195,.35)}
+.moon-btn:hover{background:#A3B4D6}
+.moon-btn.ghost{background:transparent;color:var(--silver);border:2px solid var(--line);box-shadow:none}
+.moon-btn.ghost:hover{border-color:var(--glow);color:var(--glow)}
+
+/* age band */
+.age-band{background:rgba(139,157,195,.1);border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--glow);text-align:center;padding:16px 22px;font-weight:600;letter-spacing:2px;font-size:.95rem}
+.age-band i{margin-right:10px}
+
+/* sections */
+section.block{padding:60px 0}
+section.tint{background:var(--panel-2)}
+.sec-title{text-align:center;font-size:clamp(2.1rem,5vw,3rem);color:var(--silver)}
+.sec-sub{text-align:center;max-width:620px;margin:0 auto 36px;color:var(--dim)}
+.sec-title .mooni{color:var(--glow)}
+
+/* product cards */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px}
+.svc-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 22px;text-align:center}
+.svc-card:hover{border-color:var(--glow);box-shadow:0 0 22px rgba(139,157,195,.14)}
+.svc-card .ico{width:52px;height:52px;margin:0 auto 12px;border-radius:50%;background:rgba(139,157,195,.14);color:var(--glow);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.svc-card h3{font-size:1.45rem;color:var(--silver)}
+.svc-card p{margin:0;font-size:.93rem;color:var(--dim)}
+
+/* night board hours */
+.night-board{max-width:560px;margin:0 auto;background:var(--panel);border:1px solid var(--glow);border-radius:18px;padding:34px 30px;text-align:center;box-shadow:0 0 40px rgba(139,157,195,.2), inset 0 0 60px rgba(139,157,195,.05)}
+.night-board .nb-big{font-family:'Metal Mania',cursive;font-size:clamp(2.6rem,7vw,3.8rem);color:var(--glow);line-height:1;text-shadow:0 0 24px rgba(139,157,195,.5)}
+.night-board .nb-sub{font-weight:600;letter-spacing:2px;color:var(--silver);margin-top:10px;font-size:1rem}
+.night-board .nb-note{font-size:.88rem;color:var(--dim);margin:16px 0 0;border-top:1px dashed var(--line);padding-top:14px}
+
+/* quotes */
+.quote-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:32px;position:relative}
+.quote-card:hover{border-color:var(--glow)}
+.quote-card .qmark{color:var(--glow);font-size:1.5rem;margin-bottom:12px}
+.quote-card blockquote{margin:0 0 14px;font-size:1.08rem;color:var(--silver)}
+.quote-card .stars i{color:var(--glow);font-size:.85rem;letter-spacing:3px}
+.quote-card .attrib{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--dim);margin-top:10px}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+/* rating + links */
+.rating-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;margin:36px auto 22px}
+.rating-line .big{font-family:'Metal Mania',cursive;font-size:3.4rem;color:var(--glow);line-height:1}
+.rating-line .rest{font-weight:600;color:var(--dim);font-size:1.05rem}
+.g-link-card{display:flex;align-items:center;justify-content:center;gap:12px;width:fit-content;margin:0 auto;background:var(--glow);color:var(--midnight);border-radius:999px;padding:15px 30px;font-weight:700;text-decoration:none;box-shadow:0 0 26px rgba(139,157,195,.3)}
+.g-link-card:hover{background:#A3B4D6}
+.g-link-card i{color:var(--midnight)}
+
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+.info-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:20px}
+.info-card h3{display:flex;align-items:center;gap:10px;font-size:1.5rem;color:var(--silver)}
+.info-card h3 i{color:var(--glow)}
+.addr{font-weight:600;font-size:1.05rem;color:var(--silver);margin:0 0 6px}
+.info-card p{color:var(--dim);margin:0 0 6px}
+
+/* moon-tag contact card */
+.moon-tag{position:relative;max-width:350px;margin:0 auto;background:var(--panel);border:1px solid var(--glow);border-radius:16px;padding:44px 28px 30px;text-align:center;box-shadow:0 0 36px rgba(139,157,195,.22)}
+.moon-tag::before{content:"";position:absolute;top:16px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:var(--midnight);border:2px solid var(--glow)}
+.moon-tag::after{content:"";position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:2px;height:32px;background:linear-gradient(180deg,transparent,var(--glow))}
+.moon-tag .mt-label{font-size:.78rem;letter-spacing:4px;font-weight:600;color:var(--glow);margin:0 0 10px;text-transform:uppercase}
+.moon-tag .mt-phone{font-family:'Metal Mania',cursive;font-size:2.1rem;color:var(--silver);text-decoration:none;display:block}
+.moon-tag .mt-phone:hover{color:var(--glow)}
+.moon-tag .mt-sub{font-size:.9rem;color:var(--dim);margin:12px 0 0}
+
+/* form */
+.form-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px;max-width:700px;margin:0 auto;box-shadow:0 0 40px rgba(13,27,42,.6)}
+.form-card h3{text-align:center;font-size:1.9rem;color:var(--silver)}
+.form-note{text-align:center;font-size:.95rem;margin:0 auto 24px;max-width:520px;color:var(--dim)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-field{margin-bottom:16px}
+.f-field label{display:block;font-weight:600;font-size:.95rem;margin-bottom:6px;color:var(--silver)}
+.f-field input,.f-field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-family:'Barlow',sans-serif;font-size:.98rem;color:var(--silver);background:var(--panel-2)}
+.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--glow)}
+.f-send{display:block;width:100%;border:none;border-radius:999px;padding:15px;background:var(--glow);color:var(--midnight);font-weight:700;font-size:1.02rem;cursor:pointer}
+.f-send:hover{background:#A3B4D6}
+.form-feedback{text-align:center;font-weight:600;min-height:24px;margin:14px 0 0;font-size:.95rem}
+.form-feedback.ok{color:#7BC98F}
+.form-feedback.warn{color:#C97B7B}
+
+/* footer */
+.site-foot{background:var(--panel-2);border-top:1px solid var(--line);color:var(--dim);margin-top:70px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px;padding:48px 22px 32px;max-width:1060px;margin:0 auto}
+.foot-grid h4{font-family:'Metal Mania',cursive;font-size:1.4rem;color:var(--silver);margin:0 0 12px}
+.foot-grid p{margin:0 0 8px;font-size:.93rem}
+.copyright{border-top:1px solid var(--line);text-align:center;padding:18px 22px;font-size:.9rem;color:var(--silver)}
+
+@media (max-width:860px){
+  .quote-grid{grid-template-columns:1fr}
+  .visit-grid{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--panel-2);border-bottom:1px solid var(--glow);flex-direction:column;align-items:stretch;gap:0;padding:10px 0}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px 26px;border-bottom:none}
+  .nav-links a:hover{background:rgba(139,157,195,.1)}
+  .f-row{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:24px;padding-top:38px}
+  .hero{padding:54px 0 62px}
+  section.block{padding:48px 0}
+}
+@media (max-width:380px){
+  .brand-name{font-size:1.15rem}
+  .hero h1{font-size:2.3rem}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+
+<header class="site-head">
+  <div class="head-in">
+    <a class="brand" href="#/" data-page="home" aria-label="Valley Moon Smoke Shop home">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="#8B9DC3" stroke-width="2"/>
+        <path d="M26 8a13.5 13.5 0 1 0 8.5 24A16 16 0 0 1 26 8z" fill="#E0E1DD"/>
+      </svg>
+      <span class="brand-name">Valley Moon <em>Smoke Shop</em></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#/shop" data-page="shop">The Shop</a>
+      <a href="#/reviews" data-page="reviews">Reviews</a>
+      <a href="#/visit" data-page="visit">Visit</a>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="page" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <div class="moon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 132 132" width="132" height="132">
+          <defs>
+            <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#8B9DC3" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#8B9DC3" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="66" cy="66" r="64" fill="url(#moonGlow)"/>
+          <path d="M84 18a50 50 0 1 0 30 90A58 58 0 0 1 84 18z" fill="#E0E1DD"/>
+          <path d="M96 30c8 10 10 20 9 32" stroke="#8B9DC3" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8"/>
+          <path d="M104 22c6 8 8 16 7 26" stroke="#8B9DC3" stroke-width="2" stroke-linecap="round" fill="none" opacity=".5"/>
+        </svg>
+      </div>
+      <span class="hero-badge"><i class="fa-regular fa-moon"></i> OPEN TILL 2 AM, EVERY NIGHT</span>
+      <h1>Valley Moon Smoke Shop</h1>
+      <p class="tagline">Butler Ave stays up late. So do we.</p>
+      <p class="lead">A smoke shop on E Butler Ave that keeps late hours for the night crowd. Clean, tidy and well organized, with a counter that is friendly at 8 AM and still friendly at 1:40 AM.</p>
+      <div class="hero-chips">
+        <span class="status-chip"><span class="dot"></span><span class="chip-label">Checking hours...</span></span>
+        <span class="status-chip lite">4.0 stars on Google</span>
+      </div>
+      <div class="hero-btns">
+        <a class="moon-btn" href="#/shop" data-page="shop">What we carry <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="moon-btn ghost" href="#/visit" data-page="visit">Visit</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED AT THE COUNTER.</div>
+
+  <section class="block">
+    <div class="wrap">
+      <h2 class="sec-title">Under the <span class="mooni">Moon</span></h2>
+      <p class="sec-sub">The shelves stay stocked for every kind of night, from a quick wrap run to a slow look through the glass.</p>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-wind"></i></div>
+          <h3>Vapes</h3>
+          <p>Disposables and hardware, restocked for the late shift.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-fire-flame-simple"></i></div>
+          <h3>Glass</h3>
+          <p>Pieces and pipes lined up clean, exactly how customers say they like it.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-joint"></i></div>
+          <h3>Cigars and Wraps</h3>
+          <p>Papers, wraps and cigars for the walk home.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
+          <h3>CBD and Delta 8/9</h3>
+          <p>The hemp shelf, marked and easy to ask about.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint">
+    <div class="wrap">
+      <h2 class="sec-title">Late Hours, On Purpose</h2>
+      <p class="sec-sub">Doors open at 8 in the morning and close at 2 past midnight, every single day.</p>
+      <div class="night-board">
+        <div class="nb-big">8 AM - 2 AM</div>
+        <div class="nb-sub">EVERY DAY OF THE WEEK</div>
+        <p class="nb-note">Some directories list a midnight close on certain nights. Call to confirm before a very late run.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="quote-grid">
+        <div class="quote-card">
+          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
+          <blockquote>Very friendly customer service reps ! Very clean, tidy, and well organized!</blockquote>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="attrib">Google review</p>
+        </div>
+        <div class="quote-card">
+          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
+          <blockquote>These guys "and gals" started out at the bottom and boy have they come a long way!</blockquote>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="attrib">Google review</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="page-shop">
+  <section class="block" style="padding-bottom:26px">
+    <div class="wrap">
+      <h1 class="sec-title">The Shop</h1>
+      <p class="sec-sub">A clean, well organized smoke shop on Butler Ave. Everything in its place, and someone at the counter who knows where that is.</p>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-wind"></i></div>
+          <h3>Vapes</h3>
+          <p>Disposables, pods and hardware across the popular lines.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-fire-flame-simple"></i></div>
+          <h3>Glass and Pipes</h3>
+          <p>Hand pipes and glass pieces, dusted and displayed properly.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-joint"></i></div>
+          <h3>Cigars and Wraps</h3>
+          <p>Wraps, papers and cigars by the counter for the ride home.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-fire"></i></div>
+          <h3>Lighters and Extras</h3>
+          <p>Torches, lighters and grinders, always within reach.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
+          <h3>CBD and Delta 8/9</h3>
+          <p>Hemp products on a marked shelf, questions always welcome.</p>
+        </div>
+        <div class="svc-card">
+          <div class="ico"><i class="fa-solid fa-smoking"></i></div>
+          <h3>Hookah and Kratom</h3>
+          <p>Hookah gear plus kratom, both stocked for the regulars.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED AT THE COUNTER.</div>
+  <section class="block tint" style="padding-top:46px">
+    <div class="wrap">
+      <div class="night-board">
+        <div class="nb-big">8 AM - 2 AM</div>
+        <div class="nb-sub">EVERY DAY OF THE WEEK</div>
+        <p class="nb-note">Some directories list a midnight close on certain nights. Call to confirm before a very late run.</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="page-reviews">
+  <section class="block" style="padding-bottom:30px">
+    <div class="wrap">
+      <h1 class="sec-title">Reviews</h1>
+      <p class="sec-sub">Every Google review quote we have, word for word, exactly as written.</p>
+      <div class="quote-grid">
+        <div class="quote-card">
+          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
+          <blockquote>Very friendly customer service reps ! Very clean, tidy, and well organized!</blockquote>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="attrib">Google review</p>
+        </div>
+        <div class="quote-card">
+          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
+          <blockquote>These guys "and gals" started out at the bottom and boy have they come a long way!</blockquote>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="attrib">Google review</p>
+        </div>
+      </div>
+      <div class="rating-line">
+        <span class="big">4.0</span>
+        <span class="rest">stars on Google</span>
+      </div>
+      <a class="g-link-card" href="https://www.google.com/maps/search/?api=1&query=Valley%20Moon%20Smoke%20Shop%2C%203602%20E%20Butler%20Ave%2C%20Fresno%2C%20CA%2093702" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="page-visit">
+  <section class="block" style="padding-bottom:30px">
+    <div class="wrap">
+      <h1 class="sec-title">Visit Us</h1>
+      <p class="sec-sub">E Butler Ave, east Fresno. Open when the city is awake and long after it is not.</p>
+      <div class="visit-grid">
+        <div>
+          <div class="info-card">
+            <h3><i class="fa-solid fa-location-dot"></i> The Counter</h3>
+            <p class="addr">3602 E Butler Ave<br>Fresno, CA 93702</p>
+            <p>Look for the moon. Parking is right out front, any hour of the night.</p>
+          </div>
+          <div class="info-card">
+            <h3><i class="fa-regular fa-moon"></i> Hours</h3>
+            <p class="addr">Every day, 8 AM to 2 AM</p>
+            <p>Eighteen hours a day, seven days a week. Some directories list a midnight close on certain nights. Call to confirm.</p>
+          </div>
+          <div class="info-card">
+            <h3><i class="fa-solid fa-id-card"></i> Bring Your ID</h3>
+            <p>21 and over, valid ID required. The counter cards everyone, even the regulars, even at 2 AM.</p>
+          </div>
+        </div>
+        <div>
+          <div class="moon-tag">
+            <p class="mt-label">Night crew line</p>
+            <a class="mt-phone" href="tel:+15592731072">(559) 273-1072</a>
+            <p class="mt-sub">Tap to call before a late run. Someone at the counter will tell you what is on the shelves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="block tint" style="padding-top:46px">
+    <div class="wrap">
+      <div class="form-card">
+        <h3>Ask the night crew</h3>
+        <p class="form-note">Name and what you need. We will text you back, whatever hour it is.</p>
+        <form id="quote-form">
+          <div class="f-row">
+            <div class="f-field">
+              <label for="f-name">Your name</label>
+              <input type="text" id="f-name" autocomplete="name" placeholder="First and last">
+            </div>
+            <div class="f-field">
+              <label for="f-phone">Your phone</label>
+              <input type="tel" id="f-phone" autocomplete="tel" placeholder="(559) 555-0123">
+            </div>
+          </div>
+          <div class="f-field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" rows="4" placeholder="What are you after tonight?"></textarea>
+          </div>
+          <button type="submit" class="f-send"><i class="fa-solid fa-paper-plane"></i> Send to the moon crew</button>
+          <p class="form-feedback" id="form-feedback"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div>
+      <h4>Valley Moon Smoke Shop</h4>
+      <p>Fresno's late-night smoke shop on E Butler Ave. Vapes, glass, cigars, wraps and the hemp shelf, open until 2 AM every night.</p>
+    </div>
+    <div>
+      <h4>Find Us</h4>
+      <p>3602 E Butler Ave<br>Fresno, CA 93702</p>
+      <p>Every day, 8 AM to 2 AM</p>
+    </div>
+    <div>
+      <h4>Call</h4>
+      <p>(559) 273-1072</p>
+      <p>The counter answers, day or night.</p>
+    </div>
+  </div>
+  <div class="copyright">© Valley Moon Smoke Shop · Fresno, CA</div>
+</footer>
+
+</div>
+
+<script>
+var BUSINESS = "Valley Moon Smoke Shop";
+var TITLES = { home: "Smoke Shop Open Till 2 AM on Butler Ave", shop: "The Shop", reviews: "Reviews", visit: "Visit Us" };
+
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinksEl = document.querySelector(".nav-links");
+if (menuBtn && navLinksEl) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinksEl.classList.toggle("open");
+  });
+}
+
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = { 0:[8,26], 1:[8,26], 2:[8,26], 3:[8,26], 4:[8,26], 5:[8,26], 6:[8,26] };
+
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+
+(function renderStatus(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.add(st.open ? "is-open" : "is-closed");
+    var label = c.querySelector(".chip-label");
+    if (label) label.textContent = st.label;
+  });
+  var today = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(row){
+    if (parseInt(row.getAttribute("data-day"), 10) === today) row.classList.add("today");
+  });
+})();
+
+var PHONE = "+15592731072";
+var PRETTY_PHONE = "(559) 273-1072";
+var quoteForm = document.getElementById("quote-form");
+if (quoteForm) {
+  quoteForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var fphone = document.getElementById("f-phone").value.trim();
+    var fmsg = document.getElementById("f-msg").value.trim();
+    var feedback = document.getElementById("form-feedback");
+    if (!name || !fmsg) {
+      feedback.textContent = "Add your name and a short message so the crew knows what you need.";
+      feedback.className = "form-feedback warn";
+      return;
+    }
+    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + fmsg;
+    var body = encodeURIComponent(text);
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + body;
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE;
+        feedback.className = "form-feedback ok";
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

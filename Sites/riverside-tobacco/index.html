@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Downtown Tobacco, Till Midnight | Riverside Tobacco</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+/* 3rd Ave Riverside: old port brown, brass, parchment, river waves and ledger lines */
+:root{
+  --brown:#4E342E;
+  --brown-deep:#3A2620;
+  --brass:#C9A227;
+  --brass-deep:#A8871E;
+  --parchment:#F5EFE3;
+  --parchment-deep:#EDE3CE;
+  --ink:#33251F;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{font-family:'PT Sans',sans-serif;background:var(--parchment);color:var(--ink);line-height:1.65;}
+h1,h2,h3,.display{font-family:'UnifrakturMaguntia',cursive;font-weight:400;line-height:1.1;}
+a{color:inherit;}
+.site-shell{min-height:100vh;display:flex;flex-direction:column;}
+main{flex:1 0 auto;}
+footer{flex-shrink:0;}
+.page{display:none;}
+.page.active{display:block;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px;}
+.ledger-lines{
+  background-image:repeating-linear-gradient(to bottom, transparent 0 30px, rgba(78,52,46,.07) 30px 31px);
+}
+
+/* Header */
+.topbar{background:var(--brown);color:var(--parchment);border-bottom:4px solid var(--brass);position:relative;z-index:50;}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:13px;padding-bottom:13px;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.brand-mark{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;border:2.5px solid var(--brass);
+  background:radial-gradient(circle at 34% 30%, #6D4C41, var(--brown-deep));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'UnifrakturMaguntia',cursive;font-size:19px;color:var(--brass);
+}
+.brand-name{font-family:'UnifrakturMaguntia',cursive;font-size:23px;line-height:1;color:var(--parchment);}
+.brand-name small{display:block;font-family:'PT Sans',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:2.6px;text-transform:uppercase;color:var(--brass);}
+#menu-btn{display:none;background:none;border:2px solid var(--brass);color:var(--parchment);border-radius:9px;font-size:18px;padding:7px 12px;cursor:pointer;}
+#menu-btn.open{background:var(--brass);color:var(--brown-deep);}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-links a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 15px;border-radius:8px;color:var(--parchment);letter-spacing:.5px;}
+.nav-links a:hover{background:rgba(201,162,39,.18);}
+.nav-links a[data-page="visit"]{background:var(--brass);color:var(--brown-deep);}
+.nav-links a[data-page="visit"]:hover{background:var(--brass-deep);color:#fff;}
+
+/* Hero masthead */
+.hero{background:var(--parchment);text-align:center;position:relative;}
+.hero .rule{height:3px;background:var(--brass);max-width:760px;margin:0 auto;}
+.hero .wrap{padding-top:52px;padding-bottom:26px;max-width:840px;}
+.hero-kicker{font-weight:700;font-size:13px;letter-spacing:3.5px;text-transform:uppercase;color:var(--brass-deep);}
+.hero h1{font-size:58px;margin:12px 0 10px;color:var(--brown);}
+.hero h1 em{font-style:normal;color:var(--brass-deep);}
+.hero p.lead{font-size:17px;max-width:560px;margin:0 auto 26px;color:#5C463C;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:30px;}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:15.5px;padding:12px 27px;border-radius:6px;border:2px solid var(--brown);cursor:pointer;font-family:'PT Sans',sans-serif;}
+.btn-brass{background:var(--brass);border-color:var(--brass-deep);color:var(--brown-deep);box-shadow:3px 3px 0 var(--brown);}
+.btn-brass:hover{background:var(--brass-deep);color:#fff;}
+.btn-ghost{background:transparent;color:var(--brown);}
+.btn-ghost:hover{background:#fff;}
+.status-chip{
+  display:inline-flex;align-items:center;gap:9px;background:#fff;border:2px solid var(--brass);
+  border-radius:999px;padding:8px 17px;font-weight:700;font-size:14.5px;color:var(--brown);
+}
+.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#A1887F;}
+.status-chip.open .dot{background:#43A047;box-shadow:0 0 0 4px rgba(67,160,71,.22);}
+.hero-facts{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;padding-bottom:20px;}
+.fact{font-size:14.5px;color:#5C463C;}
+.fact b{display:block;font-family:'UnifrakturMaguntia',cursive;font-size:21px;color:var(--brown);font-weight:400;}
+.wave-div{display:block;width:min(600px,86%);margin:0 auto;fill:none;stroke:var(--brass);stroke-width:2.5;stroke-linecap:round;}
+
+/* Sections */
+.sec{padding:56px 0;}
+.sec-brown{background:var(--brown);color:var(--parchment);}
+.sec-white{background:#FDFAF3;}
+.sec-head{max-width:680px;margin:0 auto 32px;text-align:center;}
+.sec-head h2{font-size:40px;margin:0 0 10px;color:var(--brown);}
+.sec-brown .sec-head h2{color:var(--parchment);}
+.sec-head h2 em{font-style:normal;color:var(--brass-deep);}
+.sec-head p{margin:0;font-size:16.5px;color:#5C463C;}
+.sec-brown .sec-head p{color:#E3D5BF;}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px;}
+.feat-card{background:#FDFAF3;border:1.5px solid var(--brass);border-radius:8px;padding:26px 24px;box-shadow:0 4px 0 rgba(78,52,46,.12);}
+.feat-card i{font-size:21px;color:var(--brass-deep);margin-bottom:12px;display:inline-block;}
+.feat-card h3{font-size:26px;margin:0 0 8px;color:var(--brown);}
+.feat-card p{margin:0;font-size:15.5px;}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:840px;margin:0 auto;}
+.chip{
+  display:inline-flex;align-items:center;gap:10px;background:#FDFAF3;border:1.5px solid var(--brass);
+  border-radius:6px;padding:10px 19px;font-weight:700;font-size:15px;color:var(--brown);
+}
+.chip i{color:var(--brass-deep);}
+
+/* Quote ledger entries */
+.entry{
+  background:#FDFAF3;border-left:4px solid var(--brass);border-radius:0 8px 8px 0;
+  padding:22px 26px;margin:0 auto 18px;max-width:680px;box-shadow:0 3px 0 rgba(78,52,46,.1);
+}
+.entry .entry-no{font-family:'UnifrakturMaguntia',cursive;font-size:20px;color:var(--brass-deep);margin-bottom:6px;}
+.entry blockquote{margin:0;font-size:17px;line-height:1.55;}
+.entry-attr{display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:700;font-size:13.5px;color:#8A6E5F;}
+.stars i{color:var(--brass-deep);font-size:13px;margin-right:2px;}
+
+/* Page heads */
+.page-head{background:var(--brown);color:var(--parchment);border-bottom:4px solid var(--brass);}
+.page-head .wrap{padding-top:42px;padding-bottom:38px;text-align:center;max-width:760px;}
+.page-head h2{font-size:46px;margin:0 0 8px;color:var(--parchment);}
+.page-head p{margin:0;font-size:16.5px;color:#E3D5BF;}
+
+/* Reviews */
+.rev-summary{display:flex;justify-content:center;margin:34px 0 18px;}
+.rev-pill{display:inline-flex;align-items:center;gap:10px;background:var(--brown);border:2px solid var(--brass);border-radius:999px;padding:12px 26px;font-weight:700;font-size:17px;color:var(--parchment);}
+.rev-pill i{color:var(--brass);}
+.link-cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+.link-card{display:inline-flex;align-items:center;gap:11px;background:var(--brass);color:var(--brown-deep);text-decoration:none;font-weight:700;font-size:15.5px;padding:14px 27px;border-radius:6px;border:2px solid var(--brass-deep);box-shadow:3px 3px 0 var(--brown);}
+.link-card:hover{background:var(--brass-deep);color:#fff;}
+.link-card i{font-size:18px;}
+
+/* Visit */
+.visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start;}
+.visit-block{background:#FDFAF3;border:1.5px solid var(--brass);border-radius:8px;padding:26px;box-shadow:0 4px 0 rgba(78,52,46,.12);}
+.visit-block h3{font-size:27px;margin:0 0 14px;color:var(--brown);}
+.visit-line{display:flex;align-items:flex-start;gap:11px;margin:0 0 11px;font-size:15.5px;}
+.visit-line i{color:var(--brass-deep);margin-top:4px;width:18px;text-align:center;}
+.hours-list{list-style:none;margin:0;padding:0;}
+.hours-list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 6px;font-size:15px;border-bottom:1px dotted #C9B08C;}
+.hours-list li:last-child{border-bottom:none;}
+.hours-list li .dots{flex:1;border-bottom:2px dotted #C9B08C;margin:0 8px;transform:translateY(-4px);}
+.hours-list li span:first-child{font-weight:700;color:var(--brown);}
+.hours-list li.today{background:rgba(201,162,39,.16);border-radius:6px;}
+.hours-list li.today span:first-child::after{content:" - today";font-size:12px;color:var(--brass-deep);font-weight:700;}
+.confirm-line{display:flex;gap:9px;align-items:flex-start;background:var(--parchment-deep);border:2px dashed var(--brass);border-radius:8px;padding:11px 14px;font-size:13.5px;font-weight:700;color:#7A5C48;margin-top:14px;}
+.confirm-line i{margin-top:3px;}
+
+/* Ledger-line contact card */
+.ledger-card{
+  background:
+    linear-gradient(to right, transparent 0 26px, rgba(163,60,40,.4) 26px 27.5px, transparent 27.5px),
+    repeating-linear-gradient(to bottom, transparent 0 32px, rgba(78,52,46,.14) 32px 33px),
+    #FDFAF3;
+  border:1.5px solid var(--brass);border-radius:8px;padding:30px 30px 30px 44px;
+  box-shadow:0 5px 0 rgba(78,52,46,.15);text-align:left;
+}
+.ledger-card .lc-kick{font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--brass-deep);}
+.ledger-card .lc-name{font-family:'UnifrakturMaguntia',cursive;font-size:30px;color:var(--brown);margin:4px 0 2px;}
+.ledger-card .lc-sub{font-size:14.5px;color:#5C463C;margin:0 0 10px;}
+.ledger-card .lc-phone{display:inline-block;font-size:30px;font-weight:700;color:var(--brown);text-decoration:none;border-bottom:3px double var(--brass);}
+.ledger-card .lc-phone:hover{color:var(--brass-deep);}
+.ledger-card .lc-addr{font-size:13.5px;color:#5C463C;margin-top:10px;}
+
+/* Form */
+form{margin-top:6px;}
+.f-field{margin-bottom:14px;}
+.f-field label{display:block;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#7A5C48;margin-bottom:6px;}
+.f-field input,.f-field textarea{
+  width:100%;border:1.5px solid var(--brass);border-radius:6px;padding:12px 14px;font-family:'PT Sans',sans-serif;
+  font-size:15.5px;color:var(--ink);background:#FDFAF3;
+}
+.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--brown);background:#fff;}
+#form-feedback{font-weight:700;color:var(--brass-deep);min-height:22px;margin:10px 0 0;}
+.form-note{font-size:13px;color:#8A6E5F;margin:8px 0 0;}
+
+/* Footer */
+footer{background:var(--brown-deep);color:#E3D5BF;}
+footer .wrap{padding-top:44px;padding-bottom:26px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px;padding-bottom:22px;border-bottom:1px solid rgba(201,162,39,.35);}
+.foot-name{font-family:'UnifrakturMaguntia',cursive;font-size:25px;color:var(--parchment);margin-bottom:8px;}
+.foot-h{font-weight:700;font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:var(--brass);margin:0 0 10px;}
+.foot-line{margin:0 0 8px;font-size:14.5px;}
+.foot-line a{text-decoration:none;}
+.foot-line a:hover{color:var(--brass);}
+.copyright{margin:20px 0 0;text-align:center;font-size:14px;color:#C4AE93;}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero h1{font-size:42px;}
+  .feat{grid-template-columns:1fr;}
+  .visit-grid{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:1fr;gap:20px;}
+}
+@media (max-width:860px){
+  #menu-btn{display:inline-flex;}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--brown-deep);border-bottom:4px solid var(--brass);flex-direction:column;align-items:stretch;padding:12px 18px 16px;gap:4px;}
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:12px 14px;}
+}
+@media (max-width:480px){
+  .hero h1{font-size:33px;}
+  .sec-head h2{font-size:30px;}
+  .page-head h2{font-size:34px;}
+  .ledger-card{padding:24px 20px 24px 36px;}
+  .ledger-card .lc-phone{font-size:24px;}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#/home" data-page="home">
+        <span class="brand-mark">R</span>
+        <span class="brand-name">Riverside Tobacco<small>2 SW 3rd Ave · Downtown Portland</small></span>
+      </a>
+      <button id="menu-btn" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#/shop" data-page="shop">The Shop</a>
+        <a href="#/reviews" data-page="reviews">Reviews</a>
+        <a href="#/visit" data-page="visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div class="wrap">
+          <div class="hero-kicker">2 SW 3rd Ave · Downtown Portland</div>
+          <h1>Tobacco, <em>til the clock strikes twelve</em></h1>
+          <p class="lead">Riverside Tobacco keeps downtown hours most shops only dream about. In by 9 AM most mornings, open until midnight every night, with prices customers brag about.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-brass" href="#/shop" data-page="shop">Step inside</a>
+            <a class="btn btn-ghost" href="#/visit" data-page="visit">Hours and directions</a>
+          </div>
+          <span class="status-chip"><span class="dot"></span><span class="status-text">Checking hours...</span></span>
+          <div class="hero-facts">
+            <div class="fact"><b>Midnight</b>close, every night</div>
+            <div class="fact"><b>4.4</b>stars, 181 Google reviews</div>
+            <div class="fact"><b>21+</b>valid ID required</div>
+          </div>
+        </div>
+        <svg class="wave-div" viewBox="0 0 600 44" role="img" aria-label="River wave line ending in a quill">
+          <path d="M4,24 C30,10 56,38 82,24 C108,10 134,38 160,24 C186,10 212,38 238,24 C264,10 290,38 316,24 C342,10 368,38 394,24 C420,10 446,38 472,24 C498,10 516,32 534,24"></path>
+          <path d="M534,24 C546,10 560,4 572,6 C566,14 556,20 544,23 C552,23 560,21 566,18 C562,26 550,30 538,29 C530,28.5 528,26 534,24 Z" fill="var(--brass)" stroke="none"></path>
+        </svg>
+      </div>
+
+      <div class="sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>A downtown <em>fixture</em></h2>
+            <p>What regulars say, in their own words.</p>
+          </div>
+          <div class="entry">
+            <div class="entry-no">Entry the First</div>
+            <blockquote>"Reasonable prices!!! Dude was very helpful and informative! I'm definitely going back to get my tobacco here!"</blockquote>
+            <div class="entry-attr">
+              <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <span>Google review</span>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="entry-no">Entry the Second</div>
+            <blockquote>"Great prices on cigs!"</blockquote>
+            <div class="entry-attr">
+              <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <span>Google review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec sec-brown">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>Why folks <em>come back</em></h2>
+            <p>No gimmicks. Just a straight tobacco shop that treats people right and stays open late.</p>
+          </div>
+          <div class="feat">
+            <div class="feat-card">
+              <i class="fa-solid fa-tags"></i>
+              <h3>Prices worth repeating</h3>
+              <p>Customers come back for the prices, not the decor. Fair marks on cigs, tobacco and everything on the shelf.</p>
+            </div>
+            <div class="feat-card">
+              <i class="fa-solid fa-hands"></i>
+              <h3>Help behind the counter</h3>
+              <p>Reviews call out the staff, again and again, for being helpful and actually knowing the stock.</p>
+            </div>
+            <div class="feat-card">
+              <i class="fa-solid fa-moon"></i>
+              <h3>Till midnight, nightly</h3>
+              <p>After-work run at 11:40 PM? That still counts as business hours here, every night of the week.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE SHOP -->
+    <section class="page" id="page-shop">
+      <div class="page-head">
+        <div class="wrap">
+          <h2>The Shop</h2>
+          <p>An old-school tobacco counter on 2 SW 3rd Ave, downtown, open until midnight.</p>
+        </div>
+      </div>
+      <div class="sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>On the <em>shelf</em></h2>
+            <p>The classics, done properly. Ask the counter what just came in.</p>
+          </div>
+          <div class="chips">
+            <span class="chip"><i class="fa-solid fa-box-archive"></i> Tobacco</span>
+            <span class="chip"><i class="fa-solid fa-joint"></i> Cigarettes</span>
+            <span class="chip"><i class="fa-solid fa-fire"></i> Cigars</span>
+            <span class="chip"><i class="fa-solid fa-bolt"></i> Vapes</span>
+            <span class="chip"><i class="fa-solid fa-scroll"></i> Wraps</span>
+            <span class="chip"><i class="fa-solid fa-lighter"></i> Lighters</span>
+          </div>
+          <div class="feat" style="margin-top:34px;">
+            <div class="feat-card">
+              <i class="fa-solid fa-box-archive"></i>
+              <h3>Tobacco, first</h3>
+              <p>It is in the name. The tobacco shelf is the reason people cross downtown to get here, at prices they mention in reviews.</p>
+            </div>
+            <div class="feat-card">
+              <i class="fa-solid fa-fire"></i>
+              <h3>Cigars and cigarettes</h3>
+              <p>From an after-shift cigar to the everyday pack, with the lighters and wraps to go with it.</p>
+            </div>
+            <div class="feat-card">
+              <i class="fa-solid fa-moon"></i>
+              <h3>Late-night counter</h3>
+              <p>Most of downtown rolls its sidewalks up by ten. This counter keeps going until midnight, Sunday included.</p>
+            </div>
+          </div>
+          <div class="sec-head" style="margin-top:40px;">
+            <h2>Bring your <em>ID</em></h2>
+            <p>21 and over, valid ID required. It is the law and the house rule, every hour we are open.</p>
+            <div style="margin-top:18px;"><a class="btn btn-brass" href="#/visit" data-page="visit">Plan your visit</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="page" id="page-reviews">
+      <div class="page-head">
+        <div class="wrap">
+          <h2>Reviews</h2>
+          <p>Every collected customer quote, in full and exactly as written.</p>
+        </div>
+      </div>
+      <div class="sec ledger-lines">
+        <div class="wrap">
+          <div class="entry">
+            <div class="entry-no">Entry the First</div>
+            <blockquote>"Reasonable prices!!! Dude was very helpful and informative! I'm definitely going back to get my tobacco here!"</blockquote>
+            <div class="entry-attr">
+              <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <span>Google review</span>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="entry-no">Entry the Second</div>
+            <blockquote>"Great prices on cigs!"</blockquote>
+            <div class="entry-attr">
+              <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <span>Google review</span>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="entry-no">Entry the Third</div>
+            <blockquote>"Alan was wonderful made sure I was safe and had a ride."</blockquote>
+            <div class="entry-attr">
+              <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+              <span>Google review</span>
+            </div>
+          </div>
+          <div class="rev-summary">
+            <span class="rev-pill"><i class="fa-solid fa-star"></i> 4.4 stars with 181 reviews</span>
+          </div>
+          <div class="link-cards">
+            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Riverside%20Tobacco%2C%202%20SW%203rd%20Ave%2C%20Portland%2C%20OR%2097204" target="_blank" rel="noopener">
+              <i class="fa-brands fa-google"></i> See every review on Google
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="page" id="page-visit">
+      <div class="page-head">
+        <div class="wrap">
+          <h2>Visit</h2>
+          <p>2 SW 3rd Ave, Portland, OR 97204. Downtown, until midnight every night.</p>
+        </div>
+      </div>
+      <div class="sec">
+        <div class="wrap">
+          <div class="visit-grid">
+            <div class="visit-block">
+              <h3><i class="fa-solid fa-clock" style="color:var(--brass-deep);margin-right:8px;"></i>Hours</h3>
+              <p class="visit-line"><span class="status-chip"><span class="dot"></span><span class="status-text">Checking hours...</span></span></p>
+              <ul class="hours-list">
+                <li data-day="0"><span>Sunday</span><span class="dots"></span><span>10:00 AM - midnight</span></li>
+                <li data-day="1"><span>Monday</span><span class="dots"></span><span>9:00 AM - midnight</span></li>
+                <li data-day="2"><span>Tuesday</span><span class="dots"></span><span>9:00 AM - midnight</span></li>
+                <li data-day="3"><span>Wednesday</span><span class="dots"></span><span>9:00 AM - midnight</span></li>
+                <li data-day="4"><span>Thursday</span><span class="dots"></span><span>9:00 AM - midnight</span></li>
+                <li data-day="5"><span>Friday</span><span class="dots"></span><span>9:00 AM - midnight</span></li>
+                <li data-day="6"><span>Saturday</span><span class="dots"></span><span>9:00 AM - midnight</span></li>
+              </ul>
+              <p class="confirm-line"><i class="fa-solid fa-circle-info"></i><span>Hours are estimated. Please call to confirm holiday hours.</span></p>
+            </div>
+            <div class="visit-block">
+              <h3><i class="fa-solid fa-location-dot" style="color:var(--brass-deep);margin-right:8px;"></i>Find us</h3>
+              <p class="visit-line"><i class="fa-solid fa-map-pin"></i><span>2 SW 3rd Ave, Portland, OR 97204</span></p>
+              <p class="visit-line"><i class="fa-solid fa-city"></i><span>Downtown, on SW 3rd Ave near the transit mall</span></p>
+              <p class="visit-line"><i class="fa-solid fa-id-card"></i><span>21 and over, valid ID required</span></p>
+              <p class="visit-line"><i class="fa-solid fa-moon"></i><span>Open until midnight, every night of the week</span></p>
+            </div>
+          </div>
+
+          <div class="visit-grid" style="align-items:center;margin-top:26px;">
+            <div class="ledger-card">
+              <div class="lc-kick">Ring the counter</div>
+              <div class="lc-name">Riverside Tobacco</div>
+              <p class="lc-sub">Downtown Portland, till midnight</p>
+              <a class="lc-phone" href="tel:+19715441200">(971) 544-1200</a>
+              <div class="lc-addr">2 SW 3rd Ave, Portland, OR 97204</div>
+            </div>
+            <div class="visit-block">
+              <h3>Leave word at the desk</h3>
+              <p class="visit-line"><i class="fa-solid fa-feather"></i><span>Stock question, a tobacco you are hunting, feedback for the counter. Write it here and it becomes a text to the shop.</span></p>
+              <form id="contact-form" novalidate>
+                <div class="f-field">
+                  <label for="f-name">Your name</label>
+                  <input id="f-name" type="text" autocomplete="name" placeholder="First name is fine">
+                </div>
+                <div class="f-field">
+                  <label for="f-phone">Your phone</label>
+                  <input id="f-phone" type="tel" autocomplete="tel" placeholder="So we can text you back">
+                </div>
+                <div class="f-field">
+                  <label for="f-msg">Message</label>
+                  <textarea id="f-msg" rows="4" placeholder="What do you need?"></textarea>
+                </div>
+                <button class="btn btn-brass" type="submit">Send to the shop</button>
+                <p id="form-feedback" role="status"></p>
+              </form>
+              <p class="form-note">On a phone this opens your text app with the message ready. On a computer it copies it for you to paste.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-name">Riverside Tobacco</div>
+          <p class="foot-line">2 SW 3rd Ave, Portland, OR 97204</p>
+          <p class="foot-line"><a href="tel:+19715441200">(971) 544-1200</a></p>
+        </div>
+        <div>
+          <p class="foot-h">Hours</p>
+          <p class="foot-line">Mon - Sat from 9 AM, Sun from 10 AM</p>
+          <p class="foot-line">Till midnight, every night</p>
+        </div>
+        <div>
+          <p class="foot-h">Good to know</p>
+          <p class="foot-line">21 and over, valid ID required</p>
+          <p class="foot-line">4.4 stars with 181 Google reviews</p>
+        </div>
+      </div>
+      <p class="copyright">© Riverside Tobacco · Portland, OR</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+var BUSINESS = "Riverside Tobacco";
+var TITLES = { home: "Downtown Tobacco, Till Midnight", shop: "The Shop", reviews: "Reviews", visit: "Visit" };
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = {0:[10,24],1:[9,24],2:[9,24],3:[9,24],4:[9,24],5:[9,24],6:[9,24]};
+var PHONE = "+19715441200";
+var PRETTY = "(971) 544-1200";
+
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderStatus(){
+  var s = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.toggle("open", s.open);
+    c.classList.toggle("closed", !s.open);
+    var tx = c.querySelector(".status-text");
+    if (tx) tx.textContent = s.label;
+  });
+}
+function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(r){
+    r.classList.toggle("today", Number(r.getAttribute("data-day")) === d);
+  });
+}
+renderStatus();
+highlightToday();
+
+var menuBtn = document.getElementById("menu-btn");
+var navLinks = document.querySelector(".nav-links");
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", function(){
+    menuBtn.classList.toggle("open");
+    navLinks.classList.toggle("open");
+  });
+}
+
+var form = document.getElementById("contact-form");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var fb = document.getElementById("form-feedback");
+    var name = document.getElementById("f-name").value.trim();
+    var phone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) {
+      fb.textContent = "Please add your name and a short message.";
+      return;
+    }
+    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
+    var body = encodeURIComponent(text);
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + body;
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>

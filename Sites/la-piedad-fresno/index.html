@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Piedad Mercado Y Carniceria | Carnitas &amp; Street Tacos on E Butler Ave, Fresno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courgette&amp;family=Rubik:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --mango:#F4A259; --mango-d:#D98536; --brick:#9C3838; --brick-d:#7C2A2A;
+  --cream:#FDF6EC; --paper:#FFFDF7; --ink:#33231C;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Rubik',sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;font-size:17px}
+svg{max-width:100%;height:auto}
+a{color:var(--brick)}
+.site-shell{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
+footer{flex-shrink:0}
+.wrap{max-width:1150px;margin:0 auto;padding:0 20px}
+/* header */
+.site-header{background:var(--brick);color:#FFF6E9;position:sticky;top:0;z-index:60;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.header-in{max-width:1150px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#FFF6E9}
+.brand-mark{width:44px;height:44px;border-radius:12px;background:var(--mango);color:var(--brick-d);display:flex;align-items:center;justify-content:center;font-family:'Courgette',cursive;font-size:24px;flex:none;transform:rotate(-4deg)}
+.brand-name{font-family:'Courgette',cursive;font-size:23px;line-height:1}
+.brand-name small{display:block;font-family:'Rubik',sans-serif;font-weight:500;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#F3CFA0;margin-top:4px}
+#menu-btn{display:none;background:var(--mango);color:var(--brick-d);border:none;width:46px;height:46px;border-radius:10px;font-size:19px;cursor:pointer;align-items:center;justify-content:center}
+#menu-btn.open{background:#FFF6E9}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{font-weight:500;font-size:15.5px;color:#FFF6E9;text-decoration:none;padding:10px 14px;border-radius:8px}
+.nav-links a:hover{background:var(--brick-d)}
+/* status chip */
+.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;background:#fff;border:1.5px solid var(--mango);font-weight:600;font-size:14px;color:#8A5B22}
+.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#9AA7AD;flex:none}
+.status-chip.open .dot{background:#2E7D32;box-shadow:0 0 0 3px rgba(46,125,50,.18)}
+.status-chip.open{border-color:#2E7D32;color:#2E5C3A}
+/* hero */
+.hero{background:var(--cream);overflow:hidden}
+.hero-in{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;min-height:480px}
+.hero-copy{padding:64px 44px 56px 20px;display:flex;flex-direction:column;justify-content:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;font-size:12.5px;color:var(--brick);margin-bottom:14px}
+.hero h1{font-family:'Courgette',cursive;font-weight:400;font-size:clamp(36px,4.8vw,56px);line-height:1.08;margin:0 0 16px;color:var(--brick-d)}
+.hero h1 em{font-style:normal;color:var(--mango-d)}
+.hero p{max-width:52ch;margin:0 0 26px;color:#5E4A3C;font-size:18px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;text-decoration:none;padding:14px 24px;border-radius:999px;border:2px solid transparent;cursor:pointer}
+.btn-brick{background:var(--brick);color:#FFF6E9}
+.btn-brick:hover{background:var(--brick-d)}
+.btn-mango{border-color:var(--mango-d);color:var(--mango-d);background:transparent}
+.btn-mango:hover{background:#FBE3C8}
+.taco-trio{display:flex;gap:8px;align-items:center}
+.taco-trio span{width:12px;height:12px;border-radius:50%;flex:none}
+.taco-trio .t1{background:var(--brick)} .taco-trio .t2{background:var(--mango)} .taco-trio .t3{background:#7FA05F}
+/* taco stack */
+.hero-stack{background:linear-gradient(155deg,var(--mango) 0%,var(--mango-d) 100%);position:relative;display:flex;flex-direction:column;justify-content:center;gap:16px;padding:48px 40px}
+.hero-stack:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 12%, rgba(255,246,233,.28) 0 60px, transparent 61px)}
+.taco-card{background:#FFF6E9;border-radius:14px;padding:18px 20px;max-width:320px;box-shadow:0 10px 22px rgba(124,42,42,.22);position:relative}
+.taco-card.c1{transform:rotate(-3deg);margin-right:auto}
+.taco-card.c2{transform:rotate(2deg);margin-left:auto}
+.taco-card.c3{transform:rotate(-1.5deg);margin-right:auto}
+.taco-card .n{font-family:'Courgette',cursive;font-size:22px;color:var(--brick-d);line-height:1.1}
+.taco-card .s{font-size:13.5px;color:#8A6B50;margin-top:2px}
+.taco-card i{position:absolute;top:-11px;left:-11px;width:30px;height:30px;border-radius:50%;background:var(--brick);color:#FFF6E9;display:flex;align-items:center;justify-content:center;font-size:13px}
+/* sections */
+.section{padding:56px 0}
+.section-head{max-width:660px;margin:0 auto 34px;text-align:center}
+.kicker{font-weight:700;letter-spacing:2.5px;font-size:13px;text-transform:uppercase;color:var(--mango-d)}
+.section-head h2{font-family:'Courgette',cursive;font-weight:400;font-size:clamp(30px,4vw,42px);color:var(--brick-d);margin:8px 0 10px;line-height:1.12}
+.section-head p{color:#5E4A3C;margin:0}
+/* jar shelf divider */
+.jar-shelf{display:flex;justify-content:center;align-items:flex-end;gap:26px;padding:6px 0 0}
+.jar{width:36px;height:52px;border:3px solid var(--brick);border-top:none;border-radius:8px 8px 12px 12px;position:relative;background:#FBE3C8;opacity:.85}
+.jar:before{content:"";position:absolute;top:-11px;left:3px;right:3px;height:11px;background:var(--brick);border-radius:4px 4px 0 0}
+.jar.j2{height:40px;background:#F6D9A0}
+.jar.j3{height:58px;background:#E9C9A4}
+.shelf-line{height:5px;background:var(--brick);border-radius:3px;max-width:320px;margin:0 auto}
+/* hours split table */
+.hours-table{background:var(--paper);border:2px solid var(--brick);border-radius:18px;overflow:hidden}
+.hrow{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:22px 26px;border-bottom:1px dashed #E7CBB0}
+.hrow:last-child{border-bottom:none}
+.hrow .days{font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:13.5px;color:var(--brick-d)}
+.hrow .times{font-family:'Courgette',cursive;font-size:clamp(24px,3.4vw,32px);color:var(--brick);white-space:nowrap}
+.hrow.we{background:#FBE9D2}
+.hours-today-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#8A5B22;background:#FDF1DC;border:1.5px dashed var(--mango-d);border-radius:999px;padding:6px 12px;margin-left:12px;vertical-align:middle;display:none}
+.hrow.today .hours-today-tag{display:inline-flex}
+.hours-foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:18px 26px;background:var(--brick);color:#FFF6E9}
+/* mercado grid */
+.mercado-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.m-card{background:var(--paper);border:1.5px solid #EED3B2;border-radius:16px;padding:22px;text-align:center}
+.m-card .ico{width:52px;height:52px;margin:0 auto 12px;border-radius:14px;background:#FBE9D2;color:var(--brick);display:flex;align-items:center;justify-content:center;font-size:22px;transform:rotate(-3deg)}
+.m-card h3{font-family:'Courgette',cursive;font-weight:400;font-size:22px;color:var(--brick-d);margin:0 0 6px}
+.m-card p{margin:0;font-size:15px;color:#5E4A3C}
+/* reviews */
+.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rev-card{background:var(--paper);border:1.5px solid #EED3B2;border-radius:16px;padding:26px;position:relative}
+.rev-card .stars{margin-bottom:12px}
+.rev-card .stars i{color:var(--mango-d);font-size:13px}
+.rev-card blockquote{margin:0 0 14px;font-family:'Courgette',cursive;font-size:21px;line-height:1.4;color:var(--brick-d)}
+.rev-card .who{font-size:12.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#A57B57}
+.rev-summary{margin-top:26px;background:var(--brick);color:#FFF6E9;border-radius:18px;padding:24px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.rev-summary .big{font-family:'Courgette',cursive;font-size:42px;line-height:1}
+.rev-summary .stars i{color:var(--mango)}
+.rev-summary .sub{font-weight:500}
+.link-card{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--mango);color:#5C2E12;text-decoration:none;border-radius:999px;padding:18px 26px;font-weight:700;font-size:16px;margin:22px auto 0;max-width:460px}
+.link-card:hover{background:var(--mango-d);color:#FFF6E9}
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.vcard{background:var(--paper);border:1.5px solid #EED3B2;border-radius:16px;padding:26px}
+.vcard h3{font-family:'Courgette',cursive;font-weight:400;font-size:26px;color:var(--brick-d);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.vcard h3 i{font-size:19px;color:var(--mango-d)}
+.addr-line{display:flex;gap:12px;align-items:flex-start;color:#5E4A3C;margin-bottom:8px}
+.addr-line i{color:var(--brick);margin-top:5px}
+.daylist{list-style:none;margin:0;padding:0}
+.daylist li{display:flex;justify-content:space-between;gap:10px;padding:9px 10px;border-bottom:1px dashed #EED3B2;font-size:15.5px}
+.daylist li:last-child{border-bottom:none}
+.daylist li span:first-child{font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#A57B57;padding-top:2px}
+.daylist li.today{background:#FBE9D2;border-radius:8px;color:var(--brick-d);font-weight:700}
+/* salsa jar card */
+.jar-card-wrap{display:flex;justify-content:center;margin-bottom:24px}
+.jar-card{width:min(320px,100%);background:#FBE9D2;border:3px solid var(--brick);border-radius:16px 16px 22px 22px;position:relative;text-align:center;padding:34px 24px 26px}
+.jar-card:before{content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:62%;height:16px;background:var(--brick);border-radius:8px 8px 0 0}
+.jar-card .label-band{border:2px dashed var(--brick);border-radius:10px;background:#FFFDF7;padding:16px 14px}
+.jar-card .t1{font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--brick-d)}
+.jar-card .phone-big{display:block;font-family:'Courgette',cursive;font-size:27px;color:var(--brick);text-decoration:none;margin:8px 0 4px}
+.jar-card .phone-big:hover{color:var(--brick-d)}
+.jar-card .t2{display:block;font-size:13.5px;color:#8A6B50}
+/* form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-grid .full{grid-column:1/-1}
+label{display:block;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;font-size:12px;color:#A57B57;margin-bottom:6px}
+input,textarea{width:100%;padding:13px 14px;border:1.5px solid #E4C4A0;border-radius:10px;font-family:'Rubik',sans-serif;font-size:16px;background:#fff;color:var(--ink)}
+input:focus,textarea:focus{outline:2px solid var(--mango-d);outline-offset:1px}
+textarea{min-height:110px;resize:vertical}
+.form-feedback{margin:12px 0 0;font-size:15px;font-weight:600;color:#8A5B22;min-height:22px}
+.form-feedback.ok{color:#2E5C3A}
+/* footer */
+.site-footer{background:var(--brick-d);color:#F6DFC8;margin-top:56px}
+.foot-grid{max-width:1150px;margin:0 auto;padding:36px 20px 24px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:26px}
+.foot-grid h4{font-family:'Courgette',cursive;font-weight:400;font-size:24px;color:var(--mango);margin:0 0 10px}
+.foot-grid p,.foot-grid a{color:#F6DFC8;font-size:15px;text-decoration:none}
+.foot-grid a:hover{color:#fff;text-decoration:underline}
+.foot-line{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+.foot-line i{color:var(--mango);margin-top:4px;width:16px;text-align:center}
+.foot-bottom{border-top:1px solid rgba(255,246,233,.2)}
+.foot-bottom .wrap{padding:15px 20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13.5px;color:#E5C7A6}
+.copyright{letter-spacing:.5px}
+/* router */
+.page{display:none}
+.page.active{display:block}
+/* responsive */
+@media (max-width:960px){
+  .hero-in{grid-template-columns:1fr}
+  .hero-copy{padding:52px 20px 40px}
+  .hero-stack{padding:40px 24px}
+  .mercado-grid{grid-template-columns:1fr 1fr}
+  .visit-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  #menu-btn{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--brick);flex-direction:column;align-items:stretch;padding:10px 14px 16px;gap:4px;box-shadow:0 14px 24px rgba(51,35,28,.25)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 12px;border-bottom:1px solid var(--brick-d)}
+  .nav-links a:last-child{border-bottom:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .mercado-grid{grid-template-columns:1fr}
+  .rev-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .hrow{grid-template-columns:1fr;gap:4px;padding:18px 20px}
+  .section{padding:44px 0}
+}
+</style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="site-header">
+    <div class="header-in">
+      <a class="brand" href="#/home" data-page="home" aria-label="La Piedad Mercado Y Carniceria home">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span class="brand-name">La Piedad<small>Mercado y Carniceria &middot; E Butler Ave</small></span>
+      </a>
+      <button id="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#/home" data-page="home">Home</a>
+        <a href="#/carniceria" data-page="carniceria">La Carniceria</a>
+        <a href="#/reviews" data-page="reviews">Reviews</a>
+        <a href="#/visit" data-page="visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="page" id="page-home">
+      <div class="hero">
+        <div class="hero-in">
+          <div class="hero-copy">
+            <span class="hero-eyebrow"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i> Mercado &middot; Carniceria &middot; Taqueria</span>
+            <h1>Carnitas with <em>amazing flavor</em>, right on Butler Ave</h1>
+            <p>La Piedad is a mercado, a carniceria and a taqueria in one neighborhood stop. The carnitas are juicy, the street tacos are excellent, and the meat counter will keep your week fed.</p>
+            <div class="hero-ctas">
+              <a class="btn btn-brick" href="#/carniceria" data-page="carniceria"><i class="fa-solid fa-utensils" aria-hidden="true"></i> See the counters</a>
+              <a class="btn btn-mango" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit us</a>
+            </div>
+            <div class="taco-trio" aria-hidden="true"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
+          </div>
+          <div class="hero-stack">
+            <div class="taco-card c1"><i class="fa-solid fa-drumstick-bite" aria-hidden="true"></i><div class="n">Carnitas</div><div class="s">Juicy, with amazing flavor</div></div>
+            <div class="taco-card c2"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i><div class="n">Street tacos</div><div class="s">Excellent and very tasty</div></div>
+            <div class="taco-card c3"><i class="fa-solid fa-burrito" aria-hidden="true"></i><div class="n">Super burrito</div><div class="s">The one people compare others to</div></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section" aria-labelledby="mercado-title">
+        <div class="wrap">
+          <div class="jar-shelf" aria-hidden="true"><span class="jar j1"></span><span class="jar j2"></span><span class="jar j3"></span><span class="jar j2"></span><span class="jar j1"></span></div>
+          <div class="shelf-line" aria-hidden="true"></div>
+          <div class="section-head" style="margin-top:30px">
+            <span class="kicker">One stop on Butler</span>
+            <h2 id="mercado-title">Mercado first, carniceria always</h2>
+            <p>Do the whole run in one trip: groceries, fresh meat for the week, and dinner already made at the taqueria counter.</p>
+          </div>
+          <div class="mercado-grid">
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-basket-shopping"></i></div><h3>The mercado</h3><p>Everyday staples and the things you forgot you needed, at neighborhood prices.</p></article>
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div><h3>The carniceria</h3><p>Fresh cuts and marinated meats from the counter, sold by the pound or the tray.</p></article>
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-bowl-food"></i></div><h3>The taqueria</h3><p>Tacos, carnitas and super burritos made hot, here in the shop.</p></article>
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-fire" aria-hidden="true"></i></div><h3>Birria crunch wraps</h3><p>The crunch wrap the neighborhood talks about, offered when the birria pot is on.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:0" aria-labelledby="hours-title">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="kicker">Hours</span>
+            <h2 id="hours-title">Seven days, two schedules</h2>
+            <p>Weekends open an earlier door. Weekdays the counter wakes up at 7:30.</p>
+          </div>
+          <div class="hours-table">
+            <div class="hrow we" data-we="1" id="hrow-we">
+              <div><span class="days">Saturday &amp; Sunday</span><span class="hours-today-tag"><i class="fa-solid fa-sun" aria-hidden="true"></i> Today</span></div>
+              <div class="times">7 AM - 8 PM</div>
+            </div>
+            <div class="hrow" id="hrow-wd">
+              <div><span class="days">Monday - Friday</span><span class="hours-today-tag"><i class="fa-solid fa-sun" aria-hidden="true"></i> Today</span></div>
+              <div class="times">7:30 AM - 8 PM</div>
+            </div>
+            <div class="hours-foot">
+              <span class="status-chip" style="background:rgba(255,255,255,.12);border-color:rgba(255,246,233,.5);color:#FFF6E9"><span class="dot" aria-hidden="true"></span><span class="label">Checking hours...</span></span>
+              <span><i class="fa-solid fa-face-smile-beam" aria-hidden="true"></i> Carnitas go fast on weekends. Come early.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- CARNICERIA -->
+    <section class="page" id="page-carniceria">
+      <section class="section" aria-labelledby="carn-title">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="kicker">La Carniceria</span>
+            <h2 id="carn-title">What the counter sells</h2>
+            <p>Order by the pound, by the tray, or let the taqueria cook it for you. Same meat, two decisions.</p>
+          </div>
+          <div class="mercado-grid">
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-drumstick-bite"></i></div><h3>Carnitas</h3><p>The house signature. Juicy pork with the flavor people drive across town for.</p></article>
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-pepper-hot"></i></div><h3>Marinated meats</h3><p>Carne asada and al pastor style marinades, ready for your grill tonight.</p></article>
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-mortar-pestle"></i></div><h3>Ground &amp; fresh cuts</h3><p>Ground beef, steaks and roasts from the case, cut the way you ask.</p></article>
+            <article class="m-card"><div class="ico" aria-hidden="true"><i class="fa-solid fa-egg"></i></div><h3>Mercado staples</h3><p>Tortillas, produce basics and pantry shelves for the week's cooking.</p></article>
+          </div>
+          <div class="jar-shelf" aria-hidden="true" style="margin-top:36px"><span class="jar j2"></span><span class="jar j3"></span><span class="jar j1"></span><span class="jar j3"></span><span class="jar j2"></span></div>
+          <div class="shelf-line" aria-hidden="true"></div>
+          <div class="section-head" style="margin-top:30px">
+            <span class="kicker">The taqueria counter</span>
+            <h2>Made hot, made here</h2>
+            <p>Street tacos excellent and very tasty, according to the neighborhood. The super burrito has its own reputation, and when the birria is on, the crunch wrap follows.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="page" id="page-reviews">
+      <section class="section" aria-labelledby="rev-title">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="kicker">Word of mouth</span>
+            <h2 id="rev-title">What Butler Ave says</h2>
+            <p>Every Google review quote we have, shown in full, exactly as it was written.</p>
+          </div>
+          <div class="rev-grid">
+            <article class="rev-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>Food was definitely delicious.</blockquote>
+              <div class="who">Google review</div>
+            </article>
+            <article class="rev-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>The carnitas here are juicy and have amazing flavor.</blockquote>
+              <div class="who">Google review</div>
+            </article>
+            <article class="rev-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>The street tacos here are excellent and very tasty.</blockquote>
+              <div class="who">Google review</div>
+            </article>
+            <article class="rev-card">
+              <div class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <blockquote>Best super burrito? in town so far for me For 9.99.</blockquote>
+              <div class="who">Google review</div>
+            </article>
+          </div>
+          <div class="rev-summary">
+            <span class="big">4.5</span>
+            <span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></span>
+            <span class="sub">4.5 stars on Google</span>
+          </div>
+          <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=La%20Piedad%20Mercado%20Y%20Carniceria%2C%203568%20E%20Butler%20Ave%2C%20Fresno%2C%20CA%2093702" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
+        </div>
+      </section>
+    </section>
+
+    <!-- VISIT -->
+    <section class="page" id="page-visit">
+      <section class="section" aria-labelledby="visit-title">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="kicker">Come through</span>
+            <h2 id="visit-title">Visit La Piedad</h2>
+            <p>3568 E Butler Ave, Fresno. Mercado at the door, carniceria at the counter, taqueria in the back.</p>
+          </div>
+          <div class="visit-grid">
+            <div>
+              <div class="vcard">
+                <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> The shop</h3>
+                <p class="addr-line"><i class="fa-solid fa-map-pin" aria-hidden="true"></i> 3568 E Butler Ave, Fresno, CA 93702</p>
+                <p class="addr-line"><i class="fa-solid fa-clock" aria-hidden="true"></i> Sat - Sun 7 AM - 8 PM &middot; Mon - Fri 7:30 AM - 8 PM</p>
+                <p class="addr-line"><i class="fa-solid fa-square-parking" aria-hidden="true"></i> Parking right out front on Butler Ave.</p>
+              </div>
+              <div class="vcard" style="margin-top:20px">
+                <h3><i class="fa-solid fa-calendar-week" aria-hidden="true"></i> Day by day</h3>
+                <span class="status-chip" style="margin-bottom:14px"><span class="dot" aria-hidden="true"></span><span class="label">Checking hours...</span></span>
+                <ul class="daylist">
+                  <li data-day="1"><span>Monday</span><span>7:30 AM - 8 PM</span></li>
+                  <li data-day="2"><span>Tuesday</span><span>7:30 AM - 8 PM</span></li>
+                  <li data-day="3"><span>Wednesday</span><span>7:30 AM - 8 PM</span></li>
+                  <li data-day="4"><span>Thursday</span><span>7:30 AM - 8 PM</span></li>
+                  <li data-day="5"><span>Friday</span><span>7:30 AM - 8 PM</span></li>
+                  <li data-day="6"><span>Saturday</span><span>7 AM - 8 PM</span></li>
+                  <li data-day="0"><span>Sunday</span><span>7 AM - 8 PM</span></li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="jar-card-wrap">
+                <div class="jar-card">
+                  <div class="label-band">
+                    <span class="t1">La Piedad &middot; call the counter</span>
+                    <a class="phone-big" href="tel:+15594410931">(559) 441-0931</a>
+                    <span class="t2">Order carnitas by the tray, or ask what is hot at the taqueria.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="vcard">
+                <h3><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask about the taqueria</h3>
+                <form id="quote-form" novalidate>
+                  <div class="form-grid">
+                    <div>
+                      <label for="f-name">Your name</label>
+                      <input id="f-name" name="name" type="text" autocomplete="name" required>
+                    </div>
+                    <div>
+                      <label for="f-phone">Your phone</label>
+                      <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+                    </div>
+                    <div class="full">
+                      <label for="f-msg">Message</label>
+                      <textarea id="f-msg" name="message" placeholder="Tacos for the crew, a carnitas tray for Sunday, or a question for the counter..." required></textarea>
+                    </div>
+                    <div class="full">
+                      <button class="btn btn-brick btn-wide" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the shop</button>
+                    </div>
+                  </div>
+                  <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-grid">
+      <div>
+        <h4>La Piedad</h4>
+        <p>Mercado y carniceria with a taqueria counter, on E Butler Ave in southeast Fresno. Carnitas, street tacos and the famous super burrito.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p class="foot-line"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+15594410931">(559) 441-0931</a></p>
+        <p class="foot-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 3568 E Butler Ave, Fresno, CA 93702</p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p class="foot-line"><i class="fa-solid fa-clock" aria-hidden="true"></i> Sat - Sun 7 AM - 8 PM</p>
+        <p class="foot-line"><i class="fa-solid fa-clock" aria-hidden="true"></i> Mon - Fri 7:30 AM - 8 PM</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="wrap">
+        <span class="copyright">© La Piedad Mercado Y Carniceria · Fresno, CA</span>
+        <span>Mercado &middot; Carniceria &middot; Taqueria</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+var BUSINESS = "La Piedad Mercado Y Carniceria";
+var TITLES = { home: "Carnitas and Street Tacos on E Butler Ave", carniceria: "La Carniceria", reviews: "Reviews", visit: "Visit Us" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+
+var CITY_TZ = "America/Los_Angeles";
+var HOURS = {0:[7,20],1:[7.5,20],2:[7.5,20],3:[7.5,20],4:[7.5,20],5:[7.5,20],6:[7,20]};
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function paintStatus(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.toggle("open", st.open);
+    var lab = c.querySelector(".label");
+    if (lab) lab.textContent = st.label;
+  });
+}
+function paintToday(){
+  var n = cityNow();
+  var we = document.getElementById("hrow-we");
+  var wd = document.getElementById("hrow-wd");
+  if (we && wd) {
+    we.classList.toggle("today", n.day === 0 || n.day === 6);
+    wd.classList.toggle("today", n.day !== 0 && n.day !== 6);
+  }
+  document.querySelectorAll(".daylist [data-day]").forEach(function(el){
+    el.classList.toggle("today", +el.getAttribute("data-day") === n.day);
+  });
+}
+var mb = document.getElementById("menu-btn");
+mb.addEventListener("click", function(){
+  mb.classList.toggle("open");
+  document.querySelector(".nav-links").classList.toggle("open");
+  mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
+});
+
+var PHONE = "+15594410931";
+var PRETTY = "(559) 441-0931";
+var form = document.getElementById("quote-form");
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  var fbEl = document.getElementById("form-feedback");
+  var nm = document.getElementById("f-name").value.trim();
+  var ph = document.getElementById("f-phone").value.trim();
+  var ms = document.getElementById("f-msg").value.trim();
+  if (!nm || !ms) {
+    fbEl.textContent = "Please add your name and a short message so we can help.";
+    fbEl.classList.remove("ok");
+    return;
+  }
+  var text = "Hi " + BUSINESS + ", this is " + nm + (ph ? " (" + ph + ")" : "") + ". " + ms;
+  var body = encodeURIComponent(text);
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    location.href = "sms:" + PHONE + "?&body=" + body;
+  } else {
+    navigator.clipboard.writeText(text).then(function(){
+      fbEl.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+      fbEl.classList.add("ok");
+    });
+  }
+});
+
+navigateTo(getPageFromHash(), false);
+paintStatus();
+paintToday();
+</script>
+</body>
+</html>
