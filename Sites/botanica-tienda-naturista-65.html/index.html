@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Botanica &amp; Tienda Naturista 65 avenida | Yerberia &amp; Botanica in Glendale, AZ</title>
+<meta name="description" content="Botanica &amp; Tienda Naturista 65 avenida in Glendale, AZ. Yerbas, veladoras, remedios and spiritual items. Visit 6502 W Glendale Ave, Glendale, AZ 85301.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--primary:#0f665c;--accent:#e9b44c;--bg:#f7f1e5;--deep:#163934;--ink:#292723;--paper:#fff;--muted:#6d6961}
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,sans-serif;line-height:1.65;overflow-x:hidden}
+.wrap{width:min(1160px,calc(100% - 42px));margin:auto}
+.site-head{position:fixed;z-index:40;top:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 93%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.1)}
+.nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:"Cormorant Garamond",serif;font-size:23px;font-weight:700;text-decoration:none;color:var(--deep);max-width:60%;line-height:1.05}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{text-decoration:none;color:var(--deep);font-weight:800;font-size:14px}
+.menu{display:none;border:0;background:none;padding:9px;cursor:pointer}
+.menu span{display:block;width:26px;height:2px;background:var(--deep);margin:5px 0}
+.hero{min-height:760px;padding-top:80px;display:grid;grid-template-columns:1.03fr .97fr}
+.hero-copy{display:flex;align-items:center;padding:80px max(22px,calc((100vw - 1160px)/2));padding-right:5vw}
+.eyebrow{color:var(--primary);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;margin-bottom:18px}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;line-height:1.03;margin:0;color:var(--deep)}
+h1{font-size:clamp(52px,6vw,88px);letter-spacing:-.025em}
+.hero .lede{font-size:21px;color:var(--muted);max-width:38ch;margin:24px 0 30px}
+.hero-media{position:relative;min-height:680px;background-image:linear-gradient(rgba(20,20,20,.20),rgba(20,20,20,.20)),url("https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1800&q=80");background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero-media:after{content:"Stock photo background";position:absolute;bottom:18px;right:18px;background:rgba(0,0,0,.62);color:#fff;font-size:11px;padding:7px 9px;letter-spacing:.08em;text-transform:uppercase}
+.btnrow{display:flex;flex-wrap:wrap;gap:11px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 21px;border:1px solid var(--primary);background:var(--primary);color:#fff;text-decoration:none;font-weight:900;border-radius:3px;cursor:pointer}
+.btn.alt{background:transparent;color:var(--primary)}
+.details{background:var(--paper);border-top:1px solid rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.1)}
+.detailgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.detail{padding:28px 30px;border-right:1px solid rgba(0,0,0,.1)}
+.detail:last-child{border-right:0}
+.detail strong{display:block;text-transform:uppercase;font-size:11px;letter-spacing:.13em;color:var(--primary);margin-bottom:7px}
+.detail span{color:var(--muted);font-size:15px}
+.section{padding:100px 0;background-image:radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--accent) 15%, transparent) 0, transparent 22%), radial-gradient(circle at 82% 84%, color-mix(in srgb, var(--primary) 12%, transparent) 0, transparent 25%)}
+.sec-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;align-items:end;margin-bottom:45px}
+.kicker{color:var(--primary);font-size:12px;text-transform:uppercase;letter-spacing:.15em;font-weight:900}
+h2{font-size:clamp(40px,5vw,67px);letter-spacing:-.02em}
+.sec-head p{font-size:19px;color:var(--muted);max-width:55ch;margin:0}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.product{background:var(--paper);padding:28px;border:1px solid rgba(0,0,0,.1);min-height:220px}
+.icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--primary) 10%,transparent);color:var(--primary);margin-bottom:20px}
+.product h3{font-size:25px;margin-bottom:8px}
+.product p{color:var(--muted);margin:0}
+.visit{color:#fff;padding:88px 0;position:relative;overflow:hidden;background-image:linear-gradient(rgba(10,10,10,.74),rgba(10,10,10,.74)),url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1800&q=80");background-size:cover;background-position:center;background-repeat:no-repeat}
+.visit .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.visit h2,.visit h3{color:#fff}
+.visit h3{font-size:28px}
+.visit p{color:rgba(255,255,255,.78)}
+.visit-card{border:1px solid rgba(255,255,255,.22);padding:30px;background:rgba(255,255,255,.05);backdrop-filter:blur(4px)}
+.row{padding:15px 0;border-top:1px solid rgba(255,255,255,.15)}
+.row:first-of-type{border-top:0}
+.row b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}
+footer{padding:36px 0;background:var(--bg);border-top:1px solid rgba(0,0,0,.1)}
+.foot{display:flex;justify-content:space-between;gap:30px;align-items:flex-end}
+.foot b{font-family:"Cormorant Garamond",serif;font-size:24px;color:var(--deep)}
+.foot small{color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;place-items:center;z-index:100;padding:22px}
+.modal.open{display:grid} body.modal-open{overflow:hidden}
+.dialog{width:min(470px,100%);background:var(--paper);padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.28)}
+.dialog h3{font-size:32px;margin-bottom:10px}
+.dialog p{color:var(--muted);margin:0 0 22px}
+.dialog button{border:0;background:var(--primary);color:white;width:100%;padding:13px;font:inherit;font-weight:900;cursor:pointer}
+.hero-media{clip-path:polygon(0 8%,100% 0,100% 100%,0 100%)} .hero h1{max-width:9ch}.products{grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){
+ .hero{grid-template-columns:1fr;min-height:auto} .hero-copy{padding:125px 22px 60px} .hero-media{min-height:430px;margin:0;border-radius:0;clip-path:none}
+ .detailgrid,.products{grid-template-columns:1fr} .detail{border-right:0;border-bottom:1px solid rgba(0,0,0,.1)}
+ .sec-head,.visit .wrap{grid-template-columns:1fr;gap:28px} .section{padding:72px 0}
+ .navlinks{display:none;position:absolute;top:80px;left:0;right:0;background:var(--bg);padding:22px;flex-direction:column;align-items:flex-start;border-bottom:1px solid rgba(0,0,0,.1)}
+ .navlinks.open{display:flex} .menu{display:block} .product:nth-child(even){transform:none}
+ .foot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header class="site-head">
+ <div class="wrap nav">
+  <a class="brand" href="#home">Botanica &amp; Tienda Naturista 65 avenida</a>
+  <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+   <a href="#home">Home</a><a href="#shop">The Shop</a><a href="#visit">Visit</a>
+  </nav>
+  <button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="hero-copy">
+  <div>
+   <div class="eyebrow">Glendale, AZ · Yerberia &amp; Botanica</div>
+   <h1>Botanica &amp; Tienda Naturista 65 avenida</h1>
+   <p class="lede">Yerbas, veladoras, remedios and spiritual items.</p>
+   <div class="btnrow"><a class="btn" href="#shop"><i class="fa-solid fa-store"></i> Explore the shop</a><button class="btn alt" data-locked="true"><i class="fa-solid fa-phone"></i> Call the shop</button></div>
+  </div>
+ </div>
+ <div class="hero-media" role="img" aria-label="Decorative stock photo background"></div>
+</section>
+
+<section class="details">
+ <div class="wrap detailgrid">
+  <div class="detail"><strong><i class="fa-solid fa-location-dot"></i> Address</strong><span>6502 W Glendale Ave, Glendale, AZ 85301</span></div>
+  <div class="detail"><strong><i class="fa-regular fa-clock"></i> Hours</strong><span>Every day, 9 AM – 9 PM</span></div>
+  <div class="detail"><strong><i class="fa-solid fa-phone"></i> Phone</strong><span>(623) 847-9999</span></div>
+ </div>
+</section>
+
+<section class="section" id="shop">
+ <div class="wrap">
+  <div class="sec-head">
+   <div><div class="kicker">Inside the shop</div><h2>Yerberia &amp; Botanica</h2></div>
+   <p>Yerbas, veladoras, remedios and spiritual items.</p>
+  </div>
+  <div class="products"><article class="product"><span class="icon"><i class="fa-solid fa-leaf"></i></span><h3>Yerbas</h3><p>Herbs and yerbas from the shop shelves.</p></article>
+<article class="product"><span class="icon"><i class="fa-solid fa-fire-flame-curved"></i></span><h3>Veladoras</h3><p>Candles and veladoras.</p></article>
+<article class="product"><span class="icon"><i class="fa-solid fa-bottle-droplet"></i></span><h3>Remedios</h3><p>Remedies and naturista goods.</p></article>
+<article class="product"><span class="icon"><i class="fa-solid fa-hands-praying"></i></span><h3>Spiritual items</h3><p>Items for the home altar and spiritual practice.</p></article></div>
+ </div>
+</section>
+
+<section class="visit" id="visit">
+ <div class="wrap">
+  <div>
+   <div class="kicker" style="color:var(--accent)">Visit</div>
+   <h2>Glendale, AZ</h2>
+   <p>Botanica &amp; Tienda Naturista 65 avenida</p>
+  </div>
+  <div class="visit-card">
+   <h3>Shop information</h3>
+   <div class="row"><b>Address</b>6502 W Glendale Ave, Glendale, AZ 85301</div>
+   <div class="row"><b>Hours</b>Every day, 9 AM – 9 PM</div>
+   <div class="row"><b>Phone</b>(623) 847-9999</div>
+   <div class="btnrow" style="margin-top:22px">
+    <button class="btn" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open map</button>
+    <button class="btn alt" data-locked="true" style="color:#fff;border-color:#fff"><i class="fa-solid fa-phone"></i> Call</button>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap foot"><div><b>Botanica &amp; Tienda Naturista 65 avenida</b><br><small>Yerberia &amp; Botanica</small></div><small>Every day, 9 AM – 9 PM</small></div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+ <div class="dialog">
+  <h3 id="lock-title">This is currently locked.</h3>
+  <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+  <button id="close">Close</button>
+ </div>
+</div>
+<script>
+const menu=document.getElementById('menu'),nav=document.getElementById('navlinks');
+menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o?'true':'false')});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+const modal=document.getElementById('modal'),close=document.getElementById('close');let lastFocus=null;
+function openLocked(e){e.preventDefault();lastFocus=document.activeElement;modal.classList.add('open');document.body.classList.add('modal-open');close.focus()}
+function closeLocked(){modal.classList.remove('open');document.body.classList.remove('modal-open');if(lastFocus)lastFocus.focus()}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+close.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked()});
+</script>
+<!--
+Online stock photos are used as section background images.
+These stock photos are decorative and do not depict the actual business, staff, exact inventory, or completed work.
+Because the photos are loaded online, internet access is required for them to appear.
+Demo actions that would perform real-world functions are intentionally locked.
+No unsupported prices, discounts, reviews, owner/team claims, email addresses, social links, booking, checkout, or form submissions were added.
+-->
+</body></html>
