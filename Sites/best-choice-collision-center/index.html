@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0E2A47">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Best Choice Collision Center Inc | Collision Repair in Las Vegas</title>
+  <meta name="description" content="Demo website for Best Choice Collision Center Inc in Las Vegas, featuring collision repair, auto painting, dent removal, bumper and fender repair, insurance claim help, towing coordination, and free written estimates.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --navy:#0E2A47;
+      --navy-2:#163A60;
+      --blue:#2E86DE;
+      --blue-soft:#EAF3FC;
+      --ink:#172230;
+      --body:#435368;
+      --line:#DDE6EF;
+      --white:#FFFFFF;
+      --paper:#F7F9FC;
+      --shadow:0 18px 42px rgba(14,42,71,.14);
+      --max:1180px;
+      --header-h:76px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      -webkit-text-size-adjust:100%;
+      touch-action:manipulation;
+      background:var(--navy);
+    }
+
+    html,body{
+      margin:0;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
+    body{
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--body);
+      background:var(--white);
+      line-height:1.65;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+
+    a,button,input,textarea{font:inherit}
+    a{color:inherit}
+    button{cursor:pointer}
+    img{display:block;max-width:100%}
+    :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+    .container{
+      width:min(var(--max),calc(100% - 48px));
+      margin-inline:auto;
+    }
+
+    .section{
+      padding:104px 0;
+      scroll-margin-top:var(--header-h);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--blue);
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:34px;
+      height:3px;
+      background:var(--blue);
+    }
+
+    h1,h2,h3{
+      margin:0;
+      font-family:"Archivo",sans-serif;
+      color:var(--navy);
+      letter-spacing:-.035em;
+      line-height:1.03;
+    }
+
+    h1{font-size:clamp(3.2rem,7vw,6.9rem)}
+    h2{font-size:clamp(2.5rem,5vw,4.7rem)}
+    h3{font-size:1.35rem}
+    p{margin:0}
+
+    .btn{
+      min-height:50px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:13px 20px;
+      border:1px solid transparent;
+      background:none;
+      text-decoration:none;
+      font-weight:800;
+      font-size:.86rem;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--blue);color:#fff}
+    .btn-primary:hover{background:#1f71bd}
+    .btn-dark{background:var(--navy);color:#fff}
+    .btn-outline{border-color:#AFC5D9;color:var(--navy);background:#fff}
+    .btn-outline:hover{border-color:var(--navy)}
+
+    .site-header{
+      position:fixed;
+      inset:0 0 auto 0;
+      height:var(--header-h);
+      z-index:1000;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(14,42,71,.08);
+    }
+
+    .header-inner{
+      width:min(var(--max),calc(100% - 48px));
+      height:100%;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      text-decoration:none;
+      color:var(--navy);
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:#fff;
+      font-family:"Archivo",sans-serif;
+      font-weight:800;
+      font-size:.75rem;
+      letter-spacing:.04em;
+    }
+
+    .brand-name{
+      font-family:"Archivo",sans-serif;
+      font-weight:800;
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+
+    .desktop-nav{
+      margin-left:auto;
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+
+    .desktop-nav a{
+      color:var(--ink);
+      text-decoration:none;
+      font-size:.86rem;
+      font-weight:700;
+    }
+
+    .desktop-nav a:hover{color:var(--blue)}
+
+    .mobile-toggle{
+      margin-left:auto;
+      display:none;
+      width:46px;
+      height:46px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--navy);
+      align-items:center;
+      justify-content:center;
+      font-size:1.25rem;
+    }
+
+    .mobile-panel{
+      position:fixed;
+      z-index:999;
+      top:var(--header-h);
+      left:0;
+      right:0;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 18px 35px rgba(14,42,71,.14);
+      transform:translateY(-115%);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+    }
+
+    .mobile-panel.open{
+      transform:none;
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .mobile-panel nav{
+      width:min(var(--max),calc(100% - 36px));
+      margin:auto;
+      padding:12px 0 20px;
+      display:grid;
+    }
+
+    .mobile-panel a{
+      padding:15px 2px;
+      border-bottom:1px solid var(--line);
+      color:var(--navy);
+      font-family:"Archivo",sans-serif;
+      font-weight:800;
+      text-decoration:none;
+    }
+
+    .hero{
+      min-height:780px;
+      padding:calc(var(--header-h) + 74px) 0 74px;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(90deg,rgba(7,27,47,.96) 0%,rgba(7,27,47,.88) 40%,rgba(7,27,47,.42) 72%,rgba(7,27,47,.55) 100%),
+        url("https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=2000&q=88") center/cover no-repeat;
+      color:#fff;
+      position:relative;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:8px;
+      background:linear-gradient(90deg,var(--blue) 0 32%,transparent 32% 100%);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,760px) 1fr;
+      gap:58px;
+      align-items:end;
+    }
+
+    .hero h1{color:#fff}
+    .hero .eyebrow{color:#9FD0FF}
+    .hero .eyebrow::before{background:#9FD0FF}
+
+    .hero-copy p{
+      max-width:720px;
+      margin-top:24px;
+      color:#D5E0EA;
+      font-size:clamp(1rem,1.4vw,1.14rem);
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:32px;
+    }
+
+    .hero .btn-outline{
+      color:#fff;
+      border-color:rgba(255,255,255,.4);
+      background:rgba(255,255,255,.06);
+    }
+
+    .hero .btn-outline:hover{
+      color:var(--navy);
+      background:#fff;
+      border-color:#fff;
+    }
+
+    .hero-side{
+      justify-self:end;
+      width:280px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      padding:26px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-side strong{
+      display:block;
+      color:#fff;
+      font-family:"Archivo",sans-serif;
+      font-size:1.05rem;
+      margin-bottom:8px;
+    }
+
+    .hero-side span{
+      color:#C8D5E1;
+      font-size:.88rem;
+    }
+
+    .proof{
+      background:var(--navy);
+      color:#fff;
+    }
+
+    .proof-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-left:1px solid rgba(255,255,255,.12);
+    }
+
+    .proof-item{
+      padding:36px 32px;
+      border-right:1px solid rgba(255,255,255,.12);
+    }
+
+    .proof-item i{
+      color:#6FB6F4;
+      font-size:1.3rem;
+      margin-bottom:17px;
+    }
+
+    .proof-item h3{
+      color:#fff;
+      margin-bottom:10px;
+    }
+
+    .proof-item p{
+      color:#AFC2D5;
+      font-size:.92rem;
+    }
+
+    .about{
+      background:#fff;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:72px;
+      align-items:center;
+    }
+
+    .image-panel{
+      min-height:520px;
+      background:
+        linear-gradient(180deg,rgba(14,42,71,.04),rgba(14,42,71,.18)),
+        url("https://images.unsplash.com/photo-1613214149922-f1809c99b414?auto=format&fit=crop&w=1400&q=86") center/cover no-repeat;
+      box-shadow:var(--shadow);
+    }
+
+    .copy-block p{
+      margin-top:22px;
+      color:#5A687A;
+      max-width:600px;
+    }
+
+    .mini-list{
+      display:grid;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .mini-item{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:14px;
+      align-items:start;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+
+    .mini-item i{
+      color:var(--blue);
+      margin-top:3px;
+    }
+
+    .mini-item strong{
+      color:var(--navy);
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .mini-item span{
+      color:#657384;
+      font-size:.92rem;
+    }
+
+    .services{
+      background:var(--paper);
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:minmax(0,760px) 1fr;
+      gap:36px;
+      align-items:end;
+      margin-bottom:46px;
+    }
+
+    .section-head p{
+      max-width:430px;
+      justify-self:end;
+      color:#647185;
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1px;
+      background:#D3DFEA;
+      border:1px solid #D3DFEA;
+    }
+
+    .service-card{
+      background:#fff;
+      padding:31px;
+      min-height:250px;
+      position:relative;
+      overflow:hidden;
+      transition:background .2s ease,color .2s ease;
+    }
+
+    .service-card:hover{
+      background:var(--navy);
+      color:#fff;
+    }
+
+    .service-card::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0;
+      height:5px;
+      background:var(--blue);
+      transition:width .25s ease;
+    }
+
+    .service-card:hover::after{width:100%}
+
+    .service-icon{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border:1px solid #CCDAE7;
+      color:var(--blue);
+      margin-bottom:42px;
+    }
+
+    .service-card h3{margin-bottom:9px}
+    .service-card p{font-size:.9rem;color:#667587}
+    .service-card:hover h3{color:#fff}
+    .service-card:hover p{color:#C8D6E3}
+
+    .insurance{
+      min-height:500px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(10,33,56,.96),rgba(10,33,56,.56)),
+        url("https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=2000&q=88") center/cover no-repeat;
+      background-attachment:fixed;
+    }
+
+    .insurance-inner{
+      max-width:720px;
+      margin-right:auto;
+      padding:74px 0;
+    }
+
+    .insurance h2{color:#fff}
+    .insurance p{
+      color:#D8E3EC;
+      margin:20px 0 30px;
+      max-width:620px;
+    }
+
+    .reviews{
+      background:#fff;
+    }
+
+    .review-layout{
+      display:grid;
+      grid-template-columns:330px 1fr;
+      gap:70px;
+      align-items:start;
+    }
+
+    .rating-box{
+      background:var(--navy);
+      color:#fff;
+      padding:38px 34px;
+      border-top:6px solid var(--blue);
+    }
+
+    .rating-number{
+      font-family:"Archivo",sans-serif;
+      font-size:5.7rem;
+      line-height:.9;
+      letter-spacing:-.07em;
+    }
+
+    .stars{
+      margin:18px 0 8px;
+      color:#78BDF7;
+      letter-spacing:3px;
+    }
+
+    .rating-box p{color:#B9CAD9}
+
+    .review-copy blockquote{
+      margin:0;
+      color:var(--navy);
+      font-family:"Archivo",sans-serif;
+      font-size:clamp(1.7rem,3vw,3rem);
+      line-height:1.18;
+      letter-spacing:-.025em;
+    }
+
+    .review-source{
+      margin-top:18px;
+      color:#738093;
+      font-size:.82rem;
+      text-transform:uppercase;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+
+    .review-themes{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      margin-top:40px;
+      padding-top:30px;
+      border-top:1px solid var(--line);
+    }
+
+    .review-theme{
+      border-left:3px solid var(--blue);
+      padding-left:16px;
+      color:#5B697A;
+      font-size:.9rem;
+    }
+
+    .faq{
+      background:var(--paper);
+    }
+
+    .faq-list{
+      max-width:880px;
+      margin-top:42px;
+      border-top:1px solid var(--line);
+    }
+
+    .faq-item{
+      border-bottom:1px solid var(--line);
+    }
+
+    .faq-btn{
+      width:100%;
+      padding:22px 0;
+      border:0;
+      background:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      color:var(--navy);
+      text-align:left;
+      font-family:"Archivo",sans-serif;
+      font-size:1.05rem;
+      font-weight:800;
+    }
+
+    .faq-btn i{
+      color:var(--blue);
+      transition:transform .2s ease;
+    }
+
+    .faq-item.open .faq-btn i{transform:rotate(45deg)}
+
+    .faq-answer{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .22s ease;
+    }
+
+    .faq-item.open .faq-answer{grid-template-rows:1fr}
+
+    .faq-answer-inner{
+      overflow:hidden;
+      color:#5E6D7F;
+      padding-right:44px;
+    }
+
+    .faq-item.open .faq-answer-inner{
+      padding-bottom:22px;
+    }
+
+    .hours-contact{
+      background:#fff;
+    }
+
+    .hours-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:70px;
+    }
+
+    .hours-list{
+      margin-top:28px;
+      border-top:1px solid var(--line);
+    }
+
+    .hours-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      padding:14px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .protected{
+      margin-top:26px;
+      border:1px solid var(--line);
+      border-left:4px solid var(--blue);
+      padding:18px 20px;
+      background:var(--blue-soft);
+    }
+
+    .protected strong{
+      display:block;
+      color:var(--navy);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:5px;
+    }
+
+    .protected span{
+      color:#637488;
+      font-size:.9rem;
+    }
+
+    .estimate-card{
+      background:var(--navy);
+      color:#fff;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .estimate-card h3{
+      color:#fff;
+      font-size:1.65rem;
+      margin-bottom:10px;
+    }
+
+    .estimate-card p{
+      color:#C6D4E0;
+      margin-bottom:22px;
+    }
+
+    .estimate-form{
+      display:grid;
+      gap:12px;
+    }
+
+    .field-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .estimate-form label{
+      display:grid;
+      gap:7px;
+      color:#D5E3EE;
+      font-size:.76rem;
+      text-transform:uppercase;
+      font-weight:800;
+      letter-spacing:.05em;
+    }
+
+    .estimate-form input,
+    .estimate-form textarea{
+      width:100%;
+      padding:14px 15px;
+      border:1px solid #476481;
+      border-radius:0;
+      background:#0B2138;
+      color:#fff;
+      outline:none;
+      -webkit-user-select:text;
+      user-select:text;
+    }
+
+    .estimate-form input:focus,
+    .estimate-form textarea:focus{
+      border-color:#80C3F7;
+    }
+
+    .estimate-form textarea{
+      min-height:118px;
+      resize:vertical;
+    }
+
+    .final-cta{
+      background:var(--blue);
+      color:#fff;
+      padding:42px 0;
+    }
+
+    .final-cta-inner{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:28px;
+      align-items:center;
+    }
+
+    .final-cta h2{
+      color:#fff;
+      font-size:clamp(2rem,4vw,3.8rem);
+    }
+
+    .final-cta p{
+      color:#E6F2FC;
+      margin-top:8px;
+    }
+
+    .final-cta .btn-dark{
+      min-width:190px;
+    }
+
+    footer{
+      background:#091D30;
+      color:#fff;
+      padding:48px 0 30px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr;
+      gap:48px;
+    }
+
+    .footer-title{
+      font-family:"Archivo",sans-serif;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+
+    .footer-copy{
+      color:#A8BACB;
+      font-size:.9rem;
+      max-width:400px;
+    }
+
+    .footer-nav{
+      display:grid;
+      gap:8px;
+    }
+
+    .footer-nav a{
+      color:#C6D4E0;
+      text-decoration:none;
+      font-size:.9rem;
+    }
+
+    .footer-nav a:hover{color:#7CC1F8}
+
+    .footer-protected{
+      border-left:3px solid var(--blue);
+      padding-left:14px;
+      color:#B8C8D6;
+      font-size:.86rem;
+    }
+
+    .copyright{
+      border-top:1px solid rgba(255,255,255,.12);
+      margin-top:36px;
+      padding-top:22px;
+      color:#778A9B;
+      font-size:.8rem;
+      display:flex;
+      gap:18px;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .locked-modal{
+      position:fixed;
+      inset:0;
+      z-index:3000;
+      display:none;
+      place-items:center;
+      padding:20px;
+      background:rgba(4,14,25,.76);
+      backdrop-filter:blur(8px);
+    }
+
+    .locked-modal.open{display:grid}
+
+    .modal-card{
+      width:min(500px,100%);
+      background:#fff;
+      border-top:6px solid var(--blue);
+      box-shadow:0 28px 80px rgba(0,0,0,.4);
+      padding:34px;
+    }
+
+    .modal-icon{
+      width:50px;
+      height:50px;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:#fff;
+      margin-bottom:22px;
+    }
+
+    .modal-card h3{
+      font-size:1.9rem;
+      margin-bottom:10px;
+    }
+
+    .modal-card p{
+      color:#607084;
+      margin-bottom:24px;
+    }
+
+    @media (max-width:980px){
+      :root{--header-h:70px}
+      .desktop-nav{display:none}
+      .mobile-toggle{display:inline-flex}
+      .hero{min-height:710px}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-side{justify-self:start;width:auto;max-width:440px}
+      .proof-grid{grid-template-columns:1fr}
+      .proof-item{border-bottom:1px solid rgba(255,255,255,.12)}
+      .split{grid-template-columns:1fr}
+      .image-panel{min-height:430px}
+      .section-head{grid-template-columns:1fr}
+      .section-head p{justify-self:start}
+      .service-grid{grid-template-columns:1fr 1fr}
+      .review-layout{grid-template-columns:1fr;gap:38px}
+      .rating-box{max-width:360px}
+      .hours-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:680px){
+      .container,.header-inner{width:calc(100% - 32px)}
+      .brand-name{font-size:.96rem}
+      .section{padding:76px 0}
+      .hero{
+        min-height:auto;
+        padding:calc(var(--header-h) + 56px) 0 62px;
+        background-position:62% center;
+      }
+      .hero::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:linear-gradient(180deg,rgba(7,27,47,.06),rgba(7,27,47,.45));
+      }
+      .hero-grid{position:relative;z-index:2}
+      h1{font-size:clamp(3.05rem,16vw,5.2rem)}
+      h2{font-size:clamp(2.35rem,12vw,3.9rem)}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .service-grid{grid-template-columns:1fr}
+      .service-card{min-height:auto}
+      .insurance{
+        background-attachment:scroll;
+        min-height:430px;
+      }
+      .review-themes{grid-template-columns:1fr}
+      .field-row{grid-template-columns:1fr}
+      .hours-row{grid-template-columns:1fr auto;gap:18px}
+      .final-cta-inner{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .copyright{display:grid}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        scroll-behavior:auto!important;
+        transition:none!important;
+        animation:none!important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#home" aria-label="Best Choice Collision Center home">
+      <span class="brand-mark">BCC</span>
+      <span class="brand-name">Best Choice Collision Center Inc</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="#estimate" class="btn btn-primary">Free Estimate</a>
+    </nav>
+
+    <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+  <nav aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#estimate">Free Estimate</a>
+  </nav>
+</div>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Collision repair · Las Vegas</div>
+        <h1>A clear answer after a collision.</h1>
+        <p>Best Choice Collision Center Inc provides collision repair, auto painting, dent removal, bumper and fender repair, insurance claim help, towing coordination, and free written estimates.</p>
+
+        <div class="hero-actions">
+          <a href="#estimate" class="btn btn-primary">
+            <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>
+            Request a Free Estimate
+          </a>
+          <a href="#services" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+            View Services
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <strong>Established business listing since 2008</strong>
+        <span>BBB reports a business start date of December 4, 2008. Exact owner and certification details should be confirmed before final publication.</span>
+      </aside>
+    </div>
+  </section>
+
+  <section class="proof" aria-label="Business highlights">
+    <div class="container proof-grid">
+      <article class="proof-item">
+        <i class="fa-solid fa-star" aria-hidden="true"></i>
+        <h3>Highly rated</h3>
+        <p>Public review aggregators report strong customer ratings, with praise for repair quality, communication, and helpful service.</p>
+      </article>
+      <article class="proof-item">
+        <i class="fa-solid fa-file-shield" aria-hidden="true"></i>
+        <h3>Insurance assistance</h3>
+        <p>The supplied business information lists help with inspections, photos, estimates, and claim coordination.</p>
+      </article>
+      <article class="proof-item">
+        <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+        <h3>Free written estimates</h3>
+        <p>The supplied business content states that each job starts with a free written estimate before work begins.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="container split">
+      <div class="image-panel" role="img" aria-label="Stock photo of automotive repair work"></div>
+
+      <div class="copy-block">
+        <div class="eyebrow">About the shop</div>
+        <h2>Repair work with clear communication.</h2>
+        <p>Public reviews commonly mention finished work that looks like new, helpful communication, insurance assistance, and an easy-to-work-with office experience.</p>
+
+        <div class="mini-list">
+          <div class="mini-item">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <div>
+              <strong>Las Vegas location</strong>
+              <span>Public business directories consistently place the shop on W Desert Inn Rd in Las Vegas.</span>
+            </div>
+          </div>
+
+          <div class="mini-item">
+            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+            <div>
+              <strong>Operating since 2008</strong>
+              <span>BBB reports a December 4, 2008 business start date.</span>
+            </div>
+          </div>
+
+          <div class="mini-item">
+            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+            <div>
+              <strong>Owner details require confirmation</strong>
+              <span>Haik Shilgevorkyan appears in public sources as an owner contact, but this should be verified before final publication.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h2>One shop for the full repair.</h2>
+        </div>
+        <p>Only services supported by the supplied business information are included below.</p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-car-burst" aria-hidden="true"></i></div>
+          <h3>Collision repair</h3>
+          <p>Full collision work on cars, trucks, and SUVs, from teardown through refinishing.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles" aria-hidden="true"></i></div>
+          <h3>Auto painting</h3>
+          <p>Panel resprays and complete paint jobs with careful color matching.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
+          <h3>Dent removal</h3>
+          <p>Parking lot dings and collision creases removed the right way.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-car-side" aria-hidden="true"></i></div>
+          <h3>Bumper and fender repair</h3>
+          <p>Cracked and bent bumper covers and fenders repaired or replaced and refinished.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-file-shield" aria-hidden="true"></i></div>
+          <h3>Insurance claim help</h3>
+          <p>Inspections, photos, and estimates organized so an insurance claim can move forward.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-truck-field" aria-hidden="true"></i></div>
+          <h3>Towing coordination</h3>
+          <p>The supplied business content states that towing can be coordinated for vehicles that are not drivable.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="insurance">
+    <div class="container">
+      <div class="insurance-inner">
+        <div class="eyebrow">Insurance repairs</div>
+        <h2>Working through a claim?</h2>
+        <p>The business information provided for this site lists help with inspections, photos, written estimates, and repair coordination.</p>
+        <button class="btn btn-primary locked-action" type="button" data-locked="true">
+          <i class="fa-solid fa-file-circle-check" aria-hidden="true"></i>
+          Contact the Shop
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Customer feedback</div>
+          <h2>Strong public review history.</h2>
+        </div>
+        <p>Exact review totals vary across directories, so the site avoids presenting one total as universally definitive.</p>
+      </div>
+
+      <div class="review-layout">
+        <aside class="rating-box">
+          <div class="rating-number">4.9</div>
+          <div class="stars" aria-label="4.9 stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p>Birdeye currently reports 4.9 stars from 93 reviews.</p>
+        </aside>
+
+        <div class="review-copy">
+          <blockquote>Customers repeatedly praise the quality of the finished body work, clear communication, helpful insurance guidance, and a repair process that feels straightforward.</blockquote>
+          <div class="review-source">Paraphrased from public review themes</div>
+
+          <div class="review-themes">
+            <div class="review-theme">Repairs described as difficult to detect after completion.</div>
+            <div class="review-theme">Helpful communication and clear recommendations.</div>
+            <div class="review-theme">Positive feedback on insurance assistance and turnaround.</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary locked-action" type="button" data-locked="true">
+              <i class="fa-brands fa-google" aria-hidden="true"></i>
+              View Google Reviews
+            </button>
+            <button class="btn btn-outline locked-action" type="button" data-locked="true">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              View More Reviews
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq" id="faq">
+    <div class="container">
+      <div class="eyebrow">Frequently asked questions</div>
+      <h2>What customers usually need to know.</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <span>Do you provide estimates?</span>
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              The supplied business information says every job starts with a free written estimate.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <span>Do you work with insurance claims?</span>
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. The supplied business information lists insurance claim assistance, including inspections, photos, and estimates.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <span>Do you repair dents, bumpers, and fenders?</span>
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. Dent removal and bumper and fender repair are listed among the supported services.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <span>Can you work on larger vehicles?</span>
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Unverified. Historical public reviews mention work on larger vehicles, but a current formal vehicle-size policy was not found. Confirm with the shop before promising this service.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" type="button" aria-expanded="false">
+            <span>What are your business hours?</span>
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Monday through Friday, 8:00 AM to 5:00 PM is consistently reported. Saturday hours conflict across sources and should be confirmed before final publication.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hours-contact" id="contact">
+    <div class="container hours-grid">
+      <div>
+        <div class="eyebrow">Hours & location</div>
+        <h2>Plan your visit.</h2>
+
+        <div class="hours-list">
+          <div class="hours-row"><strong>Monday</strong><span>8:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><strong>Tuesday</strong><span>8:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><strong>Wednesday</strong><span>8:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><strong>Thursday</strong><span>8:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><strong>Friday</strong><span>8:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><strong>Saturday</strong><span>Unverified</span></div>
+          <div class="hours-row"><strong>Sunday</strong><span>Closed</span></div>
+        </div>
+
+        <div class="protected">
+          <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+          <span>Phone number, street address, and individual contact names are hidden until the full website is unlocked.</span>
+        </div>
+      </div>
+
+      <div class="estimate-card" id="estimate">
+        <h3>Request your free estimate</h3>
+        <p>Use this demo form to preview the customer flow. No information will be sent.</p>
+
+        <form class="estimate-form" id="estimateForm">
+          <div class="field-row">
+            <label>
+              Your name
+              <input type="text" name="name" autocomplete="name">
+            </label>
+
+            <label>
+              Your phone
+              <input type="tel" name="phone" autocomplete="tel">
+            </label>
+          </div>
+
+          <label>
+            What happened to the vehicle?
+            <textarea name="message"></textarea>
+          </label>
+
+          <button class="btn btn-primary locked-action" type="submit" data-locked="true">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            Send Estimate Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container final-cta-inner">
+      <div>
+        <h2>Ready to start with an estimate?</h2>
+        <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+      </div>
+
+      <button class="btn btn-dark locked-action" type="button" data-locked="true">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        Call the Shop
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">Best Choice Collision Center Inc</div>
+        <p class="footer-copy">Collision repair, auto painting, dent removal, bumper and fender repair, insurance claim help, towing coordination, and free written estimates in Las Vegas.</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Navigate</div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="footer-title">Contact</div>
+        <div class="footer-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <span>© Best Choice Collision Center Inc · Las Vegas, NV</span>
+      <span>Demo website · Stock imagery used for presentation</span>
+    </div>
+  </div>
+</footer>
+
+<div class="locked-modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const toggle = document.getElementById('mobileToggle');
+  const panel = document.getElementById('mobilePanel');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  let previousFocus = null;
+
+  const closeMenu = () => {
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+    toggle.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+  };
+
+  toggle.addEventListener('click', () => {
+    const opening = !panel.classList.contains('open');
+    panel.classList.toggle('open', opening);
+    panel.setAttribute('aria-hidden', String(!opening));
+    toggle.setAttribute('aria-expanded', String(opening));
+    toggle.setAttribute('aria-label', opening ? 'Close menu' : 'Open menu');
+    toggle.innerHTML = opening
+      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+      : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+  });
+
+  document.querySelectorAll('#mobilePanel a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const opening = !item.classList.contains('open');
+      item.classList.toggle('open', opening);
+      btn.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  const openModal = event => {
+    event.preventDefault();
+    event.stopPropagation();
+    previousFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => modalClose.focus());
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+  };
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', openModal);
+  });
+
+  document.getElementById('estimateForm').addEventListener('submit', openModal);
+
+  modalClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', event => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      if (modal.classList.contains('open')) closeModal();
+      if (panel.classList.contains('open')) closeMenu();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) closeMenu();
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault(), { passive:false });
+  document.addEventListener('dblclick', e => e.preventDefault(), { passive:false });
+})();
+</script>
+
+</body>
+</html>
