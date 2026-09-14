@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#171513">
+  <meta name="description" content="Impressive Creations Inc. is a Greater Cincinnati concrete and masonry contractor established in 1999, specializing in decorative concrete, concrete restoration, and masonry restoration.">
+  <meta name="robots" content="index,follow">
+  <title>Impressive Creations Inc. | Decorative Concrete & Masonry Restoration</title>
+
+  <!-- Free icon library -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!--
+    STOCK IMAGE DISCLOSURE:
+    All photographic imagery used in this demo is stock imagery from Unsplash and does NOT depict
+    Impressive Creations Inc., its employees, vehicles, property, or completed projects.
+
+    Stock source 1:
+    https://unsplash.com/photos/a-man-working-on-a-piece-of-concrete-Y9xZc0PSTvo
+    Stock source 2:
+    https://unsplash.com/photos/sunlight-creates-a-triangular-shadow-on-geometric-patterned-pavement-8fw4pAjvJCA
+  -->
+
+  <style>
+    :root{
+      --ink:#171513;
+      --ink-2:#24211e;
+      --paper:#f2ede5;
+      --paper-2:#e7dfd3;
+      --rust:#b6562c;
+      --rust-dark:#873a1f;
+      --sand:#c9b79e;
+      --muted:#756d64;
+      --white:#fffdf9;
+      --line:rgba(23,21,19,.16);
+      --shadow:0 18px 45px rgba(28,20,15,.14);
+      --max:1240px;
+      --header-h:78px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a,button{font:inherit}
+    button{cursor:pointer}
+    img{display:block;max-width:100%}
+    :focus-visible{outline:3px solid #e98558;outline-offset:3px}
+    .shell{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+
+    .topbar{
+      position:fixed;z-index:1000;top:0;left:0;right:0;
+      height:var(--header-h);
+      background:rgba(23,21,19,.94);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.09);
+    }
+    .topbar .shell{
+      height:100%;display:flex;align-items:center;justify-content:space-between;gap:28px;
+    }
+    .brand{
+      color:var(--white);text-decoration:none;font-weight:900;letter-spacing:.03em;
+      text-transform:uppercase;line-height:1.05;font-size:1.03rem;
+    }
+    .brand small{
+      display:block;color:#cbbcac;font-size:.62rem;letter-spacing:.2em;margin-top:6px;font-weight:700;
+    }
+
+    nav{display:flex;align-items:center;gap:26px}
+    nav a{
+      color:#efe8de;text-decoration:none;font-size:.82rem;text-transform:uppercase;
+      letter-spacing:.12em;font-weight:800;position:relative;
+    }
+    nav a::after{
+      content:"";position:absolute;left:0;bottom:-9px;height:2px;width:0;background:var(--rust);
+      transition:width .22s ease;
+    }
+    nav a:hover::after,nav a:focus-visible::after{width:100%}
+    .nav-cta{
+      border:1px solid rgba(255,255,255,.3);padding:10px 15px!important;
+    }
+    .nav-cta::after{display:none}
+    .nav-cta:hover{border-color:var(--rust);color:#fff}
+
+    .menu-toggle{
+      display:none;border:0;background:transparent;color:#fff;font-size:1.4rem;
+      width:44px;height:44px;align-items:center;justify-content:center;
+    }
+
+    .hero{
+      position:relative;min-height:780px;padding-top:var(--header-h);
+      display:flex;align-items:flex-end;overflow:hidden;background:#1d1a18;
+      color:#fff;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(90deg,rgba(18,16,14,.92) 0%,rgba(18,16,14,.77) 42%,rgba(18,16,14,.38) 72%,rgba(18,16,14,.38) 100%),
+        url("https://images.unsplash.com/photo-1707655536176-a2bc5e00cba9?auto=format&fit=crop&fm=jpg&q=80&w=2200");
+      background-size:cover;background-position:center;
+      transform:scale(1.02);
+    }
+    .hero::after{
+      content:"";position:absolute;inset:auto 0 0;height:35%;
+      background:linear-gradient(transparent,rgba(18,16,14,.8));
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:absolute;inset:0;opacity:.12;
+      background-image:linear-gradient(rgba(255,255,255,.22) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.22) 1px,transparent 1px);
+      background-size:70px 70px;
+    }
+    .hero-content{
+      position:relative;z-index:2;padding:95px 0 74px;max-width:850px;
+    }
+    .eyebrow{
+      display:flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.21em;
+      font-size:.72rem;font-weight:900;color:#e3b79c;margin-bottom:20px;
+    }
+    .eyebrow::before{content:"";width:42px;height:2px;background:var(--rust)}
+    h1,h2,h3{margin:0;line-height:1.05}
+    h1{
+      font-size:clamp(3.4rem,7.8vw,7.4rem);
+      letter-spacing:-.055em;text-transform:uppercase;max-width:970px;
+      font-weight:950;
+    }
+    h1 .accent{color:#e47949}
+    .hero p{
+      max-width:720px;color:#ded5ca;font-size:1.16rem;margin:28px 0 0;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:33px}
+    .btn{
+      appearance:none;border:0;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:49px;padding:13px 20px;text-transform:uppercase;letter-spacing:.1em;font-size:.76rem;font-weight:900;
+      transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--rust);color:#fff}
+    .btn-primary:hover{background:#cf6637}
+    .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.37)}
+    .btn-ghost:hover{border-color:#fff}
+    .hero-facts{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;
+      border-top:1px solid rgba(255,255,255,.22);max-width:800px;
+    }
+    .hero-fact{padding:20px 22px 0 0}
+    .hero-fact + .hero-fact{padding-left:22px;border-left:1px solid rgba(255,255,255,.16)}
+    .hero-fact strong{display:block;font-size:1.45rem;color:#fff}
+    .hero-fact span{display:block;color:#bfb4a7;font-size:.8rem;margin-top:3px}
+
+    section{position:relative}
+    .section-pad{padding:105px 0}
+    .section-kicker{
+      font-size:.73rem;text-transform:uppercase;letter-spacing:.2em;font-weight:900;color:var(--rust-dark);
+      margin-bottom:14px;
+    }
+    .section-title{
+      font-size:clamp(2.4rem,5vw,5.2rem);letter-spacing:-.045em;text-transform:uppercase;font-weight:950;
+      max-width:900px;
+    }
+    .section-intro{
+      max-width:780px;color:#625a53;font-size:1.05rem;margin:22px 0 0;
+    }
+
+    .about{
+      background:var(--paper);
+    }
+    .about-grid{
+      display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:start;
+    }
+    .about-copy p{font-size:1.06rem;color:#574f48;margin:22px 0 0;max-width:720px}
+    .about-panel{
+      border-top:7px solid var(--rust);background:var(--ink);color:#fff;padding:42px;
+      box-shadow:var(--shadow);
+    }
+    .about-panel .number{font-size:clamp(4rem,8vw,7rem);font-weight:950;line-height:.88;color:#e47a4b}
+    .about-panel h3{text-transform:uppercase;letter-spacing:-.025em;font-size:1.8rem;margin-top:20px}
+    .about-panel p{color:#c7bdb2;margin:12px 0 0}
+
+    .services{
+      background:#dfd4c5;
+      border-top:1px solid rgba(23,21,19,.12);
+      border-bottom:1px solid rgba(23,21,19,.12);
+    }
+    .services-grid{
+      margin-top:50px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+      border-top:1px solid rgba(23,21,19,.22);border-left:1px solid rgba(23,21,19,.22);
+    }
+    .service{
+      min-height:260px;padding:38px;border-right:1px solid rgba(23,21,19,.22);
+      border-bottom:1px solid rgba(23,21,19,.22);background:rgba(255,255,255,.17);
+      transition:background .2s ease,transform .2s ease;
+    }
+    .service:hover{background:rgba(255,255,255,.4)}
+    .service-num{font-weight:950;color:var(--rust);font-size:.78rem;letter-spacing:.16em}
+    .service h3{font-size:1.75rem;text-transform:uppercase;letter-spacing:-.025em;margin-top:24px}
+    .service p{color:#61584f;margin:14px 0 0;max-width:560px}
+
+    .workband{
+      min-height:470px;color:#fff;display:flex;align-items:center;overflow:hidden;
+      background:#191715;
+    }
+    .workband::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(90deg,rgba(20,18,16,.94) 0%,rgba(20,18,16,.78) 55%,rgba(20,18,16,.42)),
+        url("https://images.unsplash.com/photo-1785492729818-5e7d11e7599e?auto=format&fit=crop&fm=jpg&q=80&w=2200");
+      background-size:cover;background-position:center;
+    }
+    .workband .shell{position:relative;z-index:2}
+    .workband h2{font-size:clamp(2.6rem,5.3vw,5.5rem);max-width:940px;text-transform:uppercase;letter-spacing:-.045em}
+    .workband p{max-width:700px;color:#d3c9bd;font-size:1.05rem;margin:20px 0 0}
+
+    .area{
+      background:var(--paper);
+    }
+    .area-grid{
+      display:grid;grid-template-columns:.92fr 1.08fr;gap:70px;align-items:start;
+    }
+    .area-list{
+      margin-top:30px;border-top:1px solid var(--line);
+    }
+    .area-row{
+      display:flex;align-items:center;gap:15px;padding:17px 0;border-bottom:1px solid var(--line);font-weight:800;
+    }
+    .area-row i{color:var(--rust);width:22px;text-align:center}
+    .notice{
+      background:#fffaf4;border-left:5px solid var(--rust);padding:25px 26px;color:#554d45;
+    }
+    .notice strong{display:block;text-transform:uppercase;letter-spacing:.08em;font-size:.77rem;color:var(--ink);margin-bottom:8px}
+
+    .faq{background:#171513;color:#fff}
+    .faq .section-kicker{color:#e49a76}
+    .faq .section-intro{color:#bfb4a8}
+    .faq-list{margin-top:48px;border-top:1px solid rgba(255,255,255,.18)}
+    .faq-item{border-bottom:1px solid rgba(255,255,255,.18)}
+    .faq-btn{
+      width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;
+      padding:25px 0;background:transparent;border:0;color:#fff;text-align:left;font-weight:850;font-size:1.08rem;
+    }
+    .faq-btn i{color:#e47a4b;transition:transform .2s ease}
+    .faq-btn[aria-expanded="true"] i{transform:rotate(45deg)}
+    .faq-answer{display:none;color:#c8beb2;padding:0 0 25px;max-width:900px}
+    .faq-answer.open{display:block}
+
+    .contact{
+      background:#b5532b;color:#fff;
+    }
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:end}
+    .contact .section-kicker{color:#231812}
+    .contact .section-title{color:#fff}
+    .contact p{color:#f3ddd1;max-width:680px}
+    .protected{
+      margin-top:28px;border:1px solid rgba(255,255,255,.35);background:rgba(38,22,15,.16);
+      padding:20px 22px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .contact-card{
+      background:#1b1816;padding:34px;box-shadow:var(--shadow);
+    }
+    .contact-card h3{text-transform:uppercase;font-size:1.55rem}
+    .contact-card p{color:#cfc4b9;margin-top:12px}
+    .contact-card .btn{width:100%;margin-top:13px}
+    .contact-card .btn-primary{background:#f3eee8;color:#211b17}
+    .contact-card .btn-primary:hover{background:#fff}
+    .contact-card .btn-ghost{border-color:#6f635b}
+
+    footer{background:#0f0e0d;color:#9d938a;padding:40px 0}
+    .footer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+    .footer-brand{font-size:1.45rem;font-weight:950;text-transform:uppercase;color:#fff}
+    .footer-meta{font-size:.84rem;margin-top:10px}
+    .credits{text-align:right;font-size:.78rem}
+    .credits a{color:#c6b7aa}
+
+    .modal{
+      position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;
+      padding:20px;background:rgba(0,0,0,.72);
+    }
+    .modal.open{display:flex}
+    .modal-box{
+      width:min(100%,500px);background:#f6f0e8;border-top:7px solid var(--rust);padding:34px;
+      box-shadow:0 30px 90px rgba(0,0,0,.4);
+    }
+    .modal-box h2{text-transform:uppercase;font-size:2rem;letter-spacing:-.03em}
+    .modal-box p{color:#61574f;margin:14px 0 24px}
+    .modal-close{background:var(--ink);color:#fff;border:0;padding:13px 20px;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    @media (max-width:980px){
+      :root{--header-h:70px}
+      .shell{width:min(calc(100% - 30px),var(--max))}
+      .menu-toggle{display:flex}
+      nav{
+        position:absolute;top:var(--header-h);left:0;right:0;background:#171513;
+        display:none;flex-direction:column;align-items:stretch;gap:0;padding:16px 20px 24px;
+        border-top:1px solid rgba(255,255,255,.09);
+      }
+      nav.open{display:flex}
+      nav a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+      nav a::after{display:none}
+      .nav-cta{margin-top:10px;text-align:center;border:1px solid rgba(255,255,255,.25)}
+      .hero{min-height:730px}
+      .hero-content{padding:95px 0 60px}
+      .hero-facts{grid-template-columns:1fr;max-width:460px}
+      .hero-fact{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+      .hero-fact + .hero-fact{padding-left:0;border-left:0}
+      .about-grid,.area-grid,.contact-grid,.footer-grid{grid-template-columns:1fr;gap:40px}
+      .services-grid{grid-template-columns:1fr}
+      .credits{text-align:left}
+    }
+
+    @media (max-width:600px){
+      .shell{width:min(calc(100% - 24px),var(--max))}
+      .section-pad{padding:76px 0}
+      .hero{min-height:700px}
+      .hero::before{background-position:58% center}
+      .hero-content{padding-top:80px}
+      h1{font-size:clamp(3rem,16vw,4.8rem)}
+      .hero p{font-size:1rem}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .hero-facts{margin-top:34px}
+      .about-panel{padding:30px}
+      .service{padding:30px 24px;min-height:auto}
+      .workband{min-height:420px}
+      .contact-card{padding:26px 22px}
+      .modal-box{padding:28px 23px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Website header">
+    <div class="shell">
+      <a class="brand" href="#home">
+        Impressive Creations Inc.
+        <small>Concrete + Masonry</small>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <nav id="mainNav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#area">Service Area</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="shell">
+        <div class="hero-content">
+          <div class="eyebrow">Established 1999 · Greater Cincinnati</div>
+          <h1>Concrete built to <span class="accent">make an impression.</span></h1>
+          <p>
+            Impressive Creations Inc. specializes in decorative concrete, concrete repair and restoration,
+            and masonry restoration for the Greater Cincinnati area.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-locked="true">
+              <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+              Request an Estimate
+            </button>
+            <a class="btn btn-ghost" href="#services">
+              <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              Explore Services
+            </a>
+          </div>
+
+          <div class="hero-facts" aria-label="Company highlights">
+            <div class="hero-fact">
+              <strong>1999</strong>
+              <span>Business start year</span>
+            </div>
+            <div class="hero-fact">
+              <strong>Concrete</strong>
+              <span>Decorative + restoration work</span>
+            </div>
+            <div class="hero-fact">
+              <strong>Masonry</strong>
+              <span>Restoration services</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section-pad" id="about">
+      <div class="shell about-grid">
+        <div class="about-copy reveal">
+          <div class="section-kicker">About the company</div>
+          <h2 class="section-title">Craftsmanship focused on concrete and masonry.</h2>
+          <p>
+            Impressive Creations Inc. is a Greater Cincinnati concrete and masonry contractor.
+            Public business records show the company began in 1999. Its documented service focus includes
+            decorative concrete, concrete repair and restoration, and masonry restoration.
+          </p>
+          <p>
+            The company has also previously operated under the name Creative Concrete &amp; Masonry.
+          </p>
+        </div>
+
+        <aside class="about-panel reveal" aria-label="Years in business">
+          <div class="number">27</div>
+          <h3>Years since the business began</h3>
+          <p>Based on a documented February 1, 1999 business start date and the current year, 2026.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="services section-pad" id="services">
+      <div class="shell">
+        <div class="section-kicker">Services</div>
+        <h2 class="section-title">Concrete and masonry work with a restoration mindset.</h2>
+        <p class="section-intro">
+          The services below are limited to work supported by the available research. Pricing is not published,
+          so no prices are displayed in this demo.
+        </p>
+
+        <div class="services-grid">
+          <article class="service reveal">
+            <div class="service-num">01</div>
+            <h3>Decorative / Stamped Concrete</h3>
+            <p>Decorative concrete work using pattern and color to create finishes inspired by masonry materials.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service-num">02</div>
+            <h3>Concrete Repair and Restoration</h3>
+            <p>Repair and restoration work for existing concrete surfaces.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service-num">03</div>
+            <h3>Masonry Restoration</h3>
+            <p>Restoration work for brick and masonry surfaces, including tuck-pointing as documented in the research.</p>
+          </article>
+
+          <article class="service reveal">
+            <div class="service-num">04</div>
+            <h3>Restoration and Sealing</h3>
+            <p>Decorative concrete restoration and sealing to refresh and protect existing surfaces.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="workband" aria-label="Stock image section">
+      <div class="shell reveal">
+        <div class="section-kicker">Stock imagery used for demonstration</div>
+        <h2>Built around material, texture, pattern and repair.</h2>
+        <p>
+          The photography on this demo site is industry-related stock imagery and does not depict
+          Impressive Creations Inc., its employees, or completed company projects.
+        </p>
+      </div>
+    </section>
+
+    <section class="area section-pad" id="area">
+      <div class="shell area-grid">
+        <div class="reveal">
+          <div class="section-kicker">Service area</div>
+          <h2 class="section-title">Serving the Greater Cincinnati area.</h2>
+          <p class="section-intro">
+            Greater Cincinnati is the verified public service-area description used for this demo.
+          </p>
+
+          <div class="area-list">
+            <div class="area-row"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Greater Cincinnati</div>
+            <div class="area-row"><i class="fa-solid fa-building" aria-hidden="true"></i> Cleves / Cincinnati business presence</div>
+          </div>
+        </div>
+
+        <div class="notice reveal">
+          <strong>Service-area note</strong>
+          Broader coverage in Southwest Ohio, Northern Kentucky, and Southeastern Indiana appeared in prior research,
+          but it is not presented here as a current promise because it still requires confirmation from the business.
+        </div>
+      </div>
+    </section>
+
+    <section class="faq section-pad" id="faq">
+      <div class="shell">
+        <div class="section-kicker">Frequently asked questions</div>
+        <h2 class="section-title">The basics, based on verified information.</h2>
+        <p class="section-intro">No policies, guarantees, prices, hours, or unsupported service claims are added.</p>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>What does Impressive Creations Inc. specialize in?</span>
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              Decorative concrete, concrete repair and restoration, and masonry restoration are the core verified services used in this demo.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>When did the business start?</span>
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              Public business records list February 1, 1999 as the business start date.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>What area does the company serve?</span>
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              Greater Cincinnati is the verified service-area description presented on this demo.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              <span>Are prices available online?</span>
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+              No current public service pricing was verified, so this site does not display prices.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section-pad" id="contact">
+      <div class="shell contact-grid">
+        <div class="reveal">
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Have a concrete or masonry project?</h2>
+          <p>
+            This is a locked demonstration site. Real-world contact actions are intentionally disabled until the site is purchased and unlocked.
+          </p>
+          <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+        </div>
+
+        <div class="contact-card reveal">
+          <h3>Contact details protected</h3>
+          <p>Phone number, business address, and owner/contact name are not displayed in this sample.</p>
+
+          <button class="btn btn-primary" data-locked="true">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            Call Company
+          </button>
+          <button class="btn btn-ghost" data-locked="true">
+            <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+            Request an Estimate
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <div>
+        <div class="footer-brand">Impressive Creations Inc.</div>
+        <div class="footer-meta">
+          Concrete &amp; masonry · Greater Cincinnati · Business started in 1999
+        </div>
+      </div>
+      <div class="credits">
+        Demo stock photography:
+        <a href="https://unsplash.com/photos/a-man-working-on-a-piece-of-concrete-Y9xZc0PSTvo" target="_blank" rel="noopener">Unsplash image 1</a>
+        ·
+        <a href="https://unsplash.com/photos/sunlight-creates-a-triangular-shadow-on-geometric-patterned-pavement-8fw4pAjvJCA" target="_blank" rel="noopener">Unsplash image 2</a>
+        <br>
+        Stock imagery does not depict the actual business or completed work.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reusable locked-feature modal -->
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+    <div class="modal-box" role="document">
+      <h2 id="lockedTitle">This is currently locked.</h2>
+      <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="modal-close" id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+
+      menuToggle.addEventListener('click', () => {
+        const open = mainNav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.innerHTML = open
+          ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+          : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+      });
+
+      mainNav.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+          mainNav.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+        });
+      });
+
+      document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answer = btn.nextElementSibling;
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          answer.classList.toggle('open', !open);
+        });
+      });
+
+      const modal = document.getElementById('lockedModal');
+      const modalClose = document.getElementById('modalClose');
+      let previousFocus = null;
+
+      function openModal(){
+        previousFocus = document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if(previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openModal();
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => {
+        if(e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          const focusables = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault();
+            last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      const observer = ('IntersectionObserver' in window)
+        ? new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if(entry.isIntersecting){
+                entry.target.classList.add('in');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, {threshold:.12})
+        : null;
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        if(observer) observer.observe(el);
+        else el.classList.add('in');
+      });
+    })();
+  </script>
+
+  <!--
+  ============================================================
+  BUILD NOTES / DELIVERABLE SUMMARY
+  ============================================================
+
+  STRUCTURE
+  1. Sticky header + responsive hamburger navigation
+  2. Hero
+  3. About
+  4. Services
+  5. Stock-image visual band
+  6. Verified service area
+  7. FAQ
+  8. Locked contact section
+  9. Footer
+  10. One reusable locked-feature modal
+
+  DESIGN DIRECTION
+  - Industrial/editorial concrete-and-masonry aesthetic
+  - Dark charcoal, warm plaster, rust orange and sand palette
+  - Strong uppercase typography, restrained borders, minimal rounding
+  - Desktop-first two-column compositions that stack on smaller screens
+  - Stock photographs are disclosed and never represented as company work
+
+  PALETTE
+  #171513 charcoal
+  #F2EDE5 warm plaster
+  #B6562C rust
+  #C9B79E sand
+  #756D64 muted taupe
+
+  TYPOGRAPHY
+  - System sans-serif stack for speed and compatibility
+  - Heavy uppercase display headings
+  - Clear readable body copy
+
+  IMAGE / ASSET RECOMMENDATIONS
+  - Replace stock images with verified company project photography after purchase/approval
+  - Request original logo file from business owner if available
+  - Request verified branded vehicle / jobsite / finished-work images
+  - Font Awesome CDN used for free interface icons
+
+  SEO
+  Title:
+  Impressive Creations Inc. | Decorative Concrete & Masonry Restoration
+
+  Meta description:
+  Impressive Creations Inc. is a Greater Cincinnati concrete and masonry contractor established
+  in 1999, specializing in decorative concrete, concrete restoration, and masonry restoration.
+
+  Local SEO recommendations after owner confirmation:
+  - Confirm canonical public business address
+  - Confirm exact service-area cities
+  - Confirm business hours
+  - Add verified Google Business Profile URL
+  - Add Organization / LocalBusiness structured data only after all details are confirmed
+  - Add verified project photos with descriptive alt text
+
+  MISSING / REQUIRES APPROVAL
+  - Public email
+  - Business hours
+  - Exact current service radius
+  - Current license/certification details
+  - Current price information
+  - Owner-approved project photos
+  - Official logo / brand palette
+  - Social-media accounts
+  - Current warranty / estimate policies
+  - Any broader service-area claims beyond Greater Cincinnati
+  - Any additional services beyond those shown here
+
+  FINAL QUALITY CHECK
+  [x] Complete single HTML file
+  [x] CSS embedded
+  [x] JavaScript embedded
+  [x] Responsive desktop/tablet/mobile layout
+  [x] Three-line hamburger mobile menu
+  [x] Mobile zoom disabled
+  [x] Text selection/highlighting disabled
+  [x] Internal navigation works
+  [x] Locked real-world actions use one reusable modal
+  [x] Modal closes by button, backdrop, or Escape
+  [x] Modal focus is trapped while open
+  [x] No fake form submission
+  [x] No fake booking/payment/login functionality
+  [x] Contact name, phone and address protected in demo
+  [x] No prices invented
+  [x] No reviews/testimonials invented
+  [x] No business hours invented
+  [x] No unsupported certifications/licenses/awards added
+  [x] Stock imagery explicitly disclosed
+  [x] No unavailable sections included as empty placeholders
+  ============================================================
+  -->
+</body>
+</html>
