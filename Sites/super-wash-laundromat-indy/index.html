@@ -3,7 +3,792 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laundromat on Lafayette Rd | Super Wash Laundromat</title>
+<title>L<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0f334a">
+  <title>Super Wash Laundromat | Lafayette Rd, Indianapolis</title>
+  <meta name="description" content="Super Wash Laundromat on Lafayette Rd in Indianapolis. Self-service washers and dryers, open every day from 5 AM to 1 AM.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --navy:#0f334a;
+      --blue:#1d6f96;
+      --sky:#8ed2ee;
+      --sun:#f6c64f;
+      --cream:#f7f2e7;
+      --white:#ffffff;
+      --ink:#14252f;
+      --muted:#667781;
+      --line:rgba(15,51,74,.14);
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+      -webkit-text-size-adjust:100%;
+      touch-action:manipulation;
+    }
+    body{
+      margin:0;
+      background:var(--cream);
+      color:var(--ink);
+      font-family:"Plus Jakarta Sans",sans-serif;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
+
+    h1,h2,h3{margin-top:0}
+    h1,h2{font-family:"Anton",sans-serif;text-transform:uppercase;font-weight:400;letter-spacing:.01em}
+    h1{font-size:clamp(4.6rem,10vw,8.8rem);line-height:.86;margin-bottom:20px}
+    h2{font-size:clamp(3rem,6vw,5rem);line-height:.92;margin-bottom:16px}
+    h3{font-size:1.25rem}
+    p{line-height:1.72}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--blue);
+    }
+    .eyebrow:before{
+      content:"";
+      width:38px;
+      height:3px;
+      background:currentColor;
+    }
+
+    .btn{
+      min-height:50px;
+      padding:0 22px;
+      border:1px solid transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-blue{background:var(--blue);color:#fff}
+    .btn-dark{background:var(--navy);color:#fff}
+    .btn-sun{background:var(--sun);color:var(--navy)}
+    .btn-line{background:transparent;border-color:rgba(255,255,255,.7);color:#fff}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(247,242,231,.95);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .head{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-badge{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:var(--sun);
+      font-size:1.1rem;
+    }
+    .brand strong{
+      display:block;
+      font-family:"Anton";
+      font-size:1.05rem;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      line-height:1;
+    }
+    .brand small{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:.63rem;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:.86rem;
+      font-weight:700;
+    }
+    .nav a:hover{color:var(--blue)}
+    .menu{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--ink);
+    }
+    .mobile-menu{
+      display:none;
+      background:var(--cream);
+      border-top:1px solid var(--line);
+      padding:8px 20px 18px;
+    }
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{
+      padding:14px 0;
+      border-bottom:1px solid var(--line);
+      font-weight:700;
+    }
+
+    .hero{
+      min-height:760px;
+      display:grid;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(8,35,51,.96) 0%,rgba(8,35,51,.75) 50%,rgba(8,35,51,.18) 100%),
+        url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"SUPER";
+      position:absolute;
+      right:-25px;
+      top:50px;
+      font-family:"Anton";
+      font-size:min(26vw,340px);
+      color:transparent;
+      -webkit-text-stroke:2px rgba(255,255,255,.09);
+      line-height:.8;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:118px 0 86px;
+      max-width:850px;
+    }
+    .hero .eyebrow{color:var(--sun)}
+    .hero-copy{
+      max-width:660px;
+      color:rgba(255,255,255,.85);
+      font-size:1.08rem;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:30px;
+    }
+    .stock-note{
+      position:absolute;
+      right:16px;
+      bottom:14px;
+      z-index:2;
+      background:rgba(0,0,0,.45);
+      padding:7px 10px;
+      color:#eee;
+      font-size:.66rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .factsbar{
+      background:var(--navy);
+      color:#fff;
+    }
+    .facts-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+    }
+    .fact{
+      padding:24px;
+      display:flex;
+      gap:14px;
+      border-right:1px solid rgba(255,255,255,.15);
+    }
+    .fact:last-child{border-right:0}
+    .fact i{color:var(--sun);margin-top:3px}
+    .fact strong{
+      display:block;
+      font-size:.69rem;
+      text-transform:uppercase;
+      letter-spacing:.11em;
+      color:rgba(255,255,255,.58);
+      margin-bottom:4px;
+    }
+    .fact span{font-weight:700}
+
+    .section{padding:100px 0}
+    .section.white{background:#fff}
+    .section.bluewash{background:#dff1f8}
+    .split{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:start;
+    }
+    .lead{
+      max-width:700px;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+
+    .about-photo{
+      min-height:470px;
+      position:relative;
+      background:
+        linear-gradient(rgba(15,51,74,.08),rgba(15,51,74,.08)),
+        url("https://images.unsplash.com/photo-1551761429-8232f9f5955c?auto=format&fit=crop&w=1500&q=84") center/cover no-repeat;
+      box-shadow:0 22px 50px rgba(15,51,74,.14);
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";
+      position:absolute;
+      left:14px;
+      bottom:12px;
+      background:rgba(15,51,74,.8);
+      color:#fff;
+      padding:7px 9px;
+      font-size:.65rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+
+    .wash-list{
+      margin-top:40px;
+      border-top:2px solid var(--navy);
+    }
+    .wash-row{
+      display:grid;
+      grid-template-columns:64px 1fr;
+      gap:20px;
+      align-items:start;
+      padding:24px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .wash-icon{
+      width:52px;
+      height:52px;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:var(--sun);
+    }
+    .wash-row h3{margin-bottom:6px}
+    .wash-row p{margin:0;color:var(--muted)}
+
+    .photo-band{
+      min-height:590px;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(12,49,70,.94),rgba(12,49,70,.58),rgba(12,49,70,.15)),
+        url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .photo-copy{max-width:650px;padding:90px 0}
+    .photo-copy .eyebrow{color:var(--sun)}
+    .photo-copy p{color:rgba(255,255,255,.82)}
+
+    .hours-grid{
+      display:grid;
+      grid-template-columns:.72fr 1.28fr;
+      gap:68px;
+    }
+    .hours-list{border-top:2px solid var(--navy)}
+    .hrow{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:15px 0;
+      border-bottom:1px solid var(--line);
+    }
+
+    .rating{
+      margin-top:36px;
+      background:var(--navy);
+      color:#fff;
+      padding:34px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .rating-big{
+      font-family:"Anton";
+      font-size:4rem;
+      color:var(--sun);
+      line-height:.9;
+    }
+    .rating p{margin:5px 0 0;color:#ccd7dd}
+
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:26px;
+      margin-top:34px;
+    }
+    .vcard{
+      min-height:300px;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:34px;
+    }
+    .vcard.dark{
+      background:var(--navy);
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .vcard.dark p{color:#d5e0e5}
+    .protected{
+      margin-top:20px;
+      border:2px dashed currentColor;
+      padding:17px;
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .cta{
+      margin-top:34px;
+      background:var(--sun);
+      color:var(--navy);
+      padding:44px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+    .cta h3{
+      font-family:"Anton";
+      font-size:clamp(2rem,4vw,3rem);
+      text-transform:uppercase;
+      margin:0;
+    }
+    .cta p{margin:8px 0 0;color:#4e5760}
+
+    footer{
+      background:#0b2b3d;
+      color:#c7d3da;
+      padding:38px 0;
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap:25px;
+      align-items:center;
+      font-size:.83rem;
+    }
+    .foot strong{color:#fff}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:none;
+      place-items:center;
+      padding:22px;
+      background:rgba(0,0,0,.74);
+    }
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(470px,100%);
+      background:#fff;
+      padding:34px;
+      box-shadow:0 30px 90px rgba(0,0,0,.42);
+    }
+    .modal-icon{
+      width:50px;
+      height:50px;
+      display:grid;
+      place-items:center;
+      background:var(--navy);
+      color:var(--sun);
+      margin-bottom:20px;
+    }
+    .modal-card h2{font-size:2.4rem}
+    .modal-card p{color:var(--muted);margin:14px 0 24px}
+    .modal-card .btn{width:100%}
+
+    @media(max-width:900px){
+      .nav{display:none}.menu{display:grid;place-items:center}
+      .split,.hours-grid,.visit-grid{grid-template-columns:1fr}
+      .facts-grid{grid-template-columns:1fr}
+      .fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
+      .fact:last-child{border-bottom:0}
+      .cta,.rating{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .head{height:68px}
+      .brand strong{font-size:.92rem}
+      .brand small{display:none}
+      .hero{min-height:640px;background-position:56% center}
+      .hero-inner{padding:90px 0 54px}
+      h1{font-size:clamp(4rem,19vw,5.6rem)}
+      .hero-actions{display:grid}
+      .hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .section{padding:74px 0}
+      .about-photo{min-height:340px}
+      .vcard{padding:26px}
+      .cta{padding:30px 24px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap head">
+    <a class="brand" href="#home" aria-label="Super Wash Laundromat home">
+      <span class="brand-badge"><i class="fa-solid fa-soap"></i></span>
+      <span>
+        <strong>Super Wash Laundromat</strong>
+        <small>Lafayette Rd · Indianapolis</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#wash">The Wash</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <button class="menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#wash">The Wash</a>
+    <a href="#hours">Hours</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Lafayette Rd · Indianapolis</div>
+      <h1>Super Wash Laundromat</h1>
+      <p class="hero-copy">The Lafayette Road wash house that opens before the sun and closes long after dinner. Big self-service machines, an early 5 AM start, and doors open until 1 AM every single night.</p>
+      <div class="hero-actions">
+        <a class="btn btn-sun" href="#wash"><i class="fa-solid fa-soap"></i> See the wash</a>
+        <a class="btn btn-line" href="#hours"><i class="fa-regular fa-clock"></i> View hours</a>
+      </div>
+    </div>
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="factsbar">
+    <div class="wrap facts-grid">
+      <div class="fact">
+        <i class="fa-solid fa-clock"></i>
+        <div><strong>Hours</strong><span>Every day 5 AM - 1 AM</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-star"></i>
+        <div><strong>Google rating shown in source</strong><span>4.3 · 208 reviews</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><strong>Location</strong><span>Indianapolis, Indiana</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section white" id="about">
+    <div class="wrap split">
+      <div class="about-photo" role="img" aria-label="Stock laundromat interior"></div>
+      <div>
+        <div class="eyebrow">About</div>
+        <h2>Laundry that fits your day.</h2>
+        <p class="lead">Super Wash Laundromat on Lafayette Rd is built around one idea: laundry should fit your day, not the other way around. Almost twenty open hours a day does exactly that.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bluewash" id="wash">
+    <div class="wrap">
+      <div class="eyebrow">The Wash</div>
+      <h2>Super loads, super hours.</h2>
+
+      <div class="wash-list">
+        <div class="wash-row">
+          <div class="wash-icon"><i class="fa-solid fa-soap"></i></div>
+          <div>
+            <h3>Self-service washers</h3>
+            <p>Grab a machine, run a load, keep your day moving. No appointment needed.</p>
+          </div>
+        </div>
+
+        <div class="wash-row">
+          <div class="wash-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+          <div>
+            <h3>Dryers on tap</h3>
+            <p>Warm dryers ready right behind the washers, all through the open window.</p>
+          </div>
+        </div>
+
+        <div class="wash-row">
+          <div class="wash-icon"><i class="fa-solid fa-user-clock"></i></div>
+          <div>
+            <h3>Built for busy weeks</h3>
+            <p>Wash 4 or 5 times a week? The regulars do, and the routine works.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-band">
+    <div class="wrap photo-copy">
+      <div class="eyebrow">Long hours</div>
+      <h2>Open before sunrise. Open after dinner.</h2>
+      <p>This demo uses relevant laundromat stock photography. It does not depict the actual Super Wash Laundromat location, machines, employees, or customers.</p>
+    </div>
+  </section>
+
+  <section class="section white" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="eyebrow">Hours</div>
+        <h2>Every day, same long window.</h2>
+        <p class="lead">The supplied source lists the same schedule all seven days.</p>
+      </div>
+
+      <div class="hours-list">
+        <div class="hrow"><span>Sunday</span><strong>5:00 AM - 1:00 AM</strong></div>
+        <div class="hrow"><span>Monday</span><strong>5:00 AM - 1:00 AM</strong></div>
+        <div class="hrow"><span>Tuesday</span><strong>5:00 AM - 1:00 AM</strong></div>
+        <div class="hrow"><span>Wednesday</span><strong>5:00 AM - 1:00 AM</strong></div>
+        <div class="hrow"><span>Thursday</span><strong>5:00 AM - 1:00 AM</strong></div>
+        <div class="hrow"><span>Friday</span><strong>5:00 AM - 1:00 AM</strong></div>
+        <div class="hrow"><span>Saturday</span><strong>5:00 AM - 1:00 AM</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bluewash" id="visit">
+    <div class="wrap">
+      <div class="eyebrow">Visit & contact</div>
+      <h2>Real-world contact details stay protected.</h2>
+      <p class="lead">The supplied source includes a phone number, street address, Google Maps action, and message form. Those actions remain disabled in this demo.</p>
+
+      <div class="rating">
+        <div>
+          <div class="rating-big">4.3</div>
+          <p>208 Google reviews shown in the supplied source.</p>
+        </div>
+        <button class="btn btn-sun" type="button" data-locked="true"><i class="fa-brands fa-google"></i> View reviews</button>
+      </div>
+
+      <div class="visit-grid">
+        <article class="vcard dark">
+          <div>
+            <i class="fa-solid fa-location-dot" style="font-size:2rem;color:var(--sun)"></i>
+            <h3 style="margin-top:20px">Business address</h3>
+            <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-sun" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+          </div>
+        </article>
+
+        <article class="vcard">
+          <i class="fa-solid fa-phone" style="font-size:1.7rem;color:var(--blue)"></i>
+          <h3 style="margin-top:18px">Phone</h3>
+          <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+          <div class="actions">
+            <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call laundromat</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta">
+        <div>
+          <h3>Send the crew a note</h3>
+          <p>The original source included a message form. Submission stays protected in this demo.</p>
+        </div>
+        <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-lock"></i> Send message</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>Super Wash Laundromat</strong><br>Indianapolis, Indiana</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal-card" tabindex="-1">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-dark" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalCard = modal.querySelector('.modal-card');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openLocked(trigger) {
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    setTimeout(() => modalCard.focus(), 0);
+  }
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  modalClose.addEventListener('click', closeLocked);
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if (e.ctrlKey || e.metaKey) e.preventDefault();
+  }, { passive:false });
+})();
+</script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Super Wash Laundromat
+- Lafayette Rd / Indianapolis, Indiana
+- Source hero wording about opening before sunrise and staying open until 1 AM
+- Self-service washers
+- Dryers on tap
+- Built for busy weeks
+- Hours: every day 5:00 AM - 1:00 AM
+- Google rating shown: 4.3 stars / 208 reviews
+- Source includes exact address and phone, intentionally hidden in demo
+
+OMITTED / PROTECTED
+- Review quote naming an individual was omitted rather than altered
+- Exact street address
+- Phone number
+- Working Maps link
+- Working Google reviews link
+- Working message/SMS form
+- Any unsupported services, pricing, amenities, payment methods, staffing, or guarantees
+
+STOCK ASSETS
+- Relevant generic laundromat imagery from Unsplash
+- Stock imagery does not depict the actual business, equipment, staff, or customers
+- Font Awesome Free icons
+- Google Fonts: Anton + Plus Jakarta Sans
+
+QUALITY CHECK
+- One complete HTML file
+- CSS and JavaScript inline
+- Responsive desktop/tablet/mobile
+- Three-line mobile hamburger
+- Mobile zoom prevention
+- Text selection disabled
+- Internal navigation works
+- One reusable locked-feature modal
+- Locked actions do not redirect, submit, or fake success
+- Uses normal JavaScript operators such as &&
+-->
+</body>
+</html>
+aundromat on Lafayette Rd | Super Wash Laundromat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">

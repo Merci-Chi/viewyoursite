@@ -1,589 +1,888 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Spot Smoke Shop #5 | Ashlan Ave, Fresno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{
-  --orange:#FF7043;
-  --orange-deep:#E85A2A;
-  --ink:#232120;
-  --soft:#6E6A66;
-  --paper:#FFF8F4;
-  --line:#EFDDD2;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:'Rubik',sans-serif;background:#fff;color:var(--ink);line-height:1.65;font-size:17px}
-h1,h2,h3,.hand{font-family:'Caveat Brush',cursive;font-weight:400;line-height:1.05;margin:0 0 12px}
-a{color:var(--orange-deep)}
-.site-shell{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-.page{display:none}
-.page.active{display:block}
-.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#13161b">
+  <meta name="description" content="The Stash Smoke Shop 24/7 in Las Vegas, Nevada. Open 24 hours daily. Informational demo with protected contact actions.">
+  <title>The Stash Smoke Shop 24/7 | Las Vegas, NV</title>
 
-/* header */
-.site-head{background:#fff;border-bottom:3px solid var(--ink);position:relative;z-index:40}
-.head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 22px;max-width:1060px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.die{width:44px;height:44px;background:#fff;border:3px solid var(--ink);border-radius:12px;position:relative;flex-shrink:0;transform:rotate(-6deg);box-shadow:2px 3px 0 rgba(35,33,32,.2)}
-.die i{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--orange)}
-.die i:nth-child(1){top:6px;left:6px}
-.die i:nth-child(2){top:6px;right:6px}
-.die i:nth-child(3){top:18px;left:18px}
-.die i:nth-child(4){bottom:6px;left:6px}
-.die i:nth-child(5){bottom:6px;right:6px}
-.brand-name{font-family:'Caveat Brush',cursive;font-size:1.7rem;color:var(--ink);line-height:1}
-.brand-name em{font-style:normal;color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:22px}
-.nav-links a{font-weight:600;font-size:.97rem;color:var(--ink);text-decoration:none;padding:4px 2px;background-image:linear-gradient(transparent 70%, rgba(255,112,67,.4) 70%)}
-.nav-links a:hover{color:var(--orange-deep)}
-.menu-btn{display:none;background:none;border:3px solid var(--ink);border-radius:10px;padding:8px 10px;cursor:pointer}
-.menu-btn span{display:block;width:20px;height:3px;border-radius:2px;background:var(--ink);margin:4px 0}
-.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.menu-btn.open span:nth-child(2){opacity:0}
-.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-/* status chip */
-.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:999px;background:#fff;border:2px solid var(--ink);font-weight:600;font-size:.88rem;color:var(--ink)}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#B9B3AD;flex-shrink:0}
-.status-chip.is-open .dot{background:#3FA45B;box-shadow:0 0 0 4px rgba(63,164,91,.18)}
-.status-chip.is-closed .dot{background:var(--orange-deep)}
-.status-chip.lite{border-style:dashed;background:var(--paper)}
+  <style>
+    :root{
+      --bg:#111318;
+      --panel:#1a1d23;
+      --panel2:#20242b;
+      --amber:#ffb020;
+      --amber2:#ffd27a;
+      --text:#f5f7fa;
+      --muted:#a9b0bb;
+      --line:rgba(255,255,255,.11);
+      --max:1160px;
+      --shadow:0 28px 80px rgba(0,0,0,.38);
+    }
 
-/* hero */
-.hero{background:var(--paper);padding:64px 0 76px;border-bottom:3px dashed var(--line)}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border-radius:999px;padding:9px 20px;font-weight:600;letter-spacing:1px;font-size:.85rem;margin-bottom:20px;transform:rotate(-1.5deg)}
-.hero-badge .five{color:var(--orange);font-family:'Caveat Brush',cursive;font-size:1.1rem}
-.hero h1{font-size:clamp(2.9rem,7vw,4.5rem);color:var(--ink);margin-bottom:6px}
-.hero h1 .hl{background-image:linear-gradient(transparent 62%, rgba(255,112,67,.45) 62%);padding:0 4px}
-.hero .tagline{font-family:'Caveat Brush',cursive;font-size:1.7rem;color:var(--orange-deep);margin:0 0 12px;transform:rotate(-1deg)}
-.hero p.lead{max-width:520px;margin:0 0 24px;color:var(--soft)}
-.hero-chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
-.hero-btns{display:flex;flex-wrap:wrap;gap:14px}
-.spot-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:999px;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;font-size:1rem;box-shadow:0 10px 22px rgba(255,112,67,.35)}
-.spot-btn:hover{background:var(--orange-deep)}
-.spot-btn.ghost{background:#fff;color:var(--ink);border:2.5px solid var(--ink);box-shadow:none}
-.spot-btn.ghost:hover{border-color:var(--orange);color:var(--orange-deep)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Nunito Sans",sans-serif;
+      overflow-x:hidden;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    h1,h2,h3,p{margin-top:0}
+    img{display:block;max-width:100%}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:0 auto}
 
-/* big die */
-.big-die{width:min(300px,68vw);aspect-ratio:1;background:#fff;border:5px solid var(--ink);border-radius:36px;position:relative;margin:0 auto;transform:rotate(4deg);box-shadow:10px 12px 0 rgba(35,33,32,.14)}
-.big-die i{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--orange);box-shadow:inset 0 -6px 0 rgba(0,0,0,.12)}
-.big-die i:nth-child(1){top:14%;left:14%}
-.big-die i:nth-child(2){top:14%;right:14%}
-.big-die i:nth-child(3){top:39%;left:39%}
-.big-die i:nth-child(4){bottom:14%;left:14%}
-.big-die i:nth-child(5){bottom:14%;right:14%}
-.die-note{text-align:center;font-family:'Caveat Brush',cursive;font-size:1.35rem;color:var(--soft);margin-top:18px;transform:rotate(-2deg)}
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(17,19,24,.93);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-family:"Bebas Neue",sans-serif;
+      font-size:1.7rem;
+      letter-spacing:.05em;
+    }
+    .brand-mark{
+      width:40px;height:40px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,176,32,.45);
+      color:var(--amber);
+      box-shadow:0 0 22px rgba(255,176,32,.12);
+    }
+    .desktop-nav{display:flex;gap:28px;font-size:.9rem;font-weight:800}
+    .desktop-nav a:hover{color:var(--amber)}
+    .menu-btn{
+      display:none;width:46px;height:46px;
+      border:0;background:transparent;cursor:pointer;
+    }
+    .menu-btn span{display:block;width:25px;height:2px;background:#fff;margin:5px auto}
+    .mobile-menu{
+      display:none;
+      padding:8px 20px 18px;
+      background:var(--panel);
+      border-top:1px solid var(--line);
+    }
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:800}
 
-/* age band */
-.age-band{background:var(--ink);color:#fff;text-align:center;padding:16px 22px;font-weight:600;letter-spacing:1.5px;font-size:.95rem}
-.age-band i{margin-right:10px;color:var(--orange)}
+    .hero{
+      min-height:76vh;
+      position:relative;
+      display:grid;
+      align-items:end;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(10,11,14,.94),rgba(10,11,14,.42)),
+        url("https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=1900&q=84") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:430px;height:430px;
+      right:-210px;bottom:-210px;
+      border-radius:50%;
+      border:62px solid rgba(255,176,32,.12);
+    }
+    .hero-inner{
+      position:relative;z-index:2;
+      max-width:820px;
+      padding:112px 0 78px;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      color:var(--amber2);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.75rem;font-weight:800;
+    }
+    .eyebrow:before{content:"";width:34px;height:2px;background:currentColor}
+    .hero h1{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:clamp(4rem,9vw,7.3rem);
+      line-height:.9;
+      margin:18px 0 22px;
+      letter-spacing:.03em;
+    }
+    .hero-copy{
+      max-width:700px;
+      color:rgba(255,255,255,.83);
+      line-height:1.72;
+      font-size:1.08rem;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .stock-note{
+      position:absolute;right:18px;bottom:14px;z-index:3;
+      color:rgba(255,255,255,.62);
+      text-transform:uppercase;letter-spacing:.08em;font-size:.68rem;
+    }
 
-/* sections */
-section.block{padding:60px 0}
-section.tint{background:var(--paper)}
-.sec-title{text-align:center;font-size:clamp(2.3rem,5.5vw,3.3rem)}
-.sec-title .hl{background-image:linear-gradient(transparent 62%, rgba(255,112,67,.45) 62%);padding:0 4px}
-.sec-sub{text-align:center;max-width:620px;margin:0 auto 36px;color:var(--soft)}
-.spot-row{display:flex;gap:10px;justify-content:center;margin:0 0 22px}
-.spot-row span{width:12px;height:12px;border-radius:50%;background:var(--orange)}
-.spot-row span:nth-child(2){opacity:.65}
-.spot-row span:nth-child(3){opacity:.4}
+    .btn{
+      min-height:50px;
+      padding:13px 20px;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border:1px solid transparent;
+      font-weight:800;cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--amber);color:#1c160a}
+    .btn-ghost{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.5);color:#fff}
+    .btn-dark{background:#0d0f13;color:#fff;border-color:var(--line)}
 
-/* product cards */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px}
-.svc-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:26px 22px;text-align:center}
-.svc-card:hover{border-color:var(--orange);box-shadow:0 12px 26px rgba(232,90,42,.12)}
-.svc-card .ico{width:52px;height:52px;margin:0 auto 12px;border-radius:14px;background:var(--paper);border:2px solid var(--orange);color:var(--orange-deep);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.svc-card h3{font-size:1.55rem}
-.svc-card p{margin:0;font-size:.93rem;color:var(--soft)}
+    .facts{background:#0d0f13;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .facts-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .fact{
+      padding:24px 22px;
+      display:flex;gap:14px;
+      border-right:1px solid var(--line);
+    }
+    .fact:last-child{border-right:0}
+    .fact i{color:var(--amber);margin-top:3px}
+    .fact strong{
+      display:block;
+      color:#727a87;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-size:.69rem;
+      margin-bottom:5px;
+    }
+    .fact span{font-weight:700}
 
-/* hours list */
-.hours-wrap{max-width:520px;margin:0 auto;background:#fff;border:2px solid var(--ink);border-radius:22px;padding:30px 30px 26px;box-shadow:8px 10px 0 rgba(35,33,32,.1)}
-.h-row{display:flex;justify-content:space-between;gap:14px;padding:9px 4px;border-bottom:1.5px dashed var(--line);font-size:.99rem}
-.h-row:last-of-type{border-bottom:none}
-.h-row .d{font-weight:600}
-.h-row .t{color:var(--soft)}
-.h-row.today{background:var(--paper);border-radius:10px;margin:0 -8px;padding:9px 12px;border-bottom-color:transparent}
-.h-row.today .d{color:var(--orange-deep)}
-.h-confirm{text-align:center;font-size:.86rem;color:var(--soft);font-style:italic;margin:14px 0 0}
-.zigzag-chip{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;margin:0 auto 30px;background:#fff;border:2px dashed var(--orange);border-radius:999px;padding:10px 22px;font-weight:600;font-size:.92rem;color:var(--ink)}
-.zigzag-chip i{color:var(--orange-deep)}
+    .section{padding:92px 0}
+    .section-kicker{
+      color:var(--amber);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.73rem;font-weight:800;
+      margin-bottom:11px;
+    }
+    .section h2{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:clamp(3rem,6vw,5.2rem);
+      line-height:.95;
+      letter-spacing:.03em;
+      margin-bottom:18px;
+    }
+    .lead{
+      max-width:720px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1.03rem;
+    }
 
-/* quotes */
-.quote-card{background:#fff;border:2px solid var(--ink);border-radius:4px;padding:38px 34px 30px;max-width:700px;margin:0 auto;position:relative;box-shadow:6px 7px 0 rgba(35,33,32,.12)}
-.tape{position:absolute;top:-14px;width:110px;height:28px;background:rgba(255,112,67,.5);transform:rotate(-4deg)}
-.tape.right{right:34px;transform:rotate(3deg)}
-.quote-card .qmark{color:var(--orange);font-size:1.6rem;margin-bottom:10px}
-.quote-card blockquote{margin:0 0 14px;font-size:1.12rem}
-.quote-card .stars i{color:var(--orange);font-size:.85rem;letter-spacing:3px}
-.quote-card .attrib{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--soft);margin-top:10px}
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:60px;
+      align-items:start;
+    }
+    .about-photo{
+      min-height:440px;
+      position:relative;
+      background:
+        linear-gradient(rgba(17,19,24,.16),rgba(17,19,24,.16)),
+        url("https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";
+      position:absolute;left:14px;bottom:12px;
+      background:rgba(13,15,19,.86);
+      color:#fff;padding:7px 9px;
+      font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
+    }
+    .about-copy{padding-top:15px}
 
-/* rating + links */
-.rating-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;margin:38px auto 22px}
-.rating-line .big{font-family:'Caveat Brush',cursive;font-size:3.6rem;color:var(--orange-deep);line-height:1}
-.rating-line .rest{font-weight:600;color:var(--soft);font-size:1.05rem}
-.g-link-card{display:flex;align-items:center;justify-content:center;gap:12px;width:fit-content;margin:0 auto;background:var(--orange);color:#fff;border-radius:999px;padding:15px 30px;font-weight:700;text-decoration:none;box-shadow:0 10px 22px rgba(255,112,67,.35)}
-.g-link-card:hover{background:var(--orange-deep)}
-.g-link-card i{color:#fff}
+    .id-notice{
+      margin-top:24px;
+      display:flex;gap:16px;align-items:center;
+      padding:18px 20px;
+      border:1px solid rgba(255,176,32,.32);
+      background:rgba(255,176,32,.06);
+    }
+    .big21{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:2.5rem;
+      color:var(--amber);
+      min-width:58px;
+    }
+    .id-notice p{margin:0;color:var(--muted);line-height:1.55}
+    .id-notice strong{color:#fff}
 
-/* visit */
-.visit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
-.info-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:26px;margin-bottom:20px}
-.info-card h3{display:flex;align-items:center;gap:10px;font-size:1.6rem}
-.info-card h3 i{color:var(--orange)}
-.addr{font-weight:600;font-size:1.05rem;margin:0 0 6px}
-.info-card p{color:var(--soft);margin:0 0 6px}
+    .protected{
+      margin-top:24px;
+      border-left:4px solid var(--amber);
+      background:var(--panel2);
+      padding:18px 20px;
+      display:flex;gap:14px;
+    }
+    .protected i{color:var(--amber);margin-top:3px}
+    .protected strong{
+      display:block;
+      font-size:.74rem;text-transform:uppercase;
+      letter-spacing:.09em;margin-bottom:5px;
+    }
+    .protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
 
-/* spot-tag contact card */
-.spot-tag{position:relative;max-width:350px;margin:0 auto;background:var(--paper);border:2.5px solid var(--ink);border-radius:18px;padding:44px 26px 28px;text-align:center;box-shadow:8px 10px 0 rgba(35,33,32,.12)}
-.spot-tag::before{content:"";position:absolute;top:16px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--ink)}
-.spot-tag::after{content:"";position:absolute;top:-34px;left:50%;transform:translateX(-50%);width:3px;height:36px;background:var(--orange);border-radius:2px}
-.st-dots{display:flex;gap:8px;justify-content:center;margin-bottom:12px}
-.st-dots span{width:11px;height:11px;border-radius:50%;background:var(--orange)}
-.st-dots span:nth-child(5){background:var(--ink)}
-.spot-tag .st-label{font-family:'Caveat Brush',cursive;font-size:1.3rem;color:var(--soft);margin:0 0 6px}
-.spot-tag .st-phone{font-family:'Caveat Brush',cursive;font-size:2.3rem;color:var(--ink);text-decoration:none;display:block}
-.spot-tag .st-phone:hover{color:var(--orange-deep)}
-.spot-tag .st-sub{font-size:.9rem;color:var(--soft);margin:10px 0 0}
+    .catalog{
+      background:
+        linear-gradient(rgba(15,17,21,.94),rgba(15,17,21,.94)),
+        url("https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=1900&q=80") center/cover no-repeat;
+    }
+    .catalog .lead{color:rgba(255,255,255,.68)}
+    .catalog-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+      margin-top:38px;
+    }
+    .catalog-card{
+      background:rgba(255,255,255,.035);
+      padding:28px 24px;
+      min-height:210px;
+    }
+    .catalog-card i{
+      color:var(--amber);
+      font-size:1.35rem;
+      margin-bottom:20px;
+    }
+    .catalog-card h3{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:1.7rem;
+      letter-spacing:.04em;
+      margin-bottom:8px;
+    }
+    .catalog-card p{margin:0;color:#9ca4b0;line-height:1.6}
 
-/* form */
-.form-card{background:#fff;border:2px solid var(--ink);border-radius:22px;padding:34px;max-width:700px;margin:0 auto;box-shadow:8px 10px 0 rgba(35,33,32,.1)}
-.form-card h3{text-align:center;font-size:2rem}
-.form-note{text-align:center;font-size:.95rem;margin:0 auto 24px;max-width:520px;color:var(--soft)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f-field{margin-bottom:16px}
-.f-field label{display:block;font-family:'Caveat Brush',cursive;font-size:1.25rem;margin-bottom:2px;color:var(--ink)}
-.f-field input,.f-field textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px 15px;font-family:'Rubik',sans-serif;font-size:.98rem;color:var(--ink);background:var(--paper)}
-.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--orange)}
-.f-send{display:block;width:100%;border:none;border-radius:999px;padding:15px;background:var(--orange);color:#fff;font-weight:700;font-size:1.02rem;cursor:pointer}
-.f-send:hover{background:var(--orange-deep)}
-.form-feedback{text-align:center;font-weight:600;min-height:24px;margin:14px 0 0;font-size:.95rem}
-.form-feedback.ok{color:#3FA45B}
-.form-feedback.warn{color:var(--orange-deep)}
+    .reviews{background:var(--panel)}
+    .rating-row{
+      display:grid;
+      grid-template-columns:.75fr 1.25fr;
+      gap:56px;
+      align-items:center;
+    }
+    .rating-number{
+      font-family:"Bebas Neue",sans-serif;
+      color:var(--amber);
+      font-size:clamp(7rem,14vw,10rem);
+      line-height:.8;
+    }
+    .stars{color:var(--amber);letter-spacing:5px;margin:14px 0}
+    .review-note{color:var(--muted);line-height:1.65}
+    .reviews .btn{margin-top:22px}
 
-/* footer */
-.site-foot{background:var(--ink);color:#CFC9C4;margin-top:70px}
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px;padding:48px 22px 32px;max-width:1060px;margin:0 auto}
-.foot-grid h4{font-family:'Caveat Brush',cursive;font-size:1.6rem;color:#fff;margin:0 0 10px}
-.foot-grid p{margin:0 0 8px;font-size:.93rem}
-.copyright{border-top:1px solid #3B3835;text-align:center;padding:18px 22px;font-size:.9rem;color:#fff}
+    .hours{
+      background:
+        linear-gradient(90deg,rgba(10,11,14,.96),rgba(10,11,14,.8)),
+        url("https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .hours-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
+    .hours-list{border-top:1px solid rgba(255,255,255,.18)}
+    .hour-row{
+      display:flex;justify-content:space-between;gap:20px;
+      padding:16px 0;border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .hour-row span{color:#a7afbb}
+    .hour-row.today strong{color:var(--amber)}
+    .holiday-note{margin-top:14px;color:#8f98a5;font-size:.9rem}
 
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:34px}
-  .visit-grid{grid-template-columns:1fr}
-}
-@media (max-width:767px){
-  .menu-btn{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:3px solid var(--orange);flex-direction:column;align-items:stretch;gap:0;padding:10px 0}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:14px 26px;background-image:none;border-bottom:none}
-  .nav-links a:hover{background:var(--paper)}
-  .f-row{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr;gap:24px;padding-top:38px}
-  .hero{padding:50px 0 60px}
-  section.block{padding:48px 0}
-}
-@media (max-width:380px){
-  .brand-name{font-size:1.35rem}
-  .hero h1{font-size:2.4rem}
-}
-</style>
+    .visit-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:30px;margin-top:34px;
+    }
+    .visit-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      padding:32px;
+      box-shadow:var(--shadow);
+    }
+    .visit-card h3{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:1.75rem;
+      letter-spacing:.04em;
+    }
+    .visit-card p{color:var(--muted);line-height:1.65}
+    .visit-card .btn{margin-top:18px}
+
+    .form-demo{
+      margin-top:32px;
+      background:#15181d;
+      border:1px solid var(--line);
+      padding:32px;
+    }
+    .form-demo h3{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:2rem;
+      letter-spacing:.04em;
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:22px;
+    }
+    .field{display:grid;gap:7px}
+    .field.full{grid-column:1/-1}
+    label{font-size:.82rem;font-weight:800}
+    input,textarea{
+      width:100%;
+      background:#0f1115;
+      border:1px solid var(--line);
+      color:#fff;
+      padding:13px 14px;
+      border-radius:0;
+      font:inherit;
+    }
+    textarea{min-height:120px;resize:vertical}
+
+    footer{
+      background:#090b0e;
+      color:#8e97a4;
+      padding:38px 0;
+    }
+    .foot{
+      display:flex;justify-content:space-between;
+      align-items:center;gap:24px;font-size:.84rem;
+    }
+    .foot strong{color:#fff}
+
+    .modal-backdrop{
+      position:fixed;inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(0,0,0,.74);
+      z-index:500;
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(100%,460px);
+      background:var(--panel);
+      border-top:4px solid var(--amber);
+      padding:32px;
+      box-shadow:0 30px 90px rgba(0,0,0,.5);
+    }
+    .modal-icon{
+      width:48px;height:48px;
+      display:grid;place-items:center;
+      background:#0d0f13;color:var(--amber);
+      margin-bottom:20px;
+    }
+    .modal h2{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:2rem;
+      letter-spacing:.04em;
+      margin-bottom:12px;
+    }
+    .modal p{color:var(--muted);line-height:1.65;margin-bottom:22px}
+    .modal .btn{width:100%}
+
+    @media(max-width:980px){
+      .catalog-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:900px){
+      .desktop-nav{display:none}
+      .menu-btn{display:block}
+      .about-grid,.rating-row,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+      .facts-grid{grid-template-columns:1fr 1fr}
+      .fact:nth-child(2){border-right:0}
+      .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    }
+
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .header-inner{min-height:68px}
+      .brand{font-size:1.35rem}
+      .brand-mark{width:35px;height:35px}
+      .hero{min-height:610px}
+      .hero-inner{padding:92px 0 52px}
+      .hero h1{font-size:clamp(3.9rem,18vw,5.2rem)}
+      .hero-actions{display:grid}
+      .hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .facts-grid{grid-template-columns:1fr}
+      .fact{border-right:0;border-bottom:1px solid var(--line)}
+      .fact:last-child{border-bottom:0}
+      .section{padding:70px 0}
+      .about-photo{min-height:330px}
+      .catalog-grid{grid-template-columns:1fr}
+      .visit-card,.form-demo{padding:24px}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
 </head>
-<body>
-<div class="site-shell">
 
-<header class="site-head">
-  <div class="head-in">
-    <a class="brand" href="#/" data-page="home" aria-label="The Spot Smoke Shop #5 home">
-      <span class="die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-      <span class="brand-name">The Spot <em>#5</em></span>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-moon"></i></span>
+      <span>THE STASH</span>
     </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#/shop" data-page="shop">The Shop</a>
-      <a href="#/reviews" data-page="reviews">Reviews</a>
-      <a href="#/visit" data-page="visit">Visit</a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#catalog">What We Stock</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Location</a>
     </nav>
-    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#catalog">What We Stock</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#hours">Hours</a>
+    <a href="#visit">Location</a>
+  </nav>
 </header>
 
-<main>
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">W Tropicana Ave · Las Vegas</div>
+      <h1>The Stash Smoke Shop 24/7</h1>
+      <p class="hero-copy">Las Vegas never really closes, so neither do we. The Stash Smoke Shop 24/7 keeps the lights on and the counters staffed around the clock on W Tropicana Ave.</p>
 
-<section class="page" id="page-home">
-  <div class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <span class="hero-badge"><i class="fa-solid fa-location-dot"></i> ASHLAN AVE <span class="five">spot number five</span></span>
-          <h1>The Spot <span class="hl">Smoke Shop</span> #5</h1>
-          <p class="tagline">Lots and lots of goodies.</p>
-          <p class="lead">The fifth Spot on the map, right on E Ashlan Ave. Knowledgeable people behind the counter, friendly without the rush, and shelves that keep regulars coming back spot after spot.</p>
-          <div class="hero-chips">
-            <span class="status-chip"><span class="dot"></span><span class="chip-label">Checking hours...</span></span>
-            <span class="status-chip lite">4.6 stars on Google</span>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#catalog"><i class="fa-solid fa-box-open"></i> What We Stock</a>
+        <a class="btn btn-ghost" href="#hours"><i class="fa-regular fa-clock"></i> Open 24/7</a>
+      </div>
+    </div>
+
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="facts" aria-label="Business facts">
+    <div class="wrap facts-grid">
+      <div class="fact">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><strong>Location</strong><span>Las Vegas, NV 89103</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-regular fa-clock"></i>
+        <div><strong>Hours</strong><span>Open 24 hours daily</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-star"></i>
+        <div><strong>Google rating</strong><span>4.7</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-id-card"></i>
+        <div><strong>Age requirement</strong><span>21+ · valid ID required</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock retail interior image"></div>
+
+      <div class="about-copy">
+        <div class="section-kicker">About</div>
+        <h2>The Stash Smoke Shop 24/7</h2>
+        <p class="lead">The Stash Smoke Shop 24/7 is a full service smoke shop on W Tropicana Ave in Las Vegas. Open 24 hours, every single day.</p>
+
+        <div class="id-notice">
+          <div class="big21">21+</div>
+          <p><strong>Valid ID required.</strong> We card every customer, every time, no exceptions.</p>
+        </div>
+
+        <div class="protected">
+          <i class="fa-solid fa-lock"></i>
+          <div>
+            <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            <p>The supplied source contains a public business address and phone number. Direct contact and directions actions remain protected in this demo.</p>
           </div>
-          <div class="hero-btns">
-            <a class="spot-btn" href="#/shop" data-page="shop">See the goodies <i class="fa-solid fa-arrow-right"></i></a>
-            <a class="spot-btn ghost" href="#/visit" data-page="visit">Visit</a>
-          </div>
-        </div>
-        <div>
-          <div class="big-die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-          <p class="die-note">five dots, five spots, one Ashlan Ave stop</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED AT THE COUNTER.</div>
-
-  <section class="block">
-    <div class="wrap">
-      <h2 class="sec-title">What the <span class="hl">Spot</span> Carries</h2>
-      <div class="spot-row" aria-hidden="true"><span></span><span></span><span></span></div>
-      <p class="sec-sub">A wide, walkable floor with the crowd favorites up front and the deeper cuts along the walls.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-wind"></i></div>
-          <h3>Vapes</h3>
-          <p>Disposables and hardware, the fullest wall in the shop.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire-flame-simple"></i></div>
-          <h3>Glass</h3>
-          <p>Pieces in every size, picked by people who actually use them.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
-          <h3>Wraps and Papers</h3>
-          <p>All the wrap flavors and rolling papers the regulars ask for.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
-          <h3>CBD and Delta 8/9</h3>
-          <p>The hemp shelf, labeled clearly and explained plainly.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block tint">
+  <section class="section catalog" id="catalog">
     <div class="wrap">
-      <h2 class="sec-title">Spot <span class="hl">Hours</span></h2>
-      <div class="spot-row" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="zigzag-chip"><i class="fa-solid fa-scroll"></i> Official Zig-Zag papers retailer</div>
-      <div class="hours-wrap">
-        <div class="h-row" data-day="0"><span class="d">Sunday</span><span class="t">10:00 AM - 11:00 PM</span></div>
-        <div class="h-row" data-day="1"><span class="d">Monday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="2"><span class="d">Tuesday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="3"><span class="d">Wednesday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="4"><span class="d">Thursday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="5"><span class="d">Friday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="6"><span class="d">Saturday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <p class="h-confirm">Hours sources differ a little. Please call to confirm.</p>
-      </div>
-    </div>
-  </section>
+      <div class="section-kicker">The Shelves</div>
+      <h2>What We Stock</h2>
+      <p class="lead">The source lists these product categories. This demo is informational only and does not include purchasing, checkout, or ordering.</p>
 
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="quote-card">
-        <span class="tape" aria-hidden="true"></span>
-        <span class="tape right" aria-hidden="true"></span>
-        <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-        <blockquote>Great shop, lots and lots of goodies. Sales people are very knowledgeable and friendly.</blockquote>
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p class="attrib">Google review</p>
-      </div>
-    </div>
-  </section>
-</section>
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Disposables</h3>
+          <p>The latest disposables in all the flavors people actually ask for, restocked weekly.</p>
+        </article>
 
-<section class="page" id="page-shop">
-  <section class="block" style="padding-bottom:26px">
-    <div class="wrap">
-      <h1 class="sec-title">The <span class="hl">Shop</span></h1>
-      <div class="spot-row" aria-hidden="true"><span></span><span></span><span></span></div>
-      <p class="sec-sub">Everything the regulars roll in for, plus the stuff they did not know they needed until they saw it.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-wind"></i></div>
-          <h3>Vapes</h3>
-          <p>Disposables, pods and hardware across the popular brands.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire-flame-simple"></i></div>
-          <h3>Glass and Pipes</h3>
-          <p>Hand pipes to showpieces, with the staff happy to talk you through them.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
-          <h3>Wraps and Papers</h3>
-          <p>Zig-Zag and the rest of the paper wall, always stocked.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
+        <article class="catalog-card">
+          <i class="fa-solid fa-fill-drip"></i>
+          <h3>E-Liquids</h3>
+          <p>Freebase and salt nic juice in every style, from fruity to dessert to straight tobacco.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-jar"></i>
+          <h3>Glass &amp; Hand Pipes</h3>
+          <p>Pieces for every budget, from simple hand pipes to center-of-the-table glass.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-scroll"></i>
+          <h3>Wraps &amp; Papers</h3>
+          <p>Rolling papers, cones and wraps in every size.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-smoking"></i>
           <h3>Cigars</h3>
-          <p>Cigar favorites for the walk home or the long drive.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
-          <h3>CBD and Delta 8/9</h3>
-          <p>Hemp products on a marked shelf, questions welcome.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire"></i></div>
-          <h3>Lighters and Extras</h3>
-          <p>Torches, lighters, grinders and the grab-and-go shelf.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED AT THE COUNTER.</div>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="hours-wrap">
-        <div class="h-row" data-day="0"><span class="d">Sunday</span><span class="t">10:00 AM - 11:00 PM</span></div>
-        <div class="h-row" data-day="1"><span class="d">Monday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="2"><span class="d">Tuesday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="3"><span class="d">Wednesday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="4"><span class="d">Thursday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="5"><span class="d">Friday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <div class="h-row" data-day="6"><span class="d">Saturday</span><span class="t">9:30 AM - 10:30 PM</span></div>
-        <p class="h-confirm">Hours sources differ a little. Please call to confirm.</p>
-      </div>
-    </div>
-  </section>
-</section>
+          <p>A solid cigar selection plus accessories.</p>
+        </article>
 
-<section class="page" id="page-reviews">
-  <section class="block" style="padding-bottom:30px">
-    <div class="wrap">
-      <h1 class="sec-title"><span class="hl">Reviews</span></h1>
-      <div class="spot-row" aria-hidden="true"><span></span><span></span><span></span></div>
-      <p class="sec-sub">Every Google review quote we have, word for word, exactly as written.</p>
-      <div class="quote-card">
-        <span class="tape" aria-hidden="true"></span>
-        <span class="tape right" aria-hidden="true"></span>
-        <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-        <blockquote>Great shop, lots and lots of goodies. Sales people are very knowledgeable and friendly.</blockquote>
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p class="attrib">Google review</p>
+        <article class="catalog-card">
+          <i class="fa-solid fa-fire-flame-simple"></i>
+          <h3>Lighters &amp; Torches</h3>
+          <p>Jet torches, classic lighters and everything in between.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-battery-three-quarters"></i>
+          <h3>Batteries &amp; Coils</h3>
+          <p>Batteries, chargers and replacement coils.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-leaf"></i>
+          <h3>CBD</h3>
+          <p>CBD flower, cartridges and edibles are listed in the supplied source.</p>
+        </article>
       </div>
-      <div class="rating-line">
-        <span class="big">4.6</span>
-        <span class="rest">stars with 73 reviews on Google</span>
+
+      <div class="id-notice">
+        <div class="big21">21+</div>
+        <p><strong>Valid ID required for all tobacco and vape purchases.</strong> Stock varies by day.</p>
       </div>
-      <a class="g-link-card" href="https://www.google.com/maps/search/?api=1&query=The%20Spot%20Smoke%20Shop%2C%202620%20E%20Ashlan%20Ave%2C%20Fresno%2C%20CA%2093726" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
     </div>
   </section>
-</section>
 
-<section class="page" id="page-visit">
-  <section class="block" style="padding-bottom:30px">
+  <section class="section reviews" id="reviews">
+    <div class="wrap rating-row">
+      <div>
+        <div class="rating-number">4.7</div>
+        <div class="stars" aria-label="4.7 star Google rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-note">Google rating shown in the supplied source.</p>
+      </div>
+
+      <div>
+        <div class="section-kicker">Word of Mouth</div>
+        <h2>Reviews</h2>
+        <p class="lead">The source displays a 4.7 Google rating and multiple Google review excerpts. This demo does not add any reviews beyond what the source provided.</p>
+        <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="section-kicker">Hours</div>
+        <h2>Open 24 hours, 7 days a week.</h2>
+        <p class="lead">Call to confirm holiday hours.</p>
+      </div>
+
+      <div class="hours-list">
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>Open 24 hours</span></div>
+        <p class="holiday-note">Call to confirm holiday hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
     <div class="wrap">
-      <h1 class="sec-title">Find the <span class="hl">Spot</span></h1>
-      <div class="spot-row" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="section-kicker">Find Us</div>
+      <h2>Location &amp; Hours</h2>
+      <p class="lead">You will find us on W Tropicana Ave, just west of I-15.</p>
+
       <div class="visit-grid">
-        <div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-location-dot"></i> Spot #5</h3>
-            <p class="addr">2620 E Ashlan Ave<br>Fresno, CA 93726</p>
-            <p>The Ashlan Ave corner of the local Spot crew. Easy parking, easier small talk.</p>
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-location-dot"></i> Address</h3>
+          <p>Las Vegas, NV 89103</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The full public street address is intentionally not exposed as a working directions link in this sample.</p>
+            </div>
           </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-clock"></i> Hours</h3>
-            <p class="addr">Mon - Sat 9:30 AM - 10:30 PM</p>
-            <p class="addr">Sunday 10 AM - 11 PM</p>
-            <p>Hours sources differ a little. Please call to confirm.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-id-card"></i> Bring Your ID</h3>
-            <p>21 and over, valid ID required. The counter cards everyone, every time.</p>
-          </div>
+
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
         </div>
-        <div>
-          <div class="spot-tag">
-            <div class="st-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-            <p class="st-label">call spot five</p>
-            <a class="st-phone" href="tel:+15596030320">(559) 603-0320</a>
-            <p class="st-sub">Tap to call the Ashlan counter. Ask what is new, there is usually something.</p>
+
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <p>Quick question? Contact the shop.</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The supplied phone number is intentionally not exposed as a working tel: or SMS link.</p>
+            </div>
           </div>
+
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call business</button>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="form-card">
-        <h3>Message the counter</h3>
-        <p class="form-note">Name and what you are hunting for. We will text you back before you make the drive.</p>
-        <form id="quote-form">
-          <div class="f-row">
-            <div class="f-field">
-              <label for="f-name">Your name</label>
-              <input type="text" id="f-name" autocomplete="name" placeholder="First and last">
-            </div>
-            <div class="f-field">
-              <label for="f-phone">Your phone</label>
-              <input type="tel" id="f-phone" autocomplete="tel" placeholder="(559) 555-0123">
-            </div>
+
+      <div class="form-demo">
+        <h3>Quick question? Text us.</h3>
+        <p class="lead">The source includes a quick-question form. In this demo, submission stays locked because no backend is provided.</p>
+
+        <form class="form-grid" id="demoForm">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text">
           </div>
-          <div class="f-field">
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" rows="4" placeholder="What goodies are you after?"></textarea>
+
+          <div class="field">
+            <label for="phone">Your phone</label>
+            <input id="phone" type="tel">
           </div>
-          <button type="submit" class="f-send"><i class="fa-solid fa-paper-plane"></i> Send to Spot #5</button>
-          <p class="form-feedback" id="form-feedback"></p>
+
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message"></textarea>
+          </div>
+
+          <div class="field full">
+            <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send it to the shop</button>
+          </div>
         </form>
       </div>
     </div>
   </section>
-</section>
-
 </main>
 
-<footer class="site-foot">
-  <div class="foot-grid">
-    <div>
-      <h4>The Spot Smoke Shop #5</h4>
-      <p>Spot number five of the local crew, on E Ashlan Ave in Fresno. Vapes, glass, wraps, papers, CBD and a counter that actually knows the stock.</p>
-    </div>
-    <div>
-      <h4>Find Us</h4>
-      <p>2620 E Ashlan Ave<br>Fresno, CA 93726</p>
-      <p>Mon - Sat 9:30 - 10:30, Sun 10 - 11</p>
-    </div>
-    <div>
-      <h4>Call</h4>
-      <p>(559) 603-0320</p>
-      <p>The Ashlan counter picks up.</p>
-    </div>
+<footer>
+  <div class="wrap foot">
+    <div><strong>The Stash Smoke Shop 24/7</strong><br>Las Vegas, NV</div>
+    <div>21+ · Valid ID required · Demo website</div>
   </div>
-  <div class="copyright">© The Spot Smoke Shop #5 · Fresno, CA</div>
 </footer>
 
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "The Spot Smoke Shop #5";
-var TITLES = { home: "Smoke Shop on Ashlan Ave, Spot #5", shop: "The Shop", reviews: "Reviews", visit: "Find the Spot" };
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const demoForm = document.getElementById('demoForm');
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
-
-var menuBtn = document.getElementById("menu-btn");
-var navLinksEl = document.querySelector(".nav-links");
-if (menuBtn && navLinksEl) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinksEl.classList.toggle("open");
-  });
-}
-
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = { 0:[10,23], 1:[9.5,22.5], 2:[9.5,22.5], 3:[9.5,22.5], 4:[9.5,22.5], 5:[9.5,22.5], 6:[9.5,22.5] };
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
   }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
 
-(function renderStatus(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.add(st.open ? "is-open" : "is-closed");
-    var label = c.querySelector(".chip-label");
-    if (label) label.textContent = st.label;
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
   });
-  var today = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(row){
-    if (parseInt(row.getAttribute("data-day"), 10) === today) row.classList.add("today");
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openModal(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function'){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  demoForm.addEventListener('submit', e => {
+    e.preventDefault();
+    openModal(demoForm.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal){
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')){
+      closeModal();
+    }
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      }else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Los_Angeles',
+    weekday:'short'
+  }).format(new Date());
+
+  const days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hour-row[data-day="'+days[today]+'"]');
+
+  if(row){
+    row.classList.add('today');
+  }
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey){
+      e.preventDefault();
+    }
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)){
+      e.preventDefault();
+    }
   });
 })();
-
-var PHONE = "+15596030320";
-var PRETTY_PHONE = "(559) 603-0320";
-var quoteForm = document.getElementById("quote-form");
-if (quoteForm) {
-  quoteForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var fmsg = document.getElementById("f-msg").value.trim();
-    var feedback = document.getElementById("form-feedback");
-    if (!name || !fmsg) {
-      feedback.textContent = "Add your name and a short message so the counter knows what to look for.";
-      feedback.className = "form-feedback warn";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + fmsg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE;
-        feedback.className = "form-feedback ok";
-      });
-    }
-  });
-}
 </script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Business: The Stash Smoke Shop 24/7
+- Public source address: 4780 W Tropicana Ave, Unit 106, Las Vegas, NV 89103
+- Public source phone: (702) 462-2383
+- Hours: Open 24 hours, 7 days a week
+- Holiday note: Call to confirm holiday hours
+- Age rule: 21 and over, valid ID required
+- Rating shown in source: 4.7 on Google
+- Product categories shown in source:
+  Disposables
+  E-Liquids
+  Glass & Hand Pipes
+  Wraps & Papers
+  Cigars
+  Lighters & Torches
+  Batteries & Coils
+  CBD
+
+DEMO / SAFETY BEHAVIOR
+- Informational catalog only
+- No purchasing, cart, checkout, ordering, or payment features
+- Phone, directions, external review, and form submission actions locked
+- Contact details hidden in visible locked sections
+- One reusable locked-feature modal
+
+STOCK IMAGERY
+- Unsplash retail/night imagery
+- Does not depict the actual business, staff, storefront, customers, or inventory
+
+TECHNICAL CHECK
+- One complete HTML file
+- CSS and JavaScript inline
+- Normal JavaScript operators such as &&
+- Responsive desktop/tablet/mobile
+- Hamburger mobile menu
+- Text selection disabled
+- Mobile zoom prevention
+- Background images included
+- Font Awesome icons
+- Modal closes via Close button, backdrop click, and Escape
+- No fake success state
+-->
 </body>
 </html>

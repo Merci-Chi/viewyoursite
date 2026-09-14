@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Open 24 Hours on Frebis Ave | The Laundromat</title>
 <link href="https://fonts.googleapis.com/css2?family=Nixie+One&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -18,7 +18,7 @@
 }
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
-body{font-family:'Mulish',sans-serif;background:var(--white);color:#37474F;line-height:1.65;}
+body{font-family:'Mulish',sans-serif;background:var(--white);color:#37474F;line-height:1.65;-webkit-user-select:none;user-select:none;touch-action:pan-y;overflow-x:hidden;}
 h1,h2,h3,.display,.ticket-num{font-family:'Nixie One',cursive;font-weight:400;line-height:1.08;}
 a{color:inherit;}
 .site-shell{min-height:100vh;display:flex;flex-direction:column;}
@@ -51,7 +51,12 @@ footer{flex-shrink:0;}
 .nav-links a[data-page="visit"]:hover{background:var(--amber-deep);color:#fff;}
 
 /* Hero */
-.hero{background:var(--charcoal);color:#fff;text-align:center;position:relative;overflow:hidden;}
+.hero{
+background:
+  linear-gradient(rgba(38,50,56,.58),rgba(38,50,56,.62)),
+  url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2100&q=86") center/cover no-repeat;
+color:#fff;text-align:center;position:relative;overflow:hidden;
+}
 .hero .wrap{padding-top:56px;padding-bottom:60px;max-width:820px;position:relative;}
 .hero-ticket{
   display:inline-block;background:var(--amber);color:var(--charcoal);border-radius:14px;
@@ -120,7 +125,12 @@ footer{flex-shrink:0;}
 .stars i{color:var(--amber-deep);font-size:13px;margin-right:2px;}
 
 /* Page heads */
-.page-head{background:var(--charcoal);color:#fff;}
+.page-head{
+background:
+  linear-gradient(rgba(38,50,56,.64),rgba(38,50,56,.64)),
+  url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1900&q=84") center/cover no-repeat;
+color:#fff;
+}
 .page-head .wrap{padding-top:44px;padding-bottom:40px;text-align:center;max-width:760px;}
 .page-head h2{font-size:42px;margin:0 0 8px;}
 .page-head p{margin:0;font-size:16.5px;color:#CFD8DC;}
@@ -178,7 +188,12 @@ form{margin-top:6px;}
 .form-note{font-size:13px;color:#78909C;margin:8px 0 0;}
 
 /* Footer */
-footer{background:var(--charcoal-deep);color:#CFD8DC;}
+footer{
+background:
+  linear-gradient(rgba(28,36,43,.93),rgba(28,36,43,.93)),
+  url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat;
+color:#CFD8DC;
+}
 footer .wrap{padding-top:44px;padding-bottom:26px;}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.14);}
 .foot-name{font-family:'Nixie One',cursive;font-size:24px;color:#fff;margin-bottom:8px;}
@@ -212,6 +227,89 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
   .hours24 .h-giant{font-size:48px;}
 }
 </style>
+
+<style id="demo-protected-overrides">
+#page-home{
+  background:
+    linear-gradient(rgba(255,255,255,.78),rgba(255,255,255,.78)),
+    url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2100&q=84") center/cover fixed;
+}
+#page-wash{
+  background:
+    linear-gradient(rgba(255,255,255,.84),rgba(255,255,255,.84)),
+    url("https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=2000&q=84") center/cover fixed;
+}
+#page-reviews{
+  background:
+    linear-gradient(rgba(255,255,255,.84),rgba(255,255,255,.84)),
+    url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=2000&q=84") center/cover fixed;
+}
+#page-visit{
+  background:
+    linear-gradient(rgba(255,255,255,.82),rgba(255,255,255,.82)),
+    url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=2000&q=84") center/cover fixed;
+}
+.stock-note{
+  margin:16px auto 0;
+  max-width:690px;
+  font-size:.76rem;
+  color:#CFD8DC;
+}
+.protected-demo{
+  display:block;
+  background:var(--amber-soft);
+  border-left:5px solid var(--amber-deep);
+  color:var(--charcoal);
+  padding:14px 16px;
+  border-radius:8px;
+  font-weight:800;
+}
+#locked-demo-modal{
+  position:fixed;inset:0;z-index:999999;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(0,0,0,.70);
+}
+#locked-demo-modal.open{display:flex}
+body.modal-open{overflow:hidden}
+#locked-demo-modal .modal-box{
+  width:min(470px,100%);
+  background:#fff;
+  border-top:6px solid var(--amber);
+  border-radius:12px;
+  padding:30px;
+  box-shadow:0 30px 90px rgba(0,0,0,.4);
+}
+#locked-demo-modal .modal-icon{
+  width:52px;height:52px;display:grid;place-items:center;
+  background:var(--charcoal);color:var(--amber);
+  border-radius:50%;margin-bottom:16px;
+}
+#locked-demo-modal h3{
+  margin:0 0 10px;
+  font-size:1.7rem;
+  color:var(--charcoal);
+}
+#locked-demo-modal p{
+  margin:0;
+  color:#607D8B;
+  line-height:1.6;
+}
+#locked-demo-modal .modal-close{
+  width:100%;
+  margin-top:20px;
+  border:0;
+  border-radius:9px;
+  padding:13px 18px;
+  font-weight:800;
+  background:var(--amber);
+  color:var(--charcoal);
+  cursor:pointer;
+}
+@media(max-width:700px){
+  #page-home,#page-wash,#page-reviews,#page-visit{background-attachment:scroll}
+}
+</style>
+
 </head>
 <body>
 <div class="site-shell">
@@ -245,7 +343,7 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
             <a class="btn btn-amber" href="#/wash" data-page="wash">See the wash</a>
             <a class="btn btn-ghost" href="#/visit" data-page="visit">Find us</a>
           </div>
-          <span class="status-chip"><span class="dot"></span><span class="status-text">Checking hours...</span></span>
+          <span class="status-chip"><span class="dot"></span><span class="status-text">Checking hours...</span></span><p class="stock-note">Stock laundromat imagery is used in this demo and does not depict the actual business, staff, machines, storefront, or completed work.</p>
         </div>
       </div>
 
@@ -393,7 +491,7 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
             <span class="rev-pill"><i class="fa-solid fa-star"></i> 4.0 stars with 32 reviews</span>
           </div>
           <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=The%20Laundromat%2C%201501%20Frebis%20Ave%2C%20Columbus%2C%20OH%2043206" target="_blank" rel="noopener">
+            <a class="link-card" href="#" data-locked="true">
               <i class="fa-brands fa-google"></i> See every review on Google
             </a>
           </div>
@@ -406,7 +504,7 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
       <div class="page-head">
         <div class="wrap">
           <h2>Visit</h2>
-          <p>1501 Frebis Ave, Columbus, OH 43206. The doors never lock for the night.</p>
+          <p>Columbus, OH · Open 24 hours.</p>
         </div>
       </div>
       <div class="sec">
@@ -424,9 +522,9 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
             </div>
             <div class="visit-block">
               <h3><i class="fa-solid fa-location-dot" style="color:var(--amber-deep);margin-right:8px;"></i>Find us</h3>
-              <p class="visit-line"><i class="fa-solid fa-map-pin"></i><span>1501 Frebis Ave, Columbus, OH 43206</span></p>
+              <p class="visit-line"><i class="fa-solid fa-map-pin"></i><span class="protected-demo">CONTACT DETAILS PROTECTED IN THIS DEMO</span></p>
               <p class="visit-line"><i class="fa-solid fa-road"></i><span>On Frebis Ave on the south side of Columbus</span></p>
-              <p class="visit-line"><i class="fa-solid fa-phone"></i><span>Counter questions? Call (614) 398-2281</span></p>
+              <p class="visit-line"><i class="fa-solid fa-phone"></i><span class="protected-demo">CONTACT DETAILS PROTECTED IN THIS DEMO</span></p>
             </div>
           </div>
 
@@ -435,8 +533,8 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
               <div class="bt-kick">Text the counter</div>
               <div class="bt-name">The Laundromat</div>
               <p class="bt-sub">Frebis Ave · open around the clock</p>
-              <a class="bt-phone" href="tel:+16143982281">(614) 398-2281</a>
-              <div class="bt-addr">1501 Frebis Ave, Columbus, OH 43206</div>
+              <button class="bt-phone" type="button" data-locked="true" style="background:transparent;border:0;cursor:pointer">CONTACT DETAILS PROTECTED IN THIS DEMO</button>
+              <div class="bt-addr">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
             </div>
             <div class="visit-block">
               <h3>Send a note to the shop</h3>
@@ -454,10 +552,10 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
                   <label for="f-msg">Message</label>
                   <textarea id="f-msg" rows="4" placeholder="What do you need?"></textarea>
                 </div>
-                <button class="btn btn-amber" type="submit">Send to the shop</button>
+                <button class="btn btn-amber" type="submit" data-locked="true">Send to the shop</button>
                 <p id="form-feedback" role="status"></p>
               </form>
-              <p class="form-note">On a phone this opens your text app with the message ready. On a computer it copies it for you to paste.</p>
+              <p class="form-note">This demo shows the contact form layout. Submission is locked until the full website is unlocked.</p>
             </div>
           </div>
         </div>
@@ -470,8 +568,8 @@ footer .wrap{padding-top:44px;padding-bottom:26px;}
       <div class="foot-grid">
         <div>
           <div class="foot-name">The Laundromat</div>
-          <p class="foot-line">1501 Frebis Ave, Columbus, OH 43206</p>
-          <p class="foot-line"><a href="tel:+16143982281">(614) 398-2281</a></p>
+          <p class="foot-line">CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+          <p class="foot-line">CONTACT DETAILS PROTECTED IN THIS DEMO</p>
         </div>
         <div>
           <p class="foot-h">Hours</p>
@@ -494,8 +592,7 @@ var BUSINESS = "The Laundromat";
 var TITLES = { home: "Open 24 Hours on Frebis Ave", wash: "The Wash", reviews: "Reviews", visit: "Visit" };
 var CITY_TZ = "America/New_York";
 var HOURS = {0:[0,24],1:[0,24],2:[0,24],3:[0,24],4:[0,24],5:[0,24],6:[0,24]};
-var PHONE = "+16143982281";
-var PRETTY = "(614) 398-2281";
+
 
 function getPageFromHash(){
   var h = (location.hash || "").replace(/^#\/?/, "");
@@ -567,29 +664,70 @@ if (menuBtn && navLinks) {
   });
 }
 
-var form = document.getElementById("contact-form");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var fb = document.getElementById("form-feedback");
-    var name = document.getElementById("f-name").value.trim();
-    var phone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) {
-      fb.textContent = "Please add your name and a short message.";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-      });
+
+</script>
+
+<div id="locked-demo-modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="locked-demo-title" tabindex="-1">
+    <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="locked-demo-title">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="modal-close" id="locked-demo-close" type="button">Close</button>
+  </div>
+</div>
+
+<script id="protected-demo-js">
+(function(){
+  const modal = document.getElementById('locked-demo-modal');
+  const closeBtn = document.getElementById('locked-demo-close');
+  let lastFocus = null;
+
+  function openModal(e){
+    if(e){ e.preventDefault(); e.stopPropagation(); }
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+    el.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeBtn.focus();
     }
   });
-}
+
+  document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
+  document.addEventListener('dblclick', function(e){ e.preventDefault(); }, {passive:false});
+})();
 </script>
+
+<!--
+PROTECTED DEMO NOTES
+- Existing business name, 24/7 hours, services, reviews, and Columbus identity were preserved from the uploaded source.
+- Stock laundromat imagery is used for presentation only and does not depict the actual business.
+- Exact phone number, street address, external Google action, and form submission are protected.
+- Internal navigation, mobile menu, and live open/closed status remain functional.
+- JavaScript uses normal operators such as && and does not use encoded HTML entities for operators.
+-->
+
 </body>
 </html>

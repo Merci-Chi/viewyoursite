@@ -1,329 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Shop | Smokey Vibe & Vapes</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#14121A">
+<title>Smokey Vibe & Vapes | Sacramento</title>
+<meta name="description" content="Smokey Vibe & Vapes in Sacramento. Open 24 hours, 7 days, with vapes, wraps and papers, and hemp products.">
+<meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Chivo:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
 :root{
-  --violet:#6A1B9A; --lime:#CDDC39; --dark:#14121A; --white:#FFFFFF;
-  --soft:#F3EFF8; --line:#D9CFE6; --mist:#C9B8DC;
+  --violet:#6A1B9A;--lime:#CDDC39;--dark:#14121A;--panel:#1D1925;--white:#FFFFFF;
+  --soft:#F3EFF8;--line:rgba(205,220,57,.2);--mist:#C9B8DC;--muted:#B7AEC5;--max:1100px;
 }
-*{box-sizing:border-box; margin:0; padding:0}
-html,body{margin:0}
-body{font-family:'Chivo',sans-serif; color:var(--white); background:var(--dark); line-height:1.65}
-.site-shell{min-height:100vh; display:flex; flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-h1,h2,h3,.display{font-family:'Syne',sans-serif; font-weight:800; line-height:1.15}
-a{color:var(--lime)}
-.wrap{max-width:1080px; margin:0 auto; padding:0 22px}
-header{background:rgba(20,18,26,.96); border-bottom:1px solid rgba(205,220,57,.25); position:sticky; top:0; z-index:50; backdrop-filter:blur(6px)}
-.bar{display:flex; align-items:center; justify-content:space-between; padding:14px 22px; max-width:1080px; margin:0 auto}
-.brand{display:flex; align-items:center; gap:10px; font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem}
-.brand .wave{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 50% 50%, var(--violet), var(--dark) 78%);border:2px solid var(--violet);display:flex;align-items:center;justify-content:center;color:var(--lime);font-size:.9rem}
-.nav-links{display:flex; gap:6px; list-style:none}
-.nav-links a{color:var(--white); text-decoration:none; padding:9px 14px; border-radius:999px; font-weight:500; font-size:.95rem}
-.nav-links a:hover{color:var(--lime)}
-#menu-btn{display:none; background:none; border:0; color:var(--white); font-size:1.4rem; cursor:pointer; padding:6px}
-#menu-btn.open{color:var(--lime)}
-@media(max-width:760px){
-  #menu-btn{display:block}
-  .nav-links{display:none; position:absolute; top:100%; left:0; right:0; background:var(--dark); flex-direction:column; padding:10px 18px 18px; gap:4px; border-bottom:1px solid rgba(205,220,57,.25)}
-  .nav-links.open{display:flex}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;font-family:'Chivo',sans-serif;color:var(--white);background:var(--dark);line-height:1.65;overflow-x:hidden;user-select:none;-webkit-user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+h1,h2,h3{font-family:'Syne',sans-serif;margin-top:0}
+h1{font-size:clamp(3.6rem,8vw,6.5rem);line-height:.95;font-weight:800}
+h2{font-size:clamp(2.5rem,5vw,4rem);line-height:1.02}
+h3{font-size:1.1rem}
+p{margin-top:0}
+.section{padding:84px 0;scroll-margin-top:76px}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid rgba(205,220,57,.55);color:var(--lime);border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+
+header{position:sticky;top:0;z-index:100;background:rgba(20,18,26,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.bar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#7830a9,#2d153b 75%);border:2px solid var(--violet);color:var(--lime)}
+.brand strong{font-family:'Syne',sans-serif;font-size:1rem}
+.brand small{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.nav{display:flex;gap:6px}
+.nav a{padding:9px 13px;font-weight:700;font-size:.86rem}
+.nav a:hover{color:var(--lime)}
+.menu{display:none;width:44px;height:44px;border:0;background:none;color:#fff;font-size:1.25rem}
+.mobile-nav{display:none;padding:8px 20px 18px;border-top:1px solid var(--line)}
+.mobile-nav.open{display:grid}
+.mobile-nav a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+.hero{
+  min-height:710px;display:grid;align-items:end;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(20,18,26,.96),rgba(20,18,26,.74) 54%,rgba(20,18,26,.25)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
 }
-.status-chip{display:inline-flex; align-items:center; gap:8px; padding:7px 15px; border-radius:999px; font-weight:700; font-size:.9rem; background:rgba(255,255,255,.06); border:1px solid rgba(205,220,57,.4)}
-.status-chip .dot{width:10px;height:10px;border-radius:50%}
-.status-chip.on .dot{background:#6EE7A0; box-shadow:0 0 10px #6EE7A0}
-.status-chip.off .dot{background:#8A8494}
-/* vibe waves hero */
-.hero{padding:74px 0 80px; position:relative; overflow:hidden; text-align:center}
-.vibe-ring{position:absolute; left:50%; border:2px solid rgba(106,27,154,.6); border-radius:50%; transform:translateX(-50%); pointer-events:none}
-.vibe-ring.r1{width:420px;height:420px;top:-160px}
-.vibe-ring.r2{width:640px;height:640px;top:-260px; border-color:rgba(106,27,154,.35)}
-.vibe-ring.r3{width:880px;height:880px;top:-360px; border-color:rgba(106,27,154,.18)}
-.hero .wrap{position:relative; z-index:2}
-.kicker{display:inline-block; background:rgba(205,220,57,.12); border:1.5px solid var(--lime); color:var(--lime); padding:6px 16px; border-radius:999px; font-weight:700; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:20px}
-.hero h1{font-size:clamp(2rem,5.4vw,3.4rem); margin-bottom:16px}
-.hero h1 .lime{color:var(--lime)}
-.hero p.lead{max-width:56ch; margin:0 auto; color:#C9C3D4; font-size:1.05rem}
-.hero-cta{margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
-.btn{display:inline-block; background:var(--lime); color:var(--dark); text-decoration:none; font-family:'Syne',sans-serif; font-weight:700; font-size:.95rem; padding:13px 28px; border-radius:999px; border:0; cursor:pointer}
-.btn.ghost{background:transparent; border:2px solid rgba(205,220,57,.5); color:var(--lime)}
-.btn:hover{filter:brightness(1.08)}
-section.page{display:none}
-section.page.active{display:block}
-.sec{padding:56px 0}
-.sec h2{font-size:1.65rem; margin-bottom:8px}
-.sec .sub{color:#A99FBA; margin-bottom:26px}
-.panel{background:rgba(255,255,255,.05); border:1px solid rgba(205,220,57,.18); border-radius:18px; padding:24px}
-.tri{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-@media(max-width:860px){.tri{grid-template-columns:1fr}}
-.panel h3{font-size:1.05rem; margin-bottom:6px; color:var(--white)}
-.panel p{font-size:.95rem; color:#B3ABC3}
-.panel .ico{width:46px;height:46px;border-radius:50%;background:rgba(106,27,154,.35);color:var(--mist);display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:12px}
-/* vibe chip contact */
-.vibechip{max-width:430px; margin:0 auto; background:linear-gradient(135deg, rgba(106,27,154,.5), rgba(20,18,26,.6)); border:1.5px solid rgba(205,220,57,.4); border-radius:20px; padding:26px; text-align:center}
-.vibechip .rings{display:flex; justify-content:center; gap:8px; margin-bottom:14px}
-.vibechip .rings span{border:2px solid var(--violet); border-radius:50%; display:inline-block}
-.vibechip .rings span:nth-child(1){width:12px;height:12px}
-.vibechip .rings span:nth-child(2){width:20px;height:20px}
-.vibechip .rings span:nth-child(3){width:28px;height:28px}
-.vibechip .num{font-family:'Syne',sans-serif; font-size:1.6rem; color:var(--lime); margin-bottom:4px}
-.vibechip .sub{font-size:.86rem; color:#C9C3D4}
-.form-card{max-width:520px; margin:0 auto; background:rgba(255,255,255,.05); border:1px solid rgba(205,220,57,.18); border-radius:18px; padding:26px}
-.form-card label{display:block; font-weight:500; font-size:.9rem; margin:12px 0 6px; color:#C9C3D4}
-.form-card input,.form-card textarea{width:100%; padding:11px 13px; border:1px solid rgba(205,220,57,.3); border-radius:10px; font-family:inherit; font-size:.95rem; background:rgba(20,18,26,.7); color:var(--white)}
-.form-card input::placeholder,.form-card textarea::placeholder{color:#7C7488}
-.form-card textarea{min-height:88px; resize:vertical}
-.feedback{margin-top:12px; font-weight:700; color:var(--lime); min-height:1.4em}
-/* 24/7 board */
-.alwayson{background:linear-gradient(135deg, rgba(106,27,154,.4), rgba(205,220,57,.08)); border-radius:22px; padding:34px; text-align:center; border:1px solid rgba(205,220,57,.25)}
-.alwayson .big{font-family:'Syne',sans-serif; font-size:clamp(1.6rem,4vw,2.4rem); margin-bottom:8px}
-.alwayson p{color:#C9C3D4; max-width:52ch; margin:0 auto 18px}
-/* reviews */
-.quote{background:rgba(255,255,255,.05); border:1px solid rgba(205,220,57,.18); border-radius:18px; padding:22px 24px; margin-bottom:16px}
-.quote p{font-size:1.02rem; margin-bottom:10px; color:#EDE8F5}
-.quote .attr{font-size:.85rem; font-weight:700; color:#A99FBA; display:flex; align-items:center; gap:8px}
-.quote .stars{color:var(--lime); letter-spacing:2px; font-size:.8rem}
-.rating-line{font-family:'Syne',sans-serif; font-size:1.35rem; margin:6px 0 22px}
-.rating-line .big{font-size:2rem; color:var(--lime)}
-.linkcards{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-@media(max-width:700px){.linkcards{grid-template-columns:1fr}}
-.linkcard{display:block; text-decoration:none; background:rgba(205,220,57,.12); border:1.5px solid var(--lime); color:var(--lime); border-radius:18px; padding:22px; text-align:center; font-weight:700}
-.linkcard i{display:block; font-size:1.5rem; margin-bottom:8px}
-.linkcard:hover{background:rgba(205,220,57,.2)}
-/* visit */
-.visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px}
-@media(max-width:860px){.visit-grid{grid-template-columns:1fr}}
-.vrow{display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; color:#C9C3D4}
-.vrow strong{color:var(--white)}
-.vrow i{color:var(--lime); margin-top:4px; width:20px; text-align:center}
-footer{background:#0E0C13; border-top:1px solid rgba(205,220,57,.2); color:#8A8494; padding:30px 0; font-size:.9rem}
-footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center}
-footer .copy{color:var(--white); font-weight:600}
-footer a{color:var(--lime); text-decoration:none}
-@media(max-width:700px){footer .wrap{flex-direction:column; text-align:center}}
-.idline{background:rgba(205,220,57,.1); border:1px dashed rgba(205,220,57,.5); border-radius:12px; padding:12px 18px; font-weight:700; color:var(--lime); text-align:center}
+.hero:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 80% 20%,rgba(106,27,154,.45),transparent 32%);pointer-events:none}
+.hero-in{position:relative;z-index:2;padding:105px 0 68px;max-width:850px}
+.hero h1{margin:18px 0 20px}
+.hero h1 span{color:var(--lime)}
+.hero-copy{max-width:680px;color:#D1C9DB;font-size:1.08rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:13px 22px;border-radius:999px;border:0;font:700 .9rem 'Chivo',sans-serif;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--lime);color:var(--dark)}
+.btn-ghost{background:rgba(255,255,255,.04);border:1px solid rgba(205,220,57,.45);color:var(--lime)}
+.stock-note{position:absolute;right:14px;bottom:12px;z-index:2;background:rgba(0,0,0,.56);padding:6px 9px;font-size:.64rem;text-transform:uppercase;letter-spacing:.06em}
+
+.quickbar{background:#0f0d13;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.quick{padding:22px 20px;display:flex;gap:13px;align-items:flex-start;border-right:1px solid var(--line)}
+.quick:last-child{border-right:0}
+.quick i{color:var(--lime);margin-top:4px}
+.quick strong{display:block;color:#fff;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.quick span{color:var(--muted)}
+
+.about{background:var(--soft);color:#1c1722}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.about-photo{min-height:420px;position:relative;background:url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=82") center/cover no-repeat}
+.about-photo:after{content:"Relevant stock imagery — not the actual business";position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.66);color:#fff;padding:6px 8px;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em}
+.about .kicker{color:#5e227d;border-color:#b89acb}
+.lead{color:#62586a;font-size:1.03rem}
+.protected{margin-top:22px;background:#fff;border-left:5px solid var(--violet);padding:18px 20px}
+.protected strong{display:block;color:#5b2377;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;margin-bottom:6px}
+.protected p{margin:0;color:#6d6473}
+
+.stock{
+  background:
+    linear-gradient(rgba(20,18,26,.91),rgba(20,18,26,.95)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+}
+.stock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.panel{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:26px;border-radius:18px}
+.panel i{color:var(--mist);font-size:1.2rem;margin-bottom:14px}
+.panel h3{margin-bottom:8px}
+.panel p{color:var(--muted);margin-bottom:0}
+
+.always{margin-top:24px;background:linear-gradient(135deg,rgba(106,27,154,.4),rgba(205,220,57,.08));border:1px solid rgba(205,220,57,.26);padding:34px;text-align:center;border-radius:22px}
+.always strong{display:block;font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:8px}
+.always p{color:#CEC6D7;max-width:650px;margin:0 auto}
+
+.reviews{background:#18151f}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.quote{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:24px;border-radius:18px}
+.quote .stars{color:var(--lime);margin-bottom:12px}
+.quote p{font-size:1rem;color:#F0ECF3}
+.quote small{color:var(--muted);font-weight:700}
+
+.hours{background:var(--soft);color:#1b1720}
+.hours-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px}
+.hours-card{background:#fff;border:1px solid #d9d0e3;padding:26px;border-radius:18px}
+.hrow{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #e6dfeb}
+.hrow:last-child{border-bottom:0}
+.hrow.today{color:#6A1B9A}
+
+.visit{background:#fff;color:#1a1720}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{border:1px solid #ddd6e2;padding:28px;border-radius:18px}
+.info-line{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed #ddd6e2}
+.info-line:last-child{border-bottom:0}
+.info-line i{color:#6A1B9A;margin-top:4px;width:18px;text-align:center}
+.form{display:grid;gap:13px}
+.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:5px}
+.field input,.field textarea{width:100%;padding:12px 13px;border:1px solid #c8becf;background:#f7f4f9;font:inherit;border-radius:10px}
+.field textarea{min-height:105px;resize:vertical}
+
+footer{background:#0e0c13;color:#91899a;padding:34px 0}
+.footer-in{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+.footer-in strong{color:#fff}
+.footer-nav{display:flex;gap:16px}
+.footer-nav a{color:var(--lime)}
+
+.modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.75);padding:22px}
+.modal.open{display:grid}
+.modal-card{width:min(470px,100%);background:#1b1722;color:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.modal-icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:#14121A;margin-bottom:18px}
+.modal-card h2{text-align:left;font-size:2rem;margin-bottom:10px}
+.modal-card p{color:#C9C1D1;margin-bottom:22px}
+
+@media(max-width:860px){
+  .nav{display:none}.menu{display:block}
+  .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:32px}
+  .quick-grid{grid-template-columns:1fr}.quick{border-right:0;border-bottom:1px solid var(--line)}
+  .stock-grid,.review-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .hero{min-height:640px;background-position:60% center}
+  .hero-in{padding:88px 0 52px}
+  .hero h1{font-size:clamp(3rem,15vw,4.8rem)}
+  .actions{display:grid}.actions .btn{width:100%}
+  .section{padding:66px 0}
+  .about-photo{min-height:320px}
+  .footer-in{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
-<div class="site-shell">
 <header>
-  <div class="bar">
-    <div class="brand"><span class="wave"><i class="fa-solid fa-water"></i></span> Smokey Vibe &amp; Vapes</div>
-    <button id="menu-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-    <ul class="nav-links">
-      <li><a href="#/home" data-page="home">The Shop</a></li>
-      <li><a href="#/stock" data-page="stock">Stock</a></li>
-      <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
-      <li><a href="#/visit" data-page="visit">Visit</a></li>
-    </ul>
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="Smokey Vibe & Vapes home">
+      <span class="brand-mark"><i class="fa-solid fa-water"></i></span>
+      <span><strong>Smokey Vibe &amp; Vapes</strong><small>Sacramento · Stockton Blvd</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#home">The Shop</a>
+      <a href="#stock">Stock</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
   </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home">The Shop</a>
+    <a href="#stock">Stock</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+  </nav>
 </header>
+
 <main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <span class="kicker">Open 24 hours, 7 days</span>
+    <h1>The only 24-hour smoke shop <span>in Sacramento.</span></h1>
+    <p class="hero-copy">On Stockton Blvd in South Sacramento, Smokey Vibe &amp; Vapes never closes. Not at midnight, not on holidays. Great service, real selection, and good people behind the counter at 3 PM or 3 AM.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#stock"><i class="fa-solid fa-store"></i> See the Stock</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </div>
+  </div>
+  <div class="stock-note">Relevant stock retail image • Unsplash</div>
+</section>
 
-<section class="page active" id="page-home">
-  <div class="hero">
-    <div class="vibe-ring r1"></div><div class="vibe-ring r2"></div><div class="vibe-ring r3"></div>
-    <div class="wrap">
-      <span class="kicker">Open 24 hours, 7 days</span>
-      <h1>The only 24-hour smoke shop <span class="lime">in Sacramento.</span></h1>
-      <p class="lead">On Stockton Blvd in South Sacramento, Smokey Vibe &amp; Vapes never closes. Not at midnight, not on holidays. Great service, real selection, and good people behind the counter at 3 PM or 3 AM.</p>
-      <div class="hero-cta">
-        <span class="status-chip on" id="chip-home"><span class="dot"></span><span class="lbl">Open 24 hours</span></span>
-        <a class="btn" href="#/stock" data-page="stock">See the stock</a>
-      </div>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="wrap">
-      <p class="idline">21 and over only. Valid ID required, no exceptions, even at 3 AM.</p>
-    </div>
-  </div>
-  <div class="sec" style="padding-top:20px">
-    <div class="wrap">
-      <h2 style="text-align:center">What customers say</h2>
-      <p class="sub" style="text-align:center">Straight from the Google reviews.</p>
-      <div class="quote"><p>"Great little smoke shop. Good people very nice business inside."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
-      <div class="quote"><p>"Great service, selection, and value. This shop is one stop shop and they are open 24/7."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
-    </div>
+<section class="quickbar">
+  <div class="wrap quick-grid">
+    <div class="quick"><i class="fa-solid fa-clock"></i><div><strong>Hours</strong><span>Open 24 hours · 7 days</span></div></div>
+    <div class="quick"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Stockton Blvd · South Sacramento</span></div></div>
+    <div class="quick"><i class="fa-solid fa-id-card"></i><div><strong>Age requirement</strong><span>21+ · valid ID required</span></div></div>
   </div>
 </section>
 
-<section class="page" id="page-stock">
-  <div class="sec">
-    <div class="wrap">
-      <span class="kicker">Stock</span>
-      <h2>One stop, fully stocked</h2>
-      <p class="sub">The essentials and the fun stuff, restocked around the clock.</p>
-      <div class="tri">
-        <div class="panel"><div class="ico"><i class="fa-solid fa-cloud"></i></div><h3>Vapes</h3><p>Devices, pods and disposables from the brands people ask for.</p></div>
-        <div class="panel"><div class="ico"><i class="fa-solid fa-joint"></i></div><h3>Wraps &amp; papers</h3><p>All the usual rolling options, plus lighters and the small stuff you always forget.</p></div>
-        <div class="panel"><div class="ico"><i class="fa-solid fa-leaf"></i></div><h3>Hemp &amp; more</h3><p>CBD and Delta products on the shelf, with a counter crew that actually knows the stock.</p></div>
-      </div>
-      <div class="alwayson" style="margin-top:22px">
-        <div class="big">Always open. Including holidays.</div>
-        <p>That is the whole point. Wherever your night goes, the door on Stockton Blvd is open and the shelves are full.</p>
-        <span class="status-chip on" id="chip-stock"><span class="dot"></span><span class="lbl">Open 24 hours</span></span>
+<section class="section about">
+  <div class="wrap about-grid">
+    <div class="about-photo" role="img" aria-label="Stock retail image"></div>
+    <div>
+      <span class="kicker">Smokey Vibe &amp; Vapes</span>
+      <h2>Open around the clock</h2>
+      <p class="lead">Smokey Vibe &amp; Vapes is a smoke shop on Stockton Blvd in Sacramento. The source highlights 24/7 availability, a stocked selection, and service at any hour.</p>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>The supplied source contains a public business phone number and full street address. Those details remain hidden in this sample website.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="page" id="page-reviews">
-  <div class="sec">
-    <div class="wrap">
-      <span class="kicker">Reviews</span>
-      <h2>What our customers say</h2>
-      <p class="rating-line"><span class="big">4.9</span> stars on Google</p>
-      <div class="quote"><p>"Great little smoke shop. Good people very nice business inside."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
-      <div class="quote"><p>"Great service, selection, and value. This shop is one stop shop and they are open 24/7."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
-      <div class="linkcards">
-        <a class="linkcard" href="https://www.google.com/maps/search/?api=1&query=Smokey%20Vibe%20%26%20Vapes%2C%206955%20Stockton%20Blvd%2C%20Sacramento%2C%20CA%2095823" rel="noopener"><i class="fa-brands fa-google"></i>See every review on Google</a>
-      </div>
+<section class="section stock" id="stock">
+  <div class="wrap">
+    <span class="kicker">Stock</span>
+    <h2 style="margin-top:16px">One stop, fully stocked</h2>
+    <p style="color:var(--muted);max-width:720px">The essentials and the fun stuff, restocked around the clock.</p>
+    <div class="stock-grid">
+      <article class="panel"><i class="fa-solid fa-cloud"></i><h3>Vapes</h3><p>Devices, pods and disposables from the brands people ask for.</p></article>
+      <article class="panel"><i class="fa-solid fa-joint"></i><h3>Wraps &amp; papers</h3><p>All the usual rolling options, plus lighters and the small stuff you always forget.</p></article>
+      <article class="panel"><i class="fa-solid fa-leaf"></i><h3>Hemp &amp; more</h3><p>CBD and Delta products on the shelf, with a counter crew that actually knows the stock.</p></article>
+    </div>
+    <div class="always">
+      <strong>Always open. Including holidays.</strong>
+      <p>That is the whole point. Wherever your night goes, the door on Stockton Blvd is open and the shelves are full.</p>
     </div>
   </div>
 </section>
 
-<section class="page" id="page-visit">
-  <div class="sec">
-    <div class="wrap">
-      <span class="kicker">Visit</span>
-      <h2>Pull up anytime</h2>
-      <p class="sub">6955 Stockton Blvd A, Sacramento, CA 95823. Near Florin Road.</p>
-      <div class="visit-grid">
-        <div class="panel">
-          <div class="vrow"><i class="fa-solid fa-location-dot"></i><div><strong>6955 Stockton Blvd A</strong><br>Sacramento, CA 95823</div></div>
-          <div class="vrow"><i class="fa-solid fa-clock"></i><div>Open 24 hours, every day of the year</div></div>
-          <div class="vrow"><i class="fa-solid fa-phone"></i><div><a href="tel:+12092597872">(209) 259-7872</a> - ring before a late-night run</div></div>
-          <div class="vrow"><i class="fa-solid fa-id-card"></i><div>21+ with valid ID, always</div></div>
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <span class="kicker">Reviews</span>
+    <h2 style="margin-top:16px">What our customers say</h2>
+    <p style="color:var(--muted)">4.9 stars on Google.</p>
+    <div class="review-grid">
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Great little smoke shop. Good people very nice business inside."</p><small>Google review</small></article>
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Great service, selection, and value. This shop is one stop shop and they are open 24/7."</p><small>Google review</small></article>
+    </div>
+    <div class="actions" style="justify-content:center;margin-top:24px">
+      <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See Every Review on Google</button>
+    </div>
+  </div>
+</section>
+
+<section class="section hours">
+  <div class="wrap hours-grid">
+    <div>
+      <span class="kicker">Hours</span>
+      <h2 style="margin-top:16px">Open 24 hours</h2>
+      <p class="lead">Every day of the week.</p>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>Call and directions remain protected until the full website is unlocked.</p>
+      </div>
+    </div>
+    <div class="hours-card">
+      <div class="hrow" data-day="0"><span>Sunday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="1"><span>Monday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="2"><span>Tuesday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="3"><span>Wednesday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="4"><span>Thursday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="5"><span>Friday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="6"><span>Saturday</span><strong>Open 24 hours</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <span class="kicker">Visit</span>
+    <h2 style="margin-top:16px">Pull up anytime</h2>
+    <p class="lead">The source places Smokey Vibe &amp; Vapes on Stockton Blvd in Sacramento, near Florin Road.</p>
+    <div class="visit-grid">
+      <div class="card">
+        <h3>Shop details</h3>
+        <div class="info-line"><i class="fa-solid fa-location-dot"></i><span><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></span></div>
+        <div class="info-line"><i class="fa-solid fa-clock"></i><span>Open 24 hours, every day of the year</span></div>
+        <div class="info-line"><i class="fa-solid fa-id-card"></i><span>21+ with valid ID, always</span></div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          <button class="btn" style="background:var(--violet);color:#fff" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Directions</button>
         </div>
-        <div class="vibechip">
-          <div class="rings"><span></span><span></span><span></span></div>
-          <div class="num">(209) 259-7872</div>
-          <div class="sub">One call, any hour, someone answers.</div>
-        </div>
       </div>
-      <div class="form-card" style="margin-top:26px">
-        <h3 style="margin-bottom:4px; color:var(--white)">Ask if we have it</h3>
-        <p style="font-size:.9rem;color:#A99FBA">Text first and skip the trip if we are out.</p>
-        <form id="contact-form">
-          <label for="f-name">Your name</label>
-          <input id="f-name" type="text" required>
-          <label for="f-phone">Your phone</label>
-          <input id="f-phone" type="tel" required>
-          <label for="f-msg">What are you looking for?</label>
-          <textarea id="f-msg" required></textarea>
-          <p style="margin-top:16px"><button class="btn" type="submit">Send it</button></p>
-          <div class="feedback" id="form-feedback"></div>
+      <div class="card">
+        <h3>Ask if we have it</h3>
+        <p class="lead">The source includes a text-message form. Submission remains protected in this demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Your phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">What are you looking for?</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send It</button>
         </form>
       </div>
     </div>
   </div>
 </section>
-
 </main>
+
 <footer>
-  <div class="wrap">
-    <div><span class="copy">© Smokey Vibe & Vapes · Sacramento, CA</span><br>6955 Stockton Blvd A, Sacramento, CA 95823 · Open 24 hours · (209) 259-7872</div>
-    <div><a href="#/stock" data-page="stock">Stock</a> · <a href="#/reviews" data-page="reviews">Reviews</a></div>
+  <div class="wrap footer-in">
+    <div><strong>Smokey Vibe &amp; Vapes</strong><br>Sacramento, CA · Open 24 hours</div>
+    <nav class="footer-nav"><a href="#stock">Stock</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
   </div>
 </footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
 </div>
+
 <script>
-var BUSINESS = "Smokey Vibe & Vapes";
-var TITLES = { home: "The Shop", stock: "Stock", reviews: "Reviews", visit: "Visit" };
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false);
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
 
-var menuBtn = document.getElementById("menu-btn");
-var navLinksEl = document.querySelector(".nav-links");
-if (menuBtn && navLinksEl) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinksEl.classList.toggle("open");
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
   });
-} });
-navigateTo(getPageFromHash(), false);
 
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = {0:[0,24],1:[0,24],2:[0,24],3:[0,24],4:[0,24],5:[0,24],6:[0,24]};
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderChips(){
-  var st = openState();
-  ["chip-home","chip-stock"].forEach(function(id){
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.classList.toggle("on", st.open);
-    el.classList.toggle("off", !st.open);
-    el.querySelector(".lbl").textContent = "Open 24 hours";
-  });
-}
-renderChips();
-
-var PHONE = "+12092597872";
-var PRETTY = "(209) 259-7872";
-document.getElementById("contact-form").addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var phone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  var text = "Hi Smokey Vibe & Vapes! My name is " + name + ". " + msg + " (Reply to " + phone + ")";
-  var body = encodeURIComponent(text);
-  var fb = document.getElementById("form-feedback");
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(text).then(function(){
-      fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
     });
+  });
+
+  function openLocked(trigger) {
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
   }
-});
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) {
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked(form.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeLocked);
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      closeLocked();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeLocked();
+    }
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    weekday: 'short'
+  }).format(new Date());
+
+  const dayMap = {Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6};
+  const row = document.querySelector('.hrow[data-day="' + dayMap[today] + '"]');
+
+  if (row) {
+    row.classList.add('today');
+    row.querySelector('span').textContent += ' · Today';
+  }
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+})();
 </script>
 </body>
 </html>

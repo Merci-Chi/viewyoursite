@@ -1,571 +1,581 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tobacco Smoke Shop | Belmont Ave, Fresno</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#20150f">
+<title>Tobacco Smoke Shop | Fresno, California</title>
+<meta name="description" content="Tobacco Smoke Shop in Fresno, California. View supported product categories, hours, reviews, and protected demo contact information.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
 :root{
-  --brown:#6B4A2F;
-  --brown-deep:#4E3520;
-  --red:#B23A2E;
-  --cream:#F8F1E4;
-  --paper:#FDFAF3;
-  --ink:#33261A;
-  --gray:#7A6A58;
-  --line:#E2D5BE;
+  --ink:#1c1713;
+  --paper:#f3eadc;
+  --paper2:#fffaf2;
+  --brown:#5a3b29;
+  --deep:#20150f;
+  --rust:#a33e2f;
+  --gold:#d7ad65;
+  --olive:#6f7350;
+  --muted:#71645b;
+  --line:rgba(71,45,31,.18);
+  --max:1160px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:'PT Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;font-size:17px;background-image:radial-gradient(rgba(107,74,47,.06) 1px, transparent 1px);background-size:22px 22px}
-h1,h2,h3,.typeface{font-family:'Special Elite',serif;font-weight:400;line-height:1.15;margin:0 0 14px}
-a{color:var(--brown)}
-.site-shell{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-.page{display:none}
-.page.active{display:block}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-
-/* header */
-.site-head{background:var(--brown-deep);border-bottom:4px solid var(--red);position:relative;z-index:40}
-.head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 22px;max-width:1040px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand-mark{width:42px;height:42px;border:3px double var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cream);font-size:1.1rem;flex-shrink:0}
-.brand-name{font-family:'Special Elite',serif;font-size:1.25rem;color:var(--cream);line-height:1.2}
-.brand-name small{display:block;font-size:.66rem;letter-spacing:3px;color:#D8BE9E}
-.nav-links{display:flex;align-items:center;gap:22px}
-.nav-links a{font-family:'Special Elite',serif;font-size:.98rem;color:var(--cream);text-decoration:none;padding:6px 2px;border-bottom:2px dashed transparent}
-.nav-links a:hover{color:#F3D9A9;border-bottom-color:var(--red)}
-.menu-btn{display:none;background:none;border:2px solid var(--cream);border-radius:8px;padding:8px 10px;cursor:pointer;color:var(--cream);font-size:1.1rem}
-.menu-btn span{display:block;width:20px;height:2px;background:var(--cream);margin:4px 0}
-.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.menu-btn.open span:nth-child(2){opacity:0}
-.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-/* status chip */
-.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:3px;background:var(--paper);border:1.5px solid var(--brown);font-weight:700;font-size:.88rem;color:var(--ink)}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#A99B87;flex-shrink:0}
-.status-chip.is-open .dot{background:#3E7D46;box-shadow:0 0 0 4px rgba(62,125,70,.18)}
-.status-chip.is-closed .dot{background:var(--red)}
-.status-chip.lite{background:transparent;border-style:dashed}
-
-/* label card hero */
-.hero{padding:64px 0 72px}
-.label-card{max-width:680px;margin:0 auto;background:var(--paper);border:2px solid var(--brown);box-shadow:0 0 0 6px var(--paper),0 0 0 8px var(--brown),0 22px 44px rgba(78,53,32,.18);padding:0;text-align:center}
-.label-band{background:var(--red);color:var(--paper);font-family:'Special Elite',serif;letter-spacing:4px;font-size:.85rem;padding:10px 16px}
-.label-in{padding:36px 34px 40px}
-.label-in h1{font-size:clamp(2.2rem,6vw,3.4rem);color:var(--brown-deep);margin-bottom:6px}
-.label-in .label-sub{font-size:.85rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin:0 0 18px}
-.label-rule{border:none;border-top:2px dashed var(--line);margin:20px 0}
-.label-in p.lead{color:var(--gray);margin:0 auto 24px;max-width:520px}
-.label-chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:26px}
-.label-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-.type-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 26px;background:var(--brown);color:var(--cream);text-decoration:none;font-family:'Special Elite',serif;font-size:1rem;border-radius:3px;box-shadow:3px 3px 0 var(--brown-deep)}
-.type-btn:hover{background:var(--brown-deep)}
-.type-btn.ghost{background:transparent;color:var(--brown);border:2px solid var(--brown);box-shadow:none}
-.type-btn.ghost:hover{background:var(--brown);color:var(--cream)}
-
-/* pipe smoke swirl divider */
-.smoke-divider{display:block;margin:0 auto;max-width:520px;width:80%;height:46px;color:var(--brown);opacity:.5}
-
-/* age band */
-.age-band{background:var(--red);color:var(--paper);text-align:center;padding:16px 22px;font-family:'Special Elite',serif;letter-spacing:2px;font-size:.98rem}
-.age-band i{margin-right:10px}
-
-/* sections */
-section.block{padding:60px 0}
-section.tint{background:var(--paper)}
-.sec-title{text-align:center;font-size:clamp(2rem,5vw,2.9rem);color:var(--brown-deep)}
-.sec-sub{text-align:center;max-width:600px;margin:0 auto 36px;color:var(--gray)}
-.sec-sub .typeface{font-size:1em}
-
-/* shelf cards */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
-.svc-card{background:var(--paper);border:1.5px solid var(--line);border-radius:3px;padding:26px 22px;text-align:center}
-.svc-card:hover{border-color:var(--brown);box-shadow:4px 4px 0 var(--line)}
-.svc-card .ico{width:52px;height:52px;margin:0 auto 12px;border:2px solid var(--brown);border-radius:50%;color:var(--brown);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.svc-card h3{font-size:1.25rem;color:var(--brown-deep);margin-bottom:6px}
-.svc-card p{margin:0;font-size:.93rem;color:var(--gray)}
-
-/* receipt hours */
-.receipt{max-width:480px;margin:0 auto;background:var(--paper);border:1.5px solid var(--line);box-shadow:0 16px 34px rgba(78,53,32,.12);padding:28px 30px 26px;position:relative}
-.receipt::before,.receipt::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:var(--cream);border:1.5px solid var(--line);top:50%;transform:translateY(-50%)}
-.receipt::before{left:-12px}
-.receipt::after{right:-12px}
-.receipt h3{text-align:center;letter-spacing:4px;font-size:1.15rem;color:var(--brown-deep);border-bottom:2px dashed var(--line);padding-bottom:12px;margin-bottom:16px}
-.r-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:.98rem;border-bottom:1px dotted var(--line)}
-.r-row:last-of-type{border-bottom:none}
-.r-row .d{font-family:'Special Elite',serif;color:var(--brown)}
-.r-row .t{color:var(--ink)}
-.r-row.today{background:#F5E8CE;margin:0 -10px;padding:7px 10px;border-radius:3px}
-.r-row.today .d{color:var(--red)}
-.r-confirm{text-align:center;font-size:.85rem;color:var(--gray);font-style:italic;margin:14px 0 0}
-
-/* quotes */
-.quote-card{background:var(--paper);border:2px solid var(--brown);border-radius:3px;padding:32px;max-width:720px;margin:0 auto;text-align:center;box-shadow:5px 5px 0 rgba(107,74,47,.25);position:relative}
-.quote-card::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);width:110px;height:24px;background:var(--red);opacity:.85}
-.quote-card .qmark{color:var(--red);font-size:1.5rem;margin-bottom:10px}
-.quote-card blockquote{margin:0 0 14px;font-size:1.12rem;color:var(--ink)}
-.quote-card .stars i{color:var(--brown);font-size:.85rem;letter-spacing:3px}
-.quote-card .attrib{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:10px}
-
-/* rating + links */
-.rating-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;margin:36px auto 22px}
-.rating-line .big{font-family:'Special Elite',serif;font-size:3.3rem;color:var(--red);line-height:1}
-.rating-line .rest{font-weight:700;color:var(--gray);font-size:1.05rem}
-.g-link-card{display:flex;align-items:center;justify-content:center;gap:12px;width:fit-content;margin:0 auto;background:var(--brown);color:var(--cream);border-radius:3px;padding:15px 30px;font-weight:700;text-decoration:none;box-shadow:3px 3px 0 var(--brown-deep)}
-.g-link-card:hover{background:var(--brown-deep)}
-.g-link-card i{color:#F3D9A9}
-
-/* visit */
-.visit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
-.info-card{background:var(--paper);border:1.5px solid var(--line);border-radius:3px;padding:26px;margin-bottom:20px}
-.info-card h3{display:flex;align-items:center;gap:10px;font-size:1.35rem;color:var(--brown-deep)}
-.info-card h3 i{color:var(--red)}
-.addr{font-weight:700;font-size:1.05rem;margin:0 0 6px}
-.info-card p{color:var(--gray);margin:0 0 6px}
-
-/* pouch-fold contact card */
-.pouch{max-width:360px;margin:0 auto;background:var(--brown);border-radius:4px;padding:0 0 28px;box-shadow:0 22px 46px rgba(78,53,32,.3);text-align:center;overflow:hidden}
-.pouch-flap{height:56px;position:relative;background:linear-gradient(180deg,var(--brown-deep),var(--brown))}
-.pouch-flap::before{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;width:0;height:0;border-left:130px solid transparent;border-right:130px solid transparent;border-bottom:26px solid var(--brown)}
-.pouch-flap::after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:16px;width:64px;height:12px;border-radius:6px;background:var(--red)}
-.pouch .p-label{font-family:'Special Elite',serif;letter-spacing:4px;font-size:.8rem;color:#E8CFA4;margin:20px 0 8px}
-.pouch .p-phone{font-family:'Special Elite',serif;font-size:1.9rem;color:var(--cream);text-decoration:none;display:block;padding:0 12px}
-.pouch .p-phone:hover{color:#F3D9A9}
-.pouch .p-sub{font-size:.9rem;color:#D8C4A4;margin:12px 18px 0}
-
-/* form */
-.form-card{background:var(--paper);border:2px solid var(--brown);border-radius:3px;padding:34px;max-width:700px;margin:0 auto;box-shadow:6px 6px 0 rgba(107,74,47,.25)}
-.form-card h3{text-align:center;font-size:1.7rem;color:var(--brown-deep)}
-.form-note{text-align:center;font-size:.95rem;margin:0 auto 24px;max-width:520px;color:var(--gray)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f-field{margin-bottom:16px}
-.f-field label{display:block;font-family:'Special Elite',serif;font-size:.98rem;margin-bottom:6px;color:var(--brown-deep)}
-.f-field input,.f-field textarea{width:100%;border:1.5px solid var(--line);border-radius:3px;padding:12px 15px;font-family:'PT Sans',sans-serif;font-size:.98rem;color:var(--ink);background:#fff}
-.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--red)}
-.f-send{display:block;width:100%;border:none;border-radius:3px;padding:15px;background:var(--red);color:var(--paper);font-family:'Special Elite',serif;font-size:1.1rem;letter-spacing:2px;cursor:pointer;box-shadow:3px 3px 0 var(--brown-deep)}
-.f-send:hover{filter:brightness(.93)}
-.form-feedback{text-align:center;font-weight:700;min-height:24px;margin:14px 0 0;font-size:.95rem}
-.form-feedback.ok{color:#3E7D46}
-.form-feedback.warn{color:var(--red)}
-
-/* footer */
-.site-foot{background:var(--brown-deep);color:#D8C4A4;margin-top:70px;border-top:4px solid var(--red)}
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px;padding:48px 22px 32px;max-width:1040px;margin:0 auto}
-.foot-grid h4{font-family:'Special Elite',serif;font-size:1.2rem;color:var(--cream);margin:0 0 12px;letter-spacing:1px}
-.foot-grid p{margin:0 0 8px;font-size:.93rem}
-.copyright{border-top:1px solid rgba(248,241,228,.18);text-align:center;padding:18px 22px;font-size:.9rem;color:var(--cream)}
-
-@media (max-width:860px){
-  .visit-grid{grid-template-columns:1fr}
-  .pouch{max-width:420px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:"Space Grotesk",sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+  touch-action:pan-y;
 }
-@media (max-width:767px){
-  .menu-btn{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--brown-deep);border-bottom:3px solid var(--red);flex-direction:column;align-items:stretch;gap:0;padding:10px 0}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:14px 26px;border-bottom:none}
-  .nav-links a:hover{background:#3A2817}
-  .f-row{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr;gap:24px;padding-top:38px}
-  .hero{padding:48px 0 58px}
-  .label-in{padding:28px 22px 32px}
-  section.block{padding:48px 0}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2,h3,.display{font-family:"Rye",serif;font-weight:400}
+p{margin:0}
+.kicker{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.74rem;
+  font-weight:700;
+  color:var(--rust);
+  margin-bottom:12px;
 }
-@media (max-width:380px){
-  .brand-name{font-size:1.05rem}
-  .label-in h1{font-size:2rem}
+
+/* Header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(32,21,15,.94);
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(14px);
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-seal{
+  width:44px;height:44px;border:2px solid var(--gold);
+  border-radius:50%;
+  display:grid;place-items:center;
+  color:var(--gold);
+  font-family:"Rye",serif;
+  font-size:.9rem;
+}
+.brand-text{display:grid;line-height:1.05}
+.brand-text strong{font-family:"Rye",serif;font-size:1.05rem;font-weight:400}
+.brand-text small{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#d8c6b5;margin-top:5px}
+.navlinks{display:flex;align-items:center;gap:28px}
+.navlinks a{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#f4e7d7}
+.navlinks a:hover{color:var(--gold)}
+.menu{
+  display:none;width:46px;height:44px;border:1px solid rgba(255,255,255,.24);
+  background:transparent;color:#fff;font-size:1.1rem;
+}
+
+/* Hero */
+.hero{
+  min-height:760px;
+  display:flex;
+  align-items:end;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(24,14,10,.78) 0%,rgba(24,14,10,.58) 46%,rgba(24,14,10,.34) 100%),
+    linear-gradient(0deg,rgba(24,14,10,.74),transparent 55%),
+    url("https://images.unsplash.com/photo-1528605105345-5344ea20e269?auto=format&fit=crop&w=2200&q=86") center/cover no-repeat;
+}
+.hero:before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 85% 20%,rgba(215,173,101,.22),transparent 32%);
+}
+.hero-in{position:relative;z-index:2;padding:118px 0 78px;max-width:880px}
+.hero .eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  text-transform:uppercase;letter-spacing:.2em;
+  font-size:.74rem;font-weight:700;color:#f0d7ae;
+}
+.hero .eyebrow:before{content:"";width:42px;height:2px;background:var(--gold)}
+.hero h1{
+  font-size:clamp(3.7rem,8vw,7.5rem);
+  line-height:.92;
+  margin:22px 0 24px;
+  max-width:900px;
+  text-shadow:0 8px 30px rgba(0,0,0,.28);
+}
+.hero h1 span{color:var(--gold)}
+.hero-copy{max-width:680px;font-size:1.08rem;line-height:1.75;color:#efe5dc}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  min-height:50px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 20px;border:1px solid transparent;
+  font:700 .82rem "Space Grotesk",sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:.18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#221610}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff;background:rgba(0,0,0,.12)}
+.asset-note{
+  position:absolute;right:16px;bottom:14px;z-index:3;
+  background:rgba(0,0,0,.58);padding:7px 9px;
+  font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:#e9dfd5;
+}
+
+/* Fact strip */
+.fact-strip{background:var(--deep);color:#fff;border-top:1px solid rgba(255,255,255,.1)}
+.fact-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.fact{padding:22px 24px;border-right:1px solid rgba(255,255,255,.1);display:flex;gap:12px;align-items:flex-start}
+.fact:last-child{border-right:0}
+.fact i{color:var(--gold);margin-top:4px}
+.fact strong{display:block;font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;color:#bfae9e;margin-bottom:4px}
+.fact span{font-weight:700}
+
+/* Sections */
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-head{
+  display:grid;grid-template-columns:.82fr 1.18fr;gap:52px;align-items:end;margin-bottom:40px
+}
+.section-head h2{font-size:clamp(2.6rem,5vw,4.8rem);line-height:.98;margin:0}
+.section-head p{color:var(--muted);line-height:1.75;max-width:680px}
+.paper{
+  background:
+    linear-gradient(rgba(243,234,220,.88),rgba(243,234,220,.88)),
+    url("https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=2000&q=82") center/cover fixed;
+}
+.dark{
+  color:#fff;
+  background:
+    linear-gradient(rgba(32,21,15,.82),rgba(32,21,15,.86)),
+    url("https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+}
+.dark .kicker{color:#f0ca8b}
+.dark .section-head p{color:#d6c9bf}
+
+/* Product list */
+.shelf{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--line);border:1px solid var(--line)
+}
+.item{background:rgba(255,250,242,.95);padding:30px;min-height:220px}
+.item-icon{
+  width:48px;height:48px;border:1px solid var(--brown);
+  display:grid;place-items:center;color:var(--brown);margin-bottom:22px
+}
+.item h3{font-size:1.28rem;margin:0 0 10px;color:var(--brown)}
+.item p{color:var(--muted);font-size:.94rem;line-height:1.65}
+
+/* Hours */
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:58px}
+.hours-list{border-top:1px solid var(--line)}
+.hrow{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--line)}
+.hrow span{color:var(--muted)}
+.hrow.today strong{color:var(--rust)}
+.protected{
+  margin-top:24px;padding:18px 20px;
+  border-left:4px solid var(--rust);
+  background:#fff5e9;
+}
+.protected strong{
+  display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);margin-bottom:5px
+}
+.protected p{color:var(--muted);font-size:.92rem;line-height:1.6}
+
+/* Reviews */
+.review-wrap{display:grid;grid-template-columns:1fr .55fr;gap:28px;align-items:start}
+.review-card{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+  padding:34px;position:relative
+}
+.review-card:before{
+  content:"“";position:absolute;right:24px;top:4px;
+  font-family:"Rye",serif;font-size:6rem;color:rgba(215,173,101,.18);line-height:1
+}
+.review-card blockquote{margin:0;font-size:1.18rem;line-height:1.75;max-width:760px}
+.stars{color:var(--gold);font-size:.82rem;margin:18px 0 7px}
+.review-card span{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#cbbcaf}
+.rating-box{
+  border:1px solid rgba(255,255,255,.18);padding:32px;text-align:center;background:rgba(0,0,0,.12)
+}
+.rating-num{font-family:"Rye",serif;font-size:4rem;color:var(--gold);line-height:1}
+.rating-box p{color:#d5c7bb;margin-top:8px}
+
+/* Visit */
+.visit{
+  background:
+    linear-gradient(rgba(243,234,220,.86),rgba(243,234,220,.86)),
+    url("https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=2100&q=84") center/cover no-repeat;
+}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.visit-card{background:rgba(255,250,242,.94);border:1px solid var(--line);padding:30px}
+.visit-card h3{font-size:1.35rem;margin:0 0 14px;color:var(--brown)}
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:6px}
+.field input,.field textarea{
+  width:100%;padding:12px 14px;border:1px solid #bfae9d;background:#fff;font:inherit;color:var(--ink)
+}
+.field textarea{min-height:110px;resize:vertical}
+
+/* Footer */
+footer{
+  background:
+    linear-gradient(rgba(32,21,15,.95),rgba(32,21,15,.95)),
+    url("https://images.unsplash.com/photo-1528605105345-5344ea20e269?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+  color:#cdbfb2;padding:38px 0
+}
+.footer-row{display:flex;justify-content:space-between;gap:28px;align-items:center}
+.footer-row strong{font-family:"Rye",serif;font-weight:400;color:#fff}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap}
+.footer-nav a{color:#fff;font-size:.8rem}
+
+/* Modal */
+.modal{
+  position:fixed;inset:0;z-index:1000;
+  display:none;place-items:center;padding:20px;background:rgba(0,0,0,.75)
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(470px,100%);background:var(--paper2);color:var(--ink);
+  border-top:6px solid var(--rust);padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.42)
+}
+.modal-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--deep);color:var(--gold);margin-bottom:18px}
+.modal-card h2{font-size:2rem;margin:0}
+.modal-card p{color:var(--muted);margin:14px 0 24px;line-height:1.65}
+
+/* Mobile */
+@media(max-width:900px){
+  .menu{display:grid;place-items:center}
+  .navlinks{
+    display:none;position:absolute;top:76px;left:0;right:0;
+    background:var(--deep);padding:8px 20px 18px;flex-direction:column;align-items:stretch;gap:0;
+    border-top:1px solid rgba(255,255,255,.1)
+  }
+  .navlinks.open{display:flex}
+  .navlinks a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .section-head,.hours-grid,.review-wrap,.visit-grid{grid-template-columns:1fr;gap:30px}
+  .shelf{grid-template-columns:1fr}
+  .fact-grid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .fact:last-child{border-bottom:0}
+}
+@media(max-width:600px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .hero{min-height:670px;background-position:58% center}
+  .hero-in{padding:92px 0 54px}
+  .hero h1{font-size:clamp(3.2rem,15vw,5rem)}
+  .hero-actions{display:grid}
+  .btn{width:100%}
+  .section{padding:68px 0}
+  .footer-row{flex-direction:column;align-items:flex-start}
+  .paper{background-attachment:scroll}
 }
 </style>
 </head>
 <body>
-<div class="site-shell">
 
-<header class="site-head">
-  <div class="head-in">
-    <a class="brand" href="#/" data-page="home" aria-label="Tobacco Smoke Shop home">
-      <span class="brand-mark"><i class="fa-solid fa-joint"></i></span>
-      <span class="brand-name">Tobacco Smoke Shop<small>BELMONT AVE - FRESNO</small></span>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Tobacco Smoke Shop home">
+      <span class="brand-seal">TS</span>
+      <span class="brand-text">
+        <strong>Tobacco Smoke Shop</strong>
+        <small>Fresno, California</small>
+      </span>
     </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#/shop" data-page="shop">The Shop</a>
-      <a href="#/reviews" data-page="reviews">Reviews</a>
-      <a href="#/visit" data-page="visit">Visit</a>
-    </nav>
-    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+    <button class="menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
     </button>
+    <nav class="navlinks" id="navLinks" aria-label="Primary navigation">
+      <a href="#shop">The Shop</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
   </div>
 </header>
 
 <main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <div class="eyebrow">Belmont Ave · Fresno</div>
+    <h1>Tobacco <span>Smoke Shop</span></h1>
+    <p class="hero-copy">The supplied business page identifies a Fresno smoke shop offering tobacco and smoke-shop product categories, with daily hours listed from 10:00 AM to 8:00 PM.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#shop"><i class="fa-solid fa-store"></i> View the shop</a>
+      <a class="btn btn-ghost" href="#hours"><i class="fa-regular fa-clock"></i> View hours</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Contact</button>
+    </div>
+  </div>
+  <div class="asset-note">Stock retail imagery — not the actual business</div>
+</section>
 
-<section class="page" id="page-home">
-  <div class="hero">
-    <div class="wrap">
-      <div class="label-card">
-        <div class="label-band">EST. COUNTER OF E BELMONT AVE</div>
-        <div class="label-in">
-          <h1>Tobacco Smoke Shop</h1>
-          <p class="label-sub">Fresno, California - 93701</p>
-          <hr class="label-rule">
-          <p class="lead">A proper neighborhood tobacco counter on Belmont. Friendly service, fair prices and a large selection, exactly the way a corner smoke shop should run.</p>
-          <div class="label-chips">
-            <span class="status-chip"><span class="dot"></span><span class="chip-label">Checking hours...</span></span>
-            <span class="status-chip lite">4.5 stars on Google</span>
-          </div>
-          <div class="label-btns">
-            <a class="type-btn" href="#/shop" data-page="shop">See the shelves <i class="fa-solid fa-arrow-right"></i></a>
-            <a class="type-btn ghost" href="#/visit" data-page="visit">Visit</a>
-          </div>
+<section class="fact-strip" aria-label="Business details">
+  <div class="wrap fact-grid">
+    <div class="fact">
+      <i class="fa-solid fa-location-dot"></i>
+      <div><strong>Area</strong><span>Fresno, California</span></div>
+    </div>
+    <div class="fact">
+      <i class="fa-regular fa-clock"></i>
+      <div><strong>Hours listed</strong><span>10:00 AM – 8:00 PM daily</span></div>
+    </div>
+    <div class="fact">
+      <i class="fa-solid fa-id-card"></i>
+      <div><strong>Age notice</strong><span>21 and over · valid ID required</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section paper" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">The Shop</p><h2>Product categories from the supplied page.</h2></div>
+      <p>Only categories already present in the uploaded source are shown here. No pricing, discounts, brands, inventory levels, or availability claims have been added.</p>
+    </div>
+    <div class="shelf">
+      <article class="item">
+        <div class="item-icon"><i class="fa-solid fa-pipe-smoking"></i></div>
+        <h3>Pipe Tobacco</h3>
+        <p>The traditional tobacco category listed in the supplied site.</p>
+      </article>
+      <article class="item">
+        <div class="item-icon"><i class="fa-solid fa-scroll"></i></div>
+        <h3>Cigars and Wraps</h3>
+        <p>Cigars, wraps, and rolling-related items are listed in the uploaded source.</p>
+      </article>
+      <article class="item">
+        <div class="item-icon"><i class="fa-solid fa-wind"></i></div>
+        <h3>Vapes</h3>
+        <p>Vapes are included as a product category in the supplied business page.</p>
+      </article>
+      <article class="item">
+        <div class="item-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>CBD and Delta 8/9</h3>
+        <p>This category appears in the supplied shop page.</p>
+      </article>
+      <article class="item">
+        <div class="item-icon"><i class="fa-solid fa-fire-flame-simple"></i></div>
+        <h3>Lighters and Extras</h3>
+        <p>Lighters and related small accessories are listed in the supplied source.</p>
+      </article>
+      <article class="item">
+        <div class="item-icon"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Hookah and Kratom</h3>
+        <p>Hookah and kratom are both listed as product categories in the uploaded page.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hours">
+  <div class="wrap hours-grid">
+    <div>
+      <p class="kicker">Hours</p>
+      <h2>Daily hours listed by the source.</h2>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>The uploaded source includes a public business phone number and street address. Those real-world contact details remain hidden in this sample website.</p>
+      </div>
+      <p style="margin-top:14px;color:var(--muted);font-size:.88rem">The source marks these hours as estimated and says to call to confirm.</p>
+    </div>
+    <div class="hours-list">
+      <div class="hrow" data-day="0"><strong>Sunday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="1"><strong>Monday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="2"><strong>Tuesday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="3"><strong>Wednesday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="4"><strong>Thursday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="5"><strong>Friday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="6"><strong>Saturday</strong><span>10:00 AM – 8:00 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">Reviews</p><h2>Customer feedback from the supplied page.</h2></div>
+      <p>The uploaded source includes one Google review quote and a 4.5-star rating with 176 reviews. No additional review language has been added.</p>
+    </div>
+    <div class="review-wrap">
+      <article class="review-card">
+        <blockquote>friendly service, cost savings, large selection , why shop anywhere else</blockquote>
+        <div class="stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
         </div>
-        <div class="label-band" style="background:var(--brown)">OPEN DAILY - 10 AM TO 8 PM</div>
+        <span>Google review</span>
+      </article>
+      <div class="rating-box">
+        <div class="rating-num">4.5</div>
+        <p>176 Google reviews in the supplied source.</p>
+        <button class="btn btn-primary" type="button" data-locked="true" style="margin-top:20px">
+          <i class="fa-brands fa-google"></i> View reviews
+        </button>
       </div>
     </div>
   </div>
-
-  <svg class="smoke-divider" viewBox="0 0 520 46" fill="none" aria-hidden="true">
-    <path d="M6 30 C 60 6, 110 46, 164 26 S 268 4, 322 28 S 430 44, 514 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="6" cy="30" r="4" fill="currentColor"/>
-    <circle cx="514" cy="16" r="4" fill="currentColor"/>
-  </svg>
-
-  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED FOR ALL TOBACCO SALES.</div>
-
-  <section class="block">
-    <div class="wrap">
-      <h2 class="sec-title">On the Shelf</h2>
-      <p class="sec-sub">The everyday stock, kept ordered and easy to browse. If you do not see it, ask at the counter.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-pipe-smoking"></i></div>
-          <h3>Pipe Tobacco</h3>
-          <p>Pouches and tins for the pipe smokers who still take their time.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
-          <h3>Cigars and Wraps</h3>
-          <p>Cigars, blunt wraps and rolling papers in the familiar brands.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-wind"></i></div>
-          <h3>Vapes</h3>
-          <p>Disposables and vape hardware for customers who have switched over.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire"></i></div>
-          <h3>Lighters and More</h3>
-          <p>Lighters, torches and the little extras you always forget you need.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block tint" style="padding-top:46px;padding-bottom:50px">
-    <div class="wrap">
-      <h2 class="sec-title">Counter Hours</h2>
-      <p class="sec-sub">Same ten to eight schedule, seven days a week.</p>
-      <div class="receipt">
-        <h3>STORE HOURS</h3>
-        <div class="r-row" data-day="0"><span class="d">Sunday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="1"><span class="d">Monday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="2"><span class="d">Tuesday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="3"><span class="d">Wednesday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="4"><span class="d">Thursday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="5"><span class="d">Friday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="6"><span class="d">Saturday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <p class="r-confirm">Hours are estimated. Please call to confirm.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="quote-card">
-        <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-        <blockquote>friendly service, cost savings, large selection , why shop anywhere else</blockquote>
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p class="attrib">Google review</p>
-      </div>
-    </div>
-  </section>
+  <div class="asset-note">Stock retail imagery — not the actual business</div>
 </section>
 
-<section class="page" id="page-shop">
-  <section class="block" style="padding-bottom:26px">
-    <div class="wrap">
-      <h1 class="sec-title">The Shop</h1>
-      <p class="sec-sub">A straight-ahead tobacco and smoke shop: the classics up front, the modern stuff along the wall, no fuss in between.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-pipe-smoking"></i></div>
-          <h3>Pipe Tobacco</h3>
-          <p>The traditional side of the shelf, bagged and tinned.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
-          <h3>Cigars and Wraps</h3>
-          <p>Singles and packs, wraps and papers, all within reach.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-wind"></i></div>
-          <h3>Vapes</h3>
-          <p>Disposables and hardware, with coils and pods when you need them.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
-          <h3>CBD and Delta 8/9</h3>
-          <p>The hemp shelf, clearly marked and easy to ask about.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire"></i></div>
-          <h3>Lighters and Extras</h3>
-          <p>Torches, lighters, ashtrays and small goods by the register.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-smoking"></i></div>
-          <h3>Hookah and Kratom</h3>
-          <p>Hookah basics and a kratom selection for those who ask.</p>
-        </div>
-      </div>
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">Visit</p><h2>Tobacco Smoke Shop in Fresno.</h2></div>
+      <p>The source includes a Belmont Ave business address and phone number. Those exact contact details are intentionally protected in this demo.</p>
     </div>
-  </section>
-  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED FOR ALL TOBACCO SALES.</div>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="receipt">
-        <h3>STORE HOURS</h3>
-        <div class="r-row" data-day="0"><span class="d">Sunday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="1"><span class="d">Monday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="2"><span class="d">Tuesday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="3"><span class="d">Wednesday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="4"><span class="d">Thursday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="5"><span class="d">Friday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <div class="r-row" data-day="6"><span class="d">Saturday</span><span class="t">10:00 AM - 8:00 PM</span></div>
-        <p class="r-confirm">Hours are estimated. Please call to confirm.</p>
-      </div>
-    </div>
-  </section>
-</section>
-
-<section class="page" id="page-reviews">
-  <section class="block" style="padding-bottom:30px">
-    <div class="wrap">
-      <h1 class="sec-title">Reviews</h1>
-      <p class="sec-sub">Every Google review quote we have, word for word, exactly as written.</p>
-      <div class="quote-card">
-        <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-        <blockquote>friendly service, cost savings, large selection , why shop anywhere else</blockquote>
-        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p class="attrib">Google review</p>
-      </div>
-      <div class="rating-line">
-        <span class="big">4.5</span>
-        <span class="rest">stars with 176 reviews on Google</span>
-      </div>
-      <a class="g-link-card" href="https://www.google.com/maps/search/?api=1&query=Tobacco%20Smoke%20Shop%2C%203026%20E%20Belmont%20Ave%2C%20Fresno%2C%20CA%2093701" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
-    </div>
-  </section>
-</section>
-
-<section class="page" id="page-visit">
-  <section class="block" style="padding-bottom:30px">
-    <div class="wrap">
-      <h1 class="sec-title">Visit Us</h1>
-      <p class="sec-sub">Belmont Ave, east Fresno. Easy in, easy out, ten to eight every day.</p>
-      <div class="visit-grid">
-        <div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-location-dot"></i> The Counter</h3>
-            <p class="addr">3026 E Belmont Ave<br>Fresno, CA 93701</p>
-            <p>Street parking out front, same door as always. The counter is straight ahead.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-clock"></i> Hours</h3>
-            <p class="addr">Every day, 10 AM to 8 PM</p>
-            <p>Seven days a week, including Sundays. Hours are estimated. Please call to confirm.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-id-card"></i> Bring Your ID</h3>
-            <p>21 and over, valid ID required for all tobacco sales. No ID, no sale, no exceptions.</p>
-          </div>
+    <div class="visit-grid">
+      <div class="visit-card">
+        <h3><i class="fa-solid fa-location-dot"></i> Business contact</h3>
+        <div class="protected">
+          <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+          <p>Street address and phone number are hidden in this sample website.</p>
         </div>
-        <div>
-          <div class="pouch">
-            <div class="pouch-flap"></div>
-            <p class="p-label">CALL THE COUNTER</p>
-            <a class="p-phone" href="tel:+15598783966">(559) 878-3966</a>
-            <p class="p-sub">Tap to call. Ask about stock before you drive over, the counter will check the shelf.</p>
-          </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          <button class="btn" style="border-color:var(--brown);color:var(--brown);background:transparent" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Directions</button>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="form-card">
-        <h3>Ask about the shelf</h3>
-        <p class="form-note">Name and what you are after. We will text you back and let you know if it is on the shelf today.</p>
-        <form id="quote-form">
-          <div class="f-row">
-            <div class="f-field">
-              <label for="f-name">Your name</label>
-              <input type="text" id="f-name" autocomplete="name" placeholder="First and last">
-            </div>
-            <div class="f-field">
-              <label for="f-phone">Your phone</label>
-              <input type="tel" id="f-phone" autocomplete="tel" placeholder="(559) 555-0123">
-            </div>
-          </div>
-          <div class="f-field">
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" rows="4" placeholder="What should we check on the shelf?"></textarea>
-          </div>
-          <button type="submit" class="f-send"><i class="fa-solid fa-paper-plane"></i> Send to the counter</button>
-          <p class="form-feedback" id="form-feedback"></p>
+      <div class="visit-card">
+        <h3><i class="fa-solid fa-message"></i> Send a message</h3>
+        <p style="color:var(--muted);margin:0 0 18px">The original page includes a contact form. Submission remains locked in this demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send</button>
         </form>
       </div>
     </div>
-  </section>
+  </div>
 </section>
-
 </main>
 
-<footer class="site-foot">
-  <div class="foot-grid">
+<footer>
+  <div class="wrap footer-row">
     <div>
-      <h4>Tobacco Smoke Shop</h4>
-      <p>The neighborhood tobacco counter on E Belmont Ave. Pipe tobacco, cigars, wraps, vapes and the everyday extras, at friendly prices.</p>
+      <strong>Tobacco Smoke Shop</strong>
+      <div style="font-size:.8rem;margin-top:4px">Fresno, California · Demo website</div>
     </div>
-    <div>
-      <h4>Find Us</h4>
-      <p>3026 E Belmont Ave<br>Fresno, CA 93701</p>
-      <p>Every day, 10 AM to 8 PM</p>
-    </div>
-    <div>
-      <h4>Call</h4>
-      <p>(559) 878-3966</p>
-      <p>Ask for the shelf, we will check it.</p>
-    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#shop">The Shop</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
   </div>
-  <div class="copyright">© Tobacco Smoke Shop · Fresno, CA</div>
 </footer>
 
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "Tobacco Smoke Shop";
-var TITLES = { home: "Tobacco and Smoke Shop on Belmont Ave", shop: "The Shop", reviews: "Reviews", visit: "Visit Us" };
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
-
-var menuBtn = document.getElementById("menu-btn");
-var navLinksEl = document.querySelector(".nav-links");
-if (menuBtn && navLinksEl) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinksEl.classList.toggle("open");
-  });
-}
-
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = { 0:[10,20], 1:[10,20], 2:[10,20], 3:[10,20], 4:[10,20], 5:[10,20], 6:[10,20] };
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  function closeMenu(){
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
   }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
   }
-  return { open: false, label: "Closed" };
-}
 
-(function renderStatus(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.add(st.open ? "is-open" : "is-closed");
-    var label = c.querySelector(".chip-label");
-    if (label) label.textContent = st.label;
-  });
-  var today = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(row){
-    if (parseInt(row.getAttribute("data-day"), 10) === today) row.classList.add("today");
-  });
-})();
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
 
-var PHONE = "+15598783966";
-var PRETTY_PHONE = "(559) 878-3966";
-var quoteForm = document.getElementById("quote-form");
-if (quoteForm) {
-  quoteForm.addEventListener("submit", function(e){
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var fmsg = document.getElementById("f-msg").value.trim();
-    var feedback = document.getElementById("form-feedback");
-    if (!name || !fmsg) {
-      feedback.textContent = "Add your name and a short message so we know what to check on the shelf.";
-      feedback.className = "form-feedback warn";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + fmsg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE;
-        feedback.className = "form-feedback ok";
-      });
+    openLocked(form.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      modalClose.focus();
     }
   });
-}
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Los_Angeles',
+    weekday:'short'
+  }).format(new Date());
+  const dayMap = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hrow[data-day="' + dayMap[today] + '"]');
+  if(row) row.classList.add('today');
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+})();
 </script>
+
+<!--
+SOURCE / DEMO NOTES
+- Built as a new single-file HTML design.
+- Source-supported business name: Tobacco Smoke Shop.
+- Source-supported location: Fresno, California / Belmont Ave.
+- Source-supported listed hours: 10:00 AM to 8:00 PM daily, marked estimated in source.
+- Source-supported categories: Pipe Tobacco; Cigars and Wraps; Vapes; CBD and Delta 8/9; Lighters and Extras; Hookah and Kratom.
+- Source-supported review data: one quoted Google review and 4.5 stars with 176 reviews.
+- Exact street address and phone are protected in this demo.
+- Stock imagery is used for design only and does not depict the actual business.
+- JavaScript uses normal operators such as && and does not use encoded HTML entities for operators.
+-->
 </body>
 </html>

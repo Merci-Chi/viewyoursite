@@ -1,673 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Central Ave Laundromat Near UNM | University Laundromat</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{
-  --cherry:#7A1F2B;
-  --cherry-deep:#5E1620;
-  --cherry-tint:#F6E9EB;
-  --silver:#B0BEC5;
-  --silver-tint:#F1F4F6;
-  --paper:#FFFDF8;
-  --ink:#2B2B2B;
-}
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  line-height:1.65;
-}
-h1,h2,h3{ line-height:1.14; margin:0 0 .5rem; font-family:'Space Grotesk',sans-serif; }
-a{ color:var(--cherry); }
-.wrap{ max-width:1100px; margin:0 auto; padding:0 20px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#5E1620">
+  <title>University Laundromat | Albuquerque, NM</title>
+  <meta name="description" content="University Laundromat on Central Ave SE near UNM in Albuquerque. View hours, laundry information, reviews from the supplied source, and protected demo contact details.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --cherry:#7A1F2B;
+      --cherry-deep:#5E1620;
+      --cherry-tint:#F6E9EB;
+      --silver:#B0BEC5;
+      --silver-tint:#F1F4F6;
+      --paper:#FFFDF8;
+      --ink:#2B2B2B;
+      --muted:#5A5A5A;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);
+      overflow-x:hidden;-webkit-user-select:none;user-select:none
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    h1,h2,h3{font-family:'Space Grotesk',sans-serif;margin-top:0;line-height:1.05}
+    h1{font-size:clamp(3.6rem,8vw,6.8rem);letter-spacing:-.055em;margin-bottom:22px}
+    h2{font-size:clamp(2.4rem,5vw,4.2rem);letter-spacing:-.045em;margin-bottom:16px}
+    h3{font-size:1.25rem}
+    p{line-height:1.7}
+    .kicker{
+      font-weight:700;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cherry)
+    }
+    .btn{
+      min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:0 22px;border:2px solid transparent;font-weight:700;text-transform:uppercase;
+      letter-spacing:.05em;cursor:pointer;transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--cherry);border-color:var(--cherry);color:#fff}
+    .btn-primary:hover{background:var(--cherry-deep);border-color:var(--cherry-deep)}
+    .btn-ghost{background:transparent;border-color:rgba(255,255,255,.65);color:#fff}
+    .btn-dark{background:var(--cherry-deep);color:#fff}
 
-/* Footer pinning shell */
-.site-shell{ min-height:100vh; display:flex; flex-direction:column; }
-main{ flex:1 0 auto; }
-footer{ flex-shrink:0; }
+    .site-header{
+      position:sticky;top:0;z-index:100;background:var(--cherry-deep);color:#fff;
+      border-bottom:3px solid #8c2f3d
+    }
+    .head{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-arch{
+      width:38px;height:42px;border:3px solid var(--silver);border-bottom:0;
+      border-radius:999px 999px 0 0;position:relative;flex:0 0 auto
+    }
+    .brand-arch:after{
+      content:"";position:absolute;left:50%;top:13px;transform:translateX(-50%);
+      width:9px;height:9px;border-radius:50%;background:var(--silver)
+    }
+    .brand-name{font-family:'Space Grotesk';font-weight:700;font-size:1.1rem}
+    .brand-sub{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#d9c2c7}
+    .nav{display:flex;align-items:center;gap:27px}
+    .nav a{font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase}
+    .nav a:hover{color:#d9c2c7}
+    .menu-btn{display:none;width:44px;height:40px;border:2px solid var(--silver);background:transparent;padding:0}
+    .menu-btn span{display:block;width:20px;height:2px;background:var(--silver);margin:4px auto}
+    .mobile-menu{display:none;background:var(--cherry-deep);padding:8px 20px 18px;border-top:1px solid rgba(255,255,255,.12)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);font-weight:700}
 
-/* Header */
-header.site{
-  background:var(--cherry-deep);
-  position:relative; z-index:30;
-}
-.bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
-.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--paper); }
-.brand-arch{
-  width:42px; height:46px; flex:0 0 auto;
-  border:3px solid var(--silver);
-  border-bottom:none;
-  border-radius:999px 999px 0 0;
-  background:linear-gradient(180deg, var(--cherry) 0%, var(--cherry-deep) 100%);
-  position:relative;
-}
-.brand-arch::after{
-  content:""; position:absolute; left:50%; top:14px; transform:translateX(-50%);
-  width:10px; height:10px; border-radius:50%; background:var(--silver);
-}
-.brand-name{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.25rem; line-height:1.1; }
-.brand-sub{
-  display:block; font-family:'Inter',sans-serif; font-weight:600;
-  font-size:.62rem; letter-spacing:.24em; text-transform:uppercase; color:var(--silver);
-}
-#menu-btn{
-  display:none; background:none;
-  border:2px solid var(--silver); border-radius:8px;
-  width:44px; height:40px; cursor:pointer; padding:0;
-}
-#menu-btn span{
-  display:block; width:20px; height:2px; background:var(--silver);
-  margin:4px auto; transition:transform .2s ease, opacity .2s ease;
-}
-#menu-btn.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
-#menu-btn.open span:nth-child(2){ opacity:0; }
-#menu-btn.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
-.nav-links{ display:flex; gap:26px; align-items:center; list-style:none; margin:0; padding:0; }
-.nav-links a{
-  text-decoration:none; font-weight:600; font-size:.82rem;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--paper);
-  padding:6px 2px; border-bottom:3px solid transparent;
-}
-.nav-links a:hover{ border-bottom-color:var(--silver); }
+    .hero{
+      min-height:720px;display:grid;align-items:end;color:#fff;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(65,13,21,.94) 0%,rgba(65,13,21,.72) 48%,rgba(65,13,21,.26) 100%),
+        url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero-inner{padding:115px 0 82px;max-width:800px;position:relative;z-index:2}
+    .hero .kicker{color:#e0c8cd}
+    .hero-copy{font-size:clamp(1rem,2vw,1.2rem);max-width:650px;color:rgba(255,255,255,.85)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .stock-note{
+      position:absolute;right:18px;bottom:16px;font-size:.68rem;letter-spacing:.07em;
+      text-transform:uppercase;color:rgba(255,255,255,.65)
+    }
 
-/* Status chip */
-.status-chip{
-  display:inline-flex; align-items:center; gap:8px;
-  font-weight:600; font-size:.85rem;
-  padding:6px 14px; border-radius:999px;
-  border:1.5px solid var(--silver);
-  background:var(--silver-tint); color:var(--ink);
-}
-.status-chip .dot{ width:9px; height:9px; border-radius:50%; background:var(--silver); }
-.status-chip.open{ border-color:var(--cherry); background:var(--cherry-tint); color:var(--cherry-deep); }
-.status-chip.open .dot{ background:var(--cherry); box-shadow:0 0 0 3px rgba(122,31,43,.16); }
+    .quickbar{background:#4e111a;color:#fff}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+    .quick:last-child{border-right:0}
+    .quick i{color:#d7b5bc;margin-top:3px}
+    .quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+    .quick span{font-weight:700;line-height:1.4}
 
-/* Hero: centered, arch window art */
-.hero{
-  background:
-    radial-gradient(circle at 50% -10%, var(--cherry-tint) 0 40%, transparent 41%),
-    var(--paper);
-  text-align:center;
-  padding:56px 0 44px;
-}
-.arch-window{
-  width:min(220px, 60vw); margin:0 auto 22px;
-  border:4px solid var(--cherry);
-  border-bottom:none;
-  border-radius:999px 999px 0 0;
-  background:linear-gradient(180deg, var(--silver-tint), #FFFFFF 78%);
-  padding:26px 18px 0;
-  display:flex; align-items:flex-end; justify-content:center; gap:7px;
-  box-shadow:0 16px 30px rgba(94,22,32,.14);
-}
-.book{ border-radius:4px 4px 0 0; display:inline-block; }
-.book.b1{ width:18px; height:52px; background:var(--cherry); }
-.book.b2{ width:14px; height:66px; background:var(--silver); }
-.book.b3{ width:22px; height:44px; background:var(--cherry-deep); }
-.book.b4{ width:14px; height:70px; background:var(--cherry); }
-.book.b5{ width:18px; height:50px; background:var(--silver); }
-.kicker{
-  font-weight:700; font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
-  color:var(--cherry); margin-bottom:10px;
-}
-.hero h1{ font-size:clamp(2rem, 5vw, 3.1rem); color:var(--cherry-deep); max-width:19ch; margin:0 auto .5rem; }
-.hero p.lead{ max-width:36rem; margin:.4rem auto 1.3rem; font-size:1.05rem; color:#4E4E4E; }
-.hero-cta{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; margin-top:6px; }
-.btn{
-  display:inline-flex; align-items:center; gap:9px;
-  font-weight:700; font-size:.9rem; letter-spacing:.05em; text-transform:uppercase;
-  padding:13px 22px; border-radius:10px; text-decoration:none; cursor:pointer;
-  border:2px solid var(--cherry-deep); background:var(--cherry); color:var(--paper);
-}
-.btn:hover{ background:var(--cherry-deep); }
-.btn.ghost{ background:transparent; color:var(--cherry-deep); }
-.btn.ghost:hover{ background:var(--cherry-tint); }
+    .section{padding:96px 0}
+    .section.tint{background:var(--silver-tint)}
+    .lead{max-width:720px;color:var(--muted);font-size:1.03rem}
+    .about-grid{display:grid;grid-template-columns:1fr .9fr;gap:62px;align-items:start}
+    .about-photo{
+      min-height:430px;background:
+      linear-gradient(rgba(122,31,43,.08),rgba(122,31,43,.08)),
+      url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      position:relative;box-shadow:0 18px 45px rgba(94,22,32,.14)
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;
+      background:rgba(66,17,24,.78);color:#fff;padding:7px 9px;font-size:.66rem;
+      text-transform:uppercase;letter-spacing:.06em
+    }
+    .protected{
+      margin-top:24px;border-left:4px solid var(--cherry);background:var(--cherry-tint);
+      padding:18px 20px;display:flex;gap:14px
+    }
+    .protected i{color:var(--cherry);margin-top:3px}
+    .protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+    .protected p{margin:0;color:var(--muted);font-size:.92rem}
 
-/* Book-line divider */
-.rule{
-  border:none; height:0; margin:0 auto;
-  border-top:3px double var(--silver);
-  width:min(760px, 86%);
-}
+    .services{background:#fff}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dde3e6;border:1px solid #dde3e6;margin-top:36px}
+    .service{background:#fff;padding:34px 30px;min-height:245px}
+    .service-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--cherry-tint);color:var(--cherry);margin-bottom:25px}
+    .service p{color:var(--muted);margin-bottom:0}
 
-/* Hours week strip */
-.week-strip{ padding:44px 0 10px; }
-.week-head{
-  text-align:center; font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(1.3rem, 3.2vw, 1.8rem); color:var(--cherry-deep); margin-bottom:6px;
-}
-.week-sub{ text-align:center; color:#5A5A5A; margin:0 0 22px; }
-.week-grid{
-  display:grid; grid-template-columns:repeat(7, 1fr); gap:10px;
-  max-width:980px; margin:0 auto;
-}
-.day-tile{
-  background:var(--white); border:1.5px solid var(--silver-tint);
-  border-top:5px solid var(--silver); border-radius:10px;
-  padding:14px 8px; text-align:center;
-  box-shadow:0 8px 18px rgba(43,43,43,.06);
-}
-.day-tile .dname{
-  font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.8rem;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--cherry);
-}
-.day-tile .dtime{ font-size:.82rem; color:#4E4E4E; margin-top:4px; }
-.day-tile.today{ border-top-color:var(--cherry); background:var(--cherry-tint); }
-.day-tile.today .dname{ color:var(--cherry-deep); }
+    .photo-band{
+      min-height:560px;display:grid;align-items:center;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(74,17,27,.92),rgba(74,17,27,.58),rgba(74,17,27,.18)),
+        url("https://images.unsplash.com/photo-1551761429-8232f9f5955c?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .photo-copy{max-width:650px;padding:84px 0}
+    .photo-copy p{color:rgba(255,255,255,.8)}
+    .stock-label{
+      display:inline-flex;gap:8px;align-items:center;padding:8px 11px;background:rgba(0,0,0,.36);
+      font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800
+    }
 
-/* Sections */
-section.block{ padding:52px 0; }
-section.block.tint{ background:var(--silver-tint); }
-.sec-head{ text-align:center; max-width:640px; margin:0 auto 34px; }
-.sec-head h2{ font-size:clamp(1.55rem, 3.4vw, 2.1rem); color:var(--cherry-deep); }
-.sec-head p{ margin:.3rem 0 0; color:#5A5A5A; }
-.cards{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
-.card{
-  background:var(--white); border:1.5px solid var(--silver-tint); border-radius:12px;
-  padding:24px; box-shadow:0 10px 22px rgba(43,43,43,.06);
-  text-align:left;
-}
-.card i.ico{
-  font-size:1.35rem; color:var(--paper);
-  width:50px; height:50px; border-radius:12px; background:var(--cherry);
-  display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;
-}
-.card h3{ font-size:1.1rem; color:var(--cherry-deep); }
-.card p{ margin:0; font-size:.95rem; color:#4E4E4E; }
+    .hours{
+      background:#fff
+    }
+    .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:32px}
+    .day{
+      border-top:5px solid var(--silver);background:#fff;padding:16px 10px;text-align:center;
+      box-shadow:0 8px 18px rgba(43,43,43,.06)
+    }
+    .day strong{display:block;color:var(--cherry-deep);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+    .day span{font-size:.8rem;color:var(--muted)}
 
-/* Reviews: index card style */
-.index-card{
-  position:relative; max-width:720px; margin:0 auto 18px;
-  background:
-    repeating-linear-gradient(180deg, transparent 0 30px, rgba(176,190,197,.35) 30px 31px),
-    var(--white);
-  border:1.5px solid var(--silver-tint); border-radius:10px;
-  padding:24px 26px 20px 58px;
-  box-shadow:0 10px 22px rgba(43,43,43,.07);
-}
-.index-card::before{
-  content:""; position:absolute; top:0; left:0; bottom:0; width:34px;
-  background:var(--cherry);
-  border-radius:10px 0 0 10px;
-}
-.index-card::after{
-  content:""; position:absolute; top:16px; left:8px; width:18px; height:4px;
-  background:var(--paper); border-radius:2px; opacity:.85;
-}
-.index-card blockquote{ margin:0; position:relative; }
-.index-card blockquote p{ margin:0 0 8px; font-size:1.03rem; }
-.qattr{ font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--silver); }
-.qstars{ color:var(--cherry); font-size:.8rem; letter-spacing:.2em; margin-left:8px; }
-.rating-summary{
-  text-align:center; margin:30px auto 8px;
-  font-family:'Space Grotesk',sans-serif; font-size:1.22rem; color:var(--cherry-deep);
-}
-.link-cards{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:20px; }
-.link-card{
-  display:inline-flex; align-items:center; gap:10px;
-  background:var(--white); border:2px solid var(--cherry); color:var(--cherry-deep);
-  font-weight:700; text-decoration:none; padding:13px 22px; border-radius:10px;
-  box-shadow:0 8px 18px rgba(43,43,43,.08);
-}
-.link-card:hover{ background:var(--cherry-tint); }
+    .reviews{background:var(--cherry-tint)}
+    .review-card{
+      max-width:760px;margin:0 auto 18px;background:#fff;border-left:8px solid var(--cherry);
+      padding:28px 30px;box-shadow:0 12px 26px rgba(94,22,32,.08)
+    }
+    .review-card blockquote{margin:0}
+    .review-card p{font-size:1.03rem;margin-bottom:9px}
+    .review-meta{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:#7f7275;font-weight:700}
+    .rating-summary{text-align:center;margin-top:26px;font-weight:700;color:var(--cherry-deep)}
 
-/* Visit */
-.visit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
-.info-card{
-  background:var(--white); border:1.5px solid var(--silver-tint); border-radius:14px;
-  padding:26px; box-shadow:0 12px 26px rgba(43,43,43,.07);
-}
-.info-card h3{ color:var(--cherry-deep); }
-.info-line{ display:flex; gap:12px; align-items:flex-start; margin:0 0 14px; color:#4E4E4E; }
-.info-line i{ color:var(--cherry); margin-top:4px; width:18px; text-align:center; }
-.info-line strong{ color:var(--ink); }
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+    .visit-card{background:#fff;border:1px solid #e0e3e5;padding:34px;min-height:285px}
+    .visit-card.dark{background:var(--cherry-deep);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+    .visit-card.dark p{color:#e2cfd3}
+    .protected-box{margin-top:20px;border:2px dashed currentColor;padding:17px;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+    .cta{margin-top:32px;background:#d9c2c7;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .cta h3{font-size:clamp(1.7rem,3vw,2.7rem);margin:0}
+    .cta p{margin:8px 0 0;color:#4d4043}
 
-/* Study card contact */
-.study-card{
-  background:
-    repeating-linear-gradient(180deg, transparent 0 31px, rgba(176,190,197,.4) 31px 32px),
-    var(--white);
-  border:1.5px solid var(--silver);
-  border-radius:12px;
-  padding:0 26px 26px;
-  box-shadow:0 14px 28px rgba(43,43,43,.1);
-  overflow:hidden;
-}
-.study-top{
-  height:12px; background:var(--cherry);
-  margin:0 -26px 20px;
-  border-bottom:3px solid var(--cherry-deep);
-}
-.study-card .lbl{
-  font-size:.66rem; font-weight:700; letter-spacing:.26em; text-transform:uppercase; color:var(--silver);
-  margin:0 0 4px;
-}
-.study-card .phone-big{
-  font-family:'Space Grotesk',sans-serif; font-weight:700;
-  font-size:clamp(1.4rem, 4vw, 1.9rem); color:var(--cherry-deep);
-  text-decoration:none; display:inline-block;
-}
-.study-card .phone-big:hover{ color:var(--cherry); }
-.study-note{ color:#4E4E4E; font-size:.92rem; margin:8px 0 0; }
+    footer{background:#4c1019;color:#dfc5cb;padding:38px 0}
+    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+    .foot strong{color:#fff}
 
-/* Form */
-.form-card{ margin-top:24px; background:var(--white); border:1.5px solid var(--silver-tint); border-radius:14px; padding:26px; box-shadow:0 12px 26px rgba(43,43,43,.07); }
-.form-card h3{ color:var(--cherry-deep); }
-.frow{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-label{ display:block; font-weight:600; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; color:var(--cherry-deep); margin:12px 0 5px; }
-input, textarea{
-  width:100%; padding:12px 14px; border:1.5px solid var(--silver);
-  border-radius:10px; font-family:'Inter',sans-serif; font-size:1rem; background:var(--paper); color:var(--ink);
-}
-input:focus, textarea:focus{ outline:2px solid var(--cherry); border-color:var(--cherry); }
-textarea{ min-height:110px; resize:vertical; }
-.form-btn{ margin-top:16px; width:100%; justify-content:center; }
-#form-feedback{ margin-top:12px; font-weight:700; color:var(--cherry-deep); text-align:center; min-height:1.4em; }
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;
+      z-index:500;padding:20px
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+    .modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--cherry-deep);color:#fff;margin-bottom:20px}
+    .modal h2{font-size:2rem;margin-bottom:12px}
+    .modal p{color:var(--muted);margin-bottom:24px}
+    .modal .btn{width:100%}
 
-/* Footer */
-footer{
-  background:var(--cherry-deep); color:#E7CDD2;
-  padding:34px 0 26px;
-}
-.foot-grid{ display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:flex-start; }
-.foot-brand{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.25rem; color:var(--paper); }
-.foot-note{ font-size:.9rem; max-width:30rem; }
-.foot-meta{ font-size:.9rem; text-align:right; }
-.foot-meta div{ margin:2px 0; }
-.foot-meta a{ color:#E7CDD2; }
-.foot-copy{
-  border-top:1px solid rgba(255,255,255,.16); margin-top:22px; padding-top:16px;
-  text-align:center; font-size:.85rem; color:#C9A3AA;
-}
-
-/* Responsive */
-@media (max-width: 900px){
-  .week-grid{ grid-template-columns:repeat(4, 1fr); }
-  .cards{ grid-template-columns:1fr 1fr; }
-  .visit-grid{ grid-template-columns:1fr; }
-}
-@media (max-width: 700px){
-  #menu-btn{ display:block; }
-  .nav-links{
-    display:none; position:absolute; top:100%; left:0; right:0;
-    background:var(--cherry-deep);
-    flex-direction:column; align-items:flex-start; gap:0;
-    padding:8px 20px 16px; box-shadow:0 16px 24px rgba(0,0,0,.25);
-  }
-  .nav-links.open{ display:flex; }
-  .nav-links li{ width:100%; }
-  .nav-links a{ display:block; padding:12px 2px; border-bottom:1px solid rgba(176,190,197,.25); }
-  .cards{ grid-template-columns:1fr; }
-  .week-grid{ grid-template-columns:repeat(2, 1fr); }
-  .frow{ grid-template-columns:1fr; }
-  .foot-meta{ text-align:left; }
-}
-</style>
+    @media(max-width:900px){
+      .nav{display:none}.menu-btn{display:block}
+      .about-grid,.visit-grid{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr 1fr}
+      .week-grid{grid-template-columns:repeat(4,1fr)}
+      .quick-grid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+      .quick:last-child{border-bottom:0}
+      .cta{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .head{height:68px}.brand-name{font-size:.95rem}.brand-sub{display:none}.brand-arch{width:34px;height:38px}
+      .hero{min-height:610px;background-position:58% center}.hero-inner{padding:88px 0 50px}
+      h1{font-size:clamp(3rem,15vw,4.7rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .section{padding:72px 0}
+      .service-grid,.week-grid{grid-template-columns:1fr}
+      .service{min-height:0;padding:28px 24px}
+      .visit-card{padding:26px}.cta{padding:30px 24px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site">
-    <div class="wrap bar">
-      <a class="brand" href="#/home" data-page="home">
+  <header class="site-header">
+    <div class="wrap head">
+      <a class="brand" href="#home" aria-label="University Laundromat home">
         <span class="brand-arch" aria-hidden="true"></span>
         <span>
           <span class="brand-name">University Laundromat</span>
           <span class="brand-sub">Central Ave SE · Albuquerque</span>
         </span>
       </a>
-      <nav aria-label="Main navigation">
-        <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="#/home" data-page="home">Home</a></li>
-          <li><a href="#/wash" data-page="wash">The Wash</a></li>
-          <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
-          <li><a href="#/visit" data-page="visit">Visit</a></li>
-        </ul>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#wash">The Wash</a>
+        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
       </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#wash">The Wash</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <div class="wrap">
-          <div class="arch-window" aria-hidden="true">
-            <span class="book b1"></span><span class="book b2"></span><span class="book b3"></span><span class="book b4"></span><span class="book b5"></span>
-          </div>
-          <p class="kicker">2626 Central Ave SE · Near UNM</p>
-          <h1>A cleaner kind of laundry day</h1>
-          <p class="lead">University Laundromat keeps a bright, well kept wash house on Central Ave SE, minutes from the UNM campus. A variety of machine sizes, doors open every day of the week.</p>
-          <div class="hero-cta">
-            <span class="status-chip" role="status"><span class="dot"></span>Checking hours</span>
-            <a class="btn" href="#/wash" data-page="wash"><i class="fa-solid fa-soap" aria-hidden="true"></i> See The Wash</a>
-            <a class="btn ghost" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit us</a>
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="kicker">Near UNM · Albuquerque, New Mexico</div>
+        <h1>A cleaner kind of laundry day</h1>
+        <p class="hero-copy">University Laundromat keeps a bright, well kept wash house on Central Ave SE, minutes from the UNM campus. A variety of machine sizes, doors open every day of the week.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#wash"><i class="fa-solid fa-soap"></i> See The Wash</a>
+          <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+        </div>
+      </div>
+      <div class="stock-note">Stock imagery — not the actual business</div>
+    </section>
+
+    <section class="quickbar">
+      <div class="wrap quick-grid">
+        <div class="quick">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>Location</strong><span>Albuquerque, NM · Near UNM</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-regular fa-clock"></i>
+          <div><strong>Hours</strong><span>6:30 AM – 10:00 PM daily</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-solid fa-star"></i>
+          <div><strong>Google rating shown in source</strong><span>4.1 · 254 reviews</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-photo" role="img" aria-label="Stock image of laundry machines"></div>
+        <div>
+          <div class="kicker">About</div>
+          <h2>University Laundromat near UNM.</h2>
+          <p class="lead">The supplied page describes a bright, well kept self-service wash house on Central Ave SE near the UNM campus, with a variety of machine sizes and the same hours every day.</p>
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The source includes a business phone number and street address. Those real-world contact details stay protected in this sample site.</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="wrap"><hr class="rule"></div>
-
-      <section class="week-strip">
-        <div class="wrap">
-          <h2 class="week-head">Open every day, 6:30 AM - 10 PM</h2>
-          <p class="week-sub">Same hours all seven days, so laundry never has to wait for the weekend.</p>
-          <div class="week-grid" role="list" aria-label="Weekly hours, every day 6:30 AM to 10 PM">
-            <div class="day-tile" data-day="1" role="listitem"><div class="dname">Mon</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="2" role="listitem"><div class="dname">Tue</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="3" role="listitem"><div class="dname">Wed</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="4" role="listitem"><div class="dname">Thu</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="5" role="listitem"><div class="dname">Fri</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="6" role="listitem"><div class="dname">Sat</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="0" role="listitem"><div class="dname">Sun</div><div class="dtime">6:30 AM - 10 PM</div></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="block">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Why neighbors keep coming back</h2>
-            <p>Simple things, done well, every day of the week.</p>
-          </div>
-          <div class="cards">
-            <div class="card">
-              <i class="fa-solid fa-broom ico" aria-hidden="true"></i>
-              <h3>Really, very clean</h3>
-              <p>The most common word in our reviews is "clean." Floors, machines, folding tables. Tidy from open to close.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-layer-group ico" aria-hidden="true"></i>
-              <h3>Machines in every size</h3>
-              <p>A variety of washer and dryer sizes, from a single outfit to a whole hamper in one drum.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-graduation-cap ico" aria-hidden="true"></i>
-              <h3>Close to campus</h3>
-              <p>Right on Central Ave SE near UNM. Drop a load in, grab a coffee, come back to warm laundry.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="block tint">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>What customers say</h2>
-            <p>Verbatim Google reviews, nothing edited.</p>
-          </div>
-          <div class="index-card">
-            <blockquote>
-              <p>"Wow! Nicest laundromat I've ever been to! Very clean"</p>
-              <span class="qattr">Google review</span><span class="qstars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-            </blockquote>
-          </div>
-          <p class="rating-summary">4.1 stars with 254 reviews on Google</p>
-          <div class="link-cards">
-            <a class="link-card" href="#/reviews" data-page="reviews"><i class="fa-solid fa-comments" aria-hidden="true"></i> Read all reviews</a>
-          </div>
-        </div>
-      </section>
     </section>
 
-    <!-- THE WASH -->
-    <section class="page" id="page-wash">
-      <section class="block">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>The Wash</h2>
-            <p>Self service laundry on Central Ave SE. Every day 6:30 AM - 10 PM.</p>
-          </div>
-          <div class="cards" style="grid-template-columns:repeat(2, 1fr);">
-            <div class="card">
-              <i class="fa-solid fa-shirt ico" aria-hidden="true"></i>
-              <h3>Washers for every load</h3>
-              <p>Small drums for a quick refresh, big drums for bedding and bulk. Pick the size that fits and save time on both ends.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-temperature-arrow-up ico" aria-hidden="true"></i>
-              <h3>Dryers that keep up</h3>
-              <p>Dryer sizes to match the washers, so a big wet load never queues behind a small one.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-clock ico" aria-hidden="true"></i>
-              <h3>Same hours, every day</h3>
-              <p>6:30 AM to 10 PM, Monday through Sunday. Early birds, night owls, and Sunday resetters all fit.</p>
-            </div>
-            <div class="card">
-              <i class="fa-solid fa-broom ico" aria-hidden="true"></i>
-              <h3>Clean you can count on</h3>
-              <p>"Very clean laundromat with a variety of machine sizes." That is the goal, every single day.</p>
-            </div>
-          </div>
+    <section class="section services" id="wash">
+      <div class="wrap">
+        <div class="kicker">The Wash</div>
+        <h2>Laundry details listed in the supplied page.</h2>
+        <p class="lead">Only details supported by the provided HTML are included here.</p>
+        <div class="service-grid">
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-shirt"></i></div>
+            <h3>Washers for every load</h3>
+            <p>The supplied page describes a variety of washer sizes, including larger machines for bulk loads and bedding.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+            <h3>Dryers that keep up</h3>
+            <p>The supplied page says dryer sizes are available to match the washer options.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-broom"></i></div>
+            <h3>Clean you can count on</h3>
+            <p>The source repeatedly highlights cleanliness in its own page copy and review excerpts.</p>
+          </article>
         </div>
-      </section>
-      <section class="block tint">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Hours</h2>
-            <p>One simple schedule, seven days a week.</p>
-          </div>
-          <div class="week-grid">
-            <div class="day-tile" data-day="1"><div class="dname">Mon</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="2"><div class="dname">Tue</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="3"><div class="dname">Wed</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="4"><div class="dname">Thu</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="5"><div class="dname">Fri</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="6"><div class="dname">Sat</div><div class="dtime">6:30 AM - 10 PM</div></div>
-            <div class="day-tile" data-day="0"><div class="dname">Sun</div><div class="dtime">6:30 AM - 10 PM</div></div>
-          </div>
-          <p style="text-align:center; margin-top:18px;"><span class="status-chip" role="status"><span class="dot"></span>Checking hours</span></p>
-        </div>
-      </section>
+      </div>
     </section>
 
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <section class="block">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Reviews</h2>
-            <p>Every review we have collected, shown word for word.</p>
-          </div>
-          <div class="index-card">
-            <blockquote>
-              <p>"Wow! Nicest laundromat I've ever been to! Very clean"</p>
-              <span class="qattr">Google review</span><span class="qstars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-            </blockquote>
-          </div>
-          <div class="index-card">
-            <blockquote>
-              <p>"Very clean laundromat with a variety of machine sizes."</p>
-              <span class="qattr">Google review</span><span class="qstars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-            </blockquote>
-          </div>
-          <p class="rating-summary">4.1 stars with 254 reviews on Google</p>
-          <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=University%20Laundromat%2C%202626%20Central%20Ave%20SE%2C%20Albuquerque%2C%20NM%2087106" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
-          </div>
-        </div>
-      </section>
+    <section class="photo-band" aria-label="Laundry stock imagery">
+      <div class="wrap photo-copy">
+        <div class="kicker" style="color:#e3cbd0">Laundry on Central</div>
+        <h2>Same hours, every day.</h2>
+        <p>This demo uses generic laundromat stock photography for visual presentation. It does not depict the actual University Laundromat location, staff, machines, or customers.</p>
+        <span class="stock-label"><i class="fa-solid fa-image"></i> Stock imagery — not the actual business</span>
+      </div>
     </section>
 
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <section class="block">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Visit us on Central Ave</h2>
-            <p>Near the UNM campus, open every day from 6:30 AM to 10 PM.</p>
-          </div>
-          <div class="visit-grid">
-            <div class="info-card">
-              <h3>Laundry day details</h3>
-              <p class="info-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span><strong>2626 Central Ave SE</strong><br>Albuquerque, NM 87106</span></p>
-              <p class="info-line"><i class="fa-solid fa-clock" aria-hidden="true"></i><span><strong>Every day 6:30 AM - 10 PM</strong><br>Monday through Sunday, same hours all week.</span></p>
-              <p class="info-line"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span><strong>A variety of machine sizes</strong><br>Bring the big comforter. We have a drum for it.</span></p>
-            </div>
-            <div class="study-card">
-              <div class="study-top" aria-hidden="true"></div>
-              <p class="lbl">Call the laundromat</p>
-              <a class="phone-big" href="tel:+15052540005">(505) 254-0005</a>
-              <p class="study-note">Quick question before you come by? Give us a ring during open hours and we will help you out.</p>
-            </div>
-          </div>
-
-          <div class="form-card">
-            <h3>Send a laundry question</h3>
-            <p style="margin:.2rem 0 0; color:#4E4E4E;">Ask about machine sizes, or anything else. On a phone this opens a text message to us.</p>
-            <form id="quote-form" novalidate>
-              <div class="frow">
-                <div>
-                  <label for="f-name">Your name</label>
-                  <input id="f-name" name="name" type="text" autocomplete="name" required>
-                </div>
-                <div>
-                  <label for="f-phone">Your phone</label>
-                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(505) 555-0100">
-                </div>
-              </div>
-              <label for="f-msg">Message</label>
-              <textarea id="f-msg" name="message" required placeholder="Do your washers fit a queen size comforter?"></textarea>
-              <button class="btn form-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send message</button>
-              <p id="form-feedback" role="status" aria-live="polite"></p>
-            </form>
-          </div>
+    <section class="section hours" id="hours">
+      <div class="wrap">
+        <div class="kicker">Business hours</div>
+        <h2>Open every day, 6:30 AM – 10 PM.</h2>
+        <p class="lead">The supplied source lists the same schedule for all seven days.</p>
+        <div class="week-grid">
+          <div class="day"><strong>Mon</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Tue</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Wed</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Thu</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Fri</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Sat</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Sun</strong><span>6:30 AM – 10 PM</span></div>
         </div>
-      </section>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="wrap">
+        <div style="text-align:center;max-width:700px;margin:0 auto 34px">
+          <div class="kicker">Reviews</div>
+          <h2>Review excerpts in the supplied source.</h2>
+          <p class="lead" style="margin-left:auto;margin-right:auto">The provided page labels the following excerpts as Google reviews.</p>
+        </div>
+
+        <div class="review-card">
+          <blockquote>
+            <p>“Wow! Nicest laundromat I've ever been to! Very clean”</p>
+            <span class="review-meta">Google review</span>
+          </blockquote>
+        </div>
+
+        <div class="review-card">
+          <blockquote>
+            <p>“Very clean laundromat with a variety of machine sizes.”</p>
+            <span class="review-meta">Google review</span>
+          </blockquote>
+        </div>
+
+        <div class="rating-summary">4.1 stars with 254 reviews on Google</div>
+      </div>
+    </section>
+
+    <section class="section" id="visit">
+      <div class="wrap">
+        <div class="kicker">Visit &amp; contact</div>
+        <h2>Real-world contact actions are protected in this demo.</h2>
+        <p class="lead">The supplied source contains a public business address and phone number, but this sample keeps both actions locked until the site is unlocked.</p>
+
+        <div class="visit-grid">
+          <article class="visit-card dark">
+            <div>
+              <i class="fa-solid fa-location-dot" style="font-size:2rem;color:#d9c2c7"></i>
+              <h3 style="margin-top:22px">Business address</h3>
+              <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+            </div>
+          </article>
+
+          <article class="visit-card">
+            <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+            <div class="protected-box">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+            <div class="actions">
+              <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call laundromat</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Have a laundry question?</h3>
+            <p>The original source included a message form, but submission stays locked in this demo.</p>
+          </div>
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-lock"></i> Send message</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <div class="foot-grid">
-        <div>
-          <div class="foot-brand">University Laundromat</div>
-          <p class="foot-note">A bright, clean, self service wash house on Central Ave SE near UNM, open every day from 6:30 AM to 10 PM.</p>
-        </div>
-        <div class="foot-meta">
-          <div>2626 Central Ave SE, Albuquerque, NM 87106</div>
-          <div><a href="tel:+15052540005">(505) 254-0005</a></div>
-          <div>Every day 6:30 AM - 10 PM</div>
-        </div>
-      </div>
-      <div class="foot-copy">© University Laundromat · Albuquerque, NM</div>
+    <div class="wrap foot">
+      <div><strong>University Laundromat</strong><br>Albuquerque, New Mexico</div>
+      <div>Demo website · Contact details protected</div>
     </div>
   </footer>
-</div>
 
-<script>
-var BUSINESS = "University Laundromat";
-var TITLES = { home: "Laundromat on Central Ave SE Near UNM", wash: "The Wash", reviews: "Reviews", visit: "Visit" };
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-var mb = document.getElementById("menu-btn");
-if (mb) {
-  mb.addEventListener("click", function(){
-    var nl = document.querySelector(".nav-links");
-    mb.classList.toggle("open");
-    nl.classList.toggle("open");
-    mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
-  });
-}
-navigateTo(getPageFromHash(), false);
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h2 id="modalTitle">This is currently locked.</h2>
+      <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-dark" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
 
-var CITY_TZ = "America/Denver";
-var HOURS = {0:[6.5,22],1:[6.5,22],2:[6.5,22],3:[6.5,22],4:[6.5,22],5:[6.5,22],6:[6.5,22]};
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderChips(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.remove("open", "closed");
-    c.classList.add(st.open ? "open" : "closed");
-    c.innerHTML = '<span class="dot"></span>' + st.label;
-  });
-}
-(function highlightToday(){
-  var d = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(el){
-    if (+el.getAttribute("data-day") === d) el.classList.add("today");
-  });
-})();
-renderChips();
+  <script>
+    (() => {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const modal = document.getElementById('lockedModal');
+      const modalClose = document.getElementById('modalClose');
+      let lastFocus = null;
 
-var PHONE = "+15052540005";
-var PRETTY = "(505) 254-0005";
-var form = document.getElementById("quote-form");
-var feedback = document.getElementById("form-feedback");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
+      function closeMenu(){
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+
+      menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
       });
-    }
-  });
-}
-</script>
+
+      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+      function openModal(trigger){
+        lastFocus = trigger || document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if(lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openModal(el);
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          e.preventDefault();
+          modalClose.focus();
+        }
+      });
+
+      document.addEventListener('gesturestart', e => e.preventDefault());
+      document.addEventListener('gesturechange', e => e.preventDefault());
+      document.addEventListener('gestureend', e => e.preventDefault());
+      document.addEventListener('wheel', e => {
+        if(e.ctrlKey || e.metaKey) e.preventDefault();
+      }, {passive:false});
+    })();
+  </script>
+
+  <!--
+  SOURCE-DERIVED CONTENT USED
+  - University Laundromat
+  - Albuquerque, New Mexico
+  - Central Ave SE / near UNM context
+  - Hours: 6:30 AM – 10 PM daily
+  - Variety of machine sizes
+  - Washer and dryer size descriptions from supplied source
+  - Cleanliness claims repeated by supplied page and review excerpts
+  - Google review excerpts supplied by source
+  - 4.1 stars / 254 Google reviews shown by source
+  - Source includes exact address and phone, intentionally hidden in visible demo
+
+  OMITTED / LOCKED
+  - Working tel link
+  - External Google review link
+  - SMS behavior
+  - Working contact form
+  - Exact street address
+  - Phone number
+  - Any unsupported prices, payment methods, amenities, pickup/delivery, awards,
+    licenses, years in business, social profiles, or team names
+
+  ASSETS
+  - Generic Unsplash laundry imagery
+  - Stock imagery does not depict actual business
+  - Font Awesome Free via CDN
+
+  QUALITY CHECK
+  - Single HTML file
+  - CSS and JS inline
+  - Fully responsive
+  - Mobile hamburger works
+  - Mobile zoom prevention
+  - Text selection disabled
+  - Real-world actions locked
+  - One reusable modal
+  - Modal closes by Close, backdrop, or Escape
+  - No fake submission or redirect
+  -->
 </body>
 </html>

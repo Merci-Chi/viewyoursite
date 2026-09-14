@@ -1,576 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smoke Zone 1 | Open 24 Hour Smoke Shop, Fresno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Iceland&family=Chivo:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{
-  --yellow:#FDD835;
-  --black:#141414;
-  --ink:#1D1D1B;
-  --gray:#5C6166;
-  --paper:#F6F6F1;
-  --line:#E4E4DB;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:'Chivo',sans-serif;background:#fff;color:var(--ink);line-height:1.65;font-size:17px}
-h1,h2,h3{font-family:'Iceland',sans-serif;font-weight:400;line-height:1.05;margin:0 0 14px;letter-spacing:.5px}
-a{color:var(--ink)}
-.site-shell{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-.page{display:none}
-.page.active{display:block}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#111111">
+  <title>Smoke Zone 1 | Open 24 Hour Smoke Shop, Fresno</title>
+  <meta name="description" content="Smoke Zone 1 in Fresno at 1582 N West Ave. Open 24 hours, 7 days a week. Vapes, glass and pipes, cigars and wraps, lighters and extras, CBD and Delta 8/9, hookah and kratom. 21+ with valid ID required.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --black:#111111;
+      --ink:#171717;
+      --yellow:#fdd835;
+      --cream:#f7f5ed;
+      --white:#ffffff;
+      --muted:#a7a7a2;
+      --line:rgba(255,255,255,.12);
+      --darkline:rgba(17,17,17,.12);
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+    body{
+      margin:0;
+      background:var(--cream);
+      color:var(--ink);
+      font-family:"Inter",sans-serif;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em}
+    h1{font-size:clamp(4.8rem,10vw,9rem);line-height:.82}
+    h2{font-size:clamp(3rem,6vw,5.5rem);line-height:.9}
+    h3{font-size:1.05rem}
+    .kicker{color:var(--yellow);font-size:.72rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase;margin-bottom:10px}
 
-/* zone stripes */
-.zone-stripe{height:14px;background:repeating-linear-gradient(45deg,var(--yellow) 0 16px,var(--black) 16px 32px)}
-.zone-stripe.thin{height:8px}
+    header{
+      position:fixed;inset:0 0 auto;z-index:100;
+      background:rgba(17,17,17,.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;color:#fff}
+    .brand-mark{
+      width:42px;height:42px;display:grid;place-items:center;
+      background:repeating-linear-gradient(45deg,var(--yellow) 0 7px,var(--black) 7px 14px);
+      border:2px solid var(--yellow);
+    }
+    .brand-name{font-family:"Anton",sans-serif;font-size:1.5rem;letter-spacing:.06em;text-transform:uppercase}
+    .brand-name span{color:var(--yellow)}
+    .navlinks{display:flex;align-items:center;gap:28px;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#fff}
+    .navlinks a:hover{color:var(--yellow)}
+    .menu-btn{display:none;width:46px;height:46px;border:1px solid var(--line);background:#1a1a1a;color:var(--yellow);cursor:pointer}
+    .mobile-menu{display:none;background:#111;padding:10px 20px 20px;border-top:1px solid var(--line)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:15px 0;border-bottom:1px solid var(--line);font-weight:700;color:#fff}
 
-/* header */
-.site-head{background:var(--black);position:relative;z-index:40}
-.head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 22px;max-width:1080px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand-mark{width:42px;height:42px;border-radius:50%;background:repeating-linear-gradient(45deg,var(--yellow) 0 6px,var(--black) 6px 12px);border:3px solid var(--yellow);flex-shrink:0}
-.brand-name{font-family:'Iceland',sans-serif;font-size:1.6rem;color:#fff;line-height:1;letter-spacing:1px}
-.brand-name em{font-style:normal;color:var(--yellow)}
-.nav-links{display:flex;align-items:center;gap:22px}
-.nav-links a{font-weight:700;font-size:.95rem;color:#EDEDE6;text-decoration:none;padding:7px 4px;border-bottom:3px solid transparent}
-.nav-links a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
-.menu-btn{display:none;background:none;border:3px solid var(--yellow);border-radius:10px;padding:8px 10px;cursor:pointer}
-.menu-btn span{display:block;width:20px;height:3px;border-radius:2px;background:var(--yellow);margin:4px 0}
-.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.menu-btn.open span:nth-child(2){opacity:0}
-.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    main{padding-top:74px}
+    .hero{
+      min-height:800px;display:grid;align-items:end;position:relative;overflow:hidden;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.72) 45%,rgba(0,0,0,.28) 77%,rgba(0,0,0,.52)),
+        url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=2200&q=88") center/cover no-repeat;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;
+      background:repeating-linear-gradient(135deg,transparent 0 42px,rgba(253,216,53,.05) 42px 54px);
+      pointer-events:none;
+    }
+    .hero:after{
+      content:"ZONE";
+      position:absolute;right:-30px;top:58px;
+      font-family:"Anton",sans-serif;font-size:min(31vw,420px);line-height:.78;
+      color:transparent;-webkit-text-stroke:2px rgba(253,216,53,.12);pointer-events:none;
+    }
+    .hero-in{position:relative;z-index:2;padding:122px 0 102px;max-width:880px}
+    .hero h1 span{color:var(--yellow)}
+    .tagline{font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:700;margin:20px 0 12px}
+    .hero-copy{max-width:670px;color:#deded8;line-height:1.75;font-size:1.08rem;margin:0}
+    .hero-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.07);padding:9px 13px;font-size:.8rem;font-weight:700}
+    .chip i{color:var(--yellow)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:13px 20px;border:1px solid transparent;font-size:.84rem;font-weight:800;
+      text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-yellow{background:var(--yellow);color:var(--black)}
+    .btn-ghost{border-color:rgba(255,255,255,.36);background:rgba(255,255,255,.05);color:#fff}
+    .asset-note{margin-top:18px;color:rgba(255,255,255,.52);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase}
 
-/* status chip */
-.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:4px;background:var(--black);border:2px solid var(--black);font-weight:700;font-size:.88rem;color:#fff}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#8A8F94;flex-shrink:0}
-.status-chip.is-open .dot{background:var(--yellow);box-shadow:0 0 0 4px rgba(253,216,53,.25)}
-.status-chip.is-closed .dot{background:#C0574B}
-.status-chip.lite{background:#fff;color:var(--ink);border-color:var(--line)}
+    .age-band{
+      background:var(--yellow);color:var(--black);text-align:center;
+      padding:18px 20px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .age-band i{margin-right:8px}
 
-/* hero */
-.hero{background:var(--paper);padding:64px 0 78px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:var(--black);border-radius:4px;padding:9px 18px;font-weight:700;letter-spacing:2px;font-size:.85rem;margin-bottom:22px}
-.hero h1{font-size:clamp(3rem,7vw,4.6rem);color:var(--black);margin-bottom:8px}
-.hero .tagline{font-family:'Iceland',sans-serif;font-size:1.55rem;color:var(--gray);margin:0 0 14px;letter-spacing:1px}
-.hero p.lead{max-width:540px;margin:0 0 24px;color:var(--gray)}
-.hero-chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
-.hero-btns{display:flex;flex-wrap:wrap;gap:14px}
-.zone-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:4px;background:var(--black);color:var(--yellow);text-decoration:none;font-family:'Iceland',sans-serif;font-size:1.25rem;letter-spacing:1.5px}
-.zone-btn:hover{background:#000}
-.zone-btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--ink)}
-.zone-btn.ghost:hover{border-color:var(--yellow);color:var(--black)}
+    .section{padding:100px 0;scroll-margin-top:74px}
+    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:end;margin-bottom:42px}
+    .section-head .kicker{color:#8a7600}
+    .lead{color:#666;line-height:1.75;max-width:690px;margin:0}
 
-/* zone ring */
-.zone-ring{width:min(330px,74vw);aspect-ratio:1;border-radius:50%;background:repeating-linear-gradient(45deg,var(--yellow) 0 15px,var(--black) 15px 30px);padding:16px;margin:0 auto;box-shadow:0 24px 50px rgba(20,20,20,.25)}
-.zone-gap{width:100%;height:100%;border-radius:50%;background:var(--paper);padding:14px}
-.zone-core{width:100%;height:100%;border-radius:50%;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--yellow);text-align:center}
-.zone-core .big{font-family:'Iceland',sans-serif;font-size:clamp(3.4rem,9vw,4.6rem);line-height:.95}
-.zone-core .small{font-size:.8rem;letter-spacing:3px;font-weight:700;color:#EDEDE6;margin-top:6px}
+    .shop{background:#f2f1ea}
+    .product-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--darkline);border-left:1px solid var(--darkline);
+    }
+    .product{
+      min-height:240px;padding:28px 24px;background:#fff;
+      border-right:1px solid var(--darkline);border-bottom:1px solid var(--darkline);
+      transition:.18s ease;
+    }
+    .product:hover{background:#fbf8dd;transform:translateY(-3px)}
+    .product i{font-size:1.35rem;color:#a88f00;margin-bottom:28px}
+    .product h3{font-family:"Anton",sans-serif;font-size:1.45rem;text-transform:uppercase;margin-bottom:8px}
+    .product p{color:#666;line-height:1.65;font-size:.92rem;margin:0}
 
-/* 21+ band */
-.age-band{background:var(--black);color:var(--yellow);text-align:center;padding:18px 22px;font-weight:700;letter-spacing:2px;font-size:1rem}
-.age-band i{margin-right:10px}
+    .banner{
+      min-height:500px;display:grid;align-items:center;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(17,17,17,.95),rgba(17,17,17,.58)),
+        url("https://images.unsplash.com/photo-1515003836704-7d5dc4d92283?auto=format&fit=crop&w=2200&q=86") center/cover no-repeat;
+    }
+    .banner-copy{max-width:670px;padding:90px 0}
+    .banner-big{font-family:"Anton",sans-serif;font-size:clamp(4rem,8vw,7.5rem);line-height:.84;text-transform:uppercase;margin-bottom:18px}
+    .banner-big span{color:var(--yellow)}
+    .banner-copy p{color:#ddd;line-height:1.75;max-width:580px}
 
-/* sections */
-section.block{padding:62px 0}
-section.tint{background:var(--paper)}
-.sec-title{font-size:clamp(2.2rem,5vw,3.1rem);text-align:center}
-.sec-sub{text-align:center;max-width:620px;margin:0 auto 36px;color:var(--gray)}
-.tag-mark{width:70px;height:8px;background:var(--yellow);margin:6px auto 18px;transform:skewX(-25deg)}
+    .reviews{background:#111;color:#fff}
+    .reviews .section-head .kicker{color:var(--yellow)}
+    .reviews .lead{color:#cfcfc8}
+    .review-grid{display:grid;grid-template-columns:.6fr 1.4fr;gap:20px}
+    .rating{background:var(--yellow);color:#111;padding:34px;min-height:330px;display:flex;flex-direction:column;justify-content:space-between}
+    .rating .num{font-family:"Anton",sans-serif;font-size:7.3rem;line-height:.85}
+    .rating p{font-weight:700;margin:0}
+    .quotes{display:grid;gap:14px}
+    .quote{background:#1d1d1d;border:1px solid var(--line);padding:30px}
+    .quote p{margin:0;font-size:1.08rem;line-height:1.62}
+    .quote span{display:block;margin-top:14px;color:var(--yellow);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;font-weight:800}
 
-/* product cards */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.svc-card{background:#fff;border:2px solid var(--line);border-radius:6px;padding:26px 22px;text-align:center}
-.svc-card:hover{border-color:var(--yellow);box-shadow:0 12px 26px rgba(20,20,20,.08)}
-.svc-card .ico{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:var(--black);color:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:1.25rem}
-.svc-card h3{font-size:1.5rem;margin-bottom:4px}
-.svc-card p{margin:0;font-size:.93rem;color:var(--gray)}
+    .visit{
+      background:
+        linear-gradient(rgba(247,245,237,.96),rgba(247,245,237,.96)),
+        url("https://images.unsplash.com/photo-1498654200943-1088dd4438ae?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .visit-card{background:#fff;border:1px solid var(--darkline);padding:32px}
+    .visit-card>i{color:#9b8300;font-size:1.3rem;margin-bottom:18px}
+    .visit-card p{color:#666;line-height:1.7}
+    .visit-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .btn-black{background:#111;color:#fff}
+    .btn-black i{color:var(--yellow)}
 
-/* 24/7 line */
-.hours-plate{max-width:640px;margin:0 auto;background:var(--black);color:#fff;border-radius:6px;padding:10px}
-.hours-plate-in{border:2px dashed rgba(253,216,53,.6);border-radius:4px;padding:20px 26px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center}
-.hours-plate .hl-big{font-family:'Iceland',sans-serif;font-size:1.9rem;color:var(--yellow);letter-spacing:1px}
-.hours-plate .hl-sub{font-size:.92rem;color:#CFCFC6}
-.hours-plate .ico{color:var(--yellow);font-size:1.5rem}
+    footer{background:#0b0b0b;color:#fff;padding:42px 0 28px}
+    .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+    .foot-brand{font-family:"Anton",sans-serif;font-size:2rem;text-transform:uppercase;letter-spacing:.06em}
+    .foot p{color:#cfcfc8;font-size:.82rem;margin:7px 0 0}
+    .foot-nav{display:flex;gap:18px;flex-wrap:wrap;font-size:.78rem;font-weight:800;text-transform:uppercase}
+    .foot-nav a:hover{color:var(--yellow)}
 
-/* quotes */
-.quote-card{background:#fff;border:2px solid var(--line);border-radius:6px;padding:30px;position:relative}
-.quote-card::before{content:"";position:absolute;left:0;top:0;right:0;height:8px;background:repeating-linear-gradient(45deg,var(--yellow) 0 12px,var(--black) 12px 24px)}
-.quote-card .qmark{color:var(--yellow);background:var(--black);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:14px}
-.quote-card blockquote{margin:0 0 14px;font-size:1.05rem}
-.quote-card .stars i{color:var(--black);font-size:.85rem;letter-spacing:3px}
-.quote-card .stars i.on{color:var(--yellow);text-shadow:0 1px 0 var(--black)}
-.quote-card .attrib{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gray);margin-top:10px}
-.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .modal{
+      position:fixed;inset:0;z-index:1000;display:none;place-items:center;
+      background:rgba(0,0,0,.82);padding:20px;
+    }
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(470px,100%);background:#171717;color:#fff;
+      border-top:6px solid var(--yellow);padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.42);
+    }
+    .modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--yellow);color:#111;margin-bottom:20px}
+    .modal-card h2{font-size:2.1rem;margin-bottom:10px}
+    .modal-card p{color:#c9c9c1;line-height:1.65;margin-bottom:22px}
 
-/* rating + links */
-.rating-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;margin:36px auto 22px}
-.rating-line .big{font-family:'Iceland',sans-serif;font-size:3.4rem;color:var(--black);line-height:1}
-.rating-line .rest{font-weight:700;color:var(--gray);font-size:1.05rem}
-.g-link-card{display:flex;align-items:center;justify-content:center;gap:12px;width:fit-content;margin:0 auto;background:var(--black);color:#fff;border-radius:4px;padding:15px 30px;font-weight:700;text-decoration:none}
-.g-link-card:hover{color:var(--yellow)}
-.g-link-card i{color:var(--yellow)}
-
-/* visit */
-.visit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
-.info-card{background:#fff;border:2px solid var(--line);border-radius:6px;padding:26px;margin-bottom:20px}
-.info-card h3{display:flex;align-items:center;gap:10px;font-size:1.6rem}
-.info-card h3 i{color:var(--black)}
-.addr{font-weight:700;font-size:1.05rem;margin:0 0 6px}
-.info-card p{color:var(--gray);margin:0 0 6px}
-
-/* zone pass contact card */
-.zone-pass{position:relative;background:var(--black);color:#fff;border-radius:8px;padding:30px 26px 28px;text-align:center;box-shadow:0 20px 44px rgba(20,20,20,.28)}
-.zone-pass::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;border-right:3px dashed var(--yellow);background:repeating-linear-gradient(45deg,var(--yellow) 0 8px,var(--black) 8px 16px)}
-.zone-pass .zp-label{font-size:.8rem;letter-spacing:4px;font-weight:700;color:var(--yellow);margin:0 0 10px}
-.zone-pass .zp-phone{font-family:'Iceland',sans-serif;font-size:2.3rem;color:#fff;text-decoration:none;display:block;letter-spacing:1px}
-.zone-pass .zp-phone:hover{color:var(--yellow)}
-.zone-pass .zp-sub{font-size:.9rem;color:#CFCFC6;margin:10px 0 0}
-
-/* form */
-.form-card{background:#fff;border:2px solid var(--line);border-radius:6px;padding:34px;max-width:720px;margin:0 auto;box-shadow:0 18px 40px rgba(20,20,20,.08)}
-.form-card h3{text-align:center;font-size:1.9rem}
-.form-note{text-align:center;font-size:.95rem;margin:0 auto 24px;max-width:520px;color:var(--gray)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f-field{margin-bottom:16px}
-.f-field label{display:block;font-weight:700;font-size:.95rem;margin-bottom:6px}
-.f-field input,.f-field textarea{width:100%;border:2px solid var(--line);border-radius:6px;padding:12px 15px;font-family:'Chivo',sans-serif;font-size:.98rem;color:var(--ink);background:var(--paper)}
-.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--black)}
-.f-send{display:block;width:100%;border:none;border-radius:6px;padding:15px;background:var(--black);color:var(--yellow);font-family:'Iceland',sans-serif;font-size:1.3rem;letter-spacing:2px;cursor:pointer}
-.f-send:hover{background:#000}
-.form-feedback{text-align:center;font-weight:700;min-height:24px;margin:14px 0 0;font-size:.95rem}
-.form-feedback.ok{color:#2E7D32}
-.form-feedback.warn{color:#C0574B}
-
-/* footer */
-.site-foot{background:var(--black);color:#CFCFC6;margin-top:70px}
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px;padding:48px 22px 32px;max-width:1080px;margin:0 auto}
-.foot-grid h4{font-family:'Iceland',sans-serif;font-size:1.5rem;color:#fff;margin:0 0 12px;letter-spacing:1px}
-.foot-grid p{margin:0 0 8px;font-size:.93rem}
-.copyright{border-top:1px solid #2B2B2B;text-align:center;padding:18px 22px;font-size:.9rem;color:#EDEDE6}
-
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:34px}
-  .zone-ring{margin-top:6px}
-  .quote-grid{grid-template-columns:1fr}
-  .visit-grid{grid-template-columns:1fr}
-}
-@media (max-width:767px){
-  .menu-btn{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--black);border-bottom:3px solid var(--yellow);flex-direction:column;align-items:stretch;gap:0;padding:10px 0}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:14px 26px;border-bottom:none}
-  .nav-links a:hover{background:#222;border-bottom:none}
-  .f-row{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr;gap:24px;padding-top:38px}
-  .hero{padding:50px 0 60px}
-  section.block{padding:48px 0}
-}
-@media (max-width:380px){
-  .brand-name{font-size:1.3rem}
-  .hero h1{font-size:2.6rem}
-}
-</style>
+    @media(max-width:960px){
+      .navlinks{display:none}
+      .menu-btn{display:block}
+      .section-head,.review-grid,.visit-grid{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{min-height:700px;background-position:62% center}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav{min-height:68px}
+      main{padding-top:68px}
+      .hero{min-height:650px;background-position:67% center}
+      .hero-in{padding:96px 0 76px}
+      h1{font-size:clamp(4rem,21vw,6.2rem)}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .section{padding:72px 0}
+      .section-head{gap:20px}
+      .product-grid{grid-template-columns:1fr}
+      .foot{flex-direction:column;align-items:flex-start}
+      .modal-card{padding:24px 20px}
+    }
+  </style>
 </head>
 <body>
-<div class="site-shell">
 
-<header class="site-head">
-  <div class="head-in">
-    <a class="brand" href="#/" data-page="home" aria-label="Smoke Zone 1 home">
-      <span class="brand-mark"></span>
-      <span class="brand-name">Smoke Zone <em>1</em></span>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Smoke Zone <span>1</span></span>
     </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#/shop" data-page="shop">The Shop</a>
-      <a href="#/reviews" data-page="reviews">Reviews</a>
-      <a href="#/visit" data-page="visit">Visit</a>
+
+    <nav class="navlinks">
+      <a href="#shop">The Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
     </nav>
-    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
     </button>
   </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#shop">The Shop</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+  </nav>
 </header>
 
-<main>
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="kicker">Open 24/7 · West Ave, Fresno</div>
+      <h1>Smoke Zone <span>1</span></h1>
+      <p class="tagline">The counter that never clocks out.</p>
+      <p class="hero-copy">A smoke shop on N West Ave that keeps its doors open around the clock. Whatever time your night ends, the Zone is lit, stocked and ready at the counter.</p>
 
-<section class="page" id="page-home">
-  <div class="zone-stripe"></div>
-  <div class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <span class="hero-badge"><i class="fa-solid fa-bolt"></i> OPEN 24/7 - WEST AVE, FRESNO</span>
-          <h1>Smoke Zone 1</h1>
-          <p class="tagline">The counter that never clocks out.</p>
-          <p class="lead">A smoke shop on N West Ave that keeps its doors open around the clock. Whatever time your night ends, the Zone is lit, stocked and ready at the counter.</p>
-          <div class="hero-chips">
-            <span class="status-chip"><span class="dot"></span><span class="chip-label">Checking hours...</span></span>
-            <span class="status-chip lite">4.3 stars on Google</span>
-          </div>
-          <div class="hero-btns">
-            <a class="zone-btn" href="#/shop" data-page="shop">What is in stock <i class="fa-solid fa-arrow-right"></i></a>
-            <a class="zone-btn ghost" href="#/visit" data-page="visit">Visit</a>
-          </div>
-        </div>
-        <div>
-          <div class="zone-ring" aria-hidden="true">
-            <div class="zone-gap">
-              <div class="zone-core">
-                <span class="big">24/7</span>
-                <span class="small">EVERY HOUR. EVERY DAY.</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-chips">
+        <span class="chip"><i class="fa-solid fa-clock"></i> Open 24 hours</span>
+        <span class="chip"><i class="fa-solid fa-star"></i> 4.3 stars on Google</span>
+        <span class="chip"><i class="fa-solid fa-id-card"></i> 21+ · valid ID required</span>
       </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-yellow" href="#shop"><i class="fa-solid fa-arrow-right"></i> What is in stock</a>
+        <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+      </div>
+
+      <p class="asset-note">Stock background imagery is used for presentation and does not depict the actual business, staff, customers, products, or premises.</p>
     </div>
-  </div>
+  </section>
 
   <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED AT THE COUNTER.</div>
 
-  <section class="block">
+  <section class="section shop" id="shop">
     <div class="wrap">
-      <h2 class="sec-title">Stocked for Every Shift</h2>
-      <div class="tag-mark"></div>
-      <p class="sec-sub">The shelves cover the classics and the new stuff, from a quick lighter grab to a slow browse down the glass wall.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-wind"></i></div>
-          <h3>Vapes</h3>
-          <p>Disposables and hardware for every kind of vaper, night or day.</p>
+      <div class="section-head">
+        <div>
+          <div class="kicker">The Shop</div>
+          <h2>Stocked for Every Shift</h2>
         </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire-flame-simple"></i></div>
-          <h3>Glass and Pipes</h3>
-          <p>A wall of glass to browse, from simple hand pipes to bigger centerpieces.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
-          <h3>Cigars and Wraps</h3>
-          <p>Wraps, papers and cigar favorites stacked where you can reach them.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
-          <h3>CBD and Delta 8/9</h3>
-          <p>The hemp-side shelf, kept tidy and easy to ask about.</p>
-        </div>
+        <p class="lead">The shelves cover the classics and the new stuff, from a quick lighter grab to a slow browse down the glass wall.</p>
       </div>
-    </div>
-  </section>
 
-  <div class="zone-stripe thin"></div>
-
-  <section class="block tint">
-    <div class="wrap">
-      <h2 class="sec-title">Never Closed. Really.</h2>
-      <div class="tag-mark"></div>
-      <div class="hours-plate">
-        <div class="hours-plate-in">
-          <i class="fa-solid fa-clock ico"></i>
-          <span class="hl-big">Open 24 hours</span>
-          <span class="hl-sub">7 days a week, holidays included. Walk in whenever.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="quote-card">
-        <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-        <blockquote>OMG!!! They have a great selection on many different items at very reasonable prices . The people who work there were very nice</blockquote>
-        <div class="stars"><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i></div>
-        <p class="attrib">Google review</p>
-      </div>
-    </div>
-  </section>
-</section>
-
-<section class="page" id="page-shop">
-  <section class="block" style="padding-bottom:26px">
-    <div class="wrap">
-      <h1 class="sec-title">The Shop</h1>
-      <div class="tag-mark"></div>
-      <p class="sec-sub">Everything the Zone keeps on hand, at 3 in the afternoon or 3 in the morning. Ask the counter, they know the shelves.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-wind"></i></div>
+      <div class="product-grid">
+        <article class="product">
+          <i class="fa-solid fa-wind"></i>
           <h3>Vapes</h3>
           <p>Disposables, pods and hardware across the big brands.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire-flame-simple"></i></div>
+        </article>
+        <article class="product">
+          <i class="fa-solid fa-fire-flame-simple"></i>
           <h3>Glass and Pipes</h3>
           <p>Hand pipes, water pipes and glass in every size and price mood.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-joint"></i></div>
+        </article>
+        <article class="product">
+          <i class="fa-solid fa-joint"></i>
           <h3>Cigars and Wraps</h3>
           <p>Cigars, blunt wraps and rolling papers for the hand-rollers.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-fire"></i></div>
+        </article>
+        <article class="product">
+          <i class="fa-solid fa-fire"></i>
           <h3>Lighters and Extras</h3>
           <p>Torches, lighters, grinders and the small stuff you always need.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-cannabis"></i></div>
+        </article>
+        <article class="product">
+          <i class="fa-solid fa-cannabis"></i>
           <h3>CBD and Delta 8/9</h3>
           <p>Hemp products on a marked shelf, questions welcome at the counter.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-smoking"></i></div>
+        </article>
+        <article class="product">
+          <i class="fa-solid fa-smoking"></i>
           <h3>Hookah and Kratom</h3>
           <p>Hookah gear plus the kratom selection, both easy to find up front.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
-  <div class="age-band"><i class="fa-solid fa-id-card"></i>21 AND OVER. VALID ID REQUIRED AT THE COUNTER.</div>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="hours-plate">
-        <div class="hours-plate-in">
-          <i class="fa-solid fa-bolt ico"></i>
-          <span class="hl-big">Open 24 hours</span>
-          <span class="hl-sub">The West Ave Zone does not close. Come by on your schedule.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
 
-<section class="page" id="page-reviews">
-  <section class="block" style="padding-bottom:30px">
-    <div class="wrap">
-      <h1 class="sec-title">Reviews</h1>
-      <div class="tag-mark"></div>
-      <p class="sec-sub">Every Google review quote we have, word for word, exactly as written.</p>
-      <div class="quote-grid">
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>OMG!!! They have a great selection on many different items at very reasonable prices . The people who work there were very nice</blockquote>
-          <div class="stars"><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>I love this store good customer service very professional very beautiful, clean store.</blockquote>
-          <div class="stars"><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i><i class="fa-solid fa-star on"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
-      </div>
-      <div class="rating-line">
-        <span class="big">4.3</span>
-        <span class="rest">stars with 89 reviews on Google</span>
-      </div>
-      <a class="g-link-card" href="https://www.google.com/maps/search/?api=1&query=Smoke%20Zone%201%2C%201582%20N%20West%20Ave%2C%20Fresno%2C%20CA%2093728" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
+  <section class="banner">
+    <div class="wrap banner-copy">
+      <div class="banner-big">Never Closed.<br><span>Really.</span></div>
+      <p>Open 24 hours, 7 days a week, holidays included. Walk in whenever.</p>
     </div>
   </section>
-</section>
 
-<section class="page" id="page-visit">
-  <section class="block" style="padding-bottom:30px">
+  <section class="section reviews" id="reviews">
     <div class="wrap">
-      <h1 class="sec-title">Visit the Zone</h1>
-      <div class="tag-mark"></div>
+      <div class="section-head">
+        <div>
+          <div class="kicker">Reviews</div>
+          <h2>What customers said</h2>
+        </div>
+        <p class="lead">The supplied page lists a 4.3 Google rating with 89 reviews and includes these review quotes.</p>
+      </div>
+
+      <div class="review-grid">
+        <div class="rating">
+          <div class="num">4.3</div>
+          <p>stars with 89 reviews on Google</p>
+        </div>
+
+        <div class="quotes">
+          <article class="quote">
+            <p>“OMG!!! They have a great selection on many different items at very reasonable prices . The people who work there were very nice”</p>
+            <span>Google review</span>
+          </article>
+          <article class="quote">
+            <p>“I love this store good customer service very professional very beautiful, clean store.”</p>
+            <span>Google review</span>
+          </article>
+        </div>
+      </div>
+
+      <div style="margin-top:24px">
+        <button class="btn btn-black" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Visit</div>
+          <h2>Visit the Zone</h2>
+        </div>
+        <p class="lead">1582 N West Ave, Fresno, CA 93728. Open 24 hours, 7 days a week.</p>
+      </div>
+
       <div class="visit-grid">
-        <div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-location-dot"></i> The Counter</h3>
-            <p class="addr">1582 N West Ave<br>Fresno, CA 93728</p>
-            <p>Pull in off West Ave any hour of the night. The lights stay on and the register stays open.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-clock"></i> Hours</h3>
-            <p class="addr">Open 24 hours, 7 days a week</p>
-            <p>No closing time to plan around. Midday run or 3 AM restock, it is the same door.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-id-card"></i> Bring Your ID</h3>
-            <p>21 and over, valid ID required. The counter checks everyone, every hour of the night.</p>
-          </div>
-        </div>
-        <div>
-          <div class="zone-pass">
-            <p class="zp-label">ZONE PASS</p>
-            <a class="zp-phone" href="tel:+15594227700">(559) 422-7700</a>
-            <p class="zp-sub">Tap to call the West Ave counter. Open, answered and stocked at any hour.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="form-card">
-        <h3>Ask about stock</h3>
-        <p class="form-note">Tell us your name and what you are hunting for. We will text you back, even at the weird hours.</p>
-        <form id="quote-form">
-          <div class="f-row">
-            <div class="f-field">
-              <label for="f-name">Your name</label>
-              <input type="text" id="f-name" autocomplete="name" placeholder="First and last">
-            </div>
-            <div class="f-field">
-              <label for="f-phone">Your phone</label>
-              <input type="tel" id="f-phone" autocomplete="tel" placeholder="(559) 555-0123">
-            </div>
-          </div>
-          <div class="f-field">
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" rows="4" placeholder="What are you looking for?"></textarea>
-          </div>
-          <button type="submit" class="f-send"><i class="fa-solid fa-paper-plane"></i> SEND TO THE ZONE</button>
-          <p class="form-feedback" id="form-feedback"></p>
-        </form>
-      </div>
-    </div>
-  </section>
-</section>
+        <div class="visit-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>The Counter</h3>
+          <p><strong style="color:#111">1582 N West Ave</strong><br>Fresno, CA 93728</p>
+          <p><strong style="color:#111">(559) 422-7700</strong></p>
 
+          <div class="visit-actions">
+            <button class="btn btn-black" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Zone</button>
+            <button class="btn btn-black" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps</button>
+          </div>
+        </div>
+
+        <div class="visit-card">
+          <i class="fa-solid fa-clock"></i>
+          <h3>Hours</h3>
+          <p><strong style="color:#111">Open 24 hours, 7 days a week</strong></p>
+          <p>21 and over, valid ID required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="site-foot">
-  <div class="foot-grid">
+<footer>
+  <div class="wrap foot">
     <div>
-      <h4>Smoke Zone 1</h4>
-      <p>The 24 hour smoke shop on N West Ave in Fresno. Vapes, glass, cigars, wraps, lighters, CBD and more, all night long.</p>
+      <div class="foot-brand">Smoke Zone 1</div>
+      <p>1582 N West Ave · Fresno, CA 93728 · (559) 422-7700 · Open 24 hours</p>
     </div>
-    <div>
-      <h4>Find Us</h4>
-      <p>1582 N West Ave<br>Fresno, CA 93728</p>
-      <p>Open 24 hours, every day</p>
-    </div>
-    <div>
-      <h4>Call the Zone</h4>
-      <p>(559) 422-7700</p>
-      <p>Someone always answers.</p>
-    </div>
+    <nav class="foot-nav">
+      <a href="#shop">The Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
   </div>
-  <div class="copyright">© Smoke Zone 1 · Fresno, CA</div>
 </footer>
 
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-yellow" id="closeModal" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "Smoke Zone 1";
-var TITLES = { home: "Open 24 Hour Smoke Shop on West Ave", shop: "The Shop", reviews: "Reviews", visit: "Visit the Zone" };
+(() => {
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const modal = document.getElementById("lockedModal");
+  const closeModal = document.getElementById("closeModal");
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
+  menuBtn.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
   });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
 
-var menuBtn = document.getElementById("menu-btn");
-var navLinksEl = document.querySelector(".nav-links");
-if (menuBtn && navLinksEl) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinksEl.classList.toggle("open");
+  document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
   });
-}
 
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = { 0:[0,24], 1:[0,24], 2:[0,24], 3:[0,24], 4:[0,24], 5:[0,24], 6:[0,24] };
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add("open");
+    document.body.classList.add("modal-open");
+    closeModal.focus();
   }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
 
-(function renderStatus(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.add(st.open ? "is-open" : "is-closed");
-    var label = c.querySelector(".chip-label");
-    if (label) label.textContent = st.label;
+  function closeLocked(){
+    modal.classList.remove("open");
+    document.body.classList.remove("modal-open");
+    if(lastFocus && typeof lastFocus.focus === "function"){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener("click", e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
   });
-  var today = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(row){
-    if (parseInt(row.getAttribute("data-day"), 10) === today) row.classList.add("today");
+
+  closeModal.addEventListener("click", closeLocked);
+
+  modal.addEventListener("click", e => {
+    if(e.target === modal){
+      closeLocked();
+    }
   });
+
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape" && modal.classList.contains("open")){
+      closeLocked();
+    }
+    if(e.key === "Tab" && modal.classList.contains("open")){
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+
+  document.addEventListener("gesturestart", e => e.preventDefault());
 })();
-
-var PHONE = "+15594227700";
-var PRETTY_PHONE = "(559) 422-7700";
-var quoteForm = document.getElementById("quote-form");
-if (quoteForm) {
-  quoteForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var fmsg = document.getElementById("f-msg").value.trim();
-    var feedback = document.getElementById("form-feedback");
-    if (!name || !fmsg) {
-      feedback.textContent = "Add your name and a short message so the counter knows what you need.";
-      feedback.className = "form-feedback warn";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + fmsg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE;
-        feedback.className = "form-feedback ok";
-      });
-    }
-  });
-}
 </script>
 </body>
 </html>

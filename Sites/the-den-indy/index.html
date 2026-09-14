@@ -1,564 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Downtown Indy Smoke Shop, Open 24 Hours | The Den Indy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{
-  --den:#3E2723;
-  --den-deep:#2B1A17;
-  --den-soft:#5A4038;
-  --ember:#FF6D00;
-  --ember-soft:#FFB273;
-  --bone:#F5EFE3;
-  --mute:#CBB8A8;
-}
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  font-family:'Barlow',sans-serif;
-  background:var(--den);
-  color:var(--bone);
-  line-height:1.65;
-}
-h1,h2,h3{ font-family:'Cinzel Decorative',cursive; font-weight:700; line-height:1.2; margin:0 0 .6rem; }
-a{ color:var(--ember-soft); }
-.wrap{ max-width:1080px; margin:0 auto; padding:0 20px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#140f0c">
+  <title>Downtown Indy Smoke Shop, Open 24 Hours | The Den Indy</title>
+  <meta name="description" content="The Den Indy in downtown Indianapolis at 955 N Pennsylvania St. Glass pieces, vapes, hookah and accessories. Open 24 hours. 21+ only with valid ID.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --bg:#120e0c;
+      --panel:#1a1411;
+      --panel2:#221916;
+      --cream:#f6eee2;
+      --muted:#c8b9ab;
+      --ember:#ff6d00;
+      --amber:#ffad4f;
+      --line:rgba(255,255,255,.11);
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+    body{
+      margin:0;background:var(--bg);color:var(--cream);font-family:"Manrope",sans-serif;
+      overflow-x:hidden;-webkit-user-select:none;user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button,input,textarea{font:inherit}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .kicker{color:var(--ember);font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:"Anton",sans-serif;text-transform:uppercase;font-weight:400;letter-spacing:.01em}
+    h1{font-size:clamp(4.6rem,10vw,9rem);line-height:.83}
+    h2{font-size:clamp(3rem,6vw,5.5rem);line-height:.9}
+    h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.08em}
 
-/* Footer pinning shell */
-.site-shell{ min-height:100vh; display:flex; flex-direction:column; }
-main{ flex:1 0 auto; }
-footer{ flex-shrink:0; }
+    header{
+      position:fixed;inset:0 0 auto;z-index:100;
+      background:rgba(18,14,12,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+    }
+    .nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,109,0,.5);color:var(--ember)}
+    .brand-name{font-family:"Anton",sans-serif;font-size:1.55rem;letter-spacing:.06em;text-transform:uppercase}
+    .brand-sub{display:block;color:var(--muted);font-size:.61rem;letter-spacing:.13em;text-transform:uppercase;margin-top:2px}
+    .navlinks{display:flex;align-items:center;gap:28px;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+    .navlinks a:hover{color:var(--ember)}
+    .menu-btn{display:none;width:46px;height:46px;border:1px solid var(--line);background:var(--panel);color:#fff}
+    .mobile-menu{display:none;background:#17110f;padding:10px 20px 20px;border-top:1px solid var(--line)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:15px 0;border-bottom:1px solid var(--line);font-weight:700}
 
-/* Header */
-header.site{
-  background:var(--den-deep);
-  border-bottom:1px solid rgba(255,109,0,.45);
-  position:relative; z-index:30;
-}
-.bar{ display:flex; align-items:center; justify-content:space-between; padding:15px 0; gap:12px; }
-.brand{ text-decoration:none; color:var(--bone); display:flex; align-items:center; gap:12px; }
-.brand-mark{
-  width:42px; height:42px; flex:none;
-  border:2px solid var(--ember); border-radius:50% 50% 0 0;
-  display:flex; align-items:flex-end; justify-content:center;
-  padding-bottom:6px; color:var(--ember); font-size:1rem;
-}
-.brand-name{ font-family:'Cinzel Decorative',cursive; font-weight:900; font-size:1.3rem; line-height:1.1; display:block; }
-.brand-sub{ display:block; font-size:.66rem; letter-spacing:.26em; text-transform:uppercase; color:var(--ember-soft); }
-.nav-links{ display:flex; align-items:center; gap:4px; }
-.nav-links a{
-  color:var(--bone); text-decoration:none; font-weight:600; font-size:.92rem;
-  padding:9px 14px; border-radius:9px; letter-spacing:.04em;
-  transition:background .18s ease;
-}
-.nav-links a:hover{ background:rgba(255,109,0,.16); color:var(--ember-soft); }
-.menu-btn{
-  display:none; background:transparent; border:2px solid var(--ember);
-  color:var(--ember-soft); border-radius:9px; font-size:1.15rem;
-  width:44px; height:44px; cursor:pointer; align-items:center; justify-content:center;
-}
-.menu-btn.open{ background:var(--ember); color:var(--den-deep); }
+    main{padding-top:74px}
+    .hero{
+      min-height:790px;display:grid;align-items:end;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(11,8,7,.97),rgba(11,8,7,.72) 46%,rgba(11,8,7,.25) 75%,rgba(11,8,7,.52)),
+        url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=2200&q=88") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"DEN";position:absolute;right:-25px;top:58px;font-family:"Anton";font-size:min(34vw,440px);
+      color:transparent;-webkit-text-stroke:2px rgba(255,109,0,.12);line-height:.75;pointer-events:none;
+    }
+    .hero-in{position:relative;z-index:2;padding:120px 0 105px;max-width:860px}
+    .hero h1 span{color:var(--ember)}
+    .lede{max-width:650px;color:#ded3ca;font-size:1.07rem;line-height:1.75;margin:24px 0 0}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);font-size:.8rem;font-weight:700}
+    .chip i{color:var(--ember)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 20px;
+      border:1px solid transparent;font-size:.82rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--ember);color:#fff}
+    .btn-ghost{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.05);color:#fff}
+    .asset-note{margin-top:18px;color:rgba(255,255,255,.48);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em}
 
-/* Chips */
-.status-chip{
-  display:inline-flex; align-items:center; gap:8px;
-  font-weight:700; font-size:.88rem;
-  padding:7px 15px; border-radius:999px;
-  background:var(--den-soft); color:var(--bone);
-  border:1px solid rgba(245,239,227,.28);
-}
-.status-chip .dot{ width:9px; height:9px; border-radius:50%; background:#8D6E63; flex:none; }
-.status-chip.open .dot{ background:var(--ember); box-shadow:0 0 10px rgba(255,109,0,.9); }
-.status-chip.closed .dot{ background:#8D6E63; }
-.always-chip{
-  display:inline-flex; align-items:center; gap:9px;
-  background:rgba(255,109,0,.14); color:var(--ember-soft);
-  border:1px solid var(--ember);
-  font-weight:700; font-size:.88rem;
-  padding:8px 16px; border-radius:999px;
-}
+    .facts{position:relative;z-index:4;margin-top:-46px}
+    .fact-grid{display:grid;grid-template-columns:repeat(3,1fr);background:#17110f;border:1px solid var(--line)}
+    .fact{display:flex;gap:14px;padding:24px;border-right:1px solid var(--line)}
+    .fact:last-child{border-right:0}
+    .fact i{color:var(--amber);margin-top:3px}
+    .fact small{display:block;color:var(--muted);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+    .fact strong{font-size:.92rem;line-height:1.45}
 
-/* 21+ ONLY badge: the prominent one */
-.only21{
-  display:inline-flex; flex-direction:column; align-items:center; gap:2px;
-  background:var(--ember); color:var(--den-deep);
-  font-weight:800; border-radius:12px;
-  padding:12px 26px;
-  box-shadow:0 8px 24px rgba(255,109,0,.35);
-  transform:rotate(-1.5deg);
-}
-.only21 .big{ font-family:'Cinzel Decorative',cursive; font-weight:900; font-size:clamp(1.5rem, 4vw, 2.1rem); line-height:1; letter-spacing:.04em; }
-.only21 .small{ font-size:.8rem; letter-spacing:.22em; text-transform:uppercase; }
-.only21-row{ display:flex; justify-content:center; margin-bottom:26px; }
+    .section{padding:100px 0;scroll-margin-top:74px}
+    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:end;margin-bottom:42px}
+    .lead{color:var(--muted);line-height:1.75;max-width:680px;margin:0}
 
-/* Pages */
-.page{ display:none; }
-.page.active{ display:block; }
+    .products{background:#16100e}
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--line);border-top:1px solid var(--line)}
+    .product{min-height:235px;padding:28px 24px;background:var(--panel);border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:.18s ease}
+    .product:hover{background:#251b17;transform:translateY(-3px)}
+    .product i{font-size:1.35rem;color:var(--ember);margin-bottom:34px}
+    .product p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:0}
 
-/* Hero: lantern arch */
-.hero{ padding:48px 0 52px; text-align:center; }
-.arch{
-  max-width:760px; margin:0 auto;
-  border:2px solid rgba(255,109,0,.5);
-  border-radius:380px 380px 20px 20px;
-  padding:56px 26px 40px;
-  position:relative;
-  background:
-    radial-gradient(60% 42% at 50% 0%, rgba(255,109,0,.28), transparent 70%),
-    linear-gradient(180deg, rgba(255,109,0,.08), transparent 55%);
-}
-.lantern{
-  width:16px; height:34px; margin:-64px auto 26px;
-  background:linear-gradient(180deg, var(--ember), #E65100);
-  border-radius:8px 8px 10px 10px;
-  box-shadow:0 0 34px 12px rgba(255,109,0,.45);
-  position:relative;
-}
-.lantern::before{ content:""; position:absolute; top:-12px; left:50%; width:4px; height:12px; background:var(--ember-soft); transform:translateX(-50%); }
-.eyebrow{
-  font-size:.74rem; letter-spacing:.3em; text-transform:uppercase;
-  color:var(--ember-soft); font-weight:700; margin-bottom:12px;
-}
-.hero h1{ font-size:clamp(2rem, 5vw, 3.3rem); color:var(--bone); }
-.hero .lede{ max-width:56ch; margin:0 auto 24px; color:var(--mute); font-size:1.06rem; }
-.hero-chips{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:24px; }
-.cta-row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
-.btn{
-  display:inline-flex; align-items:center; gap:9px;
-  text-decoration:none; font-weight:700; font-size:.97rem;
-  padding:13px 24px; border-radius:10px; cursor:pointer; border:none;
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.35); }
-.btn-ember{ background:var(--ember); color:var(--den-deep); }
-.btn-ghost{ background:transparent; color:var(--bone); border:2px solid rgba(245,239,227,.5); }
-.btn-ghost:hover{ border-color:var(--ember); color:var(--ember-soft); }
+    .mid-banner{
+      min-height:500px;display:grid;align-items:center;
+      background:
+        linear-gradient(90deg,rgba(18,14,12,.95),rgba(18,14,12,.58)),
+        url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=2200&q=86") center/cover no-repeat;
+    }
+    .mid-copy{max-width:650px;padding:90px 0}
+    .mid-big{font-family:"Anton";font-size:clamp(4rem,8vw,7.4rem);line-height:.84;text-transform:uppercase;margin-bottom:18px}
+    .mid-big span{color:var(--ember)}
+    .mid-copy p{color:#d9cec5;line-height:1.75;max-width:560px}
 
-/* 24h banner */
-.banner24{
-  background:var(--den-deep);
-  border-top:1px solid rgba(255,109,0,.35);
-  border-bottom:1px solid rgba(255,109,0,.35);
-  padding:26px 0;
-}
-.banner24-inner{ display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; text-align:center; }
-.banner24 .b24{
-  font-family:'Cinzel Decorative',cursive; font-weight:900;
-  font-size:clamp(1.5rem, 3.6vw, 2.3rem); color:var(--ember);
-}
-.banner24 .sub{ color:var(--mute); font-size:.95rem; }
+    .reviews{background:#0f0b0a}
+    .review-wrap{display:grid;grid-template-columns:.72fr 1.28fr;gap:20px}
+    .rating{background:var(--ember);color:#1b110b;padding:34px;min-height:320px;display:flex;flex-direction:column;justify-content:space-between}
+    .rating .num{font-family:"Anton";font-size:8rem;line-height:.8}
+    .stars{display:flex;gap:5px}
+    .rating p{font-weight:700;margin:0}
+    .quote{background:var(--panel);border:1px solid var(--line);padding:42px;display:flex;flex-direction:column;justify-content:center}
+    .quote blockquote{margin:0;font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.45;font-weight:600}
+    .quote .source{margin-top:24px;color:var(--amber);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 
-/* Den page */
-.page-head{ padding:46px 0 8px; text-align:center; }
-.page-head h1{ font-size:clamp(1.9rem, 4.2vw, 2.9rem); }
-.page-head p{ color:var(--mute); max-width:62ch; margin:0 auto; }
-.grid2x2{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; padding:26px 0 10px; }
-.den-card{
-  background:linear-gradient(180deg, var(--den-soft), var(--den));
-  border:1px solid rgba(255,109,0,.3);
-  border-radius:14px; padding:24px;
-}
-.den-card i{ color:var(--ember); font-size:1.5rem; margin-bottom:12px; display:block; }
-.den-card h3{ font-size:1.15rem; }
-.den-card p{ margin:0; color:var(--mute); font-size:.94rem; }
-.notice{
-  display:flex; gap:14px; align-items:center;
-  background:var(--ember); color:var(--den-deep);
-  border-radius:12px; padding:16px 20px; margin:20px 0 0;
-  font-weight:600;
-}
-.notice i{ font-size:1.3rem; flex:none; }
+    .visit{
+      background:
+        linear-gradient(rgba(18,14,12,.95),rgba(18,14,12,.95)),
+        url("https://images.unsplash.com/photo-1515003836704-7d5dc4d92283?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+    .visit-card{background:#17110f;padding:34px}
+    .visit-card>i{color:var(--ember);font-size:1.3rem;margin-bottom:18px}
+    .visit-card p{color:var(--muted);line-height:1.7}
+    .visit-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 
-/* Reviews */
-.quote-card{
-  background:var(--den-deep); border-radius:14px;
-  border:1px solid rgba(255,109,0,.4);
-  padding:30px; max-width:720px; margin:0 auto;
-}
-.quote-card blockquote{ margin:0 0 14px; font-size:1.15rem; line-height:1.6; font-style:italic; }
-.quote-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-.quote-attr{ font-weight:700; font-size:.88rem; color:var(--ember-soft); }
-.stars5{ color:var(--ember); font-size:.9rem; letter-spacing:3px; }
-.rating-summary{
-  text-align:center; margin:26px 0;
-  font-size:1.12rem; font-weight:600; color:var(--mute);
-}
-.rating-summary .big{ font-family:'Cinzel Decorative',cursive; font-weight:900; font-size:1.9rem; color:var(--ember); }
-.link-cards{ display:grid; gap:12px; max-width:520px; margin:0 auto 56px; }
-.link-card{
-  display:flex; align-items:center; justify-content:center; gap:12px;
-  background:var(--den-deep); border:1px solid var(--ember);
-  color:var(--ember-soft); text-decoration:none; font-weight:700;
-  padding:16px 20px; border-radius:12px;
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-.link-card:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(255,109,0,.18); }
-.link-card.solid{ background:var(--ember); color:var(--den-deep); }
+    .age-bar{padding:22px 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:#d2c7bd;font-size:.86rem}
+    .age-bar i{color:var(--ember);margin-right:8px}
 
-/* Visit: den pass card */
-.visit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; padding-bottom:56px; align-items:start; }
-.pass{
-  background:linear-gradient(160deg, var(--den-soft), var(--den-deep));
-  border:1px solid rgba(255,109,0,.45);
-  border-radius:18px; padding:0 0 24px; overflow:hidden;
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
-}
-.pass-top{
-  background:var(--ember); color:var(--den-deep);
-  text-align:center; padding:12px; position:relative;
-}
-.pass-top::before{
-  content:""; display:block; width:16px; height:16px; border-radius:50%;
-  background:var(--den-deep); margin:0 auto 6px;
-  box-shadow:inset 0 0 0 3px var(--ember);
-}
-.pass-top span{ font-family:'Cinzel Decorative',cursive; font-weight:900; font-size:1rem; letter-spacing:.14em; }
-.pass-body{ padding:20px 24px 0; }
-.ps-line{
-  display:flex; gap:12px; align-items:flex-start;
-  padding:10px 0; border-bottom:1px dashed rgba(245,239,227,.25);
-  font-size:.95rem;
-}
-.ps-line:last-of-type{ border-bottom:none; }
-.ps-line i{ color:var(--ember); margin-top:4px; width:17px; text-align:center; flex:none; }
-.ps-phone{
-  font-family:'Cinzel Decorative',cursive; font-weight:900; font-size:1.25rem;
-  color:var(--bone); text-decoration:none; display:block;
-}
-.ps-phone:hover{ color:var(--ember-soft); }
-.ps-stamp{
-  margin:16px 24px 0; border:2px solid var(--ember); border-radius:8px;
-  color:var(--ember-soft); font-weight:800; letter-spacing:.18em; text-transform:uppercase;
-  font-size:.8rem; text-align:center; padding:8px; transform:rotate(-2deg);
-}
+    footer{background:#090706;padding:42px 0 28px}
+    .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+    .foot-brand{font-family:"Anton";font-size:2rem;text-transform:uppercase;letter-spacing:.06em}
+    .foot p{color:var(--muted);font-size:.82rem;margin:7px 0 0}
+    .foot-nav{display:flex;gap:18px;flex-wrap:wrap;font-size:.78rem;font-weight:800;text-transform:uppercase}
+    .foot-nav a:hover{color:var(--ember)}
 
-/* Form */
-.form-card{
-  background:var(--den-deep); border:1px solid rgba(255,109,0,.4);
-  border-radius:16px; padding:26px;
-}
-.form-card h3{ color:var(--ember-soft); font-size:1.2rem; }
-.form-card p.form-note{ font-size:.9rem; color:var(--mute); margin:0 0 8px; }
-label{ display:block; font-weight:600; font-size:.86rem; margin:12px 0 5px; color:var(--ember-soft); }
-input, textarea{
-  width:100%; padding:12px 14px; border-radius:9px;
-  border:1px solid rgba(245,239,227,.25);
-  background:rgba(245,239,227,.06); color:var(--bone);
-  font-family:'Barlow',sans-serif; font-size:.95rem;
-}
-input:focus, textarea:focus{ outline:2px solid var(--ember); border-color:var(--ember); }
-textarea{ min-height:110px; resize:vertical; }
-.form-card .btn{ margin-top:16px; width:100%; justify-content:center; }
-#form-feedback{ margin:12px 0 0; font-size:.92rem; color:var(--ember-soft); font-weight:600; min-height:1.3em; }
+    .modal{
+      position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.78);padding:20px;
+    }
+    .modal.open{display:grid}
+    .modal-card{width:min(470px,100%);background:var(--panel2);border:1px solid var(--line);border-top:5px solid var(--ember);padding:32px}
+    .modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--ember);color:#fff;margin-bottom:20px}
+    .modal-card h2{font-family:"Anton";font-size:2.2rem;margin-bottom:10px}
+    .modal-card p{color:var(--muted);line-height:1.65;margin-bottom:22px}
 
-/* Footer */
-footer.site{
-  background:var(--den-deep);
-  border-top:1px solid rgba(255,109,0,.45);
-  padding:28px 0 24px; margin-top:40px;
-}
-.foot-grid{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center; }
-.foot-brand{ font-family:'Cinzel Decorative',cursive; font-weight:900; font-size:1.1rem; }
-.foot-quiet{ font-size:.86rem; color:var(--mute); }
-.foot-copy{ font-size:.86rem; color:var(--mute); width:100%; border-top:1px solid rgba(245,239,227,.18); padding-top:13px; margin-top:4px; }
-
-/* Responsive */
-@media (max-width:900px){
-  .grid2x2{ grid-template-columns:1fr; }
-  .visit-grid{ grid-template-columns:1fr; }
-  .arch{ border-radius:200px 200px 18px 18px; padding:46px 18px 32px; }
-}
-@media (max-width:760px){
-  .menu-btn{ display:flex; }
-  .nav-links{
-    display:none; position:absolute; top:100%; left:0; right:0;
-    background:var(--den-deep); flex-direction:column; align-items:stretch;
-    padding:10px 16px 16px; gap:4px;
-    border-bottom:1px solid rgba(255,109,0,.5);
-    box-shadow:0 14px 24px rgba(0,0,0,.4);
-  }
-  .nav-links.open{ display:flex; }
-  .nav-links a{ padding:13px 12px; }
-  .hero{ padding:36px 0 40px; }
-}
-</style>
+    @media(max-width:960px){
+      .navlinks{display:none}
+      .menu-btn{display:block}
+      .fact-grid{grid-template-columns:1fr}
+      .fact{border-right:0;border-bottom:1px solid var(--line)}
+      .fact:last-child{border-bottom:0}
+      .section-head,.visit-grid,.review-wrap{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{min-height:700px;background-position:62% center}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav{min-height:68px}
+      main{padding-top:68px}
+      .brand-sub{display:none}
+      .hero{min-height:650px;background-position:67% center}
+      .hero-in{padding:95px 0 76px}
+      h1{font-size:clamp(4.2rem,22vw,6.5rem)}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .facts{margin-top:-24px}
+      .section{padding:74px 0}
+      .section-head{gap:20px}
+      .product-grid{grid-template-columns:1fr}
+      .foot{flex-direction:column;align-items:flex-start}
+      .modal-card{padding:24px 20px}
+    }
+  </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site">
-    <div class="wrap bar">
-      <a href="#/home" class="brand" data-page="home" aria-label="The Den Indy home">
-        <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-fire"></i></span>
-        <span>
-          <span class="brand-name">The Den Indy</span>
-          <span class="brand-sub">Downtown · Pennsylvania St</span>
-        </span>
-      </a>
-      <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
-        <i class="fa-solid fa-bars" aria-hidden="true"></i>
-      </button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/home" data-page="home">Home</a>
-        <a href="#/den" data-page="den">The Den</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <span class="brand-mark"><i class="fa-solid fa-fire"></i></span>
+      <span>
+        <span class="brand-name">The Den Indy</span>
+        <span class="brand-sub">Downtown · Pennsylvania St</span>
+      </span>
+    </a>
+    <nav class="navlinks">
+      <a href="#products">The Den</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#products">The Den</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="kicker">Downtown Indianapolis · N Pennsylvania St</div>
+      <h1>The <span>Den</span> Indy</h1>
+      <p class="lede">Downtown Indy's locally owned smoke shop with glass pieces, vapes, hookah and accessories. Open 24 hours.</p>
+      <div class="hero-meta">
+        <span class="chip"><i class="fa-solid fa-clock"></i> Open 24 hours</span>
+        <span class="chip"><i class="fa-solid fa-id-card"></i> 21+ only · valid ID required</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#products"><i class="fa-solid fa-fire"></i> Inside the Den</a>
+        <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+      </div>
+      <p class="asset-note">Stock background imagery is used for presentation and does not depict the actual business, staff, products, or premises.</p>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="wrap hero">
-        <div class="only21-row">
-          <span class="only21">
-            <span class="big">21+ ONLY</span>
-            <span class="small">Valid ID at the door</span>
-          </span>
-        </div>
-        <div class="arch">
-          <div class="lantern" aria-hidden="true"></div>
-          <p class="eyebrow">955 N Pennsylvania St · Indianapolis</p>
-          <h1>The Den Indy</h1>
-          <p class="lede">Downtown Indy's locally owned smoke shop, glowing at 3 PM and glowing at 3 AM. Glass pieces, vapes, hookah and accessories, with a warm welcome for everyone old enough to walk in.</p>
-          <div class="hero-chips">
-            <span class="status-chip"><span class="dot"></span>Checking hours...</span>
-            <span class="always-chip"><i class="fa-solid fa-clock" aria-hidden="true"></i> Open 24 hours</span>
-          </div>
-          <div class="cta-row">
-            <a class="btn btn-ember" href="#/den" data-page="den"><i class="fa-solid fa-fire" aria-hidden="true"></i> Inside the den</a>
-            <a class="btn btn-ghost" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit us</a>
-          </div>
-        </div>
-      </div>
-      <div class="banner24">
-        <div class="wrap banner24-inner">
-          <span class="b24">Open 24 hours</span>
-          <span class="sub">Every day. Midnight runs, early runs, whenever the mood hits. 21+ with valid ID.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEN -->
-    <section class="page" id="page-den">
-      <div class="wrap page-head">
-        <p class="eyebrow">The Den</p>
-        <h1>What waits inside</h1>
-        <p>A proper downtown glass and smoke shop, run by people who care about the shelves. Browse at midnight or at noon, the lights never go off.</p>
-      </div>
-      <div class="wrap" style="padding-bottom:56px;">
-        <div class="grid2x2">
-          <div class="den-card">
-            <i class="fa-solid fa-chess-rook" aria-hidden="true"></i>
-            <h3>Glass pieces</h3>
-            <p>The heart of the den. A real selection behind the case, and staff who know every piece on it.</p>
-          </div>
-          <div class="den-card">
-            <i class="fa-solid fa-cloud" aria-hidden="true"></i>
-            <h3>Vapes</h3>
-            <p>Devices and the everyday vaping supplies, always restocked, always easy to ask about.</p>
-          </div>
-          <div class="den-card">
-            <i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>
-            <h3>Hookah</h3>
-            <p>Hookah setups and the flavors and parts that go with them, downtown's cozy corner for it.</p>
-          </div>
-          <div class="den-card">
-            <i class="fa-solid fa-toolbox" aria-hidden="true"></i>
-            <h3>Accessories</h3>
-            <p>Grinders, wraps, lighters and the small stuff that makes the big stuff work.</p>
-          </div>
-        </div>
-        <div class="notice">
-          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-          <span><strong>21+ ONLY.</strong> The Den is strictly 21 and over. Valid government ID required at the door, no exceptions, no ID no entry.</span>
-        </div>
-        <p style="text-align:center; color:var(--mute); font-size:.9rem; font-style:italic; margin-top:18px;">Some directories list shorter store hours. Call to confirm holiday hours before a late-night run.</p>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <div class="wrap page-head">
-        <p class="eyebrow">Reviews</p>
-        <h1>Word from the neighborhood</h1>
-      </div>
-      <div class="wrap" style="padding-bottom:30px;">
-        <div class="quote-card">
-          <blockquote>Very clean and organized store WITH GREAT PRICES 24 hours cant beat it!</blockquote>
-          <div class="quote-meta">
-            <span class="quote-attr"><i class="fa-brands fa-google" aria-hidden="true"></i> Google review</span>
-            <span class="stars5" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-          </div>
-        </div>
-        <p class="rating-summary"><span class="big">4.8</span> stars with 557 Google reviews</p>
-        <div class="link-cards">
-          <a class="link-card solid" href="https://www.google.com/maps/search/?api=1&query=The%20Den%20Indy%2C%20955%20N%20Pennsylvania%20St%2C%20Indianapolis%2C%20IN%2046204" target="_blank" rel="noopener">
-            <i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google
-          </a>
-          <a class="link-card" href="https://www.yelp.com/biz/the-den-indy-indianapolis" target="_blank" rel="noopener">
-            <i class="fa-brands fa-yelp" aria-hidden="true"></i> Read the Yelp reviews
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <div class="wrap page-head">
-        <p class="eyebrow">Visit</p>
-        <h1>Find the den</h1>
-        <p>On N Pennsylvania St, right in downtown Indianapolis. Open around the clock, but bring your ID. 21 and over only.</p>
-      </div>
-      <div class="wrap visit-grid">
-        <div class="pass">
-          <div class="pass-top"><span>Den Pass</span></div>
-          <div class="pass-body">
-            <div class="ps-line">
-              <i class="fa-solid fa-phone" aria-hidden="true"></i>
-              <span><a class="ps-phone" href="tel:+13174931108">(317) 493-1108</a><span style="color:var(--mute); font-size:.86rem;">Call the den</span></span>
-            </div>
-            <div class="ps-line">
-              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-              <span>955 N Pennsylvania St, Indianapolis, IN 46204</span>
-            </div>
-            <div class="ps-line">
-              <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              <span>Open 24 hours, every day</span>
-            </div>
-            <div class="ps-line">
-              <span class="status-chip"><span class="dot"></span>Checking hours...</span>
-            </div>
-          </div>
-          <div class="ps-stamp">21+ Only · Valid ID Required</div>
-        </div>
-        <div class="form-card">
-          <h3>Send word to the den</h3>
-          <p class="form-note">A question about glass, hookah or stock? Write it here and the den will answer.</p>
-          <form id="quote-form" novalidate>
-            <label for="f-name">Your name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First name is fine">
-            <label for="f-phone">Your phone</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="So we can text you back">
-            <label for="f-msg">Your message</label>
-            <textarea id="f-msg" name="message" placeholder="Ask about glass pieces, vapes, hookah, anything"></textarea>
-            <button class="btn btn-ember" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it</button>
-            <p id="form-feedback" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site">
-    <div class="wrap foot-grid">
-      <span class="foot-brand">The Den Indy</span>
-      <span class="foot-quiet">(317) 493-1108 · 955 N Pennsylvania St, Indianapolis, IN · Open 24 hours</span>
-      <span class="foot-copy">© The Den Indy · Indianapolis, IN</span>
+  <div class="facts">
+    <div class="wrap fact-grid">
+      <div class="fact"><i class="fa-solid fa-clock"></i><div><small>Hours</small><strong>Open 24 hours, every day</strong></div></div>
+      <div class="fact"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>955 N Pennsylvania St<br>Indianapolis, IN 46204</strong></div></div>
+      <div class="fact"><i class="fa-solid fa-id-card"></i><div><small>Entry</small><strong>21+ only · valid government ID required</strong></div></div>
     </div>
-  </footer>
+  </div>
+
+  <section class="section products" id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="kicker">The Den</div><h2>What waits inside</h2></div>
+        <p class="lead">The uploaded business page lists four main categories inside The Den Indy.</p>
+      </div>
+      <div class="product-grid">
+        <article class="product"><i class="fa-solid fa-chess-rook"></i><h3>Glass pieces</h3><p>A selection of glass pieces.</p></article>
+        <article class="product"><i class="fa-solid fa-cloud"></i><h3>Vapes</h3><p>Vapes and everyday vaping supplies.</p></article>
+        <article class="product"><i class="fa-solid fa-fire-flame-curved"></i><h3>Hookah</h3><p>Hookah setups, flavors and parts.</p></article>
+        <article class="product"><i class="fa-solid fa-toolbox"></i><h3>Accessories</h3><p>Grinders, wraps, lighters and related accessories.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="mid-banner">
+    <div class="wrap mid-copy">
+      <div class="mid-big">Open <span>24 hours</span><br>every day.</div>
+      <p>The Den Indy is open around the clock. Entry is strictly 21 and over with valid ID required.</p>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="kicker">Reviews</div><h2>Word from the neighborhood</h2></div>
+        <p class="lead">The supplied page lists a 4.8 Google rating with 557 reviews and includes this review text.</p>
+      </div>
+      <div class="review-wrap">
+        <div class="rating">
+          <div><div class="num">4.8</div><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div>
+          <p>557 Google reviews shown on the supplied page.</p>
+        </div>
+        <div class="quote">
+          <blockquote>“Very clean and organized store WITH GREAT PRICES 24 hours cant beat it!”</blockquote>
+          <div class="source">Google review</div>
+        </div>
+      </div>
+      <div style="margin-top:24px">
+        <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See reviews on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="kicker">Visit</div><h2>Downtown Indianapolis</h2></div>
+        <p class="lead">The Den Indy is located at 955 N Pennsylvania St in Indianapolis.</p>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>Address</h3>
+          <p><strong style="color:#fff">955 N Pennsylvania St</strong><br>Indianapolis, IN 46204</p>
+          <div class="visit-actions">
+            <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+            <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          </div>
+        </div>
+        <div class="visit-card">
+          <i class="fa-solid fa-clock"></i>
+          <h3>Hours</h3>
+          <p><strong style="color:#fff">Open 24 hours, every day</strong></p>
+          <p>21+ only. Valid government ID required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="age-bar"><div class="wrap"><i class="fa-solid fa-id-card"></i> 21+ only · valid government ID required.</div></div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="foot-brand">The Den Indy</div>
+      <p>Downtown Indianapolis · 955 N Pennsylvania St</p>
+    </div>
+    <nav class="foot-nav"><a href="#products">The Den</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="closeModal" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "The Den Indy";
-var TITLES = { home: "Downtown Indy Smoke Shop, Open 24 Hours", den: "The Den", reviews: "Reviews", visit: "Visit Us" };
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
+(() => {
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const modal = document.getElementById("lockedModal");
+  const closeModal = document.getElementById("closeModal");
+  let lastFocus = null;
+
+  menuBtn.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
   });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
 
-var mb = document.getElementById("menu-btn");
-var nl = document.querySelector(".nav-links");
-mb.addEventListener("click", function(){
-  mb.classList.toggle("open");
-  nl.classList.toggle("open");
-  mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
-});
-
-var CITY_TZ = "America/New_York";
-var HOURS = { 0: [0, 24], 1: [0, 24], 2: [0, 24], 3: [0, 24], 4: [0, 24], 5: [0, 24], 6: [0, 24] };
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderChips(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.remove("open", "closed");
-    c.classList.add(st.open ? "open" : "closed");
-    c.innerHTML = '<span class="dot"></span>' + st.label;
+  document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
   });
-}
-renderChips();
 
-var PHONE = "+13174931108";
-var PRETTY = "(317) 493-1108";
-var form = document.getElementById("quote-form");
-var feedback = document.getElementById("form-feedback");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
-      });
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add("open");
+    document.body.classList.add("modal-open");
+    closeModal.focus();
+  }
+  function closeLocked(){
+    modal.classList.remove("open");
+    document.body.classList.remove("modal-open");
+    if(lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener("click", e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  closeModal.addEventListener("click", closeLocked);
+  modal.addEventListener("click", e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape" && modal.classList.contains("open")) closeLocked();
+    if(e.key === "Tab" && modal.classList.contains("open")){
+      e.preventDefault();
+      closeModal.focus();
     }
   });
-}
+
+  document.addEventListener("gesturestart", e => e.preventDefault());
+})();
 </script>
 </body>
 </html>

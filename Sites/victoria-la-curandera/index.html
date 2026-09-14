@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <meta name='robots' content='max-image-preview:large' />
 <title>Victoria la Curandera &#8211; bjvfi.com</title>
 <link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
@@ -185,6 +185,106 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
 <meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+
+<style id="victoria-protected-demo">
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  -webkit-user-select:none!important;
+  user-select:none!important;
+  touch-action:pan-y;
+  overflow-x:hidden;
+}
+body.demo-modal-open{overflow:hidden!important}
+
+.v-protected{
+  margin:14px 0;
+  padding:16px 18px;
+  background:#efe7dc;
+  border-left:5px solid #C0765A;
+  color:#2E2A26;
+  font-weight:800;
+  border-radius:8px;
+}
+.v-stock-note{
+  margin-top:15px;
+  font-size:.76rem;
+  color:#8f8178;
+  max-width:680px;
+}
+
+/* Tasteful stock backgrounds; these are not the actual business. */
+.biz-page#page-home{
+  background:
+    linear-gradient(rgba(245,239,230,.92),rgba(245,239,230,.92)),
+    url("https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=2100&q=84") center/cover fixed;
+}
+.biz-page#page-services{
+  background:
+    linear-gradient(rgba(245,239,230,.94),rgba(245,239,230,.94)),
+    url("https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=2000&q=84") center/cover;
+}
+.biz-page#page-contact{
+  background:
+    linear-gradient(rgba(245,239,230,.93),rgba(245,239,230,.93)),
+    url("https://images.unsplash.com/photo-1602874801006-e26f3ab8db4c?auto=format&fit=crop&w=2000&q=84") center/cover;
+}
+footer{
+  background:
+    linear-gradient(rgba(46,42,38,.96),rgba(46,42,38,.96)),
+    url("https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1800&q=80") center/cover!important;
+}
+
+/* Reusable locked-action modal */
+#victoria-lock-modal{
+  position:fixed;inset:0;z-index:999999;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(20,16,14,.72);
+}
+#victoria-lock-modal.open{display:flex}
+#victoria-lock-modal .v-modal{
+  width:min(470px,100%);
+  background:#F1EAE0;
+  color:#2E2A26;
+  border-top:6px solid #C0765A;
+  border-radius:12px;
+  padding:30px;
+  box-shadow:0 30px 90px rgba(0,0,0,.38);
+}
+#victoria-lock-modal .v-modal-icon{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  background:#2E2A26;color:#C0765A;
+  border-radius:50%;
+  margin-bottom:16px;
+}
+#victoria-lock-modal h3{
+  margin:0 0 10px;
+  font-size:1.7rem;
+  color:#2E2A26;
+}
+#victoria-lock-modal p{
+  margin:0;
+  color:#6f6259;
+  line-height:1.6;
+}
+#victoria-lock-modal .v-close{
+  width:100%;
+  margin-top:20px;
+  border:0;
+  border-radius:8px;
+  padding:13px 18px;
+  font-weight:800;
+  background:#C0765A;
+  color:#fff;
+  cursor:pointer;
+}
+@media(max-width:700px){
+  .biz-page#page-home,.biz-page#page-services,.biz-page#page-contact{
+    background-attachment:scroll;
+  }
+}
+</style>
+
 </head>
 
 <body class="wp-singular page-template page-template-blank page page-id-566604 wp-embed-responsive wp-theme-business-identity-mvp">
@@ -286,6 +386,7 @@ footer{border-top:1px solid var(--hairline);background:rgba(24,21,18,.55);}.foot
           <a class="btn btn-terra" href="#/services" data-page="services">About the work</a>
           <a class="btn btn-quiet" href="#/contact" data-page="contact">Plan a visit</a>
         </div>
+        <p class="v-stock-note">Stock wellness/spiritual imagery is used in this demo and does not depict Victoria la Curandera, the actual shop, clients, or services being performed.</p>
       </div>
     </div>
 
@@ -369,7 +470,7 @@ footer{border-top:1px solid var(--hairline);background:rgba(24,21,18,.55);}.foot
         <div class="visit-grid">
           <div class="v-card">
             <h3>Where to find us</h3>
-            <p class="addr">771 E Flamingo Rd<br>Las Vegas, NV 89119</p>
+            <div class="v-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
             <h3 style="margin-top:22px;">Hours</h3>
             <ul class="hours-list">
               <li data-day="0"><span>Sunday</span><span>10:00 AM &#8211; 6:00 PM</span></li>
@@ -388,14 +489,14 @@ footer{border-top:1px solid var(--hairline);background:rgba(24,21,18,.55);}.foot
                 <span class="slip-title">Appointment</span>
                 <i class="fa-solid fa-phone"></i>
               </div>
-              <a class="slip-phone" href="tel:+17252676745">(725) 267-6745</a>
-              <p class="slip-sub">Call to set a time, or send a note below and we will reach back to you gently.</p>
+              <button class="slip-phone" type="button" data-locked="true" style="border:0;background:transparent;cursor:pointer">CONTACT DETAILS PROTECTED IN THIS DEMO</button>
+              <p class="slip-sub">Calling and appointment requests are protected in this demo.</p>
               <div class="slip-foot"><span>Victoria</span><span>La Curandera</span></div>
             </div>
           </div>
         </div>
 
-        <a class="find-card" href="https://www.google.com/maps/search/?api=1&#038;query=Victoria%20la%20Curandera%2C%20771%20E%20Flamingo%20Rd%2C%20Las%20Vegas%2C%20NV%2089119" target="_blank" rel="noopener">
+        <a class="find-card" href="#" data-locked="true">
           <span class="f-ic"><i class="fa-solid fa-location-dot"></i></span>
           <span><strong>Find the shop</strong><span class="find-sub">Directions and the Google listing</span></span>
           <i class="fa-solid fa-arrow-right go"></i>
@@ -403,7 +504,7 @@ footer{border-top:1px solid var(--hairline);background:rgba(24,21,18,.55);}.foot
 
         <div class="form-block">
           <h3>Request a time</h3>
-          <p style="font-size:.93rem;color:var(--cream-dim);">Tell us a little about what brings you in. There is no wrong reason.</p>
+          <p style="font-size:.93rem;color:var(--cream-dim);">This demo shows the request form layout. Submission is locked until the full website is unlocked.</p>
           <form id="contact-form" novalidate>
             <div class="f-row">
               <label for="cf-name">Your name</label>
@@ -417,7 +518,7 @@ footer{border-top:1px solid var(--hairline);background:rgba(24,21,18,.55);}.foot
               <label for="cf-msg">What would you like to come in for?</label>
               <textarea id="cf-msg" rows="4" placeholder="A reading, a limpia, or just a visit. Share only what you feel like sharing."></textarea>
             </div>
-            <button class="btn btn-terra" type="submit">Send request</button>
+            <button class="btn btn-terra" type="submit" data-locked="true">Send request</button>
             <p class="f-feedback" id="cf-feedback"></p>
           </form>
         </div>
@@ -434,8 +535,8 @@ footer{border-top:1px solid var(--hairline);background:rgba(24,21,18,.55);}.foot
     </div>
     <div>
       <h4>Contact</h4>
-      <a href="tel:+17252676745">(725) 267-6745</a>
-      <p>771 E Flamingo Rd<br>Las Vegas, NV 89119</p>
+      <span>CONTACT DETAILS PROTECTED IN THIS DEMO</span>
+      <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
     </div>
     <div>
       <h4>Hours</h4>
@@ -504,7 +605,7 @@ function openState(){
   for (var i = 0; i < 7; i++) {
     var d = (n.day + i) % 7, h = HOURS[d];
     if (!h) continue;
-    if (i === 0 &#038;&#038; t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i === 0 && t < h[0]) return { open: false, label: "Closed" };
     if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
   }
   return { open: false, label: "Closed" };
@@ -523,32 +624,7 @@ function openState(){
   });
 })();
 
-var PHONE = "+17252676745";
-var PRETTY = "(725) 267-6745";
-var form = document.getElementById("contact-form");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("cf-name").value.trim();
-    var phone = document.getElementById("cf-phone").value.trim();
-    var msg = document.getElementById("cf-msg").value.trim();
-    var feedbackEl = document.getElementById("cf-feedback");
-    if (!name || !msg) {
-      feedbackEl.textContent = "Please add your name and a short note so we can reach you.";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedbackEl.textContent = "Copied. Now paste it in a text to " + PRETTY;
-      }, function(){
-        feedbackEl.textContent = "Could not copy automatically. Please call us at " + PRETTY + ".";
-      });
-    }
-  });
-}
+
 </script>
 </div></div>
 <script type="speculationrules">
@@ -562,5 +638,66 @@ if (form) {
 var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
 //# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
 </script>
+
+<div id="victoria-lock-modal" aria-hidden="true">
+  <div class="v-modal" role="dialog" aria-modal="true" aria-labelledby="victoria-lock-title" tabindex="-1">
+    <div class="v-modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="victoria-lock-title">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="v-close" id="victoria-lock-close" type="button">Close</button>
+  </div>
+</div>
+
+<script id="victoria-protected-demo-js">
+(function(){
+  const modal = document.getElementById('victoria-lock-modal');
+  const closeBtn = document.getElementById('victoria-lock-close');
+  let lastFocus = null;
+
+  function openModal(e){
+    if(e){ e.preventDefault(); e.stopPropagation(); }
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('demo-modal-open');
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('demo-modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+    el.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+
+  document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
+  document.addEventListener('dblclick', function(e){ e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<!--
+PROTECTED DEMO NOTES
+- Victoria la Curandera business/service copy and listed hours were preserved from the uploaded source.
+- Stock imagery is used for presentation only and does not depict the actual business, practitioner, clients, or services being performed.
+- Exact address, phone, map/directions, and form submission actions are protected in this demo.
+- Internal page navigation, mobile menu, live open/closed indicator, and day highlighting remain functional.
+-->
+
 </body>
 </html>

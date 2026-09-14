@@ -1,597 +1,826 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Spin N Clean Laundromat | Palm Ave, Fresno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{
-  --teal:#00838F;
-  --teal-deep:#006064;
-  --teal-wash:#E0F4F5;
-  --lime:#CDDC39;
-  --lime-deep:#9E9D24;
-  --ink:#15343A;
-  --gray:#5B7278;
-  --line:#CFE5E7;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:'Mulish',sans-serif;background:#fff;color:var(--ink);line-height:1.65;font-size:17px}
-h1,h2,h3{font-family:'Jura',sans-serif;font-weight:700;line-height:1.12;margin:0 0 14px}
-a{color:var(--teal)}
-.site-shell{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-.page{display:none}
-.page.active{display:block}
-.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#073f46">
+  <title>Spin N Clean Laundromat | Palm Ave, Fresno</title>
+  <meta name="description" content="Spin N Clean Laundromat in Fresno on N Palm Ave. New touch-screen machines, washers, dryers, clean floors, and friendly help. Open daily 7 AM to 10 PM.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --deep:#073f46;
+      --teal:#00838f;
+      --aqua:#dff4f4;
+      --lime:#cddc39;
+      --lime-deep:#959d1c;
+      --ink:#17343a;
+      --muted:#61767b;
+      --paper:#f8fbfa;
+      --line:rgba(7,63,70,.14);
+      --white:#fff;
+      --max:1180px;
+    }
 
-/* header */
-.site-head{background:#fff;border-bottom:2px solid var(--line);position:relative;z-index:40}
-.head-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 22px;max-width:1060px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand-drum{width:42px;height:42px;border-radius:50%;border:4px solid var(--teal);border-top-color:var(--lime);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.brand-drum::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--teal)}
-.brand-name{font-family:'Jura',sans-serif;font-weight:700;font-size:1.25rem;color:var(--ink);line-height:1.15}
-.brand-name em{font-style:normal;color:var(--teal)}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{font-weight:700;font-size:.95rem;color:var(--ink);text-decoration:none;padding:6px 2px;border-bottom:2px solid transparent;letter-spacing:.5px}
-.nav-links a:hover{color:var(--teal);border-bottom-color:var(--lime)}
-.menu-btn{display:none;background:none;border:2px solid var(--teal);border-radius:10px;padding:8px 10px;cursor:pointer}
-.menu-btn span{display:block;width:20px;height:3px;border-radius:2px;background:var(--teal);margin:4px 0}
-.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.menu-btn.open span:nth-child(2){opacity:0}
-.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"Inter",sans-serif;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{font-family:"Space Grotesk",sans-serif}
+    h1{font-size:clamp(4.3rem,9vw,8.4rem);line-height:.86;letter-spacing:-.05em}
+    h2{font-size:clamp(2.8rem,5.5vw,5rem);line-height:.95;letter-spacing:-.04em}
+    h3{font-size:1.05rem}
+    .kicker{
+      color:var(--teal);
+      font-size:.72rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.17em;
+      margin-bottom:10px;
+    }
 
-/* status chip */
-.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:10px;background:#fff;border:2px solid var(--teal);font-weight:700;font-size:.88rem;color:var(--ink)}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#9DB6BA;flex-shrink:0}
-.status-chip.is-open .dot{background:#43A047;box-shadow:0 0 0 4px rgba(67,160,71,.16)}
-.status-chip.is-closed .dot{background:#C0574B}
-.status-chip.lite{border-style:dashed;background:var(--teal-wash)}
+    header{
+      position:fixed;
+      inset:0 0 auto;
+      z-index:100;
+      background:rgba(248,251,250,.93);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-mark{
+      width:44px;
+      height:44px;
+      border:4px solid var(--teal);
+      border-top-color:var(--lime);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      position:relative;
+      flex:0 0 auto;
+    }
+    .brand-mark:after{
+      content:"";
+      width:13px;
+      height:13px;
+      border-radius:50%;
+      background:var(--teal);
+    }
+    .brand-name{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:1.26rem;
+      font-weight:700;
+    }
+    .brand-name span{color:var(--teal)}
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:.8rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .navlinks a:hover{color:var(--teal)}
+    .menu-btn{
+      display:none;
+      width:46px;height:46px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--deep);
+      cursor:pointer;
+    }
+    .mobile-menu{
+      display:none;
+      background:var(--paper);
+      border-top:1px solid var(--line);
+      padding:10px 20px 20px;
+    }
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{
+      padding:15px 0;
+      border-bottom:1px solid var(--line);
+      font-weight:700;
+    }
 
-/* hero */
-.hero{background:linear-gradient(160deg,var(--teal-wash),#fff 62%);padding:64px 0 76px}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;border-radius:10px;padding:9px 18px;font-weight:800;letter-spacing:1px;font-size:.82rem;margin-bottom:20px}
-.hero h1{font-size:clamp(2.5rem,6.5vw,4rem);color:var(--ink);margin-bottom:8px}
-.hero h1 em{font-style:normal;color:var(--teal)}
-.hero .tagline{font-family:'Jura',sans-serif;font-weight:600;font-size:1.25rem;color:var(--lime-deep);margin:0 0 12px}
-.hero p.lead{max-width:520px;margin:0 0 24px;color:var(--gray)}
-.hero-chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
-.hero-btns{display:flex;flex-wrap:wrap;gap:14px}
-.spin-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:10px;background:var(--teal);color:#fff;text-decoration:none;font-family:'Jura',sans-serif;font-weight:700;font-size:1.02rem;box-shadow:0 12px 26px rgba(0,96,100,.25)}
-.spin-btn:hover{background:var(--teal-deep)}
-.spin-btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
-.spin-btn.ghost:hover{border-color:var(--teal);color:var(--teal)}
+    main{padding-top:74px}
 
-/* drum */
-.drum-zone{text-align:center}
-.drum{width:min(290px,66vw);aspect-ratio:1;border-radius:50%;margin:0 auto;background:conic-gradient(from 0deg,var(--teal) 0 40deg,var(--teal-deep) 40deg 80deg,var(--teal) 80deg 120deg,var(--teal-deep) 120deg 160deg,var(--teal) 160deg 200deg,var(--teal-deep) 200deg 240deg,var(--teal) 240deg 280deg,var(--teal-deep) 280deg 320deg,var(--teal) 320deg 360deg);padding:18px;box-shadow:0 24px 50px rgba(0,96,100,.3);position:relative}
-.drum-door{width:100%;height:100%;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.drum-spiral{position:absolute;inset:14px;border-radius:50%;border:3px dashed var(--teal);animation:spinmove 14s linear infinite}
-.drum-spiral::before{content:"";position:absolute;inset:24px;border-radius:50%;border:3px solid var(--line)}
-.drum-spiral::after{content:"";position:absolute;inset:56px;border-radius:50%;background:var(--lime);opacity:.9}
-.drum-label{position:relative;z-index:2;font-family:'Jura',sans-serif;font-weight:700;color:var(--teal-deep);font-size:1.1rem;letter-spacing:2px}
-@keyframes spinmove{to{transform:rotate(360deg)}}
-.drum-note{margin-top:16px;font-size:.9rem;color:var(--gray)}
+    .hero{
+      min-height:780px;
+      display:grid;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(4,49,56,.95),rgba(4,49,56,.72) 48%,rgba(4,49,56,.22) 78%,rgba(4,49,56,.48)),
+        url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=88") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"SPIN";
+      position:absolute;
+      right:-18px;
+      top:60px;
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:700;
+      font-size:min(28vw,390px);
+      line-height:.8;
+      color:transparent;
+      -webkit-text-stroke:2px rgba(205,220,57,.15);
+      pointer-events:none;
+    }
+    .hero-in{
+      position:relative;
+      z-index:2;
+      padding:118px 0 96px;
+      max-width:860px;
+    }
+    .hero .kicker{color:var(--lime)}
+    .hero h1 span{color:var(--lime)}
+    .tagline{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(1.2rem,2.4vw,1.65rem);
+      color:#d9f0f0;
+      margin:18px 0 12px;
+      font-weight:600;
+    }
+    .hero-copy{
+      max-width:650px;
+      color:#e6f3f3;
+      line-height:1.75;
+      font-size:1.07rem;
+      margin-bottom:0;
+    }
+    .hero-chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(255,255,255,.24);
+      background:rgba(255,255,255,.07);
+      padding:9px 13px;
+      font-size:.8rem;
+      font-weight:700;
+    }
+    .chip i{color:var(--lime)}
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+    .btn{
+      min-height:52px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:13px 20px;
+      border:1px solid transparent;
+      font-size:.84rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-lime{background:var(--lime);color:var(--deep)}
+    .btn-ghost{border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.06);color:#fff}
+    .asset-note{
+      margin-top:18px;
+      color:rgba(255,255,255,.58);
+      font-size:.65rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
 
-/* touch chip */
-.touch-chip{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--lime);border-radius:999px;padding:10px 20px;font-weight:800;font-size:.9rem;color:var(--ink)}
-.touch-chip i{color:var(--lime-deep)}
+    .facts{
+      position:relative;
+      z-index:5;
+      margin-top:-42px;
+    }
+    .fact-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 18px 50px rgba(7,63,70,.12);
+    }
+    .fact{
+      padding:24px;
+      display:flex;
+      gap:13px;
+      border-right:1px solid var(--line);
+    }
+    .fact:last-child{border-right:0}
+    .fact i{color:var(--teal);margin-top:4px}
+    .fact small{
+      display:block;
+      color:var(--muted);
+      font-size:.62rem;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      margin-bottom:5px;
+    }
+    .fact strong{font-size:.91rem;line-height:1.45}
 
-/* sections */
-section.block{padding:60px 0}
-section.tint{background:var(--teal-wash)}
-.sec-title{text-align:center;font-size:clamp(2.1rem,5vw,2.9rem)}
-.sec-sub{text-align:center;max-width:620px;margin:0 auto 36px;color:var(--gray)}
-.spin-rule{display:flex;justify-content:center;align-items:center;gap:10px;margin:0 0 20px}
-.spin-rule i{width:12px;height:12px;border-radius:50%;background:var(--lime);display:inline-block}
-.spin-rule i:nth-child(2){width:9px;height:9px;opacity:.7}
-.spin-rule i:nth-child(3){width:7px;height:7px;opacity:.45}
+    .section{padding:100px 0;scroll-margin-top:74px}
+    .section-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:50px;
+      align-items:end;
+      margin-bottom:42px;
+    }
+    .lead{color:var(--muted);line-height:1.75;max-width:680px;margin:0}
 
-/* cards */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px}
-.svc-card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:26px 22px;text-align:center}
-.svc-card:hover{border-color:var(--teal);box-shadow:0 12px 28px rgba(0,131,143,.12)}
-.svc-card .ico{width:52px;height:52px;margin:0 auto 12px;border-radius:12px;background:var(--teal-wash);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.svc-card h3{font-size:1.3rem;margin-bottom:6px}
-.svc-card p{margin:0;font-size:.93rem;color:var(--gray)}
+    .wash{background:#edf8f7}
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--line);
+      border-left:1px solid var(--line);
+    }
+    .feature{
+      min-height:240px;
+      padding:28px 24px;
+      background:#fff;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      transition:.18s ease;
+    }
+    .feature:hover{transform:translateY(-3px);background:#f8fdfc}
+    .feature i{
+      color:var(--teal);
+      font-size:1.35rem;
+      margin-bottom:28px;
+    }
+    .feature h3{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:1.25rem;
+      margin-bottom:8px;
+    }
+    .feature p{
+      color:var(--muted);
+      line-height:1.65;
+      margin:0;
+      font-size:.92rem;
+    }
 
-/* day list hours */
-.day-board{max-width:500px;margin:0 auto;background:#fff;border:2px solid var(--line);border-radius:16px;padding:28px 28px 24px;box-shadow:0 16px 36px rgba(0,96,100,.1)}
-.day-board h3{text-align:center;color:var(--teal-deep);letter-spacing:1px}
-.db-row{display:flex;justify-content:space-between;gap:14px;padding:8px 6px;border-bottom:1.5px dashed var(--line);font-size:.97rem}
-.db-row:last-of-type{border-bottom:none}
-.db-row .d{font-weight:800}
-.db-row .t{color:var(--gray);font-weight:600}
-.db-row.today{background:var(--teal-wash);border-radius:8px;border-bottom-color:transparent}
-.db-row.today .d{color:var(--teal-deep)}
+    .image-band{
+      min-height:500px;
+      display:grid;
+      align-items:center;
+      background:
+        linear-gradient(90deg,rgba(7,63,70,.94),rgba(7,63,70,.58)),
+        url("https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=2200&q=86") center/cover no-repeat;
+      color:#fff;
+    }
+    .image-copy{max-width:670px;padding:90px 0}
+    .image-copy .big{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(3.8rem,7.5vw,6.9rem);
+      line-height:.87;
+      letter-spacing:-.05em;
+      margin-bottom:18px;
+    }
+    .image-copy .big span{color:var(--lime)}
+    .image-copy p{color:#e6f3f3;line-height:1.75;max-width:570px}
 
-/* quotes */
-.quote-card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:30px;position:relative;overflow:hidden}
-.quote-card::after{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--teal),var(--lime))}
-.quote-card .qmark{color:var(--teal);font-size:1.4rem;margin-bottom:10px}
-.quote-card blockquote{margin:0 0 14px;font-size:1.04rem;color:var(--ink)}
-.quote-card .stars i{color:var(--lime-deep);font-size:.82rem;letter-spacing:3px}
-.quote-card .attrib{font-size:.76rem;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:var(--gray);margin-top:8px}
-.quote-stack{max-width:760px;margin:0 auto;display:grid;gap:18px}
+    .hours-section{background:#fff}
+    .hours-wrap{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:42px;
+      align-items:start;
+    }
+    .hours-copy p{color:var(--muted);line-height:1.75}
+    .hours-board{
+      background:var(--aqua);
+      border:1px solid var(--line);
+      padding:28px;
+    }
+    .hours-list{list-style:none;padding:0;margin:0}
+    .hours-list li{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(7,63,70,.12);
+      color:var(--muted);
+    }
+    .hours-list li:last-child{border-bottom:0}
+    .hours-list li.today{font-weight:700;color:var(--deep)}
+    .hours-list li.today span:last-child{color:var(--teal)}
 
-/* rating + links */
-.rating-line{display:flex;align-items:baseline;justify-content:center;gap:12px;flex-wrap:wrap;margin:36px auto 22px}
-.rating-line .big{font-family:'Jura',sans-serif;font-weight:700;font-size:3.3rem;color:var(--teal);line-height:1}
-.rating-line .rest{font-weight:700;color:var(--gray);font-size:1.05rem}
-.link-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.g-link-card{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--teal);color:#fff;border-radius:10px;padding:15px 28px;font-weight:700;text-decoration:none;box-shadow:0 12px 26px rgba(0,96,100,.25)}
-.g-link-card:hover{background:var(--teal-deep)}
-.g-link-card.yelp{background:#fff;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
-.g-link-card.yelp:hover{border-color:var(--teal);color:var(--teal)}
-.g-link-card i{color:var(--lime)}
-.g-link-card.yelp i{color:#C8371F}
+    .reviews{background:#f7fbfa}
+    .review-grid{
+      display:grid;
+      grid-template-columns:.6fr 1.4fr;
+      gap:20px;
+    }
+    .rating{
+      background:var(--lime);
+      color:var(--deep);
+      padding:34px;
+      min-height:330px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .rating .num{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:7.2rem;
+      line-height:.85;
+      font-weight:700;
+    }
+    .rating p{font-weight:700;margin:0}
+    .quotes{display:grid;gap:14px}
+    .quote{
+      background:var(--deep);
+      color:#fff;
+      padding:30px;
+    }
+    .quote p{
+      margin:0;
+      font-size:1.08rem;
+      line-height:1.62;
+    }
+    .quote span{
+      display:block;
+      margin-top:14px;
+      color:var(--lime);
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-weight:800;
+    }
 
-/* visit */
-.visit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
-.info-card{background:#fff;border:2px solid var(--line);border-radius:14px;padding:26px;margin-bottom:20px}
-.info-card h3{display:flex;align-items:center;gap:10px;font-size:1.35rem;color:var(--teal-deep)}
-.info-card h3 i{color:var(--teal)}
-.addr{font-weight:800;font-size:1.05rem;margin:0 0 6px}
-.info-card p{color:var(--gray);margin:0 0 6px}
+    .visit{
+      background:
+        linear-gradient(rgba(248,251,250,.95),rgba(248,251,250,.95)),
+        url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .visit-card{
+      background:#fff;
+      border:1px solid var(--line);
+      padding:32px;
+    }
+    .visit-card>i{color:var(--teal);font-size:1.3rem;margin-bottom:18px}
+    .visit-card p{color:var(--muted);line-height:1.7}
+    .visit-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+    .btn-teal{background:var(--teal);color:#fff}
 
-/* walk-in card (no phone) */
-.walk-in{background:var(--teal-deep);color:#fff;border-radius:18px;padding:32px 28px;text-align:center;box-shadow:0 22px 46px rgba(0,96,100,.35);position:relative;overflow:hidden}
-.walk-in::before{content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;border:10px solid rgba(205,220,57,.35)}
-.walk-in .wi-label{font-family:'Jura',sans-serif;font-weight:700;letter-spacing:3px;font-size:.85rem;color:var(--lime);margin:0 0 12px;text-transform:uppercase}
-.walk-in .wi-addr{font-family:'Jura',sans-serif;font-weight:700;font-size:1.3rem;line-height:1.35}
-.walk-in .wi-hours{font-weight:700;font-size:.95rem;color:#BFE8EA;margin:10px 0 0}
-.walk-in .wi-sub{font-size:.92rem;color:#CFEDEE;margin:14px 0 0}
+    footer{
+      background:var(--deep);
+      color:#fff;
+      padding:42px 0 28px;
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:30px;
+    }
+    .foot-brand{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:1.65rem;
+      font-weight:700;
+    }
+    .foot p{color:#d8eded;font-size:.82rem;margin:7px 0 0}
+    .foot-nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+    .foot-nav a:hover{color:var(--lime)}
 
-/* form */
-.form-card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:34px;max-width:700px;margin:0 auto;box-shadow:0 18px 40px rgba(0,96,100,.1)}
-.form-card h3{text-align:center;font-size:1.8rem;color:var(--teal-deep)}
-.form-note{text-align:center;font-size:.95rem;margin:0 auto 24px;max-width:540px;color:var(--gray)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f-field{margin-bottom:16px}
-.f-field label{display:block;font-family:'Jura',sans-serif;font-weight:700;font-size:.98rem;margin-bottom:6px;color:var(--ink)}
-.f-field input,.f-field textarea{width:100%;border:2px solid var(--line);border-radius:10px;padding:12px 15px;font-family:'Mulish',sans-serif;font-size:.98rem;color:var(--ink);background:var(--teal-wash)}
-.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--teal)}
-.f-send{display:block;width:100%;border:none;border-radius:10px;padding:15px;background:var(--teal);color:#fff;font-family:'Jura',sans-serif;font-weight:700;font-size:1.05rem;cursor:pointer}
-.f-send:hover{background:var(--teal-deep)}
-.form-feedback{text-align:center;font-weight:700;min-height:24px;margin:14px 0 0;font-size:.95rem}
-.form-feedback.ok{color:#43A047}
-.form-feedback.warn{color:#C0574B}
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:none;
+      place-items:center;
+      background:rgba(4,30,33,.8);
+      padding:20px;
+    }
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(470px,100%);
+      background:#fff;
+      color:var(--ink);
+      border-top:6px solid var(--lime);
+      padding:32px;
+      box-shadow:0 30px 80px rgba(0,0,0,.28);
+    }
+    .modal-icon{
+      width:48px;height:48px;
+      display:grid;place-items:center;
+      background:var(--teal);
+      color:#fff;
+      margin-bottom:20px;
+    }
+    .modal-card h2{font-size:2rem;margin-bottom:10px}
+    .modal-card p{color:var(--muted);line-height:1.65;margin-bottom:22px}
 
-/* footer */
-.site-foot{background:var(--teal-deep);color:#BFE8EA;margin-top:70px}
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px;padding:48px 22px 32px;max-width:1060px;margin:0 auto}
-.foot-grid h4{font-family:'Jura',sans-serif;font-size:1.25rem;color:#fff;margin:0 0 12px}
-.foot-grid p{margin:0 0 8px;font-size:.93rem}
-.copyright{border-top:1px solid rgba(255,255,255,.18);text-align:center;padding:18px 22px;font-size:.9rem;color:#fff}
+    @media(max-width:960px){
+      .navlinks{display:none}
+      .menu-btn{display:block}
+      .fact-grid{grid-template-columns:1fr}
+      .fact{border-right:0;border-bottom:1px solid var(--line)}
+      .fact:last-child{border-bottom:0}
+      .section-head,.hours-wrap,.review-grid,.visit-grid{grid-template-columns:1fr}
+      .feature-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{min-height:700px;background-position:62% center}
+    }
 
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:36px}
-  .visit-grid{grid-template-columns:1fr}
-}
-@media (max-width:767px){
-  .menu-btn{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:3px solid var(--teal);flex-direction:column;align-items:stretch;gap:0;padding:10px 0}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:14px 26px;border-bottom:none}
-  .nav-links a:hover{background:var(--teal-wash)}
-  .f-row{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr;gap:24px;padding-top:38px}
-  .hero{padding:50px 0 60px}
-  section.block{padding:48px 0}
-}
-@media (max-width:380px){
-  .brand-name{font-size:1.05rem}
-  .hero h1{font-size:2.1rem}
-}
-</style>
+    @media(max-width:620px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav{min-height:68px}
+      main{padding-top:68px}
+      .brand-name{font-size:1.05rem}
+      .hero{min-height:650px;background-position:67% center}
+      .hero-in{padding:94px 0 76px}
+      h1{font-size:clamp(3.9rem,20vw,6rem)}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .facts{margin-top:-24px}
+      .section{padding:72px 0}
+      .section-head{gap:20px}
+      .feature-grid{grid-template-columns:1fr}
+      .foot{flex-direction:column;align-items:flex-start}
+      .modal-card{padding:24px 20px}
+    }
+  </style>
 </head>
 <body>
-<div class="site-shell">
 
-<header class="site-head">
-  <div class="head-in">
-    <a class="brand" href="#/" data-page="home" aria-label="Spin N Clean Laundromat home">
-      <span class="brand-drum" aria-hidden="true"></span>
-      <span class="brand-name">Spin <em>N</em> Clean</span>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Spin <span>N</span> Clean</span>
     </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#/wash" data-page="wash">The Wash</a>
-      <a href="#/reviews" data-page="reviews">Reviews</a>
-      <a href="#/visit" data-page="visit">Visit</a>
+
+    <nav class="navlinks" aria-label="Primary navigation">
+      <a href="#wash">The Wash</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
     </nav>
-    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
     </button>
   </div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#wash">The Wash</a>
+    <a href="#hours">Hours</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+  </nav>
 </header>
 
-<main>
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="kicker">Touch-screen machines on Palm Ave</div>
+      <h1>Spin <span>N</span> Clean Laundromat</h1>
+      <p class="tagline">Tap the screen. Let the drum spin.</p>
+      <p class="hero-copy">A bright, modern laundromat on N Palm Ave where every machine runs from a touch screen. Very clean, very quick, and someone is always happy to walk you through it.</p>
 
-<section class="page" id="page-home">
-  <div class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <span class="hero-badge"><i class="fa-solid fa-hand-pointer"></i> TOUCH-SCREEN MACHINES ON PALM AVE</span>
-          <h1>Spin <em>N</em> Clean Laundromat</h1>
-          <p class="tagline">Tap the screen. Let the drum spin.</p>
-          <p class="lead">A bright, modern laundromat on N Palm Ave where every machine runs from a touch screen. Very clean, very quick, and someone is always happy to walk you through it.</p>
-          <div class="hero-chips">
-            <span class="status-chip"><span class="dot"></span><span class="chip-label">Checking hours...</span></span>
-            <span class="status-chip lite">4.8 stars on Google</span>
-            <span class="touch-chip"><i class="fa-solid fa-hand-pointer"></i> New touch-screen machines</span>
-          </div>
-          <div class="hero-btns">
-            <a class="spin-btn" href="#/wash" data-page="wash">How it works <i class="fa-solid fa-arrow-right"></i></a>
-            <a class="spin-btn ghost" href="#/visit" data-page="visit">Visit</a>
-          </div>
-        </div>
-        <div class="drum-zone">
-          <div class="drum" aria-hidden="true">
-            <div class="drum-door">
-              <div class="drum-spiral"></div>
-              <span class="drum-label">SPIN</span>
-            </div>
-          </div>
-          <p class="drum-note">the drum never stops for long</p>
-        </div>
+      <div class="hero-chips">
+        <span class="chip"><i class="fa-solid fa-star"></i> 4.8 stars on Google</span>
+        <span class="chip"><i class="fa-solid fa-hand-pointer"></i> New touch-screen machines</span>
+        <span class="chip"><i class="fa-solid fa-clock"></i> Open daily, 7 AM to 10 PM</span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-lime" href="#wash"><i class="fa-solid fa-arrow-right"></i> How it works</a>
+        <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+      </div>
+
+      <p class="asset-note">Stock laundry photography is used for presentation and does not depict the actual business, staff, customers, or premises.</p>
+    </div>
+  </section>
+
+  <div class="facts">
+    <div class="wrap fact-grid">
+      <div class="fact">
+        <i class="fa-solid fa-hand-pointer"></i>
+        <div><small>Machines</small><strong>New touch-screen machines</strong></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-clock"></i>
+        <div><small>Hours</small><strong>Every day, 7 AM to 10 PM</strong></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><small>Address</small><strong>3234 N Palm Ave<br>Fresno, CA 93704</strong></div>
       </div>
     </div>
   </div>
 
-  <section class="block">
+  <section class="section wash" id="wash">
     <div class="wrap">
-      <h2 class="sec-title">Laundry Day, Streamlined</h2>
-      <div class="spin-rule" aria-hidden="true"><i></i><i></i><i></i></div>
-      <p class="sec-sub">New machines, clean floors and wash times people actually brag about. That is the whole idea.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-hand-pointer"></i></div>
+      <div class="section-head">
+        <div>
+          <div class="kicker">The Wash</div>
+          <h2>Laundry Day, Streamlined</h2>
+        </div>
+        <p class="lead">New machines, clean floors and wash times people actually brag about. That is the whole idea.</p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature">
+          <i class="fa-solid fa-hand-pointer"></i>
           <h3>Touch Screens</h3>
           <p>All the machines are new and run from a tap. No quarters juggling.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-soap"></i></div>
+        </article>
+
+        <article class="feature">
+          <i class="fa-solid fa-soap"></i>
           <h3>Washers</h3>
           <p>Fresh, well kept washers that get through load after load.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+        </article>
+
+        <article class="feature">
+          <i class="fa-solid fa-temperature-arrow-up"></i>
           <h3>Dryers</h3>
           <p>Hot and fast. Customers report whole baskets done in under an hour.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-user-check"></i></div>
+        </article>
+
+        <article class="feature">
+          <i class="fa-solid fa-user-check"></i>
           <h3>Real Help</h3>
           <p>Never used a touch-screen laundry? Someone will walk you through it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+        </article>
 
-  <section class="block tint">
-    <div class="wrap">
-      <h2 class="sec-title">Open Every Day</h2>
-      <div class="spin-rule" aria-hidden="true"><i></i><i></i><i></i></div>
-      <p class="sec-sub">Doors open at 7 in the morning, machines stop at 10 at night, seven days a week.</p>
-      <div class="day-board">
-        <h3>WEEKLY HOURS</h3>
-        <div class="db-row" data-day="0"><span class="d">Sunday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="1"><span class="d">Monday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="2"><span class="d">Tuesday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="3"><span class="d">Wednesday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="4"><span class="d">Thursday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="5"><span class="d">Friday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="6"><span class="d">Saturday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="quote-stack">
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>Very clean!! This is a very nice laundromat. All the machines are new and touch screen.</blockquote>
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>Was able to wash 5 loads in 25 mins and dry all 5 under 40!</blockquote>
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-
-<section class="page" id="page-wash">
-  <section class="block" style="padding-bottom:26px">
-    <div class="wrap">
-      <h1 class="sec-title">The Wash</h1>
-      <div class="spin-rule" aria-hidden="true"><i></i><i></i><i></i></div>
-      <p class="sec-sub">A laundromat built around the machines, and the machines are the best part: new, fast and touch-screen from end to end.</p>
-      <div class="svc-grid">
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-hand-pointer"></i></div>
-          <h3>Tap to Start</h3>
-          <p>Pick your machine, tap the screen, go. The reviews say it best.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-soap"></i></div>
-          <h3>Washers</h3>
-          <p>New washers that handle the weekly pile without a wait.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-temperature-arrow-up"></i></div>
-          <h3>Dryers</h3>
-          <p>Five loads washed in 25 minutes and dried in under 40, per one very happy customer.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-user-check"></i></div>
-          <h3>Guided First Visit</h3>
-          <p>First time? A friendly walk-through of the whole process, start to fold.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-broom"></i></div>
+        <article class="feature">
+          <i class="fa-solid fa-broom"></i>
           <h3>Clean Floors</h3>
           <p>Clean is the second half of the name, and it shows.</p>
-        </div>
-        <div class="svc-card">
-          <div class="ico"><i class="fa-solid fa-clock"></i></div>
+        </article>
+
+        <article class="feature">
+          <i class="fa-solid fa-clock"></i>
           <h3>7 to 10 Daily</h3>
           <p>Every day from 7 AM to 10 PM. Early loads and evening loads both work.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="day-board">
-        <h3>WEEKLY HOURS</h3>
-        <div class="db-row" data-day="0"><span class="d">Sunday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="1"><span class="d">Monday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="2"><span class="d">Tuesday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="3"><span class="d">Wednesday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="4"><span class="d">Thursday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="5"><span class="d">Friday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-        <div class="db-row" data-day="6"><span class="d">Saturday</span><span class="t">7:00 AM - 10:00 PM</span></div>
-      </div>
-    </div>
-  </section>
-</section>
 
-<section class="page" id="page-reviews">
-  <section class="block" style="padding-bottom:30px">
-    <div class="wrap">
-      <h1 class="sec-title">Reviews</h1>
-      <div class="spin-rule" aria-hidden="true"><i></i><i></i><i></i></div>
-      <p class="sec-sub">Every Google review quote we have, word for word, exactly as written.</p>
-      <div class="quote-stack">
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>Very clean!! This is a very nice laundromat. All the machines are new and touch screen.</blockquote>
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>One of the lovely young ladies walked me through the entire process.</blockquote>
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
-        <div class="quote-card">
-          <div class="qmark"><i class="fa-solid fa-quote-left"></i></div>
-          <blockquote>Was able to wash 5 loads in 25 mins and dry all 5 under 40!</blockquote>
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="attrib">Google review</p>
-        </div>
+  <section class="image-band">
+    <div class="wrap image-copy">
+      <div class="big">Tap the screen.<br><span>Let the drum spin.</span></div>
+      <p>A laundromat built around new touch-screen machines on N Palm Ave.</p>
+    </div>
+  </section>
+
+  <section class="section hours-section" id="hours">
+    <div class="wrap hours-wrap">
+      <div class="hours-copy">
+        <div class="kicker">Hours</div>
+        <h2>Open Every Day</h2>
+        <p>Doors open at 7 in the morning, machines stop at 10 at night, seven days a week.</p>
       </div>
-      <div class="rating-line">
-        <span class="big">4.8</span>
-        <span class="rest">stars with 54 reviews on Google</span>
-      </div>
-      <div class="link-row">
-        <a class="g-link-card" href="https://www.google.com/maps/search/?api=1&query=Spin%20N%20Clean%20Laundromat%2C%203234%20N%20Palm%20Ave%2C%20Fresno%2C%20CA%2093704" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
-        <a class="g-link-card yelp" href="https://www.yelp.com/biz/spin-n-clean-fresno" target="_blank" rel="noopener"><i class="fa-brands fa-yelp"></i> Read the Yelp reviews</a>
+
+      <div class="hours-board">
+        <ul class="hours-list">
+          <li data-day="0"><span>Sunday</span><span>7:00 AM - 10:00 PM</span></li>
+          <li data-day="1"><span>Monday</span><span>7:00 AM - 10:00 PM</span></li>
+          <li data-day="2"><span>Tuesday</span><span>7:00 AM - 10:00 PM</span></li>
+          <li data-day="3"><span>Wednesday</span><span>7:00 AM - 10:00 PM</span></li>
+          <li data-day="4"><span>Thursday</span><span>7:00 AM - 10:00 PM</span></li>
+          <li data-day="5"><span>Friday</span><span>7:00 AM - 10:00 PM</span></li>
+          <li data-day="6"><span>Saturday</span><span>7:00 AM - 10:00 PM</span></li>
+        </ul>
       </div>
     </div>
   </section>
-</section>
 
-<section class="page" id="page-visit">
-  <section class="block" style="padding-bottom:30px">
+  <section class="section reviews" id="reviews">
     <div class="wrap">
-      <h1 class="sec-title">Walk Right In</h1>
-      <div class="spin-rule" aria-hidden="true"><i></i><i></i><i></i></div>
-      <p class="sec-sub">No phone tag needed. Come see the touch screens in person, any day of the week.</p>
+      <div class="section-head">
+        <div>
+          <div class="kicker">Reviews</div>
+          <h2>What customers said</h2>
+        </div>
+        <p class="lead">Every Google review quote included below is taken from the supplied page.</p>
+      </div>
+
+      <div class="review-grid">
+        <div class="rating">
+          <div class="num">4.8</div>
+          <p>stars with 54 reviews on Google</p>
+        </div>
+
+        <div class="quotes">
+          <article class="quote">
+            <p>“Very clean!! This is a very nice laundromat. All the machines are new and touch screen.”</p>
+            <span>Google review</span>
+          </article>
+
+          <article class="quote">
+            <p>“One of the lovely young ladies walked me through the entire process.”</p>
+            <span>Google review</span>
+          </article>
+
+          <article class="quote">
+            <p>“Was able to wash 5 loads in 25 mins and dry all 5 under 40!”</p>
+            <span>Google review</span>
+          </article>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+        <button class="btn btn-teal" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+        <button class="btn btn-teal" type="button" data-locked="true"><i class="fa-brands fa-yelp"></i> Read the Yelp reviews</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Visit</div>
+          <h2>Walk Right In</h2>
+        </div>
+        <p class="lead">No phone tag needed. Come see the touch screens in person, any day of the week.</p>
+      </div>
+
       <div class="visit-grid">
-        <div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-location-dot"></i> The Laundromat</h3>
-            <p class="addr">3234 N Palm Ave<br>Fresno, CA 93704</p>
-            <p>On Palm Ave with easy parking right out front. Bring the baskets in, the machines do the rest.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-clock"></i> Hours</h3>
-            <p class="addr">Every day, 7 AM to 10 PM</p>
-            <p>Fifteen hours a day, seven days a week. Last loads in by 9 or so and you are home by 10:30.</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fa-solid fa-hand-pointer"></i> First Visit Tip</h3>
-            <p>Just walk in and look curious. Someone will walk you through the touch screens, like the reviews say.</p>
+        <div class="visit-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>The Laundromat</h3>
+          <p><strong style="color:var(--deep)">3234 N Palm Ave</strong><br>Fresno, CA 93704</p>
+          <div class="visit-actions">
+            <button class="btn btn-teal" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps</button>
           </div>
         </div>
-        <div>
-          <div class="walk-in">
-            <p class="wi-label">Walk in, say hi</p>
-            <p class="wi-addr">3234 N Palm Ave<br>Fresno, CA 93704</p>
-            <p class="wi-hours">Open daily, 7 AM - 10 PM</p>
-            <p class="wi-sub">No phone number needed. Everything happens at the counter and at the machines, in person.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="block tint" style="padding-top:46px">
-    <div class="wrap">
-      <div class="form-card">
-        <h3>Leave a note for the counter</h3>
-        <p class="form-note">Write your note here. We will copy it to your clipboard so you can save it, or just bring it in and say it in person.</p>
-        <form id="quote-form">
-          <div class="f-row">
-            <div class="f-field">
-              <label for="f-name">Your name</label>
-              <input type="text" id="f-name" autocomplete="name" placeholder="First and last">
-            </div>
-            <div class="f-field">
-              <label for="f-msg">Message</label>
-              <textarea id="f-msg" rows="4" placeholder="What do you want the counter to know?"></textarea>
-            </div>
-          </div>
-          <button type="submit" class="f-send"><i class="fa-solid fa-clipboard"></i> Copy my note</button>
-          <p class="form-feedback" id="form-feedback"></p>
-        </form>
-      </div>
-    </div>
-  </section>
-</section>
 
+        <div class="visit-card">
+          <i class="fa-solid fa-clock"></i>
+          <h3>Hours</h3>
+          <p><strong style="color:var(--deep)">Every day, 7 AM to 10 PM</strong></p>
+          <p>The supplied page does not provide a phone number, so no call button is included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="site-foot">
-  <div class="foot-grid">
+<footer>
+  <div class="wrap foot">
     <div>
-      <h4>Spin N Clean Laundromat</h4>
-      <p>Fresno's touch-screen laundromat on N Palm Ave. New machines, fast wash and dry cycles, clean floors and friendly help.</p>
+      <div class="foot-brand">Spin N Clean Laundromat</div>
+      <p>3234 N Palm Ave · Fresno, CA 93704 · Open daily, 7 AM to 10 PM</p>
     </div>
-    <div>
-      <h4>Find Us</h4>
-      <p>3234 N Palm Ave<br>Fresno, CA 93704</p>
-      <p>Open daily, 7 AM to 10 PM</p>
-    </div>
-    <div>
-      <h4>Walk In</h4>
-      <p>The best way to reach us is in person. Stop by the counter on Palm Ave, any day of the week.</p>
-    </div>
+    <nav class="foot-nav">
+      <a href="#wash">The Wash</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
   </div>
-  <div class="copyright">© Spin N Clean Laundromat · Fresno, CA</div>
 </footer>
 
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-teal" id="closeModal" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "Spin N Clean Laundromat";
-var TITLES = { home: "Touch-Screen Laundry on Palm Ave", wash: "The Wash", reviews: "Reviews", visit: "Walk Right In" };
+(() => {
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const modal = document.getElementById("lockedModal");
+  const closeModal = document.getElementById("closeModal");
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
+  menuBtn.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
   });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
 
-var menuBtn = document.getElementById("menu-btn");
-var navLinksEl = document.querySelector(".nav-links");
-if (menuBtn && navLinksEl) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinksEl.classList.toggle("open");
-  });
-}
-
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = { 0:[7,22], 1:[7,22], 2:[7,22], 3:[7,22], 4:[7,22], 5:[7,22], 6:[7,22] };
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-
-(function renderStatus(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.add(st.open ? "is-open" : "is-closed");
-    var label = c.querySelector(".chip-label");
-    if (label) label.textContent = st.label;
-  });
-  var today = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(row){
-    if (parseInt(row.getAttribute("data-day"), 10) === today) row.classList.add("today");
-  });
-})();
-
-var quoteForm = document.getElementById("quote-form");
-if (quoteForm) {
-  quoteForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fmsg = document.getElementById("f-msg").value.trim();
-    var feedback = document.getElementById("form-feedback");
-    if (!name || !fmsg) {
-      feedback.textContent = "Add your name and a short note so we know who is asking.";
-      feedback.className = "form-feedback warn";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + ". " + fmsg;
-    navigator.clipboard.writeText(text).then(function(){
-      feedback.textContent = "Copied. Bring it in or find us on the map.";
-      feedback.className = "form-feedback ok";
-    }).catch(function(){
-      feedback.textContent = "Copy blocked by the browser. Select the note, copy it by hand and bring it in.";
-      feedback.className = "form-feedback warn";
+  document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
     });
   });
-}
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add("open");
+    document.body.classList.add("modal-open");
+    closeModal.focus();
+  }
+
+  function closeLocked(){
+    modal.classList.remove("open");
+    document.body.classList.remove("modal-open");
+    if(lastFocus && typeof lastFocus.focus === "function"){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener("click", e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  closeModal.addEventListener("click", closeLocked);
+
+  modal.addEventListener("click", e => {
+    if(e.target === modal){
+      closeLocked();
+    }
+  });
+
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape" && modal.classList.contains("open")){
+      closeLocked();
+    }
+    if(e.key === "Tab" && modal.classList.contains("open")){
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+
+  const today = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Los_Angeles",
+    weekday: "short"
+  }).format(new Date());
+
+  const days = {Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6};
+  const row = document.querySelector(`[data-day="${days[today]}"]`);
+  if(row){
+    row.classList.add("today");
+  }
+
+  document.addEventListener("gesturestart", e => e.preventDefault());
+})();
 </script>
+
 </body>
 </html>

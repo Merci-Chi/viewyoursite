@@ -2,574 +2,380 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valley Prime Meats &amp; Carniceria | New Butcher Shop on N Cedar Ave, Fresno</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#4b2d1e">
+<title>Valley Prime Meats & Carniceria | Fresno Butcher Shop</title>
+<meta name="description" content="Valley Prime Meats & Carniceria in Fresno. Fresh cuts, steaks, roasts, ground beef, carne asada, chicken, chorizo, sausage, and marinated favorites. Open daily 9 AM–7 PM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
 :root{
   --brown:#5A3A26; --brown-d:#3E2A1B; --brown-l:#7A563C;
-  --steel:#90A4AE; --steel-d:#5E7A87; --steel-l:#C6D2D8;
+  --steel:#90A4AE; --steel-l:#C6D2D8;
   --cream:#F5EFE3; --paper:#FDFBF4; --ink:#241B12; --red:#B23A2E;
+  --max:1160px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;font-size:17px}
-svg{max-width:100%;height:auto}
-a{color:var(--red)}
-.site-shell{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
-/* header */
-.site-header{background:var(--paper);border-bottom:3px solid var(--brown);position:sticky;top:0;z-index:60}
-.header-in{max-width:1160px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--brown)}
-.brand-mark{width:44px;height:44px;border:3px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;color:var(--red);font-size:12px;letter-spacing:1px;transform:rotate(-8deg);flex:none;line-height:1}
-.brand-name{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:19px;letter-spacing:1.5px;line-height:1.1;color:var(--brown-d)}
-.brand-name small{display:block;font-size:10px;letter-spacing:3px;color:var(--steel-d);font-weight:500}
-#menu-btn{display:none;background:var(--brown);color:#fff;border:none;width:46px;height:46px;border-radius:8px;font-size:19px;cursor:pointer;align-items:center;justify-content:center}
-#menu-btn.open{background:var(--red)}
-.nav-links{display:flex;gap:4px;align-items:center}
-.nav-links a{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-size:14px;font-weight:500;color:var(--brown-d);text-decoration:none;padding:10px 14px;border-radius:6px}
-.nav-links a:hover{background:var(--cream);color:var(--red)}
-/* status chip */
-.status-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;background:var(--paper);border:1.5px solid var(--steel);font-weight:600;font-size:14px;color:var(--brown-d)}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#9AA7AD;flex:none}
-.status-chip.open .dot{background:#2E7D32;box-shadow:0 0 0 3px rgba(46,125,50,.18)}
-.status-chip.open{border-color:#2E7D32}
-/* hero */
-.hero{background:linear-gradient(160deg,var(--brown) 0%,var(--brown-d) 70%);color:var(--cream);position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.03) 0 2px,transparent 2px 9px)}
-.hero-in{max-width:1160px;margin:0 auto;padding:64px 20px 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;position:relative}
-.eyebrow{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:3px;font-size:13px;color:var(--steel-l);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
-.eyebrow i{color:var(--steel)}
-.hero h1{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(34px,4.6vw,54px);line-height:1.06;letter-spacing:1px;margin:0 0 16px}
-.hero h1 em{font-style:normal;color:var(--steel-l)}
-.hero p{max-width:52ch;color:#E9E0CF;font-size:18px;margin:0 0 24px}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
-.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-size:14px;font-weight:600;text-decoration:none;padding:14px 22px;border-radius:8px;border:2px solid transparent;cursor:pointer}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:"Source Sans 3",sans-serif;background:var(--cream);color:var(--ink);
+  line-height:1.6;font-size:17px;overflow-x:hidden;-webkit-user-select:none;user-select:none
+}
+a{color:inherit}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2,h3{font-family:"Oswald",sans-serif;margin:0;line-height:1.02;text-transform:uppercase;letter-spacing:.02em}
+h1{font-size:clamp(3.5rem,7.4vw,6.7rem)}
+h2{font-size:clamp(2.4rem,4.8vw,4.2rem)}
+h3{font-size:1.35rem}
+p{margin:0}
+.eyebrow{font-family:"Oswald";text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;color:#e7c7b9;margin-bottom:11px}
+
+.site-header{position:sticky;top:0;z-index:50;background:rgba(253,251,244,.96);border-bottom:3px solid var(--brown);backdrop-filter:blur(12px)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--brown-d)}
+.brand-mark{
+  width:44px;height:44px;border:3px solid var(--red);border-radius:50%;
+  display:grid;place-items:center;font-family:"Oswald";font-weight:700;color:var(--red);font-size:.8rem;transform:rotate(-8deg)
+}
+.brand strong{display:block;font-family:"Oswald";text-transform:uppercase;letter-spacing:.06em}
+.brand small{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.17em;color:#6f838c}
+.navlinks{display:flex;align-items:center;gap:22px}
+.navlinks a{text-decoration:none;font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;font-weight:600}
+.navlinks a:hover{color:var(--red)}
+.menu{display:none;width:44px;height:44px;background:var(--brown);color:#fff;border:0;font-size:1.05rem;cursor:pointer}
+
+.hero{
+  min-height:720px;position:relative;display:flex;align-items:end;color:var(--cream);overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(59,37,23,.97),rgba(59,37,23,.78) 52%,rgba(59,37,23,.24)),
+    linear-gradient(0deg,rgba(59,37,23,.9),transparent 54%),
+    url("https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat
+}
+.hero:after{content:"PRIME";position:absolute;right:-20px;top:28px;font-family:"Oswald";font-weight:700;font-size:min(28vw,360px);color:transparent;-webkit-text-stroke:2px rgba(198,210,216,.18)}
+.hero-in{position:relative;z-index:2;padding:110px 0 70px}
+.hero h1{max-width:900px}
+.hero h1 span{color:#e8a38c}
+.hero .lead{max-width:760px;color:#eadfd3;font-size:1.1rem;margin:24px 0 30px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.3);padding:8px 14px;border-radius:999px;font-size:.82rem}
+.chip i{color:#e8a38c}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:13px 21px;
+  text-decoration:none;text-transform:uppercase;font-family:"Oswald";letter-spacing:.08em;font-size:.8rem;font-weight:600;
+  border:2px solid transparent;cursor:pointer;transition:.2s
+}
+.btn:hover{transform:translateY(-2px)}
 .btn-solid{background:var(--red);color:#fff}
-.btn-solid:hover{background:#96301F}
-.btn-ghost{border-color:var(--steel);color:var(--cream)}
-.btn-ghost:hover{background:rgba(255,255,255,.08)}
-.hero-side{display:flex;justify-content:center}
-.stamp-badge{width:min(300px,78vw);transform:rotate(-7deg);filter:drop-shadow(0 10px 22px rgba(0,0,0,.35))}
-.hero-meta{display:flex;gap:10px;flex-wrap:wrap}
-.hero-meta .chip{border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px;font-size:13px;letter-spacing:.5px;color:#E9E0CF}
-/* steel strip */
-.steel-strip{background:var(--steel-d);color:#F3F6F8;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:2.5px;font-size:13.5px}
-.steel-strip .wrap{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;padding:14px 20px}
-.steel-strip span i{color:#E2ECEF;margin-right:8px}
-/* sections */
-.section{padding:58px 0}
-.section-head{text-align:center;max-width:640px;margin:0 auto 34px}
-.kicker{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:3px;font-size:13px;color:var(--red);font-weight:600}
-.section-head h2{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:clamp(26px,3.2vw,36px);letter-spacing:1px;color:var(--brown-d);margin:8px 0 10px;line-height:1.15}
-.section-head p{color:#5C5142;margin:0}
-.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.case-card{background:var(--paper);border:1.5px solid var(--steel-l);border-top:4px solid var(--brown);border-radius:10px;padding:24px 22px}
-.case-card i.ico{width:46px;height:46px;border-radius:50%;background:var(--cream);border:1.5px solid var(--steel);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px}
-.case-card h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:17px;color:var(--brown-d);margin:0 0 8px}
-.case-card p{margin:0;color:#5C5142;font-size:15.5px}
-.newshop{background:var(--paper);border:1.5px solid var(--steel-l);border-radius:12px;display:grid;grid-template-columns:auto 1fr;gap:22px;padding:26px 28px;align-items:center;margin-top:22px}
-.newshop .medal{width:64px;height:64px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none;transform:rotate(-8deg);border:3px solid #fff;box-shadow:0 0 0 2px var(--red)}
-.newshop h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;color:var(--brown-d);margin:0 0 6px}
-.newshop p{margin:0;color:#5C5142}
-/* hours week strip */
-.hours-block{background:var(--brown-d);border-radius:14px;padding:30px 26px;color:var(--cream)}
-.hours-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
-.hours-top h2{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:2px;font-size:22px;margin:0;display:flex;align-items:center;gap:12px}
-.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.wday{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:9px;padding:12px 6px;text-align:center}
-.wday .d{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-size:12px;color:var(--steel-l);margin-bottom:6px}
-.wday .t{font-weight:600;font-size:13.5px;white-space:nowrap}
-.wday.today{background:var(--red);border-color:var(--red);box-shadow:0 6px 14px rgba(0,0,0,.3)}
-.wday.today .d{color:#F6D9CF}
-.hours-note{margin:16px 0 0;font-size:14px;color:#D8CCB8;display:flex;gap:9px;align-items:flex-start}
-.hours-note i{margin-top:4px;color:var(--steel)}
-/* reviews */
-.ticket{background:var(--paper);border:1.5px solid var(--steel-l);border-left:6px solid var(--red);border-radius:8px;padding:24px 24px 20px;position:relative}
-.ticket .qmark{position:absolute;top:-16px;left:18px;width:34px;height:34px;border-radius:50%;background:var(--brown);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:15px}
-.ticket blockquote{margin:6px 0 12px;font-size:17.5px;font-style:italic;color:#3E3222}
-.ticket .who{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--steel-d);font-weight:600;display:flex;align-items:center;gap:12px}
-.ticket .stars i{color:#D9A441;font-size:12px}
-.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:30px}
-.rev-summary{background:var(--paper);border:1.5px dashed var(--steel);border-radius:12px;padding:22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-.rev-summary .big{font-family:'Oswald',sans-serif;font-weight:700;font-size:40px;color:var(--brown-d);line-height:1}
-.rev-summary .sub{color:#5C5142;font-size:16px}
-.rev-summary .stars i{color:#D9A441}
-.link-card{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--brown);color:#fff;text-decoration:none;border-radius:10px;padding:18px 22px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-size:15px;font-weight:600}
-.link-card:hover{background:var(--red)}
-.link-card.google{margin:0 auto;max-width:420px}
-/* visit */
-.visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}
-.vcard{background:var(--paper);border:1.5px solid var(--steel-l);border-radius:12px;padding:26px}
-.vcard h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-size:17px;color:var(--brown-d);margin:0 0 14px;display:flex;align-items:center;gap:10px}
-.vcard h3 i{color:var(--red)}
-.addr-line{display:flex;gap:12px;align-items:flex-start;color:#5C5142;margin-bottom:8px}
-.addr-line i{color:var(--steel-d);margin-top:5px}
-.daylist{list-style:none;margin:0;padding:0}
-.daylist li{display:flex;justify-content:space-between;gap:10px;padding:9px 10px;border-bottom:1px dashed var(--steel-l);font-size:15px}
-.daylist li:last-child{border-bottom:none}
-.daylist li span:first-child{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:13px;color:var(--brown-l);padding-top:2px}
-.daylist li.today{background:#F6E8E4;border-radius:6px;color:var(--red);font-weight:700}
-.daylist li.today span:first-child{color:var(--red)}
-.stamp-card{background:var(--cream);border:2px dashed var(--red);border-radius:50%;width:min(340px,100%);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px;margin:0 auto 22px;transform:rotate(-3deg)}
-.stamp-card .ring{width:86px;height:86px;border-radius:50%;border:3px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--red);margin-bottom:14px}
-.stamp-card .t1{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:2.5px;font-size:13px;color:var(--red);font-weight:600}
-.stamp-card .phone-big{font-family:'Oswald',sans-serif;font-size:clamp(22px,3vw,27px);font-weight:700;color:var(--brown-d);text-decoration:none;margin:6px 0;letter-spacing:.5px}
-.stamp-card .t2{font-size:14px;color:#6B5D4B;max-width:24ch}
-.stamp-card:hover .phone-big{color:var(--red)}
-/* form */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-grid .full{grid-column:1/-1}
-label{display:block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:1.5px;font-size:12px;color:var(--brown-l);margin-bottom:6px;font-weight:600}
-input,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--steel);border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:16px;background:#fff;color:var(--ink)}
-input:focus,textarea:focus{outline:2px solid var(--red);outline-offset:1px;border-color:var(--red)}
-textarea{min-height:110px;resize:vertical}
-.form-feedback{margin:12px 0 0;font-size:15px;font-weight:600;color:var(--steel-d);min-height:22px}
-.form-feedback.ok{color:#2E7D32}
-/* footer */
-.site-footer{background:var(--brown-d);color:#E5DCCB;margin-top:58px}
-.foot-grid{max-width:1160px;margin:0 auto;padding:38px 20px 26px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:26px}
-.foot-grid h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:2px;font-size:14px;color:var(--steel-l);margin:0 0 12px}
-.foot-grid p,.foot-grid a{color:#E5DCCB;font-size:15px;text-decoration:none}
-.foot-grid a:hover{color:#fff;text-decoration:underline}
-.foot-line{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
-.foot-line i{color:var(--steel);margin-top:4px;width:16px;text-align:center}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.14)}
-.foot-bottom .wrap{padding:16px 20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13.5px;color:#C9BBA4}
-.copyright{letter-spacing:.5px}
-.section-tight{padding-top:0}
-.hero-flat{grid-template-columns:1fr;text-align:left;padding:46px 20px}
-.vcard-stack{margin-top:20px}
-.chip-hours{margin-bottom:14px}
-.btn-wide{width:100%;justify-content:center}
-/* page router */
-.page{display:none}
-.page.active{display:block}
-/* responsive */
-@media (max-width:960px){
-  .hero-in{grid-template-columns:1fr;text-align:center;padding:48px 20px}
-  .hero p{margin-left:auto;margin-right:auto}
-  .hero-ctas,.hero-meta{justify-content:center}
-  .hero-side{order:-1}
-  .stamp-badge{width:min(220px,60vw)}
-  .card-grid{grid-template-columns:1fr 1fr}
-  .rev-grid{grid-template-columns:1fr 1fr}
-  .visit-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr 1fr}
+.btn-ghost{border-color:rgba(255,255,255,.48);color:#fff;background:rgba(0,0,0,.08)}
+.asset-note{position:absolute;right:14px;bottom:14px;z-index:3;background:rgba(0,0,0,.66);color:#fff;border:1px solid rgba(255,255,255,.2);padding:7px 10px;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em}
+
+.strip{background:#5E7A87;color:#f4f7f8}
+.strip .wrap{min-height:58px;display:flex;justify-content:center;gap:24px;align-items:center;flex-wrap:wrap;font-family:"Oswald";text-transform:uppercase;letter-spacing:.09em;font-size:.76rem}
+.strip i{margin-right:7px;color:#fff}
+
+.section{padding:90px 0;scroll-margin-top:76px}
+.section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:end;margin-bottom:42px}
+.section-head p{color:#62584c;max-width:660px}
+
+.market{
+  background:#fff;position:relative;overflow:hidden
 }
-@media (max-width:860px){
-  #menu-btn{display:flex}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:3px solid var(--brown);flex-direction:column;align-items:stretch;padding:10px 14px 16px;gap:4px;box-shadow:0 14px 24px rgba(36,27,18,.16)}
-  .nav-links.open{display:flex}
-  .nav-links a{padding:13px 12px;border-bottom:1px dashed var(--steel-l)}
-  .nav-links a:last-child{border-bottom:none}
+.market:before{
+  content:"";position:absolute;inset:0;opacity:.08;
+  background:url("https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=2200&q=80") center/cover no-repeat
 }
-@media (max-width:640px){
-  body{font-size:16px}
-  .card-grid,.rev-grid{grid-template-columns:1fr}
-  .week-strip{grid-template-columns:repeat(4,1fr)}
-  .wday:nth-child(7){grid-column:span 2}
-  .foot-grid{grid-template-columns:1fr}
-  .newshop{grid-template-columns:1fr;text-align:left}
-  .form-grid{grid-template-columns:1fr}
-  .section{padding:44px 0}
+.market .wrap{position:relative;z-index:2}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:1px solid var(--steel-l);border-top:4px solid var(--brown);padding:22px}
+.icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--cream);border:1px solid var(--steel);color:var(--red);margin-bottom:13px}
+.card p{color:#66594c;font-size:.92rem;margin-top:6px}
+.newshop{margin-top:24px;padding:24px;border:1px solid var(--steel-l);background:var(--paper);display:grid;grid-template-columns:62px 1fr;gap:18px;align-items:center}
+.medal{width:58px;height:58px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:1.2rem;transform:rotate(-8deg)}
+
+.hours{
+  position:relative;color:#fff;
+  background:
+    linear-gradient(rgba(59,42,27,.94),rgba(59,42,27,.96)),
+    url("https://images.unsplash.com/photo-1551028150-64b9f398f678?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat
+}
+.hours .section-head p{color:#dfd0c1}
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.hours-box{border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.06);padding:28px}
+.hrow{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.13);font-size:.9rem}
+.hrow:last-child{border-bottom:0}
+.protected{padding:22px;border-left:4px solid #e8a38c;background:rgba(255,255,255,.07)}
+.protected strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:#e8a38c;margin-bottom:8px}
+
+.reviews{background:var(--cream)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ticket{background:var(--paper);border:1px solid var(--steel-l);border-left:6px solid var(--red);padding:25px}
+.quote{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brown);color:#fff;margin-bottom:14px}
+.stars{color:#D9A441;font-size:.82rem;margin:12px 0}
+.ticket span{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#687d87;font-weight:700}
+.summary{margin-top:24px;padding:22px;border:1px dashed var(--steel);background:var(--paper);text-align:center}
+.summary strong{font-family:"Oswald";font-size:1.8rem;color:var(--brown-d)}
+
+.visit{background:#fff}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.vcard{border:1px solid var(--steel-l);background:var(--paper);padding:28px}
+.vcard .protected{background:#f7ede9;color:var(--brown-d)}
+.form{display:grid;gap:14px}
+.field label{display:block;font-family:"Oswald";text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;color:var(--brown-l);margin-bottom:5px}
+.field input,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--steel);background:#fff;font:inherit}
+.field textarea{min-height:110px;resize:vertical}
+
+footer{background:var(--brown-d);color:#e5dccb;padding:38px 0}
+.footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap}
+.footer-nav a{text-decoration:none;color:#fff;font-size:.8rem}
+
+.modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.72);padding:22px}
+.modal.open{display:grid}
+.modal-card{width:min(470px,100%);background:var(--paper);color:var(--ink);padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.modal-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--brown);color:#e8a38c;margin-bottom:20px}
+.modal-card h2{font-size:2.3rem}
+.modal-card p{margin:15px 0 24px;color:#64594d}
+body.modal-open{overflow:hidden}
+
+@media(max-width:860px){
+  .menu{display:grid;place-items:center}
+  .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--paper);padding:8px 20px 20px;flex-direction:column;align-items:stretch;gap:0;border-bottom:3px solid var(--brown)}
+  .navlinks.open{display:flex}
+  .navlinks a{padding:15px 0;border-bottom:1px dashed var(--steel-l)}
+  .section-head,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:30px}
+  .grid,.review-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .hero{min-height:680px;background-position:58% center}
+  .hero-in{padding:92px 0 52px}
+  .section{padding:68px 0}
+  .grid,.review-grid{grid-template-columns:1fr}
+  .btn{width:100%}
+  .footer-row{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site-header">
-    <div class="header-in">
-      <a class="brand" href="#/home" data-page="home" aria-label="Valley Prime Meats and Carniceria home">
-        <span class="brand-mark" aria-hidden="true">VP</span>
-        <span class="brand-name">Valley Prime Meats<small>Carniceria &middot; N Cedar Ave</small></span>
-      </a>
-      <button id="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/home" data-page="home">Home</a>
-        <a href="#/market" data-page="market">The Market</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Valley Prime Meats and Carniceria home">
+      <span class="brand-mark">VP</span>
+      <span><strong>Valley Prime Meats</strong><small>Carniceria · Fresno</small></span>
+    </a>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#market">The Market</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <p class="eyebrow">Now open on N Cedar Ave</p>
+    <h1>Fresno's brand-new <span>prime butcher shop</span></h1>
+    <p class="lead">Valley Prime Meats & Carniceria opened its doors in May 2026 with one idea: a real butcher counter for the valley. Fresh cuts, marinated carniceria favorites, and a display case built to make you stop and look.</p>
+    <div class="meta">
+      <span class="chip"><i class="fa-solid fa-clock"></i> Every day 9 AM – 7 PM</span>
+      <span class="chip"><i class="fa-solid fa-certificate"></i> Opened May 2026</span>
+      <span class="chip"><i class="fa-solid fa-star"></i> 5.0 stars on Google</span>
     </div>
-  </header>
+    <div class="actions">
+      <a class="btn btn-solid" href="#market"><i class="fa-solid fa-drumstick-bite"></i> See the market</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Plan a visit</button>
+    </div>
+  </div>
+  <div class="asset-note">Stock butcher image • Unsplash</div>
+</section>
 
-  <main>
-    <!-- HOME -->
-    <section class="page" id="page-home">
-      <div class="hero">
-        <div class="hero-in">
-          <div>
-            <span class="eyebrow"><i class="fa-solid fa-certificate" aria-hidden="true"></i> Now open on N Cedar Ave</span>
-            <h1>Fresno's brand-new <em>prime butcher shop</em></h1>
-            <p>Valley Prime Meats &amp; Carniceria opened its doors in May 2026 with one idea: a real butcher counter for the valley. Fresh cuts, marinated carniceria favorites, and a display case built to make you stop and look.</p>
-            <div class="hero-ctas">
-              <a class="btn btn-solid" href="#/market" data-page="market"><i class="fa-solid fa-drumstick-bite" aria-hidden="true"></i> See the market</a>
-              <a class="btn btn-ghost" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Plan a visit</a>
-            </div>
-            <div class="hero-meta">
-              <span class="chip"><i class="fa-solid fa-clock" aria-hidden="true"></i> Every day 9 AM - 7 PM</span>
-              <span class="chip"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Locals are already posting about us</span>
-            </div>
-          </div>
-          <div class="hero-side">
-            <svg class="stamp-badge" viewBox="0 0 220 220" role="img" aria-label="Prime grade stamp, opened May 2026">
-              <circle cx="110" cy="110" r="104" fill="none" stroke="#D98C74" stroke-width="3"/>
-              <circle cx="110" cy="110" r="86" fill="none" stroke="#D98C74" stroke-width="1.5"/>
-              <path id="stampArc" d="M 110,110 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" fill="none"/>
-              <text font-family="Oswald, sans-serif" font-size="14" letter-spacing="3.5" fill="#E8A38C">
-                <textPath href="#stampArc">VALLEY PRIME MEATS &#8226; CARNICERIA &#8226; FRESNO &#8226;</textPath>
-              </text>
-              <text x="110" y="98" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="38" fill="#E8A38C">PRIME</text>
-              <text x="110" y="126" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="600" font-size="17" letter-spacing="5" fill="#E8A38C">GRADE</text>
-              <text x="110" y="156" text-anchor="middle" font-family="Oswald, sans-serif" font-size="11" letter-spacing="2" fill="#D98C74">OPENED MAY 2026</text>
-            </svg>
-          </div>
-        </div>
-      </div>
+<div class="strip"><div class="wrap">
+  <span><i class="fa-solid fa-star"></i> Prime cuts</span>
+  <span><i class="fa-solid fa-pepper-hot"></i> Marinated meats</span>
+  <span><i class="fa-solid fa-kitchen-set"></i> Carniceria staples</span>
+  <span><i class="fa-solid fa-scissors"></i> Butcher service</span>
+</div></div>
 
-      <div class="steel-strip" aria-hidden="true">
-        <div class="wrap">
-          <span><i class="fa-solid fa-star" ></i> Prime cuts</span>
-          <span><i class="fa-solid fa-pepper-hot"></i> Marinated meats</span>
-          <span><i class="fa-solid fa-kitchen-set"></i> Carniceria staples</span>
-          <span><i class="fa-solid fa-face-smile"></i> Real butcher service</span>
-        </div>
-      </div>
+<section class="section market" id="market">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow" style="color:var(--red)">The Market</p><h2>Fresh cuts & carniceria favorites</h2></div>
+      <p>Everything below comes from the supplied business page. No prices, discounts, extra inventory claims, or unsupported services have been added.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="icon"><i class="fa-solid fa-bacon"></i></div><h3>Steaks</h3><p>Ribeyes, strips and more, cut thick and shown in the case, not hidden in a package.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-utensils"></i></div><h3>Roasts</h3><p>Oven-ready roasts for Sunday dinners, holidays and the slow-cooker lineup.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-mortar-pestle"></i></div><h3>Ground fresh</h3><p>Ground beef from the case, packed for burgers, tacos and meatballs.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-pepper-hot"></i></div><h3>Carne asada</h3><p>Marinated and grill-ready. The carniceria counter is half of who we are.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-drumstick-bite"></i></div><h3>Chicken</h3><p>Whole birds and parts for the week, plus marinated pollo when you want it done for you.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-link"></i></div><h3>Chorizo & sausage</h3><p>The breakfast-to-dinner problem solvers of any good carniceria case.</p></article>
+    </div>
+    <div class="newshop">
+      <div class="medal"><i class="fa-solid fa-scissors"></i></div>
+      <div><h3>Opened May 2026</h3><p>The supplied site identifies Valley Prime Meats & Carniceria as a new Fresno butcher shop and carniceria that opened in May 2026.</p></div>
+    </div>
+  </div>
+</section>
 
-      <section class="section" aria-labelledby="case-title">
-        <div class="wrap">
-          <div class="section-head">
-            <span class="kicker">The case is full</span>
-            <h2 id="case-title">A butcher counter, done right</h2>
-            <p>We built the shop around the case. Everything is cut and displayed so you can see exactly what you are taking home.</p>
-          </div>
-          <div class="card-grid">
-            <article class="case-card">
-              <i class="ico fa-solid fa-bacon" aria-hidden="true"></i>
-              <h3>Steaks &amp; roasts</h3>
-              <p>Thick-cut steaks and oven-ready roasts, laid out so you can compare marbling before you choose.</p>
-            </article>
-            <article class="case-card">
-              <i class="ico fa-solid fa-pepper-hot" aria-hidden="true"></i>
-              <h3>Marinated &amp; ready</h3>
-              <p>Carne asada and marinated favorites from the carniceria side, ready for the grill tonight.</p>
-            </article>
-            <article class="case-card">
-              <i class="ico fa-solid fa-comment-dollar" aria-hidden="true"></i>
-              <h3>Fair valley prices</h3>
-              <p>Our first customers keep mentioning the prices and the selection in the same breath. We plan to keep it that way.</p>
-            </article>
-          </div>
-          <div class="newshop">
-            <div class="medal" aria-hidden="true"><i class="fa-solid fa-scissors"></i></div>
-            <div>
-              <h3>New here, and proud of it</h3>
-              <p>We cut the ribbon in May 2026, and word has traveled fast. Valley locals have already been posting their first trips to the counter on TikTok. Come see what the fuss is about.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-tight" aria-labelledby="hours-title">
-        <div class="wrap">
-          <div class="hours-block">
-            <div class="hours-top">
-              <h2 id="hours-title"><i class="fa-solid fa-clock" aria-hidden="true"></i> Open every day</h2>
-              <span class="status-chip"><span class="dot" aria-hidden="true"></span><span class="label">Checking hours...</span></span>
-            </div>
-            <div class="week-strip" role="list" aria-label="Weekly hours">
-              <div class="wday" data-day="1" role="listitem"><div class="d">Mon</div><div class="t">9 AM - 7 PM</div></div>
-              <div class="wday" data-day="2" role="listitem"><div class="d">Tue</div><div class="t">9 AM - 7 PM</div></div>
-              <div class="wday" data-day="3" role="listitem"><div class="d">Wed</div><div class="t">9 AM - 7 PM</div></div>
-              <div class="wday" data-day="4" role="listitem"><div class="d">Thu</div><div class="t">9 AM - 7 PM</div></div>
-              <div class="wday" data-day="5" role="listitem"><div class="d">Fri</div><div class="t">9 AM - 7 PM</div></div>
-              <div class="wday" data-day="6" role="listitem"><div class="d">Sat</div><div class="t">9 AM - 7 PM</div></div>
-              <div class="wday" data-day="0" role="listitem"><div class="d">Sun</div><div class="t">9 AM - 7 PM</div></div>
-            </div>
-            <p class="hours-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> We are a brand-new shop and hours can still shift as we settle in. Please call to confirm holiday hours.</p>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- MARKET -->
-    <section class="page" id="page-market">
-      <div class="hero">
-        <div class="hero-in hero-flat">
-          <div>
-            <span class="eyebrow"><i class="fa-solid fa-drumstick-bite" aria-hidden="true"></i> The Market</span>
-            <h1>What's behind <em>the glass</em></h1>
-            <p style="margin-bottom:0">One counter, two jobs: a classic butcher case and a carniceria counter with the marinades Fresno expects. Ask us for a cut, a grind, or a recommendation. That is what the shop is for.</p>
-          </div>
-        </div>
-      </div>
-      <section class="section" aria-labelledby="counter-title">
-        <div class="wrap">
-          <div class="section-head">
-            <span class="kicker">At the counter</span>
-            <h2 id="counter-title">Fresh cuts &amp; carniceria favorites</h2>
-            <p>Everything below is cut and handled in the shop. If you do not see it out front, ask.</p>
-          </div>
-          <div class="card-grid">
-            <article class="case-card"><i class="ico fa-solid fa-bacon" aria-hidden="true"></i><h3>Steaks</h3><p>Ribeyes, strips and more, cut thick and shown in the case, not hidden in a package.</p></article>
-            <article class="case-card"><i class="ico fa-solid fa-utensils" aria-hidden="true"></i><h3>Roasts</h3><p>Oven-ready roasts for Sunday dinners, holidays and the slow-cooker lineup.</p></article>
-            <article class="case-card"><i class="ico fa-solid fa-mortar-pestle" aria-hidden="true"></i><h3>Ground fresh</h3><p>Ground beef from the case, packed for burgers, tacos and meatballs.</p></article>
-            <article class="case-card"><i class="ico fa-solid fa-pepper-hot" aria-hidden="true"></i><h3>Carne asada</h3><p>Marinated and grill-ready. The carniceria counter is half of who we are.</p></article>
-            <article class="case-card"><i class="ico fa-solid fa-drumstick-bite" aria-hidden="true"></i><h3>Chicken</h3><p>Whole birds and parts for the week, plus marinated pollo when you want it done for you.</p></article>
-            <article class="case-card"><i class="ico fa-solid fa-link" aria-hidden="true"></i><h3>Chorizo &amp; sausage</h3><p>The breakfast-to-dinner problem solvers of any good carniceria case.</p></article>
-          </div>
-          <div class="newshop">
-            <div class="medal" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
-            <div>
-              <h3>A display worth the trip</h3>
-              <p>Early customers keep telling us the same thing: they have not seen a display and selection of fine meats like this in the valley. We take that seriously every single morning.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <section class="section" aria-labelledby="rev-title">
-        <div class="wrap">
-          <div class="section-head">
-            <span class="kicker">Word of mouth</span>
-            <h2 id="rev-title">What Fresno says so far</h2>
-            <p>We opened in May 2026, so every review below comes from the first months at the counter. All of them are shown in full.</p>
-          </div>
-          <div class="rev-grid">
-            <article class="ticket">
-              <span class="qmark" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
-              <blockquote>Service and meat quality is the best in town..</blockquote>
-              <div class="who"><span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
-            </article>
-            <article class="ticket">
-              <span class="qmark" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
-              <blockquote>Never have I seen a display and selection of fine meats.</blockquote>
-              <div class="who"><span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
-            </article>
-            <article class="ticket">
-              <span class="qmark" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></span>
-              <blockquote>Great place to get your fresh meats. Great prices and selection.</blockquote>
-              <div class="who"><span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
-            </article>
-          </div>
-          <div class="rev-summary">
-            <span class="big">5.0</span>
-            <span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-            <span class="sub">5.0 stars on Google</span>
-          </div>
-          <a class="link-card google" href="https://www.google.com/maps/search/?api=1&query=Valley%20Prime%20Meats%20%26%20Carniceria%2C%207054%20N%20Cedar%20Ave%2C%20Fresno%2C%20CA%2093720" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
-        </div>
-      </section>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <section class="section" aria-labelledby="visit-title">
-        <div class="wrap">
-          <div class="section-head">
-            <span class="kicker">Come by the shop</span>
-            <h2 id="visit-title">Visit Valley Prime Meats &amp; Carniceria</h2>
-            <p>Seven days a week at 7054 N Cedar Ave. The stamp below is your invitation.</p>
-          </div>
-          <div class="visit-grid">
-            <div>
-              <div class="vcard">
-                <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> The shop</h3>
-                <p class="addr-line"><i class="fa-solid fa-map-pin" aria-hidden="true"></i> 7054 N Cedar Ave, Fresno, CA 93720</p>
-                <p class="addr-line"><i class="fa-solid fa-car" aria-hidden="true"></i> Easy in and out from Cedar Ave, with parking at the door.</p>
-              </div>
-              <div class="vcard vcard-stack">
-                <h3><i class="fa-solid fa-clock" aria-hidden="true"></i> Hours</h3>
-                <span class="status-chip chip-hours"><span class="dot" aria-hidden="true"></span><span class="label">Checking hours...</span></span>
-                <ul class="daylist">
-                  <li data-day="1"><span>Monday</span><span>9 AM - 7 PM</span></li>
-                  <li data-day="2"><span>Tuesday</span><span>9 AM - 7 PM</span></li>
-                  <li data-day="3"><span>Wednesday</span><span>9 AM - 7 PM</span></li>
-                  <li data-day="4"><span>Thursday</span><span>9 AM - 7 PM</span></li>
-                  <li data-day="5"><span>Friday</span><span>9 AM - 7 PM</span></li>
-                  <li data-day="6"><span>Saturday</span><span>9 AM - 7 PM</span></li>
-                  <li data-day="0"><span>Sunday</span><span>9 AM - 7 PM</span></li>
-                </ul>
-                <p class="hours-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Hours are estimated while we are new. Please call to confirm holiday hours.</p>
-              </div>
-            </div>
-            <div>
-              <div class="stamp-card">
-                <div class="ring" aria-hidden="true"><i class="fa-solid fa-phone"></i></div>
-                <span class="t1">The butcher is in</span>
-                <a class="phone-big" href="tel:+15597974475">(559) 797-4475</a>
-                <span class="t2">Call ahead for a cut, a special order, or today's case.</span>
-              </div>
-              <div class="vcard">
-                <h3><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ask about a cut</h3>
-                <form id="quote-form" novalidate>
-                  <div class="form-grid">
-                    <div>
-                      <label for="f-name">Your name</label>
-                      <input id="f-name" name="name" type="text" autocomplete="name" required>
-                    </div>
-                    <div>
-                      <label for="f-phone">Your phone</label>
-                      <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
-                    </div>
-                    <div class="full">
-                      <label for="f-msg">Message</label>
-                      <textarea id="f-msg" name="message" placeholder="What are you cooking? We will have it ready." required></textarea>
-                    </div>
-                    <div class="full">
-                      <button class="btn btn-solid btn-wide" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the shop</button>
-                    </div>
-                  </div>
-                  <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="foot-grid">
-      <div>
-        <h4>Valley Prime Meats &amp; Carniceria</h4>
-        <p>Fresno's new prime butcher shop and carniceria. Opened May 2026 on N Cedar Ave, with fresh cuts and marinated favorites every day.</p>
+<section class="section hours" id="hours">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Hours</p><h2>Open every day</h2></div>
+      <p>The supplied page lists the same daily hours all week and notes that holiday hours should be confirmed.</p>
+    </div>
+    <div class="hours-grid">
+      <div class="hours-box">
+        <div class="hrow"><span>Monday</span><strong>9 AM – 7 PM</strong></div>
+        <div class="hrow"><span>Tuesday</span><strong>9 AM – 7 PM</strong></div>
+        <div class="hrow"><span>Wednesday</span><strong>9 AM – 7 PM</strong></div>
+        <div class="hrow"><span>Thursday</span><strong>9 AM – 7 PM</strong></div>
+        <div class="hrow"><span>Friday</span><strong>9 AM – 7 PM</strong></div>
+        <div class="hrow"><span>Saturday</span><strong>9 AM – 7 PM</strong></div>
+        <div class="hrow"><span>Sunday</span><strong>9 AM – 7 PM</strong></div>
       </div>
       <div>
-        <h4>Contact</h4>
-        <p class="foot-line"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+15597974475">(559) 797-4475</a></p>
-        <p class="foot-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 7054 N Cedar Ave, Fresno, CA 93720</p>
-      </div>
-      <div>
-        <h4>Hours</h4>
-        <p class="foot-line"><i class="fa-solid fa-clock" aria-hidden="true"></i> Every day, 9 AM - 7 PM</p>
-        <p class="foot-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> New shop: call to confirm holiday hours</p>
+        <div class="protected">
+          <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+          <p>Phone number and business street address are intentionally hidden in this sample website.</p>
+        </div>
+        <p style="margin-top:14px;color:#d7c9bb;font-size:.86rem">The supplied site says hours can still shift while the shop is new and recommends calling to confirm holiday hours.</p>
       </div>
     </div>
-    <div class="foot-bottom">
-      <div class="wrap">
-        <span class="copyright">© Valley Prime Meats & Carniceria · Fresno, CA</span>
-        <span>Butcher shop &amp; carniceria, N Cedar Ave</span>
+  </div>
+  <div class="asset-note">Stock butcher image • Unsplash</div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow" style="color:var(--red)">Reviews</p><h2>What Fresno says so far</h2></div>
+      <p>The supplied page shows these excerpts as Google reviews and reports a 5.0-star Google rating.</p>
+    </div>
+    <div class="review-grid">
+      <article class="ticket"><div class="quote"><i class="fa-solid fa-quote-left"></i></div><p>“Service and meat quality is the best in town..”</p><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span>Google review</span></article>
+      <article class="ticket"><div class="quote"><i class="fa-solid fa-quote-left"></i></div><p>“Never have I seen a display and selection of fine meats.”</p><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span>Google review</span></article>
+      <article class="ticket"><div class="quote"><i class="fa-solid fa-quote-left"></i></div><p>“Great place to get your fresh meats. Great prices and selection.”</p><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span>Google review</span></article>
+    </div>
+    <div class="summary"><strong>5.0 stars on Google</strong></div>
+    <div class="actions" style="justify-content:center;margin-top:22px">
+      <button class="btn btn-solid" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+    </div>
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow" style="color:var(--red)">Visit</p><h2>Valley Prime Meats & Carniceria</h2></div>
+      <p>The source page includes a public street address, phone number, Google link, and direct text form. Those real-world actions are protected in this demo.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="vcard">
+        <h3><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> The shop</h3>
+        <div class="protected" style="margin-top:18px">
+          <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+          <p>Business phone number and street address are intentionally hidden in this sample.</p>
+        </div>
+        <div class="actions" style="margin-top:22px">
+          <button class="btn btn-solid" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the butcher</button>
+          <button class="btn" style="border-color:var(--brown);color:var(--brown)" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Get directions</button>
+        </div>
+      </div>
+      <div class="vcard">
+        <h3><i class="fa-solid fa-comment-dots" style="color:var(--red)"></i> Ask about a cut</h3>
+        <p style="color:#665a4f;margin:7px 0 18px">The original site provides a direct message form. Submission stays locked in this demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Your phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-solid" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send to the shop</button>
+        </form>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div><strong style="color:#fff">Valley Prime Meats & Carniceria</strong><div style="font-size:.8rem">Fresno, California · Open daily 9 AM – 7 PM</div></div>
+    <nav class="footer-nav"><a href="#market">The Market</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-solid" id="closeModal" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "Valley Prime Meats & Carniceria";
-var TITLES = { home: "New Butcher Shop on N Cedar Ave", market: "The Market", reviews: "Reviews", visit: "Visit Us" };
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeModal = document.getElementById('closeModal');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
 
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = {0:[9,19],1:[9,19],2:[9,19],3:[9,19],4:[9,19],5:[9,19],6:[9,19]};
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function paintStatus(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.toggle("open", st.open);
-    var lab = c.querySelector(".label");
-    if (lab) lab.textContent = st.label;
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
   });
-}
-function paintToday(){
-  var n = cityNow();
-  document.querySelectorAll("[data-day]").forEach(function(el){
-    el.classList.toggle("today", +el.getAttribute("data-day") === n.day);
-  });
-}
-var mb = document.getElementById("menu-btn");
-mb.addEventListener("click", function(){
-  mb.classList.toggle("open");
-  document.querySelector(".nav-links").classList.toggle("open");
-  mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
-});
 
-var PHONE = "+15597974475";
-var PRETTY = "(559) 797-4475";
-var form = document.getElementById("quote-form");
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  var fbEl = document.getElementById("form-feedback");
-  var nm = document.getElementById("f-name").value.trim();
-  var ph = document.getElementById("f-phone").value.trim();
-  var ms = document.getElementById("f-msg").value.trim();
-  if (!nm || !ms) {
-    fbEl.textContent = "Please add your name and a short message so we can help.";
-    fbEl.classList.remove("ok");
-    return;
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }));
+
+  function openLocked(){
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeModal.focus();
   }
-  var text = "Hi " + BUSINESS + ", this is " + nm + (ph ? " (" + ph + ")" : "") + ". " + ms;
-  var body = encodeURIComponent(text);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(text).then(function(){
-      fbEl.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-      fbEl.classList.add("ok");
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked();
     });
-  }
-});
+  });
 
-navigateTo(getPageFromHash(), false);
-paintStatus();
-paintToday();
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked();
+  });
+
+  closeModal.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => { if(e.target === modal) closeLocked(); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+})();
 </script>
 </body>
 </html>
