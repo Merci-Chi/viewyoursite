@@ -17,8 +17,8 @@ jobs:
           ref: main
 
       - name: Patch index.html
-        shell: python
         run: |
+          python3 - <<'PY'
           from pathlib import Path
 
           path = Path('index.html')
@@ -87,6 +87,7 @@ jobs:
 
           text = text[:start] + replacement + text[end:]
           path.write_text(text, encoding='utf-8')
+          PY
 
       - name: Commit patch and remove temporary workflow
         run: |
