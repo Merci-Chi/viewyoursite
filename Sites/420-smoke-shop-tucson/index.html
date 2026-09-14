@@ -2,681 +2,317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#173f2d">
 <title>420 Smoke Shop | A 24 Hour Corner Store on Alvernon</title>
+<meta name="description" content="420 Smoke Shop in Tucson, Arizona. Open 24 hours with vapes, glass, wraps and papers, cigars, lighters, CBD, and more. 21+ with valid ID required.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-  :root{
-    --forest:#1B4332;
-    --forest-2:#2D6A4F;
-    --lime:#A8D26D;
-    --lime-soft:#EDF6DF;
-    --white:#FFFFFF;
-    --ink:#22332A;
-    --line:#DCE7D3;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'Asap',Helvetica,sans-serif;
-    color:var(--ink);
-    background:var(--white);
-    line-height:1.6;
-    -webkit-text-size-adjust:100%;
-  }
-  .site-shell{min-height:100vh;display:flex;flex-direction:column;}
-  main{flex:1 0 auto;}
-  footer{flex-shrink:0;}
-  h1,h2,h3{font-family:'Passion One','Asap',sans-serif;font-weight:700;line-height:1.1;margin:0;letter-spacing:.01em;}
-  p{margin:0 0 1rem;}
-  .wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 20px;}
+:root{--forest:#1B4332;--forest2:#2D6A4F;--lime:#A8D26D;--lime2:#dff1b9;--paper:#f7f9f2;--ink:#1f2d25;--white:#fff;--line:rgba(27,67,50,.18);--max:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Asap,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit}
+img{max-width:100%;display:block}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2,h3{font-family:"Passion One",sans-serif;line-height:.98;margin:0}
+h1{font-size:clamp(3.9rem,8vw,7.2rem)}
+h2{font-size:clamp(2.5rem,5vw,4.5rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+.kicker{font-size:.76rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
 
-  /* header */
-  .site-head{
-    background:var(--forest);color:var(--white);
-    position:sticky;top:0;z-index:50;
-  }
-  .head-in{
-    max-width:1040px;margin:0 auto;padding:13px 20px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-  }
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white);}
-  .brand-badge{
-    width:42px;height:42px;border-radius:50%;
-    background:var(--lime);color:var(--forest);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Passion One',sans-serif;font-weight:700;font-size:1rem;
-    border:3px solid var(--white);flex-shrink:0;
-  }
-  .brand-name{font-family:'Passion One',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:.02em;}
-  .brand-name small{display:block;font-family:'Asap',sans-serif;font-weight:600;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);}
-  .menu-btn{
-    display:none;background:none;border:2px solid var(--lime);border-radius:10px;
-    width:46px;height:42px;cursor:pointer;padding:0;
-  }
-  .menu-btn span{display:block;width:20px;height:2px;background:var(--lime);margin:4px auto;transition:transform .2s ease, opacity .2s ease;}
-  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.open span:nth-child(2){opacity:0;}
-  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-  .nav-links{display:flex;align-items:center;gap:6px;}
-  .nav-links a{
-    text-decoration:none;font-weight:600;font-size:.95rem;color:var(--white);
-    padding:9px 14px;border-radius:9px;transition:background .15s ease,color .15s ease;
-  }
-  .nav-links a:hover{background:var(--forest-2);}
-  .nav-links a.is-here{background:var(--lime);color:var(--forest);}
+header{position:sticky;top:0;z-index:50;background:rgba(27,67,50,.96);color:#fff;border-bottom:1px solid rgba(255,255,255,.13);backdrop-filter:blur(12px)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.badge{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--forest);border:3px solid #fff;font-family:"Passion One";font-size:1.05rem}
+.brand strong{font-family:"Passion One";font-size:1.3rem;letter-spacing:.03em}
+.brand small{display:block;font-family:Asap;font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:var(--lime)}
+.navlinks{display:flex;align-items:center;gap:24px}
+.navlinks a{text-decoration:none;text-transform:uppercase;font-size:.78rem;font-weight:800;letter-spacing:.08em}
+.navlinks a:hover{color:var(--lime)}
+.menu{display:none;width:44px;height:44px;border:2px solid var(--lime);background:transparent;color:var(--lime);border-radius:10px;font-size:1.1rem}
 
-  /* pages */
-  .page{display:none;}
-  .page.active{display:block;}
+.hero{position:relative;min-height:720px;color:#fff;display:flex;align-items:end;overflow:hidden;background:linear-gradient(90deg,rgba(20,55,39,.97),rgba(20,55,39,.78) 52%,rgba(20,55,39,.25)),linear-gradient(0deg,rgba(20,55,39,.9),transparent 55%),url("https://images.unsplash.com/photo-1786684597542-f3867abd0dc9?auto=format&fit=crop&fm=jpg&q=82&w=2200") center/cover no-repeat}
+.hero:after{content:"24/7";position:absolute;right:-10px;top:18px;font-family:"Passion One";font-size:min(34vw,430px);color:transparent;-webkit-text-stroke:2px rgba(168,210,109,.23);line-height:.8}
+.hero-in{position:relative;z-index:2;padding:110px 0 70px}
+.hero h1 span{color:var(--lime)}
+.hero .lead{max-width:760px;color:#d7e8dc;font-size:1.1rem;margin:24px 0 28px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(168,210,109,.45);background:rgba(255,255,255,.08);border-radius:999px;font-size:.83rem;font-weight:700}
+.chip i{color:var(--lime)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:13px 21px;border:2px solid transparent;border-radius:12px;text-decoration:none;text-transform:uppercase;font-size:.78rem;font-weight:800;letter-spacing:.08em;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-lime{background:var(--lime);color:var(--forest)}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff;background:transparent}
+.asset-note{position:absolute;right:14px;bottom:14px;z-index:3;background:rgba(0,0,0,.66);color:#fff;border:1px solid rgba(255,255,255,.22);padding:7px 10px;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em}
 
-  /* awning band */
-  .awning{
-    height:30px;position:relative;
-    background:repeating-linear-gradient(90deg, var(--lime) 0 30px, var(--forest-2) 30px 60px);
-  }
-  .awning::after{
-    content:"";position:absolute;left:0;right:0;bottom:0;height:13px;
-    background:radial-gradient(circle at 15px -5px, transparent 12px, var(--white) 13px);
-    background-size:30px 13px;
-    background-repeat:repeat-x;
-  }
-  .awning.on-forest::after{
-    background:radial-gradient(circle at 15px -5px, transparent 12px, var(--forest) 13px);
-    background-size:30px 13px;background-repeat:repeat-x;
-  }
+.agebar{background:#eff7e5;border-bottom:1px solid var(--line)}
+.agebar .wrap{min-height:66px;display:flex;align-items:center;gap:11px;font-weight:700;color:var(--forest)}
+.agebar i{font-size:1.15rem}
 
-  /* status chip */
-  .status-chip{
-    display:inline-flex;align-items:center;gap:8px;
-    font-weight:700;font-size:.84rem;padding:6px 14px;border-radius:999px;
-    background:var(--white);border:1.5px solid var(--line);color:var(--ink);
-  }
-  .status-chip .dot{width:9px;height:9px;border-radius:50%;background:#9AA5AA;}
-  .status-chip.is-open{border-color:var(--lime);background:var(--lime-soft);color:var(--forest);}
-  .status-chip.is-open .dot{background:#3E8E4B;}
-  .status-chip.is-closed .dot{background:#B23A2E;}
+.section{padding:90px 0;scroll-margin-top:76px}
+.head{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:end;margin-bottom:40px}
+.head p{color:#53665a;max-width:650px}
+.products{background:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{border:2px solid #dce8d4;border-radius:16px;padding:22px;background:#fff;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:var(--lime)}
+.icon{width:48px;height:48px;border-radius:12px;background:var(--forest);color:var(--lime);display:grid;place-items:center;margin-bottom:13px}
+.card p{font-size:.9rem;color:#5d6c62;margin-top:6px}
 
-  /* hero: badge first */
-  .hero{background:var(--forest);color:var(--white);}
-  .hero-grid{
-    display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;
-    padding:58px 0 54px;
-  }
-  .corner-badge{
-    width:200px;height:200px;border-radius:50%;
-    background:var(--lime);color:var(--forest);
-    border:6px solid var(--white);
-    outline:3px solid var(--lime);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    transform:rotate(-5deg);
-    font-family:'Passion One',sans-serif;
-    box-shadow:0 16px 36px rgba(0,0,0,.3);
-  }
-  .corner-badge .top{font-size:.85rem;letter-spacing:.24em;font-weight:400;}
-  .corner-badge .mid{font-size:3rem;font-weight:900;line-height:.9;}
-  .corner-badge .bot{font-size:1rem;letter-spacing:.14em;font-weight:400;}
-  .corner-badge i{font-size:.8rem;margin-top:4px;}
-  .kicker{
-    display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--lime);margin-bottom:12px;
-  }
-  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;margin-bottom:14px;}
-  .hero h1 .hl{color:var(--lime);}
-  .hero .lead{color:#CFE3D6;max-width:33em;font-size:1.08rem;margin-bottom:20px;}
-  .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
-  .meta-chip{
-    display:inline-flex;align-items:center;gap:8px;
-    background:rgba(255,255,255,.1);border:1.5px solid rgba(168,210,109,.4);
-    border-radius:999px;padding:8px 16px;font-weight:600;font-size:.88rem;color:var(--white);
-  }
-  .meta-chip i{color:var(--lime);}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;}
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
-    font-family:'Passion One',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.03em;
-    padding:12px 26px;border-radius:12px;border:2px solid transparent;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,.25);}
-  .btn-lime{background:var(--lime);color:var(--forest);}
-  .btn-ghost{border-color:rgba(255,255,255,.5);color:var(--white);}
-  .btn-ghost:hover{border-color:var(--lime);color:var(--lime);}
+.night{position:relative;color:#fff;background:linear-gradient(rgba(19,51,37,.9),rgba(19,51,37,.94)),url("https://images.unsplash.com/photo-1782303255287-6397fa3262eb?auto=format&fit=crop&fm=jpg&q=80&w=2200") center/cover no-repeat}
+.night .head p{color:#d1e0d6}
+.hoursbox{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.big24{border:2px solid rgba(168,210,109,.6);padding:30px;background:rgba(255,255,255,.07);border-radius:18px}
+.big24 strong{font-family:"Passion One";font-size:3.6rem;color:var(--lime);display:block;line-height:1}
+.big24 p{color:#d1e0d6;margin-top:10px}
+.protected{padding:22px;border-left:4px solid var(--lime);background:rgba(255,255,255,.08)}
+.protected strong{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
 
-  /* sections */
-  .section{padding:56px 0;}
-  .section.tint{background:var(--lime-soft);}
-  .section.forest{background:var(--forest);color:var(--white);}
-  .sec-head{margin-bottom:30px;}
-  .sec-head.center{text-align:center;}
-  .sec-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:700;color:var(--forest);margin-bottom:8px;}
-  .sec-head p{color:#4C5F54;max-width:44em;}
-  .sec-head.center p{margin-left:auto;margin-right:auto;}
-  .section.forest .sec-head h2{color:var(--white);}
-  .section.forest .sec-head p{color:#CFE3D6;}
+.reviews{background:#edf5e8}
+.receipts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
+.receipt{background:#fff;border:2px solid #dce8d4;border-radius:0 0 14px 14px;padding:0 24px 22px;box-shadow:0 12px 28px rgba(27,67,50,.08)}
+.receipt:before{content:"";display:block;height:12px;margin:0 -24px 18px;background:repeating-linear-gradient(90deg,var(--lime) 0 22px,var(--forest) 22px 44px)}
+.stars{color:#3e8e4b;font-size:.8rem;margin:12px 0}
+.who{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#748078;font-weight:700}
+.summary{margin-top:24px;padding:24px;border-radius:16px;background:var(--forest);color:#fff;text-align:center}
+.summary strong{font-family:"Passion One";font-size:1.8rem;color:var(--lime)}
 
-  /* hours strip card */
-  .hours-strip{
-    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;
-    background:var(--white);border:2px solid var(--forest);border-radius:18px;
-    padding:24px 28px;max-width:680px;margin:0 auto;
-    box-shadow:8px 8px 0 var(--lime);
-  }
-  .hours-strip .big{font-family:'Passion One',sans-serif;font-weight:700;font-size:1.9rem;color:var(--forest);line-height:1;}
-  .hours-strip .sub{font-size:.95rem;color:#4C5F54;margin:4px 0 0;}
+.contact{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.contact-card{border:2px solid var(--forest);border-radius:18px;padding:30px;box-shadow:8px 8px 0 var(--lime)}
+.contact-card .protected{background:#eff7e5;color:var(--forest);border-left-color:var(--forest)}
+.contact-card .protected strong{color:var(--forest)}
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:5px}
+.field input,.field textarea{width:100%;padding:12px 14px;border:2px solid #dce8d4;border-radius:12px;background:#f5faef;font:inherit}
+.field textarea{min-height:110px;resize:vertical}
 
-  /* category chips (shop page) */
-  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .case{
-    background:var(--white);border:2px solid var(--line);border-radius:16px;
-    padding:22px;transition:transform .15s ease, border-color .15s ease;
-  }
-  .case:hover{transform:translateY(-3px);border-color:var(--lime);}
-  .case .icon{
-    width:48px;height:48px;border-radius:12px;background:var(--forest);color:var(--lime);
-    display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:12px;
-  }
-  .case h3{font-size:1.15rem;color:var(--forest);margin-bottom:4px;}
-  .case p{margin:0;font-size:.92rem;color:#4C5F54;}
-  .id-card{
-    margin-top:28px;background:var(--lime);color:var(--forest);border-radius:16px;
-    padding:20px 26px;display:flex;gap:16px;align-items:center;
-    border:2px solid var(--forest);
-  }
-  .id-card i{font-size:1.5rem;flex-shrink:0;}
-  .id-card h3{font-size:1.2rem;margin-bottom:2px;}
-  .id-card p{margin:0;font-size:.95rem;}
+footer{background:var(--forest);color:#cde0d2;padding:38px 0}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:30px}
+.footnav{display:flex;gap:18px;flex-wrap:wrap}
+.footnav a{text-decoration:none;color:#fff;font-size:.8rem}
 
-  /* reviews: receipt cards */
-  .receipts{display:grid;gap:20px;max-width:640px;margin:0 auto;}
-  .receipt{
-    background:var(--white);border:2px solid var(--line);border-top:none;
-    border-radius:0 0 14px 14px;position:relative;
-    padding:0 26px 22px;
-    box-shadow:0 10px 24px rgba(27,67,50,.1);
-  }
-  .receipt::before{
-    content:"";display:block;margin:0 -26px 18px;height:12px;
-    background:repeating-linear-gradient(90deg, var(--lime) 0 24px, var(--forest) 24px 48px);
-    border-radius:14px 14px 0 0;
-  }
-  .receipt blockquote{margin:0 0 12px;font-size:1.12rem;font-weight:600;color:var(--ink);}
-  .receipt .stars i{color:#3E8E4B;font-size:.8rem;margin-right:3px;}
-  .receipt .who{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#77857C;}
-  .receipt .dashed{border-top:2px dashed var(--line);margin:14px -26px 0;}
-  .receipt .total{display:flex;justify-content:space-between;font-size:.8rem;color:#77857C;padding-top:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
-  .review-summary{
-    max-width:640px;margin:28px auto 0;text-align:center;
-    background:var(--forest);color:var(--white);border-radius:18px;padding:24px;
-  }
-  .review-summary .score{font-family:'Passion One',sans-serif;font-weight:900;font-size:1.7rem;color:var(--lime);}
-  .review-summary p{margin:4px 0 0;color:#CFE3D6;font-size:.95rem;}
-  .link-cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:22px;}
-  .link-card{
-    display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);
-    background:var(--white);border:2px solid var(--line);border-radius:14px;padding:15px 22px;
-    font-weight:700;transition:border-color .15s ease,transform .15s ease;
-  }
-  .link-card:hover{border-color:var(--forest);transform:translateY(-2px);}
-  .link-card i{font-size:1.3rem;color:var(--forest);}
-  .link-card small{display:block;font-weight:400;color:#77857C;}
+.modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.72);padding:22px}
+.modal.open{display:grid}
+.modal-card{width:min(470px,100%);background:#fff;border-radius:18px;padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.modal-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--forest);color:var(--lime);margin-bottom:20px}
+.modal-card h2{font-size:2.5rem}
+.modal-card p{margin:15px 0 24px;color:#56665b}
+body.modal-open{overflow:hidden}
 
-  /* visit: corner store tag card */
-  .visit-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:32px;align-items:start;}
-  .store-tag{
-    background:var(--white);border:2px solid var(--forest);border-radius:18px;overflow:hidden;
-    box-shadow:8px 8px 0 var(--lime);
-  }
-  .store-tag .tag-top{
-    background:repeating-linear-gradient(90deg, var(--lime) 0 26px, var(--forest) 26px 52px);
-    height:16px;
-  }
-  .store-tag .tag-body{padding:26px;}
-  .store-tag .row{display:flex;gap:13px;align-items:flex-start;padding:12px 0;border-bottom:2px dashed var(--line);}
-  .store-tag .row:last-of-type{border-bottom:0;}
-  .store-tag .row i{color:var(--forest);width:20px;text-align:center;margin-top:4px;}
-  .store-tag .row b{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#77857C;}
-  .tag-phone{
-    display:block;font-family:'Passion One',sans-serif;font-weight:700;font-size:1.5rem;
-    color:var(--forest);text-decoration:none;line-height:1.1;
-  }
-  .tag-phone:hover{color:var(--forest-2);text-decoration:underline;}
-  .punch-hole{display:flex;gap:8px;justify-content:center;margin-bottom:18px;}
-  .punch-hole span{width:10px;height:10px;border-radius:50%;background:var(--lime-soft);border:2px solid var(--line);}
-
-  /* form */
-  .form-card{background:var(--white);border:2px solid var(--forest);border-radius:18px;padding:28px;box-shadow:8px 8px 0 var(--lime);}
-  .form-card h3{font-size:1.3rem;color:var(--forest);margin-bottom:4px;}
-  .form-card .hint{font-size:.92rem;color:#4C5F54;margin-bottom:18px;}
-  .field{margin-bottom:15px;}
-  .field label{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px;}
-  .field input,.field textarea{
-    width:100%;padding:12px 15px;border:2px solid var(--line);border-radius:12px;
-    font-family:'Asap',sans-serif;font-size:1rem;color:var(--ink);background:var(--lime-soft);
-  }
-  .field input:focus,.field textarea:focus{outline:2px solid var(--forest);border-color:var(--forest);background:var(--white);}
-  .field textarea{min-height:110px;resize:vertical;}
-  .form-card .btn{width:100%;justify-content:center;}
-  .form-feedback{margin-top:12px;font-weight:700;font-size:.92rem;color:#3E8E4B;min-height:1.2em;}
-
-  /* footer */
-  .site-foot{background:var(--forest);color:#CFE3D6;}
-  .foot-in{
-    max-width:1040px;margin:0 auto;padding:36px 20px 20px;
-    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;
-  }
-  .site-foot h4{font-family:'Passion One',sans-serif;color:var(--white);font-size:1.05rem;letter-spacing:.03em;margin:0 0 10px;}
-  .site-foot p{font-size:.9rem;margin:0 0 6px;}
-  .site-foot a{color:var(--white);text-decoration:none;}
-  .site-foot a:hover{color:var(--lime);}
-  .foot-bottom{
-    border-top:1px solid rgba(255,255,255,.16);
-    max-width:1040px;margin:0 auto;padding:16px 20px 24px;font-size:.85rem;color:#9DBBA8;
-  }
-
-  /* responsive */
-  @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:30px;padding:46px 0 44px;justify-items:center;text-align:center;}
-    .hero .lead{margin-left:auto;margin-right:auto;}
-    .hero-meta,.cta-row{justify-content:center;}
-    .case-grid{grid-template-columns:1fr 1fr;}
-    .visit-grid{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:640px){
-    .menu-btn{display:block;}
-    .nav-links{
-      display:none;position:absolute;left:0;right:0;top:100%;
-      background:var(--forest);border-top:2px solid var(--lime);
-      flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;
-    }
-    .nav-links.open{display:flex;}
-    .nav-links a{padding:13px 14px;}
-    .case-grid{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr;}
-    .corner-badge{width:168px;height:168px;}
-    .section{padding:44px 0;}
-  }
+@media(max-width:860px){
+ .menu{display:grid;place-items:center}
+ .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--forest);padding:8px 20px 20px;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid rgba(255,255,255,.12)}
+ .navlinks.open{display:flex}
+ .navlinks a{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+ .head,.hoursbox,.contact-grid{grid-template-columns:1fr;gap:30px}
+ .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+ .wrap{width:min(var(--max),calc(100% - 28px))}
+ .hero{min-height:680px;background-position:60% center}
+ .hero-in{padding:92px 0 52px}
+ .section{padding:68px 0}
+ .grid,.receipts{grid-template-columns:1fr}
+ .btn{width:100%}
+ .foot{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site-head">
-    <div class="head-in">
-      <a class="brand" href="#/home" data-page="home" aria-label="420 Smoke Shop home">
-        <span class="brand-badge" aria-hidden="true">420</span>
-        <span class="brand-name">420 Smoke Shop<small>Alvernon Way</small></span>
-      </a>
-      <button id="menu-btn" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/home" data-page="home">Home</a>
-        <a href="#/shop" data-page="shop">The Shop</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="420 Smoke Shop home">
+      <span class="badge">420</span>
+      <span><strong>420 Smoke Shop</strong><small>Alvernon Way</small></span>
+    </a>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#shop">The Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <p class="kicker">Alvernon Way, Tucson</p>
+    <h1>The <span>24-hour</span> corner store for smoke runs</h1>
+    <p class="lead">420 Smoke Shop on N Alvernon keeps corner-store hours, meaning none: pull up at noon or at 3 in the morning and the counter is staffed and stocked.</p>
+    <div class="meta">
+      <span class="chip"><i class="fa-solid fa-clock"></i> Open 24 hours</span>
+      <span class="chip"><i class="fa-solid fa-id-card"></i> 21+, valid ID required</span>
+      <span class="chip"><i class="fa-solid fa-star"></i> 4.7 stars, 172 Google reviews</span>
     </div>
-  </header>
+    <div class="actions">
+      <a class="btn btn-lime" href="#shop"><i class="fa-solid fa-store"></i> What's on the shelves</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Come by</button>
+    </div>
+  </div>
+  <div class="asset-note">Stock convenience-store image • Unsplash</div>
+</section>
 
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <div class="wrap hero-grid">
-          <div class="corner-badge" role="img" aria-label="Open 24 hours, a corner store badge">
-            <span class="top">OPEN</span>
-            <span class="mid">24 HR</span>
-            <span class="bot">CORNER STORE</span>
-            <i class="fa-solid fa-star" aria-hidden="true"></i>
-          </div>
-          <div>
-            <span class="kicker">Alvernon Way, Tucson</span>
-            <h1>The <span class="hl">24-hour</span> corner store for smoke runs</h1>
-            <p class="lead">420 Smoke Shop on N Alvernon keeps corner-store hours, meaning none: pull up at noon or at 3 in the morning and the counter is staffed and stocked.</p>
-            <div class="hero-meta">
-              <span class="meta-chip"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 1144 N Alvernon Way</span>
-              <span class="meta-chip"><i class="fa-solid fa-id-card" aria-hidden="true"></i> 21+, valid ID required</span>
-              <span class="meta-chip"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.7 stars, 172 Google reviews</span>
-            </div>
-            <div class="cta-row">
-              <a class="btn btn-lime" href="#/shop" data-page="shop"><i class="fa-solid fa-store" aria-hidden="true"></i> What's on the shelves</a>
-              <a class="btn btn-ghost" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Come by</a>
-            </div>
-          </div>
-        </div>
-        <div class="awning on-forest" aria-hidden="true"></div>
-      </div>
+<div class="agebar"><div class="wrap"><i class="fa-solid fa-id-card"></i><span>21 and over, valid ID required. Every purchase, every hour.</span></div></div>
 
-      <div class="awning" aria-hidden="true"></div>
+<section class="section products" id="shop">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker" style="color:#2D6A4F">The Shop</p><h2>Corner-store footprint, smoke-shop selection</h2></div>
+      <p>The product categories below come directly from the supplied site. No prices, discounts, guarantees, or additional inventory claims have been added.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="icon"><i class="fa-solid fa-battery-three-quarters"></i></div><h3>Vapes</h3><p>Disposables and batteries for the usual setups.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-jar"></i></div><h3>Glass</h3><p>Hand pieces and basics for the home shelf.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-scroll"></i></div><h3>Wraps and papers</h3><p>The roll-your-own wall, restocked weekly.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-fire-flame-simple"></i></div><h3>Cigars</h3><p>Quick sticks and classics behind the glass.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-lightbulb"></i></div><h3>Lighters</h3><p>By the register, where they belong.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-leaf"></i></div><h3>CBD</h3><p>Ask the counter what's currently on the shelf.</p></article>
+    </div>
+  </div>
+</section>
 
-      <div class="section tint">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>Open 24 hours</h2>
-            <p>The whole point of a corner store is that it's there when you need it. This one always is.</p>
-          </div>
-          <div class="hours-strip">
-            <div>
-              <div class="big">Open 24 hours</div>
-              <p class="sub">Seven days a week. <span id="status-chip" class="status-chip"><span class="dot"></span>Checking</span></p>
-            </div>
-            <a class="btn btn-lime" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Get the address</a>
-          </div>
-        </div>
-      </div>
+<section class="section night" id="hours">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker">Hours</p><h2>Open 24 hours</h2></div>
+      <p>The supplied business information says the shop is open 24 hours, every day.</p>
+    </div>
+    <div class="hoursbox">
+      <div class="big24"><strong>24 / 7</strong><p>Open 24 hours, seven days a week.</p></div>
+      <div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The street address, phone number, and direct real-world contact actions are intentionally hidden in this sample site.</p></div>
+    </div>
+  </div>
+  <div class="asset-note">Stock convenience-store image • Unsplash</div>
+</section>
 
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Small store, short lines, straight answers</h2>
-            <p>Reviews keep naming the same things: the staff, the store, and the fact that it's open when everything else is shut.</p>
-          </div>
-          <div class="receipts">
-            <div class="receipt">
-              <blockquote>"Tommy's staff are great."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-              <div class="dashed"></div>
-              <div class="total"><span>Google review</span><span>5 stars</span></div>
-            </div>
-            <div class="receipt">
-              <blockquote>"Nice store."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-              <div class="dashed"></div>
-              <div class="total"><span>Google review</span><span>5 stars</span></div>
-            </div>
-          </div>
-          <div style="text-align:center;margin-top:26px;">
-            <a class="btn btn-lime" href="#/reviews" data-page="reviews"><i class="fa-solid fa-star" aria-hidden="true"></i> Read the reviews page</a>
-          </div>
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker" style="color:#2D6A4F">Reviews</p><h2>Customer reviews</h2></div>
+      <p>The supplied site identifies the following excerpts as Google reviews and reports a 4.7-star rating from 172 reviews.</p>
+    </div>
+    <div class="receipts">
+      <article class="receipt"><blockquote>“Tommy's staff are great.”</blockquote><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span class="who">Google review · 5 stars</span></article>
+      <article class="receipt"><blockquote>“Nice store.”</blockquote><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span class="who">Google review · 5 stars</span></article>
+    </div>
+    <div class="summary"><strong>4.7 stars · 172 Google reviews</strong><p>Rating and count shown exactly as supplied in the attached site.</p></div>
+    <div class="actions" style="justify-content:center;margin-top:24px"><button class="btn btn-lime" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button></div>
+  </div>
+</section>
+
+<section class="section contact" id="visit">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker" style="color:#2D6A4F">Visit</p><h2>On Alvernon in Tucson</h2></div>
+      <p>The original site includes a direct phone number, full address, Google Maps link, and a text-message form. Those real-world actions are protected in this demo.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Store details</h3>
+        <div class="protected" style="margin-top:18px"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Business phone number and street address are intentionally hidden in this sample.</p></div>
+        <div class="actions" style="margin-top:22px">
+          <button class="btn btn-lime" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Get Directions</button>
+          <button class="btn" style="border-color:var(--forest);color:var(--forest)" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Counter</button>
         </div>
       </div>
-    </section>
-
-    <!-- THE SHOP (category) -->
-    <section class="page" id="page-shop">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>The Shop</h2>
-            <p>Corner-store footprint, smoke-shop selection. The staples live here, and the counter will steer you straight.</p>
-          </div>
-          <div class="case-grid">
-            <div class="case">
-              <span class="icon"><i class="fa-solid fa-battery-three-quarters" aria-hidden="true"></i></span>
-              <h3>Vapes</h3>
-              <p>Disposables and batteries for the usual setups.</p>
-            </div>
-            <div class="case">
-              <span class="icon"><i class="fa-solid fa-jar" aria-hidden="true"></i></span>
-              <h3>Glass</h3>
-              <p>Hand pieces and basics for the home shelf.</p>
-            </div>
-            <div class="case">
-              <span class="icon"><i class="fa-solid fa-joint" aria-hidden="true"></i></span>
-              <h3>Wraps and papers</h3>
-              <p>The roll-your-own wall, restocked weekly.</p>
-            </div>
-            <div class="case">
-              <span class="icon"><i class="fa-solid fa-fire" aria-hidden="true"></i></span>
-              <h3>Cigars</h3>
-              <p>Quick sticks and classics behind the glass.</p>
-            </div>
-            <div class="case">
-              <span class="icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span>
-              <h3>Lighters</h3>
-              <p>By the register, where they belong.</p>
-            </div>
-            <div class="case">
-              <span class="icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span>
-              <h3>CBD</h3>
-              <p>Ask the counter what's currently on the shelf.</p>
-            </div>
-          </div>
-          <div class="id-card">
-            <i class="fa-solid fa-id-card" aria-hidden="true"></i>
-            <div>
-              <h3>21 and over, valid ID required</h3>
-              <p>Every purchase, every hour. Bring a current, valid ID.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section tint">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>Night owls, this one's for you</h2>
-            <p>Most smoke shops on the east side are dark by 10. This one isn't. 1144 N Alvernon Way, lights on, all night.</p>
-          </div>
-          <div style="text-align:center;">
-            <a class="btn btn-lime" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Plan your visit</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>Reviews</h2>
-            <p>Every review we've got, printed exactly as the customers wrote them.</p>
-          </div>
-          <div class="receipts">
-            <div class="receipt">
-              <blockquote>"Tommy's staff are great."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-              <div class="dashed"></div>
-              <div class="total"><span>Google review</span><span>5 stars</span></div>
-            </div>
-            <div class="receipt">
-              <blockquote>"Nice store."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-              <div class="dashed"></div>
-              <div class="total"><span>Google review</span><span>5 stars</span></div>
-            </div>
-          </div>
-          <div class="review-summary">
-            <div class="score">4.7 stars with 172 reviews on Google</div>
-            <p>Great staff, nice store, open around the clock.</p>
-          </div>
-          <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=420%20Smoke%20Shop%2C%201144%20N%20Alvernon%20Way%2C%20Tucson%2C%20AZ%2085712" target="_blank" rel="noopener">
-              <i class="fa-brands fa-google" aria-hidden="true"></i>
-              <span>See every review on Google<small>Opens Google Maps in a new tab</small></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Visit</h2>
-            <p>On Alvernon just south of Grant. Park, walk up, and walk in, whatever time it is.</p>
-          </div>
-          <div class="visit-grid">
-            <div class="store-tag">
-              <div class="tag-top" aria-hidden="true"></div>
-              <div class="tag-body">
-                <div class="punch-hole" aria-hidden="true"><span></span><span></span><span></span></div>
-                <div class="row">
-                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                  <div><b>Corner store</b>1144 N Alvernon Way, Tucson, AZ 85712</div>
-                </div>
-                <div class="row">
-                  <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                  <div><b>Call the counter</b><a class="tag-phone" href="tel:+15205247175">(520) 524-7175</a></div>
-                </div>
-                <div class="row">
-                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                  <div><b>Hours</b>Open 24 hours <span class="status-chip" style="margin-left:6px;"><span class="dot"></span>Checking</span></div>
-                </div>
-                <div class="row">
-                  <i class="fa-solid fa-id-card" aria-hidden="true"></i>
-                  <div><b>Bring with you</b>Valid ID, 21 and over</div>
-                </div>
-              </div>
-            </div>
-            <div class="form-card">
-              <h3>Ask the corner store</h3>
-              <p class="hint">Quick note, quick answer. On your phone this opens a text to the counter; on a desktop it copies the message so you can paste it into a text.</p>
-              <form id="quote-form" novalidate>
-                <div class="field">
-                  <label for="f-name">Your name</label>
-                  <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="What should we call you">
-                </div>
-                <div class="field">
-                  <label for="f-phone">Your phone number</label>
-                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(520) 555-0100">
-                </div>
-                <div class="field">
-                  <label for="f-msg">Your question</label>
-                  <textarea id="f-msg" name="message" required placeholder="Quick question about the shop..."></textarea>
-                </div>
-                <button class="btn btn-lime" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it over</button>
-                <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="awning" aria-hidden="true"></div>
-    </section>
-  </main>
-
-  <footer class="site-foot">
-    <div class="foot-in">
-      <div>
-        <h4>420 Smoke Shop</h4>
-        <p>Tucson's 24-hour corner store on Alvernon Way. Smoke shop staples, fair counter talk, and hours that never end.</p>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>(520) 524-7175</p>
-        <p>1144 N Alvernon Way<br>Tucson, AZ 85712</p>
-      </div>
-      <div>
-        <h4>Hours</h4>
-        <p>Open 24 hours, every day</p>
-        <p>21 and over, valid ID required</p>
+      <div class="contact-card">
+        <h3>Ask the corner store</h3>
+        <p style="margin:6px 0 18px;color:#5d6d62">The original site provides a quick text form. Submission stays locked here because this is a demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Your phone number</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="question">Your question</label><textarea id="question"></textarea></div>
+          <button class="btn btn-lime" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send it over</button>
+        </form>
       </div>
     </div>
-    <div class="foot-bottom">© 420 Smoke Shop · Tucson, AZ</div>
-  </footer>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong style="color:#fff">420 Smoke Shop</strong><div style="font-size:.8rem">Tucson, Arizona · Open 24 hours · 21+</div></div>
+    <nav class="footnav"><a href="#shop">The Shop</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p id="lockedMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-lime" id="closeModal" type="button">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "420 Smoke Shop";
-var TITLES = { home: "A 24 Hour Corner Store on Alvernon", shop: "The Shop", reviews: "Reviews", visit: "Visit" };
-var PRETTY_PHONE = "(520) 524-7175";
-var PHONE = "+15205247175";
-var CITY_TZ = "America/Phoenix";
-var HOURS = {0:[0,24],1:[0,24],2:[0,24],3:[0,24],4:[0,24],5:[0,24],6:[0,24]};
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeModal = document.getElementById('closeModal');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
   });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-  document.querySelectorAll(".nav-links a").forEach(function(a){
-    a.classList.toggle("is-here", a.getAttribute("data-page") === id);
-  });
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
 
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderStatus(){
-  var s = openState();
-  document.querySelectorAll(".status-chip").forEach(function(chip){
-    chip.classList.toggle("is-open", s.open);
-    chip.classList.toggle("is-closed", !s.open);
-    chip.innerHTML = '<span class="dot"></span>' + s.label;
-  });
-}
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }));
 
-var mb = document.getElementById("menu-btn");
-var nl = document.querySelector(".nav-links");
-mb.addEventListener("click", function(){
-  var open = nl.classList.toggle("open");
-  mb.classList.toggle("open", open);
-  mb.setAttribute("aria-expanded", open ? "true" : "false");
-});
-
-var form = document.getElementById("quote-form");
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var phone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  if (!name || !phone || !msg) {
-    document.getElementById("form-feedback").textContent = "All three lines, please, so the counter can text you back.";
-    return;
+  function openLocked(){
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeModal.focus();
   }
-  var note = "Question for " + BUSINESS + "\nName: " + name + "\nPhone: " + phone + "\n\n" + msg;
-  var body = encodeURIComponent(note);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(note).then(function(){
-      document.getElementById("form-feedback").textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE + ".";
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked();
     });
-  }
-});
+  });
 
-navigateTo(getPageFromHash(), false);
-renderStatus();
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked();
+  });
+
+  closeModal.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => { if(e.target === modal) closeLocked(); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if(e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+})();
 </script>
 </body>
 </html>

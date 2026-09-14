@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Handley Dr Laundromat, Fort Worth | 1 Hour Laundromat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,9 @@
 html,body{ margin:0; padding:0; }
 body{
   font-family:'Barlow',sans-serif;
+  -webkit-user-select:none;
+  user-select:none;
+  touch-action:pan-y;
   background:var(--white);
   color:var(--ink);
   line-height:1.65;
@@ -87,7 +90,13 @@ header.site{
 .page.active{ display:block; }
 
 /* Hero: centered stopwatch */
-.hero{ text-align:center; padding:48px 0 44px; }
+.hero{
+  text-align:center; padding:58px 0 54px;
+  background:
+    linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
+    url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1800&q=84") center/cover;
+  border-bottom:1px solid var(--line);
+}
 .watch-art{ width:min(170px, 40vw); margin:0 auto 18px; display:block; }
 .eyebrow{
   font-size:.78rem; letter-spacing:.24em; text-transform:uppercase;
@@ -115,6 +124,21 @@ header.site{
 .band p{ margin:0; font-weight:700; font-size:1.08rem; max-width:64ch; margin:0 auto; }
 
 /* Thin honest sections */
+#page-wash{
+  background:
+    linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.92)),
+    url("https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=1900&q=84") center/cover fixed;
+}
+#page-reviews{
+  background:
+    linear-gradient(rgba(255,255,255,.93),rgba(255,255,255,.93)),
+    url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1800&q=84") center/cover;
+}
+#page-visit{
+  background:
+    linear-gradient(rgba(255,255,255,.91),rgba(255,255,255,.91)),
+    url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1900&q=84") center/cover;
+}
 .page-head{ padding:44px 0 8px; }
 .page-head h1{ font-size:clamp(2rem, 4.6vw, 3.1rem); }
 .page-head p{ color:var(--ink-soft); max-width:60ch; margin:0; }
@@ -207,11 +231,58 @@ textarea{ min-height:110px; resize:vertical; }
 #form-feedback{ margin:12px 0 0; font-size:.92rem; font-weight:700; min-height:1.3em; }
 
 /* Footer */
-footer.site{ background:var(--black); color:var(--white); padding:28px 0 24px; margin-top:40px; }
+footer.site{
+  background:
+    linear-gradient(rgba(17,17,17,.95),rgba(17,17,17,.95)),
+    url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1600&q=80") center/cover;
+  color:var(--white); padding:28px 0 24px; margin-top:40px;
+}
 .foot-grid{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center; }
 .foot-brand{ font-family:'Faster One',cursive; font-size:1.15rem; }
 .foot-quiet{ font-size:.86rem; color:#D9D9D9; }
 .foot-copy{ font-size:.86rem; color:rgba(255,255,255,.75); width:100%; border-top:1px solid rgba(255,255,255,.2); padding-top:13px; margin-top:4px; }
+
+
+/* Protected demo actions */
+.protected{
+  border:2px dashed var(--black);
+  background:var(--hour);
+  color:var(--black);
+  padding:14px 16px;
+  font-weight:800;
+  text-align:center;
+  margin:10px 0;
+}
+.stock-note{
+  font-size:.76rem;
+  color:var(--ink-soft);
+  max-width:68ch;
+  margin:14px auto 0;
+}
+.modal-backdrop{
+  position:fixed; inset:0; z-index:9999;
+  background:rgba(0,0,0,.72);
+  display:none; align-items:center; justify-content:center;
+  padding:20px;
+}
+.modal-backdrop.show{ display:flex; }
+body.modal-open{ overflow:hidden; }
+.lock-modal{
+  width:min(460px,100%);
+  background:var(--white);
+  border:3px solid var(--black);
+  box-shadow:8px 8px 0 var(--hour);
+  padding:28px;
+}
+.lock-modal .lock-icon{
+  width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--hour);border:2px solid var(--black);
+  margin-bottom:14px;
+}
+.lock-modal h3{ font-size:1.65rem; }
+.lock-modal p{ color:var(--ink-soft); }
+.lock-modal .btn{ width:100%; justify-content:center; margin-top:16px; }
 
 /* Responsive */
 @media (max-width:900px){
@@ -290,6 +361,7 @@ footer.site{ background:var(--black); color:var(--white); padding:28px 0 24px; m
           <a class="btn btn-black" href="#/wash" data-page="wash"><i class="fa-solid fa-soap" aria-hidden="true"></i> The wash</a>
           <a class="btn btn-line" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit us</a>
         </div>
+        <p class="stock-note">Stock laundromat imagery is used in this demo and does not depict the actual business, staff, machines, or location.</p>
       </div>
       <div class="band">
         <div class="wrap">
@@ -348,7 +420,7 @@ footer.site{ background:var(--black); color:var(--white); padding:28px 0 24px; m
         <p class="rating-line">5.0 stars on Google</p>
         <p style="color:var(--ink-soft); font-size:.92rem; max-width:52ch; margin:8px auto 0;">A small shop with a spotless record so far. The Google listing has the full story.</p>
         <div class="link-cards">
-          <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=1%20Hour%20Laundromat%2C%202226%20Handley%20Dr%2C%20Fort%20Worth%2C%20TX%2076112" target="_blank" rel="noopener">
+          <a class="link-card" href="#" data-locked="true">
             <i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google
           </a>
         </div>
@@ -374,13 +446,9 @@ footer.site{ background:var(--black); color:var(--white); padding:28px 0 24px; m
             <span>Front desk</span>
           </div>
           <div class="sc-body">
-            <div class="sc-line">
-              <i class="fa-solid fa-phone" aria-hidden="true"></i>
-              <span><a class="sc-phone" href="tel:+18172410290">(817) 241-0290</a><span style="font-size:.85rem; color:var(--ink-soft);">Call the shop</span></span>
-            </div>
-            <div class="sc-line">
-              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-              <span>2226 Handley Dr, Fort Worth, TX 76112</span>
+            <div class="protected">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              CONTACT DETAILS PROTECTED IN THIS DEMO
             </div>
             <div class="sc-line">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
@@ -389,21 +457,23 @@ footer.site{ background:var(--black); color:var(--white); padding:28px 0 24px; m
             <div class="sc-line">
               <span class="status-chip"><span class="dot"></span>Checking hours...</span>
             </div>
-            <p class="confirm-line">Hours are estimated. Please call to confirm holiday hours.</p>
+            <p class="confirm-line">Hours are estimated. Please confirm current and holiday hours with the business.</p>
+            <button class="btn btn-black" type="button" data-locked="true" style="width:100%;justify-content:center;margin-top:16px;">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i> Call the shop
+            </button>
           </div>
         </div>
         <div class="form-card">
           <h3>Send a note to the desk</h3>
-          <p class="form-note">A question about machines or your first visit? Write it here.</p>
+          <p class="form-note">This demo shows the contact form layout, but submission is locked until the full site is unlocked.</p>
           <form id="quote-form" novalidate>
             <label for="f-name">Your name</label>
             <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First name is fine">
             <label for="f-phone">Your phone</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="So we can text you back">
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number">
             <label for="f-msg">Your message</label>
             <textarea id="f-msg" name="message" placeholder="Ask about the wash, the machines, anything"></textarea>
-            <button class="btn btn-black" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it</button>
-            <p id="form-feedback" role="status" aria-live="polite"></p>
+            <button class="btn btn-black" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it</button>
           </form>
         </div>
       </div>
@@ -413,10 +483,20 @@ footer.site{ background:var(--black); color:var(--white); padding:28px 0 24px; m
   <footer class="site">
     <div class="wrap foot-grid">
       <span class="foot-brand">1 Hour Laundromat</span>
-      <span class="foot-quiet">(817) 241-0290 · 2226 Handley Dr, Fort Worth, TX · Every day 8 AM - 8 PM</span>
+      <span class="foot-quiet">CONTACT DETAILS PROTECTED IN THIS DEMO · Every day 8 AM - 8 PM</span>
       <span class="foot-copy">© 1 Hour Laundromat · Fort Worth, TX</span>
     </div>
   </footer>
+</div>
+
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" tabindex="-1">
+    <div class="lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-black" id="closeLockedModal" type="button">Close</button>
+  </div>
 </div>
 
 <script>
@@ -498,27 +578,51 @@ function renderChips(){
 })();
 renderChips();
 
-var PHONE = "+18172410290";
-var PRETTY = "(817) 241-0290";
-var form = document.getElementById("quote-form");
-var feedback = document.getElementById("form-feedback");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
-      });
-    }
-  });
+
+var lockedModal = document.getElementById("lockedModal");
+var closeLockedModal = document.getElementById("closeLockedModal");
+var previousFocus = null;
+
+function openLockedModal(e){
+  if (e) e.preventDefault();
+  previousFocus = document.activeElement;
+  lockedModal.classList.add("show");
+  lockedModal.setAttribute("aria-hidden","false");
+  document.body.classList.add("modal-open");
+  closeLockedModal.focus();
 }
+function closeLocked(){
+  lockedModal.classList.remove("show");
+  lockedModal.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
+  if (previousFocus && previousFocus.focus) previousFocus.focus();
+}
+
+document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+  el.addEventListener("click", openLockedModal);
+});
+closeLockedModal.addEventListener("click", closeLocked);
+lockedModal.addEventListener("click", function(e){
+  if (e.target === lockedModal) closeLocked();
+});
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape" && lockedModal.classList.contains("show")) closeLocked();
+  if (e.key === "Tab" && lockedModal.classList.contains("show")) {
+    e.preventDefault();
+    closeLockedModal.focus();
+  }
+});
+document.addEventListener("gesturestart", function(e){ e.preventDefault(); });
+document.addEventListener("dblclick", function(e){ e.preventDefault(); }, { passive:false });
+
 </script>
+
+<!--
+STOCK IMAGE ASSET LIST
+- Unsplash laundromat/laundry imagery loaded remotely for demo presentation.
+- These images do not depict 1 Hour Laundromat, its employees, its exact storefront, or completed work.
+- Real-world phone, address, external review link, and form submission actions are protected in this demo.
+-->
+
 </body>
 </html>

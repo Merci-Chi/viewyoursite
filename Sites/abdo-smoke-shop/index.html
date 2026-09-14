@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Smoke Shop on N High St | ABDO Smoke Shop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,9 @@
 html,body{ margin:0; padding:0; }
 body{
   font-family:'Fira Sans',sans-serif;
+  -webkit-user-select:none;
+  user-select:none;
+  touch-action:pan-y;
   background:var(--cream);
   color:var(--ink);
   line-height:1.65;
@@ -96,7 +99,13 @@ header.site{
 section{ scroll-margin-top:80px; }
 
 /* Hero */
-.hero{ padding:58px 0 46px; }
+.hero{
+  padding:72px 0 62px;
+  background:
+    linear-gradient(rgba(250,246,239,.90),rgba(250,246,239,.90)),
+    url("https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1900&q=84") center/cover;
+  border-bottom:1px solid rgba(93,64,55,.12);
+}
 .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:36px; align-items:center; }
 .eyebrow{
   font-size:.8rem; letter-spacing:.18em; text-transform:uppercase;
@@ -142,6 +151,21 @@ section{ scroll-margin-top:80px; }
 .feat h3{ font-size:1.25rem; color:var(--cardamom); }
 .feat p{ margin:0; font-size:.95rem; color:#5E5049; }
 
+#page-shop{
+  background:
+    linear-gradient(rgba(250,246,239,.92),rgba(250,246,239,.92)),
+    url("https://images.unsplash.com/photo-1526749837599-b4eba9fd855e?auto=format&fit=crop&w=1900&q=84") center/cover fixed;
+}
+#page-reviews{
+  background:
+    linear-gradient(rgba(250,246,239,.93),rgba(250,246,239,.93)),
+    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=82") center/cover;
+}
+#page-visit{
+  background:
+    linear-gradient(rgba(250,246,239,.92),rgba(250,246,239,.92)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1900&q=84") center/cover;
+}
 /* Shop page */
 .panel{ background:var(--white); border-radius:18px; border:1px solid rgba(93,64,55,.14); padding:26px; }
 .chip-row{ display:flex; flex-wrap:wrap; gap:12px; margin:18px 0; }
@@ -248,13 +272,58 @@ textarea{ min-height:110px; resize:vertical; }
 
 /* Footer */
 footer.site{
-  background:var(--cardamom-deep); color:var(--cream);
+  background:
+    linear-gradient(rgba(67,48,42,.96),rgba(67,48,42,.96)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1700&q=80") center/cover;
+  color:var(--cream);
   padding:30px 0 26px; margin-top:40px;
 }
 .foot-grid{ display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }
 .foot-brand{ font-family:'Lalezar',cursive; font-size:1.2rem; }
 .foot-quiet{ font-size:.88rem; color:var(--mint-soft); }
 .foot-copy{ font-size:.88rem; color:rgba(250,246,239,.75); width:100%; border-top:1px solid rgba(250,246,239,.18); padding-top:14px; margin-top:4px; }
+
+
+/* Protected demo actions */
+.protected{
+  margin-top:16px;
+  padding:16px 18px;
+  background:var(--mint-soft);
+  border:1px solid rgba(38,166,154,.5);
+  color:var(--cardamom-deep);
+  font-weight:800;
+  text-align:center;
+}
+.stock-note{
+  margin-top:16px;
+  font-size:.76rem;
+  color:#6B5A52;
+  max-width:68ch;
+}
+.modal-backdrop{
+  position:fixed; inset:0; z-index:9999;
+  background:rgba(0,0,0,.70);
+  display:none; align-items:center; justify-content:center;
+  padding:20px;
+}
+.modal-backdrop.open{ display:flex; }
+body.modal-open{ overflow:hidden; }
+.lock-modal{
+  width:min(470px,100%);
+  background:var(--cream);
+  border:1px solid rgba(93,64,55,.2);
+  border-top:6px solid var(--mint);
+  padding:30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+.lock-modal .modal-icon{
+  width:52px;height:52px;display:grid;place-items:center;
+  background:var(--cardamom);color:var(--mint);
+  border-radius:50%;margin-bottom:18px;
+}
+.lock-modal h3{font-size:1.8rem;color:var(--cardamom)}
+.lock-modal p{color:#6B5A52}
+.lock-modal .btn{width:100%;justify-content:center;margin-top:16px}
 
 /* Responsive */
 @media (max-width:900px){
@@ -308,7 +377,7 @@ footer.site{
       <div class="wrap hero">
         <div class="hero-grid">
           <div>
-            <p class="eyebrow">1178 N High St · Columbus, OH</p>
+            <p class="eyebrow">Columbus, OH</p>
             <h1>The neighborhood counter for vapes and kratom.</h1>
             <p class="lede">ABDO Smoke Shop keeps it simple: a clean room, organized shelves that stay stocked, and an owner who actually says hello. Stop in on High Street and see for yourself.</p>
             <div class="hero-chips">
@@ -319,6 +388,7 @@ footer.site{
               <a class="btn btn-mint" href="#/shop" data-page="shop"><i class="fa-solid fa-store" aria-hidden="true"></i> See the shop</a>
               <a class="btn btn-line" href="#/visit" data-page="visit"><i class="fa-solid fa-door-open" aria-hidden="true"></i> Plan a visit</a>
             </div>
+            <p class="stock-note">Stock retail imagery is used in this demo and does not depict the actual ABDO Smoke Shop, staff, storefront, or products.</p>
           </div>
           <div class="hookah-stage" aria-hidden="true">
             <svg viewBox="0 0 220 260" role="img" aria-label="Stylized hookah">
@@ -412,7 +482,7 @@ footer.site{
           </div>
         </div>
         <p class="rating-summary"><span class="big">4.6</span> stars with 31 Google reviews</p>
-        <a class="review-link-card" href="https://www.google.com/maps/search/?api=1&query=ABDO%20Smoke%20Shop%2C%201178%20N%20High%20St%2C%20Columbus%2C%20OH%2043201" target="_blank" rel="noopener">
+        <a class="review-link-card" href="#" data-locked="true">
           <i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google
         </a>
       </div>
@@ -434,9 +504,9 @@ footer.site{
             </svg>
             <h3>Walk-in card</h3>
           </div>
-          <div class="walk-line">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-            <span><strong>Address</strong> 1178 N High St, Columbus, OH 43201</span>
+          <div class="protected">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            CONTACT DETAILS PROTECTED IN THIS DEMO
           </div>
           <div class="walk-line">
             <i class="fa-solid fa-clock" aria-hidden="true"></i>
@@ -459,7 +529,7 @@ footer.site{
             <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First name is fine">
             <label for="f-msg">Your message</label>
             <textarea id="f-msg" name="message" placeholder="Ask about stock, vape brands, kratom, anything"></textarea>
-            <button class="btn btn-mint" type="submit"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy my note</button>
+            <button class="btn btn-mint" type="submit" data-locked="true"><i class="fa-solid fa-copy" aria-hidden="true"></i> Copy my note</button>
             <p id="form-feedback" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -470,10 +540,20 @@ footer.site{
   <footer class="site">
     <div class="wrap foot-grid">
       <span class="foot-brand">ABDO Smoke Shop</span>
-      <span class="foot-quiet">1178 N High St, Columbus, OH 43201 · Every day 9 AM - midnight</span>
+      <span class="foot-quiet">CONTACT DETAILS PROTECTED IN THIS DEMO · Every day 9 AM - midnight</span>
       <span class="foot-copy">© ABDO Smoke Shop · Columbus, OH</span>
     </div>
   </footer>
+</div>
+
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" tabindex="-1">
+    <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-mint" id="modalClose" type="button">Close</button>
+  </div>
 </div>
 
 <script>
@@ -555,26 +635,52 @@ function renderChips(){
 })();
 renderChips();
 
-var form = document.getElementById("quote-form");
-var feedback = document.getElementById("form-feedback");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
-    var text = "Hi " + BUSINESS + ", this is " + name + ". " + msg;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Bring it in or find us on the map.";
-      }, function(){
-        feedback.textContent = "Copy did not work. Jot your note down and bring it in.";
-      });
-    } else {
-      feedback.textContent = "Clipboard is unavailable here. Jot your note down and bring it in.";
-    }
-  });
+
+
+var lockedModal = document.getElementById("lockedModal");
+var modalClose = document.getElementById("modalClose");
+var lastFocus = null;
+
+function openLockedModal(e){
+  if (e) e.preventDefault();
+  lastFocus = document.activeElement;
+  lockedModal.classList.add("open");
+  lockedModal.setAttribute("aria-hidden","false");
+  document.body.classList.add("modal-open");
+  modalClose.focus();
 }
+function closeLockedModal(){
+  lockedModal.classList.remove("open");
+  lockedModal.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+  el.addEventListener("click", openLockedModal);
+});
+modalClose.addEventListener("click", closeLockedModal);
+lockedModal.addEventListener("click", function(e){
+  if(e.target === lockedModal) closeLockedModal();
+});
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && lockedModal.classList.contains("open")) closeLockedModal();
+  if(e.key === "Tab" && lockedModal.classList.contains("open")){
+    e.preventDefault();
+    modalClose.focus();
+  }
+});
+document.addEventListener("gesturestart", function(e){ e.preventDefault(); });
+document.addEventListener("dblclick", function(e){ e.preventDefault(); }, {passive:false});
+
 </script>
+
+<!--
+PROTECTED DEMO NOTES
+- Stock retail imagery is used only as generic presentation imagery.
+- It does not depict ABDO Smoke Shop, its owner, employees, storefront, or actual inventory.
+- Direct address/review/form actions are protected in the demo.
+- Internal page navigation remains functional.
+-->
+
 </body>
 </html>
