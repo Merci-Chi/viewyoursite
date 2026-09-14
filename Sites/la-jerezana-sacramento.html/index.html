@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="description" content="A corner panaderia with a huge pan dulce selection and staff that will guide you through it until you find your favorite.">
+<title>Panaderia La Jerezana | Sacramento, CA</title>
+<link rel="preconnect" href="https://images.unsplash.com">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{--dark:#72452a;--cream:#fbf1dc;--accent:#6c8a3c;--ink:#433126;--card:#fffaf0;--line:color-mix(in srgb,var(--ink) 18%,transparent);--max:1160px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;touch-action:pan-x pan-y;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--cream) 93%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:900;letter-spacing:-.035em;font-size:1.12rem}
+.links{display:flex;gap:26px;align-items:center;font-weight:750;font-size:.9rem}.links a:hover{color:var(--accent)}
+.menu{display:none;width:46px;height:46px;background:transparent;border:1px solid var(--line);color:var(--ink);align-items:center;justify-content:center}
+.hero{position:relative;min-height:78vh;display:grid;align-items:end;isolation:isolate;background:url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,color-mix(in srgb,var(--dark) 94%,transparent) 0%,color-mix(in srgb,var(--dark) 78%,transparent) 48%,color-mix(in srgb,var(--dark) 22%,transparent) 100%)}
+.hero .inner{padding:105px 0 88px;color:white;max-width:790px}.eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.15em;font-size:.76rem;font-weight:900;color:var(--accent)}
+.hero h1{font-size:clamp(3.4rem,7.7vw,7rem);line-height:.9;letter-spacing:-.07em;margin:14px 0 24px;text-wrap:balance}.hero p{max-width:680px;color:#eee;font-size:1.12rem;margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 22px;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.24);color:white;font-weight:850;cursor:pointer;transition:.2s}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#111}.btn:hover{transform:translateY(-2px)}.warning{margin-top:22px;display:flex;gap:10px;align-items:flex-start;color:#f2e9df;font-size:.88rem;max-width:680px}.warning svg{width:19px;flex:0 0 auto}
+section{padding:92px 0}.section-title{max-width:760px;margin-bottom:38px}.section-title span{color:var(--accent);text-transform:uppercase;letter-spacing:.15em;font-size:.76rem;font-weight:900}
+.section-title h2{font-size:clamp(2.35rem,5vw,4.7rem);line-height:.98;letter-spacing:-.055em;margin:8px 0 14px}.section-title p{color:color-mix(in srgb,var(--ink) 68%,transparent);margin:0}
+.items{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--line);border-top:1px solid var(--line)}.item{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--card) 68%,transparent);min-height:225px}
+.item .ico{color:var(--accent);margin-bottom:42px}.item h3{margin:0 0 8px;font-size:1.15rem}.item p{margin:0;color:color-mix(in srgb,var(--ink) 70%,transparent)}
+.feature{display:grid;grid-template-columns:1fr 1fr;min-height:610px;background:var(--dark);color:white}.feature.reverse .photo{order:2}.photo{background:url("https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=1400&q=85") center/cover no-repeat;min-height:460px}
+.details{padding:70px clamp(28px,6vw,86px);display:flex;flex-direction:column;justify-content:center}.details h2{font-size:clamp(2.5rem,5vw,5rem);line-height:.92;letter-spacing:-.06em;margin:10px 0 30px}
+.detail{display:grid;grid-template-columns:28px 1fr;gap:14px;margin:13px 0}.detail svg{color:var(--accent);width:21px}.detail strong{display:block}.detail span{color:#d7d1cb}
+.reviews{background:var(--card)}.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}blockquote{margin:0;padding:28px;border:1px solid var(--line);background:var(--cream);font-size:1.08rem}blockquote footer{margin-top:16px;color:color-mix(in srgb,var(--ink) 58%,transparent);font-size:.82rem;font-weight:750}
+.rating{font-weight:850;color:var(--accent)!important}.rating-only{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:end}.rating-only h2{font-size:clamp(2.3rem,5vw,4.7rem);letter-spacing:-.055em;margin:8px 0 0}.rating-only p{color:color-mix(in srgb,var(--ink) 68%,transparent);margin:0}
+.cta{background:var(--accent);color:#111;padding:64px 0}.cta-grid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px}.cta h2{font-size:clamp(2.2rem,5vw,4.8rem);line-height:.95;letter-spacing:-.055em;margin:0 0 12px}.cta p{margin:0;font-weight:700}.cta .btn{background:#111;color:white;border-color:#111}
+footer{padding:32px 0;background:var(--dark);color:#d9d2cc}.foot{display:flex;justify-content:space-between;gap:20px;font-size:.85rem}
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.76);padding:20px}.modal.open{display:flex}.dialog{background:var(--card);color:var(--ink);width:min(500px,100%);padding:30px;border:1px solid var(--line);box-shadow:0 30px 100px rgba(0,0,0,.35)}.dialog h2{margin:0 0 10px}.dialog p{margin:0 0 22px}.dialog .btn{width:100%}
+@media(max-width:820px){.links{display:none;position:absolute;top:76px;left:0;right:0;background:var(--cream);padding:22px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.links.open{display:flex}.menu{display:flex}.hero{min-height:70vh}.hero:before{background:linear-gradient(0deg,color-mix(in srgb,var(--dark) 96%,transparent),color-mix(in srgb,var(--dark) 38%,transparent))}.hero h1{font-size:clamp(3rem,14vw,5rem)}.items{grid-template-columns:1fr 1fr}.feature,.rating-only,.cta-grid{grid-template-columns:1fr}.feature.reverse .photo{order:0}.quotes{grid-template-columns:1fr}section{padding:68px 0}}
+@media(max-width:560px){.wrap{width:min(calc(100% - 28px),var(--max))}.items{grid-template-columns:1fr}.item{min-height:0}.actions,.btn{width:100%}.foot{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="#top">Panaderia La Jerezana</a><nav class="links" id="links"><a href="#offer">What we offer</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu" aria-hidden="true"></i></button></div></header>
+<main id="top">
+<section class="hero"><div class="wrap inner"><span class="eyebrow"><i data-lucide="map-pin" aria-hidden="true"></i> Panaderia · Rio Linda Blvd</span><h1>A wall of pan dulce, tray in hand.</h1><p>A corner panaderia with a huge pan dulce selection and staff that will guide you through it until you find your favorite.</p><div class="actions"><a class="btn primary" href="#offer"><i data-lucide="arrow-down" aria-hidden="true"></i> Explore</a><button class="btn" data-locked="true"><i data-lucide="phone" aria-hidden="true"></i> (916) 925-2622</button></div></div></section>
+<section id="offer"><div class="wrap"><div class="section-title"><span>At the counter</span><h2>What you will find</h2></div><div class="items"><article class="item"><div class="ico"><i data-lucide="croissant" aria-hidden="true"></i></div><h3>Conchas</h3><p>Part of the pan dulce selection.</p></article><article class="item"><div class="ico"><i data-lucide="croissant" aria-hidden="true"></i></div><h3>Orejas</h3><p>Part of the pan dulce selection.</p></article><article class="item"><div class="ico"><i data-lucide="croissant" aria-hidden="true"></i></div><h3>Cuernos</h3><p>Part of the pan dulce selection.</p></article><article class="item"><div class="ico"><i data-lucide="croissant" aria-hidden="true"></i></div><h3>Empanadas</h3><p>Part of the pan dulce selection.</p></article><article class="item"><div class="ico"><i data-lucide="croissant" aria-hidden="true"></i></div><h3>Bolillos</h3><p>Bread for the table.</p></article><article class="item"><div class="ico"><i data-lucide="croissant" aria-hidden="true"></i></div><h3>Pastelitos</h3><p>Part of the bakery selection.</p></article></div></div></section>
+<section class="feature" id="visit"><div class="photo" role="img" aria-label="Relevant stock photo"></div><div class="details"><span class="eyebrow">Visit</span><h2>Panaderia La Jerezana</h2><div class="detail"><i data-lucide="map-pin" aria-hidden="true"></i><div><strong>Address</strong><span>2456 Rio Linda Blvd Ste 300, Sacramento, CA 95815</span></div></div><div class="detail"><i data-lucide="clock-3" aria-hidden="true"></i><div><strong>Hours</strong><span>Every day, 7:00 AM – 9:00 PM</span></div></div><div class="detail"><i data-lucide="phone" aria-hidden="true"></i><div><strong>Phone</strong><span>(916) 925-2622</span></div></div><div class="actions" style="margin-top:26px"><button class="btn primary" data-locked="true"><i data-lucide="phone-call" aria-hidden="true"></i> Call</button><button class="btn" data-locked="true"><i data-lucide="map" aria-hidden="true"></i> Directions</button></div></div></section>
+<section id="reviews" class="reviews"><div class="wrap"><div class="section-title"><span>Reviews</span><h2>What customers have said</h2><p class="rating">4.2 stars on Google</p></div><div class="quotes"><blockquote>“Helpful staff will guide you through the selection , huge selection of pan dulce”<footer>Google review</footer></blockquote></div></div></section>
+<section class="cta"><div class="wrap cta-grid"><div><h2>Plan your visit</h2><p>2456 Rio Linda Blvd Ste 300, Sacramento, CA 95815 · (916) 925-2622</p></div><button class="btn" data-locked="true"><i data-lucide="phone" aria-hidden="true"></i> Call now</button></div></section>
+</main>
+<footer><div class="wrap foot"><strong>Panaderia La Jerezana</strong><span>Sacramento, CA</span></div></footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="dialog"><h2 id="modalTitle">This is currently locked.</h2><p>This feature is part of the full website. Purchase the site to unlock it.</p><button class="btn primary" id="closeModal">Close</button></div></div>
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const links=document.getElementById('links');
+const modal=document.getElementById('modal');
+const closeModal=document.getElementById('closeModal');
+menuBtn.addEventListener('click',()=>{const open=links.classList.toggle('open');menuBtn.setAttribute('aria-expanded',open?'true':'false');});
+document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
+function openLocked(){modal.classList.add('open');document.body.style.overflow='hidden';closeModal.focus();}
+function closeLocked(){modal.classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openLocked();}));
+closeModal.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal) closeLocked();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape' && modal.classList.contains('open')) closeLocked();});
+lucide.createIcons();
+</script>
+</body>
+</html>
