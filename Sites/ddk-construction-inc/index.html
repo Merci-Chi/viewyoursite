@@ -1,647 +1,783 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name='robots' content='max-image-preview:large' />
-<title>D.D.K. Construction, Inc. &#8211; bjvfi.com</title>
-<link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
-<link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Comments Feed" href="https://bjvfi.com/comments/feed" />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://bjvfi.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbjvfi.com%2Fddk-construction-inc" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://bjvfi.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbjvfi.com%2Fddk-construction-inc&#038;format=xml" />
-<style id="wp-img-auto-sizes-contain-inline-css">
-img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
-/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
-</style>
-<style id="wp-block-html-inline-css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>D.D.K. Construction, Inc. | General Contractor in Cincinnati, Ohio</title>
+  <meta name="description" content="D.D.K. Construction, Inc. is a Cincinnati general contractor with documented public-project experience in general contracting, alterations, concrete, highway, street, and bridge construction.">
+  <meta name="theme-color" content="#0f2b45">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --blueprint:#0f2b45;
+      --blueprint-deep:#0a1f34;
+      --ink:#12283e;
+      --paper:#f6f3ec;
+      --paper-line:rgba(15,43,69,.12);
+      --safety:#e8641b;
+      --safety-deep:#b84c0f;
+      --steel:#5b7186;
+      --line:#dfe4ea;
+      --white:#fff;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Space Grotesk',sans-serif;
+      color:var(--ink);
+      line-height:1.6;
+      background:
+        linear-gradient(rgba(246,243,236,.91),rgba(246,243,236,.91)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2200&q=84") center top/cover fixed;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),92%);margin:auto}
+    .mono{font-family:'IBM Plex Mono',monospace}
+    .eyebrow,.sec-kicker{
+      font-family:'IBM Plex Mono',monospace;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+      font-size:.75rem;
+      color:var(--safety-deep);
+      font-weight:600;
+    }
+    h1,h2,h3{line-height:1.08}
+    h2{font-size:clamp(2rem,4.5vw,3.5rem)}
+    p{color:var(--steel)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+      padding:.9rem 1.25rem;min-height:50px;border:0;border-radius:3px;
+      background:var(--safety);color:#fff;font-weight:700;cursor:pointer;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px);background:var(--safety-deep)}
+    .btn.ghost{background:transparent;border:2px solid currentColor}
+    .btn.dark{background:var(--blueprint-deep)}
+    .btn.dark:hover{background:var(--blueprint)}
+    .section{padding:84px 0}
+    .section-head{max-width:760px;margin-bottom:2rem}
+    .section-head h2{margin:.4rem 0 .8rem}
 
-            @media only screen and (max-width: 783px) {
-                .is-style-msb-util-mobile-hide {
-                    display: none !important;
-                }
-            }
-/*# sourceURL=wp-block-html-inline-css */
-</style>
-<style id="wp-emoji-styles-inline-css">
+    header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(10,31,52,.96);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+    }
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:1rem;color:#fff}
+    .brand{display:flex;align-items:center;gap:.8rem}
+    .brand-mark{
+      width:46px;height:46px;display:grid;place-items:center;
+      border:2px solid var(--safety);color:var(--safety);
+      font-family:'IBM Plex Mono',monospace;font-weight:700;
+    }
+    .brand strong{display:block}
+    .brand span{display:block;font-size:.7rem;letter-spacing:.12em;color:#9fb2c3}
+    .nav-links{display:flex;align-items:center;gap:1.15rem}
+    .nav-links a{font-size:.88rem;font-weight:700;position:relative}
+    .nav-links a:not(.nav-cta)::after{
+      content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--safety);transition:right .2s ease
+    }
+    .nav-links a:not(.nav-cta):hover::after{right:0}
+    .nav-cta{background:var(--safety);padding:.7rem 1rem}
+    .menu-btn{display:none;background:transparent;border:0;color:#fff;font-size:1.5rem;cursor:pointer}
 
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-/*# sourceURL=wp-emoji-styles-inline-css */
-</style>
-<style id="wp-block-library-inline-css">
-:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
-/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
-</style>
-<style id="global-styles-inline-css">
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--base: #FAFAFA;--wp--preset--color--primary: #080D28;--wp--preset--color--secondary: #3D9DFC;--wp--preset--color--tertiary: #BED2FD;--wp--preset--color--quaternary: #ECF2FF;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 0.875rem;--wp--preset--font-size--medium: clamp(1rem, 1rem + ((1vw - 0.2rem) * 0.196), 1.125rem);--wp--preset--font-size--large: clamp(1.125rem, 1.125rem + ((1vw - 0.2rem) * 0.392), 1.375rem);--wp--preset--font-size--x-large: clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 0.392), 2rem);--wp--preset--font-size--xx-large: clamp(2.15rem, 2.15rem + ((1vw - 0.2rem) * 1.333), 3rem);--wp--preset--font-family--anybody-font: "Anybody", monospace;--wp--preset--font-family--roboto: "Roboto",sans-serif;--wp--preset--font-family--roboto-condensed: "Roboto Condensed",sans-serif;--wp--preset--font-family--open-sans: "Open Sans",sans-serif;--wp--preset--font-family--lato: "Lato",sans-serif;--wp--preset--font-family--montserrat: "Montserrat",sans-serif;--wp--preset--font-family--oswald: "Oswald",sans-serif;--wp--preset--font-family--slabo-13-px: "Slabo 13px",serif;--wp--preset--font-family--slabo-27-px: "Slabo 27px",serif;--wp--preset--font-family--raleway: "Raleway",sans-serif;--wp--preset--font-family--pt-sans: "PT Sans",sans-serif;--wp--preset--font-family--merriweather: "Merriweather",serif;--wp--preset--font-family--nunito-sans: "Nunito Sans",sans-serif;--wp--preset--font-family--concert-one: "Concert One",display;--wp--preset--spacing--20: 10px;--wp--preset--spacing--30: 20px;--wp--preset--spacing--40: 30px;--wp--preset--spacing--50: clamp(30px, 5vw, 50px);--wp--preset--spacing--60: clamp(30px, 7vw, 70px);--wp--preset--spacing--70: clamp(50px, 7vw, 90px);--wp--preset--spacing--80: clamp(70px, 10vw, 140px);--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1340px; }:where(body) { margin: 0; }.wp-site-blocks { padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); }.has-global-padding { padding-right: var(--wp--style--root--padding-right); padding-left: var(--wp--style--root--padding-left); }.has-global-padding > .alignfull { margin-right: calc(var(--wp--style--root--padding-right) * -1); margin-left: calc(var(--wp--style--root--padding-left) * -1); }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) { padding-right: 0; padding-left: 0; }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) > .alignfull { margin-left: 0; margin-right: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 0rem; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 0rem; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 0rem;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 0rem;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 0rem;}:root :where(.is-layout-grid){gap: 0rem;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{background-color: var(--wp--preset--color--base);color: var(--wp--preset--color--contrast);font-family: var(--wp--preset--font-family--raleway);font-size: var(--wp--preset--font-size--small);line-height: 1.6;--wp--style--root--padding-top: 0;--wp--style--root--padding-right: 0;--wp--style--root--padding-bottom: 0;--wp--style--root--padding-left: 0;}a:where(:not(.wp-element-button)){color: var(--wp--preset--color--primary);text-decoration: none;}:root :where(a:where(:not(.wp-element-button)):hover){color: var(--wp--preset--color--primary);text-decoration: none;}:root :where(a:where(:not(.wp-element-button)):focus){text-decoration: underline;}:root :where(a:where(:not(.wp-element-button)):active){color: var(--wp--preset--color--primary);text-decoration: none;}h1, h2, h3, h4, h5, h6{font-weight: 400;line-height: 1.4;text-transform: uppercase;}h1{font-size: var(--wp--preset--font-size--xx-large);font-weight: 500;line-height: 1.2;text-transform: uppercase;}h2{font-size: var(--wp--preset--font-size--x-large);font-weight: 500;line-height: 1.2;text-transform: uppercase;}h3{font-size: var(--wp--preset--font-size--large);font-weight: 500;text-transform: uppercase;}h4{font-size: var(--wp--preset--font-size--medium);font-weight: 500;text-transform: uppercase;}h5{font-size: var(--wp--preset--font-size--small);font-weight: 500;text-transform: uppercase;}h6{color: var(--wp--preset--color--theme-gray);font-size: var(--wp--preset--font-size--small);font-weight: 500;text-transform: uppercase;}:root :where(.wp-element-button, .wp-block-button__link){background-color: var(--wp--preset--color--primary);border-radius: 10px;border-color: var(--wp--preset--color--primary);border-width: 2px;border-style: solid;color: var(--wp--preset--color--base);font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: uppercase;}:root :where(.wp-element-button:hover, .wp-block-button__link:hover){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--primary);}:root :where(.wp-element-button:focus, .wp-block-button__link:focus){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--base);}:root :where(.wp-element-button:active, .wp-block-button__link:active){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--base);}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-base-color{color: var(--wp--preset--color--base) !important;}.has-primary-color{color: var(--wp--preset--color--primary) !important;}.has-secondary-color{color: var(--wp--preset--color--secondary) !important;}.has-tertiary-color{color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-color{color: var(--wp--preset--color--quaternary) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-background-color{background-color: var(--wp--preset--color--base) !important;}.has-primary-background-color{background-color: var(--wp--preset--color--primary) !important;}.has-secondary-background-color{background-color: var(--wp--preset--color--secondary) !important;}.has-tertiary-background-color{background-color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-background-color{background-color: var(--wp--preset--color--quaternary) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-border-color{border-color: var(--wp--preset--color--base) !important;}.has-primary-border-color{border-color: var(--wp--preset--color--primary) !important;}.has-secondary-border-color{border-color: var(--wp--preset--color--secondary) !important;}.has-tertiary-border-color{border-color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-border-color{border-color: var(--wp--preset--color--quaternary) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-xx-large-font-size{font-size: var(--wp--preset--font-size--xx-large) !important;}.has-anybody-font-font-family{font-family: var(--wp--preset--font-family--anybody-font) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-condensed-font-family{font-family: var(--wp--preset--font-family--roboto-condensed) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-lato-font-family{font-family: var(--wp--preset--font-family--lato) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-oswald-font-family{font-family: var(--wp--preset--font-family--oswald) !important;}.has-slabo-13-px-font-family{font-family: var(--wp--preset--font-family--slabo-13-px) !important;}.has-slabo-27-px-font-family{font-family: var(--wp--preset--font-family--slabo-27-px) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-pt-sans-font-family{font-family: var(--wp--preset--font-family--pt-sans) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-nunito-sans-font-family{font-family: var(--wp--preset--font-family--nunito-sans) !important;}.has-concert-one-font-family{font-family: var(--wp--preset--font-family--concert-one) !important;}
-/*# sourceURL=global-styles-inline-css */
-</style>
-<style id="wp-block-template-skip-link-inline-css">
-/*! This file is auto-generated */
-.skip-link.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important;word-break:normal!important}.skip-link.screen-reader-text:focus{background-color:#eee;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}
-/*# sourceURL=/wp-includes/css/wp-block-template-skip-link.min.css */
-</style>
-<link rel='stylesheet' id='theme-styles-css' href='https://bjvfi.com/wp-content/themes/business-identity-mvp/style.css?ver=7.1' media='all' />
-<link rel="https://api.w.org/" href="https://bjvfi.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://bjvfi.com/wp-json/wp/v2/pages/657166" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://bjvfi.com/xmlrpc.php?rsd" />
-<meta name="generator" content="WordPress 7.1" />
-<link rel="canonical" href="https://bjvfi.com/ddk-construction-inc" />
-<link rel='shortlink' href='https://bjvfi.com/?p=657166' />
-<style class="wp-fonts-local">
-@font-face{font-family:Anybody;font-style:normal;font-weight:100 900;font-display:fallback;src:url('https://bjvfi.com/wp-content/themes/business-identity-mvp/site-blueprint/admin-assets/fonts/Anybody.ttf') format('truetype');font-stretch:normal;}
-@font-face{font-family:Roboto;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgWxPKTM1K9nz.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOiCnqEu92Fr1Mu51QrIzcXLsnzjYk.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5vAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TjARc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9vAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51S7ABc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlvAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TzBhc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtvAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TLBBc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVi2ZhZI2eCN5jzbjEETS9weq8-33mZKCMSbvtdYyQ.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVg2ZhZI2eCN5jzbjEETS9weq8-19eDpCEYatlYcyRi4A.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVl2ZhZI2eCN5jzbjEETS9weq8-59WxDCs5cvI.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVj2ZhZI2eCN5jzbjEETS9weq8-19e7CAk8YvJEeg.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meKCMSbvtdYyQ.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVg2ZhZI2eCN5jzbjEETS9weq8-19eDtCYYatlYcyRi4A.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjr0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgshZ1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk5hkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk_RkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkxhjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkyFjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk0ZjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHh30wWyWrFCbw7A.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u-w4BMUTPHjxsIPy-vNiPg7MU0.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh7USew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI9w2PHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHvxk6XweuBCY.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxswWyWrFCbw7A.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI5wqPHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh50Xew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI3wiPHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R8aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq_p9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq5Z9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq3p6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq0N6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqw16aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs13FvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs169vgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1y9ogUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZogUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:"Slabo 13px";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/slabo13px/v13/11hEGp_azEvXZUdSBzzRcKer2wkYnvI.ttf') format('truetype');}
-@font-face{font-family:"Slabo 27px";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/slabo27px/v12/mFT0WbgBwKPR_Z4hGN2qsxgJ1EJ7i90.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvao4CPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtaooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVuEooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvoooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVsEpYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtapYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtzpYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4WjNPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4ejMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4WjMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4VrMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4bbLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4Y_LPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4ejLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4cHLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79P0WOxOGMMDQ.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizYRExUiTo99u79D0eEwMOJIDQA-g.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh4OmnLD0Z4zM.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizdRExUiTo99u79D0e8fOytKB8c8zMrig.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l521wRpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR7lXcf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5OeyxNV-bnrw.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4m0qyriQwlOrhSvowK_l5-eSZJdeP3r-Ho.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR71Wsf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52_wFpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR7NWMf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVilntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GiClntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G5ClntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVi5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4Gfy5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmoP91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmrR91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmqP91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmq991UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmpR8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmpo8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmoP8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmom8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Concert One";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTlhv-CuVAQ.ttf') format('truetype');}
-</style>
-<link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-32x32.png" sizes="32x32" />
-<link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
-<meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+    .hero{
+      min-height:740px;
+      display:flex;align-items:center;
+      color:#fff;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(10,31,52,.93),rgba(10,31,52,.66) 58%,rgba(10,31,52,.30)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2100&q=88") center/cover;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+      background-size:56px 56px;
+      pointer-events:none;
+    }
+    .hero::after{
+      content:"";position:absolute;left:0;right:0;top:0;height:26px;
+      background:repeating-linear-gradient(45deg,var(--safety) 0 14px,var(--blueprint-deep) 14px 28px);
+    }
+    .hero-content{position:relative;z-index:1;max-width:830px;padding:6rem 0 5rem}
+    .hero .eyebrow{color:#ffb789}
+    .hero h1{font-size:clamp(3.3rem,8vw,7rem);max-width:14ch;margin:.5rem 0 1rem}
+    .hero h1 span{color:var(--safety)}
+    .hero p{color:#dbe6f0;font-size:1.08rem;max-width:720px}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.3rem 0 1.6rem}
+    .chip{
+      font-family:'IBM Plex Mono',monospace;font-size:.73rem;
+      border:1px solid #5b7186;background:rgba(255,255,255,.05);
+      color:#e6eef5;padding:.55rem .75rem;border-radius:2px
+    }
+    .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+    .hero-note{margin-top:.9rem;font-size:.78rem;color:#9fb2c3}
+    .dimline{
+      position:absolute;bottom:18px;left:4%;right:4%;z-index:1;
+      display:flex;justify-content:space-between;gap:1rem;
+      color:#7990a3;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;
+    }
+
+    .specs{
+      background:
+        linear-gradient(rgba(246,243,236,.92),rgba(246,243,236,.92)),
+        url("https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1900&q=84") center/cover;
+    }
+    .spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .spec-card{
+      background:rgba(255,255,255,.9);border:1px solid var(--line);border-top:6px solid var(--blueprint);
+      padding:1.5rem;transition:.25s ease;
+    }
+    .spec-card:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(10,31,52,.14)}
+    .spec-card i{font-size:1.5rem;color:var(--safety);margin-bottom:.9rem}
+    .spec-card .no{font-size:.7rem;color:var(--steel);letter-spacing:.12em}
+    .spec-card h3{font-size:1.2rem;margin:.45rem 0}
+    .spec-card p{font-size:.93rem}
+
+    .services{
+      background:
+        linear-gradient(rgba(10,31,52,.92),rgba(10,31,52,.92)),
+        url("https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=2100&q=86") center/cover fixed;
+      color:#fff;
+    }
+    .services p{color:#c8d5e0}
+    .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem}
+    .service{
+      min-height:330px;position:relative;overflow:hidden;
+      border:1px solid rgba(255,255,255,.13);cursor:pointer;
+      display:flex;align-items:flex-end;
+      transition:transform .28s ease,box-shadow .28s ease;
+      isolation:isolate;
+    }
+    .service:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.28)}
+    .service-img{
+      position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;
+      transform:scale(1.01);transition:transform .45s ease;
+    }
+    .service:hover .service-img{transform:scale(1.08)}
+    .service::after{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:linear-gradient(to top,rgba(7,22,37,.96),rgba(7,22,37,.16) 72%);
+    }
+    .service-content{padding:1.4rem}
+    .service-content i{font-size:1.45rem;color:#ffb789;margin-bottom:.8rem}
+    .service-content h3{font-size:1.5rem;margin-bottom:.4rem}
+    .service-content p{font-size:.93rem;color:#d3dee7}
+    .view-details{
+      margin-top:.85rem;display:inline-flex;align-items:center;gap:.45rem;
+      color:#ffb789;font-size:.82rem;font-weight:700
+    }
+
+    .projects{
+      background:
+        linear-gradient(rgba(246,243,236,.91),rgba(246,243,236,.91)),
+        url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=84") center/cover;
+    }
+    .timeline{display:grid;gap:1rem}
+    .project{
+      display:grid;grid-template-columns:125px 1fr;gap:0;background:rgba(255,255,255,.9);
+      border:1px solid var(--line);overflow:hidden;transition:.2s ease
+    }
+    .project:hover{transform:translateX(5px)}
+    .project-year{
+      background:var(--blueprint);color:#fff;display:grid;place-items:center;
+      font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:1.4rem;
+      border-right:4px solid var(--safety)
+    }
+    .project-body{padding:1.3rem 1.5rem}
+    .project-body h3{margin-bottom:.35rem}
+    .project-body .amount{font-family:'IBM Plex Mono',monospace;color:var(--safety-deep);font-weight:700;font-size:.88rem}
+
+    .coverage{
+      background:
+        linear-gradient(rgba(15,43,69,.92),rgba(15,43,69,.92)),
+        url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1900&q=84") center/cover;
+      color:#fff;
+    }
+    .coverage p{color:#c9d6df}
+    .coverage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .area{
+      padding:1.4rem;border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05)
+    }
+    .area i{color:#ffb789;font-size:1.35rem;margin-bottom:.7rem}
+    .area h3{font-size:1.3rem;margin-bottom:.35rem}
+
+    .about{
+      background:
+        linear-gradient(rgba(246,243,236,.93),rgba(246,243,236,.93)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1900&q=82") center/cover;
+    }
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}
+    .about-card{
+      background:rgba(255,255,255,.9);border:1px solid var(--line);padding:1.6rem
+    }
+    .about-card h3{margin-bottom:.8rem}
+    .fact-row{display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+    .fact-row:last-child{border-bottom:0}
+    .fact-row i{color:var(--safety);width:22px;margin-top:.15rem}
+
+    .faq{
+      background:
+        linear-gradient(rgba(246,243,236,.91),rgba(246,243,236,.91)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1900&q=82") center/cover;
+    }
+    details{background:rgba(255,255,255,.92);border:1px solid var(--line);padding:1rem 1.1rem;margin-bottom:.75rem}
+    summary{display:flex;justify-content:space-between;gap:1rem;cursor:pointer;font-weight:700;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";color:var(--safety);font-size:1.3rem}
+    details[open] summary::after{content:"−"}
+    details p{margin-top:.7rem}
+
+    .contact{
+      background:
+        linear-gradient(rgba(8,25,43,.94),rgba(8,25,43,.94)),
+        url("https://images.unsplash.com/photo-1485083269755-a7b559a4fe5e?auto=format&fit=crop&w=2000&q=84") center/cover;
+      color:#fff;
+    }
+    .contact p{color:#cad7e2}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .protected{
+      margin-top:1rem;padding:1rem 1.1rem;
+      border-left:4px solid var(--safety);
+      background:rgba(255,255,255,.06);font-weight:700
+    }
+    .contact-facts{margin-top:1rem}
+    .contact-fact{display:flex;gap:.8rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .contact-fact i{color:#ffb789;width:22px;margin-top:.18rem}
+    .contact-fact span{color:#d9e3ea}
+    .contact-note{
+      padding:1.2rem;border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05)
+    }
+
+    footer{
+      background:
+        linear-gradient(rgba(5,17,30,.97),rgba(5,17,30,.97)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1900&q=82") center/cover;
+      color:#fff;padding:44px 0 24px;
+    }
+    footer p,footer a{color:#9fb2c3}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:2rem}
+    .footer-links{display:grid;gap:.45rem}
+    .footer-protected{
+      margin-top:.7rem;padding:.8rem 1rem;border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.05);color:#ffb789
+    }
+    .copyright{margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);font-size:.8rem;color:#73899b}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    .modal-backdrop,.service-modal-backdrop{
+      position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.72);
+      display:none;align-items:center;justify-content:center;padding:1rem
+    }
+    .modal-backdrop.show,.service-modal-backdrop.show{display:flex}
+    .modal,.service-modal{
+      width:min(560px,100%);background:var(--paper);border-top:6px solid var(--safety);
+      box-shadow:0 30px 80px rgba(0,0,0,.45)
+    }
+    .modal-body,.service-modal-body{padding:1.5rem}
+    .modal-icon{width:52px;height:52px;display:grid;place-items:center;background:#f4ded2;color:var(--safety);font-size:1.3rem;margin-bottom:1rem}
+    .modal h3,.service-modal h3{font-size:1.9rem;margin-bottom:.5rem}
+    .modal .btn,.service-modal .btn{width:100%;margin-top:1rem}
+    .service-modal-img{height:240px;background-size:cover;background-position:center}
+
+    @media(max-width:980px){
+      .nav-links{
+        display:none;position:absolute;top:76px;left:0;right:0;
+        flex-direction:column;align-items:stretch;padding:1rem 4% 1.2rem;background:rgba(10,31,52,.99)
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:.65rem 0}
+      .menu-btn{display:block}
+      .spec-grid{grid-template-columns:repeat(2,1fr)}
+      .service-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+      .coverage-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .nav{min-height:70px}
+      .nav-links{top:70px}
+      .brand span{display:none}
+      .hero{min-height:680px;background-position:58% center}
+      .hero-content{padding:4.5rem 0}
+      .hero h1{font-size:clamp(3.2rem,16vw,5rem)}
+      .section{padding:62px 0}
+      .spec-grid{grid-template-columns:1fr}
+      .project{grid-template-columns:1fr}
+      .project-year{min-height:70px;border-right:0;border-bottom:4px solid var(--safety)}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%}
+      .dimline{display:none}
+    }
+  </style>
 </head>
-
-<body class="wp-singular page-template page-template-site-ddk-construction-inc page page-id-657166 wp-embed-responsive wp-theme-business-identity-mvp">
-
-<a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a><div class="wp-site-blocks">
-<style id="biz-fullbleed">
-.wp-site-blocks, .entry-content, .wp-block-post-content,
-.is-layout-constrained, .has-global-padding {
-  max-width: none !important; width: 100% !important;
-  padding-left: 0 !important; padding-right: 0 !important;
-  margin-left: 0 !important; margin-right: 0 !important;
-  box-sizing: border-box !important;
-}
-.wp-block-post-content > *, .is-layout-constrained > * {
-  max-width: none !important; margin-left: 0 !important; margin-right: 0 !important;
-}
-body .wp-site-blocks { padding: 0 !important; }
-.biz-root { width: 100% !important; max-width: none !important; min-height: 100vh; }
-.biz-root .biz-page { display: none !important; }
-.biz-root .biz-page.active { display: block !important; visibility: visible !important; }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&#038;family=IBM+Plex+Mono:wght@400;500;600&#038;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{
-  --blueprint:#0f2b45;
-  --blueprint-deep:#0a1f34;
-  --ink:#12283e;
-  --paper:#f6f3ec;
-  --paper-line:rgba(15,43,69,.12);
-  --safety:#e8641b;
-  --safety-deep:#b84c0f;
-  --steel:#5b7186;
-  --line:#dfe4ea;
-  --ok:#2e7d46;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-.biz-root{scroll-behavior:smooth}
-.biz-root{font-family:'Space Grotesk',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;
-  background-image:linear-gradient(var(--paper-line) 1px,transparent 1px),linear-gradient(90deg,var(--paper-line) 1px,transparent 1px);
-  background-size:44px 44px}
-::selection{background:var(--safety);color:#fff}
-.mono{font-family:'IBM Plex Mono',monospace}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:#fff;border:1px dashed var(--steel);color:var(--steel);padding:.3rem .7rem;border-radius:2px;margin:.4rem .35rem .4rem 0}
-.badge.sample{background:var(--safety);border-color:var(--safety-deep);color:#fff}
-.btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--safety);color:#fff;text-decoration:none;font-weight:600;padding:.9rem 1.7rem;border:0;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:1rem;border-radius:3px;transition:transform .15s,background .15s}
-.btn:hover{background:var(--safety-deep);transform:translateY(-2px)}
-.btn.ghost{background:transparent;color:var(--blueprint);border:2px solid var(--blueprint)}
-.btn.ghost:hover{background:var(--blueprint);color:#fff}
-
-/* drafting-table nav */
-.nav-desk{position:sticky;top:0;z-index:60;background:var(--blueprint-deep);color:#fff;border-bottom:4px solid var(--safety)}
-.nav-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;min-height:74px}
-.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:#fff}
-.brand-mark{width:46px;height:46px;border:2px solid var(--safety);border-radius:3px;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.72rem;line-height:1.1;text-align:center;color:#fff;background:var(--blueprint)}
-.brand-name{font-weight:700;font-size:1.12rem;letter-spacing:.02em}
-.brand-sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#9fb2c3;letter-spacing:.14em;text-transform:uppercase}
-.nav-links{display:flex;gap:1.9rem;align-items:center}
-.nav-links a{color:#dfe8f1;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;position:relative;padding:.4rem 0}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--safety);transition:width .2s}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.nav-links a.active{color:#fff}
-.nav-phone{font-family:'IBM Plex Mono',monospace;color:#fff;text-decoration:none;border:1px solid #9fb2c3;border-radius:3px;padding:.55rem .9rem;font-size:.85rem}
-.nav-phone:hover{border-color:var(--safety);color:var(--safety)}
-.burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
-.mobile-menu{display:none;background:var(--blueprint);border-top:1px solid rgba(255,255,255,.12)}
-.mobile-menu a{display:block;color:#dfe8f1;text-decoration:none;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:.9rem;padding:1rem 24px;border-bottom:1px solid rgba(255,255,255,.08)}
-.mobile-menu a.active{color:var(--safety)}
-.mobile-menu.open{display:block}
-
-/* pages */
-.biz-page{display:none}
-.biz-page.active{display:block;animation:fadeIn .35s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-
-/* foundation-trench hero */
-.hero-trench{background:var(--blueprint);color:#fff;position:relative;overflow:hidden}
-.hero-layers{height:26px;background:repeating-linear-gradient(45deg,var(--safety) 0 14px,var(--blueprint-deep) 14px 28px)}
-.hero-trench .wrap{padding:4.5rem 24px 3.5rem}
-.hero-eyebrow{font-family:'IBM Plex Mono',monospace;color:var(--safety);letter-spacing:.22em;text-transform:uppercase;font-size:.78rem;margin-bottom:1.2rem}
-.hero-trench h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.05;font-weight:700;max-width:18ch}
-.hero-trench h1 .accent{color:var(--safety)}
-.hero-lede{color:#c4d3e2;max-width:60ch;margin:1.4rem 0 2rem;font-size:1.1rem}
-.hero-meta{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2.2rem}
-.hero-meta .chip{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.08em;border:1px solid #5b7186;color:#dfe8f1;padding:.5rem .9rem;border-radius:3px;background:rgba(255,255,255,.04)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:1rem}
-.hero-trench .dimlines{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#5b7186;letter-spacing:.1em;padding:1rem 24px 1.4rem;max-width:1180px;margin:0 auto}
-
-.sec{padding:4.2rem 0}
-.sec-head{margin-bottom:2.4rem}
-.sec-kicker{font-family:'IBM Plex Mono',monospace;color:var(--safety-deep);letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;margin-bottom:.7rem}
-.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.15}
-.sec-head p{color:var(--steel);max-width:62ch;margin-top:.8rem}
-
-.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4rem}
-.spec-card{background:#fff;border:1px solid var(--line);border-top:6px solid var(--blueprint);border-radius:3px;padding:1.8rem 1.6rem;position:relative}
-.spec-card .no{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--steel);letter-spacing:.14em}
-.spec-card h3{margin:.6rem 0 .6rem;font-size:1.25rem}
-.spec-card p{color:#40566b;font-size:.98rem}
-.spec-card i{color:var(--safety);font-size:1.5rem;margin-bottom:.6rem}
-
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;margin-top:2.6rem}
-.stat{background:var(--blueprint-deep);color:#fff;border-radius:3px;padding:1.6rem;text-align:center;border-bottom:4px solid var(--safety)}
-.stat .n{font-size:2rem;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--safety)}
-.stat .t{font-size:.85rem;color:#9fb2c3;margin-top:.4rem}
-
-/* footing services: stepped block rows */
-.footing-row{display:grid;grid-template-columns:110px 1fr;gap:0;margin-bottom:1.6rem;background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden}
-.footing-step{background:var(--blueprint);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.6rem .6rem;font-family:'IBM Plex Mono',monospace}
-.footing-step .step-no{font-size:1.6rem;font-weight:600;color:var(--safety)}
-.footing-step .step-t{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#9fb2c3}
-.footing-body{padding:1.6rem 1.8rem}
-.footing-body h3{font-size:1.3rem;margin-bottom:.5rem}
-.footing-body p{color:#40566b;font-size:.98rem}
-.footing-body ul{margin:.7rem 0 0 1.1rem;color:#40566b;font-size:.96rem}
-.footing-body li{margin-bottom:.3rem}
-
-/* rebar-grid gallery: spec plates on a grid */
-.gallery{background:var(--blueprint-deep);border-radius:6px;padding:3rem 2.4rem;position:relative;overflow:hidden}
-.gallery::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
-.gallery .sec-head h2,.gallery .sec-head p{color:#fff}
-.plate-grid{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.4rem}
-.plate{background:#fff;border-radius:3px;overflow:hidden;border:2px solid var(--blueprint)}
-.plate-img{height:180px;display:grid;place-items:center;background:linear-gradient(135deg,#274b6d,#0f2b45);color:#9fb2c3;position:relative;text-align:center;padding:1rem}
-.plate-img i{font-size:2.6rem;color:var(--safety);opacity:.85}
-.plate-img .note{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.7rem}
-.plate-meta{padding:1rem 1.2rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.06em}
-.plate-meta .pn{color:var(--safety-deep);font-weight:600}
-.plate-meta .pd{color:var(--steel)}
-
-/* reviews */
-.review-card{background:#fff;border:1px solid var(--line);border-left:6px solid var(--safety);border-radius:3px;padding:1.8rem;margin-bottom:1.4rem}
-.review-card blockquote{font-size:1.05rem;margin-bottom:.8rem}
-.review-card .who{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--steel)}
-.notice{background:#fffdf7;border:1px dashed var(--safety-deep);border-radius:3px;padding:1.6rem;color:#40566b}
-.notice strong{color:var(--safety-deep)}
-
-/* about */
-.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem}
-.about-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:2rem}
-.about-card h3{font-size:1.3rem;margin-bottom:.8rem}
-.about-card p{color:#40566b;margin-bottom:1rem;font-size:.98rem}
-.fact-row{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.1rem}
-.fact-row i{color:var(--safety);font-size:1.2rem;margin-top:.2rem;min-width:22px;text-align:center}
-.fact-row div{font-size:.96rem}
-.fact-row .fl{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
-
-/* contact */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
-.contact-card{background:var(--blueprint);color:#fff;border-radius:6px;padding:2.2rem}
-.contact-card h2{color:#fff;margin-bottom:1.2rem}
-.contact-line{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.2rem}
-.contact-line i{color:var(--safety);font-size:1.2rem;min-width:24px;text-align:center;margin-top:.2rem}
-.contact-line a{color:#fff;text-decoration:none;border-bottom:1px solid var(--safety)}
-.form-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:2.2rem}
-.form-card label{display:block;font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:.4rem}
-.form-card input,.form-card select,.form-card textarea{width:100%;font-family:'Space Grotesk',sans-serif;font-size:1rem;padding:.8rem;border:1px solid var(--line);border-radius:3px;background:var(--paper);margin-bottom:1.2rem;color:var(--ink)}
-.form-card textarea{min-height:130px;resize:vertical}
-.form-note{font-size:.85rem;color:var(--steel);margin-top:.8rem}
-
-/* map-style footer */
-.site-footer{background:var(--blueprint-deep);color:#dfe8f1;margin-top:3rem;position:relative}
-.footer-layers{height:22px;background:repeating-linear-gradient(-45deg,var(--safety) 0 12px,var(--blueprint-deep) 12px 24px)}
-.footer-inner{max-width:1180px;margin:0 auto;padding:3rem 24px 2rem;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2rem}
-.footer-title{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--safety);margin-bottom:1rem}
-.footer-inner p,.footer-inner li{font-size:.92rem;color:#9fb2c3}
-.footer-inner ul{list-style:none}
-.footer-inner li{margin-bottom:.5rem}
-.footer-inner a{color:#dfe8f1;text-decoration:none;border-bottom:1px dotted var(--safety)}
-.footer-copy{border-top:1px solid rgba(255,255,255,.1);text-align:center;padding:1.4rem 24px}
-.footer-copy p{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:#9fb2c3}
-
-@media(max-width:880px){
-  .about-grid,.contact-grid{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr}
-  .footing-row{grid-template-columns:1fr}
-  .footing-step{flex-direction:row;gap:.6rem;padding:1rem}
-}
-@media(max-width:760px){
-  .nav-links,.nav-phone{display:none}
-  .burger{display:block}
-}
-</style>
-<div class="biz-root" id="biz-root">
-
-<nav class="nav-desk" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a class="brand" href="#" data-nav="home" data-page="home">
-      <span class="brand-mark">DDK<br>GC</span>
-      <span><span class="brand-name">D.D.K. Construction, Inc.</span><br><span class="brand-sub">General Contractor</span></span>
-    </a>
-    <div class="nav-links">
-      <a href="#" data-nav="home" data-page="home" class="active">Home</a>
-      <a href="#" data-nav="services" data-page="services">Services</a>
-      <a href="#" data-nav="about" data-page="about">About</a>
-      <a href="#" data-nav="reviews" data-page="reviews">Reviews</a>
-      <a href="#" data-nav="contact" data-page="contact">Contact</a>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#home" class="brand">
+        <div class="brand-mark">DDK</div>
+        <div>
+          <strong>D.D.K. Construction, Inc.</strong>
+          <span>CINCINNATI, OHIO</span>
+        </div>
+      </a>
+      <button class="menu-btn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links" id="navMenu">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Contact</a>
+      </nav>
     </div>
-    <a class="nav-phone" href="tel:+15135746103"><i class="fa-solid fa-phone"></i> (513) 574-6103</a>
-    <button class="burger" id="burger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#" data-nav="home" data-page="home" class="active">Home</a>
-    <a href="#" data-nav="services" data-page="services">Services</a>
-    <a href="#" data-nav="about" data-page="about">About</a>
-    <a href="#" data-nav="reviews" data-page="reviews">Reviews</a>
-    <a href="#" data-nav="contact" data-page="contact">Contact</a>
-  </div>
-</nav>
-
-<main id="wp--skip-link--target">
-< !-- HOME -- >
-<section class="biz-page active" id="page-home">
-  <header class="hero-trench">
-    <div class="hero-layers"></div>
-    <div class="wrap">
-      <p class="hero-eyebrow">General Contractor, Cincinnati OH</p>
-      <h1>Built on a solid <span class="accent">foundation</span>, since the drawings were on paper.</h1>
-      <p class="hero-lede">D.D.K. Construction, Inc. is a general contractor serving the Cincinnati, Columbus, and Dayton areas of southern Ohio. Listed in the Blue Book since 1999 and a member of Allied Construction Industries (ACI). <span class="badge sample">Some details are samples, call to confirm</span></p>
-      <div class="hero-meta">
-        <span class="chip"><i class="fa-solid fa-certificate"></i> Blue Book listed since 1999</span>
-        <span class="chip"><i class="fa-solid fa-handshake"></i> ACI member</span>
-        <span class="chip"><i class="fa-solid fa-map-pin"></i> 7259 Dog Trot Rd, Cincinnati, OH 45248</span>
-      </div>
-      <div class="hero-cta">
-        <a class="btn" href="#" data-nav="contact" data-page="contact">Request a Bid <i class="fa-solid fa-arrow-right"></i></a>
-        <a class="btn ghost" href="tel:+15135746103" style="color:#fff;border-color:#fff">Call (513) 574-6103</a>
-      </div>
-    </div>
-    <div class="dimlines"><span>SEC A, HOME</span><span>SCALE 1:50</span><span>DWG DDK-001</span></div>
   </header>
 
-  <div class="sec"><div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker">Project Specifications</p>
-      <h2>What a general contractor should deliver</h2>
-      <p>General contracting is about coordination, code compliance, and keeping every trade on schedule. Here is what D.D.K. Construction brings to a project.</p>
-    </div>
-    <div class="spec-grid">
-      <div class="spec-card"><i class="fa-solid fa-clipboard-list"></i><p class="no">SPEC 01</p><h3>Project Management</h3><p>Single point of responsibility for schedule, subs, and inspections on commercial and alteration projects. <span class="badge sample">Call to confirm scope</span></p></div>
-      <div class="spec-card"><i class="fa-solid fa-building"></i><p class="no">SPEC 02</p><h3>Commercial &amp; Alteration Work</h3><p>General contracting coverage registered in the Blue Book under Alteration Project Procedures (CSI 01 35 16).</p></div>
-      <div class="spec-card"><i class="fa-solid fa-helmet-safety"></i><p class="no">SPEC 03</p><h3>Safety &amp; Compliance</h3><p>Member of Allied Construction Industries (ACI), an industry trade association for the Cincinnati construction market.</p></div>
-      <div class="spec-card"><i class="fa-solid fa-location-dot"></i><p class="no">SPEC 04</p><h3>Regional Coverage</h3><p>Listed service area: Cincinnati, Columbus, and Dayton, southern Ohio, centered on Hamilton County.</p></div>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="n">1999</div><div class="t">Listed in the Blue Book since</div></div>
-      <div class="stat"><div class="n">3</div><div class="t">Ohio metro areas served</div></div>
-      <div class="stat"><div class="n">ACI</div><div class="t">Allied Construction Industries member</div></div>
-      <div class="stat"><div class="n">GC</div><div class="t">Registered trade: General Contractors</div></div>
-    </div>
-  </div></div>
-</section>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-content">
+        <div class="eyebrow">General contractor • Cincinnati, Ohio</div>
+        <h1>D.D.K. <span>Construction, Inc.</span></h1>
+        <p>
+          General contracting with documented public-project experience in alterations,
+          concrete, highway, street, and bridge construction across southern Ohio.
+        </p>
+        <div class="hero-meta">
+          <span class="chip"><i class="fa-solid fa-book-open"></i> Blue Book listed since 1999</span>
+          <span class="chip"><i class="fa-solid fa-handshake"></i> ACI member</span>
+          <span class="chip"><i class="fa-solid fa-bridge"></i> Public bridge project history</span>
+        </div>
+        <div class="actions">
+          <a href="#services" class="btn"><i class="fa-solid fa-helmet-safety"></i> View Services</a>
+          <a href="#projects" class="btn ghost"><i class="fa-solid fa-diagram-project"></i> Public Project Record</a>
+          <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-phone"></i> Contact DDK</a>
+        </div>
+        <div class="hero-note">Stock construction imagery is used in this demo and does not represent D.D.K. employees or specific completed projects.</div>
+      </div>
+      <div class="dimline">
+        <span>SEC A • COMPANY PROFILE</span>
+        <span>GENERAL CONTRACTING / CIVIL</span>
+        <span>DWG DDK-001</span>
+      </div>
+    </section>
 
-< !-- SERVICES -- >
-<section class="biz-page" id="page-services">
-  <div class="sec"><div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker">Footing Schedule</p>
-      <h2>Services</h2>
-      <p>The core listing for D.D.K. Construction, Inc. is <strong>General Contractors</strong> (Blue Book). Public records also associate the company with heavy civil work such as street and bridge construction. Anything below marked as a sample should be confirmed by phone before you bid.</p>
-    </div>
+    <section class="section specs">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <div class="sec-kicker">Project specifications</div>
+          <h2>Publicly supported company facts.</h2>
+          <p>These points are supported by The Blue Book, industry directories, and public contract records.</p>
+        </div>
+        <div class="spec-grid">
+          <article class="spec-card">
+            <i class="fa-solid fa-building"></i>
+            <div class="no mono">SPEC 01</div>
+            <h3>General Contractor</h3>
+            <p>The Blue Book lists D.D.K. Construction under General Contractors.</p>
+          </article>
+          <article class="spec-card">
+            <i class="fa-solid fa-handshake"></i>
+            <div class="no mono">SPEC 02</div>
+            <h3>ACI Member</h3>
+            <p>Allied Construction Industries is listed under the company’s associations and memberships.</p>
+          </article>
+          <article class="spec-card">
+            <i class="fa-solid fa-user-tie"></i>
+            <div class="no mono">SPEC 03</div>
+            <h3>President</h3>
+            <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+          </article>
+          <article class="spec-card">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <div class="no mono">SPEC 04</div>
+            <h3>Southern Ohio</h3>
+            <p>Published service coverage includes Cincinnati, Columbus, and Dayton.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <div class="footing-row">
-      <div class="footing-step"><span class="step-no">F1</span><span class="step-t">Footing</span></div>
-      <div class="footing-body">
-        <h3>General Contracting</h3>
-        <p>Primary trade listing. General contractors coordinate the full build: subcontractor management, scheduling, permits, and inspections.</p>
-        <ul>
-          <li>Project bidding and estimating</li>
-          <li>Subcontractor coordination <span class="badge sample">Call to confirm</span></li>
-          <li>Schedule and site management <span class="badge sample">Call to confirm</span></li>
-        </ul>
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="sec-kicker" style="color:#ffb789">Footing schedule</div>
+          <h2>Verified service categories.</h2>
+          <p>Only service areas supported by public records are shown. Click any card for more detail.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service reveal" tabindex="0"
+            data-title="General Contracting"
+            data-text="The Blue Book identifies D.D.K. Construction, Inc. under the trade of General Contractors."
+            data-image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=88">
+            <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=88')"></div>
+            <div class="service-content">
+              <i class="fa-solid fa-helmet-safety"></i>
+              <h3>General Contracting</h3>
+              <p>Primary verified trade classification.</p>
+              <span class="view-details">View details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <article class="service reveal" tabindex="0"
+            data-title="Alteration Project Procedures"
+            data-text="The Blue Book associates D.D.K. Construction with CSI 01 35 16, Alteration Project Procedures."
+            data-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=88">
+            <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=88')"></div>
+            <div class="service-content">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              <h3>Alteration Project Procedures</h3>
+              <p>Verified through the company’s Blue Book CSI classification.</p>
+              <span class="view-details">View details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <article class="service reveal" tabindex="0"
+            data-title="Concrete Contracting"
+            data-text="Yellow Pages categorizes the exact Cincinnati business under Concrete Contractors as well as General Contractors."
+            data-image="https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1400&q=88">
+            <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1400&q=88')"></div>
+            <div class="service-content">
+              <i class="fa-solid fa-cubes-stacked"></i>
+              <h3>Concrete Contracting</h3>
+              <p>Supported by established business-directory categorization.</p>
+              <span class="view-details">View details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <article class="service reveal" tabindex="0"
+            data-title="Highway, Street & Bridge Construction"
+            data-text="Industry classification data places D.D.K. Construction under NAICS 237310, Highway, Street, and Bridge Construction. County records also document bridge replacement and rehabilitation contracts."
+            data-image="https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1400&q=88">
+            <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1400&q=88')"></div>
+            <div class="service-content">
+              <i class="fa-solid fa-bridge"></i>
+              <h3>Highway, Street & Bridge Construction</h3>
+              <p>Supported by NAICS classification and public-contract records.</p>
+              <span class="view-details">View details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <div class="sec-kicker">Documented project record</div>
+          <h2>Public bridge and civil work.</h2>
+          <p>Government records provide a stronger portfolio trail than unverified marketing claims, so this demo highlights documented public projects instead of inventing testimonials.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="project">
+            <div class="project-year">2007</div>
+            <div class="project-body">
+              <h3>Stubbs Mill Road Bridge Rehabilitation</h3>
+              <p>Warren County’s annual report documents rehabilitation work completed by D.D.K. Construction.</p>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-year">2011</div>
+            <div class="project-body">
+              <h3>Zoar Road Bridge Replacement</h3>
+              <div class="amount">$128,157 public contract record</div>
+              <p>Warren County records identify DDK Construction on the bridge replacement project.</p>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-year">2020</div>
+            <div class="project-body">
+              <h3>Lily Drive Bridge Replacement</h3>
+              <p>Warren County contract history identifies D.D.K. Construction in connection with the replacement project.</p>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-year">2024</div>
+            <div class="project-body">
+              <h3>Dry Run Road Bridge Replacement</h3>
+              <div class="amount">$399,807.70 public contract record</div>
+              <p>County contract documents list D.D.K. Construction for this bridge project.</p>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-year">2026</div>
+            <div class="project-body">
+              <h3>Bridge Preservation Work</h3>
+              <p>Clearcreek Township publicly identified D.D.K. Construction for bridge-preservation work in 2026.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section coverage" id="coverage">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <div class="sec-kicker" style="color:#ffb789">Regional coverage</div>
+          <h2>Southern Ohio service area.</h2>
+          <p>The Blue Book publishes Cincinnati, Columbus, and Dayton as the company’s service region.</p>
+        </div>
+        <div class="coverage-grid">
+          <div class="area"><i class="fa-solid fa-city"></i><h3>Cincinnati</h3><p>Primary company location and published service market.</p></div>
+          <div class="area"><i class="fa-solid fa-building"></i><h3>Columbus</h3><p>Included in the published Blue Book service region.</p></div>
+          <div class="area"><i class="fa-solid fa-road"></i><h3>Dayton</h3><p>Included in the published Blue Book service region.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="wrap about-grid reveal">
+        <div class="about-card">
+          <div class="sec-kicker">Company record</div>
+          <h2 style="font-size:2.3rem;margin:.4rem 0 1rem">Established industry presence.</h2>
+          <p>
+            D.D.K. Construction, Inc. has been listed in The Blue Book since 1999.
+            Public county records document bridge replacement, rehabilitation, preservation,
+            roadway, and other civil construction activity across multiple years.
+          </p>
+          <p style="margin-top:.9rem">
+            The company is also listed as a member of Allied Construction Industries (ACI).
+            A precise founding date and formal contractor-license number were not found, so this site does not claim either.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <h3>Verified company facts</h3>
+          <div class="fact-row"><i class="fa-solid fa-user-tie"></i><div><strong>President</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+          <div class="fact-row"><i class="fa-solid fa-phone"></i><div><strong>Phone</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+          <div class="fact-row"><i class="fa-solid fa-location-dot"></i><div><strong>Business address</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+          <div class="fact-row"><i class="fa-solid fa-book-open"></i><div><strong>Blue Book</strong><br>Listed since 1999</div></div>
+          <div class="fact-row"><i class="fa-solid fa-handshake"></i><div><strong>Association</strong><br>Allied Construction Industries (ACI)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <div class="sec-kicker">Frequently asked questions</div>
+          <h2>What public records support.</h2>
+        </div>
+
+        <details>
+          <summary>What type of contractor is D.D.K. Construction?</summary>
+          <p>D.D.K. Construction is publicly listed as a general contractor, with additional public support for concrete contracting and highway, street, and bridge construction.</p>
+        </details>
+        <details>
+          <summary>Does D.D.K. Construction perform bridge work?</summary>
+          <p>Yes. Multiple county and township records document bridge replacement, rehabilitation, and preservation projects involving D.D.K. Construction.</p>
+        </details>
+        <details>
+          <summary>Who is the company president?</summary>
+          <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+        </details>
+        <details>
+          <summary>How long has D.D.K. Construction been in business?</summary>
+          <p>A precise founding date was not verified. The Blue Book states that the company has been listed there since 1999.</p>
+        </details>
+        <details>
+          <summary>What areas does the company serve?</summary>
+          <p>The Blue Book lists Cincinnati, Columbus, and Dayton in southern Ohio.</p>
+        </details>
+        <details>
+          <summary>Is D.D.K. Construction licensed?</summary>
+          <p>No public contractor-license number was verified in the research used for this demo.</p>
+        </details>
+        <details>
+          <summary>Does the company have customer reviews?</summary>
+          <p>No reliable customer-review volume was found for this exact Cincinnati company, so the site does not invent ratings or testimonials.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid reveal">
+        <div>
+          <div class="sec-kicker" style="color:#ffb789">Contact</div>
+          <h2>Discuss a project with D.D.K.</h2>
+          <p>Direct contact and mapping actions remain protected in this demo version.</p>
+          <div class="protected">
+            CONTACT DETAILS PROTECTED IN THIS DEMO
+          </div>
+          <div class="actions">
+            <a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call D.D.K.</a>
+            <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</a>
+            <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-envelope"></i> Email Contact</a>
+          </div>
+        </div>
+
+        <div class="contact-note">
+          <h3>Before requesting a bid</h3>
+          <div class="contact-facts">
+            <div class="contact-fact"><i class="fa-solid fa-location-crosshairs"></i><span>Have the project location ready.</span></div>
+            <div class="contact-fact"><i class="fa-solid fa-ruler-combined"></i><span>Be ready to describe the scope and existing conditions.</span></div>
+            <div class="contact-fact"><i class="fa-solid fa-calendar-days"></i><span>Include timing or bid-deadline information when applicable.</span></div>
+            <div class="contact-fact"><i class="fa-solid fa-file-lines"></i><span>For public or commercial work, have plans/specifications available when relevant.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>D.D.K. Construction, Inc.</h3>
+        <p>General contracting and documented civil-construction project experience in southern Ohio.</p>
+        <div class="footer-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      </div>
+      <div>
+        <h3>Sections</h3>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#coverage">Coverage</a>
+          <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h3>Demo notice</h3>
+        <p>This sample site keeps real-world actions locked until the full website is purchased and unlocked.</p>
       </div>
     </div>
+    <div class="wrap copyright">© 2026 D.D.K. Construction, Inc. Demo website presentation.</div>
+  </footer>
 
-    <div class="footing-row">
-      <div class="footing-step"><span class="step-no">F2</span><span class="step-t">Footing</span></div>
-      <div class="footing-body">
-        <h3>Alterations &amp; Renovation Work</h3>
-        <p>Blue Book CSI code 01 35 16: Alteration Project Procedures, covering procedures for modifying existing structures.</p>
-        <ul>
-          <li>Alterations to existing buildings</li>
-          <li>Renovation project procedures <span class="badge sample">Call to confirm scope</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footing-row">
-      <div class="footing-step"><span class="step-no">F3</span><span class="step-t">Footing</span></div>
-      <div class="footing-body">
-        <h3>Heavy Civil: Street &amp; Bridge Work</h3>
-        <p>Public business records categorize the company under highway, street, and bridge construction, and public bid records show DDK bidding on bridge replacement work.</p>
-        <ul>
-          <li>Municipal and county project bidding <span class="badge sample">Call to confirm</span></li>
-          <li>Street and bridge construction <span class="badge sample">Call to confirm</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footing-row">
-      <div class="footing-step"><span class="step-no">F4</span><span class="step-t">Footing</span></div>
-      <div class="footing-body">
-        <h3>Service Area Coverage</h3>
-        <p>Listed service area: Cincinnati, Columbus, and Dayton (southern Ohio), centered on Hamilton County, Ohio.</p>
-        <ul>
-          <li>Hamilton County, OH</li>
-          <li>Cincinnati, Columbus, Dayton metro areas</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="notice"><strong>Note:</strong> Service descriptions above are drawn from public listings (Blue Book, business records). The company has not published an official service list, so call <a href="tel:+15135746103">(513) 574-6103</a> to confirm exactly what they take on.</div>
-  </div></div>
-</section>
-
-< !-- ABOUT -- >
-<section class="biz-page" id="page-about">
-  <div class="sec"><div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker">Site History</p>
-      <h2>About D.D.K. Construction, Inc.</h2>
-      <p>What public records actually show about this Cincinnati general contractor. Nothing below is invented.</p>
-    </div>
-    <div class="about-grid">
-      <div class="about-card">
-        <h3>The record, in plain terms</h3>
-        <p>D.D.K. Construction, Inc. is a general contractor based at 7259 Dog Trot Rd, Cincinnati, OH 45248. It has been listed in the Blue Book (the construction industry bid and contractor directory) since <strong>1999</strong>, under the trade of General Contractors with CSI code 01 35 16 (Alteration Project Procedures).</p>
-        <p>The company is a member of <strong>Allied Construction Industries (ACI)</strong>, a construction trade association serving the Cincinnati region.</p>
-        <p>Its listed service area covers <strong>Cincinnati, Columbus, and Dayton</strong> in southern Ohio. A 2011 Warren County, Ohio bid record shows DDK Construction bidding $128,157.00 on the Zoar Road Bridge Replacement project, consistent with heavy civil and bridge work.</p>
-        <p>Phone: <a href="tel:+15135746103">(513) 574-6103</a>.</p>
-      </div>
-      <div class="about-card">
-        <h3>Verified facts</h3>
-        <div class="fact-row"><i class="fa-solid fa-location-dot"></i><div><span class="fl">Address</span><br>7259 Dog Trot Rd, Cincinnati, OH 45248</div></div>
-        <div class="fact-row"><i class="fa-solid fa-phone"></i><div><span class="fl">Phone</span><br><a href="tel:+15135746103">(513) 574-6103</a></div></div>
-        <div class="fact-row"><i class="fa-solid fa-certificate"></i><div><span class="fl">Directory</span><br>Blue Book listed since 1999</div></div>
-        <div class="fact-row"><i class="fa-solid fa-handshake"></i><div><span class="fl">Association</span><br>Allied Construction Industries (ACI)</div></div>
-        <div class="fact-row"><i class="fa-solid fa-map"></i><div><span class="fl">Coverage</span><br>Cincinnati, Columbus, Dayton, southern Ohio</div></div>
-        <div class="fact-row"><i class="fa-solid fa-clock"></i><div><span class="fl">Hours</span><br>Mon, Fri 9:00 AM, 6:00 PM reported by a directory listing <span class="badge sample">Call to confirm</span></div></div>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-< !-- REVIEWS -- >
-<section class="biz-page" id="page-reviews">
-  <div class="sec"><div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker">Field Reports</p>
-      <h2>Reviews</h2>
-      <p>We only publish reviews we can verify. Here is the honest status for this business.</p>
-    </div>
-    <div class="notice" style="margin-bottom:1.6rem">
-      <strong>No verifiable public reviews found for this exact business.</strong> We could not verify a Google Business profile, Yelp page, or other review source for D.D.K. Construction, Inc. of 7259 Dog Trot Rd, Cincinnati, OH, so no review quotes or ratings are shown here and no review button is linked. (A similarly named Minnesota home builder operates a different website; that is not this company.) The best reference is the company&#8217;s record: Blue Book listed since 1999 and a member of Allied Construction Industries. Ask for project references when you call <a href="tel:+15135746103">(513) 574-6103</a>.
-    </div>
-    <div class="review-card">
-      <blockquote>&#8220;Blue Book listed since 1999. ACI member. That is the kind of paper trail you want before a bid.&#8221;</blockquote>
-      <p class="who mono">SITE NOTE, NOT A CUSTOMER REVIEW</p>
-    </div>
-    <a class="btn" href="#" data-nav="contact" data-page="contact">Start the Conversation <i class="fa-solid fa-arrow-right"></i></a>
-  </div></div>
-</section>
-
-< !-- CONTACT -- >
-<section class="biz-page" id="page-contact">
-  <div class="sec"><div class="wrap">
-    <div class="sec-head">
-      <p class="sec-kicker">Survey Stake</p>
-      <h2>Contact</h2>
-      <p>Get the project on the books. Phone is the verified channel; the form drafts an email in your own mail app.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <h2>D.D.K. Construction, Inc.</h2>
-        <div class="contact-line"><i class="fa-solid fa-location-dot"></i><div>7259 Dog Trot Rd<br>Cincinnati, OH 45248<br><a href="https://www.google.com/maps/search/?api=1&#038;query=7259%20Dog%20Trot%20Rd%2C%20Cincinnati%2C%20OH%2045248" target="_blank" rel="noopener">Get directions</a></div></div>
-        <div class="contact-line"><i class="fa-solid fa-phone"></i><div><a href="tel:+15135746103">(513) 574-6103</a><br><span class="mono" style="font-size:.75rem;color:#9fb2c3">CALL TO CONFIRM HOURS</span></div></div>
-        <div class="contact-line"><i class="fa-solid fa-clock"></i><div>Mon, Fri 9:00 AM, 6:00 PM<br><span class="mono" style="font-size:.75rem;color:#9fb2c3">REPORTED BY DIRECTORY, NOT VERIFIED</span></div></div>
-      </div>
-      <div class="form-card">
-        <form id="bidForm">
-          <label for="fName">Name</label>
-          <input id="fName" name="name" type="text" required placeholder="Your name">
-          <label for="fPhone">Phone</label>
-          <input id="fPhone" name="phone" type="tel" required placeholder="(555) 123-4567">
-          <label for="fType">Project type</label>
-          <select id="fType" name="type">
-            <option>General contracting</option>
-            <option>Alteration / renovation</option>
-            <option>Street / bridge / civil work</option>
-            <option>Other (describe below)</option>
-          </select>
-          <label for="fMsg">Project details</label>
-          <textarea id="fMsg" name="message" required placeholder="Location, scope, and timeline of the project"></textarea>
-          <button class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Draft Email Request</button>
-          <p class="form-note">Submitting opens your email app with the request pre-filled. No company email is published, so address it to D.D.K. Construction, Inc. and reference phone (513) 574-6103, or call directly for the fastest response.</p>
-        </form>
-      </div>
-    </div>
-  </div></div>
-
-  < !-- rebar-grid gallery -- >
-  <div class="wrap">
-    <div class="gallery">
-      <div class="sec-head">
-        <p class="sec-kicker" style="color:var(--safety)">Rebar Grid, Project Plates</p>
-        <h2>Project Gallery</h2>
-        <p>Spec plates for the portfolio. Photographs are coming soon; these plates mark the categories to expect.</p>
-      </div>
-      <div class="plate-grid">
-        <div class="plate"><div class="plate-img"><div><i class="fa-solid fa-building"></i><div class="note">Photo coming soon</div></div></div><div class="plate-meta"><span class="pn">PLATE G-01</span><br><span class="pd">Commercial builds</span></div></div>
-        <div class="plate"><div class="plate-img"><div><i class="fa-solid fa-bridge"></i><div class="note">Photo coming soon</div></div></div><div class="plate-meta"><span class="pn">PLATE G-02</span><br><span class="pd">Bridge &amp; civil work</span></div></div>
-        <div class="plate"><div class="plate-img"><div><i class="fa-solid fa-screwdriver-wrench"></i><div class="note">Photo coming soon</div></div></div><div class="plate-meta"><span class="pn">PLATE G-03</span><br><span class="pd">Alterations &amp; renovations</span></div></div>
-        <div class="plate"><div class="plate-img"><div><i class="fa-solid fa-road"></i><div class="note">Photo coming soon</div></div></div><div class="plate-meta"><span class="pn">PLATE G-04</span><br><span class="pd">Street &amp; site work</span></div></div>
+  <div class="service-modal-backdrop" id="serviceModal" aria-hidden="true">
+    <div class="service-modal" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+      <div class="service-modal-img" id="serviceModalImg"></div>
+      <div class="service-modal-body">
+        <div class="sec-kicker">Verified service category</div>
+        <h3 id="serviceModalTitle"></h3>
+        <p id="serviceModalText"></p>
+        <button class="btn dark" id="serviceModalClose">Close</button>
       </div>
     </div>
   </div>
-</section>
-</main>
 
-< !-- map-style footer -- >
-<footer class="site-footer">
-  <div class="footer-layers"></div>
-  <div class="footer-inner">
-    <div>
-      <p class="footer-title">Legend, Site Key</p>
-      <p><strong style="color:#fff">D.D.K. Construction, Inc.</strong><br>7259 Dog Trot Rd<br>Cincinnati, OH 45248<br><a href="tel:+15135746103">(513) 574-6103</a></p>
-    </div>
-    <div>
-      <p class="footer-title">Coordinates</p>
-      <ul>
-        <li><a href="https://www.google.com/maps/search/?api=1&#038;query=7259%20Dog%20Trot%20Rd%2C%20Cincinnati%2C%20OH%2045248" target="_blank" rel="noopener">Directions via Google Maps</a></li>
-        <li>Coverage: Cincinnati, Columbus, Dayton</li>
-        <li>Blue Book listed since 1999</li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer-title">Sheet Index</p>
-      <ul>
-        <li><a href="#" data-nav="home" data-page="home">Home</a></li>
-        <li><a href="#" data-nav="services" data-page="services">Services</a></li>
-        <li><a href="#" data-nav="about" data-page="about">About</a></li>
-        <li><a href="#" data-nav="reviews" data-page="reviews">Reviews</a></li>
-        <li><a href="#" data-nav="contact" data-page="contact">Contact</a></li>
-      </ul>
+  <div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+      <div class="modal-body">
+        <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+        <h3 id="lockedTitle">This is currently locked.</h3>
+        <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+        <button class="btn" id="closeModal">Close</button>
+      </div>
     </div>
   </div>
-  <div class="footer-copy"><p>&copy; D.D.K. Construction, Inc.</p></div>
-</footer>
 
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const navMenu = document.getElementById('navMenu');
 
-</div>
-<script>eval(atob('CnZhciBwYWdlTWFwID0ge2hvbWU6J3BhZ2UtaG9tZScsc2VydmljZXM6J3BhZ2Utc2VydmljZXMnLGFib3V0OidwYWdlLWFib3V0JyxyZXZpZXdzOidwYWdlLXJldmlld3MnLGNvbnRhY3Q6J3BhZ2UtY29udGFjdCd9OwpmdW5jdGlvbiBuYXZpZ2F0ZVRvKG5hbWUpewogIGlmKCFwYWdlTWFwW25hbWVdKSBuYW1lPSdob21lJzsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcuYml6LXBhZ2UnKS5mb3JFYWNoKGZ1bmN0aW9uKHApe3AuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJyxwLmlkPT09cGFnZU1hcFtuYW1lXSk7fSk7CiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnW2RhdGEtbmF2XScpLmZvckVhY2goZnVuY3Rpb24oYSl7YS5jbGFzc0xpc3QudG9nZ2xlKCdhY3RpdmUnLGEuZ2V0QXR0cmlidXRlKCdkYXRhLW5hdicpPT09bmFtZSk7fSk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vYmlsZU1lbnUnKS5jbGFzc0xpc3QucmVtb3ZlKCdvcGVuJyk7CiAgd2luZG93LnNjcm9sbFRvKDAsMCk7CiAgaWYoaGlzdG9yeS5yZXBsYWNlU3RhdGUpeyBoaXN0b3J5LnJlcGxhY2VTdGF0ZShudWxsLCcnLCcjJytuYW1lKTsgfQp9CmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ1tkYXRhLW5hdl0nKS5mb3JFYWNoKGZ1bmN0aW9uKGEpewogIGEuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLGZ1bmN0aW9uKGUpe2UucHJldmVudERlZmF1bHQoKTtuYXZpZ2F0ZVRvKGEuZ2V0QXR0cmlidXRlKCdkYXRhLW5hdicpKTt9KTsKfSk7CmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdidXJnZXInKS5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsZnVuY3Rpb24oKXsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbW9iaWxlTWVudScpLmNsYXNzTGlzdC50b2dnbGUoJ29wZW4nKTsKfSk7CndpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdwb3BzdGF0ZScsZnVuY3Rpb24oKXsKICB2YXIgaD1sb2NhdGlvbi5oYXNoLnJlcGxhY2UoJyMnLCcnKTsKICBuYXZpZ2F0ZVRvKHBhZ2VNYXBbaF0/aDonaG9tZScpOwp9KTsKKGZ1bmN0aW9uKCl7CiAgdmFyIGg9bG9jYXRpb24uaGFzaC5yZXBsYWNlKCcjJywnJyk7CiAgaWYocGFnZU1hcFtoXSkgbmF2aWdhdGVUbyhoKTsKfSkoKTsKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2JpZEZvcm0nKS5hZGRFdmVudExpc3RlbmVyKCdzdWJtaXQnLGZ1bmN0aW9uKGUpewogIGUucHJldmVudERlZmF1bHQoKTsKICB2YXIgbj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZk5hbWUnKS52YWx1ZS50cmltKCk7CiAgdmFyIHA9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZQaG9uZScpLnZhbHVlLnRyaW0oKTsKICB2YXIgdD1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZlR5cGUnKS52YWx1ZTsKICB2YXIgbT1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZk1zZycpLnZhbHVlLnRyaW0oKTsKICB2YXIgc3ViamVjdD1lbmNvZGVVUklDb21wb25lbnQoJ1Byb2plY3QgaW5xdWlyeSBmb3IgRC5ELksuIENvbnN0cnVjdGlvbiwgSW5jLjogJyt0KTsKICB2YXIgYm9keT1lbmNvZGVVUklDb21wb25lbnQoJ1RvOiBELkQuSy4gQ29uc3RydWN0aW9uLCBJbmMuICg3MjU5IERvZyBUcm90IFJkLCBDaW5jaW5uYXRpLCBPSCA0NTI0ODsgKDUxMykgNTc0LTYxMDMpXG5cbk5hbWU6ICcrbisnXG5QaG9uZTogJytwKydcblByb2plY3QgdHlwZTogJyt0KydcblxuRGV0YWlsczpcbicrbSk7CiAgd2luZG93LmxvY2F0aW9uLmhyZWY9J21haWx0bzo/c3ViamVjdD0nK3N1YmplY3QrJyZib2R5PScrYm9keTsKfSk7Cg=='));</script>
-</div>
-<script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/business-identity-mvp/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
-</script>
-<script id="wp-emoji-settings" type="application/json">
-{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://bjvfi.com/wp-includes/js/wp-emoji-release.min.js?ver=7.1"}}
-</script>
-<script type="module">
-/*! This file is auto-generated */
-var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
-//# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
-</script>
+    menuBtn.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('#navMenu a[href^="#"]:not([data-locked])').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    const lockedModal = document.getElementById('lockedModal');
+    const closeModal = document.getElementById('closeModal');
+    let lastFocus = null;
+
+    function openLocked(e){
+      e.preventDefault();
+      lastFocus = document.activeElement;
+      lockedModal.classList.add('show');
+      lockedModal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      closeModal.focus();
+    }
+    function closeLocked(){
+      lockedModal.classList.remove('show');
+      lockedModal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      if(lastFocus) lastFocus.focus();
+    }
+    document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLocked));
+    closeModal.addEventListener('click', closeLocked);
+    lockedModal.addEventListener('click', e => { if(e.target === lockedModal) closeLocked(); });
+
+    const serviceModal = document.getElementById('serviceModal');
+    const serviceModalClose = document.getElementById('serviceModalClose');
+    const serviceModalTitle = document.getElementById('serviceModalTitle');
+    const serviceModalText = document.getElementById('serviceModalText');
+    const serviceModalImg = document.getElementById('serviceModalImg');
+
+    function openService(card){
+      serviceModalTitle.textContent = card.dataset.title;
+      serviceModalText.textContent = card.dataset.text;
+      serviceModalImg.style.backgroundImage = `url("${card.dataset.image}")`;
+      serviceModal.classList.add('show');
+      serviceModal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      serviceModalClose.focus();
+    }
+    function closeService(){
+      serviceModal.classList.remove('show');
+      serviceModal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+    }
+    document.querySelectorAll('.service').forEach(card => {
+      card.addEventListener('click', () => openService(card));
+      card.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          openService(card);
+        }
+      });
+    });
+    serviceModalClose.addEventListener('click', closeService);
+    serviceModal.addEventListener('click', e => { if(e.target === serviceModal) closeService(); });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        if(lockedModal.classList.contains('show')) closeLocked();
+        if(serviceModal.classList.contains('show')) closeService();
+      }
+    });
+
+    document.addEventListener('gesturestart', e => e.preventDefault());
+    document.addEventListener('dblclick', e => e.preventDefault(), {passive:false});
+  </script>
 </body>
 </html>

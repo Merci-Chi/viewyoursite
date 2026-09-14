@@ -1,561 +1,808 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name='robots' content='max-image-preview:large' />
-<title>El Gallito Bakery &#8211; bjvfi.com</title>
-<link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
-<link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Comments Feed" href="https://bjvfi.com/comments/feed" />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://bjvfi.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbjvfi.com%2Fel-gallito-bakery" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://bjvfi.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbjvfi.com%2Fel-gallito-bakery&#038;format=xml" />
-<style id="wp-img-auto-sizes-contain-inline-css">
-img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
-/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
-</style>
-<style id="wp-block-html-inline-css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>El Gallito Bakery | Cuban Bakery in Miami, FL</title>
+  <meta name="description" content="El Gallito Bakery in Miami, Florida. Cuban bread, pastelitos, croquetas, cakes, desserts, coffee, party trays, pickup and delivery." />
+  <meta name="theme-color" content="#e12a22" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --red:#b8694f;
+      --red-dark:#7f4635;
+      --yellow:#d9a566;
+      --cream:#f7efe5;
+      --paper:#fffaf4;
+      --ink:#2f241f;
+      --muted:#75675e;
+      --line:rgba(65,49,40,.14);
+      --shadow:0 18px 50px rgba(48,35,28,.16);
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        linear-gradient(rgba(247,239,229,.86),rgba(247,239,229,.86)),
+        url("https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=2200&q=84") center top/cover fixed;
 
-            @media only screen and (max-width: 783px) {
-                .is-style-msb-util-mobile-hide {
-                    display: none !important;
-                }
-            }
-/*# sourceURL=wp-block-html-inline-css */
-</style>
-<style id="wp-block-post-content-inline-css">
-.wp-block-post-content{display:flow-root}
+      color:var(--ink);
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),92%);margin:auto}
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.78rem;
+      font-weight:900;
+      color:var(--red);
+    }
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.06}
+    h2{font-size:clamp(2rem,4vw,3.5rem)}
+    p{color:var(--muted)}
 
-            @media only screen and (max-width: 783px) {
-                .is-style-msb-util-mobile-hide {
-                    display: none !important;
-                }
-            }
-/*# sourceURL=wp-block-post-content-inline-css */
-</style>
-<style id="wp-emoji-styles-inline-css">
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(247,239,229,.90);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.85rem;
+      min-width:0;
+    }
+    .brand-mark{
+      width:48px;height:48px;border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(127,70,53,.96);color:var(--yellow);
+      border:4px solid var(--yellow);
+      box-shadow:0 6px 18px rgba(225,42,34,.22);
+      flex:0 0 auto;
+    }
+    .brand strong{display:block;font-size:1.08rem}
+    .brand span{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.09em}
+    .desktop-nav{display:flex;align-items:center;gap:1.2rem}
+    .desktop-nav a{font-size:.93rem;font-weight:800}
+    .nav-cta{
+      padding:.8rem 1rem;
+      background:var(--red);
+      color:white;
+      border-radius:10px;
+    }
+    .menu-btn{
+      display:none;
+      border:0;background:transparent;
+      color:var(--ink);
+      font-size:1.5rem;
+      cursor:pointer;
+    }
 
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-/*# sourceURL=wp-emoji-styles-inline-css */
-</style>
-<style id="wp-block-library-inline-css">
-:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
-/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
-</style>
-<style id="global-styles-inline-css">
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--base: #FAFAFA;--wp--preset--color--primary: #080D28;--wp--preset--color--secondary: #3D9DFC;--wp--preset--color--tertiary: #BED2FD;--wp--preset--color--quaternary: #ECF2FF;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 0.875rem;--wp--preset--font-size--medium: clamp(1rem, 1rem + ((1vw - 0.2rem) * 0.196), 1.125rem);--wp--preset--font-size--large: clamp(1.125rem, 1.125rem + ((1vw - 0.2rem) * 0.392), 1.375rem);--wp--preset--font-size--x-large: clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 0.392), 2rem);--wp--preset--font-size--xx-large: clamp(2.15rem, 2.15rem + ((1vw - 0.2rem) * 1.333), 3rem);--wp--preset--font-family--anybody-font: "Anybody", monospace;--wp--preset--font-family--roboto: "Roboto",sans-serif;--wp--preset--font-family--roboto-condensed: "Roboto Condensed",sans-serif;--wp--preset--font-family--open-sans: "Open Sans",sans-serif;--wp--preset--font-family--lato: "Lato",sans-serif;--wp--preset--font-family--montserrat: "Montserrat",sans-serif;--wp--preset--font-family--oswald: "Oswald",sans-serif;--wp--preset--font-family--slabo-13-px: "Slabo 13px",serif;--wp--preset--font-family--slabo-27-px: "Slabo 27px",serif;--wp--preset--font-family--raleway: "Raleway",sans-serif;--wp--preset--font-family--pt-sans: "PT Sans",sans-serif;--wp--preset--font-family--merriweather: "Merriweather",serif;--wp--preset--font-family--nunito-sans: "Nunito Sans",sans-serif;--wp--preset--font-family--concert-one: "Concert One",display;--wp--preset--spacing--20: 10px;--wp--preset--spacing--30: 20px;--wp--preset--spacing--40: 30px;--wp--preset--spacing--50: clamp(30px, 5vw, 50px);--wp--preset--spacing--60: clamp(30px, 7vw, 70px);--wp--preset--spacing--70: clamp(50px, 7vw, 90px);--wp--preset--spacing--80: clamp(70px, 10vw, 140px);--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1340px; }:where(body) { margin: 0; }.wp-site-blocks { padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); }.has-global-padding { padding-right: var(--wp--style--root--padding-right); padding-left: var(--wp--style--root--padding-left); }.has-global-padding > .alignfull { margin-right: calc(var(--wp--style--root--padding-right) * -1); margin-left: calc(var(--wp--style--root--padding-left) * -1); }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) { padding-right: 0; padding-left: 0; }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) > .alignfull { margin-left: 0; margin-right: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 0rem; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 0rem; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 0rem;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 0rem;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 0rem;}:root :where(.is-layout-grid){gap: 0rem;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{background-color: var(--wp--preset--color--base);color: var(--wp--preset--color--contrast);font-family: var(--wp--preset--font-family--raleway);font-size: var(--wp--preset--font-size--small);line-height: 1.6;--wp--style--root--padding-top: 0;--wp--style--root--padding-right: 0;--wp--style--root--padding-bottom: 0;--wp--style--root--padding-left: 0;}a:where(:not(.wp-element-button)){color: var(--wp--preset--color--primary);text-decoration: none;}:root :where(a:where(:not(.wp-element-button)):hover){color: var(--wp--preset--color--primary);text-decoration: none;}:root :where(a:where(:not(.wp-element-button)):focus){text-decoration: underline;}:root :where(a:where(:not(.wp-element-button)):active){color: var(--wp--preset--color--primary);text-decoration: none;}h1, h2, h3, h4, h5, h6{font-weight: 400;line-height: 1.4;text-transform: uppercase;}h1{font-size: var(--wp--preset--font-size--xx-large);font-weight: 500;line-height: 1.2;text-transform: uppercase;}h2{font-size: var(--wp--preset--font-size--x-large);font-weight: 500;line-height: 1.2;text-transform: uppercase;}h3{font-size: var(--wp--preset--font-size--large);font-weight: 500;text-transform: uppercase;}h4{font-size: var(--wp--preset--font-size--medium);font-weight: 500;text-transform: uppercase;}h5{font-size: var(--wp--preset--font-size--small);font-weight: 500;text-transform: uppercase;}h6{color: var(--wp--preset--color--theme-gray);font-size: var(--wp--preset--font-size--small);font-weight: 500;text-transform: uppercase;}:root :where(.wp-element-button, .wp-block-button__link){background-color: var(--wp--preset--color--primary);border-radius: 10px;border-color: var(--wp--preset--color--primary);border-width: 2px;border-style: solid;color: var(--wp--preset--color--base);font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: uppercase;}:root :where(.wp-element-button:hover, .wp-block-button__link:hover){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--primary);}:root :where(.wp-element-button:focus, .wp-block-button__link:focus){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--base);}:root :where(.wp-element-button:active, .wp-block-button__link:active){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--base);}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-base-color{color: var(--wp--preset--color--base) !important;}.has-primary-color{color: var(--wp--preset--color--primary) !important;}.has-secondary-color{color: var(--wp--preset--color--secondary) !important;}.has-tertiary-color{color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-color{color: var(--wp--preset--color--quaternary) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-background-color{background-color: var(--wp--preset--color--base) !important;}.has-primary-background-color{background-color: var(--wp--preset--color--primary) !important;}.has-secondary-background-color{background-color: var(--wp--preset--color--secondary) !important;}.has-tertiary-background-color{background-color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-background-color{background-color: var(--wp--preset--color--quaternary) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-border-color{border-color: var(--wp--preset--color--base) !important;}.has-primary-border-color{border-color: var(--wp--preset--color--primary) !important;}.has-secondary-border-color{border-color: var(--wp--preset--color--secondary) !important;}.has-tertiary-border-color{border-color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-border-color{border-color: var(--wp--preset--color--quaternary) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-xx-large-font-size{font-size: var(--wp--preset--font-size--xx-large) !important;}.has-anybody-font-font-family{font-family: var(--wp--preset--font-family--anybody-font) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-condensed-font-family{font-family: var(--wp--preset--font-family--roboto-condensed) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-lato-font-family{font-family: var(--wp--preset--font-family--lato) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-oswald-font-family{font-family: var(--wp--preset--font-family--oswald) !important;}.has-slabo-13-px-font-family{font-family: var(--wp--preset--font-family--slabo-13-px) !important;}.has-slabo-27-px-font-family{font-family: var(--wp--preset--font-family--slabo-27-px) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-pt-sans-font-family{font-family: var(--wp--preset--font-family--pt-sans) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-nunito-sans-font-family{font-family: var(--wp--preset--font-family--nunito-sans) !important;}.has-concert-one-font-family{font-family: var(--wp--preset--font-family--concert-one) !important;}
-/*# sourceURL=global-styles-inline-css */
-</style>
-<style id="wp-block-template-skip-link-inline-css">
-/*! This file is auto-generated */
-.skip-link.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important;word-break:normal!important}.skip-link.screen-reader-text:focus{background-color:#eee;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}
-/*# sourceURL=/wp-includes/css/wp-block-template-skip-link.min.css */
-</style>
-<link rel='stylesheet' id='theme-styles-css' href='https://bjvfi.com/wp-content/themes/business-identity-mvp/style.css?ver=7.1' media='all' />
-<link rel="https://api.w.org/" href="https://bjvfi.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://bjvfi.com/wp-json/wp/v2/pages/626594" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://bjvfi.com/xmlrpc.php?rsd" />
-<meta name="generator" content="WordPress 7.1" />
-<link rel="canonical" href="https://bjvfi.com/el-gallito-bakery" />
-<link rel='shortlink' href='https://bjvfi.com/?p=626594' />
-<style class="wp-fonts-local">
-@font-face{font-family:Anybody;font-style:normal;font-weight:100 900;font-display:fallback;src:url('https://bjvfi.com/wp-content/themes/business-identity-mvp/site-blueprint/admin-assets/fonts/Anybody.ttf') format('truetype');font-stretch:normal;}
-@font-face{font-family:Roboto;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgWxPKTM1K9nz.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOiCnqEu92Fr1Mu51QrIzcXLsnzjYk.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5vAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TjARc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9vAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51S7ABc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlvAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TzBhc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtvAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TLBBc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVi2ZhZI2eCN5jzbjEETS9weq8-33mZKCMSbvtdYyQ.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVg2ZhZI2eCN5jzbjEETS9weq8-19eDpCEYatlYcyRi4A.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVl2ZhZI2eCN5jzbjEETS9weq8-59WxDCs5cvI.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVj2ZhZI2eCN5jzbjEETS9weq8-19e7CAk8YvJEeg.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meKCMSbvtdYyQ.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVg2ZhZI2eCN5jzbjEETS9weq8-19eDtCYYatlYcyRi4A.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjr0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgshZ1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk5hkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk_RkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkxhjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkyFjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk0ZjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHh30wWyWrFCbw7A.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u-w4BMUTPHjxsIPy-vNiPg7MU0.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh7USew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI9w2PHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHvxk6XweuBCY.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxswWyWrFCbw7A.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI5wqPHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh50Xew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI3wiPHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R8aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq_p9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq5Z9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq3p6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq0N6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqw16aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs13FvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs169vgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1y9ogUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZogUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:"Slabo 13px";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/slabo13px/v13/11hEGp_azEvXZUdSBzzRcKer2wkYnvI.ttf') format('truetype');}
-@font-face{font-family:"Slabo 27px";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/slabo27px/v12/mFT0WbgBwKPR_Z4hGN2qsxgJ1EJ7i90.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvao4CPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtaooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVuEooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvoooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVsEpYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtapYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtzpYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4WjNPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4ejMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4WjMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4VrMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4bbLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4Y_LPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4ejLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4cHLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79P0WOxOGMMDQ.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizYRExUiTo99u79D0eEwMOJIDQA-g.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh4OmnLD0Z4zM.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizdRExUiTo99u79D0e8fOytKB8c8zMrig.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l521wRpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR7lXcf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5OeyxNV-bnrw.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4m0qyriQwlOrhSvowK_l5-eSZJdeP3r-Ho.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR71Wsf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52_wFpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR7NWMf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVilntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GiClntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G5ClntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVi5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4Gfy5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmoP91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmrR91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmqP91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmq991UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmpR8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmpo8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmoP8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmom8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Concert One";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTlhv-CuVAQ.ttf') format('truetype');}
-</style>
-<link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-32x32.png" sizes="32x32" />
-<link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
-<meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+    .hero{
+      position:relative;
+      min-height:740px;
+      display:flex;
+      align-items:center;
+      color:white;
+      background:
+        linear-gradient(90deg,rgba(42,30,24,.84),rgba(42,30,24,.58) 58%,rgba(42,30,24,.22)),
+        url("https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1900&q=88") center/cover;
+      isolation:isolate;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:auto 0 0;height:130px;
+      background:linear-gradient(to bottom,transparent,rgba(247,239,229,.38));
+      z-index:-1;
+    }
+    .hero-content{max-width:760px;padding:6rem 0 8rem}
+    .hero .eyebrow{color:#f0c58f}
+    .hero h1{
+      font-size:clamp(3.4rem,8vw,7rem);
+      margin:.6rem 0 1rem;
+      max-width:800px;
+      text-shadow:0 5px 24px rgba(0,0,0,.28);
+    }
+    .hero p{color:#fff7ef;max-width:650px;font-size:1.1rem}
+    .actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.7rem}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      min-height:50px;
+      padding:.9rem 1.15rem;
+      border-radius:10px;
+      font-weight:900;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#e5c39c;color:#271c14}
+    .btn-secondary{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.4);color:white;backdrop-filter:blur(8px)}
+    .mini-note{font-size:.78rem;color:#efe1d4;margin-top:.9rem}
+
+    section{padding:86px 0}
+    .section-head{max-width:740px;margin-bottom:2rem}
+    .section-head h2{margin:.4rem 0 .8rem}
+
+    .intro{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2.2rem;
+      align-items:center;
+    }
+    .image-panel{
+      min-height:540px;
+      background:
+        linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),
+        url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=85") center/cover;
+      border:8px solid white;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+    .image-tag{
+      position:absolute;
+      left:20px;bottom:20px;
+      background:rgba(255,255,255,.92);
+      padding:.65rem .85rem;
+      font-size:.78rem;
+      font-weight:800;
+      color:var(--ink);
+      border-left:4px solid var(--red);
+    }
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1rem;
+      margin-top:1.4rem;
+    }
+    .fact{
+      padding:1rem 0;
+      border-top:2px solid var(--yellow);
+    }
+    .fact i{color:var(--red);margin-right:.45rem}
+    .fact strong{display:block;margin-bottom:.2rem}
+
+    .menu-section{
+      background:
+        linear-gradient(rgba(255,250,244,.84),rgba(255,250,244,.84)),
+        url("https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1900&q=84") center/cover fixed;
+    }
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1rem;
+    }
+    .product{
+      background:white;
+      border:1px solid var(--line);
+      overflow:hidden;
+      box-shadow:0 12px 28px rgba(34,27,22,.08);
+    }
+    .product img{width:100%;height:210px;object-fit:cover}
+    .product-body{padding:1.15rem}
+    .product h3{font-size:1.35rem;margin-bottom:.35rem}
+    .product p{font-size:.92rem}
+    .price{
+      display:inline-block;
+      margin-top:.7rem;
+      font-weight:900;
+      color:var(--red-dark);
+      font-size:.88rem;
+    }
+
+    .band{
+      background:var(--red);
+      color:white;
+      padding:26px 0;
+    }
+    .band-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+    }
+    .band-item{
+      display:flex;align-items:center;gap:.9rem;
+      padding:.5rem 1rem;
+      border-right:1px solid rgba(255,255,255,.25);
+    }
+    .band-item:last-child{border-right:0}
+    .band-item i{font-size:1.4rem;color:var(--yellow)}
+    .band-item strong{display:block}
+    .band-item span{font-size:.85rem;color:#eadad2}
+
+    .visit{
+      background:
+        linear-gradient(rgba(28,21,16,.87),rgba(28,21,16,.87)),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085e?auto=format&fit=crop&w=1800&q=85") center/cover;
+      color:white;
+    }
+    .visit p{color:#ede3db}
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+      align-items:start;
+    }
+    .hours{list-style:none;margin-top:1.1rem}
+    .hours li{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      padding:.72rem 0;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .protected{
+      margin-top:1rem;
+      padding:1rem;
+      background:rgba(255,255,255,.08);
+      border-left:4px solid var(--yellow);
+      font-weight:900;
+      color:#fff9e7;
+    }
+    .protected small{display:block;font-weight:500;color:#eaded7;margin-top:.25rem}
+
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:.75fr 1.25fr;
+      gap:2rem;
+      align-items:start;
+    }
+    .rating-box{
+      background:var(--yellow);
+      padding:2rem;
+      box-shadow:var(--shadow);
+    }
+    .rating-big{
+      font-family:Georgia,serif;
+      font-size:4.6rem;
+      line-height:1;
+      margin:.5rem 0;
+    }
+    .stars{color:var(--red);letter-spacing:.12em}
+    .review-points{display:grid;gap:1rem}
+    .review-point{
+      border-left:4px solid var(--red);
+      padding:1rem 1.2rem;
+      background:white;
+    }
+
+    .faq{
+      background:
+        linear-gradient(rgba(247,239,229,.88),rgba(247,239,229,.88)),
+        url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1900&q=82") center/cover;
+    }
+    .faq details{
+      background:white;
+      border:1px solid var(--line);
+      margin-bottom:.75rem;
+      padding:1rem 1.15rem;
+    }
+    .faq summary{
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      cursor:pointer;
+      font-weight:900;
+      list-style:none;
+    }
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"+";color:var(--red);font-size:1.2rem}
+    .faq details[open] summary::after{content:"−"}
+    .faq details p{margin-top:.7rem}
+
+    .cta{
+      background:
+        linear-gradient(rgba(90,55,42,.82),rgba(90,55,42,.82)),
+        url("https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=1900&q=84") center/cover;
+      color:white;
+      padding:70px 0;
+      text-align:center;
+    }
+    .cta .eyebrow{color:#f0c58f}
+    .cta p{color:#f6e9df}
+    .cta p{max-width:650px;margin:.7rem auto 0}
+
+    footer{
+      background:
+        linear-gradient(rgba(36,27,22,.94),rgba(36,27,22,.94)),
+        url("https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1900&q=82") center/cover;
+      color:white;
+      padding:48px 0 28px;
+    }
+    footer p,footer a{color:#d9cbc2}
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      gap:2rem;
+    }
+    footer h3{margin-bottom:.6rem}
+    .footer-links{display:grid;gap:.45rem}
+    .footer-protected{
+      padding:.8rem 1rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.09);
+      margin-top:.6rem;
+      font-size:.84rem;
+      color:#f8e5bf;
+    }
+    .copyright{
+      margin-top:2rem;
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,.09);
+      font-size:.8rem;
+      color:#9f9188;
+    }
+
+    .modal-backdrop{
+      position:fixed;inset:0;
+      background:rgba(10,8,6,.72);
+      z-index:999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:1rem;
+    }
+    .modal-backdrop.show{display:flex}
+    .modal{
+      width:min(460px,100%);
+      background:var(--paper);
+      padding:1.6rem;
+      border-top:7px solid var(--red);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+    }
+    .modal-icon{
+      width:52px;height:52px;
+      display:grid;place-items:center;
+      background:#ead6c9;
+      color:var(--red);
+      margin-bottom:1rem;
+      font-size:1.25rem;
+    }
+    .modal h3{font-size:1.8rem;margin-bottom:.5rem}
+    .modal p{margin-bottom:1.2rem}
+    .modal .btn{background:var(--red);color:white;border:0;width:100%}
+
+    @media(max-width:980px){
+      .desktop-nav{
+        position:absolute;
+        top:82px;left:0;right:0;
+        padding:1rem 4% 1.25rem;
+        background:rgba(255,247,232,.98);
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        border-bottom:1px solid var(--line);
+      }
+      .desktop-nav.open{display:flex}
+      .desktop-nav a{padding:.65rem 0}
+      .menu-btn{display:block}
+      .intro,.visit-grid,.reviews-grid,.footer-grid{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .band-grid{grid-template-columns:1fr}
+      .band-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.2)}
+      .band-item:last-child{border-bottom:0}
+      .image-panel{min-height:440px}
+    }
+
+    @media(max-width:640px){
+      .nav{height:72px}
+      .desktop-nav{top:72px}
+      .brand span{display:none}
+      .hero{min-height:670px;background-position:58% center}
+      .hero-content{padding:4rem 0 6rem}
+      .hero h1{font-size:clamp(3rem,15vw,4.7rem)}
+      section{padding:64px 0}
+      .product-grid{grid-template-columns:1fr}
+      .product img{height:240px}
+      .facts{grid-template-columns:1fr}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%}
+      .hours li{font-size:.92rem}
+      .image-panel{min-height:360px}
+    }
+  </style>
 </head>
-
-<body class="wp-singular page-template page-template-blank page page-id-626594 wp-embed-responsive wp-theme-business-identity-mvp">
-
-<a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a><div class="wp-site-blocks"><div class="entry-content alignfull wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
-<style id="biz-fullbleed">
-/* Break out of WP constrained/content box */
-.wp-site-blocks, .entry-content, .wp-block-post-content,
-.is-layout-constrained, .has-global-padding {
-  max-width: none !important;
-  width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  box-sizing: border-box !important;
-}
-.wp-block-post-content > *,
-.is-layout-constrained > * {
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-body.page-template-blank .wp-site-blocks { padding: 0 !important; }
-.biz-root { width: 100% !important; max-width: none !important; min-height: 100vh; }
-</style>
-
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&#038;family=Work+Sans:wght@400;500;600;700;800&#038;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>:root{
-  --red:#D62828;
-  --red-deep:#B21E1E;
-  --yolk:#F77F00;
-  --yolk-soft:#FFE3C2;
-  --cream:#FFF8ED;
-  --ink:#3B2A22;
-  --ink-soft:#6E5A4E;
-}*{box-sizing:border-box}.biz-root,.biz-root{margin:0;padding:0}.biz-root{font-family:'Work Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;font-size:16px}h1,h2,h3,h4{margin:0 0 .5em;line-height:1.2}h1,h2{font-family:'Pacifico',cursive;font-weight:400}h3,h4{font-family:'Work Sans',sans-serif;font-weight:800}p{margin:0 0 1em}.wrap{max-width:1060px;margin:0 auto;padding:0 22px}.site-shell{min-height:100vh;display:flex;flex-direction:column}main{flex:1 0 auto}footer{flex-shrink:0}.biz-page{display:none}.biz-page.active{display:block}/* header */
-.topbar{background:var(--red);position:relative;z-index:40}.topbar .wrap{display:flex;align-items:center;justify-content:space-between;min-height:68px;gap:14px}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:'Pacifico',cursive;font-size:1.4rem;line-height:1}.brand svg{width:34px;height:34px}.nav-links{display:flex;align-items:center;gap:24px}.nav-links a{color:#FFF2E2;text-decoration:none;font-weight:700;font-size:.95rem;letter-spacing:.03em;padding:6px 0;border-bottom:2px solid transparent}.nav-links a:hover{color:#fff;border-color:var(--yolk)}.menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:0;padding:10px;cursor:pointer}.menu-btn span{display:block;width:22px;height:2px;background:#fff;transition:transform .2s,opacity .2s}.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-btn.open span:nth-child(2){opacity:0}.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}/* comb zigzag divider */
-.comb{height:16px;background:linear-gradient(-45deg,var(--red) 8px,transparent 0) 0 0,linear-gradient(45deg,var(--red) 8px,transparent 0) 0 0;background-size:16px 16px;background-repeat:repeat-x}/* hero */
-.hero{background:linear-gradient(180deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:58px 0 66px;position:relative;overflow:hidden;text-align:center}.hero .wrap{position:relative}.eyebrow{font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.74rem;color:var(--yolk-soft);margin:0 0 14px}.hero h1{font-size:clamp(2rem,4.8vw,3.2rem);color:#fff;max-width:760px;margin:0 auto .4em}.hero h1 .sun{color:var(--yolk)}.hero .sub{max-width:560px;margin:0 auto;color:#FFE8D6;font-size:1.05rem}.rooster-stage{margin:34px auto 6px;width:210px}.rooster-stage svg{width:100%;height:auto}.status-chip{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;font-weight:800;font-size:.9rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:#fff;margin-top:16px}.status-chip .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}.status-chip.is-open .dot{background:#7BDE8F;box-shadow:0 0 0 4px rgba(123,222,143,.25)}.status-chip.is-closed .dot{background:#C9BFB4}/* sections */
-.section{padding:64px 0}.section-head{max-width:640px;margin-bottom:34px}.kicker{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.74rem;color:var(--red);margin:0 0 8px}.section h2{font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--red-deep)}.section.tint{background:var(--yolk-soft)}/* pastry cards */
-.bake-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.bcard{background:#fff;border:2px solid rgba(214,40,40,.14);border-radius:18px;padding:26px 22px;text-align:center}.bcard .icon{width:58px;height:58px;margin:0 auto 14px;border-radius:50%;background:var(--yolk-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--red)}.bcard h3{font-size:1.1rem;color:var(--red-deep)}.bcard p{margin:0;font-size:.92rem;color:var(--ink-soft)}.fact-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.fact-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--yolk);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.86rem;color:var(--ink)}/* hours */
-.hours-wrap{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}.hours-list{list-style:none;margin:0;padding:0;background:#fff;border:2px solid rgba(214,40,40,.16);border-radius:18px;overflow:hidden}.hours-list li{display:flex;justify-content:space-between;gap:14px;padding:13px 20px;border-bottom:1px dashed rgba(214,40,40,.2);font-weight:600}.hours-list li:last-child{border-bottom:0}.hours-list li .hd{color:var(--ink-soft);font-weight:700}.hours-list li .ht{font-weight:800;color:var(--ink)}.hours-list li.today{background:var(--red)}.hours-list li.today .hd,.hours-list li.today .ht{color:#fff}.hours-note{font-size:.92rem;color:var(--ink-soft);margin-top:14px}.bake-note{background:var(--red);color:#FFF2E2;border-radius:18px;padding:26px}.bake-note h3{color:#fff;font-size:1.3rem}.bake-note p{font-size:.95rem;margin:0}.bake-note i{color:var(--yolk);margin-right:8px}/* reviews */
-.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.quote-card{margin:0;background:#fff;border:2px solid rgba(214,40,40,.14);border-radius:18px;padding:26px;display:flex;flex-direction:column;gap:12px}.quote-card .stars{color:var(--yolk);font-size:.95rem;letter-spacing:3px}.quote-card blockquote{margin:0;font-size:1rem;font-weight:600;color:var(--ink);flex:1}.quote-card figcaption{font-size:.82rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}.rating-line{text-align:center;font-weight:800;font-size:1.15rem;color:var(--red-deep);margin:34px 0 18px}.rating-line .g-ico{color:#4285F4;margin-right:8px}.map-card{display:flex;align-items:center;gap:16px;max-width:520px;margin:0 auto;background:#fff;border:2px solid var(--red);border-radius:14px;padding:16px 20px;text-decoration:none;box-shadow:0 10px 24px rgba(178,30,30,.1)}.map-card i.fa-google{font-size:1.4rem;color:#4285F4}.map-card .mc-txt strong{display:block;color:var(--red-deep);font-size:1rem}.map-card .mc-txt em{display:block;font-style:normal;font-size:.85rem;color:var(--ink-soft)}.map-card i.fa-arrow-right{margin-left:auto;color:var(--red)}.map-card:hover{background:var(--red)}.map-card:hover .mc-txt strong,.map-card:hover .mc-txt em{color:#fff}.map-card:hover i.fa-arrow-right{color:var(--yolk)}/* visit + cafecito cup */
-.visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}.addr-line{font-size:1.15rem;font-weight:800;color:var(--red-deep);margin-bottom:6px}.cup-card{max-width:300px;margin:0 auto;text-align:center}.steam{display:flex;justify-content:center;gap:12px;margin-bottom:6px}.steam span{width:6px;height:26px;border-radius:6px;background:linear-gradient(rgba(247,127,0,.05),rgba(247,127,0,.6));opacity:.7}.steam span:nth-child(2){height:34px}.cup{position:relative;background:linear-gradient(#FFFFFF,#FFF1DE);border:3px solid var(--red);border-radius:14px 14px 46px 46px;padding:24px 18px;box-shadow:0 14px 30px rgba(178,30,30,.12)}.cup-handle{position:absolute;right:-30px;top:26px;width:42px;height:42px;border:7px solid var(--red);border-radius:50%;clip-path:inset(0 0 0 46%)}.cup-label{display:block;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--ink-soft);margin-bottom:8px}.cup-phone{display:block;font-family:'Work Sans',sans-serif;font-weight:800;font-size:1.55rem;color:var(--red-deep);text-decoration:none}.cup-phone:hover{color:var(--red)}.cup-sub{display:block;margin-top:8px;font-size:.85rem;font-weight:600;color:var(--ink-soft)}.saucer{height:12px;margin:8px auto 0;width:78%;background:var(--yolk);border-radius:50%;opacity:.5}/* form */
-.form-card{background:#fff;border:2px solid rgba(214,40,40,.16);border-radius:20px;padding:30px;box-shadow:0 10px 26px rgba(178,30,30,.07);margin-top:34px}.form-card h3{font-size:1.45rem;color:var(--red-deep)}.form-card .fc-sub{font-size:.95rem;color:var(--ink-soft);margin-bottom:18px}.field{margin-bottom:14px}.field label{display:block;font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;color:var(--ink)}.field input,.field textarea{width:100%;padding:12px 14px;border:1.5px solid rgba(214,40,40,.3);border-radius:10px;font-family:inherit;font-size:.98rem;background:var(--cream);color:var(--ink)}.field input:focus,.field textarea:focus{outline:2px solid var(--yolk);border-color:var(--red)}.field textarea{min-height:110px;resize:vertical}.btn-send{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;border:0;border-radius:999px;padding:13px 26px;font-family:inherit;font-weight:800;font-size:.98rem;cursor:pointer}.btn-send:hover{background:var(--red-deep)}.form-feedback{margin:14px 0 0;font-weight:700;color:#3E7C46;min-height:1.4em}/* footer */
-footer{background:var(--red-deep);color:#FFE8D6}.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding:52px 22px 30px}.foot-grid h4{color:var(--yolk);font-size:1.05rem;margin-bottom:10px}.foot-grid p{font-size:.93rem;margin:0}.foot-grid a{color:#fff;text-decoration:none}.foot-grid a:hover{color:var(--yolk)}.f-brand .fb-name{font-family:'Pacifico',cursive;font-size:1.4rem;color:#fff}.copyright{border-top:1px solid rgba(255,248,237,.2);text-align:center;padding:16px 22px;font-size:.9rem;color:#F0C9A8}
-
-@media(max-width:900px){.bake-grid{grid-template-columns:1fr 1fr}.hours-wrap,.visit-grid{grid-template-columns:1fr}.quote-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:640px){.menu-btn{display:flex}.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--red-deep);flex-direction:column;align-items:flex-start;gap:0;padding:8px 22px 16px;border-top:3px solid var(--yolk)}.nav-links.open{display:flex}.nav-links a{padding:12px 0;width:100%;border-bottom:1px solid rgba(255,248,237,.18)}.bake-grid{grid-template-columns:1fr}.section{padding:48px 0}
-}
-</style>
-<div class="biz-root" id="biz-root">
-<div class="site-shell">
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="#/home" data-page="home">
-      <svg viewBox="0 0 140 120" aria-hidden="true"><circle cx="76" cy="66" r="40" fill="#F77F00" opacity=".85"/><g fill="#FFF8ED"><path d="M100 72c12-2 21-10 23-22-8 2-14 5-17 10 2-8-1-15-8-18 0 8-3 13-8 16z"/><path d="M52 76c0-13 10-23 23-23 8 0 15 3 18 10 3 7 2 15-5 20-6 5-16 6-24 3-7-2-12-5-12-10z"/><circle cx="52" cy="44" r="9"/><path d="M44 42l-9 3 9 4z"/><circle cx="49" cy="33" r="4"/><circle cx="56" cy="30" r="4"/><circle cx="62" cy="34" r="3"/></g><g stroke="#FFF8ED" stroke-width="3" stroke-linecap="round"><path d="M64 88v10M74 88v10"/></g></svg>
-      El Gallito Bakery
-    </a>
-    <button id="menu-btn" class="menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    <nav class="nav-links">
-      <a href="#/services" data-page="services">La Panaderia</a>
-      <a href="#/reviews" data-page="reviews">Reviews</a>
-      <a href="#/contact" data-page="contact">Visit</a>
-    </nav>
-  </div>
-</header>
-<main id="wp--skip-link--target">
-
-<section class="biz-page active" id="page-home">
-  <div class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Cuban &amp; Latin Bakery · Miami, FL</p>
-      <h1>The rooster crows <span class="sun">before Miami wakes.</span></h1>
-      <p class="sub">El Gallito Bakery opens at 6 AM with pastelitos de queso, Cuban bread and pan dulce still warm from the oven at 1551 SW 27th Ave.</p>
-      <div class="rooster-stage">
-        <svg viewBox="0 0 140 120" aria-hidden="true"><circle cx="76" cy="66" r="44" fill="#F77F00"/><g fill="#D62828"><path d="M100 72c14-2 24-11 27-25-9 2-16 6-19 11 2-9-1-17-9-20 0 9-4 15-9 18z"/><path d="M50 78c0-15 11-26 26-26 9 0 17 4 21 11 4 8 2 17-6 23-7 6-18 7-27 4-8-3-14-6-14-12z"/><circle cx="50" cy="42" r="10"/><path d="M41 40l-11 4 11 5z"/><circle cx="46" cy="30" r="4.5"/><circle cx="54" cy="26" r="4.5"/><circle cx="61" cy="31" r="3.5"/></g><circle cx="46" cy="55" r="4" fill="#D62828"/><g stroke="#D62828" stroke-width="3.5" stroke-linecap="round"><path d="M64 90v12M75 90v12"/></g></svg>
-      </div>
-      <div class="status-chip"><span class="dot"></span>Checking hours&#8230;</div>
-    </div>
-  </div>
-  <div class="comb" aria-hidden="true"></div>
-
-  <div class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">From the oven</p>
-        <h2>Why Miami lines up here</h2>
-      </div>
-      <div class="bake-grid">
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-cookie-bite"></i></div><h3>Pastelitos de queso</h3><p>Flaky, just the right amount of sugar coating, and famous for being gone by mid morning.</p></div>
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-bread-slice"></i></div><h3>Cuban bread</h3><p>The everyday loaf for toast, sandwiches and butter, baked fresh every morning.</p></div>
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-cake-candles"></i></div><h3>Custom cakes</h3><p>Ask about a cake for the birthday or the quince, ordered ahead with the counter.</p></div>
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-car"></i></div><h3>Parking in the back</h3><p>Ample parking behind the shop, so the morning run stays quick.</p></div>
-      </div>
-      <div class="fact-chips">
-        <span class="fact-chip"><i class="fa-solid fa-clock"></i> Mon &#8211; Sat from 6 AM, Sun from 7 AM</span>
-        <span class="fact-chip"><i class="fa-solid fa-star"></i> 4.6 stars on Google</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section tint">
-    <div class="wrap">
-      <div class="hours-wrap">
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#home" class="brand">
+        <div class="brand-mark"><i class="fa-solid fa-drumstick-bite"></i></div>
         <div>
-          <p class="kicker">Hours</p>
-          <h2>Bakery hours</h2>
-          <ul class="hours-list">
-            <li data-day="0"><span class="hd">Sunday</span><span class="ht">7:00 AM &#8211; 3:00 PM</span></li>
-            <li data-day="1"><span class="hd">Monday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="2"><span class="hd">Tuesday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="3"><span class="hd">Wednesday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="4"><span class="hd">Thursday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="5"><span class="hd">Friday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="6"><span class="hd">Saturday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-          </ul>
-          <p class="hours-note">Mon &#8211; Sat 6 AM &#8211; 5 PM, Sun 7 AM &#8211; 3 PM. The best pastelitos go early.</p>
+          <strong>El Gallito Bakery</strong>
+          <span>MIAMI, FLORIDA</span>
         </div>
-        <div class="bake-note">
-          <h3><i class="fa-solid fa-square-parking"></i>Quick in, quick out</h3>
-          <p>Regulars come before work for a bag of pastelitos and a loaf of Cuban bread. Park in the back, grab your order, and you are still on time. Big trays and party orders are easiest when you call ahead.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="biz-page" id="page-services">
-  <div class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">La Panaderia</p>
-        <h2>What comes out of the oven</h2>
-      </div>
-      <div class="bake-grid">
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-cookie-bite"></i></div><h3>Pastelitos</h3><p>Pastelitos de queso lead the tray, with sweet and savory pastelitos baked through the morning.</p></div>
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-bread-slice"></i></div><h3>Cuban bread</h3><p>Loaves with a crackly crust and a soft middle, ready for butter, toast or a pressed sandwich.</p></div>
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-stroopwafel"></i></div><h3>Pan dulce</h3><p>Sweet pastries and treats by the tray or the piece, the way the display case has always done it.</p></div>
-        <div class="bcard"><div class="icon"><i class="fa-solid fa-cake-candles"></i></div><h3>Cakes</h3><p>Custom cakes for birthdays and milestones. Call ahead and we will talk through the details.</p></div>
-      </div>
-      <div class="fact-chips">
-        <span class="fact-chip"><i class="fa-solid fa-square-parking"></i> Ample parking in the back</span>
-        <span class="fact-chip"><i class="fa-solid fa-sun"></i> Baking from 6 AM, 7 days a week</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="biz-page" id="page-reviews">
-  <div class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Reviews</p>
-        <h2>Straight from the regulars</h2>
-      </div>
-      <div class="quote-grid">
-        <figure class="quote-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <blockquote>Fast service at 7am.. i love their pastelitos de queso! So fresh and just the right amount of sugar coating!</blockquote>
-          <figcaption>Google review</figcaption>
-        </figure>
-        <figure class="quote-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <blockquote>Great pastelitos, quick service, ample parking in the back, and can we talk about how fresh this stuff is? I love going to this place before work.</blockquote>
-          <figcaption>Google review</figcaption>
-        </figure>
-        <figure class="quote-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <blockquote>Food is fresh and amazing.</blockquote>
-          <figcaption>Google review</figcaption>
-        </figure>
-        <figure class="quote-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <blockquote>Cuban bread and pastries stand out as best in Miami, evoking traditional flavors.</blockquote>
-          <figcaption>Google review</figcaption>
-        </figure>
-      </div>
-      <p class="rating-line"><i class="fa-brands fa-google g-ico"></i>4.6 stars on Google</p>
-      <a class="map-card" href="https://www.google.com/maps/search/?api=1&#038;query=El%20Gallito%20Bakery%2C%201551%20SW%2027th%20Ave%2C%20Miami%2C%20FL%2033145" target="_blank" rel="noopener">
-        <i class="fa-brands fa-google"></i>
-        <span class="mc-txt"><strong>See every review on Google</strong><em>Open the full listing for directions too</em></span>
-        <i class="fa-solid fa-arrow-right"></i>
       </a>
-    </div>
-  </div>
-</section>
 
-<section class="biz-page" id="page-contact">
-  <div class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Visit</p>
-        <h2>Stop in for the warm tray</h2>
+      <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="desktop-nav" id="navMenu">
+        <a href="#about">About</a>
+        <a href="#favorites">Favorites</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Hours</a>
+        <a href="#" class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Call Bakery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <div class="hero-content">
+          <div class="eyebrow">Cuban bakery in Miami</div>
+          <h1>El Gallito Bakery</h1>
+          <p>
+            Cuban bread, pastelitos, croquetas, coffee, cakes, desserts, savory pastries,
+            party trays, pickup, and delivery.
+          </p>
+          <div class="actions">
+            <a href="#favorites" class="btn btn-primary"><i class="fa-solid fa-bread-slice"></i> See Bakery Favorites</a>
+            <a href="#" class="btn btn-secondary" data-locked="true"><i class="fa-solid fa-location-dot"></i> Get Directions</a>
+          </div>
+          <div class="mini-note">Stock bakery imagery is used in this demo and does not represent the actual storefront or products.</div>
+        </div>
       </div>
-      <div class="visit-grid">
+    </section>
+
+    <section id="about">
+      <div class="wrap intro">
+        <div class="image-panel">
+          <div class="image-tag">Stock bakery image used for demo presentation</div>
+        </div>
         <div>
-          <h3>Find the bakery</h3>
-          <p class="addr-line">1551 SW 27th Ave<br>Miami, FL 33145</p>
-          <p>Park in the back and come through for pastelitos, Cuban bread and a tray of pan dulce. Early mornings move fastest.</p>
-          <ul class="hours-list">
-            <li data-day="0"><span class="hd">Sunday</span><span class="ht">7:00 AM &#8211; 3:00 PM</span></li>
-            <li data-day="1"><span class="hd">Monday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="2"><span class="hd">Tuesday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="3"><span class="hd">Wednesday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="4"><span class="hd">Thursday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="5"><span class="hd">Friday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
-            <li data-day="6"><span class="hd">Saturday</span><span class="ht">6:00 AM &#8211; 5:00 PM</span></li>
+          <div class="eyebrow">About the bakery</div>
+          <h2>Classic Cuban bakery favorites in Miami.</h2>
+          <p>
+            El Gallito Bakery is a Miami Cuban bakery serving fresh Cuban bread, pastelitos,
+            croquetas, coffee, cakes, desserts, savory pastries, and party-style bakery items.
+          </p>
+
+          <div class="facts">
+            <div class="fact">
+              <strong><i class="fa-solid fa-location-dot"></i> Miami</strong>
+              <p>Public listings place the bakery on SW 27th Avenue in Miami, Florida.</p>
+            </div>
+            <div class="fact">
+              <strong><i class="fa-solid fa-bag-shopping"></i> Pickup & Delivery</strong>
+              <p>Current DoorDash and Uber Eats listings offer pickup and delivery.</p>
+            </div>
+            <div class="fact">
+              <strong><i class="fa-solid fa-cake-candles"></i> Sweet & Savory</strong>
+              <p>Public menu data includes pastries, desserts, cakes, croquetas, empanadas, and more.</p>
+            </div>
+            <div class="fact">
+              <strong><i class="fa-solid fa-box"></i> Party Trays</strong>
+              <p>Current menus list trays of croquetas, pastries, mini stuffed potatoes, and mini sandwiches.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="favorites">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Bakery favorites</div>
+          <h2>From Cuban bread to party trays.</h2>
+          <p>Items below are supported by the provided research. Delivery-platform pricing can differ from in-store pricing.</p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85" alt="Fresh bread stock image">
+            <div class="product-body">
+              <h3>Cuban Bread</h3>
+              <p>Fresh Cuban bread is one of the products most frequently praised by customers.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=85" alt="Pastries stock image">
+            <div class="product-body">
+              <h3>Pastelitos</h3>
+              <p>Cuban pastries are a core specialty and are frequently mentioned in reviews.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1625943553852-781c6dd46faa?auto=format&fit=crop&w=900&q=85" alt="Savory fried snacks stock image">
+            <div class="product-body">
+              <h3>Croquetas</h3>
+              <p>Regular croquetas and party-size croquette trays are publicly listed.</p>
+              <span class="price">25 ham croquettes: approx. $12 on DoorDash</span>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=85" alt="Dessert cake stock image">
+            <div class="product-body">
+              <h3>Tres Leches</h3>
+              <p>Family-size desserts include tres leches.</p>
+              <span class="price">$12 on current DoorDash listing</span>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85" alt="Cake stock image">
+            <div class="product-body">
+              <h3>Cakes</h3>
+              <p>Cakes are advertised publicly and are also referenced in customer reviews.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85" alt="Empanadas stock image">
+            <div class="product-body">
+              <h3>Empanadas</h3>
+              <p>Current delivery menus list empanadas.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=88" alt="Coffee stock image">
+            <div class="product-body">
+              <h3>Coffee</h3>
+              <p>Coffee is repeatedly mentioned among the bakery's well-known offerings.</p>
+            </div>
+          </article>
+
+          <article class="product">
+            <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85" alt="Assorted pastries stock image">
+            <div class="product-body">
+              <h3>Party Trays</h3>
+              <p>Public menu data includes trays of croquetas, mixed pastries, mini stuffed potatoes, and mini sandwiches.</p>
+              <span class="price">Pricing varies by tray</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="wrap band-grid">
+        <div class="band-item">
+          <i class="fa-solid fa-bread-slice"></i>
+          <div><strong>Cuban Bakery Favorites</strong><span>Bread, pastelitos, croquetas, cakes and more</span></div>
+        </div>
+        <div class="band-item">
+          <i class="fa-solid fa-box-open"></i>
+          <div><strong>Party Orders</strong><span>Publicly listed trays for groups and gatherings</span></div>
+        </div>
+        <div class="band-item">
+          <i class="fa-solid fa-motorcycle"></i>
+          <div><strong>Pickup & Delivery</strong><span>Available through current third-party listings</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="reviews">
+      <div class="wrap reviews-grid">
+        <div class="rating-box">
+          <div class="eyebrow">Public review data</div>
+          <div class="rating-big">4.6</div>
+          <div class="stars">★★★★★</div>
+          <p>Approximately 4.6/5 on Google according to multiple public review aggregators. Exact review counts vary by platform and update date.</p>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <div class="eyebrow">What customers mention</div>
+            <h2>Fresh bread, pastries, and neighborhood service.</h2>
+          </div>
+          <div class="review-points">
+            <div class="review-point"><strong>Fresh Cuban bread</strong><p>Frequently praised in public reviews.</p></div>
+            <div class="review-point"><strong>Pastelitos & croquetas</strong><p>Repeatedly mentioned as customer favorites.</p></div>
+            <div class="review-point"><strong>Friendly service</strong><p>Public reviews often describe employees as warm and attentive.</p></div>
+            <div class="review-point"><strong>Good value</strong><p>Value and long-term customer loyalty are common positive themes.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <div class="eyebrow" style="color:#f0c58f">Hours</div>
+          <h2>Business hours</h2>
+          <ul class="hours">
+            <li><span>Monday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Tuesday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Wednesday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Thursday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Friday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Saturday</span><strong>6:00 AM – 5:00 PM</strong></li>
+            <li><span>Sunday</span><strong>7:00 AM – 3:00 PM</strong></li>
           </ul>
         </div>
+
         <div>
-          <div class="cup-card">
-            <div class="steam"><span></span><span></span><span></span></div>
-            <div class="cup">
-              <div class="cup-handle" aria-hidden="true"></div>
-              <span class="cup-label">Call ahead</span>
-              <a class="cup-phone" href="tel:+13058567470">(305) 856-7470</a>
-              <span class="cup-sub">Trays, cakes and big orders</span>
-            </div>
-            <div class="saucer" aria-hidden="true"></div>
+          <div class="eyebrow" style="color:#f0c58f">Contact & location</div>
+          <h2>Visit El Gallito Bakery</h2>
+          <div class="protected">
+            CONTACT DETAILS PROTECTED IN THIS DEMO
+            <small>Phone number, address, and named contacts are intentionally hidden on the demo version.</small>
           </div>
-          <div class="status-chip" style="border-color:rgba(214,40,40,.3);background:#fff;color:var(--ink);margin-top:22px"><span class="dot"></span>Checking hours&#8230;</div>
+          <div class="actions">
+            <a href="#" class="btn btn-primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call Bakery</a>
+            <a href="#" class="btn btn-secondary" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</a>
+          </div>
         </div>
       </div>
-      <div class="form-card">
-        <h3>Order ahead</h3>
-        <p class="fc-sub">Need a tray for the office or a cake for the weekend? Send the note below. On a phone it opens a text to the bakery; on a computer it copies a message you can paste into a text.</p>
-        <form id="quote-form" novalidate>
-          <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="First name is plenty"></div>
-          <div class="field"><label for="f-phone">Your phone</label><input id="f-phone" type="tel" autocomplete="tel" placeholder="So we can confirm your order"></div>
-          <div class="field"><label for="f-msg">Your order</label><textarea id="f-msg" placeholder="Example: 2 dozen pastelitos de queso for Friday 7 AM pickup"></textarea></div>
-          <button class="btn-send" type="submit"><i class="fa-solid fa-paper-plane"></i> Send to the bakery</button>
-          <p class="form-feedback" id="form-feedback"></p>
-        </form>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Frequently asked questions</div>
+          <h2>Helpful information before you order.</h2>
+        </div>
+
+        <details>
+          <summary>Is El Gallito Bakery a Cuban bakery?</summary>
+          <p>Yes. Current public listings categorize it as a Cuban bakery and Cuban restaurant.</p>
+        </details>
+
+        <details>
+          <summary>Do they sell Cuban bread?</summary>
+          <p>Yes. Cuban bread is one of the bakery's most frequently praised products.</p>
+        </details>
+
+        <details>
+          <summary>Do they sell pastelitos and croquetas?</summary>
+          <p>Yes. Both appear prominently in current menu and review data.</p>
+        </details>
+
+        <details>
+          <summary>Can I order party trays?</summary>
+          <p>Yes. Current menus include trays of croquetas, mixed pastries, mini stuffed potatoes, and mini sandwiches.</p>
+        </details>
+
+        <details>
+          <summary>Do they offer cakes?</summary>
+          <p>Yes. Cakes are publicly advertised, but exact current custom-cake options should be confirmed directly with the bakery.</p>
+        </details>
+
+        <details>
+          <summary>Can I order pickup or delivery?</summary>
+          <p>Yes. Current DoorDash and Uber Eats listings show pickup and delivery availability.</p>
+        </details>
+
+        <details>
+          <summary>Do they make custom birthday or event cakes?</summary>
+          <p>This is unverified. Cakes are clearly sold, but detailed custom-cake policies, sizes, lead times, and customization options were not confirmed.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="eyebrow">El Gallito Bakery</div>
+        <h2>Fresh Cuban bakery favorites in Miami.</h2>
+        <p>Call, visit, or check current third-party ordering platforms for availability and current menu options.</p>
+        <div class="actions" style="justify-content:center">
+          <a href="#" class="btn" style="background:#b8694f;color:white" data-locked="true"><i class="fa-solid fa-phone"></i> Call Bakery</a>
+          <a href="#" class="btn" style="background:#2f241f;color:white" data-locked="true"><i class="fa-solid fa-bag-shopping"></i> Order Online</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>El Gallito Bakery</h3>
+        <p>Cuban bakery in Miami, Florida.</p>
+        <div class="footer-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#favorites">Bakery Favorites</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Hours</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h3>Demo notice</h3>
+        <p>This is a sample website. Real-world actions are locked until the site is purchased and unlocked.</p>
       </div>
     </div>
-  </div>
-</section>
+    <div class="wrap copyright">© 2026 El Gallito Bakery. Demo website presentation.</div>
+  </footer>
 
-</main>
-<footer>
-  <div class="wrap foot-grid">
-    <div class="f-brand">
-      <div class="fb-name">El Gallito Bakery</div>
-      <p>A Cuban and Latin bakery on SW 27th Ave, baking pastelitos, Cuban bread and pan dulce from early morning.</p>
-    </div>
-    <div>
-      <h4>Visit</h4>
-      <p>1551 SW 27th Ave<br>Miami, FL 33145</p>
-    </div>
-    <div>
-      <h4>Hours</h4>
-      <p>Mon &#8211; Sat 6 AM &#8211; 5 PM<br>Sun 7 AM &#8211; 3 PM</p>
-    </div>
-    <div>
-      <h4>Call</h4>
-      <p><a href="tel:+13058567470">(305) 856-7470</a></p>
+  <div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="closeModal">Close</button>
     </div>
   </div>
-  <div class="copyright">© El Gallito Bakery · Miami, FL</div>
-</footer>
-</div>
-</div>
-<script>
-var BUSINESS = "El Gallito Bakery";
-var TITLES = { home: "Cuban Bakery in Miami", services: "La Panaderia", reviews: "Reviews", contact: "Visit the Bakery" };
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".biz-page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
 
-var CITY_TZ = "America/New_York";
-var HOURS = { 0:[7,15], 1:[6,17], 2:[6,17], 3:[6,17], 4:[6,17], 5:[6,17], 6:[6,17] };
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 &#038;&#038; t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-var st = openState();
-document.querySelectorAll(".status-chip").forEach(function(el){
-  el.classList.add(st.open ? "is-open" : "is-closed");
-  el.innerHTML = '<span class="dot"></span>' + st.label;
-});
-var todayNow = cityNow();
-document.querySelectorAll("[data-day]").forEach(function(el){
-  if (parseInt(el.getAttribute("data-day"), 10) === todayNow.day) el.classList.add("today");
-});
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const navMenu = document.getElementById('navMenu');
 
-var mb = document.getElementById("menu-btn");
-mb.addEventListener("click", function(){
-  mb.classList.toggle("open");
-  document.querySelector(".nav-links").classList.toggle("open");
-});
-
-var PHONE = "+13058567470";
-var PRETTY = "(305) 856-7470";
-var form = document.getElementById("quote-form");
-var fb = document.getElementById("form-feedback");
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var fphone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  if (!name || !msg) { fb.textContent = "Add your name and your order so we can confirm."; return; }
-  var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
-  var body = encodeURIComponent(text);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(text).then(function(){
-      fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-    }, function(){
-      fb.textContent = "Could not copy. Just call " + PRETTY + " and tell the counter.";
+    menuBtn.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.innerHTML = open
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
     });
-  }
-});
-</script>
-</div></div>
-<script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/business-identity-mvp/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
-</script>
-<script id="wp-emoji-settings" type="application/json">
-{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://bjvfi.com/wp-includes/js/wp-emoji-release.min.js?ver=7.1"}}
-</script>
-<script type="module">
-/*! This file is auto-generated */
-var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
-//# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
-</script>
+
+    document.querySelectorAll('#navMenu a[href^="#"]:not([data-locked])').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    const modal = document.getElementById('lockedModal');
+    const closeModal = document.getElementById('closeModal');
+    let previousFocus = null;
+
+    function openLockedModal(event) {
+      event.preventDefault();
+      previousFocus = document.activeElement;
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      closeModal.focus();
+    }
+
+    function closeLockedModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (previousFocus) previousFocus.focus();
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el => {
+      el.addEventListener('click', openLockedModal);
+    });
+
+    closeModal.addEventListener('click', closeLockedModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeLockedModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) closeLockedModal();
+    });
+
+    document.addEventListener('gesturestart', e => e.preventDefault());
+    document.addEventListener('dblclick', e => e.preventDefault(), {passive:false});
+  </script>
 </body>
 </html>

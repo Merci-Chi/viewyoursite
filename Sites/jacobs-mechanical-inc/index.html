@@ -1,716 +1,700 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name='robots' content='max-image-preview:large' />
-<title>Jacobs Mechanical, Inc &#8211; bjvfi.com</title>
-<link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
-<link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Comments Feed" href="https://bjvfi.com/comments/feed" />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://bjvfi.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbjvfi.com%2Fjacobs-mechanical-inc" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://bjvfi.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbjvfi.com%2Fjacobs-mechanical-inc&#038;format=xml" />
-<style id="wp-img-auto-sizes-contain-inline-css">
-img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
-/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
-</style>
-<style id="wp-block-html-inline-css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Jacobs Mechanical, Inc. | Cincinnati HVAC & Mechanical Contractor</title>
+  <meta name="description" content="Jacobs Mechanical, Inc. is a Cincinnati HVAC and mechanical contractor with roots dating to 1922, serving residential, commercial, industrial, and institutional projects.">
+  <meta name="theme-color" content="#111417">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#101316;
+      --panel:#181d21;
+      --panel-2:#20262b;
+      --steel:#8d989f;
+      --paper:#edf2f5;
+      --paper-dim:#b9c2c8;
+      --copper:#b66432;
+      --brass:#cf9f4d;
+      --blue:#2f91d4;
+      --red:#d6513f;
+      --green:#67a77a;
+      --line:rgba(255,255,255,.12);
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'IBM Plex Sans',sans-serif;
+      color:var(--paper);
+      background:
+        linear-gradient(rgba(16,19,22,.94),rgba(16,19,22,.94)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=2200&q=82") center/cover fixed;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),92%);margin:auto}
+    .mono{font-family:'IBM Plex Mono',monospace}
+    h1,h2,h3{line-height:1.05}
+    h1,h2{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em}
+    h2{font-size:clamp(2.6rem,5.5vw,5rem)}
+    p{color:var(--paper-dim)}
+    .kicker{
+      font-family:'IBM Plex Mono',monospace;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:600;
+      color:var(--brass);
+    }
+    .section{padding:84px 0}
+    .section-head{max-width:790px;margin-bottom:2rem}
+    .section-head h2{margin:.25rem 0 .7rem}
+    .btn{
+      min-height:50px;padding:.9rem 1.15rem;
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+      border:1px solid transparent;border-radius:3px;
+      background:var(--copper);color:#fff;font-weight:700;cursor:pointer;
+      transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px);background:#914924}
+    .btn.ghost{background:transparent;border-color:#7e878e;color:#fff}
+    .btn.ghost:hover{border-color:var(--brass);color:var(--brass);background:transparent}
 
-            @media only screen and (max-width: 783px) {
-                .is-style-msb-util-mobile-hide {
-                    display: none !important;
-                }
-            }
-/*# sourceURL=wp-block-html-inline-css */
-</style>
-<style id="wp-emoji-styles-inline-css">
+    .topbar{
+      position:sticky;top:0;z-index:100;
+      background:rgba(15,18,21,.97);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+    }
+    .nav{
+      min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem
+    }
+    .brand{display:flex;align-items:center;gap:.9rem}
+    .brand-mark{
+      width:50px;height:50px;border:2px solid var(--brass);
+      display:grid;place-items:center;color:var(--brass);font-size:1.25rem;
+      box-shadow:inset 0 0 0 5px rgba(207,159,77,.08)
+    }
+    .brand strong{display:block;font-size:1rem}
+    .brand span{display:block;font-family:'IBM Plex Mono',monospace;font-size:.69rem;color:#8f9aa1;letter-spacing:.09em}
+    .nav-links{display:flex;align-items:center;gap:1.15rem}
+    .nav-links a{font-size:.88rem;font-weight:700;position:relative}
+    .nav-links a:not(.nav-cta)::after{
+      content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--brass);transition:right .2s
+    }
+    .nav-links a:not(.nav-cta):hover::after{right:0}
+    .nav-cta{background:var(--copper);padding:.72rem 1rem}
+    .hamburger{display:none;border:0;background:transparent;color:white;font-size:1.5rem;cursor:pointer}
 
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-/*# sourceURL=wp-emoji-styles-inline-css */
-</style>
-<style id="wp-block-library-inline-css">
-:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
-/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
-</style>
-<style id="global-styles-inline-css">
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--base: #FAFAFA;--wp--preset--color--primary: #080D28;--wp--preset--color--secondary: #3D9DFC;--wp--preset--color--tertiary: #BED2FD;--wp--preset--color--quaternary: #ECF2FF;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 0.875rem;--wp--preset--font-size--medium: clamp(1rem, 1rem + ((1vw - 0.2rem) * 0.196), 1.125rem);--wp--preset--font-size--large: clamp(1.125rem, 1.125rem + ((1vw - 0.2rem) * 0.392), 1.375rem);--wp--preset--font-size--x-large: clamp(1.75rem, 1.75rem + ((1vw - 0.2rem) * 0.392), 2rem);--wp--preset--font-size--xx-large: clamp(2.15rem, 2.15rem + ((1vw - 0.2rem) * 1.333), 3rem);--wp--preset--font-family--anybody-font: "Anybody", monospace;--wp--preset--font-family--roboto: "Roboto",sans-serif;--wp--preset--font-family--roboto-condensed: "Roboto Condensed",sans-serif;--wp--preset--font-family--open-sans: "Open Sans",sans-serif;--wp--preset--font-family--lato: "Lato",sans-serif;--wp--preset--font-family--montserrat: "Montserrat",sans-serif;--wp--preset--font-family--oswald: "Oswald",sans-serif;--wp--preset--font-family--slabo-13-px: "Slabo 13px",serif;--wp--preset--font-family--slabo-27-px: "Slabo 27px",serif;--wp--preset--font-family--raleway: "Raleway",sans-serif;--wp--preset--font-family--pt-sans: "PT Sans",sans-serif;--wp--preset--font-family--merriweather: "Merriweather",serif;--wp--preset--font-family--nunito-sans: "Nunito Sans",sans-serif;--wp--preset--font-family--concert-one: "Concert One",display;--wp--preset--spacing--20: 10px;--wp--preset--spacing--30: 20px;--wp--preset--spacing--40: 30px;--wp--preset--spacing--50: clamp(30px, 5vw, 50px);--wp--preset--spacing--60: clamp(30px, 7vw, 70px);--wp--preset--spacing--70: clamp(50px, 7vw, 90px);--wp--preset--spacing--80: clamp(70px, 10vw, 140px);--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1340px; }:where(body) { margin: 0; }.wp-site-blocks { padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); }.has-global-padding { padding-right: var(--wp--style--root--padding-right); padding-left: var(--wp--style--root--padding-left); }.has-global-padding > .alignfull { margin-right: calc(var(--wp--style--root--padding-right) * -1); margin-left: calc(var(--wp--style--root--padding-left) * -1); }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) { padding-right: 0; padding-left: 0; }.has-global-padding :where(:not(.alignfull.is-layout-flow) > .has-global-padding:not(.wp-block-block, .alignfull)) > .alignfull { margin-left: 0; margin-right: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 0rem; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 0rem; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 0rem;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 0rem;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 0rem;}:root :where(.is-layout-grid){gap: 0rem;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{background-color: var(--wp--preset--color--base);color: var(--wp--preset--color--contrast);font-family: var(--wp--preset--font-family--raleway);font-size: var(--wp--preset--font-size--small);line-height: 1.6;--wp--style--root--padding-top: 0;--wp--style--root--padding-right: 0;--wp--style--root--padding-bottom: 0;--wp--style--root--padding-left: 0;}a:where(:not(.wp-element-button)){color: var(--wp--preset--color--primary);text-decoration: none;}:root :where(a:where(:not(.wp-element-button)):hover){color: var(--wp--preset--color--primary);text-decoration: none;}:root :where(a:where(:not(.wp-element-button)):focus){text-decoration: underline;}:root :where(a:where(:not(.wp-element-button)):active){color: var(--wp--preset--color--primary);text-decoration: none;}h1, h2, h3, h4, h5, h6{font-weight: 400;line-height: 1.4;text-transform: uppercase;}h1{font-size: var(--wp--preset--font-size--xx-large);font-weight: 500;line-height: 1.2;text-transform: uppercase;}h2{font-size: var(--wp--preset--font-size--x-large);font-weight: 500;line-height: 1.2;text-transform: uppercase;}h3{font-size: var(--wp--preset--font-size--large);font-weight: 500;text-transform: uppercase;}h4{font-size: var(--wp--preset--font-size--medium);font-weight: 500;text-transform: uppercase;}h5{font-size: var(--wp--preset--font-size--small);font-weight: 500;text-transform: uppercase;}h6{color: var(--wp--preset--color--theme-gray);font-size: var(--wp--preset--font-size--small);font-weight: 500;text-transform: uppercase;}:root :where(.wp-element-button, .wp-block-button__link){background-color: var(--wp--preset--color--primary);border-radius: 10px;border-color: var(--wp--preset--color--primary);border-width: 2px;border-style: solid;color: var(--wp--preset--color--base);font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: uppercase;}:root :where(.wp-element-button:hover, .wp-block-button__link:hover){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--primary);}:root :where(.wp-element-button:focus, .wp-block-button__link:focus){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--base);}:root :where(.wp-element-button:active, .wp-block-button__link:active){background-color: var(--wp--preset--color--secondary);color: var(--wp--preset--color--base);}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-base-color{color: var(--wp--preset--color--base) !important;}.has-primary-color{color: var(--wp--preset--color--primary) !important;}.has-secondary-color{color: var(--wp--preset--color--secondary) !important;}.has-tertiary-color{color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-color{color: var(--wp--preset--color--quaternary) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-background-color{background-color: var(--wp--preset--color--base) !important;}.has-primary-background-color{background-color: var(--wp--preset--color--primary) !important;}.has-secondary-background-color{background-color: var(--wp--preset--color--secondary) !important;}.has-tertiary-background-color{background-color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-background-color{background-color: var(--wp--preset--color--quaternary) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-base-border-color{border-color: var(--wp--preset--color--base) !important;}.has-primary-border-color{border-color: var(--wp--preset--color--primary) !important;}.has-secondary-border-color{border-color: var(--wp--preset--color--secondary) !important;}.has-tertiary-border-color{border-color: var(--wp--preset--color--tertiary) !important;}.has-quaternary-border-color{border-color: var(--wp--preset--color--quaternary) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-xx-large-font-size{font-size: var(--wp--preset--font-size--xx-large) !important;}.has-anybody-font-font-family{font-family: var(--wp--preset--font-family--anybody-font) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-condensed-font-family{font-family: var(--wp--preset--font-family--roboto-condensed) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-lato-font-family{font-family: var(--wp--preset--font-family--lato) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-oswald-font-family{font-family: var(--wp--preset--font-family--oswald) !important;}.has-slabo-13-px-font-family{font-family: var(--wp--preset--font-family--slabo-13-px) !important;}.has-slabo-27-px-font-family{font-family: var(--wp--preset--font-family--slabo-27-px) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-pt-sans-font-family{font-family: var(--wp--preset--font-family--pt-sans) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-nunito-sans-font-family{font-family: var(--wp--preset--font-family--nunito-sans) !important;}.has-concert-one-font-family{font-family: var(--wp--preset--font-family--concert-one) !important;}
-/*# sourceURL=global-styles-inline-css */
-</style>
-<style id="wp-block-template-skip-link-inline-css">
-/*! This file is auto-generated */
-.skip-link.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important;word-break:normal!important}.skip-link.screen-reader-text:focus{background-color:#eee;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}
-/*# sourceURL=/wp-includes/css/wp-block-template-skip-link.min.css */
-</style>
-<link rel='stylesheet' id='theme-styles-css' href='https://bjvfi.com/wp-content/themes/business-identity-mvp/style.css?ver=7.1' media='all' />
-<link rel="https://api.w.org/" href="https://bjvfi.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://bjvfi.com/wp-json/wp/v2/pages/746552" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://bjvfi.com/xmlrpc.php?rsd" />
-<meta name="generator" content="WordPress 7.1" />
-<link rel="canonical" href="https://bjvfi.com/jacobs-mechanical-inc" />
-<link rel='shortlink' href='https://bjvfi.com/?p=746552' />
-<style class="wp-fonts-local">
-@font-face{font-family:Anybody;font-style:normal;font-weight:100 900;font-display:fallback;src:url('https://bjvfi.com/wp-content/themes/business-identity-mvp/site-blueprint/admin-assets/fonts/Anybody.ttf') format('truetype');font-stretch:normal;}
-@font-face{font-family:Roboto;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1MmgWxPKTM1K9nz.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOiCnqEu92Fr1Mu51QrIzcXLsnzjYk.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmSU5vAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TjARc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9vAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51S7ABc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlvAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TzBhc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmYUtvAx05IsDqlA.ttf') format('truetype');}
-@font-face{font-family:Roboto;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TLBBc9AMX6lJBP.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVi2ZhZI2eCN5jzbjEETS9weq8-33mZKCMSbvtdYyQ.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVg2ZhZI2eCN5jzbjEETS9weq8-19eDpCEYatlYcyRi4A.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVl2ZhZI2eCN5jzbjEETS9weq8-59WxDCs5cvI.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVj2ZhZI2eCN5jzbjEETS9weq8-19e7CAk8YvJEeg.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meKCMSbvtdYyQ.ttf') format('truetype');}
-@font-face{font-family:"Roboto Condensed";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/robotocondensed/v25/ieVg2ZhZI2eCN5jzbjEETS9weq8-19eDtCYYatlYcyRi4A.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjr0C4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgshZ1y4nY1M2xLER.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk5hkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk_RkaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkxhjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0RkyFjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:"Open Sans";font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk0ZjaVcUwaERZjA.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHh30wWyWrFCbw7A.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u-w4BMUTPHjxsIPy-vNiPg7MU0.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh7USew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI9w2PHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHvxk6XweuBCY.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxswWyWrFCbw7A.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI5wqPHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh50Xew-FGC_p9dw.ttf') format('truetype');}
-@font-face{font-family:Lato;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI3wiPHA3s5dwt7w.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Uw-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Ew-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu170w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC70w-Y3tcoqK5.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R8aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq_p9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq5Z9aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq3p6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq0N6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR6aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Montserrat;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/montserrat/v25/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqw16aX9-p7K5ILg.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs13FvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs169vgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1_FvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvgUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1y9ogUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:Oswald;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs1xZogUFoZAaRliE.ttf') format('truetype');}
-@font-face{font-family:"Slabo 13px";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/slabo13px/v13/11hEGp_azEvXZUdSBzzRcKer2wkYnvI.ttf') format('truetype');}
-@font-face{font-family:"Slabo 27px";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/slabo27px/v12/mFT0WbgBwKPR_Z4hGN2qsxgJ1EJ7i90.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvao4CPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtaooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVuEooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvoooCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVsEpYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtapYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVtzpYCPNLA3JC9c.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:100;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4WjNPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4ejMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4WjMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4VrMPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4bbLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4Y_LPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4ejLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:Raleway;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4cHLPrQVIT9c2c8.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizaRExUiTo99u79P0WOxOGMMDQ.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizYRExUiTo99u79D0eEwMOJIDQA-g.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizfRExUiTo99u79B_mh4OmnLD0Z4zM.ttf') format('truetype');}
-@font-face{font-family:"PT Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/ptsans/v17/jizdRExUiTo99u79D0e8fOytKB8c8zMrig.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l521wRpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR7lXcf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5OeyxNV-bnrw.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4m0qyriQwlOrhSvowK_l5-eSZJdeP3r-Ho.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52xwNpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR71Wsf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4n0qyriQwlOrhSvowK_l52_wFpX837pvjxPA.ttf') format('truetype');}
-@font-face{font-family:Merriweather;font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/merriweather/v30/u-4l0qyriQwlOrhSvowK_l5-eR7NWMf_hP3hPGWH.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVilntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GiClntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G1ilntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4G5ClntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GCC5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GMS5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4GVi5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:normal;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1mMImSLYBIv1o4X1M8ce2xCx3yop4tQpF_MeTm0lfGWVpNn64CL7U8upHZIbMV51Q42ptCp5F5bxqqtQ1yiU4Gfy5ntF8kA_Ykqw.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:200;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmoP91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:300;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmrR91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmqP91UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:500;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmq991UgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:600;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmpR8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:700;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmpo8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:800;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmoP8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Nunito Sans";font-style:italic;font-weight:900;font-display:swap;src:url('https://fonts.gstatic.com/s/nunitosans/v15/pe1kMImSLYBIv1o4X1M8cce4OdVisMz5nZRqy6cmmmU3t2FQWEAEOvV9wNvrwlNstMKW3Y6K5WMwXeVy3GboJ0kTHmom8FUgIfM0qxVd.ttf') format('truetype');}
-@font-face{font-family:"Concert One";font-style:normal;font-weight:400;font-display:swap;src:url('https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTlhv-CuVAQ.ttf') format('truetype');}
-</style>
-<link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-32x32.png" sizes="32x32" />
-<link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
-<meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+    .hero{
+      min-height:760px;position:relative;display:flex;align-items:center;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(12,15,18,.94),rgba(12,15,18,.68) 58%,rgba(12,15,18,.30)),
+        url("https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=2200&q=86") center/cover;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:54px 54px;
+      pointer-events:none
+    }
+    .hero::after{
+      content:"";position:absolute;left:0;right:0;bottom:0;height:28px;
+      background:repeating-linear-gradient(135deg,var(--brass) 0 12px,#242a2f 12px 24px)
+    }
+    .hero-content{position:relative;z-index:2;max-width:850px;padding:5.5rem 0 6rem}
+    .hero h1{font-size:clamp(4.2rem,10vw,8.5rem);margin:.4rem 0 .9rem;max-width:10ch}
+    .hero h1 .accent{color:var(--brass)}
+    .hero p{max-width:700px;font-size:1.08rem;color:#dce3e7}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.35rem 0 0}
+    .chip{
+      font-family:'IBM Plex Mono',monospace;font-size:.73rem;
+      padding:.55rem .75rem;border:1px solid #59646c;background:rgba(255,255,255,.05)
+    }
+    .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.55rem}
+    .hero-note{margin-top:.85rem;font-size:.77rem;color:#8f9aa1}
+
+    .readout-band{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      background:#0b0e10;border-bottom:1px solid #30363b
+    }
+    .readout{
+      padding:1.05rem 1.15rem;border-right:1px solid #30363b;
+      font-family:'IBM Plex Mono',monospace;font-size:.78rem;text-align:center;color:#b6c0c7
+    }
+    .readout strong{color:var(--green);display:block;margin-top:.2rem}
+
+    .overview{
+      background:
+        linear-gradient(rgba(24,29,33,.92),rgba(24,29,33,.92)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1900&q=80") center/cover;
+    }
+    .overview-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:start}
+    .panel{
+      background:rgba(26,31,35,.91);border:1px solid var(--line);
+      border-top:4px solid var(--brass);padding:1.5rem;
+      box-shadow:0 18px 38px rgba(0,0,0,.18)
+    }
+    .panel h3{font-size:1.35rem;margin-bottom:.8rem}
+    .fact-list{display:grid;gap:.15rem}
+    .fact{
+      display:flex;gap:.8rem;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.08)
+    }
+    .fact:last-child{border-bottom:0}
+    .fact i{color:var(--brass);width:22px;margin-top:.16rem}
+    .fact strong{color:#fff}
+    .timeline{
+      display:grid;gap:1rem;margin-top:1rem
+    }
+    .timeline-item{
+      display:grid;grid-template-columns:92px 1fr;background:#111519;border-left:4px solid var(--copper)
+    }
+    .timeline-year{
+      display:grid;place-items:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--brass);
+      border-right:1px solid #30363b
+    }
+    .timeline-body{padding:1rem}
+    .timeline-body p{font-size:.91rem}
+
+    .services{
+      background:
+        linear-gradient(rgba(12,15,18,.94),rgba(12,15,18,.94)),
+        url("https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=2000&q=82") center/cover fixed;
+    }
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .service{
+      min-height:320px;position:relative;overflow:hidden;isolation:isolate;
+      display:flex;align-items:flex-end;border:1px solid rgba(255,255,255,.13);
+      cursor:pointer;transition:transform .28s ease,box-shadow .28s ease
+    }
+    .service:hover{transform:translateY(-7px);box-shadow:0 22px 45px rgba(0,0,0,.32)}
+    .service-img{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .45s ease}
+    .service:hover .service-img{transform:scale(1.08)}
+    .service::after{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:linear-gradient(to top,rgba(11,14,16,.97),rgba(11,14,16,.10) 73%)
+    }
+    .service-body{padding:1.3rem}
+    .service-body i{font-size:1.45rem;color:var(--brass);margin-bottom:.75rem}
+    .service-body h3{font-size:1.35rem;margin-bottom:.4rem}
+    .service-body p{font-size:.91rem;color:#d1d9de}
+    .learn{display:inline-flex;align-items:center;gap:.4rem;color:var(--brass);font-size:.81rem;font-weight:700;margin-top:.75rem}
+
+    .credentials{
+      background:
+        linear-gradient(rgba(29,34,38,.92),rgba(29,34,38,.92)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1900&q=80") center/cover;
+    }
+    .cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .cred{
+      background:rgba(16,19,22,.90);border:1px solid var(--line);padding:1.4rem;
+      transition:.25s ease
+    }
+    .cred:hover{transform:translateY(-5px)}
+    .cred i{font-size:1.45rem;color:var(--brass);margin-bottom:.8rem}
+    .cred h3{margin-bottom:.35rem}
+    .cred .mono{color:var(--green);font-size:.8rem}
+
+    .reviews{
+      background:
+        linear-gradient(rgba(12,15,18,.94),rgba(12,15,18,.94)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1900&q=78") center/cover;
+    }
+    .rating-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:2rem;align-items:start}
+    .rating-box{
+      background:#101417;border:1px solid var(--line);border-top:5px solid var(--brass);padding:1.7rem
+    }
+    .rating-big{font-family:'Bebas Neue',sans-serif;font-size:5.4rem;line-height:.9;color:var(--brass)}
+    .stars{color:#f1bd56;letter-spacing:.1em;margin:.55rem 0}
+    .themes{display:grid;gap:1rem}
+    .theme{
+      background:rgba(255,255,255,.05);border-left:4px solid var(--blue);padding:1.15rem
+    }
+    .theme.negative{border-left-color:var(--red)}
+    .theme h3{margin-bottom:.35rem}
+
+    .hours{
+      background:
+        linear-gradient(rgba(28,33,37,.92),rgba(28,33,37,.92)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1900&q=78") center/cover;
+    }
+    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .hours-list{list-style:none;background:rgba(15,18,21,.9);border:1px solid var(--line);padding:1.2rem}
+    .hours-list li{display:flex;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .hours-list li:last-child{border-bottom:0}
+    .hours-note{background:#12171a;border-left:4px solid var(--brass);padding:1.4rem}
+    .hours-note p{color:#c9d1d6}
+
+    .faq{
+      background:
+        linear-gradient(rgba(17,20,23,.93),rgba(17,20,23,.93)),
+        url("https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=1900&q=78") center/cover;
+    }
+    details{background:rgba(26,31,35,.91);border:1px solid var(--line);padding:1rem 1.1rem;margin-bottom:.75rem}
+    summary{display:flex;justify-content:space-between;gap:1rem;cursor:pointer;font-weight:700;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";color:var(--brass);font-size:1.35rem}
+    details[open] summary::after{content:"−"}
+    details p{margin-top:.7rem}
+
+    .contact{
+      background:
+        linear-gradient(rgba(9,12,14,.95),rgba(9,12,14,.95)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=2000&q=80") center/cover;
+    }
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .protected{
+      margin-top:1rem;padding:1rem 1.1rem;background:rgba(255,255,255,.05);
+      border-left:4px solid var(--brass);font-weight:700;color:#fff
+    }
+    .checklist{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:1.4rem}
+    .check{display:flex;gap:.8rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .check:last-child{border-bottom:0}
+    .check i{color:var(--brass);width:22px;margin-top:.18rem}
+
+    footer{
+      background:#090b0d;border-top:4px solid var(--brass);padding:58px 0 28px;text-align:center
+    }
+    .giant{
+      font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,10vw,8rem);line-height:.92;color:var(--paper)
+    }
+    .giant span{color:transparent;-webkit-text-stroke:2px var(--copper)}
+    footer p{margin-top:1.2rem;font-size:.82rem;color:#7f8990}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    .modal-backdrop,.service-modal-backdrop{
+      position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.76);
+      display:none;align-items:center;justify-content:center;padding:1rem
+    }
+    .modal-backdrop.show,.service-modal-backdrop.show{display:flex}
+    .modal,.service-modal{
+      width:min(560px,100%);background:#eef2f4;color:#15191c;border-top:6px solid var(--copper);
+      box-shadow:0 30px 80px rgba(0,0,0,.5)
+    }
+    .modal-body,.service-modal-body{padding:1.5rem}
+    .modal p,.service-modal p{color:#536069}
+    .modal-icon{width:52px;height:52px;display:grid;place-items:center;background:#eadbd0;color:var(--copper);font-size:1.3rem;margin-bottom:1rem}
+    .modal h3,.service-modal h3{font-size:1.9rem;margin-bottom:.45rem}
+    .service-modal-img{height:250px;background-size:cover;background-position:center}
+    .modal .btn,.service-modal .btn{width:100%;margin-top:1rem}
+
+    @media(max-width:980px){
+      .nav-links{
+        display:none;position:absolute;top:82px;left:0;right:0;background:rgba(15,18,21,.99);
+        flex-direction:column;align-items:stretch;padding:1rem 4% 1.2rem
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:.65rem 0}
+      .hamburger{display:block}
+      .overview-grid,.rating-grid,.hours-grid,.contact-grid{grid-template-columns:1fr}
+      .service-grid,.cred-grid{grid-template-columns:1fr 1fr}
+      .readout-band{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:640px){
+      .nav{min-height:72px}
+      .nav-links{top:72px}
+      .brand span{display:none}
+      .hero{min-height:680px;background-position:58% center}
+      .hero-content{padding:4.5rem 0 5.4rem}
+      .hero h1{font-size:clamp(4rem,18vw,6rem)}
+      .section{padding:62px 0}
+      .service-grid,.cred-grid,.readout-band{grid-template-columns:1fr}
+      .timeline-item{grid-template-columns:76px 1fr}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%}
+    }
+  </style>
 </head>
-
-<body class="wp-singular page-template page-template-site-jacobs-mechanical-inc page page-id-746552 wp-embed-responsive wp-theme-business-identity-mvp">
-
-<a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a><div class="wp-site-blocks">
-<style id="biz-fullbleed">
-.wp-site-blocks, .entry-content, .wp-block-post-content,
-.is-layout-constrained, .has-global-padding {
-  max-width: none !important; width: 100% !important;
-  padding-left: 0 !important; padding-right: 0 !important;
-  margin-left: 0 !important; margin-right: 0 !important;
-  box-sizing: border-box !important;
-}
-.wp-block-post-content > *, .is-layout-constrained > * {
-  max-width: none !important; margin-left: 0 !important; margin-right: 0 !important;
-}
-body .wp-site-blocks { padding: 0 !important; }
-.biz-root { width: 100% !important; max-width: none !important; min-height: 100vh; }
-.biz-root .biz-page { display: none !important; }
-.biz-root .biz-page.active { display: block !important; visibility: visible !important; }
-</style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&#038;family=IBM+Plex+Mono:wght@400;600&#038;family=IBM+Plex+Sans:wght@400;500;700&#038;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-/* Plain hyphens only in this file. No em dashes or en dashes anywhere. */
-:root{
-  --graphite:#16181b;
-  --steel:#23262b;
-  --panel:#1e2126;
-  --paper:#f2ede1;
-  --paper-dim:#d9d2c2;
-  --brass:#c9a227;
-  --copper:#b87333;
-  --safety:#e8722a;
-  --blueprint:#0f3b66;
-  --blueprint-line:#7fb2e5;
-  --green:#57b26a;
-  --red:#d05252;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-.biz-root{scroll-behavior:smooth}
-.biz-root{
-  background:var(--graphite);
-  color:var(--paper);
-  font-family:'IBM Plex Sans',system-ui,sans-serif;
-  line-height:1.6;
-}
-h1,h2,h3,.display{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;font-weight:400}
-.mono{font-family:'IBM Plex Mono',monospace}
-a{color:var(--brass)}
-img{max-width:100%}
-
-/* Page router: only the active page shows */
-.biz-page{display:none}
-.biz-page.active{display:block;animation:pageIn .35s ease}
-@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-
-/* Header with gauge dial nav */
-header.topbar{
-  position:sticky;top:0;z-index:100;
-  background:linear-gradient(180deg,#1c1f24,#16181b);
-  border-bottom:3px solid var(--brass);
-}
-.topbar-inner{
-  max-width:1200px;margin:0 auto;padding:10px 20px;
-  display:flex;align-items:center;gap:20px;
-}
-.brand h1{font-size:1.6rem;color:var(--paper);line-height:1}
-.brand .sub{font-size:.72rem;color:var(--brass);letter-spacing:.25em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace}
-.dialnav{margin-left:auto;position:relative;width:170px;height:170px;flex:0 0 auto}
-/* The dial face */
-.dial-face{
-  position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at 50% 40%, #2c3036 0%, #1a1c20 70%);
-  border:4px solid var(--copper);
-  box-shadow:inset 0 0 24px rgba(0,0,0,.6), 0 2px 10px rgba(0,0,0,.5);
-}
-.dial-hub{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:64px;height:64px;border-radius:50%;
-  background:radial-gradient(circle at 50% 35%,#3a3f46,#22252a);
-  border:3px solid var(--brass);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--brass);
-  z-index:3;
-}
-.dial-needle{
-  position:absolute;left:50%;top:50%;width:4px;height:62px;z-index:2;
-  background:linear-gradient(180deg,var(--safety),var(--red));
-  transform-origin:50% 100%;
-  border-radius:2px;
-  transition:transform .5s cubic-bezier(.34,1.4,.64,1);
-}
-.dialnav a{
-  position:absolute;left:50%;top:50%;z-index:4;
-  width:52px;height:22px;margin:-11px 0 0 -26px;
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.05em;
-  color:var(--paper-dim);text-decoration:none;text-transform:uppercase;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:11px;background:rgba(0,0,0,.35);
-  transition:color .2s,background .2s;
-}
-.dialnav a:hover{color:var(--brass)}
-.dialnav a.active{color:#111;background:var(--brass);font-weight:600}
-/* tick marks on dial */
-.dial-tick{position:absolute;left:50%;top:50%;width:2px;height:8px;background:var(--paper-dim);opacity:.5;z-index:1;transform-origin:50% 0}
-
-/* mobile hamburger */
-.hamburger{display:none;margin-left:auto;background:none;border:2px solid var(--brass);color:var(--brass);font-size:1.3rem;border-radius:8px;padding:6px 12px;cursor:pointer}
-.mobile-menu{display:none;background:var(--steel);border-top:2px solid var(--brass)}
-.mobile-menu a{display:block;padding:14px 22px;color:var(--paper);text-decoration:none;border-bottom:1px solid #333;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;font-size:.85rem;letter-spacing:.08em}
-.mobile-menu a.active{color:var(--brass)}
-.mobile-menu.open{display:block}
-
-main{max-width:1200px;margin:0 auto;padding:0 20px 60px}
-
-/* Hero pressure gauge */
-.hero{
-  padding:60px 0 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
-}
-.hero-copy .kicker{font-family:'IBM Plex Mono',monospace;color:var(--safety);letter-spacing:.2em;font-size:.75rem;text-transform:uppercase}
-.hero-copy h2{font-size:clamp(2.6rem,6vw,4.5rem);line-height:1.02;color:var(--paper);margin:12px 0}
-.hero-copy h2 .accent{color:var(--brass)}
-.hero-copy p{color:var(--paper-dim);max-width:46ch}
-.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:'IBM Plex Mono',monospace;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
-  padding:14px 22px;border-radius:6px;text-decoration:none;font-size:.85rem;cursor:pointer;border:none;
-}
-.btn-call{background:var(--safety);color:#141414}
-.btn-call:hover{background:#f5822f}
-.btn-ghost{background:transparent;color:var(--paper);border:2px solid var(--brass)}
-.btn-ghost:hover{background:rgba(201,162,39,.12)}
-.gauge-wrap{position:relative;text-align:center}
-.gauge-tag{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--green);letter-spacing:.15em}
-/* animated needle sweep */
-.needle-anim{transform-origin:200px 170px;animation:needleSweep 5s ease-in-out infinite}
-@keyframes needleSweep{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
-
-/* badge */
-.badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;background:var(--steel);color:var(--safety);border:1px dashed var(--safety);border-radius:4px;padding:4px 10px;margin:6px 6px 6px 0}
-
-/* Section titles */
-.sec-head{margin:56px 0 26px;display:flex;align-items:center;gap:16px}
-.sec-head h2{font-size:2.4rem;color:var(--paper)}
-.sec-head .rule{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--brass) 0 14px,transparent 14px 22px)}
-
-/* Diagnostic checklist services */
-.checklist{background:var(--panel);border:1px solid #333;border-radius:10px;overflow:hidden}
-.check-row{
-  display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;
-  padding:20px 24px;border-bottom:1px solid #2c2f35;
-}
-.check-row:last-child{border-bottom:none}
-.check-box{
-  width:38px;height:38px;border:3px solid var(--green);border-radius:8px;position:relative;flex:0 0 auto;
-}
-.check-box::after{
-  content:"";position:absolute;left:10px;top:4px;width:12px;height:20px;
-  border:solid var(--green);border-width:0 4px 4px 0;transform:rotate(42deg);
-}
-.check-row h3{font-size:1.4rem;color:var(--paper)}
-.check-row p{color:var(--paper-dim);font-size:.92rem}
-.readout{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--brass);text-align:right;white-space:nowrap}
-.readout .ok{color:var(--green)}
-
-/* Blueprint gallery */
-.blueprint{
-  background:
-    linear-gradient(rgba(127,178,229,.14) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(127,178,229,.14) 1px,transparent 1px),
-    var(--blueprint);
-  background-size:28px 28px;
-  border:2px solid var(--blueprint-line);border-radius:10px;padding:34px;
-}
-.bp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
-.bp-card{
-  border:1px solid var(--blueprint-line);border-radius:6px;padding:18px;background:rgba(15,59,102,.55);
-  color:#dcebfb;
-}
-.bp-card svg{width:100%;height:auto;display:block}
-.bp-card h3{font-size:1.2rem;color:#fff;margin:12px 0 4px}
-.bp-card p{font-size:.85rem;color:#b9d2ec}
-.bp-card .fig{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.15em;color:var(--blueprint-line)}
-
-/* generic card rows */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.card{background:var(--panel);border:1px solid #333;border-radius:10px;padding:26px}
-.card h3{font-size:1.5rem;color:var(--brass);margin-bottom:10px}
-.card ul{list-style:none;margin-top:10px}
-.card li{padding:8px 0;border-bottom:1px dashed #333;color:var(--paper-dim);font-size:.95rem}
-.card li:last-child{border-bottom:none}
-.card li strong{color:var(--paper)}
-
-/* reviews */
-.review{background:var(--panel);border:1px solid #333;border-left:5px solid var(--copper);border-radius:8px;padding:22px;margin-bottom:18px}
-.review .stars{color:var(--brass);letter-spacing:3px;margin-bottom:8px}
-.review p{color:var(--paper-dim)}
-.review .tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:.1em;margin-top:10px}
-.notice{background:#262019;border:1px solid var(--brass);border-radius:8px;padding:18px 22px;margin:26px 0;color:var(--paper-dim);font-size:.92rem}
-.notice strong{color:var(--brass)}
-
-/* contact */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-grid .full{grid-column:1/-1}
-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass)}
-input,select,textarea{
-  width:100%;padding:12px;margin-top:6px;border-radius:6px;border:1px solid #444;
-  background:#141619;color:var(--paper);font-family:'IBM Plex Sans',sans-serif;font-size:.95rem;
-}
-textarea{min-height:130px;resize:vertical}
-.contact-line{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px dashed #333}
-.contact-line i{color:var(--brass);width:22px;text-align:center}
-.contact-line a{color:var(--paper);text-decoration:none;font-weight:500}
-.contact-line a:hover{color:var(--brass)}
-
-/* Big type footer */
-footer.bigfoot{
-  background:#0e0f11;border-top:4px solid var(--brass);margin-top:70px;
-  padding:70px 20px 40px;text-align:center;overflow:hidden;
-}
-footer.bigfoot .giant{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3rem,11vw,9rem);line-height:.95;color:var(--paper);
-  text-transform:uppercase;
-}
-footer.bigfoot .giant .fill{color:transparent;-webkit-text-stroke:2px var(--copper)}
-footer.bigfoot p{margin-top:26px;color:var(--paper-dim);font-size:.85rem}
-
-@media(max-width:860px){
-  .hero,.two-col,.form-grid{grid-template-columns:1fr}
-  .dialnav{display:none}
-  .hamburger{display:block}
-  .topbar-inner{padding:10px 16px}
-}
-</style>
-<div class="biz-root" id="biz-root">
+<body>
 
 <header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <h1>Jacobs Mechanical, Inc</h1>
-      <div class="sub">HVAC Contractors</div>
-    </div>
-    < !-- Gauge dial nav: links ring the dial, needle points to the active page -- >
-    <nav class="dialnav" id="dialnav" aria-label="Main navigation">
-      <div class="dial-face"></div>
-      <div class="dial-needle" id="dialNeedle"></div>
-      <div class="dial-hub">JM</div>
-      <a href="#home" data-page="home" data-angle="-90">Home</a>
-      <a href="#services" data-page="services" data-angle="-18">Services</a>
-      <a href="#about" data-page="about" data-angle="54">About</a>
-      <a href="#reviews" data-page="reviews" data-angle="126">Reviews</a>
-      <a href="#contact" data-page="contact" data-angle="198">Contact</a>
+  <div class="wrap nav">
+    <a href="#home" class="brand">
+      <div class="brand-mark"><i class="fa-solid fa-gauge-high"></i></div>
+      <div>
+        <strong>Jacobs Mechanical, Inc.</strong>
+        <span>HVAC & MECHANICAL CONTRACTOR</span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" id="navMenu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Service Call</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
   </div>
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-    <a href="#home" data-page="home">Home</a>
-    <a href="#services" data-page="services">Services</a>
-    <a href="#about" data-page="about">About</a>
-    <a href="#reviews" data-page="reviews">Reviews</a>
-    <a href="#contact" data-page="contact">Contact</a>
-  </nav>
 </header>
 
-<main id="wp--skip-link--target">
-< !-- ======================= HOME ======================= -- >
-<section class="biz-page" id="page-home">
-  <div class="hero">
-    <div class="hero-copy">
-      <div class="kicker mono">Cincinnati, Ohio Mechanical Shop</div>
-      <h2>Keeping Cincinnati <span class="accent">Cool</span> and <span class="accent">Heated</span> Since Day One</h2>
-      <p>Jacobs Mechanical, Inc is a licensed HVAC mechanical contractor at 4500 W Mitchell Ave, Cincinnati, OH 45232. Same-day diagnostics, straight pricing, and installations that get done right the first time. Serving homes, rentals, and commercial buildings across the Cincinnati area.</p>
-      <div class="badge"><i class="fa-solid fa-shield-halved"></i> Licensed HVAC Contractor</div>
-      <div class="badge"><i class="fa-solid fa-screwdriver-wrench"></i> Commercial and Residential</div>
-      <div class="cta-row">
-        <a class="btn btn-call" href="tel:+15136816800"><i class="fa-solid fa-phone"></i> (513) 681-6800</a>
-        <a class="btn btn-ghost" href="#services" data-page="services"><i class="fa-solid fa-clipboard-check"></i> Run Diagnostics</a>
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-content">
+    <div class="kicker">Cincinnati HVAC & mechanical contractor</div>
+    <h1>Built for <span class="accent">comfort.</span> Ready for <span class="accent">industry.</span></h1>
+    <p>Jacobs Mechanical, Inc. provides residential, commercial, industrial, and institutional HVAC and mechanical services in Greater Cincinnati, with company roots dating to 1922.</p>
+    <div class="hero-meta">
+      <span class="chip"><i class="fa-solid fa-snowflake"></i> Air conditioning</span>
+      <span class="chip"><i class="fa-solid fa-fire-flame-simple"></i> Heating</span>
+      <span class="chip"><i class="fa-solid fa-wind"></i> Ductwork & ventilation</span>
+      <span class="chip"><i class="fa-solid fa-industry"></i> Commercial / industrial</span>
+    </div>
+    <div class="actions">
+      <a href="#services" class="btn"><i class="fa-solid fa-screwdriver-wrench"></i> View Services</a>
+      <a href="#credentials" class="btn ghost"><i class="fa-solid fa-id-card"></i> Credentials</a>
+      <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-phone"></i> Request Service</a>
+    </div>
+    <div class="hero-note">Stock HVAC imagery is used in this demo and does not represent Jacobs Mechanical employees, vehicles, or specific completed projects.</div>
+  </div>
+</section>
+
+<div class="readout-band">
+  <div class="readout">HERITAGE<strong>ROOTS TO 1922</strong></div>
+  <div class="readout">OHIO HVAC LICENSE<strong>HV.27903</strong></div>
+  <div class="readout">BUILDZOOM SCORE<strong>106 / TOP 7%</strong></div>
+  <div class="readout">PRIMARY MARKET<strong>GREATER CINCINNATI</strong></div>
+</div>
+
+<section class="section overview" id="about">
+  <div class="wrap overview-grid reveal">
+    <div>
+      <div class="section-head">
+        <div class="kicker">Under the hood</div>
+        <h2>More than a residential HVAC shop.</h2>
+        <p>Public records and contractor directories support a broad mechanical scope: residential HVAC, commercial and industrial systems, ventilation and ductwork, sheet-metal fabrication, welding, and air/water balancing.</p>
       </div>
-    </div>
-    <div class="gauge-wrap">
-      < !-- Pressure gauge hero with animated needle -- >
-      <svg viewBox="0 0 400 260" width="100%" role="img" aria-label="Pressure gauge with animated needle pointing to optimal">
-        <defs>
-          <radialGradient id="gface" cx="50%" cy="42%" r="75%">
-            <stop offset="0%" stop-color="#2e333a"/><stop offset="100%" stop-color="#17191d"/>
-          </radialGradient>
-        </defs>
-        <rect x="60" y="150" width="280" height="34" rx="6" fill="#23262b" stroke="#c9a227" stroke-width="3"/>
-        <circle cx="200" cy="170" r="150" fill="url(#gface)" stroke="#b87333" stroke-width="6"/>
-        <circle cx="200" cy="170" r="150" fill="none" stroke="#0c0d0f" stroke-width="2" opacity=".5"/>
-        < !-- zone arcs -- >
-        <path d="M 70 150 A 140 140 0 0 1 170 42" fill="none" stroke="#d05252" stroke-width="14" opacity=".8"/>
-        <path d="M 170 42 A 140 140 0 0 1 330 100" fill="none" stroke="#57b26a" stroke-width="14" opacity=".85"/>
-        <path d="M 330 100 A 140 140 0 0 1 330 150" fill="none" stroke="#d05252" stroke-width="14" opacity=".8"/>
-        < !-- ticks -- >
-        <g stroke="#f2ede1" stroke-width="2" opacity=".85">
-          <line x1="200" y1="38" x2="200" y2="54"/>
-          <line x1="262" y1="52" x2="255" y2="66"/>
-          <line x1="313" y1="90" x2="301" y2="99"/>
-          <line x1="138" y1="52" x2="145" y2="66"/>
-          <line x1="87" y1="90" x2="99" y2="99"/>
-        </g>
-        <text x="200" y="92" text-anchor="middle" fill="#f2ede1" font-family="Bebas Neue" font-size="22" letter-spacing="3">SYSTEM PRESSURE</text>
-        <text x="120" y="205" text-anchor="middle" fill="#d05252" font-family="IBM Plex Mono" font-size="11">LOW</text>
-        <text x="280" y="205" text-anchor="middle" fill="#57b26a" font-family="IBM Plex Mono" font-size="11">OPTIMAL</text>
-        < !-- animated needle -- >
-        <g class="needle-anim">
-          <line x1="200" y1="170" x2="200" y2="56" stroke="#e8722a" stroke-width="5" stroke-linecap="round"/>
-        </g>
-        <circle cx="200" cy="170" r="16" fill="#c9a227" stroke="#111" stroke-width="3"/>
-        <text x="200" y="242" text-anchor="middle" fill="#c9a227" font-family="IBM Plex Mono" font-size="13" letter-spacing="2">JACOBS MECHANICAL</text>
-      </svg>
-      <div class="gauge-tag mono"><i class="fa-solid fa-circle-check"></i> SYSTEM STATUS: OPTIMAL</div>
-    </div>
-  </div>
-
-  <div class="sec-head"><h2>Why Call The Shop</h2><div class="rule"></div></div>
-  <div class="two-col">
-    <div class="card">
-      <h3><i class="fa-solid fa-bolt"></i> Fast, Same-Day Response</h3>
-      <p>Reviewers on Birdeye describe techs arriving fast, diagnosing fast, and fixing fast, often out the door in about an hour. One homeowner whose furnace was blowing cold air got the crew out the same morning they called.</p>
-    </div>
-    <div class="card">
-      <h3><i class="fa-solid fa-hand-holding-dollar"></i> Straight, Competitive Pricing</h3>
-      <p>Customers repeatedly mention honest pricing and quotes that came in well under competing bids. One full AC replacement was proposed at half the price of other estimates, with a one-day install and a clean workspace left behind.</p>
-    </div>
-  </div>
-</section>
-
-< !-- ======================= SERVICES ======================= -- >
-<section class="biz-page" id="page-services">
-  <div class="sec-head"><h2>Service Diagnostic Checklist</h2><div class="rule"></div></div>
-  <p style="color:var(--paper-dim);max-width:70ch">Every call gets the full workup. Tick through the checklist below, then call the shop to confirm availability and scheduling.</p>
-  <div class="badge"><i class="fa-solid fa-triangle-exclamation"></i> Call to confirm: details from public listings</div>
-
-  <div class="checklist" style="margin-top:18px">
-    <div class="check-row">
-      <div class="check-box"></div>
-      <div><h3>Air Conditioning Repair</h3><p>Fast diagnosis and repair of central air systems. Customers report same-day fixes and straight answers on what the repair really needs.</p></div>
-      <div class="readout">DIAG: <span class="ok">READY</span><br>RESPONSE: SAME DAY*</div>
-    </div>
-    <div class="check-row">
-      <div class="check-box"></div>
-      <div><h3>AC Replacement and Installation</h3><p>Full system changeouts, including tricky or unusual setups. Reviewers note creative solutions, competitive bids, and one-day installs with the old unit hauled away.</p></div>
-      <div class="readout">INSTALL: <span class="ok">1 DAY*</span><br>CLEANUP: INCLUDED*</div>
-    </div>
-    <div class="check-row">
-      <div class="check-box"></div>
-      <div><h3>Furnace and Heating Service</h3><p>Heating repairs and central heating equipment service. One customer with a leaking, cold-blowing furnace was fixed the same day they called.</p></div>
-      <div class="readout">HEAT: <span class="ok">READY</span><br>SAFETY CHECK: YES</div>
-    </div>
-    <div class="check-row">
-      <div class="check-box"></div>
-      <div><h3>Commercial and Industrial HVAC</h3><p>Listed for commercial, industrial, energy, and institutional market sectors, with public project and permit history across the Cincinnati area.</p></div>
-      <div class="readout">SECTOR: COMM/IND<br>UNION SHOP</div>
-    </div>
-    <div class="check-row">
-      <div class="check-box"></div>
-      <div><h3>HVAC Air Distribution and Ductwork</h3><p>Air distribution, terminal units, and central HVAC equipment operation and maintenance per trade classification codes.</p></div>
-      <div class="readout">AIRFLOW: <span class="ok">READY</span><br>BALANCE: CALL</div>
-    </div>
-    <div class="check-row">
-      <div class="check-box"></div>
-      <div><h3>Rental Property and Multi-Site Service</h3><p>A local rental property manager praised the team for being professional, mindful of tenants, and reasonably priced across multiple properties.</p></div>
-      <div class="readout">ACCOUNTS: WELCOME<br>RATE: REASONABLE*</div>
-    </div>
-  </div>
-  <p style="color:var(--paper-dim);font-size:.85rem;margin-top:16px">* From customer reviews on Birdeye and Loc8NearMe. Your job may differ. Call <a href="tel:+15136816800">(513) 681-6800</a> for a real quote.</p>
-</section>
-
-< !-- ======================= ABOUT ======================= -- >
-<section class="biz-page" id="page-about">
-  <div class="sec-head"><h2>Under The Hood</h2><div class="rule"></div></div>
-  <div class="two-col">
-    <div class="card">
-      <h3><i class="fa-solid fa-wrench"></i> The Shop</h3>
-      <p style="color:var(--paper-dim)">Jacobs Mechanical, Inc is a mechanical contractor in Cincinnati, Ohio. The shop handles heating, ventilation, and air conditioning work for homes, rental properties, and commercial and industrial buildings, and is listed as a union shop with an active Ohio HVAC contractor license.</p>
-      <ul>
-        <li><strong>Established:</strong> 1922, per the company Blue Book listing</li>
-        <li><strong>License:</strong> Active Ohio HVAC contractor license, per BuildZoom</li>
-        <li><strong>BuildZoom score:</strong> 106, top 7% of Ohio licensed contractors</li>
-        <li><strong>Shop type:</strong> Union mechanical contractor</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3><i class="fa-solid fa-location-dot"></i> Find Us</h3>
-      <ul>
-        <li><strong>Address:</strong> 4500 W Mitchell Ave, Cincinnati, OH 45232</li>
-        <li><strong>Phone:</strong> <a href="tel:+15136816800">(513) 681-6800</a></li>
-        <li><strong>Mon &#8211; Fri:</strong> 8:00 AM to 4:00 PM</li>
-        <li><strong>Sat &#8211; Sun:</strong> Closed</li>
-        <li><strong>Service area:</strong> Cincinnati, OH 45232 and surrounding areas</li>
-      </ul>
-      <div class="badge"><i class="fa-solid fa-clock"></i> Hours from public listings: call to confirm</div>
-    </div>
-  </div>
-  <div class="notice">
-    <strong>Website:</strong> a real website exists for this business at <span class="mono">jacobsmech.com</span>, found through public search. This page is a demo built from public listings and reviews, not the company site.
-  </div>
-</section>
-
-< !-- ======================= REVIEWS ======================= -- >
-<section class="biz-page" id="page-reviews">
-  <div class="sec-head"><h2>Field Reports</h2><div class="rule"></div></div>
-  <p style="color:var(--paper-dim)">Rated 4.0 out of 5 across 14 reviews on Birdeye. The notes below paraphrase real review sentiments. No reviewer names are shown.</p>
-
-  <div class="review">
-    <div class="stars">★★★★★</div>
-    <p>One homeowner got a same-day visit when their furnace was blowing cold air and leaking, right before a trip out of town. The crew diagnosed the problem and fixed it that day. The reviewer called it some of the best customer service they had received as a homeowner.</p>
-    <div class="tag">Sentiment: same-day emergency service</div>
-  </div>
-  <div class="review">
-    <div class="stars">★★★★★</div>
-    <p>On an unusual AC system that needed replacing, Jacobs was described as the most creative and helpful of all the companies that gave estimates. The proposed system came in at half the price of competitors, installed in one day, with the old unit removed and the workspace left clean. The manager followed up afterward.</p>
-    <div class="tag">Sentiment: competitive pricing, one-day install</div>
-  </div>
-  <div class="review">
-    <div class="stars">★★★★★</div>
-    <p>A landlord managing several rental properties was impressed by the crew. They were described as professional, respectful of tenants, and knowledgeable, with reasonable rates and top-quality work.</p>
-    <div class="tag">Sentiment: trusted by property managers</div>
-  </div>
-  <div class="review">
-    <div class="stars">★★★★★</div>
-    <p>Other reviewers mention fast arrival, quick diagnosis, fair prices, good communication, and crews that clean up after themselves. Several say they would use the shop again and recommend it to family.</p>
-    <div class="tag">Sentiment: repeat business, referrals</div>
-  </div>
-  <div class="review" style="border-left-color:var(--red)">
-    <div class="stars">★</div>
-    <p>Not every review is glowing. One reviewer, a delivery driver, said the shop has no loading dock and reported a wait of over three hours to unload, plus a lunch break in the middle. Worth knowing if you are delivering materials, not a comment on the service work itself.</p>
-    <div class="tag">Sentiment: logistics complaint, shown honestly</div>
-  </div>
-
-  <div class="notice">
-    <strong>About the Google reviews link:</strong> we could not verify the Google Maps listing URL from our records, so there is no &#8220;See reviews on Google&#8221; button here. Verified review sources for this business include <a href="https://reviews.birdeye.com/jacobs-mechanical-inc-166908537133876" target="_blank" rel="noopener">Birdeye</a> and <a href="https://www.loc8nearme.com/ohio/cincinnati/jacobs-mechanical-inc/6408998/" target="_blank" rel="noopener">Loc8NearMe</a>.
-  </div>
-</section>
-
-< !-- ======================= CONTACT ======================= -- >
-<section class="biz-page" id="page-contact">
-  <div class="sec-head"><h2>Request A Service Call</h2><div class="rule"></div></div>
-  <div class="two-col">
-    <div class="card">
-      <h3><i class="fa-solid fa-phone"></i> Reach The Shop</h3>
-      <div class="contact-line"><i class="fa-solid fa-phone"></i><a href="tel:+15136816800">(513) 681-6800</a></div>
-      <div class="contact-line"><i class="fa-solid fa-location-dot"></i><a href="https://www.google.com/maps/search/?api=1&#038;query=4500%20W%20Mitchell%20Ave%2C%20Cincinnati%2C%20OH%2045232" target="_blank" rel="noopener">Get Directions: 4500 W Mitchell Ave, Cincinnati, OH 45232</a></div>
-      <div class="contact-line"><i class="fa-solid fa-clock"></i><span>Mon &#8211; Fri: 8:00 AM to 4:00 PM <span class="badge" style="margin:0 0 0 8px">Call to confirm</span></span></div>
-      <div class="contact-line"><i class="fa-solid fa-envelope"></i><span>No public email listed. Use the form or call.</span></div>
-    </div>
-    <div class="card">
-      <h3><i class="fa-solid fa-clipboard-list"></i> Service Request</h3>
-      <form id="serviceForm">
-        <div class="form-grid">
-          <div><label for="fName">Name</label><input id="fName" name="name" type="text" required placeholder="Your name"></div>
-          <div><label for="fPhone">Phone</label><input id="fPhone" name="phone" type="tel" required placeholder="Your phone number"></div>
-          <div class="full"><label for="fType">Job Type</label>
-            <select id="fType" name="job">
-              <option>AC repair</option>
-              <option>AC replacement or install</option>
-              <option>Furnace or heating repair</option>
-              <option>Commercial HVAC</option>
-              <option>Maintenance</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="full"><label for="fMsg">Describe The Problem</label><textarea id="fMsg" name="message" required placeholder="What is the system doing, or not doing?"></textarea></div>
-          <div class="full"><button class="btn btn-call" type="submit"><i class="fa-solid fa-paper-plane"></i> Compose Service Email</button></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1922</div>
+          <div class="timeline-body"><strong>Company heritage</strong><p>Angi traces the company's roots to 1922 and identifies the previous name as B&J Jacobs Company.</p></div>
         </div>
-      </form>
-      <p style="color:var(--paper-dim);font-size:.82rem;margin-top:12px">This opens your email app with the request ready to send. No public email address is listed for the shop, so add a recipient or simply call <a href="tel:+15136816800">(513) 681-6800</a>.</p>
+        <div class="timeline-item">
+          <div class="timeline-year">1984</div>
+          <div class="timeline-body"><strong>Current corporation era</strong><p>BBB reports the current business started in 1984 and incorporated in 1985.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">NOW</div>
+          <div class="timeline-body"><strong>Active Cincinnati mechanical contractor</strong><p>Current permit, licensing, directory, and review data continue to show Jacobs Mechanical operating in Greater Cincinnati.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3><i class="fa-solid fa-clipboard-check"></i> Verified company profile</h3>
+      <div class="fact-list">
+        <div class="fact"><i class="fa-solid fa-user-tie"></i><div><strong>Owner / primary contact</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Business address</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="fact"><i class="fa-solid fa-phone"></i><div><strong>Business phone</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="fact"><i class="fa-solid fa-globe"></i><div><strong>Official domain</strong><br>jacobsmech.com</div></div>
+        <div class="fact"><i class="fa-solid fa-city"></i><div><strong>Service area</strong><br>Greater Cincinnati and surrounding areas</div></div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="sec-head"><h2>Schematic Gallery</h2><div class="rule"></div></div>
-  <div class="blueprint">
-    <div class="bp-grid">
-      <div class="bp-card">
-        <div class="fig">FIG. 01</div>
-        <svg viewBox="0 0 200 120">
-          <rect x="30" y="20" width="140" height="80" fill="none" stroke="#dcebfb" stroke-width="2"/>
-          <circle cx="100" cy="60" r="26" fill="none" stroke="#dcebfb" stroke-width="2"/>
-          <line x1="100" y1="34" x2="100" y2="86" stroke="#dcebfb" stroke-width="2"/>
-          <line x1="74" y1="60" x2="126" y2="60" stroke="#dcebfb" stroke-width="2"/>
-          <path d="M30 100 L10 120 M170 100 L190 120" stroke="#dcebfb" stroke-width="2"/>
-        </svg>
-        <h3>Condenser Unit</h3><p>Schematic concept. <span class="badge">Photo coming soon</span></p>
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">System checklist</div>
+      <h2>Verified HVAC & mechanical capabilities.</h2>
+      <p>Click a service card for a concise description based on the public research.</p>
+    </div>
+
+    <div class="service-grid">
+      <article class="service reveal" tabindex="0"
+        data-title="HVAC Service & Repair"
+        data-text="Public listings and customer reviews support heating and cooling diagnosis, repair, replacement, and fast-response service."
+        data-image="https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=1400&q=84">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=1400&q=84')"></div>
+        <div class="service-body"><i class="fa-solid fa-screwdriver-wrench"></i><h3>HVAC Service & Repair</h3><p>Heating and cooling troubleshooting, service, repair, and replacement.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Air Conditioning"
+        data-text="Air-conditioning installation and replacement are publicly supported by contractor listings and Cincinnati permit records."
+        data-image="https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1400&q=84">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1400&q=84')"></div>
+        <div class="service-body"><i class="fa-solid fa-snowflake"></i><h3>Air Conditioning</h3><p>A/C installation, replacement, and related mechanical work.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Heating & Furnaces"
+        data-text="Public permit history supports furnace, heating-system, air-handler, heat-pump, and coil work."
+        data-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-fire-flame-simple"></i><h3>Heating & Furnaces</h3><p>Heating equipment and furnace-related mechanical work.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Commercial & Industrial HVAC"
+        data-text="BBB, permit records, and contractor listings support substantial commercial and industrial HVAC and mechanical work."
+        data-image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-industry"></i><h3>Commercial & Industrial HVAC</h3><p>Mechanical systems for commercial, industrial, and institutional environments.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Ventilation & Ductwork"
+        data-text="MacRae's and Cincinnati permit history support ventilation, ductwork, air distribution, and related mechanical-system work."
+        data-image="https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-wind"></i><h3>Ventilation & Ductwork</h3><p>Air distribution, ventilation, and duct-system work.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Sheet Metal, Welding & Balancing"
+        data-text="Public contractor listings identify in-house sheet-metal fabrication, welding, and air/water balancing among Jacobs Mechanical's capabilities."
+        data-image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-gears"></i><h3>Sheet Metal, Welding & Balancing</h3><p>Fabrication and specialty mechanical support capabilities.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section credentials" id="credentials">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Credentials</div>
+      <h2>Licensed and publicly documented.</h2>
+      <p>These credentials are supported by BBB, BuildZoom, and public contractor records.</p>
+    </div>
+    <div class="cred-grid">
+      <div class="cred"><i class="fa-solid fa-id-badge"></i><h3>Ohio HVAC License</h3><div class="mono">HV.27903</div><p>Listed by BBB for Jacobs Mechanical, Inc.</p></div>
+      <div class="cred"><i class="fa-solid fa-building-circle-check"></i><h3>Cincinnati License</h3><div class="mono">CBRC000538</div><p>BuildZoom shows the Cincinnati general license active as of 2026.</p></div>
+      <div class="cred"><i class="fa-solid fa-chart-line"></i><h3>BuildZoom Score</h3><div class="mono">106 / TOP 7%</div><p>BuildZoom ranks the contractor in the top 7% of Ohio licensed contractors on its platform.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap rating-grid reveal">
+    <div class="rating-box">
+      <div class="kicker">Current review snapshot</div>
+      <div class="rating-big">4.1</div>
+      <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+      <p>Current map data: 4.1 out of 5 from 16 reviews.</p>
+      <p style="margin-top:.75rem;font-size:.85rem">Birdeye separately shows 4.0 from 14 Google reviews. Platform totals differ, so this site does not combine them into one artificial average.</p>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <div class="kicker">Customer feedback</div>
+        <h2>Fast response and practical problem-solving.</h2>
       </div>
-      <div class="bp-card">
-        <div class="fig">FIG. 02</div>
-        <svg viewBox="0 0 200 120">
-          <rect x="20" y="40" width="160" height="24" fill="none" stroke="#dcebfb" stroke-width="2"/>
-          <line x1="60" y1="40" x2="60" y2="20" stroke="#dcebfb" stroke-width="2"/>
-          <line x1="100" y1="40" x2="100" y2="20" stroke="#dcebfb" stroke-width="2"/>
-          <line x1="140" y1="40" x2="140" y2="20" stroke="#dcebfb" stroke-width="2"/>
-          <path d="M20 52 h20 M60 52 h20 M100 52 h20 M140 52 h20" stroke="#7fb2e5" stroke-width="2"/>
-        </svg>
-        <h3>Air Distribution Run</h3><p>Duct layout concept. <span class="badge">Photo coming soon</span></p>
+      <div class="themes">
+        <div class="theme"><h3>Fast diagnosis</h3><p>Reviewers describe quick arrival, rapid troubleshooting, and same-day furnace repair in urgent situations.</p></div>
+        <div class="theme"><h3>Creative solutions</h3><p>One review describes an unusual A/C replacement where Jacobs proposed a workable solution at substantially less than competing estimates.</p></div>
+        <div class="theme"><h3>Professional crews</h3><p>Property managers and homeowners mention knowledgeable technicians, tenant consideration, cleanup, and good communication.</p></div>
+        <div class="theme negative"><h3>Shop logistics</h3><p>One public review criticizes a long material-unloading delay at the shop; the complaint was about delivery logistics rather than HVAC workmanship.</p></div>
       </div>
-      <div class="bp-card">
-        <div class="fig">FIG. 03</div>
-        <svg viewBox="0 0 200 120">
-          <rect x="70" y="25" width="60" height="70" rx="6" fill="none" stroke="#dcebfb" stroke-width="2"/>
-          <circle cx="100" cy="50" r="10" fill="none" stroke="#dcebfb" stroke-width="2"/>
-          <text x="100" y="80" text-anchor="middle" fill="#dcebfb" font-family="IBM Plex Mono" font-size="12">72F</text>
-        </svg>
-        <h3>Thermostat Control</h3><p>Control wiring concept. <span class="badge">Photo coming soon</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section hours" id="hours">
+  <div class="wrap hours-grid reveal">
+    <div>
+      <div class="section-head">
+        <div class="kicker">Hours</div>
+        <h2>Current listed business hours.</h2>
       </div>
+      <ul class="hours-list">
+        <li><span>Monday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Tuesday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Wednesday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Thursday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Friday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Saturday</span><strong>Closed</strong></li>
+        <li><span>Sunday</span><strong>Closed</strong></li>
+      </ul>
+    </div>
+    <div class="hours-note">
+      <i class="fa-solid fa-bolt" style="font-size:1.8rem;color:var(--brass);margin-bottom:.8rem"></i>
+      <h3 style="font-size:1.45rem;margin-bottom:.55rem">Emergency service</h3>
+      <p>Angi lists emergency service availability, and public reviews describe same-day response. Exact after-hours procedures and availability should be confirmed directly with the company.</p>
+      <div class="actions"><a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Request Service</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="wrap reveal">
+    <div class="section-head"><div class="kicker">FAQ</div><h2>What public records support.</h2></div>
+
+    <details><summary>Does Jacobs Mechanical handle residential HVAC?</summary><p>Yes. Angi describes a residential division, and public permits show residential furnace, A/C, heat-pump, coil, and air-handler work.</p></details>
+    <details><summary>Does Jacobs Mechanical handle commercial HVAC?</summary><p>Yes. BBB specifically lists commercial heating and air-conditioning services, and public permit records document substantial commercial work.</p></details>
+    <details><summary>Does the company fabricate ductwork and sheet metal?</summary><p>Yes. MacRae's lists ventilation, ductwork, and sheet-metal fabrication, while Angi describes an in-house fabrication shop.</p></details>
+    <details><summary>Does Jacobs Mechanical offer emergency service?</summary><p>Angi advertises emergency services, and public reviews describe same-day response. Exact availability should be confirmed with the company.</p></details>
+    <details><summary>How long has Jacobs Mechanical been operating?</summary><p>The company has roots dating to 1922 under the earlier B&J Jacobs Company name. BBB reports the current corporation started in 1984 and incorporated in 1985.</p></details>
+    <details><summary>Is Jacobs Mechanical licensed?</summary><p>Yes. BBB lists Ohio HVAC license HV.27903, and BuildZoom shows an active Cincinnati license CBRC000538.</p></details>
+    <details><summary>Does the company publish standard pricing?</summary><p>No reliable public standard price list was found. Project and repair pricing should be confirmed directly.</p></details>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid reveal">
+    <div>
+      <div class="kicker">Service request</div>
+      <h2>Talk through the system, space, or project.</h2>
+      <p>Direct contact information and real-world actions remain protected in this demo.</p>
+      <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      <div class="actions">
+        <a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Shop</a>
+        <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</a>
+        <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-envelope"></i> Email Contact</a>
+      </div>
+    </div>
+    <div class="checklist">
+      <h3>Useful information for a service conversation</h3>
+      <div class="check"><i class="fa-solid fa-temperature-half"></i><span>Describe what the system is doing or not doing.</span></div>
+      <div class="check"><i class="fa-solid fa-building"></i><span>Residential, rental, commercial, industrial, or institutional setting.</span></div>
+      <div class="check"><i class="fa-solid fa-circle-exclamation"></i><span>Note whether the issue is urgent or affecting building operations.</span></div>
+      <div class="check"><i class="fa-solid fa-file-lines"></i><span>For larger projects, have plans, equipment information, or project scope ready when relevant.</span></div>
     </div>
   </div>
 </section>
 </main>
 
-<footer class="bigfoot">
-  <div class="giant">Jacobs <span class="fill">Mechanical</span></div>
-  <p>&copy; Jacobs Mechanical, Inc</p>
+<footer>
+  <div class="wrap">
+    <div class="giant">Jacobs <span>Mechanical</span></div>
+    <p>HVAC & mechanical contractor serving Greater Cincinnati. Demo website presentation.</p>
+    <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+  </div>
 </footer>
 
+<div class="service-modal-backdrop" id="serviceModal" aria-hidden="true">
+  <div class="service-modal" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+    <div class="service-modal-img" id="serviceModalImg"></div>
+    <div class="service-modal-body">
+      <div class="kicker">Service detail</div>
+      <h3 id="serviceModalTitle"></h3>
+      <p id="serviceModalText"></p>
+      <button class="btn" id="serviceModalClose">Close</button>
+    </div>
+  </div>
+</div>
 
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <div class="modal-body">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="lockedClose">Close</button>
+    </div>
+  </div>
 </div>
-<script>eval(atob('Ci8qIFBhZ2Ugcm91dGVyOiBwbGFpbiBoeXBoZW5zIG9ubHkgaW4gdGhpcyBmaWxlLiAqLwp2YXIgcGFnZU1hcCA9IHsKICBob21lOiAicGFnZS1ob21lIiwKICBzZXJ2aWNlczogInBhZ2Utc2VydmljZXMiLAogIGFib3V0OiAicGFnZS1hYm91dCIsCiAgcmV2aWV3czogInBhZ2UtcmV2aWV3cyIsCiAgY29udGFjdDogInBhZ2UtY29udGFjdCIKfTsKCmZ1bmN0aW9uIHNldEFjdGl2ZU5hdihwYWdlKXsKICB2YXIgbGlua3MgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCdbZGF0YS1wYWdlXScpOwogIGxpbmtzLmZvckVhY2goZnVuY3Rpb24oYSl7CiAgICBpZihhLmdldEF0dHJpYnV0ZSgnZGF0YS1wYWdlJykgPT09IHBhZ2UpeyBhLmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOyB9CiAgICBlbHNlIHsgYS5jbGFzc0xpc3QucmVtb3ZlKCdhY3RpdmUnKTsgfQogIH0pOwogIHZhciBkaWFsTGlua3MgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcjZGlhbG5hdiBhW2RhdGEtcGFnZV0nKTsKICBkaWFsTGlua3MuZm9yRWFjaChmdW5jdGlvbihhKXsKICAgIGlmKGEuZ2V0QXR0cmlidXRlKCdkYXRhLXBhZ2UnKSA9PT0gcGFnZSl7CiAgICAgIHZhciBhbmdsZSA9IHBhcnNlRmxvYXQoYS5nZXRBdHRyaWJ1dGUoJ2RhdGEtYW5nbGUnKSkgfHwgMDsKICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RpYWxOZWVkbGUnKS5zdHlsZS50cmFuc2Zvcm0gPSAncm90YXRlKCcgKyBhbmdsZSArICdkZWcpIHRyYW5zbGF0ZVkoLTYycHgpJzsKICAgIH0KICB9KTsKfQoKZnVuY3Rpb24gbmF2aWdhdGVUbyhwYWdlLCBwdXNoKXsKICBpZighcGFnZU1hcFtwYWdlXSl7IHBhZ2UgPSAnaG9tZSc7IH0KICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcuYml6LXBhZ2UnKS5mb3JFYWNoKGZ1bmN0aW9uKHMpeyBzLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpOyB9KTsKICB2YXIgdGFyZ2V0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQocGFnZU1hcFtwYWdlXSk7CiAgaWYodGFyZ2V0KXsgdGFyZ2V0LmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOyB9CiAgc2V0QWN0aXZlTmF2KHBhZ2UpOwogIGlmKHB1c2ggIT09IGZhbHNlKXsKICAgIHRyeSB7IGhpc3RvcnkucHVzaFN0YXRlKHtwYWdlOiBwYWdlfSwgJycsICcjJyArIHBhZ2UpOyB9IGNhdGNoKGUpIHt9CiAgfQogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtb2JpbGVNZW51JykuY2xhc3NMaXN0LnJlbW92ZSgnb3BlbicpOwogIHdpbmRvdy5zY3JvbGxUbygwLCAwKTsKfQoKLyogUG9zaXRpb24gZGlhbCBsaW5rcyBhcm91bmQgdGhlIGNpcmNsZSAqLwooZnVuY3Rpb24gbGF5b3V0RGlhbCgpewogIHZhciBuYXYgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZGlhbG5hdicpOwogIGlmKCFuYXYpIHJldHVybjsKICB2YXIgUiA9IDY4OwogIG5hdi5xdWVyeVNlbGVjdG9yQWxsKCdhW2RhdGEtcGFnZV0nKS5mb3JFYWNoKGZ1bmN0aW9uKGEpewogICAgdmFyIGFuZ2xlID0gcGFyc2VGbG9hdChhLmdldEF0dHJpYnV0ZSgnZGF0YS1hbmdsZScpKSB8fCAwOwogICAgdmFyIHJhZCA9IChhbmdsZSAtIDkwKSAqIE1hdGguUEkgLyAxODA7CiAgICB2YXIgeCA9IE1hdGguY29zKHJhZCkgKiBSLCB5ID0gTWF0aC5zaW4ocmFkKSAqIFI7CiAgICBhLnN0eWxlLnRyYW5zZm9ybSA9ICd0cmFuc2xhdGUoJyArIHgudG9GaXhlZCgxKSArICdweCwnICsgeS50b0ZpeGVkKDEpICsgJ3B4KSc7CiAgfSk7CiAgLyogdGlja3MgKi8KICBmb3IodmFyIGkgPSAwOyBpIDwgMTI7IGkrKyl7CiAgICB2YXIgdCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgdC5jbGFzc05hbWUgPSAnZGlhbC10aWNrJzsKICAgIHQuc3R5bGUudHJhbnNmb3JtID0gJ3JvdGF0ZSgnICsgKGkgKiAzMCkgKyAnZGVnKSB0cmFuc2xhdGVZKC03OHB4KSc7CiAgICBuYXYuYXBwZW5kQ2hpbGQodCk7CiAgfQp9KSgpOwoKLyogQmluZCBuYXYgY2xpY2tzIHRvIHJvdXRlciBvbmx5ICovCmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ2FbZGF0YS1wYWdlXScpLmZvckVhY2goZnVuY3Rpb24oYSl7CiAgYS5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsIGZ1bmN0aW9uKGV2KXsKICAgIGV2LnByZXZlbnREZWZhdWx0KCk7CiAgICBuYXZpZ2F0ZVRvKGEuZ2V0QXR0cmlidXRlKCdkYXRhLXBhZ2UnKSk7CiAgfSk7Cn0pOwoKLyogTW9iaWxlIGhhbWJ1cmdlciAqLwpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnaGFtYnVyZ2VyJykuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBmdW5jdGlvbigpewogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtb2JpbGVNZW51JykuY2xhc3NMaXN0LnRvZ2dsZSgnb3BlbicpOwp9KTsKCi8qIEJhY2sgYW5kIGZvcndhcmQgYnV0dG9ucyAqLwp3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcigncG9wc3RhdGUnLCBmdW5jdGlvbihldil7CiAgdmFyIHBhZ2UgPSAoZXYuc3RhdGUgJiYgZXYuc3RhdGUuYml6LXBhZ2UpIHx8IGxvY2F0aW9uLmhhc2gucmVwbGFjZSgnIycsJycpIHx8ICdob21lJzsKICBuYXZpZ2F0ZVRvKHBhZ2UsIGZhbHNlKTsKfSk7CgovKiBTZXJ2aWNlIGZvcm06IGNvbXBvc2UgYSBtYWlsdG8gbWVzc2FnZSAqLwpkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2VydmljZUZvcm0nKS5hZGRFdmVudExpc3RlbmVyKCdzdWJtaXQnLCBmdW5jdGlvbihldil7CiAgZXYucHJldmVudERlZmF1bHQoKTsKICB2YXIgbmFtZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmTmFtZScpLnZhbHVlOwogIHZhciBwaG9uZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmUGhvbmUnKS52YWx1ZTsKICB2YXIgam9iID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZUeXBlJykudmFsdWU7CiAgdmFyIG1zZyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdmTXNnJykudmFsdWU7CiAgdmFyIGJvZHkgPSAnTmFtZTogJyArIG5hbWUgKyAnXG5QaG9uZTogJyArIHBob25lICsgJ1xuSm9iIHR5cGU6ICcgKyBqb2IgKyAnXG5cbicgKyBtc2c7CiAgd2luZG93LmxvY2F0aW9uLmhyZWYgPSAnbWFpbHRvOj9zdWJqZWN0PScgKyBlbmNvZGVVUklDb21wb25lbnQoJ1NlcnZpY2UgUmVxdWVzdCAtIEphY29icyBNZWNoYW5pY2FsJykgKyAnJmJvZHk9JyArIGVuY29kZVVSSUNvbXBvbmVudChib2R5KTsKfSk7CgovKiBTdGFydCBvbiB0aGUgaGFzaCBwYWdlIG9yIGhvbWUgKi8KKGZ1bmN0aW9uIGluaXQoKXsKICB2YXIgc3RhcnQgPSBsb2NhdGlvbi5oYXNoLnJlcGxhY2UoJyMnLCcnKTsKICBuYXZpZ2F0ZVRvKHBhZ2VNYXBbc3RhcnRdID8gc3RhcnQgOiAnaG9tZScsIGZhbHNlKTsKfSkoKTsK'));</script>
-</div>
-<script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/business-identity-mvp/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
-</script>
-<script id="wp-emoji-settings" type="application/json">
-{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://bjvfi.com/wp-includes/js/wp-emoji-release.min.js?ver=7.1"}}
-</script>
-<script type="module">
-/*! This file is auto-generated */
-var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
-//# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
+
+<script>
+  const hamburger=document.querySelector('.hamburger');
+  const navMenu=document.getElementById('navMenu');
+
+  hamburger.addEventListener('click',()=>{
+    const open=navMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded',open?'true':'false');
+    hamburger.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('#navMenu a[href^="#"]:not([data-locked])').forEach(a=>a.addEventListener('click',()=>{
+    navMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    hamburger.innerHTML='<i class="fa-solid fa-bars"></i>';
+  }));
+
+  const lockedModal=document.getElementById('lockedModal');
+  const lockedClose=document.getElementById('lockedClose');
+  let lastFocus=null;
+
+  function openLocked(e){
+    if(e)e.preventDefault();
+    lastFocus=document.activeElement;
+    lockedModal.classList.add('show');
+    lockedModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    lockedClose.focus();
+  }
+  function closeLocked(){
+    lockedModal.classList.remove('show');
+    lockedModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus)lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+  lockedClose.addEventListener('click',closeLocked);
+  lockedModal.addEventListener('click',e=>{if(e.target===lockedModal)closeLocked()});
+
+  const serviceModal=document.getElementById('serviceModal');
+  const serviceModalClose=document.getElementById('serviceModalClose');
+  const serviceModalTitle=document.getElementById('serviceModalTitle');
+  const serviceModalText=document.getElementById('serviceModalText');
+  const serviceModalImg=document.getElementById('serviceModalImg');
+
+  function openService(card){
+    serviceModalTitle.textContent=card.dataset.title;
+    serviceModalText.textContent=card.dataset.text;
+    serviceModalImg.style.backgroundImage=`url("${card.dataset.image}")`;
+    serviceModal.classList.add('show');
+    serviceModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    serviceModalClose.focus();
+  }
+  function closeService(){
+    serviceModal.classList.remove('show');
+    serviceModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('.service').forEach(card=>{
+    card.addEventListener('click',()=>openService(card));
+    card.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){
+        e.preventDefault();
+        openService(card);
+      }
+    });
+  });
+
+  serviceModalClose.addEventListener('click',closeService);
+  serviceModal.addEventListener('click',e=>{if(e.target===serviceModal)closeService()});
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(lockedModal.classList.contains('show'))closeLocked();
+      if(serviceModal.classList.contains('show'))closeService();
+    }
+  });
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
 </script>
 </body>
 </html>
