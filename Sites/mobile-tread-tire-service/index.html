@@ -2,747 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mobile Tread and Tire Service | 24/7 Mobile Tire in Tucson</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Mobile Tread and Tire Service | Tucson, AZ</title>
+<meta name="description" content="24/7 mobile tire service in Tucson.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-  :root{
-    --ink:#263238;
-    --ink-2:#37474F;
-    --ink-3:#4E5A61;
-    --yellow:#FBC02D;
-    --yellow-soft:#FDE9AE;
-    --white:#FFFFFF;
-    --paper:#F4F5F4;
-    --line:#D9DEE0;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'Barlow',Arial,sans-serif;
-    color:var(--ink);
-    background:var(--paper);
-    line-height:1.55;
-    -webkit-text-size-adjust:100%;
-  }
-  .site-shell{min-height:100vh;display:flex;flex-direction:column;}
-  main{flex:1 0 auto;}
-  footer{flex-shrink:0;}
-  h1,h2,h3,.disp{font-family:'Oxanium','Barlow',sans-serif;line-height:1.15;margin:0;}
-  p{margin:0 0 1rem;}
-  a{color:inherit;}
-  .wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+img{display:block;max-width:100%}
 
-  /* tread chevron band motif */
-  .tread-band{
-    height:16px;
-    background:
-      repeating-linear-gradient(115deg, var(--yellow) 0 14px, var(--ink) 14px 28px);
-  }
-  .tread-band.thin{height:8px;opacity:.85;}
-  .tread-band.on-dark{
-    background:repeating-linear-gradient(115deg, var(--yellow) 0 14px, #10171A 14px 28px);
-  }
+:root{--bg:#22292d;--panel:#303a3f;--paper:#eef1f1;--ink:#172126;--light:#f8faf9;--muted:#aeb9be;--accent:#f6c431;--line:rgba(246,196,49,.22);--modal-bg:#20282c;--modal-text:#fff;--modal-muted:#cad2d5}
+body{background:var(--bg);color:var(--light);font-family:"Barlow",sans-serif}
+.wrap{width:min(calc(100% - 40px),1180px);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(34,41,45,.95);border-bottom:3px solid var(--accent)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:800 1rem "Oxanium";text-transform:uppercase}.brand small{display:block;font:.64rem "Barlow";letter-spacing:.16em;color:var(--accent);margin-top:4px}.navlinks{display:flex;gap:22px;font-weight:700}.navlinks a:hover{color:var(--accent)}
+.hamb{display:none;width:46px;height:44px;background:transparent;border:2px solid var(--accent)}.hamb span{display:block;width:22px;height:2px;background:var(--accent);margin:5px auto}
+.mobile{display:none;background:#293236;padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:800}
+.hero{min-height:740px;display:flex;align-items:end;position:relative;background:linear-gradient(90deg,rgba(34,41,45,.97),rgba(34,41,45,.72) 52%,rgba(34,41,45,.2)),url("https://images.unsplash.com/photo-1592840062661-a5a7f78e2056?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat}
+.hero-in{padding:110px 0 72px;max-width:840px}.kicker{color:var(--accent);font:700 .74rem "Oxanium";letter-spacing:.18em;text-transform:uppercase}
+.hero h1{font:800 clamp(3.6rem,7vw,6.5rem)/.95 "Oxanium";margin:16px 0 20px;text-transform:uppercase;letter-spacing:-.03em}.hero p{font-size:1.1rem;line-height:1.75;color:#d7dfe2;max-width:700px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{min-height:50px;padding:13px 20px;border:2px solid var(--accent);background:transparent;color:#fff;font:700 .92rem "Oxanium";cursor:pointer}.btn.fill{background:var(--accent);color:#1c2428}
+.stock{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.68);padding:7px 9px;font-size:.62rem;text-transform:uppercase}
+.dispatch{background:#161d20;border-block:1px solid var(--line)}.dispatch-grid{display:grid;grid-template-columns:repeat(3,1fr)}.dispatch-item{padding:24px;border-right:1px solid var(--line);display:flex;gap:12px}.dispatch-item:last-child{border-right:0}.dispatch-item i{color:var(--accent)}.dispatch-item small{display:block;text-transform:uppercase;letter-spacing:.11em;color:#7f8c91;font-size:.62rem}.dispatch-item strong{display:block;margin-top:5px}
+.section{padding:88px 0;scroll-margin-top:76px}.section.light{background:var(--paper);color:var(--ink)}.section h2{font:800 clamp(2.6rem,5vw,4.5rem)/1 "Oxanium";text-transform:uppercase;margin:0 0 18px}.lead{max-width:780px;color:var(--muted);line-height:1.8}.light .lead{color:#66757d}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.step{padding:24px;border:1px solid var(--line);background:#2a3338}.step b{font:800 2rem "Oxanium";color:var(--accent)}.step h3{font:700 1rem "Oxanium"}.step p{color:#b9c4c8}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px}.service{padding:24px;border:1px solid #cfd7da;background:#fff}.service i{color:#cc9c0d}.service h3{font:700 1rem "Oxanium"}.service p{color:#66757d}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}.review{padding:24px;border:1px solid var(--line);background:#2a3338}.review p{line-height:1.7}.review span{color:#98a5aa;font-size:.75rem;text-transform:uppercase}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{padding:28px;background:#fff;border:1px solid #cfd7da;color:var(--ink)}.card p{color:#68767d}.protected{background:#fff5cf;border-left:4px solid #d3a20d;padding:16px;margin:18px 0}
+footer{padding:34px 0;color:#9aa7ac;border-top:1px solid var(--line)}
+@media(max-width:900px){.navlinks{display:none}.hamb{display:block}.steps,.reviews{grid-template-columns:1fr}.services,.visit-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{width:min(calc(100% - 28px),1180px)}.hero{min-height:650px;background-position:60% center}.hero-in{padding:95px 0 48px}.actions{display:grid}.btn{width:100%}.dispatch-grid{grid-template-columns:1fr}.dispatch-item{border-right:0;border-bottom:1px solid var(--line)}.section{padding:68px 0}}
 
-  /* header */
-  .site-head{
-    background:var(--ink);
-    color:var(--white);
-    position:sticky;top:0;z-index:50;
-    border-bottom:3px solid var(--yellow);
-  }
-  .head-in{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:16px;padding:14px 20px;max-width:1080px;margin:0 auto;
-  }
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
-  .brand-mark{
-    width:44px;height:44px;border-radius:10px;
-    background:repeating-linear-gradient(115deg, var(--yellow) 0 6px, var(--ink) 6px 12px);
-    display:flex;align-items:center;justify-content:center;
-    border:2px solid var(--yellow);
-    flex-shrink:0;
-  }
-  .brand-mark i{color:var(--ink);background:var(--yellow);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px;}
-  .brand-name{font-family:'Oxanium',sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:.02em;}
-  .brand-sub{display:block;font-family:'Barlow',sans-serif;font-weight:500;font-size:.72rem;color:var(--yellow);letter-spacing:.14em;text-transform:uppercase;}
-  .menu-btn{
-    display:none;background:none;border:2px solid var(--yellow);border-radius:8px;
-    width:46px;height:42px;cursor:pointer;padding:0;
-  }
-  .menu-btn span{display:block;width:20px;height:2px;background:var(--yellow);margin:4px auto;transition:transform .2s ease, opacity .2s ease;}
-  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.open span:nth-child(2){opacity:0;}
-  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-  .nav-links{display:flex;align-items:center;gap:6px;}
-  .nav-links a{
-    text-decoration:none;font-weight:600;font-size:.95rem;color:var(--white);
-    padding:9px 14px;border-radius:8px;transition:background .15s ease,color .15s ease;
-  }
-  .nav-links a:hover{background:rgba(251,192,45,.16);color:var(--yellow);}
-  .nav-links a.is-here{background:var(--yellow);color:var(--ink);}
 
-  /* pages */
-  .page{display:none;}
-  .page.active{display:block;}
+.lock-backdrop{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.74)}
+.lock-backdrop.open{display:flex}
+.lock-dialog{width:min(100%,440px);background:var(--modal-bg,#17191b);color:var(--modal-text,#fff);padding:30px;border-top:4px solid var(--accent);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.lock-dialog h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}
+.lock-dialog p{margin:0 0 20px;color:var(--modal-muted,#d0d0d0);line-height:1.65}
+.lock-dialog button{width:100%;min-height:46px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;cursor:pointer}
 
-  /* status chip */
-  .status-chip{
-    display:inline-flex;align-items:center;gap:9px;
-    font-weight:700;font-size:.86rem;letter-spacing:.03em;
-    padding:7px 14px;border-radius:999px;
-    background:var(--white);border:1.5px solid var(--line);color:var(--ink);
-  }
-  .status-chip .dot{width:10px;height:10px;border-radius:50%;background:#9AA5AA;}
-  .status-chip.is-open{border-color:var(--yellow);color:var(--ink);}
-  .status-chip.is-open .dot{background:#2E7D32;box-shadow:0 0 0 4px rgba(46,125,50,.18);animation:beacon 1.6s ease infinite;}
-  .status-chip.is-closed .dot{background:#B23A2E;}
-  @keyframes beacon{0%,100%{box-shadow:0 0 0 3px rgba(46,125,50,.16);}50%{box-shadow:0 0 0 7px rgba(46,125,50,.05);}}
-
-  /* hero */
-  .hero{
-    background:
-      radial-gradient(1100px 420px at 88% -10%, rgba(251,192,45,.14), transparent 60%),
-      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
-    color:var(--white);
-  }
-  .hero-grid{
-    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
-    padding:64px 0 58px;
-  }
-  .kicker{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:'Oxanium',sans-serif;font-weight:700;font-size:.8rem;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);
-    margin-bottom:14px;
-  }
-  .kicker i{font-size:.8rem;}
-  .hero h1{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800;margin-bottom:16px;}
-  .hero h1 em{font-style:normal;color:var(--yellow);}
-  .hero p.lead{font-size:1.1rem;color:#DDE3E6;max-width:34em;margin-bottom:22px;}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;}
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;
-    font-family:'Oxanium',sans-serif;font-weight:700;font-size:.95rem;
-    padding:13px 22px;border-radius:10px;text-decoration:none;cursor:pointer;
-    border:2px solid transparent;transition:transform .15s ease,box-shadow .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.25);}
-  .btn-yellow{background:var(--yellow);color:var(--ink);}
-  .btn-ghost{border-color:rgba(255,255,255,.45);color:var(--white);}
-  .btn-ghost:hover{border-color:var(--yellow);color:var(--yellow);}
-  .rating-pill{
-    display:inline-flex;align-items:center;gap:8px;color:var(--yellow);
-    font-weight:700;font-size:.95rem;
-  }
-  .rating-pill i{font-size:.8rem;}
-
-  /* dispatch board card (hero right) */
-  .board{
-    background:#1B2428;border:1.5px solid rgba(251,192,45,.5);border-radius:14px;
-    padding:22px 22px 18px;box-shadow:0 18px 40px rgba(0,0,0,.35);
-    position:relative;
-  }
-  .board::before{
-    content:"DISPATCH";position:absolute;top:-13px;left:22px;
-    background:var(--yellow);color:var(--ink);
-    font-family:'Oxanium',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.2em;
-    padding:4px 12px;border-radius:6px;
-  }
-  .board-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.16);}
-  .board-row:last-child{border-bottom:0;}
-  .board-row i{color:var(--yellow);width:20px;text-align:center;margin-top:3px;}
-  .board-row b{display:block;font-family:'Oxanium',sans-serif;font-size:.8rem;letter-spacing:.12em;color:#9FB0B7;text-transform:uppercase;font-weight:600;}
-  .board-row span{font-size:.98rem;color:var(--white);}
-  .board .open-line{
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    background:var(--yellow);color:var(--ink);border-radius:10px;padding:12px 14px;margin-top:6px;
-  }
-  .board .open-line b{font-family:'Oxanium',sans-serif;font-weight:800;letter-spacing:.04em;}
-  .board .open-line .status-chip{background:rgba(255,255,255,.85);border-color:transparent;padding:5px 11px;font-size:.8rem;}
-
-  /* generic sections */
-  .section{padding:58px 0;}
-  .section.tint{background:var(--white);}
-  .sec-head{margin-bottom:30px;}
-  .sec-head h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;margin-bottom:8px;}
-  .sec-head .rule{width:64px;height:5px;background:var(--yellow);border-radius:3px;}
-  .sec-head p{color:var(--ink-3);max-width:44em;margin-top:10px;}
-  .sec-head.center{text-align:center;}
-  .sec-head.center .rule{margin:0 auto;}
-  .sec-head.center p{margin-left:auto;margin-right:auto;}
-
-  /* steps */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  .step{
-    background:var(--white);border:1.5px solid var(--line);border-radius:14px;
-    padding:24px 22px;position:relative;
-  }
-  .step .num{
-    font-family:'Oxanium',sans-serif;font-weight:800;font-size:1.5rem;color:var(--ink);
-    background:var(--yellow);width:44px;height:44px;border-radius:10px;
-    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
-  }
-  .step h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
-  .step p{margin:0;color:var(--ink-3);font-size:.95rem;}
-
-  /* service cards */
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  .svc{
-    background:var(--paper);border:1.5px solid var(--line);border-radius:14px;
-    padding:24px;transition:border-color .15s ease, transform .15s ease;
-  }
-  .svc:hover{border-color:var(--yellow);transform:translateY(-3px);}
-  .svc i{font-size:1.3rem;color:var(--ink);background:var(--yellow);width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
-  .svc h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
-  .svc p{margin:0;color:var(--ink-3);font-size:.94rem;}
-  .svc.wide{grid-column:span 3;display:flex;align-items:center;gap:20px;background:var(--ink);color:var(--white);border-color:var(--ink);}
-  .svc.wide i{background:var(--yellow);color:var(--ink);margin-bottom:0;flex-shrink:0;}
-  .svc.wide h3{color:var(--yellow);}
-  .svc.wide p{color:#DDE3E6;}
-
-  /* mobile strip (home) */
-  .mobile-strip{
-    background:var(--ink);color:var(--white);border-radius:16px;
-    padding:30px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between;
-  }
-  .mobile-strip h3{color:var(--yellow);font-size:1.2rem;font-weight:800;margin-bottom:4px;}
-  .mobile-strip p{margin:0;color:#DDE3E6;max-width:40em;}
-
-  /* reviews page */
-  .log-list{display:grid;gap:16px;max-width:760px;}
-  .log-entry{
-    display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;
-    background:var(--white);border:1.5px solid var(--line);border-left:6px solid var(--yellow);
-    border-radius:12px;padding:20px 22px;
-  }
-  .log-entry .tag{
-    font-family:'Oxanium',sans-serif;font-weight:800;font-size:.8rem;color:var(--ink);
-    background:var(--yellow-soft);border-radius:8px;text-align:center;padding:8px 4px;letter-spacing:.06em;
-  }
-  .log-entry blockquote{margin:0 0 8px;font-size:1.04rem;color:var(--ink);}
-  .log-entry .who{font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);}
-  .log-entry .stars i{color:var(--yellow);font-size:.78rem;margin-right:2px;}
-  .review-summary{
-    max-width:760px;margin:26px 0 0;padding:20px 24px;border-radius:12px;
-    background:var(--ink);color:var(--white);display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;
-  }
-  .review-summary .score{font-family:'Oxanium',sans-serif;font-weight:800;font-size:1.35rem;color:var(--yellow);}
-  .link-cards{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;max-width:760px;}
-  .link-card{
-    flex:1 1 260px;display:flex;align-items:center;gap:12px;text-decoration:none;
-    background:var(--white);border:1.5px solid var(--line);border-radius:12px;padding:18px 20px;
-    font-weight:700;transition:border-color .15s ease, transform .15s ease;
-  }
-  .link-card:hover{border-color:var(--yellow);transform:translateY(-2px);}
-  .link-card i.fa-brands{font-size:1.5rem;color:var(--ink);}
-  .link-card small{display:block;font-weight:500;color:var(--ink-3);}
-
-  /* visit page */
-  .visit-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;align-items:start;}
-  .slip{
-    background:var(--white);border:1.5px solid var(--line);border-radius:14px;overflow:hidden;
-    box-shadow:0 12px 28px rgba(38,50,56,.12);
-  }
-  .slip-top{
-    background:repeating-linear-gradient(115deg, var(--yellow) 0 12px, var(--ink) 12px 24px);
-    padding:18px 22px;color:var(--white);
-  }
-  .slip-top h3{font-family:'Oxanium',sans-serif;font-weight:800;letter-spacing:.14em;font-size:.95rem;text-transform:uppercase;}
-  .slip-body{padding:22px;}
-  .slip-body .row{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line);}
-  .slip-body .row:last-child{border-bottom:0;}
-  .slip-body .row i{color:var(--ink);width:20px;text-align:center;margin-top:3px;}
-  .slip-body .row b{display:block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
-  .slip-phone{
-    display:block;font-family:'Oxanium',sans-serif;font-weight:800;font-size:1.5rem;
-    color:var(--ink);text-decoration:none;margin-top:2px;
-  }
-  .slip-phone:hover{color:var(--ink-2);text-decoration:underline;}
-  .tear{border-top:3px dashed var(--line);margin:0 14px;}
-  .slip-foot{padding:16px 22px;font-size:.9rem;color:var(--ink-3);}
-  .confirm-line{
-    margin-top:14px;font-size:.88rem;color:var(--ink-3);
-    background:var(--yellow-soft);border-left:4px solid var(--yellow);
-    padding:10px 14px;border-radius:0 8px 8px 0;
-  }
-
-  /* form */
-  .form-card{background:var(--white);border:1.5px solid var(--line);border-radius:14px;padding:26px;}
-  .form-card h3{font-size:1.2rem;font-weight:800;margin-bottom:4px;}
-  .form-card .hint{color:var(--ink-3);font-size:.92rem;margin-bottom:18px;}
-  .field{margin-bottom:15px;}
-  .field label{display:block;font-weight:700;font-size:.86rem;margin-bottom:6px;}
-  .field input,.field textarea{
-    width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;
-    font-family:'Barlow',sans-serif;font-size:1rem;color:var(--ink);background:var(--paper);
-  }
-  .field input:focus,.field textarea:focus{outline:2px solid var(--yellow);border-color:var(--ink);}
-  .field textarea{min-height:110px;resize:vertical;}
-  .form-card .btn{width:100%;justify-content:center;}
-  .form-feedback{margin-top:12px;font-weight:600;font-size:.92rem;color:#2E7D32;min-height:1.2em;}
-
-  /* footer */
-  .site-foot{background:var(--ink);color:#C9D2D6;margin-top:0;}
-  .foot-in{
-    max-width:1080px;margin:0 auto;padding:34px 20px 20px;
-    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;
-  }
-  .site-foot h4{font-family:'Oxanium',sans-serif;color:var(--white);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;}
-  .site-foot p{font-size:.9rem;margin:0 0 6px;}
-  .site-foot a{color:var(--white);text-decoration:none;}
-  .site-foot a:hover{color:var(--yellow);}
-  .foot-bottom{
-    border-top:1px solid rgba(255,255,255,.14);
-    max-width:1080px;margin:0 auto;padding:16px 20px 22px;
-    font-size:.85rem;color:#9FB0B7;
-  }
-
-  /* responsive */
-  @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:30px;padding:46px 0 42px;}
-    .steps,.svc-grid{grid-template-columns:1fr 1fr;}
-    .svc.wide{grid-column:span 2;}
-    .visit-grid{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:640px){
-    .menu-btn{display:block;}
-    .nav-links{
-      display:none;position:absolute;left:0;right:0;top:100%;
-      background:var(--ink);border-bottom:3px solid var(--yellow);
-      flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;
-    }
-    .nav-links.open{display:flex;}
-    .nav-links a{padding:13px 12px;}
-    .steps,.svc-grid{grid-template-columns:1fr;}
-    .svc.wide{grid-column:span 1;}
-    .foot-in{grid-template-columns:1fr;}
-    .log-entry{grid-template-columns:44px 1fr;padding:16px;}
-    .section{padding:44px 0;}
-  }
 </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site-head">
-    <div class="head-in">
-      <a class="brand" href="#/home" data-page="home" aria-label="Mobile Tread and Tire Service home">
-        <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-truck"></i></span>
-        <span class="brand-name">Mobile Tread &amp; Tire<span class="brand-sub">Silverbell 24/7</span></span>
-      </a>
-      <button id="menu-btn" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/home" data-page="home">Home</a>
-        <a href="#/tire" data-page="tire">Mobile Tire</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <div class="wrap hero-grid">
-          <div>
-            <span class="kicker"><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i> Tucson's 24/7 full service</span>
-            <h1>Flat in <em>front of your house</em>? We come to you.</h1>
-            <p class="lead">Mobile Tread and Tire Service is a mobile tire crew based on Tucson's west side. No showroom, no waiting room: call dispatch and we roll to wherever you're parked, day or night.</p>
-            <div class="cta-row">
-              <a class="btn btn-yellow" href="#/tire" data-page="tire"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> What we do</a>
-              <a class="btn btn-ghost" href="#/visit" data-page="visit"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Call dispatch</a>
-            </div>
-            <span class="rating-pill"><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i> 4.9 stars with 6 Google reviews</span>
-          </div>
-          <div class="board" role="group" aria-label="Dispatch board">
-            <div class="board-row">
-              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-              <div><b>West side base</b><span>975 N Silverbell Rd Unit 85564, Tucson, AZ 85745</span></div>
-            </div>
-            <div class="board-row">
-              <i class="fa-solid fa-phone" aria-hidden="true"></i>
-              <div><b>Dispatch line</b><span>(520) 891-9499</span></div>
-            </div>
-            <div class="open-line">
-              <b>Open 24 hours</b>
-              <span id="status-chip" class="status-chip"><span class="dot"></span>Checking</span>
-            </div>
-          </div>
-        </div>
-        <div class="tread-band on-dark" aria-hidden="true"></div>
-      </div>
+<header><div class="wrap nav"><a href="#home" class="brand">Mobile Tread &amp; Tire<small>Silverbell 24/7 · Tucson</small></a><nav class="navlinks"><a href="#how">How it works</a><a href="#services">Mobile Tire</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="hamb" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#how">How it works</a><a href="#services">Mobile Tire</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-in"><div class="kicker">Tucson's 24/7 full service</div><h1>Flat in front of your house? We come to you.</h1><p>Mobile Tread and Tire Service is a mobile tire crew based on Tucson's west side. No showroom, no waiting room: call dispatch and we roll to wherever you're parked, day or night.</p><div class="actions"><a class="btn fill" href="#services">What we do</a><button class="btn" type="button" data-locked="true">Call dispatch</button></div></div><div class="stock">Relevant stock mobile-tire imagery · not the actual crew or truck</div></section>
+<section class="dispatch"><div class="wrap dispatch-grid"><div class="dispatch-item"><i class="fa-solid fa-star"></i><div><small>Google rating</small><strong>4.9 stars with 6 Google reviews</strong></div></div><div class="dispatch-item"><i class="fa-solid fa-location-dot"></i><div><small>West side base</small><strong>Tucson, AZ 85745</strong></div></div><div class="dispatch-item"><i class="fa-regular fa-clock"></i><div><small>Hours</small><strong>Open 24 hours</strong></div></div></div></section>
+<section class="section" id="how"><div class="wrap"><div class="kicker">How a run works</div><h2>Three steps to rolling again</h2><div class="steps"><article class="step"><b>1</b><h3>You call dispatch</h3><p>Tell us where you're parked and what the tire is doing. The line is answered around the clock.</p></article><article class="step"><b>2</b><h3>We roll out</h3><p>A mobile tire truck heads your way with the gear and tires for the job, anywhere in town.</p></article><article class="step"><b>3</b><h3>You're rolling again</h3><p>Flat repaired or fresh tire mounted and balanced on the spot. Fair price, in and out quick.</p></article></div></div></section>
+<section class="section light" id="services"><div class="wrap"><div class="kicker">Street-side tire work</div><h2>A tire shop that drives</h2><p class="lead">The same jobs a tire shop does, done at your curb, your driveway, or the shoulder of Silverbell.</p><div class="services"><article class="service"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Mobile flat repair</h3><p>Most "I can't drive it" flats are a curb-side fix. We find the puncture and patch it properly.</p></article><article class="service"><i class="fa-solid fa-circle"></i><h3>New and used tires</h3><p>Need a tire now? Tell dispatch the size and we bring the options to you.</p></article><article class="service"><i class="fa-solid fa-gears"></i><h3>Mount and balance</h3><p>On-site mounting and balancing so the new tire rides smooth from the first mile.</p></article><article class="service"><i class="fa-solid fa-road"></i><h3>Stuck calls</h3><p>Work parking lots, apartments, driveways, shoulders. If a truck can reach you, we can reach you.</p></article></div></div></section>
+<section class="section" id="reviews"><div class="wrap"><div class="kicker">Reviews</div><h2>Real notes from drivers</h2><div class="reviews"><article class="review"><p>"Best tire buying experience I've had! Very honest, professional, fast and fair priced service got me in and out quick!"</p><span>Google review</span></article><article class="review"><p>"Amazing service! Quick response! Super friendly!"</p><span>Google review</span></article><article class="review"><p>"Eric was great, overall great service and fair pricing."</p><span>Google review</span></article></div><div class="actions"><button class="btn fill" type="button" data-locked="true">See every review on Google</button></div></div></section>
+<section class="section light" id="visit"><div class="wrap"><div class="kicker">Visit</div><h2>This is a mobile service</h2><p class="lead">The Silverbell address is our dispatch and mail base, not a store. Save yourself the drive: the fastest way to reach this crew is the phone, any hour.</p><div class="visit-grid"><div class="card"><h3>Dispatch base</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public dispatch/mail address is hidden in this sample website.</p></div></div><div class="card"><h3>Dispatch line, 24/7</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The phone number and text actions are disabled in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Call dispatch</button></div></div></div></section>
+</main>
+<footer><div class="wrap">Mobile Tread and Tire Service · Tucson, AZ</div></footer>
 
-      <div class="section tint">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>How a run works</h2>
-            <div class="rule"></div>
-          </div>
-          <div class="steps">
-            <div class="step">
-              <span class="num">1</span>
-              <h3>You call dispatch</h3>
-              <p>Tell us where you're parked and what the tire is doing. The line is answered around the clock.</p>
-            </div>
-            <div class="step">
-              <span class="num">2</span>
-              <h3>We roll out</h3>
-              <p>A mobile tire truck heads your way with the gear and tires for the job, anywhere in town.</p>
-            </div>
-            <div class="step">
-              <span class="num">3</span>
-              <h3>You're rolling again</h3>
-              <p>Flat repaired or fresh tire mounted and balanced on the spot. Fair price, in and out quick.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Street-side tire work</h2>
-            <div class="rule"></div>
-            <p>The same jobs a tire shop does, done at your curb, your driveway, or the shoulder of Silverbell.</p>
-          </div>
-          <div class="svc-grid">
-            <div class="svc">
-              <i class="fa-solid fa-truck-ramp-box" aria-hidden="true"></i>
-              <h3>Mobile flat repair</h3>
-              <p>Most "I can't drive it" flats are a curb-side fix. We find the puncture and patch it properly.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-circle-notch" aria-hidden="true"></i>
-              <h3>New and used tires</h3>
-              <p>Need a tire now? Tell dispatch the size and we bring the options to you.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
-              <h3>Mount and balance</h3>
-              <p>On-site mounting and balancing so the new tire rides smooth from the first mile.</p>
-            </div>
-            <div class="svc wide">
-              <i class="fa-solid fa-moon" aria-hidden="true"></i>
-              <div>
-                <h3>Night runs are normal here</h3>
-                <p>Being open 24 hours is the whole point. Late-night flats on the I-10 frontage, early deliveries, Sunday blowouts: dispatch answers.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section tint">
-        <div class="wrap">
-          <div class="mobile-strip">
-            <div>
-              <h3>Stranded right now?</h3>
-              <p>Call (520) 891-9499 and give dispatch your cross streets. The Visit page has everything written down.</p>
-            </div>
-            <a class="btn btn-yellow" href="#/visit" data-page="visit"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Dispatch details</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MOBILE TIRE (category) -->
-    <section class="page" id="page-tire">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Mobile Tire</h2>
-            <div class="rule"></div>
-            <p>A tire shop that drives. Here is what the crew handles from the truck, day and night.</p>
-          </div>
-          <div class="svc-grid">
-            <div class="svc">
-              <i class="fa-solid fa-syringe" aria-hidden="true"></i>
-              <h3>Flat repair</h3>
-              <p>Nails, screws, valve stems. We pull the wheel, fix the leak, and get you rolling without a tow.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
-              <h3>New tires</h3>
-              <p>Give dispatch your tire size and we match it and mount it where the vehicle sits.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-recycle" aria-hidden="true"></i>
-              <h3>Used tires</h3>
-              <p>A solid budget option when a used tire in good shape is the smarter spend. Ask what's on the truck.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-rotate" aria-hidden="true"></i>
-              <h3>Mounting and balancing</h3>
-              <p>Done curbside, with the weights checked so the ride is straight and smooth.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-car-battery" aria-hidden="true"></i>
-              <h3>Stuck calls</h3>
-              <p>Work parking lots, apartments, driveways, shoulders. If a truck can reach you, we can reach you.</p>
-            </div>
-            <div class="svc">
-              <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
-              <h3>Not sure what you need?</h3>
-              <p>Describe the noise, the wobble, or the leak on the phone and dispatch will figure out the run.</p>
-            </div>
-            <div class="svc wide">
-              <i class="fa-solid fa-store-slash" aria-hidden="true"></i>
-              <div>
-                <h3>No showroom. On purpose.</h3>
-                <p>The Silverbell address is our dispatch and mail base, not a store. Save yourself the drive: the fastest way to reach this crew is the phone, any hour.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tread-band thin" aria-hidden="true"></div>
-      <div class="section tint">
-        <div class="wrap">
-          <div class="mobile-strip">
-            <div>
-              <h3>Open 24 hours, every day</h3>
-              <p>Some directory listings show different hours for us. The phone is the source of truth: call and dispatch will confirm the run.</p>
-            </div>
-            <a class="btn btn-yellow" href="#/visit" data-page="visit"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Get the details</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Reviews</h2>
-            <div class="rule"></div>
-            <p>Real notes from drivers this crew has gotten back on the road.</p>
-          </div>
-          <div class="log-list">
-            <div class="log-entry">
-              <span class="tag">LOG<br>01</span>
-              <div>
-                <blockquote>"Best tire buying experience I've had! Very honest, professional, fast and fair priced service got me in and out quick!"</blockquote>
-                <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <span class="who">Google review</span>
-              </div>
-            </div>
-            <div class="log-entry">
-              <span class="tag">LOG<br>02</span>
-              <div>
-                <blockquote>"Amazing service! Quick response! Super friendly!"</blockquote>
-                <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <span class="who">Google review</span>
-              </div>
-            </div>
-            <div class="log-entry">
-              <span class="tag">LOG<br>03</span>
-              <div>
-                <blockquote>"Eric was great, overall great service and fair pricing."</blockquote>
-                <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                <span class="who">Google review</span>
-              </div>
-            </div>
-          </div>
-          <div class="review-summary">
-            <span class="score">4.9 stars with 6 reviews</span>
-            <span>Honest, fast, fair priced: that is the bar this crew holds.</span>
-          </div>
-          <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Mobile%20Tread%20and%20Tire%20Service%2C%20975%20N%20Silverbell%20Rd%2C%20Tucson%2C%20AZ%2085745" target="_blank" rel="noopener">
-              <i class="fa-brands fa-google" aria-hidden="true"></i>
-              <span>See every review on Google<small>Opens Google Maps in a new tab</small></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Visit</h2>
-            <div class="rule"></div>
-            <p>This is a mobile service, so "visiting" usually means calling. Everything you need is on the slip.</p>
-          </div>
-          <div class="visit-grid">
-            <div class="slip">
-              <div class="slip-top"><h3>Run ticket</h3></div>
-              <div class="slip-body">
-                <div class="row">
-                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                  <div><b>Dispatch base</b>975 N Silverbell Rd Unit 85564, Tucson, AZ 85745<span style="display:block;font-size:.88rem;color:var(--ink-3);">A mail and dispatch unit. The crew comes to you.</span></div>
-                </div>
-                <div class="row">
-                  <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                  <div><b>Dispatch line, 24/7</b><a class="slip-phone" href="tel:+15208919499">(520) 891-9499</a></div>
-                </div>
-                <div class="row">
-                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                  <div><b>Hours</b>Open 24 hours <span id="status-chip-visit" class="status-chip" style="margin-left:8px;"><span class="dot"></span>Checking</span></div>
-                </div>
-                <div class="confirm-line">Some directories list different hours for the shop. Call any time and dispatch will confirm.</div>
-              </div>
-              <div class="tear"></div>
-              <div class="slip-foot">Have your cross streets and tire size ready for the fastest run.</div>
-            </div>
-            <div class="form-card">
-              <h3>Request a tire run</h3>
-              <p class="hint">Write it up and dispatch it over. On your phone this opens a text to the crew; on a desktop it copies the note so you can paste it into a text.</p>
-              <form id="quote-form" novalidate>
-                <div class="field">
-                  <label for="f-name">Your name</label>
-                  <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Who's calling in the run">
-                </div>
-                <div class="field">
-                  <label for="f-phone">Your phone number</label>
-                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(520) 555-0100">
-                </div>
-                <div class="field">
-                  <label for="f-msg">What do you need?</label>
-                  <textarea id="f-msg" name="message" required placeholder="Flat driver rear on a Tuesday 2 AM, parked at Grant and Silverbell, tire size 225/65R17..."></textarea>
-                </div>
-                <button class="btn btn-yellow" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to dispatch</button>
-                <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tread-band thin" aria-hidden="true"></div>
-    </section>
-  </main>
-
-  <footer class="site-foot">
-    <div class="foot-in">
-      <div>
-        <h4>Mobile Tread &amp; Tire</h4>
-        <p>Tucson's 24/7 mobile tire service. Flats, new and used tires, mounting and balancing, done where the vehicle sits.</p>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>(520) 891-9499</p>
-        <p>975 N Silverbell Rd Unit 85564<br>Tucson, AZ 85745</p>
-      </div>
-      <div>
-        <h4>Hours</h4>
-        <p>Open 24 hours, every day</p>
-        <p><a href="#/reviews" data-page="reviews">Read our reviews</a></p>
-      </div>
-    </div>
-    <div class="foot-bottom">© Mobile Tread and Tire Service · Tucson, AZ</div>
-  </footer>
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
 </div>
 
+
 <script>
-var BUSINESS = "Mobile Tread and Tire Service";
-var TITLES = { home: "24/7 Mobile Tire Service in Tucson", tire: "Mobile Tire", reviews: "Reviews", visit: "Visit & Dispatch" };
-var PRETTY_PHONE = "(520) 891-9499";
-var PHONE = "+15208919499";
-var CITY_TZ = "America/Phoenix";
-var HOURS = {0:[0,24],1:[0,24],2:[0,24],3:[0,24],4:[0,24],5:[0,24],6:[0,24]};
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileNav=document.getElementById('mobileNav');
+  const modal=document.getElementById('lockModal');
+  const closeBtn=document.getElementById('lockClose');
+  let lastFocus=null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-  document.querySelectorAll(".nav-links a").forEach(function(a){
-    a.classList.toggle("is-here", a.getAttribute("data-page") === id);
-  });
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderStatus(){
-  var s = openState();
-  document.querySelectorAll(".status-chip").forEach(function(chip){
-    chip.classList.toggle("is-open", s.open);
-    chip.classList.toggle("is-closed", !s.open);
-    chip.innerHTML = '<span class="dot"></span>' + s.label;
-  });
-}
-
-var mb = document.getElementById("menu-btn");
-var nl = document.querySelector(".nav-links");
-mb.addEventListener("click", function(){
-  var open = nl.classList.toggle("open");
-  mb.classList.toggle("open", open);
-  mb.setAttribute("aria-expanded", open ? "true" : "false");
-});
-
-var form = document.getElementById("quote-form");
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var phone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  if (!name || !phone || !msg) {
-    document.getElementById("form-feedback").textContent = "Fill in all three lines so dispatch can reach you.";
-    return;
-  }
-  var note = "Tire run request for " + BUSINESS + "\nName: " + name + "\nPhone: " + phone + "\n\n" + msg;
-  var body = encodeURIComponent(note);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(note).then(function(){
-      document.getElementById("form-feedback").textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE + ".";
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',String(open));
+    });
+    document.querySelectorAll('#mobileNav a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',()=>{
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      });
     });
   }
-});
 
-navigateTo(getPageFromHash(), false);
-renderStatus();
+  function openLock(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus && typeof lastFocus.focus==='function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
+    });
+  });
+
+  document.querySelectorAll('form').forEach(form=>{
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      openLock(e.submitter||form);
+    });
+  });
+
+  closeBtn.addEventListener('click',closeLock);
+  modal.addEventListener('click',e=>{if(e.target===modal) closeLock();});
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key==='Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeBtn.focus();
+    }
+    if((e.ctrlKey||e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('gesturechange',e=>e.preventDefault());
+  document.addEventListener('gestureend',e=>e.preventDefault());
+  document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault();},{passive:false});
+})();
 </script>
+
 </body>
 </html>

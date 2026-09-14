@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Columbus Smoke Shop on N High St | Smoke 614</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,6 +240,78 @@ footer.site{ background:var(--scarlet-deep); color:var(--cream); padding:28px 0 
   .chips7{ grid-template-columns:repeat(3,1fr); }
 }
 </style>
+
+<style id="steady-hands-demo-protection">
+html{
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+}
+html,body,*{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+}
+body{
+  background-image:
+    linear-gradient(rgba(8,12,18,.82),rgba(8,12,18,.82)),
+    url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=84") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-attachment:fixed !important;
+}
+.hero{
+  position:relative;
+  background-image:
+    linear-gradient(90deg,rgba(8,12,18,.90),rgba(8,12,18,.52)),
+    url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=84") !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.hero::after{
+  content:"Stock imagery — not the actual business";
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  z-index:20;
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  padding:6px 9px;
+  font:700 10px/1.2 Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+[data-locked="true"]{cursor:pointer}
+.demo-lock-modal{
+  position:fixed;inset:0;z-index:2147483000;display:none;
+  place-items:center;padding:22px;background:rgba(0,0,0,.76);
+}
+.demo-lock-modal.open{display:grid}
+.demo-lock-card{
+  width:min(460px,100%);background:#fff;color:#161616;
+  padding:30px;border:1px solid rgba(0,0,0,.14);
+  box-shadow:0 30px 90px rgba(0,0,0,.42);
+}
+.demo-lock-icon{
+  width:48px;height:48px;display:grid;place-items:center;
+  background:#111;color:#fff;margin-bottom:18px;
+}
+.demo-lock-card h2{
+  margin:0 0 12px;font:800 clamp(24px,5vw,34px)/1.08 Arial,sans-serif;
+  text-transform:none;letter-spacing:0;color:#111;
+}
+.demo-lock-card p{
+  margin:0 0 22px;font:400 16px/1.6 Arial,sans-serif;color:#555;
+}
+.demo-lock-close{
+  width:100%;min-height:48px;border:0;background:#111;color:#fff;
+  font:800 14px/1 Arial,sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;cursor:pointer;
+}
+body.demo-modal-open{overflow:hidden !important}
+@media(max-width:700px){
+  .hero::after{left:12px;right:auto;bottom:10px}
+}
+</style>
+
 </head>
 <body>
 <div class="site-shell">
@@ -340,7 +412,7 @@ footer.site{ background:var(--scarlet-deep); color:var(--cream); padding:28px 0 
         <span class="stars5" aria-label="4.9 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
         <p class="rating-line">4.9 stars with 219 Google reviews</p>
         <div class="link-cards">
-          <a class="link-card solid" href="https://www.google.com/maps/search/?api=1&query=Smoke%20614%2C%202465%20N%20High%20St%2C%20Columbus%2C%20OH%2043202" target="_blank" rel="noopener">
+          <a class="link-card solid" href="#" data-locked="true">
             <i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google
           </a>
         </div>
@@ -358,7 +430,7 @@ footer.site{ background:var(--scarlet-deep); color:var(--cream); padding:28px 0 
         <div class="areacard">
           <div class="ac-head">Text the counter</div>
           <div class="ac-body">
-            <a class="ac-number" href="tel:+13808954600"><span class="ac-code">(380)</span> 895-4600</a>
+            <a class="ac-number" href="#" data-locked="true"><span class="ac-code">(380)</span> 895-4600</a>
             <span class="ac-note">Yes, (380) is right. It is Columbus's newer overlay area code, and it is ours.</span>
             <div class="ac-meta">
               <div><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>2465 N High St, Columbus, OH 43202</span></div>
@@ -377,7 +449,7 @@ footer.site{ background:var(--scarlet-deep); color:var(--cream); padding:28px 0 
             <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="So we can text you back">
             <label for="f-msg">Your message</label>
             <textarea id="f-msg" name="message" placeholder="Ask about a brand, a restock, anything"></textarea>
-            <button class="btn btn-scarlet" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it</button>
+            <button class="btn btn-scarlet" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it</button>
             <p id="form-feedback" role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -495,5 +567,73 @@ if (form) {
   });
 }
 </script>
+
+<div class="demo-lock-modal" id="demoLockModal" role="dialog" aria-modal="true" aria-labelledby="demoLockTitle" aria-describedby="demoLockMessage">
+  <div class="demo-lock-card" tabindex="-1">
+    <div class="demo-lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="demoLockTitle">This is currently locked.</h2>
+    <p id="demoLockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="demo-lock-close" id="demoLockClose" type="button">Close</button>
+  </div>
+</div>
+
+
+<script id="steady-hands-demo-protection-script">
+(function(){
+  var modal = document.getElementById("demoLockModal");
+  var card = modal ? modal.querySelector(".demo-lock-card") : null;
+  var closeBtn = document.getElementById("demoLockClose");
+  var lastFocus = null;
+
+  function openLock(trigger){
+    if(!modal) return;
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add("open");
+    document.body.classList.add("demo-modal-open");
+    setTimeout(function(){ if(card) card.focus(); },0);
+  }
+
+  function closeLock(){
+    if(!modal) return;
+    modal.classList.remove("open");
+    document.body.classList.remove("demo-modal-open");
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener("click",function(e){
+    var locked = e.target.closest('[data-locked="true"]');
+    if(!locked) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(locked);
+  },true);
+
+  document.addEventListener("submit",function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var trigger = e.submitter || e.target;
+    openLock(trigger);
+  },true);
+
+  if(closeBtn) closeBtn.addEventListener("click",closeLock);
+  if(modal) modal.addEventListener("click",function(e){ if(e.target === modal) closeLock(); });
+
+  document.addEventListener("keydown",function(e){
+    if(e.key === "Escape" && modal && modal.classList.contains("open")) closeLock();
+    if(e.key === "Tab" && modal && modal.classList.contains("open")){
+      e.preventDefault();
+      if(closeBtn) closeBtn.focus();
+    }
+  });
+
+  document.addEventListener("gesturestart",function(e){e.preventDefault();});
+  document.addEventListener("gesturechange",function(e){e.preventDefault();});
+  document.addEventListener("gestureend",function(e){e.preventDefault();});
+  document.addEventListener("wheel",function(e){
+    if(e.ctrlKey || e.metaKey) e.preventDefault();
+  },{passive:false});
+})();
+</script>
+
 </body>
 </html>

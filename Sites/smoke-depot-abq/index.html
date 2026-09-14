@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Depot 118 on San Pedro | Smoke Depot Smoke &amp; Grocery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -528,6 +528,85 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
   .crate-days{ grid-template-columns:repeat(2,1fr); }
 }
 </style>
+
+<style>:root{--demo-stock-image:url("https://unsplash.com/photos/aSEA8rcaz2w/download?force=true");}
+
+/* Protected demo updates */
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+}
+body{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+  overflow-x:hidden;
+}
+.hero{
+  background-image:
+    linear-gradient(rgba(18,14,20,.72),rgba(18,14,20,.72)),
+    var(--demo-stock-image) !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.demo-stock-label{
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  z-index:8;
+  padding:7px 9px;
+  background:rgba(0,0,0,.68);
+  color:#fff;
+  font-size:10px;
+  line-height:1.25;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+#demo-lock-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  z-index:2147483646;
+}
+#demo-lock-modal.open{display:flex}
+#demo-lock-modal .demo-lock-dialog{
+  width:min(100%,440px);
+  background:#18151b;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
+  border-top:4px solid #e8763d;
+  padding:28px;
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+#demo-lock-modal h2{
+  margin:0 0 10px;
+  color:#fff;
+  font-size:24px;
+  line-height:1.2;
+}
+#demo-lock-modal p{
+  margin:0 0 20px;
+  color:#d8d2db;
+  line-height:1.6;
+}
+#demo-lock-modal button{
+  width:100%;
+  min-height:46px;
+  border:0;
+  background:#e8763d;
+  color:#fff;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer;
+}
+@media(max-width:700px){
+  .demo-stock-label{left:12px;right:auto}
+}
+</style>
 </head>
 <body>
 <div class="site-shell">
@@ -538,7 +617,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
         <span class="crate-mark" aria-hidden="true"></span>
         <span>
           <span class="brand-name">Smoke Depot</span>
-          <span class="brand-sub">Smoke &amp; Grocery · 118 San Pedro Dr SE</span>
+          <span class="brand-sub">Smoke &amp; Grocery · Albuquerque, NM 87108</span>
         </span>
       </a>
       <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
@@ -561,7 +640,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
           <div>
             <p class="kicker">Depot 118 · Smoke &amp; Grocery</p>
             <h1>The depot on <em>San Pedro Dr SE</em></h1>
-            <p class="lead">Smoke Depot Smoke &amp; Grocery is the crate-stacked stop at 118 San Pedro Drive Southeast: a smoke counter that does honest business and a grocery side that keeps the shelves full, every single day.</p>
+            <p class="lead">Smoke Depot Smoke &amp; Grocery is the crate-stacked stop at Albuquerque, NM 87108: a smoke counter that does honest business and a grocery side that keeps the shelves full, every single day.</p>
             <div class="hero-actions">
               <span class="status-chip" data-status><span class="dot"></span>Checking hours</span>
               <a class="btn btn-ghost" href="#/shop" data-page="shop">Inside the depot</a>
@@ -735,7 +814,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
             <div class="src">4.8 stars with 254 reviews on Google</div>
           </div>
           <div class="link-cards">
-            <a class="review-link" href="https://www.google.com/maps/search/?api=1&query=Smoke%20Depot%2C%20118%20San%20Pedro%20Dr%20SE%2C%20Albuquerque%2C%20NM%2087108" target="_blank" rel="noopener">
+            <a class="review-link" href="#" target="_blank" rel="noopener" data-locked="true">
               <i class="fa-brands fa-google"></i>
               <span><span class="t">See every review on Google</span><span class="s">All ratings and reviews on our Google listing.</span></span>
             </a>
@@ -751,7 +830,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
           <div class="sec-head">
             <div class="sec-rule">Docking</div>
             <h2>Visit the depot</h2>
-            <p>118 San Pedro Dr SE, Albuquerque, NM 87108. Orange sign, crate-stacked windows, hard to miss.</p>
+            <p>Albuquerque, NM 87108. Orange sign, crate-stacked windows, hard to miss.</p>
           </div>
           <div class="visit-grid">
             <div>
@@ -774,7 +853,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
               <p class="hours-note"><i class="fa-solid fa-circle-info"></i> Hours are listed from public directories. Please call to confirm holiday hours.</p>
               <div class="info-card" style="margin-top:16px;">
                 <h3><i class="fa-solid fa-location-dot" style="color:var(--orange-deep);"></i> Find us</h3>
-                <p>118 San Pedro Dr SE<br>Albuquerque, NM 87108</p>
+                <p>Albuquerque, NM 87108<br>Albuquerque, NM 87108</p>
                 <p>Just south of Gibson, on San Pedro Drive Southeast.</p>
               </div>
             </div>
@@ -784,7 +863,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
                 <div class="depot-body">
                   <span class="depot-tag">Depot 118</span>
                   <h3>Call the depot</h3>
-                  <a class="depot-phone" href="tel:+15056102738">(505) 610-2738</a>
+                  <a class="depot-phone" href="#" data-locked="true"></a>
                   <p class="depot-sub">Stock checks and questions: the counter picks up during depot hours.</p>
                 </div>
               </div>
@@ -804,7 +883,7 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
                     <label for="f-msg">Message</label>
                     <textarea id="f-msg" rows="4" placeholder="Hi, do you carry a specific vape or wrap in stock?"></textarea>
                   </div>
-                  <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Send note</button>
+                  <button class="send-btn" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send note</button>
                 </form>
                 <p id="form-feedback" role="status"></p>
               </div>
@@ -825,8 +904,8 @@ footer.site{ background:var(--brown-deep); color:#D3A98F; margin-top:44px; }
         </div>
         <div class="foot-col">
           <h4>Visit</h4>
-          <p>118 San Pedro Dr SE<br>Albuquerque, NM 87108</p>
-          <p class="foot-quiet" style="font-size:.9rem;">Call: <a href="tel:+15056102738">(505) 610-2738</a></p>
+          <p>Albuquerque, NM 87108<br>Albuquerque, NM 87108</p>
+          <p class="foot-quiet" style="font-size:.9rem;">Call: <a href="#" data-locked="true"></a></p>
         </div>
         <div class="foot-col">
           <h4>Hours</h4>
@@ -920,8 +999,8 @@ function renderChips(){
 })();
 renderChips();
 
-var PHONE = "+15056102738";
-var PRETTY = "(505) 610-2738";
+var PHONE = "";
+var PRETTY = "";
 var form = document.getElementById("quote-form");
 var feedback = document.getElementById("form-feedback");
 if (form) {
@@ -933,14 +1012,80 @@ if (form) {
     if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
     var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
     if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
+      /* demo action disabled */
     } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
+      Promise.reject(new Error("demo action disabled"));
       });
     }
   });
 }
 </script>
+
+<div id="demo-lock-modal" aria-hidden="true">
+  <div class="demo-lock-dialog" role="dialog" aria-modal="true" aria-labelledby="demo-lock-title" aria-describedby="demo-lock-message">
+    <h2 id="demo-lock-title">This is currently locked.</h2>
+    <p id="demo-lock-message">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button id="demo-lock-close" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const modal = document.getElementById('demo-lock-modal');
+  const closeBtn = document.getElementById('demo-lock-close');
+  let lastFocus = null;
+
+  function openLock(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.addEventListener('click', (e) => {
+    const locked = e.target.closest('[data-locked="true"]');
+    if(!locked) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(locked);
+  }, true);
+
+  document.addEventListener('submit', (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(e.submitter || e.target);
+  }, true);
+
+  closeBtn.addEventListener('click', closeLock);
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeLock();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeBtn.focus();
+    }
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

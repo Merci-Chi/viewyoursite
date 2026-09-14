@@ -1,588 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <title>Smoke Shop on SE Harrison St | PDX Smoke Shop</title>
+<meta name="description" content="PDX Smoke Shop at 8230 SE Harrison St in Portland. Vapes, glass, wraps, lighters, CBD and Delta products. Open until midnight daily.">
 <link href="https://fonts.googleapis.com/css2?family=Wallpoet&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-/* Harrison PDX: deep forest teal, rose city pink, white, PDX carpet stripe motif */
-:root{
-  --forest:#004D40;
-  --forest-deep:#00332C;
-  --forest-mid:#00695C;
-  --rose:#E91E63;
-  --rose-deep:#C2185B;
-  --rose-soft:#FCE4EC;
-  --mint:#E0F2F1;
-  --white:#FFFFFF;
-}
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{font-family:'Barlow',sans-serif;background:var(--white);color:#22332F;line-height:1.65;}
-h1,h2,h3,.display{font-family:'Wallpoet',cursive;font-weight:400;line-height:1.15;}
-a{color:inherit;}
-.site-shell{min-height:100vh;display:flex;flex-direction:column;}
-main{flex:1 0 auto;}
-footer{flex-shrink:0;}
-.page{display:none;}
-.page.active{display:block;}
-.wrap{max-width:1100px;margin:0 auto;padding:0 22px;}
-
-/* PDX carpet stripe band (abstract diagonal tees) */
-.carpet-band{
-  height:30px;
-  background:
-    radial-gradient(circle at 8px 8px, rgba(233,30,99,.55) 2.5px, transparent 3px),
-    repeating-linear-gradient(45deg, rgba(255,255,255,.14) 0 4px, transparent 4px 16px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,.14) 0 4px, transparent 4px 16px),
-    linear-gradient(90deg, var(--forest-mid), var(--forest) 50%, var(--forest-mid));
-  background-size:32px 32px, auto, auto, auto;
-}
-
-/* Header */
-.topbar{background:var(--forest);color:#fff;position:relative;z-index:50;}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:14px;padding-bottom:14px;}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.brand-mark{
-  width:44px;height:44px;flex-shrink:0;border-radius:8px;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.2) 0 3px, transparent 3px 9px),
-    linear-gradient(135deg, var(--forest-mid), var(--forest-deep));
-  border:2px solid var(--rose);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Wallpoet',cursive;font-size:15px;color:#fff;
-}
-.brand-name{font-family:'Wallpoet',cursive;font-size:19px;line-height:1.1;color:#fff;}
-.brand-name small{display:block;font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--rose);}
-#menu-btn{display:none;background:none;border:2px solid var(--rose);color:#fff;border-radius:10px;font-size:18px;padding:7px 12px;cursor:pointer;}
-#menu-btn.open{background:var(--rose);color:#fff;}
-.nav-links{display:flex;align-items:center;gap:6px;}
-.nav-links a{text-decoration:none;font-weight:700;font-size:15.5px;padding:8px 15px;border-radius:9px;color:#fff;letter-spacing:.4px;}
-.nav-links a:hover{background:rgba(255,255,255,.12);}
-.nav-links a[data-page="visit"]{background:var(--rose);color:#fff;}
-.nav-links a[data-page="visit"]:hover{background:var(--rose-deep);}
-
-/* 21+ band */
-.age-band{background:var(--rose);color:#fff;text-align:center;}
-.age-band .wrap{padding-top:12px;padding-bottom:12px;font-weight:800;font-size:14px;letter-spacing:1.6px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
-
-/* Hero */
-.hero{background:var(--forest);color:#fff;text-align:center;position:relative;overflow:hidden;}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 6px, transparent 6px 26px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,.035) 0 6px, transparent 6px 26px);
-}
-.hero .wrap{position:relative;padding-top:64px;padding-bottom:60px;max-width:840px;}
-.hero-kicker{
-  display:inline-block;background:rgba(233,30,99,.16);border:1.5px solid var(--rose);color:#fff;
-  font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;border-radius:999px;
-  padding:7px 18px;margin-bottom:20px;
-}
-.hero h1{font-size:52px;margin:0 0 14px;color:#fff;}
-.hero h1 em{font-style:normal;color:var(--rose);}
-.hero p.lead{font-size:17.5px;max-width:560px;margin:0 auto 26px;color:#C6E3DD;}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:20px;}
-.btn{display:inline-block;text-decoration:none;font-weight:800;font-size:15.5px;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:.4px;}
-.btn-rose{background:var(--rose);color:#fff;box-shadow:0 10px 24px rgba(233,30,99,.35);}
-.btn-rose:hover{background:var(--rose-deep);}
-.btn-ghost{border:2px solid rgba(255,255,255,.5);color:#fff;background:transparent;}
-.btn-ghost:hover{border-color:var(--rose);color:#F8BBD0;}
-.status-chip{
-  display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);
-  border:1.5px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 17px;
-  font-weight:700;font-size:14.5px;color:#fff;
-}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#90A4AE;}
-.status-chip.open .dot{background:#66BB6A;box-shadow:0 0 0 4px rgba(102,187,106,.25);}
-.hero-rating{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:15px;color:#fff;}
-.hero-rating i{color:var(--rose);}
-.hero-rating b{font-size:19px;}
-
-/* Sections */
-.sec{padding:56px 0;}
-.sec-mint{background:var(--mint);}
-.sec-head{max-width:680px;margin:0 auto 32px;text-align:center;}
-.sec-head h2{font-size:34px;margin:0 0 10px;color:var(--forest);}
-.sec-head h2 em{font-style:normal;color:var(--rose);}
-.sec-head p{margin:0;color:#4E6560;font-size:16.5px;}
-.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:840px;margin:0 auto;}
-.chip{
-  display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--forest);
-  border-radius:999px;padding:11px 20px;font-weight:700;font-size:15px;color:var(--forest);
-}
-.chip i{color:var(--rose);font-size:15px;}
-.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;}
-.feat-card{background:#fff;border:2px solid #CFE5E1;border-radius:14px;padding:26px 24px;}
-.feat-card i{font-size:22px;color:var(--rose);margin-bottom:12px;display:inline-block;}
-.feat-card h3{font-size:19px;margin:0 0 8px;color:var(--forest);letter-spacing:.5px;}
-.feat-card p{margin:0;font-size:15.5px;}
-
-/* Big rating panel */
-.rating-panel{
-  background:var(--forest);border-radius:20px;color:#fff;max-width:640px;margin:0 auto;
-  padding:46px 34px;text-align:center;position:relative;overflow:hidden;
-  box-shadow:0 24px 48px rgba(0,51,44,.28);
-}
-.rating-panel::after{
-  content:"";position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0 5px, transparent 5px 22px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,.04) 0 5px, transparent 5px 22px);
-}
-.rating-panel .big-num{font-family:'Wallpoet',cursive;font-size:88px;line-height:1;color:#fff;position:relative;}
-.rating-panel .big-num span{color:var(--rose);}
-.rating-panel .stars-row{position:relative;margin:10px 0 8px;}
-.rating-panel .stars-row i{color:var(--rose);font-size:21px;margin:0 3px;}
-.rating-panel .count-line{position:relative;font-weight:800;font-size:17px;}
-.rating-panel .sub-line{position:relative;font-size:14.5px;color:#C6E3DD;margin-top:8px;}
-
-/* Link cards */
-.link-cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px;}
-.link-card{display:inline-flex;align-items:center;gap:11px;background:#fff;border:2px solid var(--forest);color:var(--forest);text-decoration:none;font-weight:800;font-size:15.5px;padding:14px 26px;border-radius:12px;}
-.link-card:hover{background:var(--mint);}
-.link-card i{font-size:18px;color:var(--rose);}
-
-/* Page heads */
-.page-head{background:var(--forest-mid);color:#fff;}
-.page-head .wrap{padding-top:44px;padding-bottom:40px;text-align:center;max-width:760px;}
-.page-head h2{font-size:38px;margin:0 0 8px;}
-.page-head p{margin:0;font-size:16.5px;color:#D3EAE5;}
-
-/* Visit */
-.visit-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start;}
-.visit-block{background:#fff;border:2px solid #CFE5E1;border-radius:16px;padding:26px;}
-.visit-block h3{font-size:20px;margin:0 0 14px;color:var(--forest);letter-spacing:.5px;}
-.visit-line{display:flex;align-items:flex-start;gap:11px;margin:0 0 11px;font-size:15.5px;}
-.visit-line i{color:var(--rose);margin-top:4px;width:18px;text-align:center;}
-.day-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.day-chip{border:2px solid #CFE5E1;border-radius:11px;padding:9px 12px;font-size:14px;}
-.day-chip .dn{font-weight:800;color:var(--forest);display:block;font-size:12.5px;letter-spacing:1px;text-transform:uppercase;}
-.day-chip.today{border-color:var(--rose);background:var(--rose-soft);}
-.day-chip.today .dn::after{content:" - today";color:var(--rose-deep);font-weight:800;}
-.confirm-line{display:flex;gap:9px;align-items:flex-start;background:var(--mint);border:2px dashed var(--forest-mid);border-radius:12px;padding:11px 14px;font-size:13.5px;font-weight:700;color:var(--forest);margin-top:14px;}
-.confirm-line i{margin-top:3px;}
-
-/* Walk-in card */
-.walkin-card{
-  background:var(--forest);color:#fff;border-radius:18px;padding:30px;position:relative;overflow:hidden;
-  box-shadow:0 18px 40px rgba(0,51,44,.25);text-align:center;
-}
-.walkin-card::before{
-  content:"";position:absolute;inset:0;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 4px, transparent 4px 16px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,.05) 0 4px, transparent 4px 16px);
-}
-.walkin-card > *{position:relative;}
-.walkin-card .wk-kick{font-weight:800;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);}
-.walkin-card .wk-name{font-family:'Wallpoet',cursive;font-size:25px;margin:8px 0 4px;}
-.walkin-card .wk-addr{font-size:16px;font-weight:700;margin-bottom:4px;}
-.walkin-card .wk-sub{font-size:14px;color:#C6E3DD;margin:0 0 16px;}
-.walkin-card .wk-walkin{
-  display:inline-flex;align-items:center;gap:9px;background:var(--rose);color:#fff;border-radius:999px;
-  padding:10px 20px;font-weight:800;font-size:14.5px;letter-spacing:.6px;
-}
-
-/* Form */
-form{margin-top:4px;}
-.f-field{margin-bottom:14px;}
-.f-field label{display:block;font-weight:800;font-size:13px;letter-spacing:.8px;text-transform:uppercase;color:var(--forest);margin-bottom:6px;}
-.f-field input,.f-field textarea{
-  width:100%;border:2px solid #CFE5E1;border-radius:10px;padding:12px 14px;font-family:'Barlow',sans-serif;
-  font-size:15.5px;color:#22332F;background:#FBFEFD;
-}
-.f-field input:focus,.f-field textarea:focus{outline:none;border-color:var(--rose);}
-#form-feedback{font-weight:800;color:var(--rose-deep);min-height:22px;margin:10px 0 0;}
-.form-note{font-size:13px;color:#6E8680;margin:8px 0 0;}
-
-/* Footer */
-footer{background:var(--forest-deep);color:#CDE4DF;}
-footer .wrap{padding-top:44px;padding-bottom:26px;}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.14);}
-.foot-name{font-family:'Wallpoet',cursive;font-size:21px;color:#fff;margin-bottom:8px;}
-.foot-h{font-weight:800;font-size:12.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--rose);margin:0 0 10px;}
-.foot-line{margin:0 0 8px;font-size:14.5px;}
-.copyright{margin:20px 0 0;text-align:center;font-size:14px;color:#9FC3BC;}
-
-/* Responsive */
-@media (max-width:900px){
-  .hero h1{font-size:40px;}
-  .feat{grid-template-columns:1fr;}
-  .visit-grid{grid-template-columns:1fr;}
-  .foot-grid{grid-template-columns:1fr;gap:20px;}
-  .rating-panel .big-num{font-size:64px;}
-}
-@media (max-width:860px){
-  #menu-btn{display:inline-flex;}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--forest-deep);flex-direction:column;align-items:stretch;padding:12px 18px 16px;gap:4px;}
-  .nav-links.open{display:flex;}
-  .nav-links a{padding:12px 14px;}
-}
-@media (max-width:480px){
-  .hero h1{font-size:33px;}
-  .sec-head h2{font-size:27px;}
-  .page-head h2{font-size:30px;}
-  .day-grid{grid-template-columns:1fr;}
-}
+:root{--forest:#004d40;--forest2:#00332c;--rose:#e91e63;--mint:#e0f2f1;--white:#fff;--ink:#22332f;--muted:#58716c;--line:#cfe2df;--max:1140px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;background:#fff;color:var(--ink);font-family:Barlow,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(0,77,64,.97);color:#fff;border-bottom:4px solid var(--rose)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{font:400 1rem Wallpoet,sans-serif;display:flex;align-items:center;gap:10px}.brand-mark{width:40px;height:40px;border:2px solid var(--rose);display:grid;place-items:center}.desktop{display:flex;gap:26px;font-weight:800}.desktop a:hover{color:#ffc2d5}.menu{display:none;width:46px;height:46px;background:none;border:1px solid var(--rose)}.menu span{display:block;width:24px;height:2px;background:#fff;margin:5px auto}.mobile{display:none;background:var(--forest2);padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:800}
+.agebar{background:var(--rose);color:#fff;text-align:center;padding:10px 20px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+.hero{min-height:700px;display:grid;align-items:end;color:#fff;background:linear-gradient(90deg,rgba(0,51,44,.94),rgba(0,77,64,.58)),url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=84") center/cover;position:relative}.hero .wrap{padding:110px 0 72px}.kicker{display:inline-block;border:1px solid var(--rose);padding:7px 12px;text-transform:uppercase;letter-spacing:.17em;font-weight:800;font-size:.74rem}h1,h2,h3{font-family:Wallpoet,sans-serif;font-weight:400}h1{font-size:clamp(3.6rem,7vw,6rem);line-height:.96;margin:18px 0 22px;max-width:900px}.hero p{max-width:740px;line-height:1.75;color:#d8eeea;font-size:1.05rem}.stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}.stats span{border:1px solid rgba(255,255,255,.28);padding:8px 11px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 20px;border:2px solid transparent;font-weight:800;cursor:pointer}.btn-rose{background:var(--rose);color:#fff}.btn-outline{border-color:#fff;color:#fff}.btn-dark{background:var(--forest2);color:#fff}.asset{position:absolute;right:18px;bottom:14px;font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;background:rgba(0,0,0,.55);padding:7px 9px}
+.section{padding:84px 0;scroll-margin-top:78px}.mint{background:var(--mint)}.eyebrow{font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--rose);font-weight:800}h2{font-size:clamp(2.7rem,5vw,4.5rem);line-height:1;margin:8px 0 18px}.lead{max-width:760px;color:var(--muted);line-height:1.7}.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}.why{background:#fff;border:2px solid var(--line);padding:22px}.why p{color:var(--muted);line-height:1.6}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.chip{padding:10px 14px;border:2px solid var(--forest);font-weight:800;color:var(--forest)}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.product{background:#fff;border-top:4px solid var(--rose);padding:24px}.product p{color:var(--muted);line-height:1.6}
+.rating-box{background:var(--forest);color:#fff;padding:36px;max-width:760px}.big{font:400 5rem Wallpoet;line-height:1}.rating-box p{color:#d8eeea}.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.panel{background:#fff;border:1px solid var(--line);padding:28px}.hours{width:100%;border-collapse:collapse}.hours td{padding:9px 0;border-bottom:1px solid var(--line)}.hours td:last-child{text-align:right;font-weight:800}label{display:block;font-size:.82rem;font-weight:800;margin:12px 0 6px}input,textarea{width:100%;padding:12px;border:1px solid var(--line)}textarea{min-height:110px}footer{background:var(--forest2);color:#c7e0dc;padding:40px 0}.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}footer h3{color:#fff;font-size:1rem}.copy{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);font-size:.8rem}
+.lock-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);z-index:999;padding:20px}.lock-backdrop.open{display:flex}.lock-dialog{width:min(100%,450px);background:#fff;padding:30px;border-top:4px solid var(--rose)}.lock-icon{width:46px;height:46px;background:var(--forest);color:#fff;display:grid;place-items:center}.lock-dialog h2{font-size:1.6rem}.lock-dialog p{color:var(--muted);line-height:1.6}.lock-dialog button{width:100%;padding:12px;background:var(--forest);color:#fff;border:0;font-weight:800}
+@media(max-width:900px){.desktop{display:none}.menu{display:block}.why-grid{grid-template-columns:1fr 1fr}.products{grid-template-columns:1fr}.visit-grid,.foot{grid-template-columns:1fr}}@media(max-width:620px){.wrap{width:min(calc(100% - 28px),var(--max))}h1{font-size:clamp(3rem,15vw,4.8rem)}.why-grid{grid-template-columns:1fr}.buttons{display:grid}.btn{width:100%}.section{padding:66px 0}}
 </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="topbar">
-    <div class="wrap">
-      <a class="brand" href="#/home" data-page="home">
-        <span class="brand-mark">PX</span>
-        <span class="brand-name">PDX Smoke Shop<small>SE Harrison St · Portland</small></span>
-      </a>
-      <button id="menu-btn" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/shop" data-page="shop">The Shop</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <div class="wrap">
-          <span class="hero-kicker">Open till midnight, every night</span>
-          <h1>The smoke shop Portland <em>rates 4.9</em></h1>
-          <p class="lead">PDX Smoke Shop on SE Harrison St keeps the doors open late, seven days a week. Nearly three hundred customers have rated the shop, and the number speaks for itself.</p>
-          <div class="hero-ctas">
-            <a class="btn btn-rose" href="#/shop" data-page="shop">Browse the shop</a>
-            <a class="btn btn-ghost" href="#/visit" data-page="visit">Find us</a>
-          </div>
-          <div class="hero-ctas" style="margin-bottom:0;">
-            <span class="status-chip"><span class="dot"></span><span class="status-text">Checking hours...</span></span>
-            <span class="hero-rating"><i class="fa-solid fa-star"></i> <b>4.9</b> stars with 296 reviews</span>
-          </div>
-        </div>
-      </div>
-      <div class="age-band">
-        <div class="wrap"><i class="fa-solid fa-id-card"></i> 21 and over, valid ID required</div>
-      </div>
-      <div class="carpet-band" role="img" aria-label="Abstract PDX carpet pattern stripe"></div>
+<header><div class="wrap nav"><a class="brand" href="#home"><span class="brand-mark">PX</span> PDX Smoke Shop</a><nav class="desktop"><a href="#shop">The Shop</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#shop">The Shop</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav></header>
+<div class="agebar">21 and over, valid ID required</div>
+<main>
+<section class="hero" id="home"><div class="wrap"><div class="kicker">Open till midnight, every night</div><h1>The smoke shop Portland rates 4.9</h1><p>PDX Smoke Shop on SE Harrison St keeps the doors open late, seven days a week. Nearly three hundred customers have rated the shop, and the number speaks for itself.</p><div class="stats"><span>4.9 stars with 296 reviews</span><span>21 and over, valid ID required</span></div><div class="buttons"><a class="btn btn-rose" href="#shop">Browse the shop</a><a class="btn btn-outline" href="#visit">Find us</a></div></div><div class="asset">Relevant stock smoke-shop retail imagery · not the actual business</div></section>
+<section class="section mint"><div class="wrap"><div class="eyebrow">Why people keep coming back</div><h2>Why people keep coming back</h2><p class="lead">A high rating does not happen by accident. It happens night after night, customer after customer.</p><div class="why-grid"><article class="why"><h3>Late hours, really</h3><p>Doors stay open until midnight, Monday through Sunday. Late shifts and late plans are covered.</p></article><article class="why"><h3>Rated 4.9 by 296 people</h3><p>That is one of the strongest ratings a smoke shop in Portland carries. Read the reviews yourself on Google.</p></article><article class="why"><h3>A real neighborhood shop</h3><p>Straightforward shelves, fair selection, no fuss. Walk in, get what you came for, head home.</p></article><article class="why"><h3>Walk in, no call needed</h3><p>You will find us at 8230 SE Harrison St. Come by in the afternoon or on your way home from a late one.</p></article></div></div></section>
+<section class="section" id="shop"><div class="wrap"><div class="eyebrow">The Shop</div><h2>The Shop</h2><p class="lead">The everyday smoke shop lineup on SE Harrison St, open until midnight every night.</p><h2 style="font-size:2.4rem;margin-top:30px">On the shelves</h2><p class="lead">The standard stock a good smoke shop should carry, kept ready through the late hours.</p><div class="chips"><span class="chip">Vapes</span><span class="chip">Glass</span><span class="chip">Wraps</span><span class="chip">Lighters</span><span class="chip">CBD</span><span class="chip">Delta products</span></div><div class="products"><article class="product"><h3>Vape counter</h3><p>Devices and replacement gear for the daily vaper, with the basics you actually need.</p></article><article class="product"><h3>Glass pieces</h3><p>A glass case worth opening, from simple hand pieces to the conversation starters.</p></article><article class="product"><h3>CBD and Delta</h3><p>The hemp-side shelf, stocked and labeled. Questions? Ask whoever is behind the counter.</p></article></div><div style="margin-top:32px"><h2 style="font-size:2.4rem">Need something after 10 PM?</h2><p class="lead">Most shops in the city are closed by then. This one is not. Doors stay open until midnight, every day of the week.</p></div></div></section>
+<section class="section mint" id="reviews"><div class="wrap"><div class="eyebrow">Reviews</div><h2>Nearly three hundred people have rated this shop on Google.</h2><p class="lead">The number leads, the rest is on Google.</p><div class="rating-box"><div class="big">4.9 /5</div><p><strong>4.9 stars with 296 reviews</strong></p><p>No hand-picked quotes here. The full, unedited review list lives on the shop's Google listing.</p><button class="btn btn-rose" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button></div></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="eyebrow">Visit</div><h2>8230 SE Harrison St, Portland, OR 97216.</h2><p class="lead">Open until midnight, every single night.</p><div class="visit-grid"><div class="panel"><h3>Hours</h3><table class="hours"><tr><td>Sunday</td><td>11:30 AM - midnight</td></tr><tr><td>Monday</td><td>11:00 AM - midnight</td></tr><tr><td>Tuesday</td><td>11:00 AM - midnight</td></tr><tr><td>Wednesday</td><td>11:00 AM - midnight</td></tr><tr><td>Thursday</td><td>11:00 AM - midnight</td></tr><tr><td>Friday</td><td>11:00 AM - midnight</td></tr><tr><td>Saturday</td><td>11:00 AM - midnight</td></tr></table><p>Hours are estimated. Holiday hours can differ, so double-check before a late-night run.</p><button class="btn btn-dark" data-locked="true">Hours and directions</button></div><div class="panel"><h3>Find us</h3><p>8230 SE Harrison St, Portland, OR 97216</p><p>Off SE 82nd Ave on Harrison St, east side</p><p>21 and over, valid ID required at the counter</p><p>No appointment, no call ahead. Just walk in.</p><p><strong>Open till midnight, every day of the week</strong></p><button class="btn btn-dark" data-locked="true">Find us</button></div></div><div class="panel" style="margin-top:28px"><h3>Leave a note for the shop</h3><p>Stock questions, a product you want kept aside, feedback for the crew. Write it here and it copies to your clipboard, ready to bring in.</p><form data-locked-form="true"><label>Your name</label><input type="text"><label>How should we get back to you? (optional)</label><input type="text"><label>Message</label><textarea></textarea><button class="btn btn-rose" type="submit" data-locked="true">Copy my note</button></form><p>Your note copies to the clipboard. Bring it in, or find us on the map and come see us.</p></div></div></section>
+</main>
+<footer><div class="wrap"><div class="foot"><div><h3>PDX Smoke Shop</h3><p>8230 SE Harrison St, Portland, OR 97216</p><p>Walk-in only, no call needed</p></div><div><h3>Hours</h3><p>Mon - Sat 11 AM - midnight<br>Sun 11:30 AM - midnight</p></div><div><h3>Good to know</h3><p>21 and over, valid ID required<br>Rated 4.9 with 296 Google reviews</p></div></div><div class="copy">© PDX Smoke Shop · Portland, OR</div></div></footer>
 
-      <div class="sec">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Why people <em>keep coming back</em></h2>
-            <p>A high rating does not happen by accident. It happens night after night, customer after customer.</p>
-          </div>
-          <div class="feat">
-            <div class="feat-card">
-              <i class="fa-solid fa-clock"></i>
-              <h3>Late hours, really</h3>
-              <p>Doors stay open until midnight, Monday through Sunday. Late shifts and late plans are covered.</p>
-            </div>
-            <div class="feat-card">
-              <i class="fa-solid fa-star"></i>
-              <h3>Rated 4.9 by 296 people</h3>
-              <p>That is one of the strongest ratings a smoke shop in Portland carries. Read the reviews yourself on Google.</p>
-            </div>
-            <div class="feat-card">
-              <i class="fa-solid fa-store"></i>
-              <h3>A real neighborhood shop</h3>
-              <p>Straightforward shelves, fair selection, no fuss. Walk in, get what you came for, head home.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sec sec-mint">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Walk in, <em>no call needed</em></h2>
-            <p>You will find us at 8230 SE Harrison St. Come by in the afternoon or on your way home from a late one.</p>
-          </div>
-          <div class="chips">
-            <span class="chip"><i class="fa-solid fa-location-dot"></i> 8230 SE Harrison St, Portland</span>
-            <span class="chip"><i class="fa-solid fa-moon"></i> Open till midnight</span>
-            <span class="chip"><i class="fa-solid fa-id-card"></i> Bring valid ID, 21+</span>
-          </div>
-          <p style="text-align:center;margin:30px 0 0;"><a class="btn btn-rose" href="#/visit" data-page="visit">Hours and directions</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE SHOP -->
-    <section class="page" id="page-shop">
-      <div class="page-head">
-        <div class="wrap">
-          <h2>The Shop</h2>
-          <p>The everyday smoke shop lineup on SE Harrison St, open until midnight every night.</p>
-        </div>
-      </div>
-      <div class="age-band">
-        <div class="wrap"><i class="fa-solid fa-id-card"></i> 21 and over, valid ID required</div>
-      </div>
-      <div class="sec">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>On the <em>shelves</em></h2>
-            <p>The standard stock a good smoke shop should carry, kept ready through the late hours.</p>
-          </div>
-          <div class="chips">
-            <span class="chip"><i class="fa-solid fa-bolt"></i> Vapes</span>
-            <span class="chip"><i class="fa-solid fa-jar"></i> Glass</span>
-            <span class="chip"><i class="fa-solid fa-scroll"></i> Wraps</span>
-            <span class="chip"><i class="fa-solid fa-fire"></i> Lighters</span>
-            <span class="chip"><i class="fa-solid fa-leaf"></i> CBD</span>
-            <span class="chip"><i class="fa-solid fa-flask"></i> Delta products</span>
-          </div>
-          <div class="feat">
-            <div class="feat-card">
-              <i class="fa-solid fa-bolt"></i>
-              <h3>Vape counter</h3>
-              <p>Devices and replacement gear for the daily vaper, with the basics you actually need.</p>
-            </div>
-            <div class="feat-card">
-              <i class="fa-solid fa-jar"></i>
-              <h3>Glass pieces</h3>
-              <p>A glass case worth opening, from simple hand pieces to the conversation starters.</p>
-            </div>
-            <div class="feat-card">
-              <i class="fa-solid fa-leaf"></i>
-              <h3>CBD and Delta</h3>
-              <p>The hemp-side shelf, stocked and labeled. Questions? Ask whoever is behind the counter.</p>
-            </div>
-          </div>
-          <div class="sec-head" style="margin-top:40px;">
-            <h2>Need something <em>after 10 PM?</em></h2>
-            <p>Most shops in the city are closed by then. This one is not. Doors stay open until midnight, every day of the week.</p>
-            <div style="margin-top:18px;"><a class="btn btn-rose" href="#/visit" data-page="visit">Plan your visit</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <div class="page-head">
-        <div class="wrap">
-          <h2>Reviews</h2>
-          <p>Nearly three hundred people have rated this shop on Google. The number leads, the rest is on Google.</p>
-        </div>
-      </div>
-      <div class="sec">
-        <div class="wrap">
-          <div class="rating-panel">
-            <div class="big-num">4.9<span>/5</span></div>
-            <div class="stars-row">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <div class="count-line">4.9 stars with 296 reviews</div>
-            <p class="sub-line">No hand-picked quotes here. The full, unedited review list lives on the shop's Google listing.</p>
-          </div>
-          <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=PDX%20Smoke%20Shop%2C%208230%20SE%20Harrison%20St%2C%20Portland%2C%20OR%2097216" target="_blank" rel="noopener">
-              <i class="fa-brands fa-google"></i> See every review on Google
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <div class="page-head">
-        <div class="wrap">
-          <h2>Visit</h2>
-          <p>8230 SE Harrison St, Portland, OR 97216. Open until midnight, every single night.</p>
-        </div>
-      </div>
-      <div class="sec">
-        <div class="wrap">
-          <div class="visit-grid">
-            <div class="visit-block">
-              <h3><i class="fa-solid fa-clock" style="color:var(--rose);margin-right:8px;"></i>Hours</h3>
-              <p class="visit-line"><span class="status-chip"><span class="dot"></span><span class="status-text">Checking hours...</span></span></p>
-              <div class="day-grid">
-                <div class="day-chip" data-day="0"><span class="dn">Sunday</span>11:30 AM - midnight</div>
-                <div class="day-chip" data-day="1"><span class="dn">Monday</span>11:00 AM - midnight</div>
-                <div class="day-chip" data-day="2"><span class="dn">Tuesday</span>11:00 AM - midnight</div>
-                <div class="day-chip" data-day="3"><span class="dn">Wednesday</span>11:00 AM - midnight</div>
-                <div class="day-chip" data-day="4"><span class="dn">Thursday</span>11:00 AM - midnight</div>
-                <div class="day-chip" data-day="5"><span class="dn">Friday</span>11:00 AM - midnight</div>
-                <div class="day-chip" data-day="6"><span class="dn">Saturday</span>11:00 AM - midnight</div>
-              </div>
-              <p class="confirm-line"><i class="fa-solid fa-circle-info"></i><span>Hours are estimated. Holiday hours can differ, so double-check before a late-night run.</span></p>
-            </div>
-            <div class="visit-block">
-              <h3><i class="fa-solid fa-location-dot" style="color:var(--rose);margin-right:8px;"></i>Find us</h3>
-              <p class="visit-line"><i class="fa-solid fa-map-pin"></i><span>8230 SE Harrison St, Portland, OR 97216</span></p>
-              <p class="visit-line"><i class="fa-solid fa-road"></i><span>Off SE 82nd Ave on Harrison St, east side</span></p>
-              <p class="visit-line"><i class="fa-solid fa-id-card"></i><span>21 and over, valid ID required at the counter</span></p>
-              <p class="visit-line"><i class="fa-solid fa-door-open"></i><span>No appointment, no call ahead. Just walk in.</span></p>
-            </div>
-          </div>
-
-          <div class="visit-grid" style="align-items:center;margin-top:26px;">
-            <div class="walkin-card">
-              <div class="wk-kick">Walk-in card</div>
-              <div class="wk-name">PDX Smoke Shop</div>
-              <div class="wk-addr">8230 SE Harrison St, Portland, OR 97216</div>
-              <p class="wk-sub">Open till midnight, every day of the week</p>
-              <span class="wk-walkin"><i class="fa-solid fa-door-open"></i> Just walk in</span>
-            </div>
-            <div class="visit-block">
-              <h3>Leave a note for the shop</h3>
-              <p class="visit-line"><i class="fa-solid fa-comment-dots"></i><span>Stock questions, a product you want kept aside, feedback for the crew. Write it here and it copies to your clipboard, ready to bring in.</span></p>
-              <form id="contact-form" novalidate>
-                <div class="f-field">
-                  <label for="f-name">Your name</label>
-                  <input id="f-name" type="text" autocomplete="name" placeholder="First name is fine">
-                </div>
-                <div class="f-field">
-                  <label for="f-back">How should we get back to you? (optional)</label>
-                  <input id="f-back" type="text" placeholder="Email, social handle, or just ask in person">
-                </div>
-                <div class="f-field">
-                  <label for="f-msg">Message</label>
-                  <textarea id="f-msg" rows="4" placeholder="What do you need?"></textarea>
-                </div>
-                <button class="btn btn-rose" type="submit">Copy my note</button>
-                <p id="form-feedback" role="status"></p>
-              </form>
-              <p class="form-note">Your note copies to the clipboard. Bring it in, or find us on the map and come see us.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="foot-grid">
-        <div>
-          <div class="foot-name">PDX Smoke Shop</div>
-          <p class="foot-line">8230 SE Harrison St, Portland, OR 97216</p>
-          <p class="foot-line">Walk-in only, no call needed</p>
-        </div>
-        <div>
-          <p class="foot-h">Hours</p>
-          <p class="foot-line">Mon - Sat 11 AM - midnight</p>
-          <p class="foot-line">Sun 11:30 AM - midnight</p>
-        </div>
-        <div>
-          <p class="foot-h">Good to know</p>
-          <p class="foot-line">21 and over, valid ID required</p>
-          <p class="foot-line">Rated 4.9 with 296 Google reviews</p>
-        </div>
-      </div>
-      <p class="copyright">© PDX Smoke Shop · Portland, OR</p>
-    </div>
-  </footer>
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <div class="lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "PDX Smoke Shop";
-var TITLES = { home: "Smoke Shop on SE Harrison St", shop: "The Shop", reviews: "Reviews", visit: "Visit" };
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = {0:[11.5,24],1:[11,24],2:[11,24],3:[11,24],4:[11,24],5:[11,24],6:[11,24]};
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockModal');
+  const closeBtn = document.getElementById('lockClose');
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }));
   }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
   }
-  return { open: false, label: "Closed" };
-}
-function renderStatus(){
-  var s = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.toggle("open", s.open);
-    c.classList.toggle("closed", !s.open);
-    var tx = c.querySelector(".status-text");
-    if (tx) tx.textContent = s.label;
-  });
-}
-function highlightToday(){
-  var d = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(r){
-    r.classList.toggle("today", Number(r.getAttribute("data-day")) === d);
-  });
-}
-renderStatus();
-highlightToday();
 
-var menuBtn = document.getElementById("menu-btn");
-var navLinks = document.querySelector(".nav-links");
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-  });
-}
+  function closeLocked(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
 
-var form = document.getElementById("contact-form");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var fb = document.getElementById("form-feedback");
-    var name = document.getElementById("f-name").value.trim();
-    var back = document.getElementById("f-back").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) {
-      fb.textContent = "Please add your name and a short message.";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (back ? " (" + back + ")" : "") + ". " + msg;
-    navigator.clipboard.writeText(text).then(function(){
-      fb.textContent = "Copied. Bring it in or find us on the map.";
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
     });
   });
-}
+
+  document.querySelectorAll('form[data-locked-form="true"]').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      openLocked(form.querySelector('[data-locked="true"]') || form);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = [...modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')];
+      if(!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+})();
 </script>
-</body>
-</html>
+
+</body></html>

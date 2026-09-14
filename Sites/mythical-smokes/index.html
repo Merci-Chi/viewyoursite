@@ -2,535 +2,99 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
 <title>Smoke &amp; Vape Shop in River North | Mythical Smokes</title>
-<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;500;600;700&family=Fira+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta name="description" content="Mythical Smokes at 21 W Ontario St in Chicago. Glass, vapes, cigars and smokes. 21 and over, valid ID required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;600;700&family=Fira+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-:root{
-  --night:#2D1B4E; --night-d:#1F1238; --night-l:#3B2663;
-  --ember:#E8763D; --ember-d:#C65B26; --ember-l:#F49B6C;
-  --bone:#F4EDE0; --bone-d:#D8CFBB; --soft:#B9AFCB;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:"Fira Sans",sans-serif;background:var(--night-d);color:var(--bone);line-height:1.65;font-size:17px}
-h1,h2,h3,.display{font-family:"Grenze Gotisch",serif;color:var(--bone);line-height:1.1;margin:0 0 12px;font-weight:600}
-h1{font-size:clamp(38px,5.4vw,62px)}
-h2{font-size:clamp(28px,3.4vw,40px)}
-h3{font-size:23px}
-p{margin:0 0 14px}
-a{color:var(--ember-l)}
-svg{max-width:100%;height:auto}
-.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
-.site-shell{min-height:100vh;display:flex;flex-direction:column}
-main{flex:1 0 auto}
-footer{flex-shrink:0}
-.page{display:none}
-.page.active{display:block}
-
-/* Header */
-.site-header{background:var(--night);border-bottom:2px solid var(--ember);box-shadow:0 0 22px rgba(232,118,61,.28)}
-.head-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--bone)}
-.brand svg{width:40px;height:30px;flex:none}
-.brand-name{font-family:"Grenze Gotisch",serif;font-size:24px;line-height:1;letter-spacing:.5px}
-.brand-sub{display:block;font-family:"Fira Sans",sans-serif;font-size:10.5px;letter-spacing:2.6px;text-transform:uppercase;color:var(--ember-l);margin-top:2px}
-.nav-links{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}
-.nav-links a{display:block;color:var(--bone);text-decoration:none;font-weight:700;font-size:15px;padding:9px 14px;border:1.5px solid transparent;border-radius:8px}
-.nav-links a:hover{border-color:var(--ember)}
-.nav-links a[aria-current="page"]{border-color:var(--ember);background:rgba(232,118,61,.14);color:var(--ember-l)}
-.menu-btn{display:none;background:transparent;border:2px solid var(--ember);border-radius:8px;padding:9px 11px;cursor:pointer}
-.menu-btn span{display:block;width:20px;height:2px;background:var(--bone);margin:4px 0;transition:transform .2s}
-.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.menu-btn.open span:nth-child(2){opacity:0}
-.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-
-/* Buttons */
-.btn{display:inline-block;font-family:"Fira Sans",sans-serif;font-weight:800;font-size:16px;padding:13px 26px;border-radius:10px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s, box-shadow .15s}
-.btn:hover{transform:translateY(-2px)}
-.btn-ember{background:var(--ember);color:#241333;box-shadow:0 0 20px rgba(232,118,61,.4)}
-.btn-ember:hover{background:var(--ember-l)}
-.btn-ghost{border-color:var(--ember);color:var(--ember-l);background:transparent}
-.btn-ghost:hover{background:rgba(232,118,61,.12)}
-
-/* Status chip */
-.status-chip{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;letter-spacing:.6px;padding:8px 16px;border-radius:8px;background:var(--night);border:1.5px solid var(--night-l);color:var(--bone)}
-.status-chip .dot{width:10px;height:10px;border-radius:50%;background:#8F86A8;flex:none}
-.status-chip.chip-open .dot{background:#3FBF7F;box-shadow:0 0 0 4px rgba(63,191,127,.2), 0 0 10px rgba(63,191,127,.6)}
-.status-chip.chip-closed .dot{background:#C4553F;box-shadow:0 0 0 4px rgba(196,85,63,.18)}
-
-/* Age gate banner */
-.age-banner{display:flex;align-items:center;gap:13px;background:rgba(232,118,61,.1);border:1.5px solid var(--ember);border-radius:12px;padding:13px 18px;color:var(--ember-l);font-weight:700}
-.age-banner i{font-size:19px}
-.age-banner b{color:#fff}
-
-/* Hero */
-.hero{padding:56px 0 48px;text-align:center;position:relative}
-.hero::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:640px;height:640px;border-radius:50%;background:radial-gradient(circle, rgba(232,118,61,.14) 0%, rgba(232,118,61,0) 66%);pointer-events:none}
-.griffin{width:min(240px,58%);margin:0 auto 4px;display:block}
-.hero h1{text-shadow:0 0 26px rgba(232,118,61,.45)}
-.hero .tag{font-family:"Grenze Gotisch",serif;font-size:clamp(19px,2.4vw,26px);color:var(--ember-l);letter-spacing:1px;margin-bottom:14px}
-.hero p.lede{font-size:18.5px;color:var(--soft);max-width:56ch;margin:0 auto 18px}
-.hero-ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:20px}
-
-/* Section base */
-.section{padding:54px 0}
-.section-head{max-width:680px;margin:0 auto 36px;text-align:center}
-.section-head p{color:var(--soft)}
-.glow-rule{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 16px}
-.glow-rule i{color:var(--ember);font-size:10px;text-shadow:0 0 8px rgba(232,118,61,.9)}
-.glow-rule span{width:70px;height:2px;background:linear-gradient(90deg,transparent,var(--ember),transparent)}
-
-/* Goods grid */
-.goods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.good{position:relative;background:var(--night);border:1.5px solid var(--night-l);border-radius:14px;padding:24px 22px;box-shadow:inset 0 0 0 1px rgba(232,118,61,.08);transition:transform .15s, box-shadow .15s, border-color .15s}
-.good:hover{transform:translateY(-3px);border-color:var(--ember);box-shadow:0 0 24px rgba(232,118,61,.22)}
-.good i{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:rgba(232,118,61,.14);color:var(--ember-l);font-size:19px;margin-bottom:13px}
-.good h3{font-size:21px}
-.good p{margin:0;font-size:15.5px;color:var(--soft)}
-
-/* Hours two-band board */
-.boards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:820px;margin:0 auto}
-.board{background:var(--night);border:1.5px solid var(--night-l);border-radius:14px;padding:26px 26px 22px;text-align:center;position:relative}
-.board.weekend{border-color:var(--ember);box-shadow:0 0 22px rgba(232,118,61,.2)}
-.board .flame{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50%;background:var(--night-d);border:1.5px solid var(--ember);display:flex;align-items:center;justify-content:center;color:var(--ember);font-size:14px}
-.board h3{font-size:24px;color:var(--ember-l)}
-.board .times{font-family:"Grenze Gotisch",serif;font-size:30px;color:var(--bone)}
-.board p{color:var(--soft);font-size:14.5px;margin:6px 0 0}
-.day-runes{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;max-width:820px;margin:18px auto 0;list-style:none;padding:0}
-.day-runes li{background:var(--night);border:1.5px solid var(--night-l);border-radius:10px;text-align:center;padding:9px 4px;font-weight:700;font-size:13.5px;color:var(--bone)}
-.day-runes li span{display:block;font-size:11.5px;color:var(--soft);font-weight:600;margin-top:2px}
-.day-runes li.today{border-color:var(--ember);color:var(--ember-l);box-shadow:0 0 14px rgba(232,118,61,.3)}
-.day-runes li.today span{color:var(--ember-l)}
-
-/* Reviews */
-.quote-card{position:relative;background:var(--bone);color:var(--night-d);border-radius:14px;padding:28px 28px 20px;margin-bottom:18px;max-width:760px;box-shadow:0 0 0 2px rgba(232,118,61,.35), 0 10px 26px rgba(0,0,0,.3)}
-.quote-card blockquote{margin:0 0 14px;font-size:19px;font-weight:600;font-style:italic;line-height:1.5}
-.quote-meta{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.stars i{color:var(--ember-d);font-size:14px;margin-right:3px}
-.quote-src{font-size:13px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#7A6E8E}
-.rating-summary{background:var(--night);border:1.5px solid var(--ember);border-radius:14px;padding:22px 26px;max-width:760px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 0 22px rgba(232,118,61,.16)}
-.rating-summary .big{font-family:"Grenze Gotisch",serif;font-size:42px;color:var(--ember-l);line-height:1}
-.rating-summary p{margin:0;color:var(--soft);font-weight:600}
-.link-card{display:flex;align-items:center;gap:14px;background:var(--night);border:1.5px solid var(--night-l);border-radius:14px;padding:18px 20px;max-width:760px;margin-top:16px;text-decoration:none;color:var(--bone);font-weight:700;transition:transform .15s, box-shadow .15s, border-color .15s}
-.link-card:hover{transform:translateY(-2px);border-color:var(--ember);box-shadow:0 0 20px rgba(232,118,61,.2)}
-.link-card i{width:42px;height:42px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--ember);color:#241333;font-size:17px}
-.link-card small{display:block;font-weight:500;color:var(--soft)}
-
-/* Visit page */
-.visit-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:start}
-.rune-card{background:var(--night);border:1.5px solid var(--night-l);border-radius:18px;padding:32px 28px;text-align:center}
-.coin{position:relative;width:190px;height:190px;border-radius:50%;margin:0 auto 18px;background:radial-gradient(circle at 35% 30%, var(--night-l), var(--night-d));border:3px solid var(--ember);box-shadow:0 0 0 5px var(--night-d), 0 0 0 6px var(--ember), 0 0 30px rgba(232,118,61,.35);display:flex;align-items:center;justify-content:center}
-.coin svg{width:84px}
-.coin-caption{font-family:"Grenze Gotisch",serif;color:var(--ember-l);letter-spacing:2px;font-size:15px;margin-bottom:16px}
-.rune-card .addr{color:var(--soft);font-weight:600;margin-bottom:18px}
-.tel-big{display:inline-flex;align-items:center;gap:11px;background:var(--ember);color:#241333;text-decoration:none;font-weight:800;font-size:21px;padding:13px 24px;border-radius:10px;box-shadow:0 0 22px rgba(232,118,61,.4)}
-.tel-big:hover{background:var(--ember-l)}
-.walkin{margin:16px 0 0;font-size:14.5px;color:var(--soft)}
-.hood{margin-top:18px;font-size:13.5px;color:var(--soft);letter-spacing:1.4px;text-transform:uppercase;font-weight:700}
-
-/* Form */
-.form-card{background:var(--night);border:1.5px solid var(--night-l);border-radius:18px;padding:30px 28px}
-.form-card h3{display:flex;align-items:center;gap:10px}
-.form-card h3 i{color:var(--ember)}
-.field{margin-bottom:15px}
-.field label{display:block;font-weight:700;font-size:14px;letter-spacing:.6px;margin-bottom:6px;color:var(--ember-l)}
-.field input,.field textarea{width:100%;font-family:"Fira Sans",sans-serif;font-size:16px;padding:12px 14px;border:1.5px solid var(--night-l);border-radius:10px;background:var(--night-d);color:var(--bone)}
-.field input::placeholder,.field textarea::placeholder{color:#7F7598}
-.field input:focus,.field textarea:focus{outline:2px solid var(--ember);border-color:var(--ember)}
-.field textarea{min-height:110px;resize:vertical}
-.form-feedback{min-height:24px;font-weight:700;color:var(--ember-l);margin:12px 0 0}
-.form-fine{font-size:13px;color:var(--soft);margin:6px 0 0}
-
-/* Footer */
-.site-footer{background:var(--night);border-top:2px solid var(--ember)}
-.foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px;padding:44px 0 26px}
-.foot-grid h4{font-family:"Grenze Gotisch",serif;color:var(--ember-l);font-size:20px;margin:0 0 10px}
-.foot-grid p,.foot-grid li{font-size:14.5px;color:var(--soft)}
-.foot-grid ul{list-style:none;margin:0;padding:0}
-.foot-grid li{margin-bottom:7px}
-.foot-grid a{color:var(--bone)}
-.foot-tel{display:inline-block;margin-top:8px;font-weight:800;font-size:17px;color:var(--ember-l);text-decoration:none}
-.foot-tel:hover{color:var(--bone)}
-.copyright{text-align:center;font-size:14px;padding:16px 0 22px;border-top:1px solid rgba(244,237,224,.14);margin:0;color:var(--soft)}
-.copyright p{margin:0}
-
-/* Responsive */
-@media (max-width:900px){
-  .goods{grid-template-columns:repeat(2,1fr)}
-  .boards{grid-template-columns:1fr}
-  .visit-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:640px){
-  body{font-size:16px}
-  .goods,.foot-grid{grid-template-columns:1fr}
-  .day-runes{grid-template-columns:repeat(4,1fr)}
-  .menu-btn{display:block}
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--night);flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;border-bottom:2px solid var(--ember);box-shadow:0 14px 26px rgba(0,0,0,.4)}
-  .nav-links.open{display:flex}
-  .site-header{position:relative;z-index:50}
-  .hero{padding:44px 0 40px}
-}
+:root{--night:#1a102b;--violet:#2d1b4e;--ember:#e8763d;--ember2:#f49b6c;--bone:#f4ede0;--muted:#b8aec9;--line:rgba(255,255,255,.14);--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:var(--bone);font-family:"Fira Sans",sans-serif;line-height:1.65;overflow-x:hidden;-webkit-user-select:none;user-select:none;-webkit-text-size-adjust:100%}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}.site-header{position:fixed;inset:0 0 auto;z-index:50;height:74px;background:rgba(26,16,43,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.head{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font-family:"Grenze Gotisch";font-size:1.7rem;color:var(--bone)}.brand small{display:block;font:700 .62rem "Fira Sans";letter-spacing:.15em;text-transform:uppercase;color:var(--ember2)}nav{display:flex;gap:25px}nav a{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.menu{display:none;width:44px;height:44px;border:1px solid var(--ember);background:transparent;color:#fff}.hero{min-height:100svh;padding:124px 0 68px;display:flex;align-items:flex-end;background:linear-gradient(90deg,rgba(20,10,33,.97),rgba(20,10,33,.72),rgba(20,10,33,.25)),url("https://images.unsplash.com/photo-1521484965365-1f33d0c39b68?auto=format&fit=crop&w=2000&q=85") center/cover}.hero-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:60px;align-items:end}.eyebrow{color:var(--ember2);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:800}.hero h1,.title{font-family:"Grenze Gotisch";font-weight:600}.hero h1{font-size:clamp(4.5rem,10vw,8.5rem);line-height:.82;margin:10px 0}.hero h1 span{color:var(--ember2);display:block}.lead{max-width:720px;color:#ddd3e6;font-size:1.1rem}.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{min-height:48px;padding:12px 18px;border:1px solid var(--line);background:transparent;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}.btn.primary{background:var(--ember);border-color:var(--ember);color:#211329}.hero-card{padding:27px;background:rgba(45,27,78,.78);border:1px solid rgba(232,118,61,.35);box-shadow:0 25px 65px rgba(0,0,0,.35)}.hero-card strong{display:block}.hero-card hr{border:0;border-top:1px solid var(--line);margin:17px 0}.stars{color:var(--ember2)}.age{margin-top:15px;color:#ddd3e6}.band{background:var(--ember);color:#26142f;padding:13px;text-align:center;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.section{padding:105px 0}.dark2{background:#24143d}.cream{background:var(--bone);color:#231932}.section .title{font-size:clamp(3rem,6vw,5.4rem);line-height:.95;margin:0}.goods{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid var(--line);margin-top:40px}.good{padding:27px;background:#24143d}.good i{color:var(--ember2);font-size:1.3rem}.good h3{font-family:"Grenze Gotisch";font-size:1.55rem;margin:14px 0 8px}.good p{margin:0;color:var(--muted)}.hours{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}.hourbox{padding:30px;border:1px solid var(--line);background:rgba(255,255,255,.03)}.hourbox h3{font-family:"Grenze Gotisch";font-size:2rem;color:var(--ember2);margin:0}.reviews{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(35,25,50,.12);border:1px solid rgba(35,25,50,.12);margin-top:38px}.review{padding:32px;background:var(--bone);font-family:"Grenze Gotisch";font-size:1.5rem}.visit{background:linear-gradient(90deg,rgba(19,10,32,.97),rgba(19,10,32,.77)),url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=85") center/cover}.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px}.info{border-top:1px solid var(--line);margin-top:30px}.info-row{padding:17px 0;border-bottom:1px solid var(--line);display:flex;gap:14px}.info-row i{color:var(--ember2);margin-top:5px}.stock-note{font-size:.75rem;color:var(--muted);margin-top:18px}.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.8)}.modal.open{display:flex}.modal-box{width:min(100%,460px);padding:30px;background:#24143d;border:1px solid var(--ember)}.modal-icon{color:var(--ember2);font-size:1.3rem}.modal h2{font-family:"Grenze Gotisch";font-size:2rem}.modal .btn{width:100%}
+footer{padding:28px 0;background:#0f0918;color:#b8aec9}
+@media(max-width:850px){.hero-grid,.visit-grid{grid-template-columns:1fr}.goods{grid-template-columns:1fr 1fr}.hero h1{font-size:clamp(4rem,17vw,6.5rem)}}
+@media(max-width:700px){.wrap{width:min(calc(100% - 28px),var(--max))}.site-header{height:66px}nav{position:absolute;top:66px;left:0;right:0;display:none;flex-direction:column;gap:0;background:#1a102b;padding:14px}nav.open{display:flex}nav a{padding:13px 6px;border-bottom:1px solid var(--line)}.menu{display:grid;place-items:center}.hero{padding-top:110px}.goods,.hours,.reviews{grid-template-columns:1fr}.section{padding:78px 0}}
 </style>
 </head>
 <body>
-<div class="site-shell">
-<header class="site-header">
-  <div class="wrap head-row">
-    <a class="brand" href="#/home" data-page="home" aria-label="Mythical Smokes home">
-      <svg viewBox="0 0 40 30" aria-hidden="true"><path d="M4 26 C7 16 14 10 24 8 C18 15 16 21 18 26 Z" fill="#E8763D"/><path d="M24 8 C30 3 37 3 39 5 L34 8 C35 13 32 17 27 18 C23 19 20 15 21 11 Z" fill="#E8763D"/><circle cx="30" cy="9" r="1.8" fill="#2D1B4E"/></svg>
-      <span class="brand-name">Mythical Smokes<span class="brand-sub">Ontario St · River North</span></span>
-    </a>
-    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav aria-label="Main navigation">
-      <ul class="nav-links">
-        <li><a href="#/home" data-page="home">Home</a></li>
-        <li><a href="#/shop" data-page="shop">The Shop</a></li>
-        <li><a href="#/reviews" data-page="reviews">Reviews</a></li>
-        <li><a href="#/visit" data-page="visit">Visit</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
+<header class="site-header"><div class="wrap head"><a class="brand" href="#home">Mythical Smokes<small>Ontario St · River North</small></a><nav id="mainNav"><a href="#home">Home</a><a href="#shop">The Shop</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="menu" id="menuBtn" aria-expanded="false" type="button"><i class="fa-solid fa-bars"></i></button></div></header>
 <main>
-<!-- ============ HOME ============ -->
-<section class="page" id="page-home">
-  <div class="wrap hero">
-    <svg class="griffin" viewBox="0 0 240 160" role="img" aria-label="Ember griffin mark of Mythical Smokes">
-      <g fill="#E8763D">
-        <path d="M28 132 C36 84 72 50 124 42 C104 62 98 84 102 104 C88 90 72 90 62 100 C72 108 78 120 78 132 Z"/>
-        <path d="M124 42 C138 22 166 14 186 24 L214 18 L194 38 C196 58 186 74 168 80 C150 86 132 78 124 62 Z"/>
-        <path d="M214 18 L234 32 L204 44 Z"/>
-      </g>
-      <circle cx="174" cy="40" r="5" fill="#F4EDE0"/>
-      <path d="M60 140 C110 152 160 152 196 140 L206 154 L50 154 Z" fill="#3B2663" stroke="#E8763D" stroke-width="3"/>
-    </svg>
-    <p class="tag">Of Ontario Street, Chicago</p>
-    <h1>The legend of 21 W Ontario</h1>
-    <div class="status-chip" role="status"><span class="dot"></span>Checking hours...</div>
-    <p class="lede">A glass case with actual legends in it: hand pipe art, vape shelves, wraps, and a weekend that runs till 1 AM. River North and Gold Coast regulars already know. Everyone else is about to.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-ember" href="#/shop" data-page="shop">Enter the shop</a>
-      <a class="btn btn-ghost" href="#/visit" data-page="visit">Find us</a>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="age-banner">
-      <i class="fa-solid fa-id-card"></i>
-      <span><b>21 and over only.</b> Valid ID required at the counter, no exceptions, no matter the quest.</span>
-    </div>
-  </div>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="glow-rule" aria-hidden="true"><span></span><i class="fa-solid fa-diamond"></i><span></span></div>
-        <h2>Tales from the case</h2>
-        <p>The stock rotates like a saga. These chapters are always in.</p>
-      </div>
-      <div class="goods">
-        <div class="good"><i class="fa-solid fa-wind"></i><h3>Glass</h3><p>Hand pipes, water pieces and the "really chill, nice glass" shelf our reviewers keep mentioning.</p></div>
-        <div class="good"><i class="fa-solid fa-bolt"></i><h3>Vapes &amp; Pens</h3><p>Disposables, batteries and pens, with staff who actually explain the difference.</p></div>
-        <div class="good"><i class="fa-solid fa-joint"></i><h3>Wraps &amp; Papers</h3><p>Every wrap flavor and paper size a rolling session could ask for.</p></div>
-        <div class="good"><i class="fa-solid fa-fire"></i><h3>Cigars</h3><p>A humidor-corner selection for the slow evenings and the fast celebrations.</p></div>
-        <div class="good"><i class="fa-solid fa-leaf"></i><h3>CBD &amp; Delta</h3><p>Hemp-derived CBD and Delta 8 and 9 products, labeled plainly and rung up with your ID.</p></div>
-        <div class="good"><i class="fa-solid fa-fire-flame-curved"></i><h3>Torches &amp; Tools</h3><p>Lighters, torches, grinders and the small gear that finishes the kit.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:8px">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Hours of the realm</h2>
-        <p>Ten till ten most days. Fridays and Saturdays, the ember burns past midnight.</p>
-      </div>
-      <div class="boards">
-        <div class="board">
-          <h3>Sun - Thu</h3>
-          <div class="times">10 AM - 10 PM</div>
-          <p>The standard watch. In and out, case fully stocked.</p>
-        </div>
-        <div class="board weekend">
-          <span class="flame"><i class="fa-solid fa-fire"></i></span>
-          <h3>Fri - Sat</h3>
-          <div class="times">10 AM - 1 AM</div>
-          <p>The late watch. The weekend runs two hours deeper.</p>
-        </div>
-      </div>
-      <ul class="day-runes">
-        <li data-day="0">Sun<span>10 - 10</span></li>
-        <li data-day="1">Mon<span>10 - 10</span></li>
-        <li data-day="2">Tue<span>10 - 10</span></li>
-        <li data-day="3">Wed<span>10 - 10</span></li>
-        <li data-day="4">Thu<span>10 - 10</span></li>
-        <li data-day="5">Fri<span>10 - 1</span></li>
-        <li data-day="6">Sat<span>10 - 1</span></li>
-      </ul>
-    </div>
-  </section>
-</section>
-
-<!-- ============ THE SHOP ============ -->
-<section class="page" id="page-shop">
-  <div class="wrap section">
-    <div class="section-head">
-      <p class="eyebrow" style="color:var(--ember-l);letter-spacing:2.6px;text-transform:uppercase;font-weight:800;font-size:13px">The Shop</p>
-      <h2>Step past the velvet hour</h2>
-      <p>Medieval-heart shop, modern shelves. Everything on this page is rung up after your ID is.</p>
-    </div>
-
-    <div class="age-banner" style="margin-bottom:26px">
-      <i class="fa-solid fa-shield-halved"></i>
-      <span>We card <b>every single time</b>. 21 and over, valid ID required. It keeps the whole thing legendary and legal.</span>
-    </div>
-
-    <div class="goods">
-      <div class="good"><i class="fa-solid fa-wind"></i><h3>The glass wall</h3><p>Hand pipes, bubblers and water pieces from small studios and steady brands. The case gets new arrivals often enough that regulars always re-scan it.</p></div>
-      <div class="good"><i class="fa-solid fa-bolt"></i><h3>The vape counter</h3><p>Disposables, pod systems, batteries and chargers. Say how you actually use it and the counter will match you to the right one instead of the priciest one.</p></div>
-      <div class="good"><i class="fa-solid fa-joint"></i><h3>Wraps, papers &amp; rollers</h3><p>Flavored wraps, classic papers, cones and rolling trays. Grab a full kit or a single pack for tonight.</p></div>
-      <div class="good"><i class="fa-solid fa-fire"></i><h3>Cigars &amp; smokes</h3><p>A compact, kept-fresh selection of cigars and cigarette brands, with torches and cutters on the same shelf.</p></div>
-      <div class="good"><i class="fa-solid fa-leaf"></i><h3>CBD &amp; Delta shelf</h3><p>Hemp CBD and Delta 8 and 9 items in gummies, carts and flower, all hemp-derived and all ID-checked like everything else.</p></div>
-      <div class="good"><i class="fa-solid fa-gift"></i><h3>Gifts &amp; oddities</h3><p>Stash jars, incense, stickers and the small mythical extras that make good presents for the person who has everything.</p></div>
-    </div>
-
-    <div class="rating-summary" style="margin-top:30px">
-      <span class="big">4.7</span>
-      <p>4.7 stars on Google. People really do call it a chill spot. See the reviews page for their exact words.</p>
-      <a class="btn btn-ghost" href="#/reviews" data-page="reviews" style="margin-left:auto">Read the reviews</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ REVIEWS ============ -->
-<section class="page" id="page-reviews">
-  <div class="wrap section">
-    <div class="section-head">
-      <p class="eyebrow" style="color:var(--ember-l);letter-spacing:2.6px;text-transform:uppercase;font-weight:800;font-size:13px">Reviews</p>
-      <h2>Word from the travelers</h2>
-      <p>Two who stopped by, in their own writing, exactly as posted.</p>
-    </div>
-
-    <div class="quote-card">
-      <blockquote>"Really chill, nice glass.."</blockquote>
-      <div class="quote-meta">
-        <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-        <span class="quote-src">Google review</span>
-      </div>
-    </div>
-
-    <div class="quote-card">
-      <blockquote>"Super chill spot, was in town for work and stopped by."</blockquote>
-      <div class="quote-meta">
-        <span class="stars" aria-label="5 star icons"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-        <span class="quote-src">Google review</span>
-      </div>
-    </div>
-
-    <div class="rating-summary">
-      <span class="big">4.7</span>
-      <p>4.7 stars on Google. The score stays exactly as Google shows it, good days and all.</p>
-    </div>
-
-    <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Mythical%20Smokes%2C%2021%20W%20Ontario%20St%2C%20Chicago%2C%20IL%2060654" target="_blank" rel="noopener">
-      <i class="fa-brands fa-google"></i>
-      <span>See every review on Google<small>Open our Google listing</small></span>
-    </a>
-  </div>
-</section>
-
-<!-- ============ VISIT ============ -->
-<section class="page" id="page-visit">
-  <div class="wrap section">
-    <div class="section-head">
-      <p class="eyebrow" style="color:var(--ember-l);letter-spacing:2.6px;text-transform:uppercase;font-weight:800;font-size:13px">Visit</p>
-      <h2>Find the lair</h2>
-      <p>Downtown by River North and the Gold Coast, steps off the Magnificent Mile rush. Bring your ID.</p>
-    </div>
-
-    <div class="visit-grid">
-      <div>
-        <div class="rune-card">
-          <div class="coin" aria-hidden="true">
-            <svg viewBox="0 0 84 96">
-              <g stroke="#E8763D" stroke-width="7" stroke-linecap="round" fill="none">
-                <path d="M42 10 V86"/>
-                <path d="M42 48 L14 14"/>
-                <path d="M42 48 L70 14"/>
-                <path d="M42 48 L14 82"/>
-                <path d="M42 48 L70 82"/>
-              </g>
-            </svg>
-          </div>
-          <div class="coin-caption">THE RUNE COIN OF ONTARIO ST</div>
-          <p class="addr"><i class="fa-solid fa-location-dot"></i> 21 W Ontario St, Chicago, IL 60654</p>
-          <a class="tel-big" href="tel:+13123662137"><i class="fa-solid fa-phone"></i> (312) 366-2137</a>
-          <p class="walkin"><i class="fa-solid fa-door-open"></i> Sun - Thu 10 AM - 10 PM · Fri - Sat till 1 AM</p>
-          <p class="hood">River North / Gold Coast · 21 with valid ID</p>
-        </div>
-      </div>
-
-      <div class="form-card">
-        <h3><i class="fa-solid fa-scroll"></i> Send word to the shop</h3>
-        <p style="color:var(--soft)">Ask what is on the shelf today, or whether a piece you saw is still in. Quick answers, no riddles.</p>
-        <form id="note-form" novalidate>
-          <div class="field">
-            <label for="f-name">Your name</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jordan P.">
-          </div>
-          <div class="field">
-            <label for="f-phone">Your phone <span style="font-weight:500;color:var(--soft)">(optional)</span></label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(312) 555-0100">
-          </div>
-          <div class="field">
-            <label for="f-msg">Your message</label>
-            <textarea id="f-msg" name="message" placeholder="Do you still have the amber hand pipe from the case?"></textarea>
-          </div>
-          <button class="btn btn-ember" type="submit"><i class="fa-solid fa-paper-plane"></i> Send message</button>
-          <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-          <p class="form-fine">On a phone, this opens your text app with the message ready. On a computer, it copies the message so you can paste it into a text to the shop.</p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="hero" id="home"><div class="wrap hero-grid"><div><p class="eyebrow">Of Ontario Street, Chicago</p><h1>The legend of <span>21 W Ontario</span></h1><p class="lead">A glass case with actual legends in it: hand pipe art, vape shelves, wraps, and a weekend that runs till 1 AM. River North and Gold Coast regulars already know. Everyone else is about to.</p><div class="btns"><a class="btn" href="#shop"><i class="fa-solid fa-scroll"></i> Enter the shop</a><a class="btn" href="#visit"><i class="fa-solid fa-location-dot"></i> Find us</a></div></div><aside class="hero-card"><strong>21 and over only.</strong><p>Valid ID required at the counter, no exceptions, no matter the quest.</p><hr><strong>4.7 stars on Google</strong><div class="stars"><i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i></div><hr><strong>(312) 366-2137</strong></aside></div></section>
+<div class="band">Sun - Thu 10 AM - 10 PM · Fri - Sat 10 AM - 1 AM</div>
+<section class="section dark2" id="shop"><div class="wrap"><p class="eyebrow">Tales from the case</p><h2 class="title">The stock rotates like a saga.</h2><p class="lead">These chapters are always in.</p><div class="goods">
+<article class="good"><i class="fa-solid fa-flask"></i><h3>Glass</h3><p>Hand pipes, water pieces and the "really chill, nice glass" shelf our reviewers keep mentioning.</p></article>
+<article class="good"><i class="fa-solid fa-battery-three-quarters"></i><h3>Vapes &amp; Pens</h3><p>Disposables, batteries and pens, with staff who actually explain the difference.</p></article>
+<article class="good"><i class="fa-solid fa-scroll"></i><h3>Wraps &amp; Papers</h3><p>Every wrap flavor and paper size a rolling session could ask for.</p></article>
+<article class="good"><i class="fa-solid fa-smoking"></i><h3>Cigars</h3><p>A humidor-corner selection for the slow evenings and the fast celebrations.</p></article>
+<article class="good"><i class="fa-solid fa-leaf"></i><h3>CBD &amp; Delta</h3><p>Hemp-derived CBD and Delta 8 and 9 products, labeled plainly and rung up with your ID.</p></article>
+<article class="good"><i class="fa-solid fa-fire-flame-curved"></i><h3>Torches &amp; Tools</h3><p>Lighters, torches, grinders and the small gear that finishes the kit.</p></article>
+</div><div class="hours"><div class="hourbox"><h3>Sun - Thu</h3><p>10 AM - 10 PM</p><p>The standard watch. In and out, case fully stocked.</p></div><div class="hourbox"><h3>Fri - Sat</h3><p>10 AM - 1 AM</p><p>The late watch. The weekend runs two hours deeper.</p></div></div></div></section>
+<section class="section cream" id="reviews"><div class="wrap"><p class="eyebrow" style="color:#c65b26">Reviews</p><h2 class="title">Word from the travelers</h2><p>Two who stopped by, in their own writing, exactly as posted.</p><div class="reviews"><blockquote class="review">“Really chill, nice glass..”<footer>Google review</footer></blockquote><blockquote class="review">“Super chill spot, was in town for work and stopped by.”<footer>Google review</footer></blockquote></div><div class="btns"><button class="btn primary" data-locked="true" type="button"><i class="fa-brands fa-google"></i> See every review on Google</button></div></div></section>
+<section class="section visit" id="visit"><div class="wrap visit-grid"><div><p class="eyebrow">Visit</p><h2 class="title">Find the lair</h2><p class="lead">Downtown by River North and the Gold Coast, steps off the Magnificent Mile rush. Bring your ID.</p><div class="info"><div class="info-row"><i class="fa-solid fa-location-dot"></i><div>21 W Ontario St, Chicago, IL 60654<br>River North / Gold Coast</div></div><div class="info-row"><i class="fa-solid fa-phone"></i><div>(312) 366-2137</div></div><div class="info-row"><i class="fa-regular fa-clock"></i><div>Sun - Thu 10 AM - 10 PM · Fri - Sat till 1 AM</div></div></div><div class="btns"><button class="btn primary" data-locked="true">Call the shop</button><button class="btn" data-locked="true">Open Google listing</button></div></div><div><div class="hero-card"><h3 style="font-family:'Grenze Gotisch';font-size:2rem;margin-top:0">Send word to the shop</h3><p>Ask what is on the shelf today, or whether a piece you saw is still in. Quick answers, no riddles.</p><form data-locked-form="true"><p><label>Your name<br><input style="width:100%;padding:12px;background:#160d24;border:1px solid var(--line);color:#fff"></label></p><p><label>Your phone (optional)<br><input style="width:100%;padding:12px;background:#160d24;border:1px solid var(--line);color:#fff"></label></p><p><label>Your message<br><textarea rows="4" style="width:100%;padding:12px;background:#160d24;border:1px solid var(--line);color:#fff"></textarea></label></p><button class="btn primary" data-locked="true" type="submit">Send message</button></form></div><p class="stock-note">Stock imagery used for visual presentation does not depict the actual shop or products.</p></div></div></section>
 </main>
+<footer><div class="wrap">Mythical Smokes · 21 W Ontario St, Chicago, IL 60654 · (312) 366-2137</div></footer>
 
-<footer class="site-footer">
-  <div class="wrap foot-grid">
-    <div>
-      <h4>Mythical Smokes</h4>
-      <p>Glass, vapes, cigars and smokes on W Ontario St. 21 and over, valid ID required.</p>
-      <a class="foot-tel" href="tel:+13123662137">(312) 366-2137</a>
-    </div>
-    <div>
-      <h4>Find the lair</h4>
-      <ul>
-        <li>21 W Ontario St</li>
-        <li>Chicago, IL 60654</li>
-        <li>River North / Gold Coast</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Hours</h4>
-      <ul>
-        <li>Sun - Thu: 10 AM - 10 PM</li>
-        <li>Fri - Sat: 10 AM - 1 AM</li>
-      </ul>
-    </div>
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+  <div class="modal-box">
+    <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn primary" id="modalClose" type="button">Close</button>
   </div>
-  <div class="copyright"><p>© Mythical Smokes · Chicago, IL</p></div>
-</footer>
 </div>
-
 <script>
-var BUSINESS = "Mythical Smokes";
-var TITLES = { home: "Smoke & Vape Shop in River North", shop: "The Shop", reviews: "Reviews", visit: "Visit & Contact" };
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
+const menuBtn=document.getElementById("menuBtn");
+const nav=document.getElementById("mainNav");
+const modal=document.getElementById("lockedModal");
+const closeBtn=document.getElementById("modalClose");
+let lastFocus=null;
+
+function closeMenu(){
+  if(nav) nav.classList.remove("open");
+  if(menuBtn){
+    menuBtn.setAttribute("aria-expanded","false");
+    menuBtn.innerHTML='<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+  }
 }
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
+if(menuBtn && nav){
+  menuBtn.addEventListener("click",()=>{
+    const open=nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded",String(open));
+    menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark" aria-hidden="true"></i>':'<i class="fa-solid fa-bars" aria-hidden="true"></i>';
   });
-  document.querySelectorAll(".nav-links a").forEach(function(a){
-    if (a.getAttribute("data-page") === id) { a.setAttribute("aria-current", "page"); } else { a.removeAttribute("aria-current"); }
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); mb.setAttribute("aria-expanded", "false"); }
 }
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+document.querySelectorAll('#mainNav a[href^="#"]').forEach(a=>a.addEventListener("click",closeMenu));
+
+function openLocked(el){
+  lastFocus=el;
+  modal.classList.add("open");
+  document.body.classList.add("modal-open");
+  closeBtn.focus();
+}
+function closeLocked(){
+  modal.classList.remove("open");
+  document.body.classList.remove("modal-open");
+  if(lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+  el.addEventListener("click",e=>{e.preventDefault();openLocked(el);});
 });
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-var mb = document.getElementById("menu-btn");
-var nl = document.querySelector(".nav-links");
-if (mb && nl) {
-  mb.addEventListener("click", function(){
-    var open = nl.classList.toggle("open");
-    mb.classList.toggle("open", open);
-    mb.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-}
-navigateTo(getPageFromHash(), false);
-
-var CITY_TZ = "America/Chicago";
-var HOURS = {0:[10,22],1:[10,22],2:[10,22],3:[10,22],4:[10,22],5:[10,26],6:[10,26]};
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+document.querySelectorAll('form[data-locked-form="true"]').forEach(form=>{
+  form.addEventListener("submit",e=>{e.preventDefault();openLocked(form.querySelector('[data-locked="true"]')||form);});
+});
+closeBtn.addEventListener("click",closeLocked);
+modal.addEventListener("click",e=>{if(e.target===modal) closeLocked();});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && modal.classList.contains("open")) closeLocked();
+  if(e.key==="Tab" && modal.classList.contains("open")){
+    const f=modal.querySelectorAll('button,[href],input,textarea,select,[tabindex]:not([tabindex="-1"])');
+    const first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
   }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-(function renderStatus(){
-  var st = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.add(st.open ? "chip-open" : "chip-closed");
-    c.innerHTML = '<span class="dot"></span>' + st.label;
-  });
-  var d = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(el){
-    if (+el.getAttribute("data-day") === d) el.classList.add("today");
-  });
-})();
-
-var PHONE = "+13123662137";
-var PRETTY = "(312) 366-2137";
-var form = document.getElementById("note-form");
-var fb = document.getElementById("form-feedback");
-if (form && fb) {
-  form.addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var phone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) { fb.textContent = "Add your name and a short message first."; return; }
-    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
-    } else if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function(){
-        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-      }, function(){
-        fb.textContent = "Could not copy. Call " + PRETTY + " and the shop will sort you out.";
-      });
-    } else {
-      fb.textContent = "Copy did not work. Call " + PRETTY + " and the shop will sort you out.";
-    }
-  });
-}
+});
 </script>
-</body>
-</html>
+
+</body></html>

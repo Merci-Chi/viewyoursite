@@ -1,693 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#171a1d">
-  <title>2 Door Tire Shop | Tires & Flat Repair in Houston, TX</title>
-  <meta name="description" content="2 Door Tire Shop in Houston offers new tires, used tires, flat repair, mounting and balancing. Open seven days a week.">
-  <meta name="robots" content="noindex,nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <style>
-    :root{
-      --black:#15181b;
-      --black2:#20252a;
-      --steel:#31373d;
-      --red:#cf2f27;
-      --red2:#a81f19;
-      --cream:#f3efe7;
-      --white:#fff;
-      --muted:#6b7177;
-      --line:#d8d4cd;
-      --max:1180px;
-    }
-    *{box-sizing:border-box}
-    html{
-      scroll-behavior:smooth;
-      -webkit-text-size-adjust:100%;
-      touch-action:manipulation;
-    }
-    body{
-      margin:0;
-      font-family:Inter,Arial,sans-serif;
-      background:var(--cream);
-      color:var(--black);
-      overflow-x:hidden;
-      -webkit-user-select:none;
-      user-select:none;
-    }
-    a{color:inherit;text-decoration:none}
-    button,a{touch-action:manipulation}
-    button,input,textarea{font:inherit}
-    .wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
-    h1,h2,h3{font-family:"Barlow Condensed",Impact,sans-serif;text-transform:uppercase;margin-top:0}
-    h1{
-      font-size:clamp(4rem,9vw,8.4rem);
-      line-height:.84;
-      letter-spacing:-.035em;
-      margin-bottom:22px;
-    }
-    h2{
-      font-size:clamp(2.5rem,5.5vw,4.8rem);
-      line-height:.9;
-      letter-spacing:-.025em;
-      margin-bottom:18px;
-    }
-    h3{font-size:1.65rem;line-height:1}
-    p{line-height:1.7}
-    .kicker{
-      color:var(--red);
-      text-transform:uppercase;
-      font-weight:800;
-      letter-spacing:.18em;
-      font-size:.73rem;
-    }
-    .btn{
-      min-height:50px;
-      padding:0 20px;
-      border:0;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      font-family:"Barlow Condensed",sans-serif;
-      font-weight:800;
-      font-size:1.08rem;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-    .btn-red{background:var(--red);color:#fff}
-    .btn-red:hover{background:var(--red2);transform:translateY(-2px)}
-    .btn-dark{background:var(--black);color:#fff}
-    .btn-dark:hover{background:var(--black2);transform:translateY(-2px)}
-    .btn-outline{border:2px solid rgba(255,255,255,.7);color:#fff;background:transparent}
-    .btn-outline:hover{background:rgba(255,255,255,.1)}
-    .site-header{
-      position:sticky;top:0;z-index:50;
-      background:rgba(21,24,27,.96);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .head{
-      height:74px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:28px;
-    }
-    .brand{
-      display:flex;
-      align-items:baseline;
-      gap:9px;
-      color:#fff;
-      font-family:"Barlow Condensed",sans-serif;
-      text-transform:uppercase;
-    }
-    .brand strong{font-size:1.55rem;letter-spacing:.02em}
-    .brand strong b{color:var(--red)}
-    .brand small{color:#aab0b5;letter-spacing:.18em;font-size:.66rem}
-    .nav{display:flex;align-items:center;gap:28px;color:#fff}
-    .nav a:not(.btn){font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.08em;font-weight:700}
-    .nav a:not(.btn):hover{color:#ff6c64}
-    .menu{
-      display:none;
-      width:44px;height:44px;
-      border:0;background:transparent;color:#fff;font-size:1.4rem;cursor:pointer
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>2 Door Tire Shop | Houston, TX</title>
+<meta name="description" content="2 Door Tire Shop on Jensen Dr in Houston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
 
-    .hero{
-      min-height:760px;
-      position:relative;
-      display:grid;
-      align-items:end;
-      color:#fff;
-      background:
-        linear-gradient(90deg,rgba(15,17,20,.96) 0%,rgba(15,17,20,.74) 46%,rgba(15,17,20,.26) 100%),
-        url("https://images.pexels.com/photos/31097241/pexels-photo-31097241.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat;
-    }
-    .hero-grid{
-      position:relative;z-index:2;
-      padding:120px 0 94px;
-      display:grid;
-      grid-template-columns:minmax(0,780px) 1fr;
-      gap:50px;
-    }
-    .hero .kicker{color:#ff746c}
-    .hero h1 b{color:var(--red)}
-    .hero .lead{max-width:720px;font-size:1.1rem;color:#eceeef;margin-bottom:30px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
-    .demo-tag{
-      margin-top:24px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.73rem;
-      font-weight:800;
-      color:#c7cdd2;
-    }
-    .demo-tag i{color:#ff5b52}
-    .hero-stat{
-      justify-self:end;
-      align-self:end;
-      width:min(100%,330px);
-      padding:28px;
-      border-left:5px solid var(--red);
-      background:rgba(22,25,28,.82);
-      backdrop-filter:blur(8px);
-    }
-    .hero-stat strong{
-      display:block;
-      font-family:"Barlow Condensed";
-      text-transform:uppercase;
-      font-size:1.9rem;
-      margin-bottom:6px;
-    }
-    .hero-stat p{margin:0;color:#d7dbdf}
+:root{--bg:#0b0c0d;--panel:#151719;--ink:#f7f5ef;--muted:#a7a39a;--accent:#f4b400;--line:#33363a;--modal-bg:#17191b;--modal-text:#fff;--modal-muted:#c8c8c8}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif}
+.wrap{width:min(calc(100% - 40px),1180px);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(11,12,13,.95);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:800 1rem "Archivo Black";text-transform:uppercase}.brand small{display:block;font:.62rem "Inter";color:var(--muted);letter-spacing:.16em;margin-top:4px}.navlinks{display:flex;gap:24px;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.navlinks a:hover{color:var(--accent)}
+.hamb{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--line)}.hamb span{display:block;width:23px;height:2px;background:#fff;margin:5px auto}
+.mobile{display:none;background:#111315;padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:800}
+.hero{min-height:730px;display:flex;align-items:end;position:relative;background:
+linear-gradient(90deg,rgba(11,12,13,.97),rgba(11,12,13,.72) 52%,rgba(11,12,13,.3)),
+url("https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat}
+.hero-in{padding:110px 0 72px;max-width:840px}.kicker{color:var(--accent);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900}
+.hero h1{font:400 clamp(4rem,9vw,7.5rem)/.9 "Archivo Black";text-transform:uppercase;margin:16px 0 20px;letter-spacing:-.04em}.hero p{font-size:1.1rem;color:#d2d0ca;line-height:1.7;max-width:680px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{min-height:50px;padding:13px 20px;border:1px solid var(--accent);background:transparent;color:#fff;text-transform:uppercase;letter-spacing:.08em;font-weight:900;cursor:pointer}.btn.fill{background:var(--accent);color:#111}
+.stock{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.7);padding:7px 9px;font-size:.62rem;text-transform:uppercase}
+.quick{background:#111315;border-block:1px solid var(--line)}.quickgrid{display:grid;grid-template-columns:repeat(3,1fr)}.quickitem{padding:24px;border-right:1px solid var(--line);display:flex;gap:12px}.quickitem:last-child{border-right:0}.quickitem i{color:var(--accent)}.quickitem small{display:block;color:#777d83;text-transform:uppercase;letter-spacing:.12em;font-size:.62rem}.quickitem strong{display:block;margin-top:5px}
+.section{padding:88px 0;scroll-margin-top:74px}.section.alt{background:#111315}.section h2{font:400 clamp(2.7rem,5vw,4.8rem)/.98 "Archivo Black";text-transform:uppercase;margin:0 0 18px;letter-spacing:-.03em}.lead{max-width:760px;color:var(--muted);line-height:1.8}
+.services{display:grid;grid-template-columns:repeat(4,1fr);margin-top:34px;border-top:1px solid var(--line)}.service{padding:26px 20px;border-right:1px solid var(--line)}.service:last-child{border-right:0}.service i{color:var(--accent);font-size:1.2rem}.service h3{font-size:1rem;text-transform:uppercase}.service p{color:var(--muted);line-height:1.6}
+.split{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}.rating{font:400 7rem/1 "Archivo Black";color:var(--accent)}.hourlist{border-top:1px solid var(--line)}.hour{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}.hour span{color:var(--muted)}
+.visitgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{border:1px solid var(--line);background:#111315;padding:28px}.card p{color:var(--muted)}.protected{background:#1c1a11;border-left:4px solid var(--accent);padding:16px;margin:18px 0}
+footer{padding:34px 0;color:#7f858a;border-top:1px solid var(--line)}
+@media(max-width:900px){.navlinks{display:none}.hamb{display:block}.services{grid-template-columns:1fr 1fr}.split,.visitgrid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{width:min(calc(100% - 28px),1180px)}.hero{min-height:640px;background-position:60% center}.hero-in{padding:95px 0 48px}.actions{display:grid}.btn{width:100%}.quickgrid{grid-template-columns:1fr}.quickitem{border-right:0;border-bottom:1px solid var(--line)}.services{grid-template-columns:1fr}.service{border-right:0;border-bottom:1px solid var(--line)}.section{padding:68px 0}}
 
-    .rating-strip{background:var(--red);color:#fff}
-    .rating-strip .wrap{
-      min-height:86px;
-      display:flex;align-items:center;justify-content:space-between;gap:20px
-    }
-    .rating-strip strong{
-      font-family:"Barlow Condensed";
-      text-transform:uppercase;
-      font-size:clamp(1.5rem,3vw,2.2rem);
-    }
 
-    .services{padding:105px 0;background:var(--cream)}
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:35px;
-      margin-bottom:50px;
-    }
-    .section-head p{max-width:530px;color:var(--muted);margin-bottom:0}
-    .services-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      border-top:1px solid var(--line);
-      border-left:1px solid var(--line);
-    }
-    .service{
-      padding:34px 28px;
-      background:#fff;
-      min-height:280px;
-      border-right:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      border-top:5px solid var(--red);
-      transition:.2s ease;
-    }
-    .service:hover{transform:translateY(-3px)}
-    .service i{font-size:1.5rem;color:var(--red);margin-bottom:30px}
-    .service p{color:var(--muted);margin-bottom:0}
+.lock-backdrop{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.74)}
+.lock-backdrop.open{display:flex}
+.lock-dialog{width:min(100%,440px);background:var(--modal-bg,#181818);color:var(--modal-text,#fff);padding:30px;border-top:4px solid var(--accent);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.lock-dialog h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}
+.lock-dialog p{margin:0 0 20px;color:var(--modal-muted,#d0d0d0);line-height:1.65}
+.lock-dialog button{width:100%;min-height:46px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;cursor:pointer}
 
-    .photo-band{
-      min-height:620px;
-      display:grid;
-      align-items:center;
-      color:#fff;
-      background:
-        linear-gradient(90deg,rgba(19,22,25,.94),rgba(19,22,25,.58),rgba(19,22,25,.18)),
-        url("https://images.pexels.com/photos/32208774/pexels-photo-32208774.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat;
-    }
-    .photo-copy{max-width:670px;padding:90px 0}
-    .photo-copy p{color:#e0e3e5;font-size:1.05rem}
-    .stock-note{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:8px 11px;
-      background:rgba(0,0,0,.48);
-      font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em
-    }
-
-    .hours{padding:100px 0;background:#fff}
-    .hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
-    .hours-list{border-top:2px solid var(--black)}
-    .day{
-      display:flex;justify-content:space-between;gap:20px;
-      padding:17px 0;border-bottom:1px solid var(--line)
-    }
-    .day span:last-child{font-weight:800}
-
-    .visit{padding:100px 0;background:#e6e1d8}
-    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-    .visit-panel{
-      min-height:400px;
-      padding:40px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      background:#fff;
-      border-top:6px solid var(--red);
-    }
-    .visit-panel.dark{background:var(--black);color:#fff}
-    .visit-panel.dark p{color:#cfd4d8}
-    .protected{
-      margin-top:24px;
-      padding:18px;
-      border:2px dashed currentColor;
-      font-size:.82rem;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-
-    .cta{
-      padding:108px 0;
-      color:#fff;
-      background:
-        linear-gradient(rgba(17,20,23,.88),rgba(17,20,23,.92)),
-        url("https://images.pexels.com/photos/6870316/pexels-photo-6870316.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat;
-    }
-    .cta-inner{display:grid;grid-template-columns:1fr auto;gap:50px;align-items:center}
-    .cta p{max-width:660px;color:#d9dde0}
-    footer{background:#111417;color:#c7ccd0;padding:34px 0;border-top:4px solid var(--red)}
-    .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:.85rem}
-    .foot-links{display:flex;gap:20px}
-
-    .modal{
-      display:none;
-      position:fixed;inset:0;z-index:1000;
-      padding:24px;
-      align-items:center;
-      justify-content:center;
-      background:rgba(0,0,0,.76);
-      backdrop-filter:blur(4px);
-    }
-    .modal.open{display:flex}
-    .modal-card{
-      width:min(100%,460px);
-      background:#fff;
-      padding:34px;
-      box-shadow:0 28px 90px rgba(0,0,0,.4);
-    }
-    .modal-icon{
-      width:50px;height:50px;
-      display:grid;place-items:center;
-      background:var(--red);color:#fff;
-      margin-bottom:20px;
-    }
-    .modal-card h3{font-size:1.8rem}
-    .modal-card p{color:var(--muted)}
-    .modal-card .btn{width:100%}
-    :focus-visible{outline:3px solid #ff746c;outline-offset:3px}
-
-    @media(max-width:980px){
-      .hero-grid,.hours-grid,.visit-grid,.cta-inner{grid-template-columns:1fr}
-      .hero-stat{justify-self:start}
-      .services-grid{grid-template-columns:1fr 1fr}
-      .cta .btn{justify-self:start}
-    }
-    @media(max-width:760px){
-      .wrap{width:min(calc(100% - 28px),var(--max))}
-      .head{height:66px}
-      .brand small{display:none}
-      .menu{display:grid;place-items:center}
-      .nav{
-        position:absolute;left:0;right:0;top:66px;
-        display:none;
-        flex-direction:column;
-        align-items:stretch;
-        gap:0;
-        padding:10px 16px 18px;
-        background:#171a1d;
-        border-top:1px solid rgba(255,255,255,.08);
-      }
-      .nav.open{display:flex}
-      .nav a{padding:14px 10px}
-      .nav .btn{margin-top:8px}
-      .hero{min-height:720px;background-position:58% center}
-      .hero-grid{padding:92px 0 72px}
-      h1{font-size:clamp(4rem,19vw,6.4rem)}
-      .hero .lead{font-size:1rem}
-      .rating-strip .wrap{padding:19px 0;flex-direction:column;align-items:flex-start}
-      .services,.hours,.visit,.cta{padding:72px 0}
-      .section-head{display:block}
-      .section-head p{margin-top:18px}
-      .services-grid{grid-template-columns:1fr}
-      .service{min-height:0}
-      .photo-band{min-height:560px;background-position:55% center}
-      .visit-panel{padding:30px 24px;min-height:0}
-      .foot{align-items:flex-start;flex-direction:column}
-    }
-    @media(prefers-reduced-motion:reduce){
-      *{scroll-behavior:auto!important;transition:none!important}
-    }
-  </style>
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap head">
-      <a class="brand" href="#home" aria-label="2 Door Tire Shop home">
-        <strong><b>2 Door</b> Tire Shop</strong>
-        <small>Houston</small>
-      </a>
-      <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <nav class="nav" id="nav">
-        <a href="#services">Tires</a>
-        <a href="#hours">Hours</a>
-        <a href="#visit">Find Us</a>
-        <button class="btn btn-red" data-locked="true">Contact</button>
-      </nav>
-    </div>
-  </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="kicker">Tire Shop • Houston, Texas</div>
-          <h1><b>2 Door</b><br>Tire Shop</h1>
-          <p class="lead">New and used tires, flat repair, mounting and balancing for the trucks, commuters, and work vans of Jensen Dr.</p>
-          <div class="hero-actions">
-            <a class="btn btn-red" href="#services"><i class="fa-solid fa-circle-dot"></i> Tire Work</a>
-            <a class="btn btn-outline" href="#visit"><i class="fa-solid fa-location-dot"></i> Find the Shop</a>
-          </div>
-          <div class="demo-tag"><i class="fa-solid fa-lock"></i> Demo website — real-world actions are protected</div>
-        </div>
-        <aside class="hero-stat">
-          <strong>Open 7 Days</strong>
-          <p>Monday–Saturday 8 AM–7 PM<br>Sunday 9 AM–3 PM</p>
-        </aside>
-      </div>
-    </section>
+<header><div class="wrap nav"><a href="#home" class="brand">2 Door Tire Shop<small>Jensen Dr · Houston</small></a><nav class="navlinks"><a href="#work">Tires</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Find Us</a></nav><button class="hamb" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#work">Tires</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Find Us</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-in"><div class="kicker">Jensen Dr · Houston</div><h1>Roll in.<br>Roll out.<br>Straight talk.</h1><p>New and used tires, flat repair, mounting and balancing for the trucks, commuters, and work vans of Jensen Dr.</p><div class="actions"><a class="btn fill" href="#work"><i class="fa-solid fa-car-side"></i> Tire Work</a><a class="btn" href="#visit"><i class="fa-solid fa-location-dot"></i> Find the Shop</a></div></div><div class="stock">Relevant stock tire-shop imagery · not the actual business</div></section>
+<section class="quick"><div class="wrap quickgrid"><div class="quickitem"><i class="fa-solid fa-star"></i><div><small>Google rating</small><strong>4.3 stars</strong></div></div><div class="quickitem"><i class="fa-regular fa-clock"></i><div><small>Mon–Sat</small><strong>8 AM – 7 PM</strong></div></div><div class="quickitem"><i class="fa-regular fa-clock"></i><div><small>Sunday</small><strong>9 AM – 3 PM</strong></div></div></div></section>
+<section class="section" id="work"><div class="wrap"><div class="kicker">The Work</div><h2>Four things, done right</h2><p class="lead">This is a tire shop, not a menu of everything. We stick to what a car actually needs to roll safely.</p><div class="services"><article class="service"><i class="fa-solid fa-circle"></i><h3>New Tires</h3><p>Passenger and light-truck sizes. Call ahead and we will tell you what is on the rack.</p></article><article class="service"><i class="fa-solid fa-rotate"></i><h3>Used Tires</h3><p>A budget way to get rolling when a full set is not in the cards this week.</p></article><article class="service"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Flat Repair</h3><p>Nails, screws, and slow leaks handled so you are not airing up every morning.</p></article><article class="service"><i class="fa-solid fa-gears"></i><h3>Mounting and Balancing</h3><p>Mounted, balanced, and torqued so the wheel runs true.</p></article></div></div></section>
+<section class="section alt" id="reviews"><div class="wrap split"><div><div class="kicker">Reviews</div><div class="rating">4.3</div></div><div><h2>Rated by drivers, not by us</h2><p class="lead">4.3 stars on Google. We would rather you read the real reviews than take our word for it.</p><div class="actions"><button class="btn fill" type="button" data-locked="true">See every review on Google</button></div></div></div></section>
+<section class="section" id="hours"><div class="wrap"><div class="kicker">Open 7 Days</div><h2>Shop Hours</h2><div class="hourlist"><div class="hour"><strong>Sunday</strong><span>9:00 AM – 3:00 PM</span></div><div class="hour"><strong>Monday</strong><span>8:00 AM – 7:00 PM</span></div><div class="hour"><strong>Tuesday</strong><span>8:00 AM – 7:00 PM</span></div><div class="hour"><strong>Wednesday</strong><span>8:00 AM – 7:00 PM</span></div><div class="hour"><strong>Thursday</strong><span>8:00 AM – 7:00 PM</span></div><div class="hour"><strong>Friday</strong><span>8:00 AM – 7:00 PM</span></div><div class="hour"><strong>Saturday</strong><span>8:00 AM – 7:00 PM</span></div></div></div></section>
+<section class="section alt" id="visit"><div class="wrap"><div class="kicker">Find Us</div><h2>The door is open. Pull in.</h2><div class="visitgrid"><div class="card"><h3>The shop</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public street address is hidden in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Get directions</button></div><div class="card"><h3>The Key Drop</h3><p>Call with your tire size before you ride. We will tell you what is in stock and what it runs.</p><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The phone number is hidden and call/text actions are disabled in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Ask about a tire</button></div></div></div></section>
+</main>
+<footer><div class="wrap">2 Door Tire Shop · Houston, TX 77026</div></footer>
 
-    <section class="rating-strip">
-      <div class="wrap">
-        <strong>4.3 stars on Google</strong>
-        <button class="btn btn-dark" data-locked="true"><i class="fa-brands fa-google"></i> See Google Reviews</button>
-      </div>
-    </section>
 
-    <section class="services" id="services">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">The Work</div>
-            <h2>Four things, done right</h2>
-          </div>
-          <p>This demo includes only the tire services present in the supplied source. No prices or extra automotive services are added.</p>
-        </div>
-
-        <div class="services-grid">
-          <article class="service">
-            <i class="fa-solid fa-circle-dot"></i>
-            <h3>New Tires</h3>
-            <p>Passenger and light-truck sizes. Call ahead and ask what is on the rack.</p>
-          </article>
-          <article class="service">
-            <i class="fa-solid fa-tags"></i>
-            <h3>Used Tires</h3>
-            <p>Used tire options are listed as one of the shop's services.</p>
-          </article>
-          <article class="service">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            <h3>Flat Repair</h3>
-            <p>Nails, screws, and slow leaks are included in the supplied service information.</p>
-          </article>
-          <article class="service">
-            <i class="fa-solid fa-gauge-high"></i>
-            <h3>Mounting and Balancing</h3>
-            <p>Mounting and balancing are listed among the shop's core tire services.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="photo-band" aria-label="Tire shop stock imagery">
-      <div class="wrap">
-        <div class="photo-copy">
-          <div class="kicker">Tire Service</div>
-          <h2>Built around the wheel.</h2>
-          <p>This demo uses professional tire-shop stock photography for visual presentation. The images do not show the actual business, its employees, inventory, or completed work.</p>
-          <span class="stock-note"><i class="fa-solid fa-image"></i> Stock imagery — Pexels</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="hours" id="hours">
-      <div class="wrap hours-grid">
-        <div>
-          <div class="kicker">Hours</div>
-          <h2>Open seven days</h2>
-          <p>The business hours below are taken from the supplied 2 Door Tire Shop source.</p>
-        </div>
-        <div class="hours-list">
-          <div class="day"><span>Monday</span><span>8:00 AM – 7:00 PM</span></div>
-          <div class="day"><span>Tuesday</span><span>8:00 AM – 7:00 PM</span></div>
-          <div class="day"><span>Wednesday</span><span>8:00 AM – 7:00 PM</span></div>
-          <div class="day"><span>Thursday</span><span>8:00 AM – 7:00 PM</span></div>
-          <div class="day"><span>Friday</span><span>8:00 AM – 7:00 PM</span></div>
-          <div class="day"><span>Saturday</span><span>8:00 AM – 7:00 PM</span></div>
-          <div class="day"><span>Sunday</span><span>9:00 AM – 3:00 PM</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="visit" id="visit">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Find Us</div>
-            <h2>Houston, Texas</h2>
-          </div>
-          <p>The exact business address and phone number are intentionally protected in this sample website.</p>
-        </div>
-        <div class="visit-grid">
-          <article class="visit-panel">
-            <div>
-              <i class="fa-solid fa-location-dot" style="font-size:1.55rem;color:var(--red);margin-bottom:24px"></i>
-              <h3>Shop Location</h3>
-              <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
-            </div>
-            <div class="actions">
-              <button class="btn btn-red" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Get Directions</button>
-            </div>
-          </article>
-
-          <article class="visit-panel dark">
-            <div>
-              <i class="fa-solid fa-phone" style="font-size:1.55rem;color:#ff625a;margin-bottom:24px"></i>
-              <h3>Call the Shop</h3>
-              <p>The supplied source advises calling with your tire size before visiting to ask what is in stock.</p>
-              <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
-            </div>
-            <div class="actions">
-              <button class="btn btn-red" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="contact">
-      <div class="wrap cta-inner">
-        <div>
-          <div class="kicker">Tire Question</div>
-          <h2>Ask about a tire</h2>
-          <p>This demo keeps contact and inquiry actions locked. The full site can connect the approved phone or messaging workflow after purchase.</p>
-        </div>
-        <button class="btn btn-red" data-locked="true"><i class="fa-solid fa-lock"></i> Contact the Shop</button>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap foot">
-      <div>© 2 Door Tire Shop · Houston, TX</div>
-      <div class="foot-links">
-        <a href="#services">Tires</a>
-        <a href="#hours">Hours</a>
-        <a href="#visit">Find Us</a>
-      </div>
-    </div>
-  </footer>
-
-  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true">
-    <div class="modal-card" tabindex="-1">
-      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
-      <h3 id="lockedTitle">This is currently locked.</h3>
-      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
-      <button class="btn btn-dark" id="modalClose">Close</button>
-    </div>
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
   </div>
+</div>
 
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const nav = document.getElementById('nav');
-    const modal = document.getElementById('lockedModal');
-    const modalCard = modal.querySelector('.modal-card');
-    const modalClose = document.getElementById('modalClose');
-    let previousFocus = null;
 
-    menuBtn.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.innerHTML = open
-        ? '<i class="fa-solid fa-xmark"></i>'
-        : '<i class="fa-solid fa-bars"></i>';
+<script>
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileNav=document.getElementById('mobileNav');
+  const modal=document.getElementById('lockModal');
+  const closeBtn=document.getElementById('lockClose');
+  let lastFocus=null;
+
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',String(open));
     });
-
-    document.querySelectorAll('a[href^="#"]:not([data-locked="true"])').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
+    document.querySelectorAll('#mobileNav a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',()=>{
+        mobileNav.classList.remove('open');
         menuBtn.setAttribute('aria-expanded','false');
-        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
       });
     });
+  }
 
-    function openLocked(trigger){
-      previousFocus = trigger || document.activeElement;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-      setTimeout(() => modalCard.focus(),0);
-    }
+  function openLock(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus && typeof lastFocus.focus==='function') lastFocus.focus();
+  }
 
-    function closeLocked(){
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-      if(previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
-    }
-
-    document.querySelectorAll('[data-locked="true"]').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        openLocked(el);
-      });
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
     });
+  });
 
-    modalClose.addEventListener('click', closeLocked);
-    modal.addEventListener('click', e => {
-      if(e.target === modal) closeLocked();
+  document.querySelectorAll('form').forEach(form=>{
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      openLock(e.submitter||form);
     });
-    document.addEventListener('keydown', e => {
-      if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
-      if(e.key === 'Tab' && modal.classList.contains('open')){
-        e.preventDefault();
-        modalClose.focus();
-      }
-    });
+  });
 
-    document.addEventListener('gesturestart', e => e.preventDefault());
-    document.addEventListener('gesturechange', e => e.preventDefault());
-    document.addEventListener('gestureend', e => e.preventDefault());
-    document.addEventListener('wheel', e => {
-      if(e.ctrlKey || e.metaKey) e.preventDefault();
-    }, {passive:false});
-  </script>
+  closeBtn.addEventListener('click',closeLock);
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeLock(); });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key==='Tab' && modal.classList.contains('open')){ e.preventDefault(); closeBtn.focus(); }
+    if((e.ctrlKey||e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
 
-  <!--
-  ============================================================
-  SITE DEVELOPMENT / APPROVAL NOTES
-  ============================================================
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('gesturechange',e=>e.preventDefault());
+  document.addEventListener('gestureend',e=>e.preventDefault());
+  document.addEventListener('wheel',e=>{ if(e.ctrlKey)e.preventDefault(); },{passive:false});
+})();
+</script>
 
-  SOURCE-DERIVED BUSINESS DETAILS USED
-  - Business name: 2 Door Tire Shop
-  - Location: Houston, Texas / Jensen Dr
-  - Services:
-      New Tires
-      Used Tires
-      Flat Repair
-      Mounting and Balancing
-  - Google rating statement in supplied source: 4.3 stars
-  - Hours:
-      Monday–Saturday 8 AM–7 PM
-      Sunday 9 AM–3 PM
-  - Source advises calling with tire size to ask what is in stock.
-
-  CONTACT DETAILS
-  - The source includes a street address and phone number.
-  - They are intentionally hidden in visible demo sections.
-  - Visible protected areas use:
-    CONTACT DETAILS PROTECTED IN THIS DEMO
-
-  STOCK IMAGE ASSETS
-  These do NOT depict 2 Door Tire Shop, its staff, inventory, or completed work.
-  - Hero:
-    Pexels — Mechanic Working on Car Tire in Workshop
-    https://www.pexels.com/photo/mechanic-working-on-car-tire-in-workshop-31097241/
-    Pexels marks the image "Free to use."
-  - Mid-page:
-    Pexels — Mechanic Repairing a Tire in Workshop
-    https://www.pexels.com/photo/mechanic-repairing-a-tire-in-workshop-32208774/
-    Pexels marks the image "Free to use."
-  - CTA:
-    Pexels — A Man Wearing Blue Uniform Holding a Car Tire
-    https://www.pexels.com/photo/a-man-wearing-blue-uniform-holding-a-car-tire-6870316/
-    Pexels marks the image "Free to use."
-  - Icons: Font Awesome Free CDN
-
-  SEO
-  Title:
-  2 Door Tire Shop | Tires & Flat Repair in Houston, TX
-
-  Meta description:
-  2 Door Tire Shop in Houston offers new tires, used tires, flat repair,
-  mounting and balancing. Open seven days a week.
-
-  Suggested local SEO terms:
-  tire shop Houston TX
-  new tires Houston
-  used tires Houston
-  flat repair Houston
-  tire mounting and balancing Houston
-  Jensen Dr tire shop
-
-  UNSUPPORTED / MISSING ITEMS NOT ADDED
-  - Owner/team names
-  - Email address
-  - Public prices
-  - Discounts
-  - Alignment service
-  - Brake service
-  - Oil changes
-  - Roadside service
-  - Warranty/guarantee policy
-  - Social-media profiles
-  - Licenses/certifications
-  - Awards
-  - Years in business
-  - Customer counts
-  - Payment methods
-  - Booking/payment/login systems
-  - Fake form submission
-
-  FINAL QUALITY CHECK
-  [x] Complete single HTML file
-  [x] CSS embedded in HTML
-  [x] JavaScript embedded in HTML
-  [x] Desktop responsive design
-  [x] Tablet responsive design
-  [x] Mobile responsive design
-  [x] Three-line mobile hamburger menu
-  [x] Mobile zoom prevention
-  [x] Gesture / modifier-key zoom prevention
-  [x] Text selection/highlighting disabled
-  [x] Professional online icon library
-  [x] Background imagery included
-  [x] Stock imagery clearly documented
-  [x] No unsupported prices/services/claims invented
-  [x] Real-world actions locked
-  [x] One reusable locked-action modal
-  [x] Modal closes by button, backdrop, and Escape
-  [x] No fake success states
-  [x] Contact details protected in visible demo
-  [x] Internal navigation works
-  ============================================================
-  -->
 </body>
 </html>

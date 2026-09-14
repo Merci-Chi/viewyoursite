@@ -1,625 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stockton Blvd Mercado | Morales Mercado &amp; Carniceria</title>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Lato:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="robots" content="noindex,nofollow"><title>Stockton Blvd Mercado | Morales Mercado &amp; Carniceria</title><meta name="description" content="Morales Mercado & Carniceria at 6830 Stockton Blvd Ste 195 in Sacramento. Fresh meat daily, marinated meats, market shelves.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-/* Stockton Morales: chili red, corn, white. Big Shoulders Display + Lato. Awning stripes + butcher paper. */
-:root{
-  --chili:#B71C1C;
-  --chili-dark:#8E1414;
-  --corn:#E8C547;
-  --corn-soft:#F7EBC2;
-  --white:#FFFFFF;
-  --kraft:#EFE3CE;
-  --kraft-deep:#E2D2B4;
-  --ink:#33221B;
-}
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  font-family:'Lato',sans-serif;
-  background:var(--white);
-  color:var(--ink);
-  line-height:1.65;
-}
-h1,h2,h3,.display{font-family:'Big Shoulders Display',sans-serif;text-transform:uppercase;letter-spacing:.5px;}
-a{color:inherit;}
-.site-shell{min-height:100vh;display:flex;flex-direction:column;}
-main{flex:1 0 auto;}
-footer{flex-shrink:0;}
-.page{display:none;}
-.page.active{display:block;}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
-
-/* Awning stripe strip (top of page, above header) */
-.awning{
-  height:16px;
-  background:repeating-linear-gradient(90deg, var(--chili) 0 34px, var(--corn) 34px 68px);
-}
-/* Header */
-.topbar{background:var(--white);border-bottom:1px solid #EBDFC6;position:relative;z-index:50;}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:11px;padding-bottom:11px;}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
-.brand-mark{
-  width:42px;height:42px;border-radius:10px;background:var(--chili);
-  display:flex;align-items:center;justify-content:center;color:var(--corn);font-size:18px;flex-shrink:0;
-}
-.brand-name{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:21px;color:var(--chili);line-height:1;text-transform:uppercase;letter-spacing:1px;}
-.brand-sub{display:block;font-family:'Lato',sans-serif;font-size:10.5px;font-weight:800;letter-spacing:2.6px;text-transform:uppercase;color:#8A6D3B;margin-top:3px;}
-.nav-links{display:flex;align-items:center;gap:4px;}
-.nav-links a{
-  text-decoration:none;color:var(--ink);font-weight:800;font-size:14px;
-  padding:9px 15px;border-radius:8px;transition:background .15s,color .15s;
-}
-.nav-links a:hover{background:var(--corn-soft);}
-.nav-links a.on{background:var(--chili);color:#fff;}
-.menu-btn{
-  display:none;background:transparent;border:1.5px solid var(--chili);color:var(--chili);
-  width:44px;height:44px;border-radius:9px;font-size:18px;cursor:pointer;align-items:center;justify-content:center;
-}
-.menu-btn.open{background:var(--chili);color:#fff;}
-
-/* Status chip */
-.status-chip{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:6px 14px;border-radius:999px;font-weight:800;font-size:13px;
-  background:#F6F1E6;color:#7C6A45;border:1px solid var(--kraft-deep);
-}
-.status-chip .dot{width:9px;height:9px;border-radius:50%;background:#A79B7E;flex-shrink:0;}
-.status-chip.open{background:#E4F0DC;border-color:#9FBF8C;color:#3C6B2F;}
-.status-chip.open .dot{background:#4C8C3C;box-shadow:0 0 0 3px rgba(76,140,60,.18);}
-.status-chip.closed .dot{background:#A79B7E;}
-
-/* Hero */
-.hero{background:linear-gradient(180deg, #FBF7EC 0%, #F4ECD8 100%);border-bottom:1px solid #EBDFC6;overflow:hidden;}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding-top:52px;padding-bottom:56px;}
-.hero-kicker{
-  display:inline-flex;align-items:center;gap:9px;background:var(--chili);color:#fff;
-  padding:7px 16px;border-radius:8px;font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
-}
-.hero h1{font-size:clamp(36px,5.4vw,58px);font-weight:800;color:var(--chili-dark);line-height:1.02;margin:18px 0 14px;}
-.hero h1 .hl{color:var(--chili);}
-.hero p.lead{font-size:16.5px;color:#6B5137;margin:0 0 22px;max-width:500px;}
-.hero .chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
-.hero .chips .status-chip{font-size:13.5px;padding:8px 16px;}
-.hero-link{font-size:14.5px;font-weight:800;color:var(--chili);text-decoration:none;border-bottom:2px solid var(--corn);padding-bottom:2px;}
-.hero-link:hover{color:var(--chili-dark);}
-
-/* Butcher paper poster panel */
-.poster{
-  background:var(--kraft);border-radius:6px;padding:28px;position:relative;
-  box-shadow:0 14px 30px rgba(51,34,27,.16);
-  transform:rotate(1.2deg);
-}
-.poster::before{
-  content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-2deg);
-  width:86px;height:20px;background:rgba(217,164,65,.5);border-left:1px dashed rgba(51,34,27,.25);border-right:1px dashed rgba(51,34,27,.25);
-}
-.poster h3{font-size:24px;font-weight:800;color:var(--chili-dark);margin:0 0 4px;}
-.poster .p-sub{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#8A6D3B;margin:0 0 16px;}
-.poster .row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--kraft-deep);font-size:15px;font-weight:700;}
-.poster .row:last-of-type{border-bottom:none;}
-.poster .row .v{color:var(--chili);}
-
-/* Butcher paper band (divider) */
-.paper-band{
-  background:var(--kraft);
-  padding:22px 0;
-  clip-path:polygon(0 10px, 3% 2px, 8% 12px, 14% 3px, 21% 11px, 28% 2px, 35% 12px, 43% 3px, 50% 11px, 58% 2px, 66% 12px, 73% 3px, 81% 11px, 89% 2px, 96% 12px, 100% 4px, 100% calc(100% - 10px), 96% calc(100% - 2px), 89% calc(100% - 12px), 81% calc(100% - 3px), 73% calc(100% - 11px), 66% calc(100% - 2px), 58% calc(100% - 12px), 50% calc(100% - 3px), 43% calc(100% - 11px), 35% calc(100% - 2px), 28% calc(100% - 12px), 21% calc(100% - 3px), 14% calc(100% - 11px), 8% calc(100% - 2px), 3% calc(100% - 12px), 0 calc(100% - 4px));
-}
-.paper-band .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;text-align:center;}
-.paper-band .fa-solid{color:var(--chili);font-size:22px;}
-.paper-band p{margin:0;font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(18px,2.4vw,24px);letter-spacing:1px;color:var(--ink);}
-
-/* Section basics */
-.section{padding:56px 0;}
-.section.alt{background:#FBF7EC;}
-.kicker{font-size:12px;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;color:var(--chili);margin:0 0 8px;}
-h2.sec{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin:0 0 12px;color:var(--chili-dark);}
-p.sub{margin:0 0 28px;color:#6B5137;max-width:660px;}
-
-/* Counter cards */
-.counter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.counter{
-  background:#fff;border:1px solid #EBDFC6;border-radius:10px;padding:22px;position:relative;
-  box-shadow:0 8px 20px rgba(51,34,27,.07);
-}
-.counter::after{content:"";position:absolute;left:0;right:0;top:0;height:5px;border-radius:10px 10px 0 0;background:repeating-linear-gradient(90deg, var(--chili) 0 16px, var(--corn) 16px 32px);}
-.counter .ic{width:46px;height:46px;border-radius:50%;background:var(--corn-soft);color:var(--chili);display:flex;align-items:center;justify-content:center;font-size:19px;margin:8px 0 12px;}
-.counter h3{font-size:20px;font-weight:800;margin:0 0 6px;color:var(--ink);}
-.counter p{margin:0;font-size:14px;color:#6B5137;}
-
-/* Hours: day strip chips */
-.hours-card{background:#fff;border:1px solid #EBDFC6;border-radius:12px;padding:26px;max-width:660px;box-shadow:0 10px 24px rgba(51,34,27,.08);}
-.hours-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
-.hours-head h3{margin:0;font-size:22px;color:var(--chili-dark);}
-.day-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-.dchip{
-  text-align:center;border:1.5px solid #EBDFC6;border-radius:10px;padding:10px 4px;
-  font-size:12.5px;font-weight:800;color:#8A6D3B;
-}
-.dchip .dn{display:block;text-transform:uppercase;letter-spacing:1px;font-size:11px;}
-.dchip .dt{display:block;color:var(--ink);font-size:13px;margin-top:3px;}
-.dchip.today{background:var(--chili);border-color:var(--chili);color:var(--corn-soft);}
-.dchip.today .dt{color:#fff;}
-
-/* Reviews */
-.rev-head{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:26px;}
-.rev-score{
-  width:104px;height:104px;border-radius:12px;background:var(--chili);color:#fff;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;
-  box-shadow:0 12px 26px rgba(142,20,20,.28);position:relative;
-}
-.rev-score::after{content:"";position:absolute;inset:5px;border:1.5px dashed rgba(232,197,71,.7);border-radius:8px;}
-.rev-score .num{font-family:'Big Shoulders Display',sans-serif;font-size:38px;font-weight:800;line-height:1;color:var(--corn);}
-.rev-score .stars{font-size:10.5px;color:#F1E3B0;margin-top:6px;letter-spacing:2px;}
-.quote-card{
-  background:var(--kraft);border-radius:4px;padding:24px 26px;position:relative;
-  box-shadow:0 10px 24px rgba(51,34,27,.12);
-}
-.quote-card + .quote-card{margin-top:18px;}
-.quote-card::before{
-  content:"";position:absolute;top:-10px;left:26px;width:60px;height:20px;
-  background:rgba(183,28,28,.28);transform:rotate(-2deg);
-  border-left:1px dashed rgba(51,34,27,.3);border-right:1px dashed rgba(51,34,27,.3);
-}
-.quote-card blockquote{margin:0 0 12px;font-size:15.5px;color:var(--ink);font-weight:600;}
-.quote-meta{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:#8A6D3B;}
-.quote-meta .st{color:var(--chili);letter-spacing:2px;font-size:12px;}
-.summary-line{margin-top:24px;font-size:15.5px;font-weight:800;color:var(--chili-dark);}
-.link-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;}
-.link-card{
-  text-decoration:none;background:var(--chili);color:#fff;border-radius:10px;padding:16px 24px;
-  display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:14.5px;
-  transition:transform .15s,box-shadow .15s;box-shadow:0 10px 22px rgba(142,20,20,.24);
-}
-.link-card:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(142,20,20,.32);}
-.link-card .fa-brands,.link-card .fa-solid{color:var(--corn);font-size:18px;}
-
-/* Visit */
-.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
-.info-card{background:#fff;border:1px solid #EBDFC6;border-radius:12px;padding:26px;box-shadow:0 10px 24px rgba(51,34,27,.08);}
-.info-card h3{margin:0 0 14px;font-size:22px;color:var(--chili-dark);}
-.info-line{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed #EBDFC6;font-size:14.5px;}
-.info-line:last-of-type{border-bottom:none;}
-.info-line .fa-solid{color:var(--chili);margin-top:3px;width:18px;text-align:center;}
-/* Butcher-paper contact card */
-.paper-card{
-  background:var(--kraft);border-radius:6px;padding:30px;position:relative;
-  box-shadow:0 14px 30px rgba(51,34,27,.16);overflow:hidden;
-}
-.paper-card::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:12px;
-  background:repeating-linear-gradient(90deg, var(--chili) 0 26px, var(--corn) 26px 52px);
-}
-.paper-card .stamp{
-  display:inline-block;border:2.5px solid var(--chili);color:var(--chili);border-radius:8px;
-  font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;
-  font-size:13px;letter-spacing:2px;padding:4px 10px;transform:rotate(-2deg);margin:12px 0 12px;
-}
-.paper-card .label{font-size:12px;font-weight:800;letter-spacing:2.6px;text-transform:uppercase;color:#8A6D3B;margin:0 0 6px;}
-.paper-card .phone-big{
-  display:inline-block;font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,36px);
-  color:var(--ink);text-decoration:none;letter-spacing:1px;line-height:1.1;
-}
-.paper-card .phone-big:hover{color:var(--chili);}
-.paper-card .note{margin:10px 0 0;font-size:14px;color:#6B5137;}
-
-/* Form */
-.form-card{background:#fff;border:1px solid #EBDFC6;border-radius:12px;padding:26px;box-shadow:0 10px 24px rgba(51,34,27,.08);margin-top:22px;}
-.form-card h3{margin:0 0 14px;font-size:22px;color:var(--chili-dark);}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.field{display:flex;flex-direction:column;gap:6px;}
-.field.full{grid-column:1/-1;}
-.field label{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#8A6D3B;}
-.field input,.field textarea{
-  font-family:'Lato',sans-serif;font-size:15px;color:var(--ink);
-  border:1.5px solid #EBDFC6;border-radius:8px;padding:12px 14px;background:#FBF7EC;outline:none;
-}
-.field input:focus,.field textarea:focus{border-color:var(--chili);background:#fff;}
-.field textarea{min-height:110px;resize:vertical;}
-.send-btn{
-  margin-top:16px;background:var(--chili);color:#fff;border:none;border-radius:9px;cursor:pointer;
-  font-family:'Lato',sans-serif;font-weight:800;font-size:15px;padding:14px 28px;
-  display:inline-flex;align-items:center;gap:10px;transition:background .15s,transform .15s;
-}
-.send-btn:hover{background:var(--chili-dark);transform:translateY(-1px);}
-.form-feedback{margin:12px 0 0;font-size:14px;font-weight:700;color:#3C6B2F;min-height:20px;}
-
-/* Footer */
-footer{background:var(--chili-dark);color:#F3DFAF;}
-.foot-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px 0 14px;}
-.foot-brand{font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:20px;color:#fff;text-transform:uppercase;letter-spacing:1px;}
-.foot-quiet{font-size:13px;margin:8px 0 0;}
-.foot-quiet .fa-solid{color:var(--corn);margin-right:7px;}
-.foot-quiet a{color:#FBEecf;text-decoration:none;}
-.foot-bottom{border-top:1px solid rgba(232,197,71,.35);padding:14px 0 18px;text-align:center;font-size:13px;color:#DBAF77;}
-
-@media (max-width:900px){
-  .hero .wrap{grid-template-columns:1fr;}
-  .poster{transform:none;}
-  .counter-grid{grid-template-columns:1fr 1fr;}
-  .visit-grid{grid-template-columns:1fr;}
-}
-@media (max-width:680px){
-  .menu-btn{display:flex;}
-  .nav-links{
-    display:none;position:absolute;top:100%;left:0;right:0;z-index:60;
-    background:#fff;border-bottom:3px solid var(--chili);
-    flex-direction:column;align-items:stretch;padding:8px 16px 16px;gap:4px;
-  }
-  .nav-links.open{display:flex;}
-  .nav-links a{padding:13px 14px;border-radius:8px;}
-  .topbar .wrap{position:relative;}
-  .counter-grid{grid-template-columns:1fr;}
-  .day-strip{grid-template-columns:repeat(2,1fr);}
-  .form-grid{grid-template-columns:1fr;}
-  .section{padding:44px 0;}
-}
-</style>
-</head>
-<body>
-<div class="site-shell">
-
-<div class="awning" aria-hidden="true"></div>
-
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="#/home" data-page="home" aria-label="Morales Mercado and Carniceria home">
-      <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-drumstick-bite"></i></span>
-      <span class="brand-name">Morales Mercado<span class="brand-sub">&amp; Carniceria · Stockton Blvd</span></span>
-    </a>
-    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#/home" data-page="home">Home</a>
-      <a href="#/mercado" data-page="mercado">El Mercado</a>
-      <a href="#/reviews" data-page="reviews">Reviews</a>
-      <a href="#/visit" data-page="visit">Visit</a>
-    </nav>
-  </div>
-</header>
-
+:root{--red:#b71c1c;--red2:#8e1414;--corn:#e8c547;--kraft:#efe3ce;--cream:#fbf7ec;--ink:#33221b;--line:rgba(51,34,27,.15);--max:1120px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:Lato,sans-serif;line-height:1.65;overflow-x:hidden;-webkit-user-select:none;user-select:none;-webkit-text-size-adjust:100%}body.modal-open{overflow:hidden}a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}.awning{height:14px;background:repeating-linear-gradient(90deg,var(--red) 0 32px,var(--corn) 32px 64px)}.site-header{height:72px;position:fixed;inset:14px 0 auto;z-index:50;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line)}.head{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:900 1.5rem "Big Shoulders Display";text-transform:uppercase;color:var(--red)}.brand small{display:block;font:900 .61rem Lato;letter-spacing:.14em;color:#8a6d3b}nav{display:flex;gap:24px}nav a{font-size:.8rem;font-weight:900;text-transform:uppercase}.menu{display:none;width:44px;height:44px;border:1px solid var(--red);background:transparent;color:var(--red)}.hero{min-height:100svh;padding:132px 0 65px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(251,247,236,.97),rgba(251,247,236,.78),rgba(251,247,236,.3)),url("https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=2000&q=85") center/cover}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}.kicker{display:inline-block;background:var(--red);color:#fff;padding:7px 13px;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.14em}.hero h1,.title{font-family:"Big Shoulders Display";text-transform:uppercase;font-weight:900}.hero h1{font-size:clamp(4.2rem,9vw,7.8rem);line-height:.85;color:var(--red2);margin:15px 0}.hero h1 span{color:var(--red);display:block}.lead{max-width:670px;color:#6b5137;font-size:1.06rem}.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{min-height:48px;padding:12px 18px;border:1px solid var(--red);background:#fff;color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}.btn.primary{background:var(--red);color:#fff}.poster{padding:28px;background:var(--kraft);box-shadow:0 18px 45px rgba(51,34,27,.18);transform:rotate(1deg);position:relative}.poster:before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:85px;height:18px;background:rgba(232,197,71,.55)}.poster h3{font:900 2rem "Big Shoulders Display";text-transform:uppercase;color:var(--red2);margin:0}.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed #ccb98f;font-weight:700}.paperband{background:var(--kraft);padding:17px;text-align:center;font:900 1.35rem "Big Shoulders Display";text-transform:uppercase}.section{padding:95px 0}.alt{background:var(--cream)}.title{font-size:clamp(3rem,6vw,5.3rem);line-height:.9;margin:0;color:var(--red2)}.counters{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:35px}.counter{padding:25px;background:#fff;border:1px solid #eadfc8;box-shadow:0 8px 20px rgba(51,34,27,.08);border-top:6px solid var(--red)}.counter i{color:var(--red);font-size:1.2rem}.counter h3{font:900 1.6rem "Big Shoulders Display";text-transform:uppercase}.reviews{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:35px}.review{padding:28px;background:#fff;border:1px solid #eadfc8;font-size:1.15rem}.score{font:900 7rem "Big Shoulders Display";color:var(--red);line-height:.8}.visit{background:linear-gradient(rgba(251,247,236,.94),rgba(251,247,236,.94)),url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=85") center/cover}.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px}.detail{padding:28px;background:#fff;border:1px solid #eadfc8}.formbox{padding:28px;background:var(--red2);color:#fff}.field{margin-top:12px}.field input,.field textarea{width:100%;padding:12px;border:0;-webkit-user-select:text;user-select:text}.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.74)}.modal.open{display:flex}.modal-box{width:min(100%,460px);padding:30px;background:#fff;border:3px solid var(--red);color:var(--ink)}.modal-icon{color:var(--red)}.modal .btn{width:100%}.stock-note{font-size:.75rem;color:#7b6b60;margin-top:14px}footer{padding:28px 0;background:var(--red2);color:#fff}
+@media(max-width:900px){.hero-grid,.visit-grid{grid-template-columns:1fr}.counters{grid-template-columns:1fr 1fr}.reviews{grid-template-columns:1fr}.poster{transform:none}}@media(max-width:700px){.wrap{width:min(calc(100% - 28px),var(--max))}.site-header{height:66px}nav{position:absolute;top:66px;left:0;right:0;display:none;flex-direction:column;background:#fff;padding:14px}nav.open{display:flex}nav a{padding:13px 6px;border-bottom:1px solid var(--line)}.menu{display:grid;place-items:center}.hero{padding-top:122px}.counters{grid-template-columns:1fr}.section{padding:76px 0}}
+</style></head><body>
+<div class="awning"></div><header class="site-header"><div class="wrap head"><a class="brand" href="#home">Morales Mercado<small>&amp; Carniceria · Stockton Blvd</small></a><nav id="mainNav"><a href="#home">Home</a><a href="#market">El Mercado</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="menu" id="menuBtn" type="button" aria-expanded="false"><i class="fa-solid fa-bars"></i></button></div></header>
 <main>
+<section class="hero" id="home"><div class="wrap hero-grid"><div><span class="kicker">Little Vietnam Plaza · Ste 195</span><h1>La carniceria <span>de confianza</span></h1><p class="lead">Morales Mercado &amp; Carniceria is the go-to counter inside the Little Vietnam Plaza on Stockton Blvd. Fresh meat daily, cuts done the way you ask, and a market around it for the rest of the list.</p><div class="btns"><a class="btn primary" href="#market">Walk the market</a><a class="btn" href="#visit">Butcher counter</a></div></div><aside class="poster"><h3>Fresh meat daily</h3><p>Open every day</p><div class="row"><span>Hours</span><span>8 AM - 9 PM</span></div><div class="row"><span>Location</span><span>Ste 195</span></div><div class="row"><span>Google</span><span>4.1 · 87 reviews</span></div></aside></div></section>
+<div class="paperband">Fresh meat daily · Cut at the counter · Open 8 to 9 every day</div>
+<section class="section alt" id="market"><div class="wrap"><span class="kicker">El Mercado</span><h2 class="title">Inside the Little Vietnam Plaza</h2><p class="lead">Find the shop in Suite 195 of the plaza on Stockton Blvd. It is a neighborhood market with a real carniceria at its center: the case is filled fresh daily, the marinated meats are ready to go straight to the grill, and the counter will cut to what you are cooking.</p><div class="counters"><article class="counter"><i class="fa-solid fa-drumstick-bite"></i><h3>The meat case</h3><p>Fresh meat daily. Ask for the cut and thickness you want and the counter handles it.</p></article><article class="counter"><i class="fa-solid fa-pepper-hot"></i><h3>Marinades ready</h3><p>Marinated meats for the week, already seasoned at the case.</p></article><article class="counter"><i class="fa-solid fa-basket-shopping"></i><h3>Market shelves</h3><p>The rest of the pantry list around the butcher, so one trip covers dinner.</p></article></div></div></section>
+<section class="section" id="reviews"><div class="wrap"><span class="kicker">Reviews</span><h2 class="title">Word from the regulars</h2><div class="reviews"><div><div class="score">4.1</div><strong>87 Google reviews</strong><p>A solid, steady score from a real customer base. The reviews that come back most often are about quality at the meat case and food people loved.</p><button class="btn primary" data-locked="true">See every review on Google</button></div><div><blockquote class="review">“This is our go to carniceria and have never had any issues with quality here.”<footer>Google review</footer></blockquote><blockquote class="review">“I loved the food here.”<footer>Google review</footer></blockquote></div></div></div></section>
+<section class="section visit" id="visit"><div class="wrap visit-grid"><div class="detail"><span class="kicker">Visit</span><h2 class="title">Come see the case</h2><p>6830 Stockton Blvd Ste 195, Sacramento, CA 95823</p><p>Every day, 8:00 AM - 9:00 PM</p><p>Inside the Little Vietnam Plaza</p><p><strong>(916) 427-1745</strong></p><div class="btns"><button class="btn primary" data-locked="true">Call the mercado</button><button class="btn" data-locked="true">Open Maps</button></div><p class="stock-note">Stock imagery used for visual presentation does not depict the actual business, staff, products, or meat case.</p></div><div class="formbox"><h3>Ask about a cut</h3><p>Reserve a cut, ask what came in fresh today, or check the case before you drive over.</p><form data-locked-form="true"><div class="field"><label>Your name<input></label></div><div class="field"><label>Your phone<input></label></div><div class="field"><label>Message<textarea rows="4"></textarea></label></div><button class="btn" data-locked="true" type="submit">Send to the market</button></form></div></div></section>
+</main><footer><div class="wrap">Morales Mercado &amp; Carniceria · 6830 Stockton Blvd Ste 195, Sacramento, CA 95823 · (916) 427-1745 · Open every day 8 AM - 9 PM</div></footer>
 
-<section class="page active" id="page-home">
-  <div class="hero">
-    <div class="wrap">
-      <div>
-        <span class="hero-kicker"><i class="fa-solid fa-shop" aria-hidden="true"></i> Little Vietnam Plaza · Ste 195</span>
-        <h1>La carniceria<br><span class="hl">de confianza</span></h1>
-        <p class="lead">Morales Mercado &amp; Carniceria is the go-to counter inside the Little Vietnam Plaza on Stockton Blvd. Fresh meat daily, cuts done the way you ask, and a market around it for the rest of the list.</p>
-        <div class="chips">
-          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
-          <a class="hero-link" href="#/mercado" data-page="mercado">Walk the market <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-        </div>
-      </div>
-      <div class="poster">
-        <h3>Butcher counter</h3>
-        <p class="p-sub">Fresh meat daily</p>
-        <div class="row"><span>Open every day</span><span class="v">8 AM - 9 PM</span></div>
-        <div class="row"><span>Location</span><span class="v">Ste 195</span></div>
-        <div class="row"><span>Status now</span><span class="v" style="font-size:13.5px;"><span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span></span></div>
-      </div>
-    </div>
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+  <div class="modal-box">
+    <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn primary" id="modalClose" type="button">Close</button>
   </div>
-
-  <div class="section">
-    <div class="wrap">
-      <p class="kicker">At the counter</p>
-      <h2 class="sec">Why families keep coming back</h2>
-      <p class="sub">Regulars call it their go-to carniceria and say they have never had an issue with quality. That is the whole pitch, and it is enough.</p>
-      <div class="counter-grid">
-        <div class="counter">
-          <span class="ic"><i class="fa-solid fa-khanda" aria-hidden="true"></i></span>
-          <h3>Fresh cuts daily</h3>
-          <p>The meat case is stocked fresh every morning, beef to chicken, ready for the week.</p>
-        </div>
-        <div class="counter">
-          <span class="ic"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i></span>
-          <h3>Marinated meats</h3>
-          <p>Seasoned and marinated options at the case for nights when the flavor should already be in there.</p>
-        </div>
-        <div class="counter">
-          <span class="ic"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i></span>
-          <h3>The mercado around it</h3>
-          <p>Grab the rest of the basket while the butcher wraps your order. One stop, done.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="paper-band">
-    <div class="wrap">
-      <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>
-      <p>Fresh meat daily · Cut at the counter · Open 8 to 9 every day</p>
-      <i class="fa-solid fa-clipboard-check" aria-hidden="true"></i>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="wrap">
-      <div class="hours-card">
-        <div class="hours-head">
-          <h3>Open every day, 8 to 9</h3>
-          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
-        </div>
-        <div class="day-strip">
-          <div class="dchip" data-day="0"><span class="dn">Sun</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="1"><span class="dn">Mon</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="2"><span class="dn">Tue</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="3"><span class="dn">Wed</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="4"><span class="dn">Thu</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="5"><span class="dn">Fri</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="6"><span class="dn">Sat</span><span class="dt">8-9</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-mercado">
-  <div class="section">
-    <div class="wrap">
-      <p class="kicker">El Mercado</p>
-      <h2 class="sec">Inside the Little Vietnam Plaza</h2>
-      <p class="sub">Find the shop in Suite 195 of the plaza on Stockton Blvd. It is a neighborhood market with a real carniceria at its center: the case is filled fresh daily, the marinated meats are ready to go straight to the grill, and the counter will cut to what you are cooking.</p>
-      <div class="counter-grid">
-        <div class="counter">
-          <span class="ic"><i class="fa-solid fa-khanda" aria-hidden="true"></i></span>
-          <h3>The meat case</h3>
-          <p>Fresh meat daily. Ask for the cut and thickness you want and the counter handles it.</p>
-        </div>
-        <div class="counter">
-          <span class="ic"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i></span>
-          <h3>Marinades ready</h3>
-          <p>Marinated meats for the week, already seasoned at the case.</p>
-        </div>
-        <div class="counter">
-          <span class="ic"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i></span>
-          <h3>Market shelves</h3>
-          <p>The rest of the pantry list around the butcher, so one trip covers dinner.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="section alt">
-    <div class="wrap">
-      <div class="hours-card">
-        <div class="hours-head">
-          <h3>Open every day, 8 to 9</h3>
-          <span class="status-chip open"><span class="dot"></span><span class="status-text">Open now</span></span>
-        </div>
-        <div class="day-strip">
-          <div class="dchip" data-day="0"><span class="dn">Sun</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="1"><span class="dn">Mon</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="2"><span class="dn">Tue</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="3"><span class="dn">Wed</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="4"><span class="dn">Thu</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="5"><span class="dn">Fri</span><span class="dt">8-9</span></div>
-          <div class="dchip" data-day="6"><span class="dn">Sat</span><span class="dt">8-9</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-reviews">
-  <div class="section">
-    <div class="wrap">
-      <p class="kicker">Reviews</p>
-      <h2 class="sec">Word from the regulars</h2>
-      <div class="rev-head">
-        <div class="rev-score">
-          <span class="num">4.1</span>
-          <span class="stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></span>
-        </div>
-        <div>
-          <p style="margin:0 0 6px;font-weight:900;color:var(--chili-dark);font-size:18px;">87 Google reviews</p>
-          <p style="margin:0;color:#6B5137;font-size:14.5px;max-width:460px;">A solid, steady score from a real customer base. The reviews that come back most often are about quality at the meat case and food people loved.</p>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <blockquote>This is our go to carniceria and have never had any issues with quality here.</blockquote>
-        <div class="quote-meta"><span class="st" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
-      </div>
-      <div class="quote-card">
-        <blockquote>I loved the food here.</blockquote>
-        <div class="quote-meta"><span class="st" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div>
-      </div>
-
-      <p class="summary-line"><i class="fa-solid fa-star" style="color:#B71C1C;" aria-hidden="true"></i> 4.1 stars with 87 reviews on Google</p>
-
-      <div class="link-row">
-        <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Morales%20Mercado%20%26%20Carniceria%2C%206830%20Stockton%20Blvd%2C%20Sacramento%2C%20CA%2095823" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-visit">
-  <div class="section">
-    <div class="wrap">
-      <p class="kicker">Visit</p>
-      <h2 class="sec">Come see the case</h2>
-      <p class="sub">Suite 195, inside the Little Vietnam Plaza on Stockton Blvd. Open every day from 8 in the morning to 9 at night.</p>
-
-      <div class="visit-grid">
-        <div class="info-card">
-          <h3>Market details</h3>
-          <div class="info-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>6830 Stockton Blvd Ste 195, Sacramento, CA 95823</span></div>
-          <div class="info-line"><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Every day, 8:00 AM - 9:00 PM</span></div>
-          <div class="info-line"><i class="fa-solid fa-shop" aria-hidden="true"></i><span>Inside the Little Vietnam Plaza</span></div>
-          <div class="info-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Status right now: <span class="status-chip open" style="padding:3px 10px;font-size:12px;"><span class="dot"></span><span class="status-text">Open now</span></span></span></div>
-        </div>
-
-        <div class="paper-card">
-          <span class="stamp">Butcher counter</span>
-          <p class="label">Call the mercado</p>
-          <a class="phone-big" href="tel:+19164271745">(916) 427-1745</a>
-          <p class="note">Reserve a cut, ask what came in fresh today, or check the case before you drive over.</p>
-        </div>
-      </div>
-
-      <div class="form-card">
-        <h3>Ask about a cut</h3>
-        <form id="contact-form" novalidate>
-          <div class="form-grid">
-            <div class="field">
-              <label for="f-name">Your name</label>
-              <input id="f-name" type="text" autocomplete="name" placeholder="First and last">
-            </div>
-            <div class="field">
-              <label for="f-phone">Your phone</label>
-              <input id="f-phone" type="tel" autocomplete="tel" placeholder="(916) 000-0000">
-            </div>
-            <div class="field full">
-              <label for="f-msg">Message</label>
-              <textarea id="f-msg" placeholder="Hi Morales Mercado, I wanted to ask about..."></textarea>
-            </div>
-          </div>
-          <button class="send-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the market</button>
-          <p class="form-feedback" id="form-feedback" role="status"></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-inner">
-      <div>
-        <p class="foot-brand">Morales Mercado &amp; Carniceria</p>
-        <p class="foot-quiet"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 6830 Stockton Blvd Ste 195, Sacramento, CA 95823</p>
-        <p class="foot-quiet"><i class="fa-solid fa-clock" aria-hidden="true"></i> Open every day 8 AM - 9 PM</p>
-      </div>
-      <div>
-        <p class="foot-quiet"><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+19164271745">(916) 427-1745</a></p>
-        <p class="foot-quiet"><i class="fa-solid fa-shop" aria-hidden="true"></i> Little Vietnam Plaza, Ste 195</p>
-      </div>
-    </div>
-    <div class="foot-bottom">© Morales Mercado & Carniceria · Sacramento, CA</div>
-  </div>
-</footer>
-
 </div>
-
 <script>
-var BUSINESS = "Morales Mercado & Carniceria";
-var TITLES = { home: "Stockton Blvd Mercado", mercado: "El Mercado", reviews: "Reviews", visit: "Visit" };
-var CITY_TZ = "America/Los_Angeles";
-var HOURS = {0:[8,21],1:[8,21],2:[8,21],3:[8,21],4:[8,21],5:[8,21],6:[8,21]};
-var PHONE = "+19164271745";
-var PRETTY = "(916) 427-1745";
+const menuBtn=document.getElementById("menuBtn");
+const nav=document.getElementById("mainNav");
+const modal=document.getElementById("lockedModal");
+const closeBtn=document.getElementById("modalClose");
+let lastFocus=null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
+function closeMenu(){
+  if(nav) nav.classList.remove("open");
+  if(menuBtn){
+    menuBtn.setAttribute("aria-expanded","false");
+    menuBtn.innerHTML='<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+  }
 }
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
+if(menuBtn && nav){
+  menuBtn.addEventListener("click",()=>{
+    const open=nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded",String(open));
+    menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark" aria-hidden="true"></i>':'<i class="fa-solid fa-bars" aria-hidden="true"></i>';
   });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
 }
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+document.querySelectorAll('#mainNav a[href^="#"]').forEach(a=>a.addEventListener("click",closeMenu));
+
+function openLocked(el){
+  lastFocus=el;
+  modal.classList.add("open");
+  document.body.classList.add("modal-open");
+  closeBtn.focus();
+}
+function closeLocked(){
+  modal.classList.remove("open");
+  document.body.classList.remove("modal-open");
+  if(lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+  el.addEventListener("click",e=>{e.preventDefault();openLocked(el);});
 });
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-navigateTo(getPageFromHash(), false);
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+document.querySelectorAll('form[data-locked-form="true"]').forEach(form=>{
+  form.addEventListener("submit",e=>{e.preventDefault();openLocked(form.querySelector('[data-locked="true"]')||form);});
+});
+closeBtn.addEventListener("click",closeLocked);
+modal.addEventListener("click",e=>{if(e.target===modal) closeLocked();});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && modal.classList.contains("open")) closeLocked();
+  if(e.key==="Tab" && modal.classList.contains("open")){
+    const f=modal.querySelectorAll('button,[href],input,textarea,select,[tabindex]:not([tabindex="-1"])');
+    const first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
   }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderStatus(){
-  var s = openState();
-  document.querySelectorAll(".status-chip").forEach(function(c){
-    c.classList.toggle("open", s.open);
-    c.classList.toggle("closed", !s.open);
-    var tx = c.querySelector(".status-text");
-    if (tx) tx.textContent = s.label;
-  });
-}
-function highlightToday(){
-  var d = cityNow().day;
-  document.querySelectorAll("[data-day]").forEach(function(r){
-    r.classList.toggle("today", Number(r.getAttribute("data-day")) === d);
-  });
-}
-renderStatus();
-highlightToday();
-
-var menuBtn = document.getElementById("menu-btn");
-var navLinks = document.querySelector(".nav-links");
-if (menuBtn && navLinks) {
-  menuBtn.addEventListener("click", function(){
-    menuBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-    menuBtn.setAttribute("aria-expanded", navLinks.classList.contains("open") ? "true" : "false");
-  });
-}
-
-var form = document.getElementById("contact-form");
-if (form) {
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var fb = document.getElementById("form-feedback");
-    var name = document.getElementById("f-name").value.trim();
-    var phone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) {
-      fb.textContent = "Please add your name and a short message.";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (phone ? " (" + phone + ")" : "") + ". " + msg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-      });
-    }
-  });
-}
+});
 </script>
-</body>
-</html>
+
+</body></html>

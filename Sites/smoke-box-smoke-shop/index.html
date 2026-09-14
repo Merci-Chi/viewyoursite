@@ -2,8 +2,8 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name='robots' content='max-image-preview:large' />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
 <title>Smoke Box Smoke Shop + Dispensary &#8211; bjvfi.com</title>
 <link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
 <link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Comments Feed" href="https://bjvfi.com/comments/feed" />
@@ -185,6 +185,78 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
 <meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+
+<style id="steady-hands-demo-protection">
+html{
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+}
+html,body,*{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+}
+body{
+  background-image:
+    linear-gradient(rgba(8,12,18,.82),rgba(8,12,18,.82)),
+    url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=2200&q=84") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-attachment:fixed !important;
+}
+.hero{
+  position:relative;
+  background-image:
+    linear-gradient(90deg,rgba(8,12,18,.90),rgba(8,12,18,.52)),
+    url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=2200&q=84") !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.hero::after{
+  content:"Stock imagery — not the actual business";
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  z-index:20;
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  padding:6px 9px;
+  font:700 10px/1.2 Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+[data-locked="true"]{cursor:pointer}
+.demo-lock-modal{
+  position:fixed;inset:0;z-index:2147483000;display:none;
+  place-items:center;padding:22px;background:rgba(0,0,0,.76);
+}
+.demo-lock-modal.open{display:grid}
+.demo-lock-card{
+  width:min(460px,100%);background:#fff;color:#161616;
+  padding:30px;border:1px solid rgba(0,0,0,.14);
+  box-shadow:0 30px 90px rgba(0,0,0,.42);
+}
+.demo-lock-icon{
+  width:48px;height:48px;display:grid;place-items:center;
+  background:#111;color:#fff;margin-bottom:18px;
+}
+.demo-lock-card h2{
+  margin:0 0 12px;font:800 clamp(24px,5vw,34px)/1.08 Arial,sans-serif;
+  text-transform:none;letter-spacing:0;color:#111;
+}
+.demo-lock-card p{
+  margin:0 0 22px;font:400 16px/1.6 Arial,sans-serif;color:#555;
+}
+.demo-lock-close{
+  width:100%;min-height:48px;border:0;background:#111;color:#fff;
+  font:800 14px/1 Arial,sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;cursor:pointer;
+}
+body.demo-modal-open{overflow:hidden !important}
+@media(max-width:700px){
+  .hero::after{left:12px;right:auto;bottom:10px}
+}
+</style>
+
 </head>
 
 <body class="wp-singular page-template page-template-blank page page-id-656602 wp-embed-responsive wp-theme-business-identity-mvp">
@@ -371,7 +443,7 @@ footer{background:#0D0F0E;border-top:1px solid rgba(43,217,143,.25);padding:44px
         <div class="attr">Google review</div>
       </div>
       <div class="rating-line">5.0 stars on Google with 152 reviews</div>
-      <a class="gcard" href="https://www.google.com/maps/search/?api=1&#038;query=Smoke%20Box%20Smoke%20Shop%20%2B%20Dispensary%2C%202612%20S%20Shepherd%20Dr%20Ste%20B%2C%20Houston%2C%20TX%2077098" target="_blank" rel="noopener">
+      <a class="gcard" href="#" data-locked="true">
         <span><b>See every review on Google</b><span>Open our Google listing for the full run of reviews and photos.</span></span>
         <i class="fa-brands fa-google"></i>
       </a>
@@ -418,7 +490,7 @@ footer{background:#0D0F0E;border-top:1px solid rgba(43,217,143,.25);padding:44px
               <div class="stamp"><i class="fa-solid fa-star"></i></div>
               <div class="stamp"><i class="fa-solid fa-id-card"></i></div>
             </div>
-            <div class="stamp-phone"><a href="tel:+12055877758">(205) 587-7758</a></div>
+            <div class="stamp-phone"><a href="#" data-locked="true">(205) 587-7758</a></div>
             <div class="stamp-late">Yes, that is a 205 number. It rings right here at the Montrose counter.</div>
           </div>
           <div class="form-card">
@@ -428,7 +500,7 @@ footer{background:#0D0F0E;border-top:1px solid rgba(43,217,143,.25);padding:44px
               <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" required placeholder="First name is fine"></div>
               <div class="field"><label for="f-phone">Your phone</label><input id="f-phone" type="tel" required placeholder="(713) 555-0100"></div>
               <div class="field"><label for="f-msg">Your message</label><textarea id="f-msg" rows="4" required placeholder="What are you looking for?"></textarea></div>
-              <button class="btn" type="submit">Send to Smoke Box</button>
+              <button class="btn" type="submit" data-locked="true">Send to Smoke Box</button>
               <div id="form-feedback"></div>
             </form>
           </div>
@@ -455,7 +527,7 @@ footer{background:#0D0F0E;border-top:1px solid rgba(43,217,143,.25);padding:44px
       </div>
       <div>
         <h4>Call the shop</h4>
-        <p><a href="tel:+12055877758">(205) 587-7758</a></p>
+        <p><a href="#" data-locked="true">(205) 587-7758</a></p>
       </div>
       <div>
         <h4>Hours</h4>
@@ -589,5 +661,73 @@ if (form) {
 var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
 //# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
 </script>
+
+<div class="demo-lock-modal" id="demoLockModal" role="dialog" aria-modal="true" aria-labelledby="demoLockTitle" aria-describedby="demoLockMessage">
+  <div class="demo-lock-card" tabindex="-1">
+    <div class="demo-lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="demoLockTitle">This is currently locked.</h2>
+    <p id="demoLockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="demo-lock-close" id="demoLockClose" type="button">Close</button>
+  </div>
+</div>
+
+
+<script id="steady-hands-demo-protection-script">
+(function(){
+  var modal = document.getElementById("demoLockModal");
+  var card = modal ? modal.querySelector(".demo-lock-card") : null;
+  var closeBtn = document.getElementById("demoLockClose");
+  var lastFocus = null;
+
+  function openLock(trigger){
+    if(!modal) return;
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add("open");
+    document.body.classList.add("demo-modal-open");
+    setTimeout(function(){ if(card) card.focus(); },0);
+  }
+
+  function closeLock(){
+    if(!modal) return;
+    modal.classList.remove("open");
+    document.body.classList.remove("demo-modal-open");
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener("click",function(e){
+    var locked = e.target.closest('[data-locked="true"]');
+    if(!locked) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(locked);
+  },true);
+
+  document.addEventListener("submit",function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var trigger = e.submitter || e.target;
+    openLock(trigger);
+  },true);
+
+  if(closeBtn) closeBtn.addEventListener("click",closeLock);
+  if(modal) modal.addEventListener("click",function(e){ if(e.target === modal) closeLock(); });
+
+  document.addEventListener("keydown",function(e){
+    if(e.key === "Escape" && modal && modal.classList.contains("open")) closeLock();
+    if(e.key === "Tab" && modal && modal.classList.contains("open")){
+      e.preventDefault();
+      if(closeBtn) closeBtn.focus();
+    }
+  });
+
+  document.addEventListener("gesturestart",function(e){e.preventDefault();});
+  document.addEventListener("gesturechange",function(e){e.preventDefault();});
+  document.addEventListener("gestureend",function(e){e.preventDefault();});
+  document.addEventListener("wheel",function(e){
+    if(e.ctrlKey || e.metaKey) e.preventDefault();
+  },{passive:false});
+})();
+</script>
+
 </body>
 </html>

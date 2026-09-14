@@ -2,674 +2,143 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Puff N' Stuff Smoke Shop 24/7 | Always Open on Speedway</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Puff N' Stuff Smoke Shop 24/7 | Tucson</title>
+<meta name="description" content="Puff N' Stuff Smoke Shop 24/7 in Tucson.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-  :root{
-    --purple:#7E57C2;
-    --purple-deep:#5E4094;
-    --purple-soft:#EFE9F8;
-    --mint:#B8E0D2;
-    --mint-soft:#E9F6F1;
-    --cream:#FDFBF5;
-    --ink:#3A3348;
-    --line:#E4DDF0;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'PT Sans',Verdana,sans-serif;
-    color:var(--ink);
-    background:var(--cream);
-    line-height:1.6;
-    -webkit-text-size-adjust:100%;
-  }
-  .site-shell{min-height:100vh;display:flex;flex-direction:column;}
-  main{flex:1 0 auto;}
-  footer{flex-shrink:0;}
-  h1,h2,h3{font-family:'Fredoka','PT Sans',sans-serif;line-height:1.2;margin:0;}
-  p{margin:0 0 1rem;}
-  .wrap{width:100%;max-width:1060px;margin:0 auto;padding:0 20px;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
 
-  /* header */
-  .site-head{
-    background:var(--cream);
-    border-bottom:2px solid var(--line);
-    position:sticky;top:0;z-index:50;
-  }
-  .head-in{
-    max-width:1060px;margin:0 auto;padding:14px 20px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-  }
-  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);}
-  .brand-cloud{
-    width:46px;height:34px;border-radius:999px;background:var(--purple);
-    position:relative;flex-shrink:0;
-  }
-  .brand-cloud::before{
-    content:"";position:absolute;left:8px;top:-10px;width:22px;height:22px;border-radius:50%;background:var(--purple);
-  }
-  .brand-cloud::after{
-    content:"";position:absolute;right:8px;top:-6px;width:15px;height:15px;border-radius:50%;background:var(--purple);
-  }
-  .brand-name{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.1;}
-  .brand-name small{display:block;font-family:'PT Sans',sans-serif;font-weight:400;font-size:.72rem;color:var(--purple-deep);letter-spacing:.06em;}
-  .menu-btn{
-    display:none;background:var(--cream);border:2px solid var(--purple);border-radius:999px;
-    width:46px;height:42px;cursor:pointer;padding:0;
-  }
-  .menu-btn span{display:block;width:20px;height:2px;background:var(--purple);margin:4px auto;transition:transform .2s ease, opacity .2s ease;}
-  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.open span:nth-child(2){opacity:0;}
-  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-  .nav-links{display:flex;align-items:center;gap:8px;}
-  .nav-links a{
-    text-decoration:none;font-family:'Fredoka',sans-serif;font-weight:500;font-size:.95rem;
-    color:var(--ink);padding:9px 16px;border-radius:999px;transition:background .15s ease,color .15s ease;
-  }
-  .nav-links a:hover{background:var(--purple-soft);}
-  .nav-links a.is-here{background:var(--purple);color:var(--cream);}
+:root{--bg:#fdfaf4;--panel:#f1ebf7;--ink:#3a3348;--muted:#6e647d;--accent:#7e57c2;--line:#ddd3e6;--modal-bg:#3a3348;--modal-text:#fff;--modal-muted:#d6cfd8}
+body{background:var(--bg);color:var(--ink);font-family:"PT Sans",sans-serif}
+.wrap{width:min(calc(100% - 40px),1160px);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(253,250,244,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:800 1rem "Fredoka",sans-serif;text-transform:uppercase;letter-spacing:.06em}.brand small{display:block;font:.62rem "PT Sans",sans-serif;color:var(--muted);letter-spacing:.14em;margin-top:4px}.navlinks{display:flex;gap:24px;font-size:.8rem;font-weight:800}.navlinks a:hover{color:var(--accent)}
+.hamb{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--line)}.hamb span{display:block;width:23px;height:2px;background:var(--ink);margin:5px auto}
+.mobile{display:none;background:var(--panel);padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:800}
+.hero{min-height:710px;display:flex;align-items:end;position:relative;background:linear-gradient(90deg,rgba(253,250,244,.96),rgba(253,250,244,.80) 48%,rgba(253,250,244,.25)),url("https://images.unsplash.com/photo-1603899122634-f086ca5f5ddd?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat}
+.hero-in{padding:108px 0 70px;max-width:830px}.kicker{color:var(--accent);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900}
+.hero h1{font:800 clamp(3.8rem,8vw,7rem)/.9 "Fredoka",sans-serif;text-transform:uppercase;margin:16px 0 20px;letter-spacing:-.03em}.hero p{font-size:1.08rem;color:var(--muted);line-height:1.75;max-width:680px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{min-height:48px;padding:12px 20px;border:1px solid var(--accent);background:transparent;color:var(--ink);font-weight:900;cursor:pointer}.btn.fill{background:var(--accent);color:#fff}
+.stock{position:absolute;right:14px;bottom:12px;background:rgba(255,255,255,.9);padding:7px 9px;font-size:.62rem;text-transform:uppercase;color:var(--ink)}
+.factbar{background:var(--panel);border-block:1px solid var(--line)}.factgrid{display:grid;grid-template-columns:repeat(3,1fr)}.fact{padding:22px;border-right:1px solid var(--line);display:flex;gap:12px}.fact:last-child{border-right:0}.fact i{color:var(--accent)}.fact small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.11em;font-size:.62rem}.fact strong{display:block;margin-top:5px}
+.section{padding:88px 0;scroll-margin-top:74px}.section.alt{background:var(--panel)}.section h2{font:800 clamp(2.7rem,5vw,4.8rem)/.98 "Fredoka",sans-serif;text-transform:uppercase;margin:0 0 18px}.lead{max-width:760px;color:var(--muted);line-height:1.8}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.highlight{background:#fff;border:1px solid var(--line);padding:22px}.highlight i{color:var(--accent);margin-bottom:10px}.highlight strong{display:block}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}.service{background:#fff;border:1px solid var(--line);padding:22px}.service i{color:var(--accent)}.service h3{font-size:1rem}.service p{color:var(--muted);line-height:1.6}
+.reviews{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}.review{background:#fff;border:1px solid var(--line);padding:24px}.review p{line-height:1.7}.review span{color:var(--muted);font-size:.75rem;text-transform:uppercase}
+.hours{max-width:760px;border-top:1px solid var(--line);margin-top:28px}.hour{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}.hour span{color:var(--muted)}
+.visitgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:#fff;border:1px solid var(--line);padding:28px}.card p{color:var(--muted)}.protected{border-left:4px solid var(--accent);background:#f2edf6;padding:16px;margin:18px 0}
+.notice{margin-top:20px;padding:16px;border:1px solid var(--line);font-weight:800}
+footer{padding:34px 0;color:var(--muted);border-top:1px solid var(--line)}
+@media(max-width:900px){.navlinks{display:none}.hamb{display:block}.services{grid-template-columns:1fr 1fr}.reviews,.visitgrid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{width:min(calc(100% - 28px),1160px)}.hero{min-height:640px;background-position:60% center}.hero-in{padding:92px 0 48px}.actions{display:grid}.btn{width:100%}.factgrid{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid var(--line)}.highlights,.services{grid-template-columns:1fr}.section{padding:68px 0}}
 
-  /* pages */
-  .page{display:none;}
-  .page.active{display:block;}
 
-  /* status chip */
-  .status-chip{
-    display:inline-flex;align-items:center;gap:8px;
-    font-weight:700;font-size:.85rem;padding:7px 15px;border-radius:999px;
-    background:var(--cream);border:1.5px solid var(--line);color:var(--ink);
-  }
-  .status-chip .dot{width:9px;height:9px;border-radius:50%;background:#9AA5AA;}
-  .status-chip.is-open{background:#E5F3EC;border-color:#BCDCCB;color:#1E6B46;}
-  .status-chip.is-open .dot{background:#2E8B5F;}
-  .status-chip.is-closed .dot{background:#B23A2E;}
+.lock-backdrop{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.74)}
+.lock-backdrop.open{display:flex}
+.lock-dialog{width:min(100%,440px);background:var(--modal-bg,#181818);color:var(--modal-text,#fff);padding:30px;border-top:4px solid var(--accent);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.lock-dialog h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}
+.lock-dialog p{margin:0 0 20px;color:var(--modal-muted,#d0d0d0);line-height:1.65}
+.lock-dialog button{width:100%;min-height:46px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;cursor:pointer}
 
-  /* hero: centered, art first */
-  .hero{
-    background:
-      radial-gradient(700px 300px at 50% -60px, rgba(126,87,194,.16), transparent 70%),
-      var(--mint-soft);
-    text-align:center;
-    padding:60px 0 64px;
-  }
-  .hero-art{margin:0 auto 6px;display:block;}
-  .open-pill{
-    display:inline-flex;align-items:center;gap:9px;
-    background:var(--purple);color:var(--cream);
-    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;
-    padding:9px 20px;border-radius:999px;margin-bottom:18px;
-  }
-  .hero h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:700;color:var(--purple-deep);margin-bottom:14px;}
-  .hero h1 .soft{color:var(--purple);}
-  .hero .lead{max-width:36em;margin:0 auto 24px;font-size:1.08rem;color:#5A5168;}
-  .hero-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:26px;}
-  .h-badge{
-    background:var(--cream);border:1.5px solid var(--line);border-radius:999px;
-    padding:8px 16px;font-size:.88rem;font-weight:700;color:var(--ink);
-    display:inline-flex;align-items:center;gap:8px;
-  }
-  .h-badge i{color:var(--purple);}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
-    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.98rem;
-    padding:13px 26px;border-radius:999px;border:2px solid transparent;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(94,64,148,.22);}
-  .btn-purple{background:var(--purple);color:var(--cream);}
-  .btn-line{border-color:var(--purple);color:var(--purple-deep);}
-  .btn-line:hover{color:var(--purple);}
-
-  /* sections */
-  .section{padding:56px 0;}
-  .section.white{background:var(--cream);}
-  .section.mint{background:var(--mint-soft);}
-  .sec-head{text-align:center;max-width:640px;margin:0 auto 32px;}
-  .sec-head h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--purple-deep);margin-bottom:8px;}
-  .sec-head p{color:#5A5168;margin:0;}
-  .cloud-divider{display:flex;justify-content:center;gap:8px;margin:18px auto 0;}
-  .cloud-divider span{border-radius:999px;background:var(--mint);}
-  .cloud-divider span:nth-child(1){width:26px;height:12px;}
-  .cloud-divider span:nth-child(2){width:44px;height:16px;}
-  .cloud-divider span:nth-child(3){width:26px;height:12px;}
-
-  /* hours panel: rounded cloud panel */
-  .hours-cloud{
-    max-width:560px;margin:0 auto;background:var(--cream);
-    border:2px solid var(--line);border-radius:36px;
-    padding:30px 34px;text-align:center;
-    box-shadow:0 14px 34px rgba(126,87,194,.12);
-  }
-  .hours-cloud .big{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.7rem;color:var(--purple-deep);}
-  .hours-cloud .sub{color:#5A5168;font-size:.95rem;margin:6px 0 16px;}
-  .address-pill{
-    display:inline-flex;align-items:center;gap:9px;background:var(--mint-soft);
-    border:1.5px solid var(--mint);border-radius:999px;padding:9px 18px;
-    font-weight:700;font-size:.92rem;
-  }
-  .address-pill i{color:var(--purple);}
-
-  /* shop page */
-  .shelf{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-  }
-  .shelf-item{
-    background:var(--cream);border:2px solid var(--line);border-radius:26px;
-    padding:22px;text-align:center;transition:transform .15s ease,border-color .15s ease;
-  }
-  .shelf-item:hover{transform:translateY(-3px);border-color:var(--mint);}
-  .shelf-item i{
-    font-size:1.35rem;color:var(--purple-deep);background:var(--mint-soft);
-    width:52px;height:52px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;
-  }
-  .shelf-item h3{font-size:1.02rem;font-weight:600;margin-bottom:4px;}
-  .shelf-item p{margin:0;font-size:.9rem;color:#5A5168;}
-  .age-card{
-    max-width:640px;margin:34px auto 0;background:var(--purple-deep);color:var(--cream);
-    border-radius:28px;padding:22px 28px;display:flex;gap:16px;align-items:center;text-align:left;
-  }
-  .age-card i{font-size:1.5rem;color:var(--mint);flex-shrink:0;}
-  .age-card h3{font-size:1.05rem;margin-bottom:2px;}
-  .age-card p{margin:0;font-size:.92rem;color:#D9CFEC;}
-
-  /* reviews: cloud bubbles */
-  .bubble-list{display:grid;gap:20px;max-width:680px;margin:0 auto;}
-  .bubble{
-    position:relative;background:var(--mint-soft);
-    border:2px solid var(--mint);border-radius:30px 30px 30px 8px;
-    padding:24px 28px;
-  }
-  .bubble::after{
-    content:"";position:absolute;left:20px;bottom:-12px;width:22px;height:22px;
-    background:var(--mint-soft);border-left:2px solid var(--mint);border-bottom:2px solid var(--mint);
-    transform:rotate(-45deg) skew(8deg,8deg);border-bottom-left-radius:6px;
-  }
-  .bubble blockquote{margin:0 0 10px;font-size:1.05rem;}
-  .bubble .stars i{color:var(--purple);font-size:.8rem;margin-right:3px;}
-  .bubble .who{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7C7290;}
-  .review-summary{
-    max-width:680px;margin:30px auto 0;background:var(--purple);color:var(--cream);
-    border-radius:30px;padding:20px 28px;text-align:center;
-  }
-  .review-summary .score{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.4rem;}
-  .review-summary p{margin:4px 0 0;font-size:.95rem;color:#E4DCF5;}
-  .link-cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:22px;}
-  .link-card{
-    display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);
-    background:var(--cream);border:2px solid var(--line);border-radius:999px;padding:14px 24px;
-    font-weight:700;transition:border-color .15s ease,transform .15s ease;
-  }
-  .link-card:hover{border-color:var(--purple);transform:translateY(-2px);}
-  .link-card i{font-size:1.35rem;color:var(--purple);}
-  .link-card small{display:block;font-weight:400;color:#7C7290;}
-
-  /* visit: cloud-tag card */
-  .visit-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:32px;align-items:start;}
-  .cloud-tag{
-    position:relative;background:var(--cream);border:2px solid var(--line);
-    border-radius:32px;padding:52px 30px 28px;text-align:center;
-    box-shadow:0 14px 34px rgba(126,87,194,.1);
-  }
-  .cloud-tag::before{
-    content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);
-    width:16px;height:16px;border-radius:50%;background:var(--mint-soft);
-    border:2px solid var(--mint);
-  }
-  .cloud-tag .tag-head{
-    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--purple);margin-bottom:14px;
-  }
-  .cloud-tag .row{display:flex;gap:12px;align-items:flex-start;text-align:left;padding:12px 4px;border-bottom:1.5px dashed var(--line);}
-  .cloud-tag .row:last-of-type{border-bottom:0;}
-  .cloud-tag .row i{color:var(--purple);width:20px;text-align:center;margin-top:4px;}
-  .cloud-tag .row b{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:#7C7290;}
-  .tag-phone{
-    display:block;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.45rem;
-    color:var(--purple-deep);text-decoration:none;
-  }
-  .tag-phone:hover{text-decoration:underline;}
-  .tag-note{font-size:.88rem;color:#7C7290;margin-top:14px;}
-
-  /* form */
-  .form-card{
-    background:var(--mint-soft);border:2px solid var(--mint);border-radius:32px;padding:28px;
-  }
-  .form-card h3{font-size:1.25rem;font-weight:700;color:var(--purple-deep);margin-bottom:4px;}
-  .form-card .hint{font-size:.92rem;color:#5A5168;margin-bottom:18px;}
-  .field{margin-bottom:15px;}
-  .field label{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px;}
-  .field input,.field textarea{
-    width:100%;padding:12px 16px;border:2px solid var(--line);border-radius:18px;
-    font-family:'PT Sans',sans-serif;font-size:1rem;color:var(--ink);background:var(--cream);
-  }
-  .field input:focus,.field textarea:focus{outline:2px solid var(--purple);border-color:var(--purple);}
-  .field textarea{min-height:110px;resize:vertical;}
-  .form-card .btn{width:100%;justify-content:center;}
-  .form-feedback{margin-top:12px;font-weight:700;font-size:.92rem;color:#1E6B46;min-height:1.2em;}
-
-  /* footer */
-  .site-foot{background:var(--purple-deep);color:#D9CFEC;}
-  .foot-in{
-    max-width:1060px;margin:0 auto;padding:36px 20px 20px;
-    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;
-  }
-  .site-foot h4{font-family:'Fredoka',sans-serif;color:var(--cream);font-size:.9rem;margin:0 0 10px;}
-  .site-foot p{font-size:.9rem;margin:0 0 6px;}
-  .site-foot a{color:var(--cream);text-decoration:none;}
-  .site-foot a:hover{color:var(--mint);}
-  .foot-bottom{
-    border-top:1px solid rgba(255,255,255,.18);
-    max-width:1060px;margin:0 auto;padding:16px 20px 24px;font-size:.85rem;color:#B9A9DC;
-  }
-
-  /* responsive */
-  @media (max-width:900px){
-    .shelf{grid-template-columns:1fr 1fr;}
-    .visit-grid{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:640px){
-    .menu-btn{display:block;}
-    .nav-links{
-      display:none;position:absolute;left:0;right:0;top:100%;
-      background:var(--cream);border-bottom:2px solid var(--line);
-      flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;
-    }
-    .nav-links.open{display:flex;}
-    .nav-links a{padding:13px 16px;}
-    .shelf{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr;}
-    .section{padding:44px 0;}
-    .hero{padding:44px 0 48px;}
-  }
 </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site-head">
-    <div class="head-in">
-      <a class="brand" href="#/home" data-page="home" aria-label="Puff N' Stuff Smoke Shop 24/7 home">
-        <span class="brand-cloud" aria-hidden="true"></span>
-        <span class="brand-name">Puff N' Stuff Smoke Shop 24/7<small>4656 E Speedway Blvd</small></span>
-      </a>
-      <button id="menu-btn" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/home" data-page="home">Home</a>
-        <a href="#/shop" data-page="shop">The Shop</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <div class="wrap">
-          <svg class="hero-art" width="240" height="120" viewBox="0 0 240 120" role="img" aria-label="A purple puff cloud drifting past a crescent moon and stars">
-            <circle cx="188" cy="42" r="26" fill="#F2C14E"/>
-            <circle cx="201" cy="33" r="23" fill="#E9F6F1"/>
-            <circle cx="150" cy="16" r="3" fill="#7E57C2" opacity=".55"/>
-            <circle cx="166" cy="52" r="2.5" fill="#7E57C2" opacity=".4"/>
-            <g fill="#7E57C2">
-              <circle cx="56" cy="82" r="22"/>
-              <circle cx="94" cy="66" r="30"/>
-              <circle cx="134" cy="82" r="22"/>
-              <rect x="44" y="76" width="120" height="28" rx="14"/>
-            </g>
-          </svg>
-          <div><span class="open-pill"><i class="fa-solid fa-moon" aria-hidden="true"></i> Always open. Even at 3 AM.</span></div>
-          <h1>Speedway's <span class="soft">puff stop</span> that never closes</h1>
-          <p class="lead">Puff N' Stuff Smoke Shop 24/7 keeps the lights on and the shelves stocked around the clock. Clean shop, fair prices, and a crew that actually knows the products.</p>
-          <div class="hero-badges">
-            <span class="h-badge"><i class="fa-solid fa-broom" aria-hidden="true"></i> Always clean</span>
-            <span class="h-badge"><i class="fa-solid fa-tag" aria-hidden="true"></i> Deals available</span>
-            <span class="h-badge"><i class="fa-solid fa-user-check" aria-hidden="true"></i> Helpful crew</span>
-            <span class="h-badge"><i class="fa-solid fa-id-card" aria-hidden="true"></i> 21 and over, valid ID required</span>
-          </div>
-          <div class="cta-row">
-            <a class="btn btn-purple" href="#/shop" data-page="shop"><i class="fa-solid fa-store" aria-hidden="true"></i> Peek at the shelves</a>
-            <a class="btn btn-line" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Plan a visit</a>
-          </div>
-        </div>
-      </div>
+<header><div class="wrap nav"><a href="#home" class="brand">Puff N' Stuff Smoke Shop 24/7<small>Tucson</small></a><nav class="navlinks"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav><button class="hamb" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-in"><div class="kicker">Tucson</div><h1>Puff N' Stuff Smoke Shop 24/7</h1><p>Always open. Even at 3 AM.</p><div class="actions"><a class="btn fill" href="#services">Services</a><a class="btn" href="#visit">Visit</a><button class="btn" type="button" data-locked="true">Call</button></div><div class="notice"><i class="fa-solid fa-id-card"></i> 21 and over, valid ID required</div></div><div class="stock">Relevant stock smoke-shop imagery · not the actual business</div></section>
+<section class="factbar"><div class="wrap factgrid"><div class="fact"><i class="fa-solid fa-star"></i><div><small>Rating</small><strong>4.6 stars across 632 Google reviews</strong></div></div><div class="fact"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>Tucson, AZ 85712</strong></div></div><div class="fact"><i class="fa-regular fa-clock"></i><div><small>Hours</small><strong>Open 24 hours</strong></div></div></div></section>
+<section class="section" id="about"><div class="wrap"><div class="kicker">About</div><h2>Puff N' Stuff Smoke Shop 24/7</h2><p class="lead">A straightforward smoke shop done right: the staples you came for, priced fairly, with a counter crew happy to point you at the right thing.</p><div class="highlights"><div class="highlight"><i class="fa-solid fa-flask"></i><strong>Glass wall</strong></div><div class="highlight"><i class="fa-solid fa-wind"></i><strong>Vape bar</strong></div><div class="highlight"><i class="fa-solid fa-location-dot"></i><strong>Local picks</strong></div></div></div></section>
+<section class="section alt" id="services"><div class="wrap"><div class="kicker">Services</div><h2>What you’ll find at Puff N' Stuff Smoke Shop 24/7.</h2><div class="services"><article class="service"><i class="fa-solid fa-leaf"></i><h3>Vapes</h3><p>Disposables and the gear that goes with them.</p></article><article class="service"><i class="fa-solid fa-flask"></i><h3>Glass</h3><p>Pieces and accessories for the collection at home.</p></article><article class="service"><i class="fa-solid fa-scroll"></i><h3>Wraps and papers</h3><p>Roll your own? The wall is stocked.</p></article><article class="service"><i class="fa-solid fa-user-group"></i><h3>Cigars, lighters & CBD</h3><p>Something for the quick break or the long one. Ask the counter what's on the shelf this week.</p></article></div></div></section>
+<section class="section" id="reviews"><div class="wrap"><div class="kicker">Reviews</div><h2>4.6 stars across 632 Google reviews</h2><div class="reviews"><article class="review"><p>"The shop is always clean and almost never has a line. All time favorite smoke shop in Tucson!!!"</p><span>Google review</span></article><article class="review"><p>"Always very nice and helpful, very knowledgeable about their products."</p><span>Google review</span></article></div><div class="actions"><button class="btn fill" type="button" data-locked="true">See more on Maps</button></div></div></section>
+<section class="section alt" id="hours"><div class="wrap"><div class="kicker">Hours</div><h2>Always open</h2><div class="hours"><div class="hour"><strong>Every day</strong><span>Open 24 hours</span></div></div></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="kicker">Visit</div><h2>Puff N' Stuff Smoke Shop 24/7</h2><div class="visitgrid"><div class="card"><h3>Find us</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public street address is hidden in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Get directions</button></div><div class="card"><h3>Call</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Phone actions are disabled in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Call</button></div></div></div></section>
+</main>
+<footer><div class="wrap">Puff N' Stuff Smoke Shop 24/7 · Tucson, AZ 85712</div></footer>
 
-      <div class="section mint">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Open 24 hours</h2>
-            <p>No early close, no late start. The Speedway shop runs the same schedule every single day of the week.</p>
-            <div class="cloud-divider" aria-hidden="true"><span></span><span></span><span></span></div>
-          </div>
-          <div class="hours-cloud">
-            <div class="big">Open 24 hours</div>
-            <div class="sub">Every day, all week, all year. <span id="status-chip" class="status-chip"><span class="dot"></span>Checking</span></div>
-            <span class="address-pill"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 4656 E Speedway Blvd, Tucson, AZ 85712</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="section white">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>What Tucson says</h2>
-            <p>4.6 stars across 632 Google reviews. Here are a few of our favorites, word for word.</p>
-          </div>
-          <div class="bubble-list">
-            <div class="bubble">
-              <blockquote>"The shop is always clean and almost never has a line. All time favorite smoke shop in Tucson!!!"</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-            <div class="bubble">
-              <blockquote>"Always very nice and helpful, very knowledgeable about their products."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-            <div class="bubble">
-              <blockquote>"Fair pricing with deals available."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-          </div>
-          <div class="link-cards">
-            <a class="btn btn-line" href="#/reviews" data-page="reviews">Read all the reviews</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE SHOP (category) -->
-    <section class="page" id="page-shop">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>The Shop</h2>
-            <p>A straightforward smoke shop done right: the staples you came for, priced fairly, with a counter crew happy to point you at the right thing.</p>
-          </div>
-          <div class="shelf">
-            <div class="shelf-item">
-              <i class="fa-solid fa-battery-three-quarters" aria-hidden="true"></i>
-              <h3>Vapes</h3>
-              <p>Disposables and the gear that goes with them.</p>
-            </div>
-            <div class="shelf-item">
-              <i class="fa-solid fa-jar" aria-hidden="true"></i>
-              <h3>Glass</h3>
-              <p>Pieces and accessories for the collection at home.</p>
-            </div>
-            <div class="shelf-item">
-              <i class="fa-solid fa-joint" aria-hidden="true"></i>
-              <h3>Wraps and papers</h3>
-              <p>Roll your own? The wall is stocked.</p>
-            </div>
-            <div class="shelf-item">
-              <i class="fa-solid fa-fire" aria-hidden="true"></i>
-              <h3>Cigars</h3>
-              <p>Something for the quick break or the long one.</p>
-            </div>
-            <div class="shelf-item">
-              <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
-              <h3>Lighters</h3>
-              <p>Always. You know how it goes.</p>
-            </div>
-            <div class="shelf-item">
-              <i class="fa-solid fa-leaf" aria-hidden="true"></i>
-              <h3>CBD</h3>
-              <p>Ask the counter what's on the shelf this week.</p>
-            </div>
-          </div>
-          <div class="age-card">
-            <i class="fa-solid fa-id-card" aria-hidden="true"></i>
-            <div>
-              <h3>21 and over, valid ID required</h3>
-              <p>Bring your ID. The crew checks it every time, at every hour.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="section mint">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Why people keep coming back</h2>
-            <p>The reviews say it better than we could: clean shop, almost never a line, fair pricing, and a crew that knows its products. See for yourself at 4656 E Speedway, any hour you like.</p>
-          </div>
-          <div class="cta-row">
-            <a class="btn btn-purple" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit the shop</a>
-            <a class="btn btn-line" href="#/reviews" data-page="reviews"><i class="fa-solid fa-star" aria-hidden="true"></i> 4.6 on Google</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Reviews</h2>
-            <p>Every word below is a real customer review, shown exactly as it was written.</p>
-          </div>
-          <div class="bubble-list">
-            <div class="bubble">
-              <blockquote>"The shop is always clean and almost never has a line. All time favorite smoke shop in Tucson!!!"</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-            <div class="bubble">
-              <blockquote>"Always very nice and helpful, very knowledgeable about their products."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-            <div class="bubble">
-              <blockquote>"Fair pricing with deals available."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-          </div>
-          <div class="review-summary">
-            <div class="score">4.6 stars with 632 reviews on Google</div>
-            <p>Clean, helpful, and fair. That is the pattern in the reviews and it is the pattern we aim for.</p>
-          </div>
-          <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Puff%20N%27%20Stuff%20Smoke%20Shop%2C%204656%20E%20Speedway%20Blvd%2C%20Tucson%2C%20AZ%2085712" target="_blank" rel="noopener">
-              <i class="fa-brands fa-google" aria-hidden="true"></i>
-              <span>See every review on Google<small>Opens Google Maps in a new tab</small></span>
-            </a>
-            <a class="link-card" href="https://www.yelp.com/biz/puff-and-stuff-247-smoke-shop-tucson-2" target="_blank" rel="noopener">
-              <i class="fa-brands fa-yelp" aria-hidden="true"></i>
-              <span>Read the Yelp reviews<small>Opens Yelp in a new tab</small></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Visit</h2>
-            <p>On Speedway, easy parking, open right now and at every hour in between.</p>
-          </div>
-          <div class="visit-grid">
-            <div class="cloud-tag">
-              <div class="tag-head">Always open tag</div>
-              <div class="row">
-                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                <div><b>Address</b>4656 E Speedway Blvd, Tucson, AZ 85712</div>
-              </div>
-              <div class="row">
-                <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                <div><b>Call the counter</b><a class="tag-phone" href="tel:+15202072618">(520) 207-2618</a></div>
-              </div>
-              <div class="row">
-                <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                <div><b>Hours</b>Open 24 hours <span class="status-chip" style="margin-left:6px;"><span class="dot"></span>Checking</span></div>
-              </div>
-              <div class="row">
-                <i class="fa-solid fa-id-card" aria-hidden="true"></i>
-                <div><b>At the door</b>21 and over, valid ID required</div>
-              </div>
-              <div class="tag-note">Text ahead if you want us to check stock before you drive over.</div>
-            </div>
-            <div class="form-card">
-              <h3>Ask about stock</h3>
-              <p class="hint">Send a quick note and the counter will sort you out. On your phone it opens a text; on a desktop it copies the message so you can paste it into a text.</p>
-              <form id="quote-form" novalidate>
-                <div class="field">
-                  <label for="f-name">Your name</label>
-                  <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="First name is plenty">
-                </div>
-                <div class="field">
-                  <label for="f-phone">Your phone number</label>
-                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(520) 555-0100">
-                </div>
-                <div class="field">
-                  <label for="f-msg">What are you looking for?</label>
-                  <textarea id="f-msg" name="message" required placeholder="Do you have ... in stock right now?"></textarea>
-                </div>
-                <button class="btn btn-purple" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the counter</button>
-                <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-foot">
-    <div class="foot-in">
-      <div>
-        <h4>Puff N' Stuff Smoke Shop 24/7</h4>
-        <p>The clean, friendly, always-open smoke shop on Speedway. Vapes, glass, cigars, wraps, lighters, CBD and more, any hour you need them.</p>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>(520) 207-2618</p>
-        <p>4656 E Speedway Blvd<br>Tucson, AZ 85712</p>
-      </div>
-      <div>
-        <h4>Hours</h4>
-        <p>Open 24 hours, every day</p>
-        <p>21 and over, valid ID required</p>
-      </div>
-    </div>
-    <div class="foot-bottom">© Puff N' Stuff Smoke Shop 24/7 · Tucson, AZ</div>
-  </footer>
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
 </div>
 
+
 <script>
-var BUSINESS = "Puff N' Stuff Smoke Shop 24/7";
-var TITLES = { home: "Always Open on Speedway", shop: "The Shop", reviews: "Reviews", visit: "Visit" };
-var PRETTY_PHONE = "(520) 207-2618";
-var PHONE = "+15202072618";
-var CITY_TZ = "America/Phoenix";
-var HOURS = {0:[0,24],1:[0,24],2:[0,24],3:[0,24],4:[0,24],5:[0,24],6:[0,24]};
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileNav=document.getElementById('mobileNav');
+  const modal=document.getElementById('lockModal');
+  const closeBtn=document.getElementById('lockClose');
+  let lastFocus=null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-  document.querySelectorAll(".nav-links a").forEach(function(a){
-    a.classList.toggle("is-here", a.getAttribute("data-page") === id);
-  });
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderStatus(){
-  var s = openState();
-  document.querySelectorAll(".status-chip").forEach(function(chip){
-    chip.classList.toggle("is-open", s.open);
-    chip.classList.toggle("is-closed", !s.open);
-    chip.innerHTML = '<span class="dot"></span>' + s.label;
-  });
-}
-
-var mb = document.getElementById("menu-btn");
-var nl = document.querySelector(".nav-links");
-mb.addEventListener("click", function(){
-  var open = nl.classList.toggle("open");
-  mb.classList.toggle("open", open);
-  mb.setAttribute("aria-expanded", open ? "true" : "false");
-});
-
-var form = document.getElementById("quote-form");
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var phone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  if (!name || !phone || !msg) {
-    document.getElementById("form-feedback").textContent = "Add your name, number, and question so the counter can reply.";
-    return;
-  }
-  var note = "Stock question for " + BUSINESS + "\nName: " + name + "\nPhone: " + phone + "\n\n" + msg;
-  var body = encodeURIComponent(note);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(note).then(function(){
-      document.getElementById("form-feedback").textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE + ".";
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',String(open));
+    });
+    document.querySelectorAll('#mobileNav a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',()=>{
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      });
     });
   }
-});
 
-navigateTo(getPageFromHash(), false);
-renderStatus();
+  function openLock(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus && typeof lastFocus.focus==='function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
+    });
+  });
+
+  document.querySelectorAll('form').forEach(form=>{
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      openLock(e.submitter||form);
+    });
+  });
+
+  closeBtn.addEventListener('click',closeLock);
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeLock(); });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key==='Tab' && modal.classList.contains('open')){ e.preventDefault(); closeBtn.focus(); }
+    if((e.ctrlKey||e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('gesturechange',e=>e.preventDefault());
+  document.addEventListener('gestureend',e=>e.preventDefault());
+  document.addEventListener('wheel',e=>{ if(e.ctrlKey)e.preventDefault(); },{passive:false});
+})();
 </script>
+
 </body>
 </html>

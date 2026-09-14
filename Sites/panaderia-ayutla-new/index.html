@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<title>Panaderia Ayutla | Chicago</title>
+<meta name="description" content="Panaderia Ayutla in Rogers Park. Pan dulce, bolillos, orejas and cookies, daily from 6 AM.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fff8ec;--bread:#d99145;--rose:#d35c70;--cocoa:#4c2f22;--ink:#2f211a;--paper:#f6ead4;--line:#dfcdb3;--max:1160px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden;-webkit-user-select:none;user-select:none}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2{font-family:"Fraunces",serif;margin:0;line-height:.95}h1{font-size:clamp(4rem,8vw,7.6rem)}h2{font-size:clamp(2.6rem,5vw,4.8rem)}h3,p{margin:0}header{position:sticky;top:0;z-index:50;background:rgba(255,248,236,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{text-decoration:none;font-family:"Fraunces";font-weight:900;font-size:1.25rem;color:var(--cocoa)}.brand small{display:block;font:800 .58rem "DM Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}.navlinks{display:flex;gap:22px}.navlinks a{text-decoration:none;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800}.menu{display:none;border:1px solid var(--cocoa);background:transparent;width:44px;height:44px}
+.hero{min-height:740px;position:relative;color:white;background:linear-gradient(90deg,rgba(61,37,25,.95),rgba(61,37,25,.62),rgba(61,37,25,.18)),url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2200&q=86') center/cover no-repeat}.hero .wrap{min-height:740px;display:flex;align-items:end;padding:110px 0 70px}.hero-copy{max-width:760px}.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:.7rem;font-weight:800;color:#ffd9bd;margin-bottom:12px}.hero h1 span{color:#f4ad63}.hero p{font-size:1.1rem;max-width:650px;color:#f3e6db;margin:22px 0 26px}.buttons{display:flex;gap:10px;flex-wrap:wrap}.btn{min-height:48px;padding:13px 20px;border:1px solid transparent;background:var(--rose);color:#fff;font:800 .73rem "DM Sans";letter-spacing:.09em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}.btn.alt{background:transparent;border-color:#fff}.asset{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.65);padding:6px 9px;font-size:.58rem;text-transform:uppercase;letter-spacing:.07em}
+.ribbon{background:var(--rose);color:#fff;padding:13px 0;text-align:center;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem}.section{padding:88px 0;scroll-margin-top:76px}.intro{max-width:800px;margin-bottom:36px}.intro p{color:#765f51;margin-top:14px}.goods{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line)}.good{padding:28px;background:#fff;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.good:nth-child(even){border-right:0}.good i{color:var(--rose);font-size:1.25rem;margin-bottom:12px}.good h3{font-family:"Fraunces";font-size:1.5rem}.good p{color:#725e50;margin-top:8px}.process{background:var(--cocoa);color:#fff}.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{border:1px solid rgba(255,255,255,.2);padding:26px}.n{font-family:"Fraunces";font-size:2.6rem;color:#f4ad63}.step p{color:#dbcac0;margin-top:8px}.reviews{background:var(--paper)}.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.review{background:white;padding:25px;border-top:4px solid var(--rose)}.review p{font-size:1rem}.review span{display:block;margin-top:12px;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#8a776b}.hours{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}.hours-list{background:#fff;border:1px solid var(--line);padding:25px}.hrow{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line)}.protected{margin-top:20px;padding:17px;border-left:4px solid var(--rose);background:#fff}.protected strong{display:block;color:var(--rose);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}footer{background:var(--cocoa);color:#e8d8cc;padding:32px 0}.footer{display:flex;justify-content:space-between;gap:20px;align-items:center}.modal{display:none;position:fixed;inset:0;z-index:1000;place-items:center;background:rgba(0,0,0,.75);padding:20px}.modal.open{display:grid}.modal-card{max-width:450px;background:var(--cream);color:var(--ink);padding:30px;border-top:5px solid var(--rose)}.modal-icon{color:var(--rose);font-size:1.3rem}.modal-card h2{font-size:2.3rem;margin-top:12px}.modal-card p{margin:14px 0 22px}body.modal-open{overflow:hidden}
+@media(max-width:800px){.menu{display:grid;place-items:center}.navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--cream);flex-direction:column;padding:14px 20px;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}.hero,.hero .wrap{min-height:680px}.goods,.process-grid,.review-grid,.hours{grid-template-columns:1fr}.good{border-right:0}.section{padding:66px 0}.btn{width:100%;justify-content:center}.footer{flex-direction:column;align-items:flex-start}}
+</style></head><body>
+<header><div class="wrap nav"><a class="brand" href="#home">Panaderia Ayutla<small>Clark St · Chicago</small></a><button class="menu" id="menuBtn" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><nav class="navlinks" id="navLinks"><a href="#home">Home</a><a href="#panaderia">La Panaderia</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav></div></header>
+<main>
+<section class="hero" id="home"><div class="wrap"><div class="hero-copy"><div class="eyebrow">Grab a tray, pick your favorites</div><h1>Sweet bread from a <span>family oven</span> on Clark Street</h1><p>Panaderia Ayutla is the family-run panaderia in Rogers Park with trays of pan dulce, soft bolillos, orejas and cookies, baked fresh every morning before the doors open at 6.</p><div class="buttons"><a class="btn" href="#panaderia"><i class="fa-solid fa-bread-slice"></i> See the trays</a><a class="btn alt" href="#visit"><i class="fa-solid fa-clock"></i> Plan a morning visit</a></div></div></div><div class="asset">Stock bakery image · Unsplash</div></section>
+<div class="ribbon">6 AM doors open daily &nbsp; · &nbsp; 4.6 stars on Google &nbsp; · &nbsp; 7 days a week</div>
+<section class="section" id="panaderia"><div class="wrap"><div class="intro"><div class="eyebrow" style="color:var(--rose)">What comes out of the oven</div><h2>Trays refill through the day</h2><p>Trays refill through the day, but early birds get the warm ones.</p></div><div class="goods">
+<div class="good"><i class="fa-solid fa-cookie-bite"></i><h3>Pan Dulce Trays</h3><p>Conchas, cuernos, puerquitos and the day's sugar-dusted batch, laid out on trays so you can pick piece by piece.</p></div>
+<div class="good"><i class="fa-solid fa-bread-slice"></i><h3>Bolillos & Breads</h3><p>Crusty bolillos and teleras for the week's tortas, plus soft sandwich loaves the neighbors call the reason they skip the supermarket.</p></div>
+<div class="good"><i class="fa-solid fa-layer-group"></i><h3>Orejas & Favorites</h3><p>The palm-pastry orejas that people come back for, layered crisp and buttery, waiting near the register where they never last.</p></div>
+<div class="good"><i class="fa-solid fa-cookie"></i><h3>Cookies</h3><p>Polvorones, sugar cookies and wedding-style cookies by the dozen for office tables and after-dinner plates.</p></div>
+</div></div></section>
+<section class="section process"><div class="wrap"><div class="intro"><div class="eyebrow">How the tray works</div><h2>No counter ordering, no waiting</h2><p>Tray in one hand, tongs in the other.</p></div><div class="process-grid"><div class="step"><div class="n">1</div><h3>Grab a tray</h3><p>Tongs and trays are stacked right at the start of the cases.</p></div><div class="step"><div class="n">2</div><h3>Pick your fav items</h3><p>Walk both walls. Mix pan dulce with bolillos however you like.</p></div><div class="step"><div class="n">3</div><h3>Pay at the counter</h3><p>We wrap it in paper, bag it, and you are out the door in minutes.</p></div></div></div></section>
+<section class="section reviews" id="reviews"><div class="wrap"><div class="intro"><div class="eyebrow" style="color:var(--rose)">What the tray-pickers say</div><h2>4.6 stars on Google</h2><p>Real reviews from Clark Street regulars and first-timers alike.</p></div><div class="review-grid"><div class="review"><p>“Awesome pastries!”</p><span>Google review</span></div><div class="review"><p>“I love this bakery! They have a vast selection of pastries, breads, and cookies. Just grab a tray and pick out your fav items!”</p><span>Google review</span></div><div class="review"><p>“The bread here is so soft and delicious.”</p><span>Google review</span></div></div><div class="buttons" style="margin-top:24px"><button class="btn" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button><button class="btn" data-locked="true"><i class="fa-brands fa-yelp"></i> Read the Yelp reviews</button></div></div></section>
+<section class="section" id="visit"><div class="wrap hours"><div><div class="eyebrow" style="color:var(--rose)">Find the bakery</div><h2>Rogers Park</h2><p style="margin-top:14px;color:#765f51">On North Clark Street in Rogers Park, a short walk from the Morse red line stop. Come early for the warm trays.</p><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></div><div class="buttons" style="margin-top:18px"><button class="btn" data-locked="true">Open our Google listing</button><button class="btn" data-locked="true">Send note</button></div></div><div class="hours-list"><h3>Every day, 6 AM - 8 PM</h3><div class="hrow"><span>Sunday</span><strong>6 AM - 8 PM</strong></div><div class="hrow"><span>Monday</span><strong>6 AM - 8 PM</strong></div><div class="hrow"><span>Tuesday</span><strong>6 AM - 8 PM</strong></div><div class="hrow"><span>Wednesday</span><strong>6 AM - 8 PM</strong></div><div class="hrow"><span>Thursday</span><strong>6 AM - 8 PM</strong></div><div class="hrow"><span>Friday</span><strong>6 AM - 8 PM</strong></div><div class="hrow"><span>Saturday</span><strong>6 AM - 8 PM</strong></div></div></div></section>
+</main><footer><div class="wrap footer"><strong>Panaderia Ayutla · Chicago, IL</strong><span>Family-run Mexican bakery on Clark Street.</span></div></footer>
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn" id="closeModal" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeBtn = document.getElementById('closeModal');
+  let lastFocus = null;
+
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }));
+  }
+
+  function openLocked() {
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
+  }
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked();
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLocked();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+})();
+</script>
+</body></html>

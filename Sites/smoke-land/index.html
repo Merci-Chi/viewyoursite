@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name='robots' content='max-image-preview:large' />
 <title>Smoke Land &#8211; bjvfi.com</title>
 <link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
@@ -185,6 +185,85 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
 <meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+
+<style>:root{--demo-stock-image:url("https://unsplash.com/photos/_YWVTsFYo-g/download?force=true");}
+
+/* Protected demo updates */
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+}
+body{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+  overflow-x:hidden;
+}
+.hero{
+  background-image:
+    linear-gradient(rgba(18,14,20,.72),rgba(18,14,20,.72)),
+    var(--demo-stock-image) !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.demo-stock-label{
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  z-index:8;
+  padding:7px 9px;
+  background:rgba(0,0,0,.68);
+  color:#fff;
+  font-size:10px;
+  line-height:1.25;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+#demo-lock-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  z-index:2147483646;
+}
+#demo-lock-modal.open{display:flex}
+#demo-lock-modal .demo-lock-dialog{
+  width:min(100%,440px);
+  background:#18151b;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
+  border-top:4px solid #e8763d;
+  padding:28px;
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+#demo-lock-modal h2{
+  margin:0 0 10px;
+  color:#fff;
+  font-size:24px;
+  line-height:1.2;
+}
+#demo-lock-modal p{
+  margin:0 0 20px;
+  color:#d8d2db;
+  line-height:1.6;
+}
+#demo-lock-modal button{
+  width:100%;
+  min-height:46px;
+  border:0;
+  background:#e8763d;
+  color:#fff;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer;
+}
+@media(max-width:700px){
+  .demo-stock-label{left:12px;right:auto}
+}
+</style>
 </head>
 
 <body class="wp-singular page-template page-template-blank page page-id-626605 wp-embed-responsive wp-theme-business-identity-mvp">
@@ -423,7 +502,7 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
 
           <p class="summary-line"><i class="fa-solid fa-heart" aria-hidden="true"></i> Straight from the neighborhood</p>
 
-          <a class="google-card" href="https://www.google.com/maps/search/?api=1&#038;query=Smoke%20Land%2C%203620%20W%20Sahara%20Ave%20Ste%20W8%2C%20Las%20Vegas%2C%20NV%2089102" target="_blank" rel="noopener">
+          <a class="google-card" href="#" target="_blank" rel="noopener" data-locked="true">
             <span class="g-icon"><i class="fa-brands fa-google" aria-hidden="true"></i></span>
             <span class="g-text"><strong>See every review on Google</strong><small>The complete list on our listing</small></span>
             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
@@ -448,7 +527,7 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
             <div>
               <div class="card">
                 <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Coordinates</h3>
-                <p class="addr">3620 W Sahara Ave, Ste W8<br>Las Vegas, NV 89102</p>
+                <p class="addr">Las Vegas, NV<br>Las Vegas, NV 89102</p>
                 <p style="margin:0;font-size:.9rem;color:var(--dim)">Suite W8, west of the 15 &#8211; the same plaza locals have been stopping at for years.</p>
               </div>
               <div class="card">
@@ -471,7 +550,7 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
               <div class="coin-card">
                 <span class="coin-title">Insert Coin</span>
                 <span class="coin-slot" aria-hidden="true"></span>
-                <a class="coin-phone" href="tel:+17027498537">(702) 749-8537</a>
+                <a class="coin-phone" href="#" data-locked="true"></a>
                 <p>Call or text the shop. 21 and over, valid ID required &#8211; we check at the door.</p>
               </div>
               <form id="contact-form" class="contact-form" style="margin-top:24px" novalidate>
@@ -483,7 +562,7 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
                 <input id="cf-phone" type="tel" autocomplete="tel" placeholder="(702) 555-0123">
                 <label for="cf-msg">Your message</label>
                 <textarea id="cf-msg" rows="4" placeholder="Quick question about..."></textarea>
-                <button class="btn btn-solid" type="submit">Press Send</button>
+                <button class="btn btn-solid" type="submit" data-locked="true">Press Send</button>
                 <p class="form-feedback" id="cf-feedback" role="status"></p>
               </form>
             </div>
@@ -502,12 +581,12 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
       </div>
       <div>
         <h4>Coordinates</h4>
-        <p>3620 W Sahara Ave, Ste W8<br>Las Vegas, NV 89102</p>
+        <p>Las Vegas, NV<br>Las Vegas, NV 89102</p>
         <p>Every day, 7 AM &#8211; midnight</p>
       </div>
       <div>
         <h4>Hotline</h4>
-        <p>Questions? <a href="tel:+17027498537">(702) 749-8537</a></p>
+        <p>Questions? <a href="#" data-locked="true"></a></p>
         <p style="font-size:.82rem">21 and over, valid ID required.</p>
       </div>
     </div>
@@ -575,7 +654,7 @@ function openState(){
   for (var i = 0; i < 7; i++) {
     var d = (n.day + i) % 7, h = HOURS[d];
     if (!h) continue;
-    if (i === 0 &#038;&#038; t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
     if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
   }
   return { open: false, label: "Closed" };
@@ -597,8 +676,8 @@ function renderStatus(){
 }
 renderStatus();
 
-var PHONE = "+17027498537";
-var PRETTY = "(702) 749-8537";
+var PHONE = "";
+var PRETTY = "";
 var form = document.getElementById("contact-form");
 form.addEventListener("submit", function(e){
   e.preventDefault();
@@ -613,10 +692,9 @@ form.addEventListener("submit", function(e){
   var msg = "Hi " + BUSINESS + "! This is " + name + (phone ? " (" + phone + ")" : "") + ". " + message;
   var body = encodeURIComponent(msg);
   if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&#038;body=" + body;
+    /* demo action disabled */body=" + body;
   } else {
-    navigator.clipboard.writeText(msg).then(function(){
-      feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
+    Promise.reject(new Error("demo action disabled"));
     });
   }
 });
@@ -633,5 +711,72 @@ form.addEventListener("submit", function(e){
 var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
 //# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
 </script>
+
+<div id="demo-lock-modal" aria-hidden="true">
+  <div class="demo-lock-dialog" role="dialog" aria-modal="true" aria-labelledby="demo-lock-title" aria-describedby="demo-lock-message">
+    <h2 id="demo-lock-title">This is currently locked.</h2>
+    <p id="demo-lock-message">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button id="demo-lock-close" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const modal = document.getElementById('demo-lock-modal');
+  const closeBtn = document.getElementById('demo-lock-close');
+  let lastFocus = null;
+
+  function openLock(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.addEventListener('click', (e) => {
+    const locked = e.target.closest('[data-locked="true"]');
+    if(!locked) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(locked);
+  }, true);
+
+  document.addEventListener('submit', (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(e.submitter || e.target);
+  }, true);
+
+  closeBtn.addEventListener('click', closeLock);
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeLock();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeBtn.focus();
+    }
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+})();
+</script>
+
 </body>
 </html>

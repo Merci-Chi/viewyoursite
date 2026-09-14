@@ -1,696 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <title>Rincon Cleaners &amp; Laundromat | Broadway Blvd Wash, Dry, Fold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta name="description" content="Rincon Cleaners & Laundromat at 8323 E Broadway Blvd in Tucson. Self-serve laundry daily, weekend drop-off, dry clean drop-off.">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --teal:#028090;
-    --teal-deep:#02555E;
-    --teal-soft:#E2F3F4;
-    --coral:#F45B69;
-    --coral-soft:#FDEAEC;
-    --white:#FFFFFF;
-    --ink:#27444A;
-    --line:#D5E6E7;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'Mulish',Helvetica,sans-serif;
-    color:var(--ink);
-    background:var(--white);
-    line-height:1.6;
-    -webkit-text-size-adjust:100%;
-  }
-  .site-shell{min-height:100vh;display:flex;flex-direction:column;}
-  main{flex:1 0 auto;}
-  footer{flex-shrink:0;}
-  h1,h2,h3{font-family:'Mochiy Pop One','Mulish',sans-serif;font-weight:400;line-height:1.25;margin:0;}
-  p{margin:0 0 1rem;}
-  .wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 20px;}
-
-  /* header */
-  .site-head{
-    background:var(--white);
-    border-bottom:3px solid var(--teal);
-    position:sticky;top:0;z-index:50;
-  }
-  .head-in{
-    max-width:1040px;margin:0 auto;padding:13px 20px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
-  }
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
-  .brand-blocks{display:flex;flex-direction:column;gap:3px;flex-shrink:0;}
-  .brand-blocks span{display:block;height:8px;border-radius:5px;}
-  .brand-blocks span:nth-child(1){width:30px;background:var(--teal);}
-  .brand-blocks span:nth-child(2){width:24px;background:var(--coral);}
-  .brand-blocks span:nth-child(3){width:18px;background:var(--teal);}
-  .brand-name{font-family:'Mochiy Pop One',sans-serif;font-size:.98rem;line-height:1.25;}
-  .brand-name small{display:block;font-family:'Mulish',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);}
-  .menu-btn{
-    display:none;background:none;border:2px solid var(--teal);border-radius:12px;
-    width:46px;height:42px;cursor:pointer;padding:0;
-  }
-  .menu-btn span{display:block;width:20px;height:2px;background:var(--teal);margin:4px auto;transition:transform .2s ease, opacity .2s ease;}
-  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-  .menu-btn.open span:nth-child(2){opacity:0;}
-  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-  .nav-links{display:flex;align-items:center;gap:6px;}
-  .nav-links a{
-    text-decoration:none;font-weight:700;font-size:.95rem;color:var(--ink);
-    padding:9px 15px;border-radius:10px;transition:background .15s ease,color .15s ease;
-  }
-  .nav-links a:hover{background:var(--teal-soft);color:var(--teal-deep);}
-  .nav-links a.is-here{background:var(--teal);color:var(--white);}
-
-  /* pages */
-  .page{display:none;}
-  .page.active{display:block;}
-
-  /* status chip */
-  .status-chip{
-    display:inline-flex;align-items:center;gap:8px;
-    font-weight:700;font-size:.84rem;padding:6px 14px;border-radius:999px;
-    background:var(--white);border:1.5px solid var(--line);color:var(--ink);
-  }
-  .status-chip .dot{width:9px;height:9px;border-radius:50%;background:#9AA5AA;}
-  .status-chip.is-open{border-color:var(--teal);background:var(--teal-soft);color:var(--teal-deep);}
-  .status-chip.is-open .dot{background:#0C9A6E;}
-  .status-chip.is-closed .dot{background:#B23A2E;}
-
-  /* hero: text left, towel stack right */
-  .hero{
-    background:linear-gradient(180deg, var(--teal-soft) 0%, var(--white) 100%);
-  }
-  .hero-grid{
-    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;
-    padding:56px 0 54px;
-  }
-  .kicker{
-    display:inline-flex;align-items:center;gap:8px;
-    font-weight:800;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--teal-deep);margin-bottom:14px;
-  }
-  .kicker i{color:var(--coral);}
-  .hero h1{font-size:clamp(1.9rem,4.4vw,3rem);color:var(--ink);margin-bottom:16px;}
-  .hero h1 .hl{color:var(--teal);}
-  .hero h1 .hl2{color:var(--coral);}
-  .hero .lead{font-size:1.06rem;color:#436066;max-width:33em;margin-bottom:22px;}
-  .cta-row{display:flex;flex-wrap:wrap;gap:12px;}
-  .btn{
-    display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;
-    font-weight:800;font-size:.97rem;
-    padding:13px 24px;border-radius:14px;border:2px solid transparent;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(2,128,144,.2);}
-  .btn-teal{background:var(--teal);color:var(--white);}
-  .btn-coral{background:var(--coral);color:var(--white);}
-  .btn-line{border-color:var(--teal);color:var(--teal-deep);}
-  .btn-line:hover{background:var(--teal-soft);}
-
-  /* folded towel stack art */
-  .towel-stage{display:flex;justify-content:center;}
-  .towel-stack{display:flex;flex-direction:column;gap:10px;align-items:center;}
-  .towel{
-    width:230px;height:46px;border-radius:16px;position:relative;
-    box-shadow:0 8px 16px rgba(39,68,74,.12);
-  }
-  .towel::after{
-    content:"";position:absolute;left:16px;right:16px;top:12px;height:4px;border-radius:4px;
-    background:rgba(255,255,255,.4);
-  }
-  .towel.t1{background:var(--coral);width:250px;}
-  .towel.t2{background:var(--teal);}
-  .towel.t3{background:#7FC6CB;}
-  .towel.t4{background:var(--teal-deep);}
-  .towel.t5{background:var(--coral);width:210px;}
-  .towel .label{
-    position:absolute;right:14px;top:50%;transform:translateY(-50%);
-    font-size:.62rem;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.9);
-    border:1.5px solid rgba(255,255,255,.5);border-radius:6px;padding:2px 7px;
-  }
-
-  /* sections */
-  .section{padding:56px 0;}
-  .section.tint{background:var(--teal-soft);}
-  .sec-head{margin-bottom:30px;}
-  .sec-head h2{font-size:clamp(1.5rem,3.2vw,2.1rem);color:var(--ink);margin-bottom:8px;}
-  .sec-head h2 .hl{color:var(--teal);}
-  .sec-head h2 .hl2{color:var(--coral);}
-  .sec-head p{color:#436066;max-width:46em;}
-  .sec-head.center{text-align:center;}
-  .sec-head.center p{margin-left:auto;margin-right:auto;}
-
-  /* split hours widget */
-  .split-hours{
-    display:grid;grid-template-columns:1.15fr .85fr;gap:20px;max-width:820px;margin:0 auto;
-  }
-  .hcard{
-    border-radius:20px;padding:28px 28px 24px;position:relative;
-    border:2px solid var(--line);background:var(--white);
-  }
-  .hcard.self{border-color:var(--teal);box-shadow:0 14px 30px rgba(2,128,144,.12);}
-  .hcard.desk{background:var(--coral-soft);border-color:#F6BFC5;}
-  .hcard .badge{
-    position:absolute;top:-14px;left:22px;
-    font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-    padding:5px 14px;border-radius:999px;color:var(--white);
-  }
-  .hcard.self .badge{background:var(--teal);}
-  .hcard.desk .badge{background:var(--coral);}
-  .hcard h3{font-size:1.08rem;margin-bottom:10px;}
-  .hcard .big{font-size:1.45rem;font-weight:800;color:var(--teal-deep);font-family:'Mulish',sans-serif;}
-  .hcard .deskline{font-size:1.12rem;font-weight:800;color:#B23A48;font-family:'Mulish',sans-serif;line-height:1.45;}
-  .hcard p{font-size:.92rem;color:#436066;margin:8px 0 0;}
-  .hcard .flag{display:none;margin-top:12px;}
-  .hcard.self .flag .status-chip{margin-top:0;}
-  .hcard .today-tag{display:none;margin-top:12px;font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);}
-  .hcard.is-today .today-tag{display:inline-block;}
-
-  .confirm-line{
-    max-width:820px;margin:20px auto 0;text-align:center;
-    font-size:.9rem;color:#436066;background:var(--white);
-    border:1.5px dashed var(--line);border-radius:14px;padding:12px 18px;
-  }
-  .confirm-line i{color:var(--coral);margin-right:7px;}
-
-  /* wash page service cards */
-  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  .svc{
-    background:var(--white);border:2px solid var(--line);border-radius:20px;padding:26px;
-    transition:transform .15s ease,border-color .15s ease;
-  }
-  .svc:hover{transform:translateY(-3px);border-color:var(--teal);}
-  .svc .icon{
-    width:50px;height:50px;border-radius:16px;background:var(--teal-soft);color:var(--teal);
-    display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:14px;
-  }
-  .svc:nth-child(even) .icon{background:var(--coral-soft);color:var(--coral);}
-  .svc h3{font-size:1.05rem;margin-bottom:6px;}
-  .svc p{margin:0;font-size:.93rem;color:#436066;}
-  .svc-note{
-    margin-top:22px;background:var(--white);border:2px solid var(--line);border-radius:18px;
-    padding:20px 24px;display:flex;gap:14px;align-items:flex-start;
-  }
-  .svc-note i{color:var(--teal);font-size:1.2rem;margin-top:3px;}
-  .svc-note p{margin:0;font-size:.94rem;color:#436066;}
-
-  /* reviews: pin note cards */
-  .pins{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:960px;margin:0 auto;}
-  .pin-card{
-    background:var(--white);border:2px solid var(--line);border-radius:6px 18px 18px 18px;
-    padding:30px 24px 22px;position:relative;
-    box-shadow:0 12px 24px rgba(39,68,74,.1);
-  }
-  .pin-card::before{
-    content:"";position:absolute;top:-11px;left:26px;width:20px;height:20px;border-radius:50%;
-    background:var(--coral);box-shadow:0 3px 6px rgba(244,91,105,.5), inset -3px -3px 5px rgba(0,0,0,.14);
-  }
-  .pin-card blockquote{margin:0 0 12px;font-size:1.05rem;font-weight:600;}
-  .pin-card .stars i{color:var(--coral);font-size:.78rem;margin-right:3px;}
-  .pin-card .who{display:block;margin-top:6px;font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#6E8A8E;}
-  .review-summary{
-    max-width:960px;margin:28px auto 0;background:var(--teal);color:var(--white);
-    border-radius:20px;padding:22px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
-  }
-  .review-summary .score{font-family:'Mochiy Pop One',sans-serif;font-size:1.25rem;}
-  .review-summary p{margin:0;font-size:.94rem;color:#CDEBEA;}
-  .link-cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:24px;}
-  .link-card{
-    display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);
-    background:var(--white);border:2px solid var(--line);border-radius:16px;padding:16px 24px;
-    font-weight:800;transition:border-color .15s ease,transform .15s ease;
-  }
-  .link-card:hover{border-color:var(--teal);transform:translateY(-2px);}
-  .link-card i{font-size:1.35rem;color:var(--teal);}
-  .link-card small{display:block;font-weight:500;color:#6E8A8E;}
-
-  /* visit: claim tag card */
-  .visit-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;align-items:start;}
-  .claim-tag{
-    position:relative;background:var(--white);
-    border:2px solid var(--teal);border-radius:18px 18px 18px 4px;
-    padding:30px 28px 36px;
-    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 16px), 92% 100%, 84% calc(100% - 16px), 76% 100%, 68% calc(100% - 16px), 60% 100%, 52% calc(100% - 16px), 44% 100%, 36% 100%, 28% calc(100% - 16px), 20% 100%, 12% calc(100% - 16px), 4% 100%, 0 calc(100% - 16px));
-    box-shadow:0 16px 32px rgba(39,68,74,.12);
-  }
-  .claim-hole{
-    display:flex;align-items:center;gap:10px;margin-bottom:20px;
-  }
-  .claim-hole .hole{width:16px;height:16px;border-radius:50%;background:var(--teal-soft);border:2px solid var(--teal);flex-shrink:0;}
-  .claim-hole .string{flex:1;height:0;border-top:2px dashed #BFD9DB;}
-  .claim-hole .tagno{font-size:.72rem;font-weight:800;letter-spacing:.2em;color:#6E8A8E;}
-  .claim-tag h3{font-size:1.1rem;margin-bottom:16px;color:var(--teal-deep);}
-  .ct-row{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1.5px dashed var(--line);}
-  .ct-row:last-of-type{border-bottom:0;}
-  .ct-row i{color:var(--teal);width:20px;text-align:center;margin-top:4px;}
-  .ct-row b{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#6E8A8E;}
-  .ct-phone{
-    display:block;font-weight:800;font-size:1.4rem;color:var(--teal-deep);text-decoration:none;
-    font-family:'Mulish',sans-serif;
-  }
-  .ct-phone:hover{text-decoration:underline;}
-
-  /* form */
-  .form-card{background:var(--white);border:2px solid var(--line);border-radius:20px;padding:28px;}
-  .form-card h3{font-size:1.2rem;color:var(--teal-deep);margin-bottom:4px;}
-  .form-card .hint{font-size:.92rem;color:#436066;margin-bottom:18px;}
-  .field{margin-bottom:15px;}
-  .field label{display:block;font-weight:800;font-size:.87rem;margin-bottom:6px;}
-  .field input,.field textarea{
-    width:100%;padding:12px 15px;border:2px solid var(--line);border-radius:14px;
-    font-family:'Mulish',sans-serif;font-size:1rem;color:var(--ink);background:var(--teal-soft);
-  }
-  .field input:focus,.field textarea:focus{outline:2px solid var(--teal);border-color:var(--teal);background:var(--white);}
-  .field textarea{min-height:110px;resize:vertical;}
-  .form-card .btn{width:100%;justify-content:center;}
-  .form-feedback{margin-top:12px;font-weight:800;font-size:.92rem;color:#0C9A6E;min-height:1.2em;}
-
-  /* footer */
-  .site-foot{background:var(--teal-deep);color:#BFE0E2;}
-  .foot-in{
-    max-width:1040px;margin:0 auto;padding:36px 20px 20px;
-    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:26px;
-  }
-  .site-foot h4{font-family:'Mochiy Pop One',sans-serif;color:var(--white);font-size:.95rem;margin:0 0 10px;}
-  .site-foot p{font-size:.9rem;margin:0 0 6px;}
-  .site-foot a{color:var(--white);text-decoration:none;}
-  .site-foot a:hover{color:var(--coral);}
-  .foot-bottom{
-    border-top:1px solid rgba(255,255,255,.18);
-    max-width:1040px;margin:0 auto;padding:16px 20px 24px;font-size:.85rem;color:#8FBFC2;
-  }
-
-  /* responsive */
-  @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:34px;padding:44px 0 46px;}
-    .split-hours{grid-template-columns:1fr;}
-    .svc-grid{grid-template-columns:1fr 1fr;}
-    .pins{grid-template-columns:1fr 1fr;}
-    .visit-grid{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr 1fr;}
-  }
-  @media (max-width:640px){
-    .menu-btn{display:block;}
-    .nav-links{
-      display:none;position:absolute;left:0;right:0;top:100%;
-      background:var(--white);border-bottom:3px solid var(--teal);
-      flex-direction:column;align-items:stretch;padding:10px 16px 16px;gap:4px;
-    }
-    .nav-links.open{display:flex;}
-    .nav-links a{padding:13px 15px;}
-    .svc-grid,.pins{grid-template-columns:1fr;}
-    .foot-in{grid-template-columns:1fr;}
-    .section{padding:44px 0;}
-    .towel{width:180px;height:38px;}
-    .towel.t1{width:198px;}
-    .towel.t5{width:164px;}
-  }
+:root{--teal:#028090;--teal2:#02555e;--coral:#f45b69;--soft:#e7f5f5;--white:#fff;--ink:#27444a;--muted:#5d7378;--line:#d5e6e7;--max:1120px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;background:#fff;color:var(--ink);font-family:Mulish,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:3px solid var(--teal)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;font-weight:800}.bars{display:grid;gap:3px}.bars i{display:block;height:7px;background:var(--teal)}.bars i:nth-child(1){width:30px}.bars i:nth-child(2){width:23px;background:var(--coral)}.bars i:nth-child(3){width:16px}.brand small{display:block;font-size:.64rem;letter-spacing:.15em;color:var(--teal2);text-transform:uppercase}.desktop{display:flex;gap:26px;font-weight:800}.desktop a:hover{color:var(--coral)}.menu{display:none;background:none;border:2px solid var(--teal);width:46px;height:46px}.menu span{display:block;width:24px;height:2px;background:var(--teal);margin:5px auto}.mobile{display:none;background:#fff;padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:800}
+.hero{min-height:690px;display:grid;align-items:end;background:linear-gradient(90deg,rgba(2,85,94,.9),rgba(2,128,144,.52)),url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2000&q=84") center/cover;color:#fff;position:relative}.hero .wrap{padding:110px 0 72px}.kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;font-weight:800;color:#ffe0e3}h1,h2,h3{font-family:"Archivo Black",sans-serif}h1{font-size:clamp(3.7rem,7vw,6rem);line-height:.94;margin:18px 0 22px;max-width:850px}.hero p{max-width:750px;line-height:1.75;color:#e8f5f5;font-size:1.05rem}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 20px;border:2px solid transparent;font-weight:800;cursor:pointer}.btn-teal{background:var(--teal);color:#fff}.btn-coral{background:var(--coral);color:#fff}.btn-line{border-color:#fff;color:#fff}.asset{position:absolute;right:18px;bottom:14px;font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;background:rgba(0,0,0,.55);padding:7px 9px}
+.section{padding:84px 0;scroll-margin-top:78px}.tint{background:var(--soft)}.eyebrow{font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--teal2);font-weight:800}h2{font-size:clamp(2.8rem,5vw,4.5rem);line-height:.98;margin:8px 0 18px}.lead{max-width:760px;color:var(--muted);line-height:1.7}.split{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:32px}.hour-card{background:#fff;border:2px solid var(--teal);padding:28px;position:relative}.hour-card.desk{border-color:var(--coral);background:#fff4f5}.badge{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:#fff;background:var(--teal);padding:6px 10px;display:inline-block}.desk .badge{background:var(--coral)}.big{font:3rem "Archivo Black";margin:15px 0}.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}.svc{background:#fff;border-top:4px solid var(--teal);padding:24px}.svc:nth-child(even){border-top-color:var(--coral)}.svc i{color:var(--teal);font-size:1.2rem}.svc h3{font-size:1rem;margin:12px 0}.svc p{color:var(--muted);line-height:1.6}
+.reviews{background:linear-gradient(rgba(2,85,94,.94),rgba(2,85,94,.94)),url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1800&q=82") center/cover;color:#fff}.reviews .eyebrow{color:#ffc9ce}.reviews .lead{color:#d7eded}.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}.quote{background:#fff;color:var(--ink);padding:24px;border-left:5px solid var(--coral)}.quote p{font-size:1.12rem;line-height:1.6}.quote small{color:var(--muted)}.rating{margin-top:22px;font-weight:800}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.panel{background:#fff;border:1px solid var(--line);padding:28px}.phone{font:800 2rem "Archivo Black";color:var(--teal2)}label{display:block;font-size:.82rem;font-weight:800;margin:12px 0 6px}input,textarea{width:100%;padding:12px;border:1px solid var(--line)}textarea{min-height:110px}footer{background:var(--teal2);color:#c6e4e6;padding:40px 0}.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}footer h3{color:#fff}.copy{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);font-size:.8rem}
+.lock-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.72);z-index:999;padding:20px}.lock-backdrop.open{display:flex}.lock-dialog{width:min(100%,450px);background:#fff;padding:30px;border-top:4px solid var(--coral)}.lock-icon{width:46px;height:46px;background:var(--teal2);color:#fff;display:grid;place-items:center}.lock-dialog h2{font-size:1.5rem}.lock-dialog p{color:var(--muted);line-height:1.6}.lock-dialog button{width:100%;padding:12px;background:var(--teal2);color:#fff;border:0;font-weight:800}
+@media(max-width:900px){.desktop{display:none}.menu{display:block}.split,.visit-grid,.foot{grid-template-columns:1fr}.svc-grid,.quotes{grid-template-columns:1fr 1fr}}@media(max-width:620px){.wrap{width:min(calc(100% - 28px),var(--max))}h1{font-size:clamp(3rem,15vw,4.8rem)}.svc-grid,.quotes{grid-template-columns:1fr}.buttons{display:grid}.btn{width:100%}.section{padding:66px 0}}
 </style>
 </head>
 <body>
-<div class="site-shell">
-  <header class="site-head">
-    <div class="head-in">
-      <a class="brand" href="#/home" data-page="home" aria-label="Rincon Cleaners and Laundromat home">
-        <span class="brand-blocks" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span class="brand-name">Rincon Cleaners &amp; Laundromat<small>E Broadway Blvd</small></span>
-      </a>
-      <button id="menu-btn" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#/home" data-page="home">Home</a>
-        <a href="#/wash" data-page="wash">The Wash</a>
-        <a href="#/reviews" data-page="reviews">Reviews</a>
-        <a href="#/visit" data-page="visit">Visit</a>
-      </nav>
-    </div>
-  </header>
+<header><div class="wrap nav"><a class="brand" href="#home"><span class="bars"><i></i><i></i><i></i></span><span>Rincon Cleaners &amp; Laundromat<small>E Broadway Blvd</small></span></a><nav class="desktop"><a href="#wash">The Wash</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#wash">The Wash</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap"><div class="kicker">Broadway Blvd, east side</div><h1>Big washers, clean corners, friendly desk</h1><p>Rincon Cleaners &amp; Laundromat is the east side's neighborhood wash house: roomy self-serve machines every day, a staffed drop-off desk on weekends, and owners who keep the place spotless.</p><div class="buttons"><a class="btn btn-coral" href="#wash"><i class="fa-solid fa-soap"></i> The Wash</a><a class="btn btn-line" href="#visit"><i class="fa-solid fa-location-dot"></i> Hours and address</a></div></div><div class="asset">Relevant stock laundromat imagery · not the actual business</div></section>
+<section class="section tint" id="wash"><div class="wrap"><div class="eyebrow">Two ways to wash here</div><h2>Washers, dryers, and weekend drop-off.</h2><p class="lead">Self-serve machines run every day of the week. The staffed drop-off desk opens on weekends for wash-and-fold and dry-clean drop-off.</p><div class="split"><div class="hour-card"><span class="badge">Self serve, every day</span><h3>Washers and dryers</h3><div class="big">6 AM - 10 PM</div><p>Seven days a week, last loads in by 9.</p></div><div class="hour-card desk"><span class="badge">Staffed weekend desk</span><h3>Drop-off desk</h3><div class="big" style="font-size:2rem">Sat 9 AM - 5 PM<br>Sun 11 AM - 5 PM</div><p>Hand your laundry to a person and pick it up folded. Dry-clean items are accepted here and sent off site for cleaning.</p></div></div><p style="margin-top:18px;color:var(--muted)">Different directories list our hours differently. A quick call will confirm today's times.</p>
+<div class="svc-grid"><article class="svc"><i class="fa-solid fa-soap"></i><h3>Self-serve washers</h3><p>Spacious machines that take real loads, not half loads. Daily from 6 AM to 10 PM.</p></article><article class="svc"><i class="fa-solid fa-wind"></i><h3>Dryers</h3><p>Plenty of heat, plenty of room. Bring a book, the fold tables make it easy.</p></article><article class="svc"><i class="fa-solid fa-basket-shopping"></i><h3>Weekend drop-off</h3><p>Staffed desk on Saturday 9 to 5 and Sunday 11 to 5 for wash-and-fold service.</p></article><article class="svc"><i class="fa-solid fa-shirt"></i><h3>Dry clean drop-off</h3><p>Leave dress shirts and delicates at the desk. They are cleaned off site and returned here.</p></article><article class="svc"><i class="fa-solid fa-broom"></i><h3>A clean place to wait</h3><p>The reviews say it for us: this place has always been so clean.</p></article><article class="svc"><i class="fa-solid fa-shop"></i><h3>Local ownership</h3><p>Under new ownership since 2016, running it like a neighborhood shop should be run.</p></article></div></div></section>
+<section class="section reviews" id="reviews"><div class="wrap"><div class="eyebrow">Reviews</div><h2>Every customer note we have.</h2><p class="lead">Word for word, pinned up like the board at the front desk.</p><div class="quotes"><article class="quote"><p>“Washers are very spacious.”</p><small>Google review</small></article><article class="quote"><p>“Also the staff is very friendly.”</p><small>Google review</small></article><article class="quote"><p>“This place has always been so clean”</p><small>Google review</small></article></div><div class="rating"><i class="fa-solid fa-star"></i> 4.1 stars on Google</div><div class="buttons"><button class="btn btn-coral" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button><button class="btn btn-line" data-locked="true"><i class="fa-brands fa-yelp"></i> Read the Yelp reviews</button></div></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="eyebrow">Visit</div><h2>8323 E Broadway Blvd, Tucson, AZ 85710</h2><p class="lead">East side Tucson, in the Broadway strip. Machines run every day, the desk takes drop-offs on weekends.</p><div class="visit-grid"><div class="panel"><h3>The shop</h3><p>8323 E Broadway Blvd, Tucson, AZ 85710</p><p>Self-serve machines: Every day, 6 AM - 10 PM</p><p>Staffed drop-off desk: Sat 9 AM - 5 PM, Sun 11 AM - 5 PM</p><button class="btn btn-teal" data-locked="true">Directions</button></div><div class="panel"><h3>Call the shop</h3><p class="phone">(520) 298-4886</p><button class="btn btn-teal" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button><form data-locked-form="true"><label>Your name</label><input type="text"><label>Your phone number</label><input type="tel"><label>How can we help?</label><textarea></textarea><button class="btn btn-coral" type="submit" data-locked="true">Send to the shop</button></form></div></div></div></section>
+</main>
+<footer><div class="wrap"><div class="foot"><div><h3>Rincon Cleaners &amp; Laundromat</h3><p>Spacious self-serve washers daily, staffed weekend drop-off desk, and a floor that stays clean. Local owners since 2016.</p></div><div><h3>Contact</h3><p>(520) 298-4886<br>8323 E Broadway Blvd<br>Tucson, AZ 85710</p></div><div><h3>Hours</h3><p>Self-serve daily 6 AM - 10 PM<br>Desk: Sat 9 - 5, Sun 11 - 5</p></div></div><div class="copy">© Rincon Cleaners &amp; Laundromat · Tucson, AZ</div></div></footer>
 
-  <main>
-    <!-- HOME -->
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <div class="wrap hero-grid">
-          <div>
-            <span class="kicker"><i class="fa-solid fa-soap" aria-hidden="true"></i> Broadway Blvd, east side</span>
-            <h1>Big washers, <span class="hl">clean corners</span>, <span class="hl2">friendly desk</span></h1>
-            <p class="lead">Rincon Cleaners &amp; Laundromat is the east side's neighborhood wash house: roomy self-serve machines every day, a staffed drop-off desk on weekends, and owners who keep the place spotless.</p>
-            <div class="cta-row">
-              <a class="btn btn-teal" href="#/wash" data-page="wash"><i class="fa-solid fa-water" aria-hidden="true"></i> The Wash</a>
-              <a class="btn btn-line" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Hours and address</a>
-            </div>
-          </div>
-          <div class="towel-stage" aria-hidden="true">
-            <div class="towel-stack">
-              <div class="towel t1"><span class="label">RINCON</span></div>
-              <div class="towel t2"></div>
-              <div class="towel t3"></div>
-              <div class="towel t4"></div>
-              <div class="towel t5"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>Two ways to <span class="hl">wash here</span></h2>
-            <p>Self-serve machines run every day of the week. The staffed drop-off desk opens on weekends for wash-and-fold and dry-clean drop-off.</p>
-          </div>
-          <div class="split-hours">
-            <div class="hcard self" data-days="0,1,2,3,4,5,6">
-              <span class="badge">Self serve, every day</span>
-              <h3>Washers and dryers</h3>
-              <div class="big">6 AM - 10 PM</div>
-              <p>Seven days a week, last loads in by 9. <span id="status-chip" class="status-chip"><span class="dot"></span>Checking</span></p>
-              <span class="today-tag">You're here on the right day</span>
-            </div>
-            <div class="hcard desk" data-days="5,6">
-              <span class="badge">Staffed weekend desk</span>
-              <h3>Drop-off desk</h3>
-              <div class="deskline">Sat 9 AM - 5 PM<br>Sun 11 AM - 5 PM</div>
-              <p>Hand your laundry to a person and pick it up folded. Dry-clean items are accepted here and sent off site for cleaning.</p>
-              <span class="today-tag">Desk is staffed today</span>
-            </div>
-          </div>
-          <p class="confirm-line"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Different directories list our hours differently. A quick call will confirm today's times.</p>
-        </div>
-      </div>
-
-      <div class="section tint">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>What regulars <span class="hl2">keep saying</span></h2>
-            <p>Roomy washers, friendly staff, and a floor that is always clean. 4.1 stars on Google.</p>
-          </div>
-          <div class="link-cards">
-            <a class="btn btn-teal" href="#/reviews" data-page="reviews"><i class="fa-solid fa-star" aria-hidden="true"></i> Read the reviews</a>
-            <a class="btn btn-line" href="#/wash" data-page="wash"><i class="fa-solid fa-water" aria-hidden="true"></i> See the services</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE WASH (category) -->
-    <section class="page" id="page-wash">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>The Wash</h2>
-            <p>Everything gets done here: your own quarters and detergent, or a weekend drop-off with your name on the tag.</p>
-          </div>
-          <div class="svc-grid">
-            <div class="svc">
-              <span class="icon"><i class="fa-solid fa-soap" aria-hidden="true"></i></span>
-              <h3>Self-serve washers</h3>
-              <p>Spacious machines that take real loads, not half loads. Daily from 6 AM to 10 PM.</p>
-            </div>
-            <div class="svc">
-              <span class="icon"><i class="fa-solid fa-fire" aria-hidden="true"></i></span>
-              <h3>Dryers</h3>
-              <p>Plenty of heat, plenty of room. Bring a book, the fold tables make it easy.</p>
-            </div>
-            <div class="svc">
-              <span class="icon"><i class="fa-solid fa-box-open" aria-hidden="true"></i></span>
-              <h3>Weekend drop-off</h3>
-              <p>Staffed desk on Saturday 9 to 5 and Sunday 11 to 5 for wash-and-fold service.</p>
-            </div>
-            <div class="svc">
-              <span class="icon"><i class="fa-solid fa-shirt" aria-hidden="true"></i></span>
-              <h3>Dry clean drop-off</h3>
-              <p>Leave dress shirts and delicates at the desk. They are cleaned off site and returned here.</p>
-            </div>
-            <div class="svc">
-              <span class="icon"><i class="fa-solid fa-broom" aria-hidden="true"></i></span>
-              <h3>A clean place to wait</h3>
-              <p>The reviews say it for us: this place has always been so clean.</p>
-            </div>
-            <div class="svc">
-              <span class="icon"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
-              <h3>Local ownership</h3>
-              <p>Under new ownership since 2016, running it like a neighborhood shop should be run.</p>
-            </div>
-          </div>
-          <div class="svc-note">
-            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-            <p>Bring your own detergent or grab supplies nearby. Change and card questions are easiest at the desk on weekends, or by phone any day.</p>
-          </div>
-        </div>
-      </div>
-      <div class="section tint">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>8323 E Broadway, <span class="hl">easy parking</span></h2>
-            <p>Strip-mall parking right out front, so hauling bags in takes about thirty seconds.</p>
-          </div>
-          <div style="text-align:center;">
-            <a class="btn btn-teal" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Plan your visit</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="page" id="page-reviews">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head center">
-            <h2>Reviews</h2>
-            <p>Every customer note we have, word for word, pinned up like the board at the front desk.</p>
-          </div>
-          <div class="pins">
-            <div class="pin-card">
-              <blockquote>"Washers are very spacious."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-            <div class="pin-card">
-              <blockquote>"Also the staff is very friendly."</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-            <div class="pin-card">
-              <blockquote>"This place has always been so clean"</blockquote>
-              <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <span class="who">Google review</span>
-            </div>
-          </div>
-          <div class="review-summary">
-            <span class="score">4.1 stars on Google</span>
-            <p>Spacious washers, friendly staff, spotless floor. That is the whole business plan.</p>
-          </div>
-          <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=Rincon%20Cleaners%20%26%20Laundromat%2C%208323%20E%20Broadway%20Blvd%2C%20Tucson%2C%20AZ%2085710" target="_blank" rel="noopener">
-              <i class="fa-brands fa-google" aria-hidden="true"></i>
-              <span>See every review on Google<small>Opens Google Maps in a new tab</small></span>
-            </a>
-            <a class="link-card" href="https://www.yelp.com/biz/rincon-cleaners-and-laundromat-tucson" target="_blank" rel="noopener">
-              <i class="fa-brands fa-yelp" aria-hidden="true"></i>
-              <span>Read the Yelp reviews<small>Opens Yelp in a new tab</small></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="page" id="page-visit">
-      <div class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <h2>Visit</h2>
-            <p>East side Tucson, in the Broadway strip. Machines run every day, the desk takes drop-offs on weekends.</p>
-          </div>
-          <div class="visit-grid">
-            <div class="claim-tag">
-              <div class="claim-hole">
-                <span class="hole" aria-hidden="true"></span>
-                <span class="string" aria-hidden="true"></span>
-                <span class="tagno">CLAIM No. 8323</span>
-              </div>
-              <h3>Rincon Cleaners &amp; Laundromat</h3>
-              <div class="ct-row">
-                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                <div><b>The shop</b>8323 E Broadway Blvd, Tucson, AZ 85710</div>
-              </div>
-              <div class="ct-row">
-                <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                <div><b>Call the shop</b><a class="ct-phone" href="tel:+15202984886">(520) 298-4886</a></div>
-              </div>
-              <div class="ct-row">
-                <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                <div><b>Self-serve machines</b>Every day, 6 AM - 10 PM</div>
-              </div>
-              <div class="ct-row">
-                <i class="fa-solid fa-user" aria-hidden="true"></i>
-                <div><b>Staffed drop-off desk</b>Sat 9 AM - 5 PM, Sun 11 AM - 5 PM</div>
-              </div>
-            </div>
-            <div class="form-card">
-              <h3>Get a wash card</h3>
-              <p class="hint">Send a note about drop-off, dry clean, or machine questions. On your phone this opens a text; on a desktop it copies the message so you can paste it into a text.</p>
-              <form id="quote-form" novalidate>
-                <div class="field">
-                  <label for="f-name">Your name</label>
-                  <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
-                </div>
-                <div class="field">
-                  <label for="f-phone">Your phone number</label>
-                  <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(520) 555-0100">
-                </div>
-                <div class="field">
-                  <label for="f-msg">How can we help?</label>
-                  <textarea id="f-msg" name="message" required placeholder="I want to set up a weekend drop-off for..."></textarea>
-                </div>
-                <button class="btn btn-teal" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send to the shop</button>
-                <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-foot">
-    <div class="foot-in">
-      <div>
-        <h4>Rincon Cleaners &amp; Laundromat</h4>
-        <p>Spacious self-serve washers daily, staffed weekend drop-off desk, and a floor that stays clean. Local owners since 2016.</p>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>(520) 298-4886</p>
-        <p>8323 E Broadway Blvd<br>Tucson, AZ 85710</p>
-      </div>
-      <div>
-        <h4>Hours</h4>
-        <p>Self-serve daily 6 AM - 10 PM</p>
-        <p>Desk: Sat 9 - 5, Sun 11 - 5</p>
-      </div>
-    </div>
-    <div class="foot-bottom">© Rincon Cleaners & Laundromat · Tucson, AZ</div>
-  </footer>
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <div class="lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
 </div>
 
 <script>
-var BUSINESS = "Rincon Cleaners & Laundromat";
-var TITLES = { home: "Broadway Blvd Wash, Dry, Fold", wash: "The Wash", reviews: "Reviews", visit: "Visit" };
-var PRETTY_PHONE = "(520) 298-4886";
-var PHONE = "+15202984886";
-var CITY_TZ = "America/Phoenix";
-var HOURS = {0:[6,22],1:[6,22],2:[6,22],3:[6,22],4:[6,22],5:[6,22],6:[6,22]};
+(() => {
+  const body = document.body;
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockModal');
+  const closeBtn = document.getElementById('lockClose');
+  let lastFocus = null;
 
-function getPageFromHash(){
-  var h = (location.hash || "").replace(/^#\/?/, "");
-  return TITLES[h] ? h : "home";
-}
-function navigateTo(id, push){
-  document.querySelectorAll(".page").forEach(function(p){
-    p.classList.toggle("active", p.id === "page-" + id);
-  });
-  if (push) history.pushState({ page: id }, "", "#/" + id);
-  document.title = TITLES[id] + " | " + BUSINESS;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  var mb = document.getElementById("menu-btn");
-  var nl = document.querySelector(".nav-links");
-  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
-  document.querySelectorAll(".nav-links a").forEach(function(a){
-    a.classList.toggle("is-here", a.getAttribute("data-page") === id);
-  });
-}
-document.addEventListener("click", function(e){
-  var t = e.target.closest("[data-page]");
-  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
-});
-window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
-
-function cityNow(){
-  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
-    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
-    .formatToParts(new Date());
-  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
-  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
-}
-function fmtH(t){
-  var h = Math.floor(t), m = Math.round((t - h) * 60);
-  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
-  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
-}
-function openState(){
-  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
-  if (today) {
-    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
-    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
-  }
-  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  for (var i = 0; i < 7; i++) {
-    var d = (n.day + i) % 7, h = HOURS[d];
-    if (!h) continue;
-    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
-    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
-  }
-  return { open: false, label: "Closed" };
-}
-function renderStatus(){
-  var s = openState();
-  document.querySelectorAll(".status-chip").forEach(function(chip){
-    chip.classList.toggle("is-open", s.open);
-    chip.classList.toggle("is-closed", !s.open);
-    chip.innerHTML = '<span class="dot"></span>' + s.label;
-  });
-}
-function markToday(){
-  var day = cityNow().day;
-  document.querySelectorAll(".hcard[data-days]").forEach(function(g){
-    var days = g.getAttribute("data-days").split(",").map(Number);
-    g.classList.toggle("is-today", days.indexOf(day) !== -1);
-  });
-}
-
-var mb = document.getElementById("menu-btn");
-var nl = document.querySelector(".nav-links");
-mb.addEventListener("click", function(){
-  var open = nl.classList.toggle("open");
-  mb.classList.toggle("open", open);
-  mb.setAttribute("aria-expanded", open ? "true" : "false");
-});
-
-var form = document.getElementById("quote-form");
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var phone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  if (!name || !phone || !msg) {
-    document.getElementById("form-feedback").textContent = "Add your name, number, and note so we can reply.";
-    return;
-  }
-  var note = "Message for " + BUSINESS + "\nName: " + name + "\nPhone: " + phone + "\n\n" + msg;
-  var body = encodeURIComponent(note);
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(note).then(function(){
-      document.getElementById("form-feedback").textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE + ".";
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
     });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+    }));
   }
-});
 
-navigateTo(getPageFromHash(), false);
-renderStatus();
-markToday();
+  function openLock(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    body.classList.add('modal-open');
+    closeBtn.focus();
+  }
+
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
+    });
+  });
+
+  document.querySelectorAll('form[data-locked-form="true"]').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      openLock(form.querySelector('[data-locked="true"]') || form);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLock);
+  modal.addEventListener('click', e => { if(e.target === modal) closeLock(); });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = [...modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')];
+      if(!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+  document.addEventListener('wheel', e => { if(e.ctrlKey) e.preventDefault(); }, {passive:false});
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+})();
 </script>
-</body>
-</html>
+
+</body></html>
