@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Rauck Heating & Cooling in Cincinnati, Ohio. Heating service, air conditioning service, HVAC contractor information, reviews, hours, and contact details." />
+  <title>Rauck Heating & Cooling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root{
+      --bg:#f4f0e8;
+      --panel:#ffffff;
+      --panel-2:#fbf8f2;
+      --ink:#1e2a38;
+      --muted:#55606b;
+      --border:#e2d9c9;
+      --warm:#c8642a;
+      --warm-dark:#a83c22;
+      --warm-soft:#f0a35e;
+      --cool:#4f748f;
+      --cool-soft:#7fa8c9;
+      --shadow:0 10px 30px rgba(30,42,56,.10);
+      --radius:14px;
+      --sidebar-width:264px;
+      --max:1080px;
+    }
+
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Barlow',Arial,sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(79,116,143,.11), transparent 25%),
+        radial-gradient(circle at bottom left, rgba(200,100,42,.10), transparent 26%),
+        var(--bg);
+      color:#2a2f36;
+      line-height:1.6;
+      overflow-x:hidden;
+      user-select:none;
+    }
+    h1,h2,h3,.condensed,.btn,.side-nav a,.field label,.tbrand{font-family:'Barlow Condensed',Arial,sans-serif;letter-spacing:.02em}
+    .mono{font-family:'IBM Plex Mono', monospace}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+
+    .bg-blobs{
+      position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0;
+    }
+    .blob{
+      position:absolute; border-radius:50%; filter:blur(76px); opacity:.48; mix-blend-mode:multiply;
+      animation:floatBlob 18s ease-in-out infinite alternate;
+    }
+    .blob.one{width:380px;height:380px;background:rgba(200,100,42,.18); top:-70px; right:-110px}
+    .blob.two{width:320px;height:320px;background:rgba(79,116,143,.18); top:38%; left:-110px; animation-duration:22s}
+    .blob.three{width:430px;height:430px;background:rgba(240,163,94,.14); bottom:-150px; right:24%; animation-duration:26s}
+    .blob.four{width:260px;height:260px;background:rgba(30,42,56,.10); bottom:8%; left:18%; animation-duration:19s}
+    @keyframes floatBlob{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(28px,-18px,0) scale(1.06)}
+      100%{transform:translate3d(-22px,26px,0) scale(.96)}
+    }
+
+    .site-shell{position:relative; z-index:1}
+
+    .topbar{
+      display:none; position:sticky; top:0; z-index:140; height:68px;
+      background:rgba(30,42,56,.94); color:#fff; backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.10); align-items:center; justify-content:space-between;
+      padding:0 18px;
+    }
+    .tbrand{font-size:24px; font-weight:700; text-transform:uppercase; line-height:1}
+    .tbrand span{color:var(--warm-soft)}
+    .hamb{
+      width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.08);color:#fff; display:grid;place-items:center; cursor:pointer;
+      transition:transform .18s ease, background .18s ease;
+    }
+    .hamb:hover{transform:translateY(-1px); background:rgba(255,255,255,.14)}
+    .scrim{position:fixed; inset:0; background:rgba(8,15,24,.58); opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:125}
+
+    .sidebar{
+      position:fixed; inset:0 auto 0 0; width:var(--sidebar-width); z-index:130;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.055) 0px, rgba(255,255,255,.055) 3px, transparent 3px, transparent 14px),
+        linear-gradient(180deg, #1b2734 0%, #1f3042 100%);
+      color:#f4f0e8; display:flex; flex-direction:column; border-right:6px solid var(--warm);
+      box-shadow:18px 0 34px rgba(10,15,20,.18);
+      padding-top:18px;
+      overflow:hidden auto;
+    }
+    .brand{
+      padding:34px 24px 24px;
+      min-height:190px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:flex-start;
+      flex-shrink:0;
+      z-index:2;
+    }
+    .brand::after{
+      content:""; position:absolute; width:160px; height:160px; right:-70px; top:-50px;
+      background:radial-gradient(circle, rgba(232,154,91,.18), transparent 70%); filter:blur(10px);
+    }
+    .finmark{
+      width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--warm),var(--warm-dark)); color:#fff; font-size:26px;
+      margin-bottom:14px; box-shadow:0 10px 24px rgba(168,60,34,.35);
+    }
+    .brand h1{font-size:24px; margin:0; line-height:1.15; text-transform:uppercase}
+    .brand h1 span{color:var(--warm-soft)}
+    .brand p{margin:8px 0 0; font-size:12.5px; color:#b9c4cf}
+    .side-nav{
+      padding:22px 12px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      position:relative;
+      z-index:1;
+    }
+    .side-nav a{
+      display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:10px;
+      font-size:18px; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+      color:#dfe6ec; border-left:4px solid transparent; transition:.18s ease;
+    }
+    .side-nav a i{width:22px; text-align:center; color:var(--warm-soft)}
+    .side-nav a:hover{background:rgba(255,255,255,.07)}
+    .side-nav a.active{background:rgba(200,100,42,.18); border-left-color:var(--warm); color:#fff}
+    .side-foot{
+      margin-top:auto;
+      padding:20px 24px 26px;
+      border-top:1px solid rgba(255,255,255,.12);
+      font-size:13.5px;
+      position:relative;
+      z-index:1;
+    }
+    .side-foot .ph{display:inline-block; margin-top:8px; color:#fff; font-weight:600; font-size:17px}
+    .side-foot .ph:hover{color:var(--warm-soft)}
+    .call-btn{
+      display:block;text-align:center;margin:14px 0 4px;background:linear-gradient(135deg,var(--warm),var(--warm-dark));
+      color:#fff; font-weight:700;font-size:18px;letter-spacing:.06em;text-transform:uppercase;padding:12px;border-radius:12px;
+      box-shadow:0 10px 22px rgba(168,60,34,.22); transition:transform .16s ease, filter .16s ease;
+    }
+    .call-btn:hover{transform:translateY(-2px); filter:brightness(1.08)}
+
+    main{margin-left:var(--sidebar-width)}
+    .biz-page{display:none}
+    .biz-page.active{display:block; animation:fadeIn .35s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 32px}
+    section.block{padding:58px 0}
+
+    .hero{
+      position:relative; overflow:hidden; color:#fff;
+      background:
+        linear-gradient(110deg, rgba(30,42,56,.94) 22%, rgba(58,43,38,.82) 58%, rgba(122,58,32,.72) 100%),
+        url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      padding:84px 0 92px;
+    }
+    .hero::before,
+    .hero::after{
+      content:""; position:absolute; inset:auto; border-radius:50%; filter:blur(60px); opacity:.35; pointer-events:none;
+    }
+    .hero::before{width:340px;height:340px; right:-110px; top:-90px; background:rgba(240,163,94,.40)}
+    .hero::after{width:280px;height:280px; left:-100px; bottom:-120px; background:rgba(127,168,201,.34)}
+    .hero svg.tubes{position:absolute; inset:0; width:100%; height:100%; opacity:.42}
+    .hero .wrap{position:relative; z-index:2}
+    .kicker{
+      display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase;
+      color:#f0b57e; border:1px solid rgba(240,181,126,.5); padding:7px 14px; border-radius:999px; margin-bottom:22px;
+      background:rgba(0,0,0,.26); backdrop-filter:blur(6px)
+    }
+    .hero h2{font-size:clamp(44px,6vw,76px);line-height:1.02;margin:0 0 18px;text-transform:uppercase;max-width:760px}
+    .hero h2 .hot{color:var(--warm-soft)}
+    .hero p.lede{font-size:19px;max-width:640px;color:#e8ded2;margin:0 0 30px}
+    .btnrow{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:12px;
+      font-weight:700; font-size:19px; letter-spacing:.05em; text-transform:uppercase;
+      transition:transform .15s ease, filter .15s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-2px); filter:brightness(1.08)}
+    .btn.hot{background:linear-gradient(135deg,var(--warm),var(--warm-dark)); color:#fff; box-shadow:0 8px 22px rgba(168,60,34,.42)}
+    .btn.ghost{border:2px solid rgba(255,255,255,.56); color:#fff; background:rgba(255,255,255,.03)}
+    .hero-stats{display:flex; gap:34px; flex-wrap:wrap; margin-top:44px}
+    .stat{backdrop-filter:blur(6px)}
+    .stat .num{font-family:'Barlow Condensed',sans-serif; font-size:34px; font-weight:700; color:var(--warm-soft)}
+    .stat .lbl{font-size:13px; color:#cfc6b8; text-transform:uppercase; letter-spacing:.08em}
+
+    .transition-band{
+      height:110px;
+      background:linear-gradient(180deg, rgba(30,42,56,.10) 0%, rgba(244,240,232,1) 70%);
+    }
+
+    .section-bg{
+      position:relative; overflow:hidden;
+    }
+    .section-bg::before{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.88));
+      z-index:0;
+    }
+    .section-bg > .wrap{position:relative; z-index:1}
+    .section-bg .blur-shape,
+    .section-bg .blur-shape2{
+      position:absolute; border-radius:50%; filter:blur(70px); pointer-events:none; z-index:0; opacity:.55;
+    }
+    .section-bg .blur-shape{width:260px;height:260px;background:rgba(200,100,42,.12); top:40px; right:-60px}
+    .section-bg .blur-shape2{width:240px;height:240px;background:rgba(79,116,143,.10); bottom:-40px; left:-50px}
+
+    .sec-head{margin-bottom:34px}
+    .sec-head .mono{color:var(--warm-dark);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+    .sec-head h2{font-size:clamp(32px,4vw,48px);margin:8px 0 10px;text-transform:uppercase;color:var(--ink)}
+    .sec-head p{max-width:680px;color:var(--muted);margin:0}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{
+      background:rgba(255,255,255,.92); border-radius:var(--radius); padding:28px 24px; border:1px solid var(--border);
+      box-shadow:var(--shadow); backdrop-filter:blur(8px);
+    }
+    .card i.big{font-size:34px;color:var(--warm);margin-bottom:14px}
+    .card h3{margin:0 0 8px;font-size:24px;text-transform:uppercase;color:var(--ink)}
+    .card p{margin:0;color:var(--muted);font-size:15.5px}
+
+    .info-card{position:relative; overflow:hidden}
+    .info-card::after{content:""; position:absolute; inset:auto -30px -30px auto; width:120px; height:120px; background:radial-gradient(circle, rgba(200,100,42,.10), transparent 70%)}
+
+    .note{
+      background:#fdf6ec; border:1px solid #e8cfa8; border-radius:12px; padding:18px 22px; margin-top:30px;
+      font-size:15px; color:#6b5a3e; box-shadow:0 8px 20px rgba(168,60,34,.05)
+    }
+    .note i{color:var(--warm-dark); margin-right:8px}
+
+    .finstack{display:flex; flex-direction:column; gap:18px}
+    .fin{
+      display:grid; grid-template-columns:220px 1fr auto; gap:22px; align-items:center;
+      background:rgba(255,255,255,.94); border-radius:16px; padding:18px; border:1px solid var(--border);
+      border-left:10px solid var(--ink); box-shadow:var(--shadow); cursor:pointer;
+      transition:transform .16s ease, box-shadow .16s ease;
+      overflow:hidden;
+    }
+    .fin:hover{transform:translateX(6px); box-shadow:0 18px 36px rgba(30,42,56,.14)}
+    .fin.alt{border-left-color:var(--cool)}
+    .service-photo{
+      position:relative; aspect-ratio:16/11; border-radius:12px; overflow:hidden; background:#d7d7d7;
+      box-shadow:0 8px 18px rgba(30,42,56,.10);
+    }
+    .service-photo img{width:100%; height:100%; object-fit:cover; transition:transform .3s ease, filter .3s ease}
+    .fin:hover .service-photo img{transform:scale(1.04); filter:saturate(1.05)}
+    .service-photo .img-badge{
+      position:absolute; left:12px; bottom:12px; display:inline-flex; align-items:center; gap:8px;
+      padding:7px 12px; border-radius:999px; background:rgba(30,42,56,.82); color:#fff; font-size:12px; letter-spacing:.06em; text-transform:uppercase
+    }
+    .fin .copy h3{margin:0 0 6px; font-size:26px; text-transform:uppercase; color:var(--ink)}
+    .fin .copy p{margin:0; color:var(--muted); font-size:15.5px}
+    .fin .tag{
+      font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; background:#fdf3e7; color:#8a4520;
+      border:1px dashed var(--warm); padding:8px 12px; border-radius:8px; white-space:nowrap
+    }
+
+    .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+    .pill{
+      font-size:13.5px;background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:999px;
+      display:inline-flex;align-items:center;gap:8px; box-shadow:0 8px 18px rgba(30,42,56,.12)
+    }
+    .pill i{color:var(--warm-soft)}
+
+    .about-split{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:stretch}
+    .photo-panel{
+      min-height:100%; background:
+        linear-gradient(180deg, rgba(30,42,56,.14), rgba(30,42,56,.36)),
+        url('https://images.unsplash.com/photo-1581092919535-7146ff1a5906?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      border-radius:18px; position:relative; overflow:hidden; box-shadow:var(--shadow)
+    }
+    .photo-panel::after{content:""; position:absolute; inset:auto 18px 18px 18px; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent)}
+    .panel-badge{position:absolute; left:18px; top:18px; background:rgba(255,255,255,.92); color:var(--ink); padding:10px 14px; border-radius:12px; font-size:13px; box-shadow:0 10px 20px rgba(20,25,30,.18)}
+    .panel-text{position:absolute; left:18px; right:18px; bottom:18px; color:#fff}
+    .panel-text h3{font-size:26px; margin:0 0 8px}
+    .panel-text p{margin:0; color:#eef2f5}
+
+    .gallery{
+      position:relative; color:#f4f0e8;
+      background:
+        linear-gradient(180deg, rgba(30,42,56,.95), rgba(30,42,56,.97)),
+        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+    .gallery::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(30,42,56,.86), rgba(30,42,56,.94)); pointer-events:none}
+    .gallery .wrap{position:relative; z-index:1}
+    .gallery .sec-head h2{color:#fff}
+    .gallery .sec-head p{color:#cbd3db}
+    .gallery .sec-head .mono{color:var(--warm-soft)}
+    .ventgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .vent{
+      aspect-ratio:4/3; border-radius:14px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.14);
+      background:#22303f; cursor:pointer; box-shadow:0 14px 28px rgba(0,0,0,.18)
+    }
+    .vent img{width:100%;height:100%;object-fit:cover; transition:transform .35s ease, filter .35s ease}
+    .vent:hover img{transform:scale(1.05); filter:brightness(.95)}
+    .vent::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 20%, rgba(0,0,0,.58) 100%)}
+    .vent span{
+      position:absolute; left:14px; bottom:14px; z-index:1; font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.1em;
+      color:#fff; background:rgba(0,0,0,.38); padding:8px 14px; border-radius:8px; border:1px dashed rgba(255,255,255,.35)
+    }
+    .vent i{position:absolute; top:14px; right:16px; z-index:1; color:rgba(232,154,91,.95); font-size:20px}
+
+    .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .review-card{background:rgba(255,255,255,.95); border-radius:16px; padding:28px 24px; border:1px solid var(--border); text-align:center; box-shadow:var(--shadow)}
+    .review-card .score{font-family:'Barlow Condensed',sans-serif; font-size:56px; font-weight:700; color:var(--ink); line-height:1}
+    .review-card .stars{color:var(--warm); font-size:22px; margin:8px 0; letter-spacing:4px}
+    .review-card p{color:var(--muted); font-size:15px; margin:0 0 16px}
+
+    .faq-list{display:grid; gap:12px; margin-top:28px}
+    details.faq{
+      background:rgba(255,255,255,.94); border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:0 6px 18px rgba(30,42,56,.06)
+    }
+    details.faq summary{
+      list-style:none; cursor:pointer; padding:18px 20px; font-family:'Barlow Condensed',sans-serif; font-size:21px; font-weight:700; color:var(--ink);
+      display:flex; align-items:center; justify-content:space-between; gap:12px
+    }
+    details.faq summary::-webkit-details-marker{display:none}
+    details.faq summary i{color:var(--warm); transition:transform .2s ease}
+    details.faq[open] summary i{transform:rotate(45deg)}
+    .faq-body{padding:0 20px 18px; color:var(--muted)}
+
+    .contact-split{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+    .contact-lines{display:grid;gap:16px}
+    .cline{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.9); border:1px solid var(--border); border-radius:14px; padding:18px; box-shadow:var(--shadow)}
+    .cline i{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#fdf3e7;color:var(--warm-dark);font-size:18px; flex:0 0 auto}
+    .cline strong{display:block; color:var(--ink); font-size:18px; margin-bottom:4px; text-transform:uppercase; font-family:'Barlow Condensed',sans-serif}
+    .cline a{color:var(--warm-dark); font-weight:600}
+    .cline a:hover{text-decoration:underline}
+    .hours-table{width:100%; border-collapse:collapse; font-size:14px}
+    .hours-table td{padding:8px 0; border-bottom:1px solid #ece5d8}
+    .hours-table tr:last-child td{border-bottom:none}
+
+    .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .field{display:flex; flex-direction:column; gap:6px}
+    .field.full{grid-column:1/-1}
+    .field label{font-weight:700; font-size:17px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink)}
+    .field input,.field select,.field textarea{
+      font-size:16px; padding:13px 15px; border:1px solid #d8cfbf; border-radius:12px; background:#fff; color:#2a2f36;
+      transition:border-color .18s ease, box-shadow .18s ease
+    }
+    .field input:focus,.field select:focus,.field textarea:focus{outline:none; border-color:var(--warm); box-shadow:0 0 0 4px rgba(200,100,42,.12)}
+    .field textarea{min-height:150px; resize:vertical}
+
+    .mapfoot{
+      margin-left:var(--sidebar-width); position:relative; overflow:hidden;
+      background:
+        linear-gradient(90deg, rgba(30,42,56,.97), rgba(35,45,58,.95)),
+        url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color:#f4f0e8; border-top:1px solid rgba(255,255,255,.08)
+    }
+    .mapfoot::before{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(30,42,56,.94), rgba(30,42,56,.86)); pointer-events:none}
+    .mapfoot .wrap{position:relative; z-index:1; padding-top:24px; padding-bottom:24px; display:flex; gap:18px; flex-wrap:wrap; align-items:center}
+    .pin{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--warm-soft);font-size:22px}
+    .addr{flex:1; min-width:260px}
+    .addr a{color:#fff; text-decoration:underline}
+    .addr a:hover{color:var(--warm-soft)}
+    .mapfoot p{margin:0; font-size:13px; color:#cbd3db}
+
+    .service-modal,
+    .lightbox{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:300;
+      background:rgba(10,14,18,.72); backdrop-filter:blur(8px); padding:18px
+    }
+    .service-modal.open,.lightbox.open{display:flex}
+    .modal-card,
+    .lightbox-card{
+      width:min(920px,100%); background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.25); position:relative
+    }
+    .modal-split{display:grid; grid-template-columns:1.08fr .92fr}
+    .modal-image{min-height:340px; background:#ddd}
+    .modal-image img{width:100%; height:100%; object-fit:cover}
+    .modal-copy{padding:28px 26px 24px}
+    .modal-copy .mini{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--warm-dark)}
+    .modal-copy h3{font-size:34px; margin:8px 0 10px; text-transform:uppercase; color:var(--ink)}
+    .modal-copy p{margin:0 0 14px; color:var(--muted)}
+    .modal-list{display:grid; gap:10px; margin:18px 0 24px}
+    .modal-list div{display:flex; gap:10px; align-items:flex-start; color:var(--muted)}
+    .modal-list i{color:var(--warm); margin-top:4px}
+    .close-x{
+      position:absolute; top:14px; right:14px; width:42px; height:42px; border:none; border-radius:12px;
+      background:rgba(30,42,56,.08); color:var(--ink); font-size:18px; cursor:pointer
+    }
+    .close-x:hover{background:rgba(30,42,56,.14)}
+    .lightbox-card{width:min(980px,100%); background:#10202c}
+    .lightbox-card img{width:100%; max-height:80vh; object-fit:cover}
+    .lightbox-caption{padding:14px 18px; color:#f4f0e8; font-size:14px}
+
+    .reveal{opacity:0; transform:translateY(24px); transition:opacity .5s ease, transform .5s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    @media (max-width: 1120px){
+      .cards,.review-grid,.contact-split,.about-split{grid-template-columns:1fr 1fr}
+      .ventgrid{grid-template-columns:repeat(2,1fr)}
+      .fin{grid-template-columns:200px 1fr auto}
+    }
+
+    @media (max-width: 920px){
+      .topbar{display:flex}
+      .sidebar{
+        top:68px;
+        bottom:0;
+        height:auto;
+        padding-top:0;
+        transform:translateX(-100%);
+        transition:transform .25s ease;
+        z-index:150;
+        overflow-y:auto;
+        overscroll-behavior:contain;
+      }
+      body.menu-open .sidebar{transform:translateX(0)}
+      body.menu-open .scrim{opacity:1; pointer-events:auto}
+      .brand{
+        padding-top:24px;
+        min-height:170px;
+      }
+      .brand .finmark{
+        position:relative;
+        z-index:2;
+        flex:0 0 auto;
+      }
+      .brand h1,
+      .brand p{
+        position:relative;
+        z-index:2;
+      }
+      main, .mapfoot{margin-left:0}
+      .hero{padding:62px 0 72px}
+      .cards,.review-grid,.contact-split,.about-split,.form-grid,.modal-split{grid-template-columns:1fr}
+      .fin{grid-template-columns:1fr; padding:16px}
+      .fin .tag{justify-self:flex-start}
+      .ventgrid{grid-template-columns:1fr}
+      .wrap{padding:0 20px}
+      .hero h2{font-size:clamp(38px,12vw,60px)}
+    }
+
+    @media (max-width: 640px){
+      section.block{padding:44px 0}
+      .btn{width:100%; justify-content:center}
+      .hero-stats{gap:20px}
+      .cards{grid-template-columns:1fr}
+      .stat .num{font-size:28px}
+      .cline{padding:16px}
+      .mapfoot .wrap{align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+    <div class="blob four"></div>
+  </div>
+
+  <div class="site-shell">
+    <div class="topbar">
+      <div class="tbrand">Rauck <span>Heating &amp; Cooling</span></div>
+      <button class="hamb" id="hamb" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="scrim" id="scrim"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="finmark"><i class="fa-solid fa-temperature-half"></i></div>
+        <h1>Rauck <span>Heating &amp; Cooling</span></h1>
+        <p>Cincinnati, OH &middot; HVAC contractor</p>
+      </div>
+      <nav class="side-nav" id="sideNav">
+        <a href="#/home" data-page="home"><i class="fa-solid fa-house"></i>Home</a>
+        <a href="#/services" data-page="services"><i class="fa-solid fa-wrench"></i>Services</a>
+        <a href="#/about" data-page="about"><i class="fa-solid fa-circle-info"></i>About</a>
+        <a href="#/reviews" data-page="reviews"><i class="fa-solid fa-star"></i>Reviews</a>
+        <a href="#/contact" data-page="contact"><i class="fa-solid fa-phone"></i>Contact</a>
+      </nav>
+      <div class="side-foot">
+        <div class="mono" style="font-size:12px; letter-spacing:.14em; color:#8fa3b8;">NEED SERVICE?</div>
+        <a class="call-btn" href="tel:+15132404341"><i class="fa-solid fa-phone"></i> Call now</a>
+        <a class="ph" href="tel:+15132404341">(513) 240-4341</a>
+        <div style="margin-top:10px; color:#8fa3b8; font-size:12.5px;">Mon to Fri, 9:00 a.m. to 6:00 p.m.<br>(hours as listed publicly)</div>
+      </div>
+    </aside>
+
+    <main id="mainContent">
+      <section class="biz-page" id="page-home">
+        <div class="hero">
+          <svg class="tubes" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="tubeG" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#e89a5b" stop-opacity=".55"/>
+                <stop offset=".5" stop-color="#e89a5b" stop-opacity=".12"/>
+                <stop offset="1" stop-color="#e89a5b" stop-opacity=".55"/>
+              </linearGradient>
+            </defs>
+            <g stroke="url(#tubeG)" stroke-width="10" fill="none">
+              <path d="M-40,90 C240,60 420,120 700,90 S1080,60 1260,100"/>
+              <path d="M-40,190 C240,160 420,220 700,190 S1080,160 1260,200"/>
+              <path d="M-40,290 C240,260 420,320 700,290 S1080,260 1260,300"/>
+              <path d="M-40,390 C240,360 420,420 700,390 S1080,360 1260,400"/>
+            </g>
+            <g fill="#f0a35e" opacity=".8">
+              <circle cx="120" cy="86" r="9"/><circle cx="330" cy="101" r="9"/><circle cx="540" cy="88" r="9"/><circle cx="750" cy="99" r="9"/><circle cx="960" cy="86" r="9"/><circle cx="1140" cy="97" r="9"/>
+              <circle cx="120" cy="186" r="9"/><circle cx="330" cy="201" r="9"/><circle cx="540" cy="188" r="9"/><circle cx="750" cy="199" r="9"/><circle cx="960" cy="186" r="9"/><circle cx="1140" cy="197" r="9"/>
+              <circle cx="120" cy="286" r="9"/><circle cx="330" cy="301" r="9"/><circle cx="540" cy="288" r="9"/><circle cx="750" cy="299" r="9"/><circle cx="960" cy="286" r="9"/><circle cx="1140" cy="297" r="9"/>
+              <circle cx="120" cy="386" r="9"/><circle cx="330" cy="401" r="9"/><circle cx="540" cy="388" r="9"/><circle cx="750" cy="399" r="9"/><circle cx="960" cy="386" r="9"/><circle cx="1140" cy="397" r="9"/>
+            </g>
+          </svg>
+          <div class="wrap">
+            <span class="kicker">Heat exchange specialists &middot; Cincinnati, Ohio</span>
+            <h2>Comfort runs <span class="hot">hot</span> through every fin.</h2>
+            <p class="lede">Rauck Heating &amp; Cooling keeps Cincinnati homes warm in January and cool in July. One call, one crew, and a system tuned like a heat exchanger: every part moving warmth exactly where it belongs.</p>
+            <div class="btnrow">
+              <a class="btn hot" href="tel:+15132404341"><i class="fa-solid fa-phone"></i> (513) 240-4341</a>
+              <a class="btn ghost" href="#/services" data-page-link="services"><i class="fa-solid fa-arrow-right"></i> See services</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><div class="num">5.0</div><div class="lbl">Birdeye rating (8 reviews)</div></div>
+              <div class="stat"><div class="num">Mon to Fri</div><div class="lbl">9:00 a.m. to 6:00 p.m.</div></div>
+              <div class="stat"><div class="num">45211</div><div class="lbl">Based in Cincinnati, OH</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="transition-band"></div>
+
+        <section class="block section-bg">
+          <div class="blur-shape"></div><div class="blur-shape2"></div>
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div class="mono">How we work</div>
+              <h2>Built like a radiator: simple, solid, dependable</h2>
+              <p>A radiator does one job and does it well. That is the whole business model here: show up, diagnose honestly, fix it right, and stand behind the work.</p>
+            </div>
+            <div class="cards">
+              <div class="card info-card reveal">
+                <i class="fa-solid fa-magnifying-glass big"></i>
+                <h3>Straight diagnosis</h3>
+                <p>We tell you what is wrong, what it costs, and what can wait. No pressure, no upsell scripts. Call to confirm current service details.</p>
+              </div>
+              <div class="card info-card reveal">
+                <i class="fa-solid fa-screwdriver-wrench big"></i>
+                <h3>Clean, careful work</h3>
+                <p>Furnaces, air conditioners, and the ductwork between them, serviced with the care of a shop that lives on repeat customers and referrals.</p>
+              </div>
+              <div class="card info-card reveal">
+                <i class="fa-solid fa-handshake big"></i>
+                <h3>Local and reachable</h3>
+                <p>Based on Marcrest Drive in Cincinnati. When you call (513) 240-4341, you reach the people who will actually do the work.</p>
+              </div>
+            </div>
+            <div class="note reveal"><i class="fa-solid fa-circle-exclamation"></i>Service details on this site are general. For pricing, scheduling, and whether we service your equipment, please call to confirm.</div>
+          </div>
+        </section>
+      </section>
+
+      <section class="biz-page" id="page-services">
+        <section class="block section-bg">
+          <div class="blur-shape"></div><div class="blur-shape2"></div>
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div class="mono">Fin-stack services</div>
+              <h2>Every layer of home comfort</h2>
+              <p>Like fins on a heat exchanger, each service below stacks onto the next to move comfort through your whole house. Public listings describe Rauck Heating &amp; Cooling as an HVAC, air conditioning, and heating contractor. Call to confirm exactly what is offered for your system.</p>
+            </div>
+            <div class="finstack">
+              <div class="fin reveal" data-service="heating">
+                <div class="service-photo">
+                  <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Technician servicing heating equipment">
+                  <div class="img-badge"><i class="fa-solid fa-fire"></i> Heating</div>
+                </div>
+                <div class="copy">
+                  <h3>Heating service</h3>
+                  <p>Furnace repair, tune-ups, and heating system troubleshooting for cold Cincinnati winters. Listed publicly as a core trade of this business.</p>
+                </div>
+                <span class="tag">CALL TO CONFIRM</span>
+              </div>
+
+              <div class="fin alt reveal" data-service="ac">
+                <div class="service-photo">
+                  <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80" alt="Technician servicing an air conditioning unit">
+                  <div class="img-badge"><i class="fa-solid fa-fan"></i> Cooling</div>
+                </div>
+                <div class="copy">
+                  <h3>Air conditioning service</h3>
+                  <p>AC repair and maintenance to keep summer humidity and heat under control. Listed publicly as a core trade of this business.</p>
+                </div>
+                <span class="tag">CALL TO CONFIRM</span>
+              </div>
+
+              <div class="fin reveal" data-service="hvac">
+                <div class="service-photo">
+                  <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=900&q=80" alt="HVAC technician working on indoor equipment">
+                  <div class="img-badge"><i class="fa-solid fa-gears"></i> HVAC</div>
+                </div>
+                <div class="copy">
+                  <h3>General HVAC contracting</h3>
+                  <p>Listed publicly as an HVAC contractor (Ohio license #CBRC000742 shown on a contractor directory; unverified). Typical contractor work may include system installs and replacements.</p>
+                </div>
+                <span class="tag">CALL TO CONFIRM</span>
+              </div>
+
+              <div class="fin alt reveal" data-service="tuneups">
+                <div class="service-photo">
+                  <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80" alt="Technician performing a seasonal maintenance check">
+                  <div class="img-badge"><i class="fa-solid fa-calendar-check"></i> Seasonal</div>
+                </div>
+                <div class="copy">
+                  <h3>Seasonal tune-ups</h3>
+                  <p>Pre-season checkups keep equipment efficient and catch small problems before they become no-heat or no-cool emergencies.</p>
+                </div>
+                <span class="tag">SAMPLE / CALL TO CONFIRM</span>
+              </div>
+
+              <div class="fin reveal" data-service="thermostat">
+                <div class="service-photo">
+                  <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=900&q=80" alt="Smart thermostat mounted on a wall">
+                  <div class="img-badge"><i class="fa-solid fa-sliders"></i> Controls</div>
+                </div>
+                <div class="copy">
+                  <h3>Thermostat and controls</h3>
+                  <p>Thermostat diagnosis and replacement so your system actually responds when you ask it to. Availability varies by equipment.</p>
+                </div>
+                <span class="tag">SAMPLE / CALL TO CONFIRM</span>
+              </div>
+            </div>
+            <div class="badge-row reveal">
+              <span class="pill"><i class="fa-solid fa-id-card"></i> OH license #CBRC000742 (directory listing, unverified)</span>
+              <span class="pill"><i class="fa-solid fa-location-dot"></i> 4267 Marcrest Dr, Cincinnati, OH 45211</span>
+              <span class="pill"><i class="fa-solid fa-phone"></i> (513) 240-4341</span>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="biz-page" id="page-about">
+        <section class="block section-bg">
+          <div class="blur-shape"></div><div class="blur-shape2"></div>
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div class="mono">About the shop</div>
+              <h2>A Cincinnati HVAC contractor, plain and simple</h2>
+            </div>
+            <div class="about-split">
+              <div class="cards" style="grid-template-columns:1fr; gap:20px;">
+                <div class="card reveal">
+                  <i class="fa-solid fa-shop big"></i>
+                  <h3>What we know</h3>
+                  <p>Rauck Heating &amp; Cooling is an HVAC contractor based at 4267 Marcrest Dr, Cincinnati, OH 45211, reachable at (513) 240-4341. Public directories list heating, air conditioning, and general HVAC work as its trades, and Birdeye shows a 5.0 rating across 8 reviews with weekday hours of 9:00 a.m. to 6:00 p.m.</p>
+                </div>
+                <div class="card reveal">
+                  <i class="fa-solid fa-triangle-exclamation big"></i>
+                  <h3>What we do not claim</h3>
+                  <p>We could not verify a company website, founding date, staff names, brand affiliations, or pricing from public sources, so none appear here. Anything beyond the verified facts above is marked sample or left out rather than invented.</p>
+                </div>
+              </div>
+              <div class="photo-panel reveal">
+                <div class="panel-badge"><i class="fa-solid fa-snowflake"></i> Heating &amp; cooling support</div>
+                <div class="panel-text">
+                  <h3>Service with a practical approach</h3>
+                  <p>The public information points to a local HVAC contractor focused on the essentials: heating, cooling, maintenance, and dependable service availability during listed business hours.</p>
+                </div>
+              </div>
+            </div>
+            <div class="note reveal"><i class="fa-solid fa-circle-exclamation"></i>Running a small shop means the phone is the front desk. For the fastest answer about scheduling, service area, or estimates, call (513) 240-4341 during business hours.</div>
+          </div>
+        </section>
+
+        <section class="block gallery">
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div class="mono">Field-inspired gallery</div>
+              <h2>Heating and cooling in action</h2>
+              <p>Public business photos were not clearly available, so the gallery below uses relevant HVAC stock imagery to match the services shown on this site.</p>
+            </div>
+            <div class="ventgrid">
+              <div class="vent reveal" data-lightbox="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1400&q=80" data-caption="Cooling service stock image"><i class="fa-solid fa-camera"></i><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80" alt="HVAC cooling service stock image"><span>COOLING SERVICE</span></div>
+              <div class="vent reveal" data-lightbox="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80" data-caption="Heating service stock image"><i class="fa-solid fa-camera"></i><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Heating service stock image"><span>HEATING SERVICE</span></div>
+              <div class="vent reveal" data-lightbox="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1400&q=80" data-caption="Tune-up stock image"><i class="fa-solid fa-camera"></i><img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=80" alt="HVAC tune-up stock image"><span>SEASONAL CHECKUPS</span></div>
+              <div class="vent reveal" data-lightbox="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1400&q=80" data-caption="HVAC contracting stock image"><i class="fa-solid fa-camera"></i><img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=900&q=80" alt="General HVAC contractor stock image"><span>HVAC CONTRACTING</span></div>
+              <div class="vent reveal" data-lightbox="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=1400&q=80" data-caption="Thermostat stock image"><i class="fa-solid fa-camera"></i><img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=900&q=80" alt="Thermostat controls stock image"><span>THERMOSTATS</span></div>
+              <div class="vent reveal" data-lightbox="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80" data-caption="Home-comfort support stock image"><i class="fa-solid fa-camera"></i><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80" alt="Home comfort support stock image"><span>HOME COMFORT</span></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="biz-page" id="page-reviews">
+        <section class="block section-bg">
+          <div class="blur-shape"></div><div class="blur-shape2"></div>
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div class="mono">Reviews</div>
+              <h2>What customers say</h2>
+              <p>Aggregate ratings below come from real public listings. Individual review text and reviewer names could not be verified from public sources, so no quotes or names are shown here.</p>
+            </div>
+            <div class="review-grid">
+              <div class="review-card reveal">
+                <div class="score">5.0</div>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>Based on 8 reviews on Birdeye. Hours listed there: Monday to Friday, 9:00 a.m. to 6:00 p.m.; closed Saturday and Sunday.</p>
+                <a class="btn hot" style="font-size:16px; padding:11px 22px;" href="https://reviews.birdeye.com/rauck-heating-cooling-167054452064063" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Read on Birdeye</a>
+              </div>
+              <div class="review-card reveal">
+                <div class="score">5.0</div>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>A second public place listing shows a 5.0 rating from 3 reviews and describes pricing as inexpensive. Source data is thin, so treat this as a signal, not a guarantee.</p>
+                <a class="btn ghost" style="font-size:16px; padding:11px 22px; border-color:#c8642a; color:#a83c22;" href="#/contact" data-page-link="contact"><i class="fa-solid fa-phone"></i> Ask us directly</a>
+              </div>
+            </div>
+
+            <div class="faq-list reveal">
+              <details class="faq">
+                <summary>Do you service both heating and cooling systems? <i class="fa-solid fa-plus"></i></summary>
+                <div class="faq-body">Public listings identify Rauck Heating &amp; Cooling as a heating, air conditioning, and HVAC contractor. Call to confirm the exact equipment and system types serviced.</div>
+              </details>
+              <details class="faq">
+                <summary>Are business hours listed publicly? <i class="fa-solid fa-plus"></i></summary>
+                <div class="faq-body">Yes. Birdeye lists Monday through Friday hours of 9:00 a.m. to 6:00 p.m., with Saturday and Sunday shown as closed. Call ahead to confirm current availability.</div>
+              </details>
+              <details class="faq">
+                <summary>Is pricing available online? <i class="fa-solid fa-plus"></i></summary>
+                <div class="faq-body">No public price list was verified. For service pricing, scheduling, and equipment questions, it is best to call the company directly.</div>
+              </details>
+            </div>
+
+            <div class="note reveal"><i class="fa-solid fa-circle-exclamation"></i>We do not show a Google Maps review button because we could not verify a Maps listing URL belonging to this exact business. The Birdeye link above is a real, public review page for Rauck Heating &amp; Cooling.</div>
+          </div>
+        </section>
+      </section>
+
+      <section class="biz-page" id="page-contact">
+        <section class="block section-bg">
+          <div class="blur-shape"></div><div class="blur-shape2"></div>
+          <div class="wrap">
+            <div class="sec-head reveal">
+              <div class="mono">Contact</div>
+              <h2>Get in touch</h2>
+              <p>Call for the fastest response during business hours, or send a message below. The form opens your own email app with your message pre-filled; no company email address is published publicly, so you address it yourself or just call.</p>
+            </div>
+            <div class="contact-split">
+              <div class="contact-lines">
+                <div class="cline reveal">
+                  <i class="fa-solid fa-phone"></i>
+                  <div><strong>Phone</strong><a href="tel:+15132404341">(513) 240-4341</a></div>
+                </div>
+                <div class="cline reveal">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <div><strong>Address</strong>4267 Marcrest Dr<br>Cincinnati, OH 45211<br><a href="https://www.google.com/maps/search/?api=1&query=4267%20Marcrest%20Dr%2C%20Cincinnati%2C%20OH%2045211" target="_blank" rel="noopener">Get directions</a></div>
+                </div>
+                <div class="cline reveal">
+                  <i class="fa-solid fa-clock"></i>
+                  <div style="flex:1"><strong>Hours</strong>
+                    <table class="hours-table">
+                      <tr><td>Monday to Friday</td><td>9:00 a.m. to 6:00 p.m.</td></tr>
+                      <tr><td>Saturday</td><td>Closed</td></tr>
+                      <tr><td>Sunday</td><td>Closed</td></tr>
+                    </table>
+                    <div style="font-size:12.5px; color:#8a94a0; margin-top:6px;">As listed on Birdeye; call to confirm.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card reveal">
+                <h3 style="margin-bottom:16px;">Request service</h3>
+                <form id="contactForm">
+                  <div class="form-grid">
+                    <div class="field"><label for="fName">Name</label><input id="fName" name="name" type="text" required placeholder="Your name"></div>
+                    <div class="field"><label for="fPhone">Phone</label><input id="fPhone" name="phone" type="tel" required placeholder="(513) 555-0100"></div>
+                    <div class="field full"><label for="fTopic">What do you need?</label>
+                      <select id="fTopic" name="topic">
+                        <option>Heating repair or tune-up</option>
+                        <option>Air conditioning repair or tune-up</option>
+                        <option>New system / replacement quote</option>
+                        <option>Something else</option>
+                      </select>
+                    </div>
+                    <div class="field full"><label for="fMsg">Details</label><textarea id="fMsg" name="message" required placeholder="Tell us what is going on: no heat, weak cooling, strange noise, and so on."></textarea></div>
+                  </div>
+                  <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                    <button class="btn hot" type="submit" style="border:none;"><i class="fa-solid fa-envelope-open-text"></i> Draft email</button>
+                    <a class="btn ghost" style="border-color:#c8642a; color:#a83c22;" href="tel:+15132404341"><i class="fa-solid fa-phone"></i> Call instead</a>
+                  </div>
+                  <p style="font-size:13px; color:#8a94a0; margin:14px 0 0;">Submitting opens your email app with the message pre-filled. No company email is published publicly, so add the recipient or call (513) 240-4341.</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="mapfoot">
+      <div class="wrap">
+        <div class="pin"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="addr">4267 Marcrest Dr, Cincinnati, OH 45211 &middot; <a href="https://www.google.com/maps/search/?api=1&query=4267%20Marcrest%20Dr%2C%20Cincinnati%2C%20OH%2045211" target="_blank" rel="noopener">Directions</a> &middot; <a href="tel:+15132404341">(513) 240-4341</a></div>
+        <p>&copy; Rauck Heating &amp; Cooling</p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="service-modal" id="serviceModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="serviceTitle">
+      <button class="close-x" type="button" id="closeServiceModal" aria-label="Close service details"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-split">
+        <div class="modal-image"><img id="modalImg" src="" alt=""></div>
+        <div class="modal-copy">
+          <div class="mini" id="modalMini">Service details</div>
+          <h3 id="serviceTitle">Service</h3>
+          <p id="modalText"></p>
+          <div class="modal-list" id="modalList"></div>
+          <div class="btnrow">
+            <a class="btn hot" href="tel:+15132404341"><i class="fa-solid fa-phone"></i> Call now</a>
+            <button class="btn ghost" type="button" id="modalCloseAction" style="border:2px solid #d8cfbf; color:#1e2a38; background:#fff;"><i class="fa-solid fa-xmark"></i> Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-card" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption">
+      <button class="close-x" type="button" id="closeLightbox" aria-label="Close image"><i class="fa-solid fa-xmark"></i></button>
+      <img id="lightboxImage" src="" alt="Gallery image">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const pageMap = { home:'page-home', services:'page-services', about:'page-about', reviews:'page-reviews', contact:'page-contact' };
+      const validPages = Object.keys(pageMap);
+      const sideNav = document.getElementById('sideNav');
+      const hamb = document.getElementById('hamb');
+      const scrim = document.getElementById('scrim');
+      const form = document.getElementById('contactForm');
+
+      function currentFromHash(){
+        const raw = window.location.hash.replace('#/','').replace('#','');
+        return validPages.includes(raw) ? raw : 'home';
+      }
+
+      function navigateTo(page, push=true){
+        if(!validPages.includes(page)) page = 'home';
+        document.querySelectorAll('.biz-page').forEach(sec => sec.classList.remove('active'));
+        const target = document.getElementById(pageMap[page]);
+        if(target) target.classList.add('active');
+        document.querySelectorAll('#sideNav a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
+        document.body.classList.remove('menu-open');
+        window.scrollTo({ top:0, behavior:'instant' in window ? 'instant' : 'auto' });
+        if(push && window.location.hash !== '#/' + page){
+          history.pushState({page}, '', '#/' + page);
+        }
+        document.title = 'Rauck Heating & Cooling | ' + page.charAt(0).toUpperCase() + page.slice(1);
+      }
+
+      window.addEventListener('popstate', () => navigateTo(currentFromHash(), false));
+
+      sideNav.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-page]');
+        if(!a) return;
+        e.preventDefault();
+        navigateTo(a.dataset.page);
+      });
+
+      document.querySelectorAll('[data-page-link]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          navigateTo(a.dataset.pageLink);
+        });
+      });
+
+      hamb.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+      scrim.addEventListener('click', () => document.body.classList.remove('menu-open'));
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('fName').value.trim();
+        const phone = document.getElementById('fPhone').value.trim();
+        const topic = document.getElementById('fTopic').value;
+        const msg = document.getElementById('fMsg').value.trim();
+        const subject = 'Service request from ' + name + ' (' + topic + ')';
+        const body = 'Name: ' + name + '\nPhone: ' + phone + '\nTopic: ' + topic + '\n\nDetails:\n' + msg;
+        window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      });
+
+      const serviceData = {
+        heating: {
+          mini:'Heating support',
+          title:'Heating service',
+          image:'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80',
+          text:'Heating service includes furnace-related service work, tune-ups, and cold-weather troubleshooting. Public listings describe heating as a core trade of this business, but specific equipment brands and exact scope should be confirmed by phone.',
+          bullets:['Furnace repair and cold-weather troubleshooting','Seasonal service before winter demand rises','Call to confirm equipment compatibility and availability']
+        },
+        ac: {
+          mini:'Cooling support',
+          title:'Air conditioning service',
+          image:'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1400&q=80',
+          text:'Air conditioning service is listed publicly as a core part of the company’s work. That typically includes cooling diagnostics, AC repair, and maintenance visits aimed at reliable summer performance.',
+          bullets:['AC repair and cooling diagnostics','Preventive maintenance for better summer performance','Call to confirm service timing and system details']
+        },
+        hvac: {
+          mini:'General HVAC',
+          title:'General HVAC contracting',
+          image:'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1400&q=80',
+          text:'Public directories identify Rauck Heating & Cooling as an HVAC contractor. One contractor directory also shows Ohio license #CBRC000742, which is included here as an unverified directory reference.',
+          bullets:['Heating and cooling contractor listing','Install and replacement work may be available','License listing shown on a directory remains unverified']
+        },
+        tuneups: {
+          mini:'Preventive maintenance',
+          title:'Seasonal tune-ups',
+          image:'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1400&q=80',
+          text:'Seasonal tune-ups help reduce surprise breakdowns and keep systems running more efficiently. This item is included as a practical, sample service concept that aligns with the company’s heating and cooling scope.',
+          bullets:['Pre-season checks for heating or cooling systems','Good for catching wear before high-demand weather','Availability should be confirmed by phone']
+        },
+        thermostat: {
+          mini:'System controls',
+          title:'Thermostat and controls',
+          image:'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&w=1400&q=80',
+          text:'Thermostat troubleshooting and control updates are common support items for HVAC contractors. This is presented as a relevant sample service that fits the public business category, but exact availability may vary.',
+          bullets:['Thermostat checks and troubleshooting','Replacement or upgrade support may be available','Call to confirm specific control-system service']
+        }
+      };
+
+      const serviceModal = document.getElementById('serviceModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalMini = document.getElementById('modalMini');
+      const serviceTitle = document.getElementById('serviceTitle');
+      const modalText = document.getElementById('modalText');
+      const modalList = document.getElementById('modalList');
+      const closeServiceModal = () => serviceModal.classList.remove('open');
+
+      document.querySelectorAll('.fin[data-service]').forEach(card => {
+        card.addEventListener('click', () => {
+          const item = serviceData[card.dataset.service];
+          if(!item) return;
+          modalImg.src = item.image;
+          modalImg.alt = item.title;
+          modalMini.textContent = item.mini;
+          serviceTitle.textContent = item.title;
+          modalText.textContent = item.text;
+          modalList.innerHTML = item.bullets.map(t => '<div><i class="fa-solid fa-check"></i><span>' + t + '</span></div>').join('');
+          serviceModal.classList.add('open');
+        });
+      });
+
+      document.getElementById('closeServiceModal').addEventListener('click', closeServiceModal);
+      document.getElementById('modalCloseAction').addEventListener('click', closeServiceModal);
+      serviceModal.addEventListener('click', (e) => { if(e.target === serviceModal) closeServiceModal(); });
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const closeLightbox = () => lightbox.classList.remove('open');
+
+      document.querySelectorAll('.vent[data-lightbox]').forEach(item => {
+        item.addEventListener('click', () => {
+          lightboxImage.src = item.dataset.lightbox;
+          lightboxCaption.textContent = item.dataset.caption || '';
+          lightbox.classList.add('open');
+        });
+      });
+      document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          closeServiceModal();
+          closeLightbox();
+          document.body.classList.remove('menu-open');
+        }
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('show');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      navigateTo(currentFromHash(), false);
+    })();
+  </script>
+</body>
+</html>

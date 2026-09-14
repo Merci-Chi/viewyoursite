@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#5E1620">
+  <title>University Laundromat | Albuquerque, NM</title>
+  <meta name="description" content="University Laundromat on Central Ave SE near UNM in Albuquerque. View hours, laundry information, reviews from the supplied source, and protected demo contact details.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --cherry:#7A1F2B;
+      --cherry-deep:#5E1620;
+      --cherry-tint:#F6E9EB;
+      --silver:#B0BEC5;
+      --silver-tint:#F1F4F6;
+      --paper:#FFFDF8;
+      --ink:#2B2B2B;
+      --muted:#5A5A5A;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);
+      overflow-x:hidden;-webkit-user-select:none;user-select:none
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    h1,h2,h3{font-family:'Space Grotesk',sans-serif;margin-top:0;line-height:1.05}
+    h1{font-size:clamp(3.6rem,8vw,6.8rem);letter-spacing:-.055em;margin-bottom:22px}
+    h2{font-size:clamp(2.4rem,5vw,4.2rem);letter-spacing:-.045em;margin-bottom:16px}
+    h3{font-size:1.25rem}
+    p{line-height:1.7}
+    .kicker{
+      font-weight:700;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cherry)
+    }
+    .btn{
+      min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:0 22px;border:2px solid transparent;font-weight:700;text-transform:uppercase;
+      letter-spacing:.05em;cursor:pointer;transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--cherry);border-color:var(--cherry);color:#fff}
+    .btn-primary:hover{background:var(--cherry-deep);border-color:var(--cherry-deep)}
+    .btn-ghost{background:transparent;border-color:rgba(255,255,255,.65);color:#fff}
+    .btn-dark{background:var(--cherry-deep);color:#fff}
+
+    .site-header{
+      position:sticky;top:0;z-index:100;background:var(--cherry-deep);color:#fff;
+      border-bottom:3px solid #8c2f3d
+    }
+    .head{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-arch{
+      width:38px;height:42px;border:3px solid var(--silver);border-bottom:0;
+      border-radius:999px 999px 0 0;position:relative;flex:0 0 auto
+    }
+    .brand-arch:after{
+      content:"";position:absolute;left:50%;top:13px;transform:translateX(-50%);
+      width:9px;height:9px;border-radius:50%;background:var(--silver)
+    }
+    .brand-name{font-family:'Space Grotesk';font-weight:700;font-size:1.1rem}
+    .brand-sub{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#d9c2c7}
+    .nav{display:flex;align-items:center;gap:27px}
+    .nav a{font-weight:700;font-size:.82rem;letter-spacing:.11em;text-transform:uppercase}
+    .nav a:hover{color:#d9c2c7}
+    .menu-btn{display:none;width:44px;height:40px;border:2px solid var(--silver);background:transparent;padding:0}
+    .menu-btn span{display:block;width:20px;height:2px;background:var(--silver);margin:4px auto}
+    .mobile-menu{display:none;background:var(--cherry-deep);padding:8px 20px 18px;border-top:1px solid rgba(255,255,255,.12)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);font-weight:700}
+
+    .hero{
+      min-height:720px;display:grid;align-items:end;color:#fff;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(65,13,21,.94) 0%,rgba(65,13,21,.72) 48%,rgba(65,13,21,.26) 100%),
+        url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero-inner{padding:115px 0 82px;max-width:800px;position:relative;z-index:2}
+    .hero .kicker{color:#e0c8cd}
+    .hero-copy{font-size:clamp(1rem,2vw,1.2rem);max-width:650px;color:rgba(255,255,255,.85)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .stock-note{
+      position:absolute;right:18px;bottom:16px;font-size:.68rem;letter-spacing:.07em;
+      text-transform:uppercase;color:rgba(255,255,255,.65)
+    }
+
+    .quickbar{background:#4e111a;color:#fff}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+    .quick:last-child{border-right:0}
+    .quick i{color:#d7b5bc;margin-top:3px}
+    .quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+    .quick span{font-weight:700;line-height:1.4}
+
+    .section{padding:96px 0}
+    .section.tint{background:var(--silver-tint)}
+    .lead{max-width:720px;color:var(--muted);font-size:1.03rem}
+    .about-grid{display:grid;grid-template-columns:1fr .9fr;gap:62px;align-items:start}
+    .about-photo{
+      min-height:430px;background:
+      linear-gradient(rgba(122,31,43,.08),rgba(122,31,43,.08)),
+      url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      position:relative;box-shadow:0 18px 45px rgba(94,22,32,.14)
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;
+      background:rgba(66,17,24,.78);color:#fff;padding:7px 9px;font-size:.66rem;
+      text-transform:uppercase;letter-spacing:.06em
+    }
+    .protected{
+      margin-top:24px;border-left:4px solid var(--cherry);background:var(--cherry-tint);
+      padding:18px 20px;display:flex;gap:14px
+    }
+    .protected i{color:var(--cherry);margin-top:3px}
+    .protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+    .protected p{margin:0;color:var(--muted);font-size:.92rem}
+
+    .services{background:#fff}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dde3e6;border:1px solid #dde3e6;margin-top:36px}
+    .service{background:#fff;padding:34px 30px;min-height:245px}
+    .service-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--cherry-tint);color:var(--cherry);margin-bottom:25px}
+    .service p{color:var(--muted);margin-bottom:0}
+
+    .photo-band{
+      min-height:560px;display:grid;align-items:center;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(74,17,27,.92),rgba(74,17,27,.58),rgba(74,17,27,.18)),
+        url("https://images.unsplash.com/photo-1551761429-8232f9f5955c?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .photo-copy{max-width:650px;padding:84px 0}
+    .photo-copy p{color:rgba(255,255,255,.8)}
+    .stock-label{
+      display:inline-flex;gap:8px;align-items:center;padding:8px 11px;background:rgba(0,0,0,.36);
+      font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800
+    }
+
+    .hours{
+      background:#fff
+    }
+    .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:32px}
+    .day{
+      border-top:5px solid var(--silver);background:#fff;padding:16px 10px;text-align:center;
+      box-shadow:0 8px 18px rgba(43,43,43,.06)
+    }
+    .day strong{display:block;color:var(--cherry-deep);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+    .day span{font-size:.8rem;color:var(--muted)}
+
+    .reviews{background:var(--cherry-tint)}
+    .review-card{
+      max-width:760px;margin:0 auto 18px;background:#fff;border-left:8px solid var(--cherry);
+      padding:28px 30px;box-shadow:0 12px 26px rgba(94,22,32,.08)
+    }
+    .review-card blockquote{margin:0}
+    .review-card p{font-size:1.03rem;margin-bottom:9px}
+    .review-meta{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:#7f7275;font-weight:700}
+    .rating-summary{text-align:center;margin-top:26px;font-weight:700;color:var(--cherry-deep)}
+
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+    .visit-card{background:#fff;border:1px solid #e0e3e5;padding:34px;min-height:285px}
+    .visit-card.dark{background:var(--cherry-deep);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+    .visit-card.dark p{color:#e2cfd3}
+    .protected-box{margin-top:20px;border:2px dashed currentColor;padding:17px;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+    .cta{margin-top:32px;background:#d9c2c7;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .cta h3{font-size:clamp(1.7rem,3vw,2.7rem);margin:0}
+    .cta p{margin:8px 0 0;color:#4d4043}
+
+    footer{background:#4c1019;color:#dfc5cb;padding:38px 0}
+    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+    .foot strong{color:#fff}
+
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;
+      z-index:500;padding:20px
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+    .modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--cherry-deep);color:#fff;margin-bottom:20px}
+    .modal h2{font-size:2rem;margin-bottom:12px}
+    .modal p{color:var(--muted);margin-bottom:24px}
+    .modal .btn{width:100%}
+
+    @media(max-width:900px){
+      .nav{display:none}.menu-btn{display:block}
+      .about-grid,.visit-grid{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr 1fr}
+      .week-grid{grid-template-columns:repeat(4,1fr)}
+      .quick-grid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+      .quick:last-child{border-bottom:0}
+      .cta{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .head{height:68px}.brand-name{font-size:.95rem}.brand-sub{display:none}.brand-arch{width:34px;height:38px}
+      .hero{min-height:610px;background-position:58% center}.hero-inner{padding:88px 0 50px}
+      h1{font-size:clamp(3rem,15vw,4.7rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .section{padding:72px 0}
+      .service-grid,.week-grid{grid-template-columns:1fr}
+      .service{min-height:0;padding:28px 24px}
+      .visit-card{padding:26px}.cta{padding:30px 24px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap head">
+      <a class="brand" href="#home" aria-label="University Laundromat home">
+        <span class="brand-arch" aria-hidden="true"></span>
+        <span>
+          <span class="brand-name">University Laundromat</span>
+          <span class="brand-sub">Central Ave SE · Albuquerque</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#wash">The Wash</a>
+        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#wash">The Wash</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="kicker">Near UNM · Albuquerque, New Mexico</div>
+        <h1>A cleaner kind of laundry day</h1>
+        <p class="hero-copy">University Laundromat keeps a bright, well kept wash house on Central Ave SE, minutes from the UNM campus. A variety of machine sizes, doors open every day of the week.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#wash"><i class="fa-solid fa-soap"></i> See The Wash</a>
+          <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+        </div>
+      </div>
+      <div class="stock-note">Stock imagery — not the actual business</div>
+    </section>
+
+    <section class="quickbar">
+      <div class="wrap quick-grid">
+        <div class="quick">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>Location</strong><span>Albuquerque, NM · Near UNM</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-regular fa-clock"></i>
+          <div><strong>Hours</strong><span>6:30 AM – 10:00 PM daily</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-solid fa-star"></i>
+          <div><strong>Google rating shown in source</strong><span>4.1 · 254 reviews</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-photo" role="img" aria-label="Stock image of laundry machines"></div>
+        <div>
+          <div class="kicker">About</div>
+          <h2>University Laundromat near UNM.</h2>
+          <p class="lead">The supplied page describes a bright, well kept self-service wash house on Central Ave SE near the UNM campus, with a variety of machine sizes and the same hours every day.</p>
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The source includes a business phone number and street address. Those real-world contact details stay protected in this sample site.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="wash">
+      <div class="wrap">
+        <div class="kicker">The Wash</div>
+        <h2>Laundry details listed in the supplied page.</h2>
+        <p class="lead">Only details supported by the provided HTML are included here.</p>
+        <div class="service-grid">
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-shirt"></i></div>
+            <h3>Washers for every load</h3>
+            <p>The supplied page describes a variety of washer sizes, including larger machines for bulk loads and bedding.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+            <h3>Dryers that keep up</h3>
+            <p>The supplied page says dryer sizes are available to match the washer options.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-broom"></i></div>
+            <h3>Clean you can count on</h3>
+            <p>The source repeatedly highlights cleanliness in its own page copy and review excerpts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-band" aria-label="Laundry stock imagery">
+      <div class="wrap photo-copy">
+        <div class="kicker" style="color:#e3cbd0">Laundry on Central</div>
+        <h2>Same hours, every day.</h2>
+        <p>This demo uses generic laundromat stock photography for visual presentation. It does not depict the actual University Laundromat location, staff, machines, or customers.</p>
+        <span class="stock-label"><i class="fa-solid fa-image"></i> Stock imagery — not the actual business</span>
+      </div>
+    </section>
+
+    <section class="section hours" id="hours">
+      <div class="wrap">
+        <div class="kicker">Business hours</div>
+        <h2>Open every day, 6:30 AM – 10 PM.</h2>
+        <p class="lead">The supplied source lists the same schedule for all seven days.</p>
+        <div class="week-grid">
+          <div class="day"><strong>Mon</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Tue</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Wed</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Thu</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Fri</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Sat</strong><span>6:30 AM – 10 PM</span></div>
+          <div class="day"><strong>Sun</strong><span>6:30 AM – 10 PM</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="wrap">
+        <div style="text-align:center;max-width:700px;margin:0 auto 34px">
+          <div class="kicker">Reviews</div>
+          <h2>Review excerpts in the supplied source.</h2>
+          <p class="lead" style="margin-left:auto;margin-right:auto">The provided page labels the following excerpts as Google reviews.</p>
+        </div>
+
+        <div class="review-card">
+          <blockquote>
+            <p>“Wow! Nicest laundromat I've ever been to! Very clean”</p>
+            <span class="review-meta">Google review</span>
+          </blockquote>
+        </div>
+
+        <div class="review-card">
+          <blockquote>
+            <p>“Very clean laundromat with a variety of machine sizes.”</p>
+            <span class="review-meta">Google review</span>
+          </blockquote>
+        </div>
+
+        <div class="rating-summary">4.1 stars with 254 reviews on Google</div>
+      </div>
+    </section>
+
+    <section class="section" id="visit">
+      <div class="wrap">
+        <div class="kicker">Visit &amp; contact</div>
+        <h2>Real-world contact actions are protected in this demo.</h2>
+        <p class="lead">The supplied source contains a public business address and phone number, but this sample keeps both actions locked until the site is unlocked.</p>
+
+        <div class="visit-grid">
+          <article class="visit-card dark">
+            <div>
+              <i class="fa-solid fa-location-dot" style="font-size:2rem;color:#d9c2c7"></i>
+              <h3 style="margin-top:22px">Business address</h3>
+              <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+            </div>
+          </article>
+
+          <article class="visit-card">
+            <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+            <div class="protected-box">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+            <div class="actions">
+              <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call laundromat</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Have a laundry question?</h3>
+            <p>The original source included a message form, but submission stays locked in this demo.</p>
+          </div>
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-lock"></i> Send message</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div><strong>University Laundromat</strong><br>Albuquerque, New Mexico</div>
+      <div>Demo website · Contact details protected</div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h2 id="modalTitle">This is currently locked.</h2>
+      <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-dark" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const modal = document.getElementById('lockedModal');
+      const modalClose = document.getElementById('modalClose');
+      let lastFocus = null;
+
+      function closeMenu(){
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+
+      menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+      function openModal(trigger){
+        lastFocus = trigger || document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if(lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openModal(el);
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          e.preventDefault();
+          modalClose.focus();
+        }
+      });
+
+      document.addEventListener('gesturestart', e => e.preventDefault());
+      document.addEventListener('gesturechange', e => e.preventDefault());
+      document.addEventListener('gestureend', e => e.preventDefault());
+      document.addEventListener('wheel', e => {
+        if(e.ctrlKey || e.metaKey) e.preventDefault();
+      }, {passive:false});
+    })();
+  </script>
+
+  <!--
+  SOURCE-DERIVED CONTENT USED
+  - University Laundromat
+  - Albuquerque, New Mexico
+  - Central Ave SE / near UNM context
+  - Hours: 6:30 AM – 10 PM daily
+  - Variety of machine sizes
+  - Washer and dryer size descriptions from supplied source
+  - Cleanliness claims repeated by supplied page and review excerpts
+  - Google review excerpts supplied by source
+  - 4.1 stars / 254 Google reviews shown by source
+  - Source includes exact address and phone, intentionally hidden in visible demo
+
+  OMITTED / LOCKED
+  - Working tel link
+  - External Google review link
+  - SMS behavior
+  - Working contact form
+  - Exact street address
+  - Phone number
+  - Any unsupported prices, payment methods, amenities, pickup/delivery, awards,
+    licenses, years in business, social profiles, or team names
+
+  ASSETS
+  - Generic Unsplash laundry imagery
+  - Stock imagery does not depict actual business
+  - Font Awesome Free via CDN
+
+  QUALITY CHECK
+  - Single HTML file
+  - CSS and JS inline
+  - Fully responsive
+  - Mobile hamburger works
+  - Mobile zoom prevention
+  - Text selection disabled
+  - Real-world actions locked
+  - One reusable modal
+  - Modal closes by Close, backdrop, or Escape
+  - No fake submission or redirect
+  -->
+</body>
+</html>

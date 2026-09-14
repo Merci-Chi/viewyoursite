@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#143C46">
+<title>Smoke and Vape Shop in Henderson | Smokes And Vapes</title>
+<meta name="description" content="Smokes And Vapes in Green Valley, Henderson. Vapes, e-liquids, glass, wraps, hookah, cigars, lighters, CBD, hours, reviews, and contact information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --ink:#142328;--deep:#143C46;--teal:#1F746F;--mint:#A8DDD4;--mint2:#E8F6F3;
+  --paper:#F7F8F6;--white:#fff;--sub:#667377;--line:rgba(20,60,70,.15);--max:1140px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}h1,h2,h3,p{margin-top:0}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",sans-serif;font-weight:700}
+.brand-mark{width:14px;height:14px;background:var(--mint);border:3px solid var(--teal)}
+.brand small{display:block;font:700 .66rem Manrope,sans-serif;color:var(--sub);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.desktop-nav{display:flex;gap:26px;font-size:.86rem;font-weight:800}.desktop-nav a:hover{color:var(--teal)}
+.menu-btn{display:none;width:46px;height:46px;border:1px solid var(--line);background:#fff}.menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px auto}
+.mobile-menu{display:none;background:#fff;padding:8px 20px 18px;border-top:1px solid var(--line)}.mobile-menu.open{display:grid}.mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:800}
+
+.hero{min-height:720px;display:grid;align-items:end;position:relative;overflow:hidden;color:#fff;background:linear-gradient(90deg,rgba(20,60,70,.96),rgba(20,60,70,.62) 58%,rgba(20,60,70,.18)),url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=84") center/cover no-repeat}
+.hero-in{position:relative;z-index:2;padding:112px 0 74px;max-width:860px}
+.kicker{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;font-size:.73rem;font-weight:800;color:#C9EFE7}
+.hero h1{font:clamp(3.8rem,7.2vw,6.5rem)/.94 "Space Grotesk",sans-serif;letter-spacing:-.045em;margin:18px 0 22px}.hero h1 b{color:#C9EFE7}
+.hero-copy{max-width:760px;color:rgba(255,255,255,.84);line-height:1.75;font-size:1.08rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{min-height:50px;padding:13px 20px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--mint);color:var(--deep)}.btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.42);color:#fff}.btn-dark{background:var(--deep);color:#fff}
+.asset-note{position:absolute;right:18px;bottom:14px;z-index:3;background:rgba(20,60,70,.78);padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.07em}
+
+.factbar{background:var(--deep);color:#fff}.factgrid{display:grid;grid-template-columns:repeat(4,1fr)}.fact{display:flex;gap:14px;padding:24px 22px;border-right:1px solid rgba(255,255,255,.12)}.fact:last-child{border-right:0}.fact i{color:var(--mint);margin-top:3px}.fact strong{display:block;font-size:.69rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.52);margin-bottom:5px}.fact span{font-weight:700}
+
+.section{padding:92px 0;scroll-margin-top:76px}.section-kicker{color:var(--teal);text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;margin-bottom:10px}.section h2{font:clamp(2.8rem,5vw,4.6rem)/.96 "Space Grotesk",sans-serif;letter-spacing:-.04em;margin-bottom:18px}.lead{max-width:760px;color:var(--sub);line-height:1.75;font-size:1.03rem}
+
+.age{background:var(--mint2);border-left:4px solid var(--teal);padding:20px 22px;display:flex;gap:14px;align-items:flex-start}.age i{color:var(--teal);margin-top:4px}.age p{margin:0;line-height:1.65}
+
+.stock{background:#fff}.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}.product{border:1px solid var(--line);padding:22px;background:#fff}.product i{width:44px;height:44px;display:grid;place-items:center;background:var(--mint2);color:var(--teal);margin-bottom:14px}.product h3{font:1.05rem "Space Grotesk",sans-serif;margin-bottom:7px}.product p{margin:0;color:var(--sub);line-height:1.55;font-size:.9rem}
+
+.why{background:linear-gradient(rgba(20,60,70,.94),rgba(20,60,70,.94)),url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1900&q=82") center/cover;color:#fff}
+.why .section-kicker{color:#C9EFE7}.why .lead{color:#D1E2E2}.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:35px}.why-item{border:1px solid rgba(255,255,255,.15);padding:24px;background:rgba(255,255,255,.04)}.why-item i{color:var(--mint);font-size:1.2rem;margin-bottom:12px}.why-item p{margin:0;color:#D1E2E2;line-height:1.65}
+
+.reviews{background:var(--mint2)}.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}.review{background:#fff;border:1px solid var(--line);padding:24px}.review p{line-height:1.7}.review span{display:block;margin-top:13px;color:var(--sub);font-size:.75rem;text-transform:uppercase;letter-spacing:.09em}.rating{margin-top:25px;display:inline-flex;align-items:center;gap:10px;background:var(--deep);color:#fff;padding:12px 18px;font-weight:800}.rating i{color:var(--mint)}
+
+.hours{background:linear-gradient(90deg,rgba(247,248,246,.97),rgba(247,248,246,.87)),url("https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1900&q=82") center/cover}.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.hours-list{border-top:1px solid var(--line)}.hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}.hour-row span{color:var(--sub)}.hour-row.today strong{color:var(--teal)}
+
+.visit{background:#fff}.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}.visit-card,.form-demo{background:var(--paper);border:1px solid var(--line);padding:30px}.visit-card h3,.form-demo h3{font-family:"Space Grotesk",sans-serif}.visit-card p,.form-demo p{color:var(--sub);line-height:1.65}
+.protected{margin-top:20px;border-left:4px solid var(--teal);background:var(--mint2);padding:18px 20px;display:flex;gap:13px}.protected i{color:var(--teal);margin-top:3px}.protected strong{display:block;font-size:.73rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px}.protected p{margin:0;font-size:.9rem}
+.form-demo{margin-top:30px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}label{font-size:.82rem;font-weight:800}input,textarea{width:100%;background:#fff;border:1px solid rgba(20,60,70,.2);padding:13px 14px;color:var(--ink);border-radius:0}textarea{min-height:120px;resize:vertical}
+
+footer{background:var(--deep);color:#D1E2E2;padding:40px 0}.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}footer h3{color:#fff;font-family:"Space Grotesk",sans-serif}footer p{margin:0 0 7px;line-height:1.6}.copy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:.8rem;color:#9FB7BA}
+
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);z-index:500}.modal-backdrop.open{display:flex}.modal{width:min(100%,460px);background:#fff;color:var(--ink);border-top:4px solid var(--teal);padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.45)}.modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--deep);color:var(--mint);margin-bottom:20px}.modal h2{font:1.8rem "Space Grotesk",sans-serif}.modal p{color:var(--sub);line-height:1.65}.modal .btn{width:100%}
+
+@media(max-width:950px){.desktop-nav{display:none}.menu-btn{display:block}.product-grid{grid-template-columns:1fr 1fr}.why-grid,.review-grid{grid-template-columns:1fr}.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}.footer-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.wrap{width:min(calc(100% - 28px),var(--max))}.brand small{display:none}.hero{min-height:650px;background-position:58% center}.hero-in{padding:92px 0 52px}.hero h1{font-size:clamp(3.4rem,16vw,5rem)}.actions{display:grid}.actions .btn{width:100%}.asset-note{left:14px;right:auto}.factgrid{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.section{padding:70px 0}.product-grid{grid-template-columns:1fr}.visit-card,.form-demo{padding:24px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap nav">
+<a href="#home" class="brand"><span class="brand-mark"></span><span>Smokes And Vapes<small>Green Valley · Henderson</small></span></a>
+<nav class="desktop-nav"><a href="#home">Shop</a><a href="#stock">What We Stock</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Contact</a></nav>
+<button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</div>
+<nav class="mobile-menu" id="mobileMenu"><a href="#home">Shop</a><a href="#stock">What We Stock</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Contact</a></nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="wrap hero-in">
+<div class="kicker"><i class="fa-solid fa-location-dot"></i> Green Valley · Henderson</div>
+<h1>A clean, quick stop for <b>smokes and vapes</b> in Green Valley.</h1>
+<p class="hero-copy">Wraps, hookah, disposables, e-liquids and glass, restocked weekly and easy to find on the shelf. Come in, get what you came for, get on with your night.</p>
+<div class="actions"><a class="btn btn-primary" href="#stock"><i class="fa-solid fa-box-open"></i> What we stock</a><a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-comment-dots"></i> Ask us a question</a></div>
+</div>
+<div class="asset-note">Stock smoke/vape-shop retail imagery · not the actual business</div>
+</section>
+
+<section class="factbar"><div class="wrap factgrid">
+<div class="fact"><i class="fa-solid fa-star"></i><div><strong>Google rating</strong><span>4.3 stars</span></div></div>
+<div class="fact"><i class="fa-solid fa-id-card"></i><div><strong>Age requirement</strong><span>21 and over only</span></div></div>
+<div class="fact"><i class="fa-regular fa-clock"></i><div><strong>Mon–Sat</strong><span>9 AM – 11 PM</span></div></div>
+<div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Green Valley · Henderson</span></div></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="age"><i class="fa-solid fa-id-card"></i><p><b>21 and over only.</b> Valid ID is required for every tobacco and vape purchase. We check IDs at the counter, every single time.</p></div>
+</div></section>
+
+<section class="section stock" id="stock"><div class="wrap">
+<div class="section-kicker">What we stock</div><h2>The everyday lineup, kept tidy and easy to browse.</h2><p class="lead">If you do not see it, ask, we would rather order it in than lose the trip.</p>
+<div class="product-grid">
+<div class="product"><i class="fa-solid fa-wind"></i><h3>Vapes and Disposables</h3><p>The popular names, restocked weekly.</p></div>
+<div class="product"><i class="fa-solid fa-droplet"></i><h3>E-Liquids and Juice</h3><p>Salt nic and freebase in a wide flavor run.</p></div>
+<div class="product"><i class="fa-solid fa-flask"></i><h3>Glass and Water Pipes</h3><p>Handy sizes for the shelf and the shelf at home.</p></div>
+<div class="product"><i class="fa-solid fa-scroll"></i><h3>Wraps and Papers</h3><p>Always stocked, including the wraps regulars ask for by name.</p></div>
+<div class="product"><i class="fa-solid fa-cloud"></i><h3>Hookah and Shisha</h3><p>Hookah gear plus the flavors our customers come back for.</p></div>
+<div class="product"><i class="fa-solid fa-smoking"></i><h3>Cigars</h3><p>A straightforward selection for an easy evening.</p></div>
+<div class="product"><i class="fa-solid fa-fire"></i><h3>Lighters and Torches</h3><p>Basic lighters up to torch flames.</p></div>
+<div class="product"><i class="fa-solid fa-leaf"></i><h3>CBD and Extras</h3><p>CBD options plus batteries, chargers and small parts.</p></div>
+</div>
+</div></section>
+
+<section class="section why"><div class="wrap">
+<div class="section-kicker">Why locals keep coming back</div><h2>Source-provided reasons customers mention.</h2>
+<div class="why-grid">
+<div class="why-item"><i class="fa-solid fa-clock"></i><p><b>Open late, six nights a week.</b> Until 11 PM Monday through Saturday for after-work stops.</p></div>
+<div class="why-item"><i class="fa-solid fa-square-parking"></i><p><b>Easy parking.</b> Right on N Green Valley Pkwy, pull in, run in, pull out.</p></div>
+<div class="why-item"><i class="fa-solid fa-hand-holding-heart"></i><p><b>A counter that knows the stock.</b> Customers call the service phenomenal and the prices among the best in town.</p></div>
+</div>
+</div><div class="asset-note">Stock retail imagery · not the actual business</div></section>
+
+<section class="section reviews" id="reviews"><div class="wrap">
+<div class="section-kicker">What customers say</div><h2>Every quote collected from the supplied source.</h2><p class="lead">The complete history lives on the Google listing.</p>
+<div class="review-grid">
+<article class="review"><p>“This is my favorite smoke shop to go to. They’re always stocked up with the best wraps and hookah products and the service is phenomenal.”</p><span>Google review</span></article>
+<article class="review"><p>“Best priced smoke shop in town.”</p><span>Google review</span></article>
+<article class="review"><p>“Great knowledgeable, friendly employees. The owner is absolutely amazing as well.”</p><span>Google review</span></article>
+</div>
+<div class="rating"><i class="fa-solid fa-star"></i> 4.3 stars on Google</div>
+<div class="actions"><button class="btn btn-dark" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button><button class="btn btn-dark" type="button" data-locked="true"><i class="fa-brands fa-yelp"></i> Read the Yelp reviews</button></div>
+</div></section>
+
+<section class="section hours" id="hours"><div class="wrap hours-grid">
+<div><div class="section-kicker">Contact and hours</div><h2>Open late in Green Valley.</h2><p class="lead">Call to confirm holiday hours.</p></div>
+<div class="hours-list">
+<div class="hour-row" data-day="0"><strong>Sunday</strong><span>10:00 AM – 9:00 PM</span></div>
+<div class="hour-row" data-day="1"><strong>Monday</strong><span>9:00 AM – 11:00 PM</span></div>
+<div class="hour-row" data-day="2"><strong>Tuesday</strong><span>9:00 AM – 11:00 PM</span></div>
+<div class="hour-row" data-day="3"><strong>Wednesday</strong><span>9:00 AM – 11:00 PM</span></div>
+<div class="hour-row" data-day="4"><strong>Thursday</strong><span>9:00 AM – 11:00 PM</span></div>
+<div class="hour-row" data-day="5"><strong>Friday</strong><span>9:00 AM – 11:00 PM</span></div>
+<div class="hour-row" data-day="6"><strong>Saturday</strong><span>9:00 AM – 11:00 PM</span></div>
+</div></div></section>
+
+<section class="section visit" id="visit"><div class="wrap">
+<div class="section-kicker">Visit the shop</div><h2>Green Valley · Henderson.</h2><p class="lead">2600 N Green Valley Pkwy, Henderson, NV 89014.</p>
+<div class="visit-grid">
+<div class="visit-card"><h3><i class="fa-solid fa-location-dot"></i> Visit</h3><p>2600 N Green Valley Pkwy<br>Henderson, NV 89014</p><p>In the Green Valley shopping strip, parking right out front.</p><div class="protected"><i class="fa-solid fa-lock"></i><div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The external map action remains disabled in this sample website.</p></div></div><button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button></div>
+<div class="visit-card"><h3><i class="fa-solid fa-phone"></i> Call or text</h3><p>(702) 629-3510</p><p>The fastest way to reach us is a text. Call if you prefer a voice, or just swing by, the counter is staffed all day.</p><div class="protected"><i class="fa-solid fa-lock"></i><div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Phone and text actions are intentionally disabled in this sample website.</p></div></div><button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the shop</button></div>
+</div>
+
+<div class="form-demo"><h3>Ask us a question</h3><p>Ask about stock, flavors, hours, anything.</p>
+<form class="form-grid" id="demoForm">
+<div class="field"><label for="name">Your name</label><input id="name" type="text" placeholder="First and last"></div>
+<div class="field"><label for="phone">Your phone number</label><input id="phone" type="tel" placeholder="(702) 555-0100"></div>
+<div class="field full"><label for="message">Message</label><textarea id="message" placeholder="Ask about stock, flavors, hours, anything."></textarea></div>
+<div class="field full"><button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Prepare my text</button></div>
+</form></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><div class="footer-grid">
+<div><h3>Smokes And Vapes</h3><p>Your Green Valley smoke and vape shop on N Green Valley Pkwy. 21 and over, valid ID required.</p></div>
+<div><h3>Visit</h3><p>2600 N Green Valley Pkwy<br>Henderson, NV 89014</p><p>Mon – Sat 9 AM – 11 PM</p><p>Sun 10 AM – 9 PM</p></div>
+<div><h3>Contact</h3><p>(702) 629-3510</p></div>
+</div><div class="copy">© Smokes And Vapes · Henderson, NV</div></div></footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage"><div class="modal-icon"><i class="fa-solid fa-lock"></i></div><h2 id="modalTitle">This is currently locked.</h2><p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p><button class="btn btn-dark" id="modalClose" type="button">Close</button></div></div>
+
+<script>
+(() => {
+ const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu'),modal=document.getElementById('lockedModal'),modalClose=document.getElementById('modalClose'),demoForm=document.getElementById('demoForm');let lastFocus=null;
+ function closeMenu(){mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}
+ menuBtn.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open))});
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
+ function openModal(trigger){lastFocus=trigger||document.activeElement;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');modalClose.focus()}
+ function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');if(lastFocus&&typeof lastFocus.focus==='function'){lastFocus.focus()}}
+ document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openModal(el)}));
+ demoForm.addEventListener('submit',e=>{e.preventDefault();openModal(demoForm.querySelector('[data-locked="true"]'))});
+ modalClose.addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();if(e.key==='Tab'&&modal.classList.contains('open')){e.preventDefault();modalClose.focus()}});
+ const weekday=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short'}).format(new Date());const days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};const row=document.querySelector('.hour-row[data-day="'+days[weekday]+'"]');if(row)row.classList.add('today');
+ document.addEventListener('gesturestart',e=>e.preventDefault());document.addEventListener('gesturechange',e=>e.preventDefault());document.addEventListener('gestureend',e=>e.preventDefault());
+ document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].includes(e.key))e.preventDefault()});
+})();
+</script>
+</body>
+</html>

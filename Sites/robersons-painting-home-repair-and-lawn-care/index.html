@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#1f3f72">
+<meta name="robots" content="noindex,nofollow">
+<title>Roberson's Painting, Home Repair and Lawn Care | Cincinnati, Ohio</title>
+<meta name="description" content="Roberson's Painting, Home Repair and Lawn Care is a Cincinnati handyman service offering painting, home repair, lawn care and carpet cleaning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --blue:#2D5DA1;
+  --blue2:#1f3f72;
+  --red:#D6493B;
+  --sage:#7A8B6F;
+  --gold:#F5B301;
+  --ink:#1E1B16;
+  --paper:#FAF5EC;
+  --paper2:#EFE7D6;
+  --line:#D8CDB8;
+  --muted:#655F55;
+  --white:#fff;
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:Archivo,Arial,sans-serif;overflow-x:hidden;
+  -webkit-user-select:none;user-select:none;
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{border:0}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+.section{padding:78px 0;position:relative}
+.kicker{
+  margin:0 0 12px;font-size:.72rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blue)
+}
+h1,h2,h3{margin:0}
+h1,h2,.display{font-family:Oswald,Arial,sans-serif;text-transform:uppercase}
+h1{font-size:clamp(3.8rem,8.2vw,7.8rem);line-height:.88;letter-spacing:-.035em}
+h2{font-size:clamp(2.5rem,4.8vw,4.6rem);line-height:.95;letter-spacing:-.025em}
+h3{font-size:1.15rem}
+p{line-height:1.68}
+.section-head{max-width:790px;margin-bottom:34px}
+.section-head p{color:var(--muted)}
+.stock-note{
+  position:absolute;right:14px;top:14px;z-index:8;padding:7px 10px;
+  background:rgba(24,24,22,.78);color:#fff;border:1px solid rgba(255,255,255,.18);
+  font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase
+}
+.btn{
+  min-height:50px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  border:2px solid currentColor;font-weight:800;text-transform:uppercase;letter-spacing:.025em;
+  cursor:pointer;transition:.2s ease;position:relative;overflow:hidden
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-ghost{background:rgba(255,255,255,.07);color:#fff;border-color:rgba(255,255,255,.55)}
+.protected{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 11px;
+  border:1px dashed #867d70;background:rgba(255,255,255,.55);
+  font-size:.64rem;font-weight:800;letter-spacing:.055em;text-transform:uppercase
+}
+
+/* header */
+.color-strip{height:7px;background:linear-gradient(90deg,var(--blue) 0 28%,var(--red) 28% 49%,var(--sage) 49% 72%,var(--gold) 72%)}
+header{
+  position:sticky;top:0;z-index:90;background:rgba(250,245,236,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{
+  width:44px;height:44px;background:var(--blue);color:#fff;display:grid;place-items:center;
+  clip-path:polygon(0 0,80% 0,100% 20%,100% 100%,20% 100%,0 80%)
+}
+.brand strong{display:block;font-family:Oswald;font-size:1.05rem;text-transform:uppercase;line-height:1.05}
+.brand small{display:block;margin-top:4px;color:var(--muted);font-size:.57rem;font-weight:800;letter-spacing:.11em}
+.navlinks{display:flex;align-items:center;gap:23px}
+.navlinks a{font-size:.82rem;font-weight:800;position:relative}
+.navlinks a:after{content:"";position:absolute;left:50%;right:50%;bottom:-8px;height:2px;background:var(--red);transition:.18s}
+.navlinks a:hover:after,.navlinks a.active:after{left:0;right:0}
+.burger{display:none;background:transparent;color:var(--ink);font-size:1.3rem;padding:10px}
+
+/* hero */
+.hero{
+  min-height:710px;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(25,28,32,.96),rgba(25,28,32,.81) 50%,rgba(25,28,32,.28)),
+    url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1900&q=88') center/cover no-repeat;
+}
+.hero:after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:16px;
+  background:linear-gradient(90deg,var(--blue) 0 25%,var(--red) 25% 50%,var(--sage) 50% 75%,var(--gold) 75%)
+}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,760px) 350px;gap:52px;align-items:end}
+.hero h1 .blue{color:#83aee8}
+.hero h1 .red{color:#ef8478}
+.lede{font-size:1.05rem;color:#e5e3de;max-width:720px;margin:25px 0}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{background:rgba(28,29,28,.87);border:1px solid rgba(255,255,255,.18);border-top:5px solid var(--gold);padding:23px;backdrop-filter:blur(8px)}
+.fact-row{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.fact-row:last-child{border-bottom:0}
+.fact-row i{width:22px;color:var(--gold);margin-top:4px}
+.fact-row b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em}
+.fact-row span{display:block;color:#c9c8c3;font-size:.86rem;margin-top:4px}
+
+/* service strip */
+.trade-strip{background:#fff;border-bottom:1px solid var(--line)}
+.trade-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.trade{
+  min-height:125px;padding:20px;border-right:1px solid var(--line);transition:.18s;
+  display:flex;align-items:center;gap:14px
+}
+.trade:first-child{border-left:1px solid var(--line)}
+.trade:hover{background:#f4ecde;transform:translateY(-3px)}
+.trade-icon{width:52px;height:52px;display:grid;place-items:center;color:#fff;font-size:1.2rem;flex:0 0 auto}
+.trade:nth-child(1) .trade-icon{background:var(--blue)}
+.trade:nth-child(2) .trade-icon{background:var(--red)}
+.trade:nth-child(3) .trade-icon{background:var(--sage)}
+.trade:nth-child(4) .trade-icon{background:var(--gold);color:var(--ink)}
+.trade strong{display:block;text-transform:uppercase;font-family:Oswald;font-size:1rem}
+.trade span{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
+
+/* overview */
+.overview{background:var(--paper)}
+.overview-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px}
+.record{background:#fff;border:1px solid var(--line);padding:24px;box-shadow:0 16px 42px rgba(30,27,22,.07)}
+.record ul{list-style:none;padding:0;margin:0}
+.record li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid #e6dccb}
+.record li:last-child{border-bottom:0}
+.record b{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+.record span{text-align:right;color:var(--muted);font-size:.86rem}
+
+/* services */
+.services{
+  color:#fff;background:
+    linear-gradient(rgba(23,26,30,.89),rgba(23,26,30,.94)),
+    url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1900&q=86') center/cover no-repeat;
+}
+.services .section-head p{color:#c8c8c3}
+.service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.service{
+  min-height:360px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.18);
+  background:#1e1e1c
+}
+.service img{transition:transform .45s ease,filter .3s ease}
+.service:hover img{transform:scale(1.055);filter:brightness(.85)}
+.service:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.78))}
+.service-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px}
+.service-body i{font-size:1.35rem;color:var(--gold);margin-bottom:10px}
+.service-body h3{font-family:Oswald;font-size:1.8rem;text-transform:uppercase}
+.service-body p{margin:8px 0 0;color:#dddcd7}
+.badge{
+  display:inline-flex;margin-top:12px;padding:6px 8px;border:1px solid rgba(255,255,255,.32);
+  font-size:.57rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#fff
+}
+
+/* hours */
+.hours{background:var(--paper2)}
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px}
+.hours-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line)}
+.hours-table td{padding:13px 15px;border-bottom:1px solid #e5dac8}
+.hours-table tr:last-child td{border-bottom:0}
+.hours-table td:last-child{text-align:right;font-weight:700}
+.note{padding:15px 17px;background:#fff;border-left:4px solid var(--gold);color:var(--muted);font-size:.84rem}
+
+/* gallery */
+.gallery{background:#1e1b16;color:#fff}
+.gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-auto-rows:240px;gap:12px}
+.photo{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.15);cursor:pointer}
+.photo:first-child{grid-row:span 2}
+.photo img{transition:transform .45s,filter .3s}
+.photo:hover img{transform:scale(1.055);filter:brightness(1.07)}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.72))}
+.photo-label{position:absolute;left:12px;bottom:12px;z-index:2;padding:7px 9px;background:rgba(24,22,19,.78);border-left:3px solid var(--gold);font-size:.56rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+
+/* contact */
+.contact{
+  color:#fff;background:
+    linear-gradient(90deg,rgba(23,26,30,.96),rgba(23,26,30,.81)),
+    url('https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1900&q=86') center/cover no-repeat;
+}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px}
+.contact-card{background:rgba(27,28,27,.86);border:1px solid rgba(255,255,255,.18);padding:25px;backdrop-filter:blur(8px)}
+.crow{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.crow:last-child{border-bottom:0}
+.crow label{display:block;color:#ffd966;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+
+/* footer */
+footer{background:#0d0d0c;color:#fff;padding:30px 0;border-top:1px solid #34312c}
+.footer-grid{display:flex;justify-content:space-between;gap:22px}
+footer p{font-size:.76rem;color:#a5a19a;max-width:720px}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem}
+
+/* modal / lightbox */
+.modal,.lightbox{
+  position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
+  padding:22px;background:rgba(0,0,0,.75)
+}
+.modal.open,.lightbox.open{display:flex}
+.modal-card{width:min(470px,100%);background:#fffaf1;color:var(--ink);padding:28px;border-top:6px solid var(--blue);box-shadow:0 28px 90px rgba(0,0,0,.45)}
+.modal-card h3{font-family:Oswald;font-size:1.8rem;text-transform:uppercase}
+.modal-card p{color:var(--muted)}
+.lightbox figure{width:min(1050px,100%);margin:0;position:relative}
+.lightbox img{max-height:78vh;object-fit:contain;background:#111}
+.lightbox figcaption{color:#fff;margin-top:10px;font-size:.72rem}
+.lb-close{position:absolute;right:0;top:-46px;width:38px;height:38px;background:#fff;color:#111;cursor:pointer}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:.55s}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:950px){
+  .navlinks{display:none;position:absolute;left:0;right:0;top:76px;background:var(--paper);padding:16px 20px 22px;flex-direction:column;align-items:stretch;border-top:1px solid var(--line)}
+  .navlinks.open{display:flex}
+  .burger{display:block}
+  header .btn{display:none}
+  .hero-grid,.overview-grid,.hours-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-card{max-width:560px}
+  .trade-grid{grid-template-columns:1fr 1fr}
+  .service-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .photo:first-child{grid-row:span 1}
+}
+@media(max-width:640px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .section{padding:58px 0}
+  .nav{height:68px}
+  .navlinks{top:68px}
+  .brand small{display:none}
+  .hero{min-height:760px;background-position:62% center}
+  h1{font-size:3.6rem}
+  .actions{display:grid;grid-template-columns:1fr}
+  .btn{width:100%}
+  .trade-grid,.gallery-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-auto-rows:235px}
+  .footer-grid{flex-direction:column}
+  .stock-note{font-size:.49rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  .reveal,.trade,.service img,.photo img,.btn{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="color-strip" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">
+      <span class="brand-mark"><i class="fa-solid fa-paint-roller"></i></span>
+      <span><strong>Roberson's Painting,<br>Home Repair and Lawn Care</strong><small>CINCINNATI, OHIO</small></span>
+    </a>
+    <nav class="navlinks" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#overview">Overview</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn btn-blue" data-locked="true"><i class="fa-solid fa-phone"></i> Contact</button>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <span class="stock-note">Stock home-service imagery · demo presentation</span>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker" style="color:#ffd966">Cincinnati, Ohio · Handyman service</p>
+      <h1><span class="blue">Painting.</span><br><span class="red">Home repair.</span><br>Lawn care.</h1>
+      <p class="lede">Roberson's Painting, Home Repair and Lawn Care is publicly listed as a Cincinnati handyman service. Public listings describe painting, home repair, lawn care, and carpet cleaning.</p>
+      <div class="actions">
+        <button class="btn btn-blue" data-locked="true"><i class="fa-solid fa-phone"></i> Contact Roberson's</button>
+        <a class="btn btn-ghost" href="#services"><i class="fa-solid fa-arrow-down"></i> View Services</a>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="fact-row"><i class="fa-solid fa-screwdriver-wrench"></i><div><b>Public category</b><span>Handyman service</span></div></div>
+      <div class="fact-row"><i class="fa-solid fa-location-dot"></i><div><b>Location</b><span>Cincinnati, Ohio 45223</span></div></div>
+      <div class="fact-row"><i class="fa-solid fa-clock"></i><div><b>Listed schedule</b><span>Monday–Saturday, 8:00 AM–6:00 PM; Sunday closed</span></div></div>
+      <div class="fact-row"><i class="fa-solid fa-lock"></i><div><b>Contact details</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></div></div>
+    </aside>
+  </div>
+</section>
+
+<section class="trade-strip" aria-label="Publicly listed service categories">
+  <div class="wrap trade-grid">
+    <div class="trade"><span class="trade-icon"><i class="fa-solid fa-paint-roller"></i></span><div><strong>Painting</strong><span>Publicly described service</span></div></div>
+    <div class="trade"><span class="trade-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span><div><strong>Home Repair</strong><span>Publicly described service</span></div></div>
+    <div class="trade"><span class="trade-icon"><i class="fa-solid fa-leaf"></i></span><div><strong>Lawn Care</strong><span>Publicly described service</span></div></div>
+    <div class="trade"><span class="trade-icon"><i class="fa-solid fa-soap"></i></span><div><strong>Carpet Cleaning</strong><span>Listed service category</span></div></div>
+  </div>
+</section>
+
+<section class="section overview" id="overview">
+  <div class="wrap overview-grid">
+    <div class="reveal">
+      <p class="kicker">Business overview</p>
+      <h2>A Cincinnati handyman service with multiple home-service categories.</h2>
+      <p>The attached public-information page identifies Roberson's Painting, Home Repair and Lawn Care as a handyman service in Cincinnati, Ohio. Painting, home repair and lawn care are named in the business identity, and carpet cleaning is listed as an additional public business category.</p>
+      <p>No verified owner name, public email address, customer reviews, years in business, licenses, certifications, awards, guarantees, or company-owned project photos were provided in the source file, so this demo does not add them.</p>
+    </div>
+    <aside class="record reveal">
+      <p class="kicker">Publicly listed information</p>
+      <ul>
+        <li><b>Business</b><span>Roberson's Painting, Home Repair and Lawn Care</span></li>
+        <li><b>Category</b><span>Handyman service</span></li>
+        <li><b>Market</b><span>Cincinnati, Ohio</span></li>
+        <li><b>Phone</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></li>
+        <li><b>Address</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></li>
+        <li><b>Email</b><span>Not found</span></li>
+        <li><b>Owner / team</b><span>Not found</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section services" id="services">
+  <span class="stock-note">All service imagery is stock photography</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker" style="color:#ffd966">Public service categories</p>
+      <h2>Four categories shown in the source information.</h2>
+      <p>The website only presents the broad service categories supported by the attached business information. Specific room types, repair types, lawn tasks, materials, and pricing are intentionally not invented.</p>
+    </div>
+    <div class="service-grid">
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1200&q=86" alt="Stock photo of interior painting">
+        <div class="service-body"><i class="fa-solid fa-paint-roller"></i><h3>Painting</h3><p>Painting is explicitly part of the business name and public service description.</p><span class="badge">Verified broad category</span></div>
+      </article>
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=86" alt="Stock photo of home repair work">
+        <div class="service-body"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Home Repair</h3><p>Home repair is explicitly part of the business name and public service description.</p><span class="badge">Verified broad category</span></div>
+      </article>
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1200&q=86" alt="Stock photo of lawn and yard care">
+        <div class="service-body"><i class="fa-solid fa-leaf"></i><h3>Lawn Care</h3><p>Lawn care is explicitly part of the business name and public service description.</p><span class="badge">Verified broad category</span></div>
+      </article>
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=1200&q=86" alt="Stock photo of carpet cleaning equipment">
+        <div class="service-body"><i class="fa-solid fa-soap"></i><h3>Carpet Cleaning</h3><p>The attached source identifies carpet cleaning as an additional public business-listing category.</p><span class="badge">Public listing category</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section hours" id="hours">
+  <div class="wrap hours-grid">
+    <div class="reveal">
+      <p class="kicker">Business hours</p>
+      <h2>Listed schedule.</h2>
+      <p>The attached source says these hours come from public directory listings and have not been confirmed with the owner.</p>
+      <div class="note"><strong>Call to confirm:</strong> directory hours can change, so a live version of the site should be reconfirmed before publication.</div>
+    </div>
+    <div class="reveal">
+      <table class="hours-table" aria-label="Business hours">
+        <tr><td>Monday</td><td>8:00 AM – 6:00 PM</td></tr>
+        <tr><td>Tuesday</td><td>8:00 AM – 6:00 PM</td></tr>
+        <tr><td>Wednesday</td><td>8:00 AM – 6:00 PM</td></tr>
+        <tr><td>Thursday</td><td>8:00 AM – 6:00 PM</td></tr>
+        <tr><td>Friday</td><td>8:00 AM – 6:00 PM</td></tr>
+        <tr><td>Saturday</td><td>8:00 AM – 6:00 PM</td></tr>
+        <tr><td>Sunday</td><td>Closed</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery" id="gallery">
+  <span class="stock-note">Stock photos · not actual Roberson's projects</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker" style="color:#ffd966">Visual gallery</p>
+      <h2>Home-service imagery for this demo.</h2>
+      <p style="color:#c9c4ba">The source file says project photos were not available. These images are stock photography and do not show Roberson's employees, vehicles, or completed work.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="photo reveal" data-caption="Stock photo — residential painting">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1100&q=86" alt="Stock residential painting">
+        <span class="photo-label">Stock · painting</span>
+      </figure>
+      <figure class="photo reveal" data-caption="Stock photo — home repair work">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=84" alt="Stock home repair">
+        <span class="photo-label">Stock · home repair</span>
+      </figure>
+      <figure class="photo reveal" data-caption="Stock photo — yard and lawn care">
+        <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=900&q=84" alt="Stock lawn care">
+        <span class="photo-label">Stock · lawn care</span>
+      </figure>
+      <figure class="photo reveal" data-caption="Stock photo — painting tools and finish work">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=900&q=84" alt="Stock painting tools">
+        <span class="photo-label">Stock · paint work</span>
+      </figure>
+      <figure class="photo reveal" data-caption="Stock photo — carpet cleaning">
+        <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=84" alt="Stock carpet cleaning">
+        <span class="photo-label">Stock · carpet cleaning</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <span class="stock-note">Stock home-service imagery · demo presentation</span>
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="kicker" style="color:#ffd966">Contact</p>
+      <h2>Public contact details are protected in this demo.</h2>
+      <p style="color:#d0cfca">The attached source provides a real phone number and publicly listed Cincinnati business address. Under the demo rules, those real-world actions remain protected and locked until the site is purchased or unlocked.</p>
+      <div class="contact-card">
+        <div class="crow"><label>Phone</label><div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="crow"><label>Business address</label><div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="crow"><label>Public email</label><span>Not found</span></div>
+        <div class="crow"><label>Market</label><span>Cincinnati, Ohio 45223</span></div>
+      </div>
+    </div>
+    <div class="contact-card reveal">
+      <p class="kicker" style="color:#ffd966">Demo action</p>
+      <h3 class="display" style="font-size:1.7rem">Contact is currently protected.</h3>
+      <p style="color:#d0cfca">This demo does not use a fake form, open a blank email draft, or pretend a message was sent. The full website can unlock the verified call and directions actions.</p>
+      <button class="btn btn-blue" data-locked="true"><i class="fa-solid fa-phone"></i> Contact Roberson's</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand">
+        <span class="brand-mark"><i class="fa-solid fa-paint-roller"></i></span>
+        <span><strong>Roberson's Painting,<br>Home Repair and Lawn Care</strong><small>CINCINNATI, OHIO</small></span>
+      </div>
+      <p>Demo website built from the attached public-information source. All photography shown is stock imagery and does not depict the actual company, staff, vehicles, or completed projects.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#overview">Overview</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lockedTitle">
+  <div class="modal-card">
+    <p class="kicker">Demo feature</p>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-dark" id="closeModal">Close</button>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <figure>
+    <button class="lb-close" id="lbClose" aria-label="Close image"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lbImg" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+</div>
+
+<script>
+const burger=document.getElementById('burger');
+const navLinks=document.getElementById('navLinks');
+
+burger.addEventListener('click',()=>{
+  const open=navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded',String(open));
+  burger.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+});
+
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{
+  navLinks.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  burger.innerHTML='<i class="fa-solid fa-bars"></i>';
+}));
+
+const navItems=[...document.querySelectorAll('.navlinks a')];
+document.querySelectorAll('main section[id]').forEach(sec=>{
+  new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){
+      navItems.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+    }
+  }),{rootMargin:'-42% 0px -50% 0px'}).observe(sec);
+});
+
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('show');revealObserver.unobserve(e.target);}
+}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+const modal=document.getElementById('lockedModal');
+const closeModalBtn=document.getElementById('closeModal');
+let lastFocus=null;
+
+function openLocked(e){
+  if(e)e.preventDefault();
+  lastFocus=document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeModalBtn.focus();
+}
+function closeLocked(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  if(lastFocus)lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+closeModalBtn.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked();});
+
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCaption=document.getElementById('lbCaption');
+const lbClose=document.getElementById('lbClose');
+
+document.querySelectorAll('.photo').forEach(card=>card.addEventListener('click',()=>{
+  const im=card.querySelector('img');
+  lbImg.src=im.src;
+  lbImg.alt=im.alt;
+  lbCaption.textContent=card.dataset.caption||'Stock home-service image';
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  lbClose.focus();
+}));
+
+function closeLb(){
+  lb.classList.remove('open');
+  lb.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+}
+lbClose.addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(modal.classList.contains('open'))closeLocked();
+    if(lb.classList.contains('open'))closeLb();
+  }
+});
+</script>
+</body>
+</html>

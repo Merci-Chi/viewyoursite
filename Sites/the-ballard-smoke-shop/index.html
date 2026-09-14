@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>The Ballard Smoke Shop | Seattle</title>
+  <meta name="description" content="The Ballard Smoke Shop in Seattle. Glass, flower, vapes, accessories, CBD and wellness.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#0b0b0d;
+      --ink-2:#141418;
+      --panel:#18181d;
+      --paper:#f3efe6;
+      --muted:#b9b6af;
+      --accent:#b9ff3d;
+      --accent-2:#e4ffad;
+      --line:rgba(255,255,255,.14);
+      --max:1180px;
+      --shadow:0 22px 70px rgba(0,0,0,.34);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{
+      margin:0;
+      color:#fff;
+      background:var(--ink);
+      font-family:"Archivo",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
+      -webkit-tap-highlight-color:transparent;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+
+    body.modal-open{overflow:hidden}
+    a,button{font:inherit}
+    a{color:inherit;text-decoration:none}
+    button{border:0}
+    img{display:block;max-width:100%}
+    section{scroll-margin-top:86px}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 14px;
+      font-size:.74rem;
+      font-weight:800;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+    .eyebrow:before{content:"";width:28px;height:2px;background:var(--accent)}
+    .section-title{
+      margin:0;
+      max-width:800px;
+      font-family:"Bebas Neue",Impact,sans-serif;
+      font-size:clamp(3rem,7vw,6rem);
+      line-height:.9;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .section-copy{max-width:680px;margin:22px 0 0;color:#d0cec8;font-size:1.02rem}
+    .icon-circle{
+      width:42px;height:42px;
+      display:grid;place-items:center;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    .site-header{
+      position:fixed;
+      inset:0 0 auto;
+      z-index:50;
+      height:76px;
+      background:rgba(11,11,13,.86);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(16px);
+    }
+    .header-inner{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+      font-weight:800;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+    }
+    .brand-mark{
+      width:36px;height:36px;
+      display:grid;place-items:center;
+      border:1px solid var(--accent);
+      color:var(--accent);
+    }
+    .brand-text{white-space:nowrap}
+    .nav{display:flex;align-items:center;gap:30px}
+    .nav a{
+      position:relative;
+      font-size:.84rem;
+      font-weight:700;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:#d9d7d0;
+    }
+    .nav a:after{
+      content:"";
+      position:absolute;
+      left:0;right:100%;bottom:-8px;
+      height:2px;
+      background:var(--accent);
+      transition:right .22s ease;
+    }
+    .nav a:hover:after,.nav a:focus-visible:after{right:0}
+    .menu-btn{
+      display:none;
+      width:44px;height:44px;
+      place-items:center;
+      background:transparent;
+      color:#fff;
+      border:1px solid var(--line);
+      cursor:pointer;
+    }
+
+    .hero{
+      min-height:100svh;
+      padding:132px 0 68px;
+      display:flex;
+      align-items:flex-end;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(7,7,9,.96) 0%,rgba(7,7,9,.79) 46%,rgba(7,7,9,.3) 100%),
+        linear-gradient(0deg,rgba(7,7,9,.88),rgba(7,7,9,.05) 45%),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=85") center/cover no-repeat;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:linear-gradient(120deg,transparent 50%,rgba(185,255,61,.08));
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.5fr) minmax(300px,.65fr);
+      gap:60px;
+      align-items:end;
+    }
+    .hero h1{
+      margin:0;
+      max-width:900px;
+      font-family:"Bebas Neue",Impact,sans-serif;
+      font-size:clamp(5rem,11vw,10.6rem);
+      line-height:.78;
+      letter-spacing:.01em;
+      text-transform:uppercase;
+    }
+    .hero h1 span{display:block;color:var(--accent)}
+    .hero-copy{
+      margin:28px 0 0;
+      max-width:670px;
+      font-size:clamp(1rem,2vw,1.2rem);
+      color:#dedbd3;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+    .btn{
+      min-height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 18px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:#fff;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease;
+    }
+    .btn:hover,.btn:focus-visible{transform:translateY(-2px);border-color:var(--accent)}
+    .btn-primary{background:var(--accent);color:#0a0a0b;border-color:var(--accent)}
+    .btn-primary:hover,.btn-primary:focus-visible{background:var(--accent-2)}
+    .hero-card{
+      padding:26px;
+      border:1px solid var(--line);
+      background:rgba(12,12,14,.72);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+    .hero-card .label{
+      display:block;
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .hero-card strong{display:block;margin-top:6px;font-size:1.1rem}
+    .hero-card hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+    .rating{display:flex;align-items:center;gap:10px}
+    .rating strong{margin:0}
+    .stars{color:var(--accent);letter-spacing:2px;font-size:.85rem}
+
+    .marquee{
+      overflow:hidden;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:var(--accent);
+      color:#09090a;
+    }
+    .marquee-track{
+      display:flex;
+      width:max-content;
+      animation:ticker 24s linear infinite;
+      font-size:.86rem;
+      font-weight:800;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .marquee-track span{padding:13px 26px;white-space:nowrap}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+
+    .about{padding:110px 0;background:var(--ink)}
+    .about-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:80px;
+      align-items:center;
+    }
+    .about-image{
+      min-height:560px;
+      position:relative;
+      background:
+        linear-gradient(180deg,transparent 45%,rgba(9,9,11,.86)),
+        url("https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1400&q=85") center/cover no-repeat;
+      box-shadow:var(--shadow);
+    }
+    .stock-tag{
+      position:absolute;
+      left:18px;bottom:18px;
+      padding:7px 9px;
+      background:rgba(7,7,9,.82);
+      border:1px solid var(--line);
+      color:#d6d3cd;
+      font-size:.66rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .highlights{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1px;
+      margin-top:34px;
+      background:var(--line);
+      border:1px solid var(--line);
+    }
+    .highlight{padding:22px;background:var(--ink-2)}
+    .highlight i{color:var(--accent);font-size:1.12rem}
+    .highlight strong{display:block;margin-top:16px;font-size:.9rem;text-transform:uppercase}
+
+    .services{
+      padding:110px 0;
+      background:
+        linear-gradient(rgba(13,13,15,.94),rgba(13,13,15,.96)),
+        url("https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1900&q=80") center/cover fixed no-repeat;
+    }
+    .services-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:30px;
+      margin-bottom:52px;
+    }
+    .service-list{border-top:1px solid var(--line)}
+    .service-row{
+      display:grid;
+      grid-template-columns:72px 1fr auto;
+      gap:28px;
+      align-items:center;
+      min-height:128px;
+      padding:22px 0;
+      border-bottom:1px solid var(--line);
+      transition:padding .2s ease,background .2s ease;
+    }
+    .service-row:hover{padding-left:16px;background:rgba(255,255,255,.025)}
+    .service-number{
+      color:var(--accent);
+      font-family:"Bebas Neue",Impact,sans-serif;
+      font-size:2.2rem;
+    }
+    .service-row h3{margin:0;font-size:clamp(1.4rem,2.8vw,2.35rem);line-height:1.15}
+    .service-row p{margin:8px 0 0;color:var(--muted)}
+    .service-icon{font-size:1.3rem;color:var(--accent)}
+
+    .reviews{padding:110px 0;background:var(--paper);color:#111115}
+    .reviews .eyebrow{color:#536f16}
+    .reviews .eyebrow:before{background:#536f16}
+    .review-summary{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:28px;
+      margin-bottom:48px;
+    }
+    .big-rating{
+      font-family:"Bebas Neue",Impact,sans-serif;
+      font-size:clamp(5rem,10vw,9rem);
+      line-height:.8;
+    }
+    .review-summary .stars{color:#536f16}
+    .review-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid rgba(17,17,21,.18);
+      border-left:1px solid rgba(17,17,21,.18);
+    }
+    .review{
+      min-height:270px;
+      padding:30px;
+      border-right:1px solid rgba(17,17,21,.18);
+      border-bottom:1px solid rgba(17,17,21,.18);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .quote{font-size:1.18rem;line-height:1.55}
+    .review footer{font-size:.78rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#5d5b56}
+
+    .visit{
+      position:relative;
+      padding:110px 0;
+      background:
+        linear-gradient(90deg,rgba(8,8,10,.97) 0%,rgba(8,8,10,.90) 52%,rgba(8,8,10,.55) 100%),
+        url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2000&q=85") center/cover no-repeat;
+    }
+    .visit-grid{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:72px;
+      align-items:start;
+    }
+    .contact-block{
+      margin-top:38px;
+      border-top:1px solid var(--line);
+    }
+    .contact-line{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:16px;
+      padding:20px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .contact-line strong{display:block}
+    .contact-line span{display:block;color:var(--muted);margin-top:2px}
+    .hours{
+      background:rgba(15,15,18,.88);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .hours-head{padding:24px 26px;border-bottom:1px solid var(--line)}
+    .hours-head h3{margin:0;font-size:1.15rem;text-transform:uppercase}
+    .hours-list{list-style:none;margin:0;padding:0}
+    .hours-list li{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      padding:15px 26px;
+      border-bottom:1px solid var(--line);
+      color:#d5d2cc;
+    }
+    .hours-list li:last-child{border-bottom:0}
+    .hours-list li.today{background:rgba(185,255,61,.11);color:#fff}
+    .day-name{font-weight:700}
+    .today-badge{
+      display:none;
+      margin-left:8px;
+      color:var(--accent);
+      font-size:.68rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hours-list li.today .today-badge{display:inline}
+    .visit-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+
+    .cta-strip{
+      padding:54px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:var(--accent);
+      color:#09090a;
+    }
+    .cta-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:30px;
+    }
+    .cta-strip h2{
+      margin:0;
+      font-family:"Bebas Neue",Impact,sans-serif;
+      font-size:clamp(2.5rem,6vw,5rem);
+      line-height:.88;
+      text-transform:uppercase;
+    }
+    .cta-strip .btn{border-color:#09090a;color:#09090a}
+    .cta-strip .btn:hover{background:#09090a;color:#fff}
+
+    footer.site-footer{padding:40px 0 32px;background:#08080a;color:#c7c4bd}
+    .footer-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+      padding-bottom:26px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 20px;
+      margin-top:22px;
+      font-size:.78rem;
+      color:#88857f;
+    }
+    .footer-meta .stock-note{color:#aaa69f}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(0,0,0,.78);
+      backdrop-filter:blur(7px);
+    }
+    .modal.open{display:flex}
+    .modal-dialog{
+      width:min(100%,470px);
+      padding:30px;
+      border:1px solid rgba(185,255,61,.42);
+      background:#111114;
+      box-shadow:var(--shadow);
+    }
+    .modal-icon{
+      width:48px;height:48px;
+      display:grid;place-items:center;
+      margin-bottom:20px;
+      background:rgba(185,255,61,.1);
+      color:var(--accent);
+      border:1px solid rgba(185,255,61,.3);
+    }
+    .modal h2{margin:0;font-size:1.45rem}
+    .modal p{margin:12px 0 24px;color:#c9c6c0}
+    .modal .btn{width:100%}
+
+    :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+    @media (max-width:900px){
+      .hero-grid,.about-grid,.visit-grid{grid-template-columns:1fr}
+      .hero{align-items:center}
+      .hero-card{max-width:520px}
+      .about-grid{gap:42px}
+      .about-image{min-height:430px;order:2}
+      .services-head{align-items:flex-start;flex-direction:column}
+      .review-grid{grid-template-columns:1fr}
+      .review{min-height:220px}
+      .review-summary{align-items:flex-start;flex-direction:column}
+    }
+
+    @media (max-width:760px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .site-header{height:66px}
+      section{scroll-margin-top:76px}
+      .nav{
+        position:absolute;
+        top:66px;
+        left:0;right:0;
+        display:none;
+        padding:18px 14px 22px;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        background:#0d0d10;
+        border-bottom:1px solid var(--line);
+      }
+      .nav.open{display:flex}
+      .nav a{padding:15px 8px;border-bottom:1px solid var(--line)}
+      .nav a:last-child{border-bottom:0}
+      .nav a:after{display:none}
+      .menu-btn{display:grid}
+      .hero{min-height:760px;padding:122px 0 58px;background-position:62% center}
+      .hero h1{font-size:clamp(4.3rem,22vw,7.4rem)}
+      .hero-grid{gap:36px}
+      .hero-card{padding:20px}
+      .hero-actions .btn{flex:1 1 100%}
+      .about,.services,.reviews,.visit{padding:80px 0}
+      .section-title{font-size:clamp(3.2rem,17vw,5rem)}
+      .about-image{min-height:340px}
+      .highlights{grid-template-columns:1fr}
+      .service-row{grid-template-columns:48px 1fr auto;gap:14px;min-height:110px}
+      .service-row p{font-size:.9rem}
+      .review{padding:24px}
+      .hours-list li{padding:14px 18px}
+      .cta-inner{align-items:flex-start;flex-direction:column}
+      .cta-strip .btn{width:100%}
+      .footer-row{align-items:flex-start;flex-direction:column}
+      .marquee-track{animation-duration:18s}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#home" aria-label="The Ballard Smoke Shop home">
+        <span class="brand-mark"><i class="fa-solid fa-store" aria-hidden="true"></i></span>
+        <span class="brand-text">The Ballard Smoke Shop</span>
+      </a>
+
+      <nav class="nav" id="mainNav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Seattle</p>
+          <h1>The Ballard <span>Smoke Shop</span></h1>
+          <p class="hero-copy">Glass, flower, and good vibes in Seattle.</p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-locked="true">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              Call (206) 784-6611
+            </button>
+            <a class="btn" href="#services">
+              <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              Services
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Business details">
+          <span class="label">Location</span>
+          <strong>5439 Ballard Ave NW</strong>
+          <hr>
+          <div class="rating">
+            <strong>4.4</strong>
+            <span class="stars" aria-label="4.4 star rating">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </span>
+          </div>
+          <hr>
+          <span class="label">Phone</span>
+          <strong>(206) 784-6611</strong>
+        </aside>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Glass wall</span><span>Vape bar</span><span>Local picks</span><span>Seattle</span>
+        <span>Glass wall</span><span>Vape bar</span><span>Local picks</span><span>Seattle</span>
+      </div>
+    </div>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-image" role="img" aria-label="Stock photo of a retail storefront">
+          <span class="stock-tag">Stock imagery</span>
+        </div>
+
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Your neighborhood smoke shop.</h2>
+          <p class="section-copy">The Ballard Smoke Shop in Seattle. Your neighborhood smoke shop for glass, flower, vapes, and good vibes. Come in, ask questions, leave set.</p>
+
+          <div class="highlights" aria-label="Highlights">
+            <div class="highlight">
+              <i class="fa-solid fa-wine-glass" aria-hidden="true"></i>
+              <strong>Glass wall</strong>
+            </div>
+            <div class="highlight">
+              <i class="fa-solid fa-wind" aria-hidden="true"></i>
+              <strong>Vape bar</strong>
+            </div>
+            <div class="highlight">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <strong>Local picks</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="services-head">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2 class="section-title">What you'll find.</h2>
+          </div>
+          <p class="section-copy">What you'll find at The Ballard Smoke Shop.</p>
+        </div>
+
+        <div class="service-list">
+          <article class="service-row">
+            <span class="service-number">01</span>
+            <div>
+              <h3>Premium flower & vapes</h3>
+              <p>Professional service.</p>
+            </div>
+            <span class="service-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span>
+          </article>
+
+          <article class="service-row">
+            <span class="service-number">02</span>
+            <div>
+              <h3>Glass & accessories</h3>
+              <p>Professional service.</p>
+            </div>
+            <span class="service-icon"><i class="fa-solid fa-bong" aria-hidden="true"></i></span>
+          </article>
+
+          <article class="service-row">
+            <span class="service-number">03</span>
+            <div>
+              <h3>CBD & wellness</h3>
+              <p>Professional service.</p>
+            </div>
+            <span class="service-icon"><i class="fa-solid fa-spa" aria-hidden="true"></i></span>
+          </article>
+
+          <article class="service-row">
+            <span class="service-number">04</span>
+            <div>
+              <h3>Local-friendly staff</h3>
+              <p>Professional service.</p>
+            </div>
+            <span class="service-icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <p class="eyebrow">Reviews</p>
+        <div class="review-summary">
+          <div>
+            <h2 class="section-title">Local listings.</h2>
+            <p class="section-copy" style="color:#57544f">Reviews shown below are the review text present in the supplied source page.</p>
+          </div>
+          <div>
+            <div class="big-rating">4.4</div>
+            <div class="stars" aria-label="4.4 star rating">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-grid">
+          <blockquote class="review">
+            <div class="quote">“Friendly stop in Seattle. Worth swinging by.”</div>
+            <footer>Neighborhood visitor</footer>
+          </blockquote>
+
+          <blockquote class="review">
+            <div class="quote">“Good prices and solid smoke.”</div>
+            <footer>Neighborhood visitor</footer>
+          </blockquote>
+
+          <blockquote class="review">
+            <div class="quote">“Neighborhood favorite — easy to find at 5439 Ballard Ave NW.”</div>
+            <footer>Neighborhood visitor</footer>
+          </blockquote>
+        </div>
+
+        <div style="margin-top:24px">
+          <button class="btn" type="button" data-locked="true" style="color:#111115;border-color:#111115">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            See more on Maps
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <p class="eyebrow">Visit</p>
+          <h2 class="section-title">Find us in Seattle.</h2>
+
+          <div class="contact-block">
+            <div class="contact-line">
+              <span class="icon-circle"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+              <div>
+                <strong>5439 Ballard Ave NW</strong>
+                <span>Seattle, WA 98107</span>
+              </div>
+            </div>
+            <div class="contact-line">
+              <span class="icon-circle"><i class="fa-solid fa-phone" aria-hidden="true"></i></span>
+              <div>
+                <strong>(206) 784-6611</strong>
+                <span>Call the shop</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visit-actions">
+            <button class="btn btn-primary" type="button" data-locked="true">
+              <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i>
+              Open in Google Maps
+            </button>
+            <button class="btn" type="button" data-locked="true">
+              <i class="fa-solid fa-message" aria-hidden="true"></i>
+              Text the shop
+            </button>
+          </div>
+        </div>
+
+        <aside class="hours" aria-label="Business hours">
+          <div class="hours-head">
+            <h3><i class="fa-regular fa-clock" aria-hidden="true"></i> Business hours</h3>
+          </div>
+          <ul class="hours-list" id="hoursList">
+            <li data-day="0"><span class="day-name">Sunday <small class="today-badge">Today</small></span><span>10:00 AM – 10:00 PM</span></li>
+            <li data-day="1"><span class="day-name">Monday <small class="today-badge">Today</small></span><span>10:00 AM – 10:00 PM</span></li>
+            <li data-day="2"><span class="day-name">Tuesday <small class="today-badge">Today</small></span><span>10:00 AM – 10:00 PM</span></li>
+            <li data-day="3"><span class="day-name">Wednesday <small class="today-badge">Today</small></span><span>10:00 AM – 10:00 PM</span></li>
+            <li data-day="4"><span class="day-name">Thursday <small class="today-badge">Today</small></span><span>10:00 AM – 10:00 PM</span></li>
+            <li data-day="5"><span class="day-name">Friday <small class="today-badge">Today</small></span><span>10:00 AM – 12:00 AM</span></li>
+            <li data-day="6"><span class="day-name">Saturday <small class="today-badge">Today</small></span><span>10:00 AM – 12:00 AM</span></li>
+          </ul>
+          <div style="padding:18px 26px;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem">
+            Hours may change on holidays — call to confirm.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta-strip" aria-label="Call to action">
+      <div class="wrap cta-inner">
+        <h2>Ready to stop by?</h2>
+        <button class="btn" type="button" data-locked="true">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          Call (206) 784-6611
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="#home">
+          <span class="brand-mark"><i class="fa-solid fa-store" aria-hidden="true"></i></span>
+          <span class="brand-text">The Ballard Smoke Shop</span>
+        </a>
+        <a class="btn" href="#home">
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+          Back to top
+        </a>
+      </div>
+
+      <div class="footer-meta">
+        <span>5439 Ballard Ave NW, Seattle, WA 98107</span>
+        <span>(206) 784-6611</span>
+        <span class="stock-note">Stock imagery is used for visual presentation and does not depict the actual business.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+    <div class="modal-dialog">
+      <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+      <h2 id="lockedTitle">This is currently locked.</h2>
+      <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
+
+  <!--
+    STOCK ASSET LIST
+    1. Unsplash retail interior: https://images.unsplash.com/photo-1441986300917-64674bd600d8
+    2. Unsplash storefront / retail scene: https://images.unsplash.com/photo-1472851294608-062f824d29cc
+    3. Unsplash retail / point-of-sale scene: https://images.unsplash.com/photo-1556740749-887f6717d7e4
+    4. Unsplash city atmosphere: https://images.unsplash.com/photo-1519608487953-e999c86e7455
+    These are stock images and are not presented as photos of The Ballard Smoke Shop.
+  -->
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mainNav = document.getElementById("mainNav");
+    const modal = document.getElementById("lockedModal");
+    const modalClose = document.getElementById("modalClose");
+    let lastFocusedElement = null;
+
+    function closeMenu() {
+      mainNav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.setAttribute("aria-label", "Open menu");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    }
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      menuBtn.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    });
+
+    document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    function openLockedModal(trigger) {
+      lastFocusedElement = trigger;
+      modal.classList.add("open");
+      document.body.classList.add("modal-open");
+      modalClose.focus();
+    }
+
+    function closeLockedModal() {
+      modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach((element) => {
+      element.addEventListener("click", (event) => {
+        event.preventDefault();
+        openLockedModal(element);
+      });
+    });
+
+    modalClose.addEventListener("click", closeLockedModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeLockedModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeLockedModal();
+      }
+
+      if (event.key === "Tab" && modal.classList.contains("open")) {
+        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    const today = new Date().getDay();
+    const todayRow = document.querySelector('[data-day="' + today + '"]');
+    if (todayRow) {
+      todayRow.classList.add("today");
+    }
+  </script>
+</body>
+</html>

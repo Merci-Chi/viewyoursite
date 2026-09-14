@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Tacos Al Carbon Mexican Food Truck | Las Vegas, NV</title>
+  <meta name="description" content="Tacos Al Carbon Mexican Food Truck at 5801 E Sahara Ave in Las Vegas. Tacos al carbon, burritos, quesadillas, carne asada and lengua. Open Thursday through Sunday, 5 PM to midnight.">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#17120e;
+      --cream:#fff7e9;
+      --paper:#f7ead6;
+      --red:#9f2f22;
+      --red-dark:#722018;
+      --gold:#e6a62e;
+      --green:#385b38;
+      --muted:#6f6258;
+      --white:#ffffff;
+      --line:rgba(23,18,14,.16);
+      --shadow:0 18px 48px rgba(28,18,10,.16);
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--cream);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.55;
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    a,button,input,textarea{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    img{display:block;max-width:100%}
+    .container{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.77rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+      color:var(--red);
+    }
+    .eyebrow::before{content:"";width:26px;height:2px;background:var(--red)}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;margin:0;line-height:1.02}
+    h1{font-size:clamp(3.2rem,8.4vw,7.6rem);letter-spacing:-.055em}
+    h2{font-size:clamp(2.4rem,5vw,4.8rem);letter-spacing:-.045em}
+    h3{font-size:1.55rem}
+    p{margin:0}
+    .section{padding:100px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:48px}
+    .section-head p{max-width:580px;color:var(--muted);font-size:1.04rem}
+    .btn{
+      min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      border:1px solid transparent;padding:13px 20px;text-decoration:none;font-weight:800;
+      cursor:pointer;transition:.2s ease;background:var(--red);color:#fff;border-radius:2px;
+    }
+    .btn:hover{transform:translateY(-2px);background:var(--red-dark)}
+    .btn.secondary{background:transparent;border-color:rgba(255,255,255,.6);color:#fff}
+    .btn.secondary:hover{background:#fff;color:var(--ink)}
+    .btn.light{background:var(--cream);color:var(--ink)}
+    .btn.light:hover{background:#fff}
+    .btn.dark{background:var(--ink);color:#fff}
+    .btn.dark:hover{background:#000}
+    .icon-circle{
+      width:42px;height:42px;border:1px solid rgba(255,255,255,.32);
+      display:grid;place-items:center;border-radius:50%;
+    }
+
+    /* Header */
+    header{
+      position:fixed;inset:0 0 auto 0;z-index:50;
+      background:linear-gradient(to bottom,rgba(10,8,6,.78),rgba(10,8,6,.18),transparent);
+      color:#fff;transition:.25s ease;
+    }
+    header.scrolled{background:rgba(20,15,11,.94);backdrop-filter:blur(12px);box-shadow:0 8px 30px rgba(0,0,0,.14)}
+    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{color:#fff;text-decoration:none;display:flex;align-items:center;gap:12px;font-weight:900}
+    .brand-mark{
+      width:38px;height:38px;display:grid;place-items:center;border:2px solid var(--gold);
+      border-radius:50%;color:var(--gold);font-family:Georgia,serif;font-size:1.1rem;
+    }
+    .brand span:last-child{line-height:1.05}
+    .brand small{display:block;font-weight:600;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;opacity:.72;margin-top:4px}
+    nav{display:flex;align-items:center;gap:28px}
+    nav a{color:#fff;text-decoration:none;font-weight:700;font-size:.9rem}
+    nav a:hover{color:var(--gold)}
+    .menu-toggle{
+      display:none;width:46px;height:46px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45);
+      font-size:1.25rem;cursor:pointer;
+    }
+
+    /* Hero */
+    .hero{
+      min-height:100svh;position:relative;display:flex;align-items:flex-end;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(20,12,7,.86) 0%,rgba(20,12,7,.68) 42%,rgba(20,12,7,.22) 78%),
+        linear-gradient(0deg,rgba(20,12,7,.78) 0%,transparent 48%),
+        url("https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=2200&q=85") center/cover no-repeat;
+    }
+    .hero-inner{position:relative;z-index:2;padding:160px 0 72px}
+    .hero-copy{max-width:900px}
+    .hero .eyebrow{color:#ffd574}.hero .eyebrow::before{background:#ffd574}
+    .hero h1{max-width:950px;margin-top:14px}
+    .hero h1 em{font-style:italic;color:#ffd574}
+    .hero-copy>p{max-width:690px;font-size:clamp(1.05rem,2vw,1.25rem);margin-top:26px;color:rgba(255,255,255,.88)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .hero-strip{
+      display:grid;grid-template-columns:1.1fr .8fr .8fr;
+      margin-top:70px;border-top:1px solid rgba(255,255,255,.24);
+    }
+    .hero-stat{padding:22px 22px 0 0}
+    .hero-stat+.hero-stat{border-left:1px solid rgba(255,255,255,.24);padding-left:26px}
+    .hero-stat small{display:block;text-transform:uppercase;letter-spacing:.11em;font-weight:800;color:#ffd574;font-size:.72rem}
+    .hero-stat strong{display:block;margin-top:6px;font-family:Georgia,serif;font-size:1.25rem}
+    .hero-stat span{display:block;color:rgba(255,255,255,.68);font-size:.88rem;margin-top:3px}
+
+    /* Intro */
+    .intro{background:var(--paper);position:relative;overflow:hidden}
+    .intro::after{
+      content:"";position:absolute;inset:auto -130px -150px auto;width:420px;height:420px;border-radius:50%;
+      border:70px solid rgba(159,47,34,.055);
+    }
+    .intro-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:78px;align-items:center}
+    .photo-frame{position:relative}
+    .photo-frame img{width:100%;height:560px;object-fit:cover;box-shadow:var(--shadow)}
+    .photo-badge{
+      position:absolute;left:-24px;bottom:28px;background:var(--red);color:#fff;padding:20px 22px;
+      max-width:220px;box-shadow:var(--shadow);
+    }
+    .photo-badge strong{display:block;font-family:Georgia,serif;font-size:1.4rem}
+    .intro-copy h2{margin:10px 0 24px}
+    .intro-copy p{color:var(--muted);font-size:1.08rem;max-width:650px}
+    .quick-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+    .quick-item{display:flex;gap:12px;padding-top:18px;border-top:1px solid var(--line)}
+    .quick-item i{color:var(--red);margin-top:4px}
+    .quick-item strong{display:block;font-size:.95rem}
+    .quick-item span{color:var(--muted);font-size:.88rem}
+
+    /* Menu */
+    .menu-section{
+      color:#fff;position:relative;
+      background:
+        linear-gradient(rgba(21,14,10,.92),rgba(21,14,10,.96)),
+        url("https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=2000&q=80") center/cover fixed;
+    }
+    .menu-section .section-head p{color:rgba(255,255,255,.65)}
+    .menu-section .eyebrow{color:#ffd574}.menu-section .eyebrow::before{background:#ffd574}
+    .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(255,255,255,.15)}
+    .menu-item{display:grid;grid-template-columns:90px 1fr;gap:22px;padding:32px 22px 32px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+    .menu-item:nth-child(even){padding-left:30px;border-left:1px solid rgba(255,255,255,.15)}
+    .menu-icon{width:74px;height:74px;border:1px solid rgba(255,213,116,.45);display:grid;place-items:center;color:#ffd574;font-size:1.6rem}
+    .menu-item p{color:rgba(255,255,255,.66);margin-top:9px}
+    .menu-tag{display:inline-block;margin-top:10px;color:#ffd574;font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+
+    /* Image band */
+    .food-band{display:grid;grid-template-columns:1.25fr .75fr;height:500px;background:#111}
+    .food-band .panel{position:relative;overflow:hidden}
+    .food-band img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+    .food-band .panel:hover img{transform:scale(1.03)}
+    .food-band .panel::after{content:"Stock food imagery";position:absolute;left:18px;bottom:16px;background:rgba(0,0,0,.58);color:#fff;padding:6px 9px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+
+    /* Reviews */
+    .reviews{background:#fff}
+    .review-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:70px;align-items:start}
+    .rating-block{position:sticky;top:120px}
+    .rating-number{font:700 clamp(5rem,10vw,9rem)/.85 Georgia,serif;color:var(--red);letter-spacing:-.08em}
+    .stars{color:var(--gold);letter-spacing:3px;margin:18px 0 8px}
+    .rating-block p{color:var(--muted);max-width:300px}
+    .quotes{border-top:1px solid var(--line)}
+    blockquote{margin:0;padding:30px 0;border-bottom:1px solid var(--line)}
+    blockquote p{font:400 clamp(1.35rem,2.2vw,2rem)/1.35 Georgia,serif}
+    blockquote footer{margin-top:14px;color:var(--muted);font-size:.84rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+
+    /* Find */
+    .find{
+      position:relative;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(42,22,14,.94),rgba(42,22,14,.74)),
+        url("https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+    }
+    .find-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px}
+    .find h2{margin:10px 0 20px}
+    .find .eyebrow{color:#ffd574}.find .eyebrow::before{background:#ffd574}
+    .find-copy>p{color:rgba(255,255,255,.72);max-width:600px}
+    .contact-lines{margin-top:32px;border-top:1px solid rgba(255,255,255,.18)}
+    .contact-line{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+    .contact-line i{color:#ffd574;margin-top:4px}
+    .contact-line strong{display:block}
+    .contact-line span{display:block;color:rgba(255,255,255,.68);margin-top:2px}
+    .hours{background:rgba(255,247,233,.98);color:var(--ink);padding:34px;box-shadow:var(--shadow)}
+    .hours h3{font-size:2rem;margin-bottom:20px}
+    .hours-row{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line)}
+    .hours-row:last-child{border-bottom:0}
+    .hours-row span:last-child{font-weight:800}
+    .hours .btn{width:100%;margin-top:26px}
+
+    /* Order */
+    .order{background:var(--gold)}
+    .order-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:70px;align-items:center}
+    .order h2{margin:10px 0 20px}
+    .order p{color:#46341f}
+    form{background:var(--cream);padding:32px;box-shadow:var(--shadow)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{display:block;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+    input,textarea{
+      width:100%;border:1px solid #cbbca7;background:#fff;padding:13px 14px;border-radius:0;
+      color:var(--ink);outline:none;user-select:text;-webkit-user-select:text;
+    }
+    input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(159,47,34,.12)}
+    textarea{min-height:130px;resize:vertical}
+    .full{grid-column:1/-1}
+    form .btn{width:100%}
+
+    /* Footer */
+    footer.site-footer{background:#17120e;color:#fff;padding:44px 0}
+    .footer-grid{display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+    .footer-copy{color:rgba(255,255,255,.62);font-size:.88rem;margin-top:12px}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap}
+    .footer-links a{color:#fff;text-decoration:none;font-weight:700;font-size:.9rem}
+    .footer-links a:hover{color:#ffd574}
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;inset:0;z-index:1000;background:rgba(10,8,6,.72);display:none;
+      align-items:center;justify-content:center;padding:22px;
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(100%,480px);background:var(--cream);padding:32px;border-top:5px solid var(--red);
+      box-shadow:0 30px 90px rgba(0,0,0,.36);
+    }
+    .modal h3{font-size:2rem}
+    .modal p{color:var(--muted);margin:14px 0 24px}
+    body.modal-open{overflow:hidden}
+
+    @media (max-width:900px){
+      .section{padding:78px 0}
+      nav{position:fixed;top:82px;left:0;right:0;background:#17120e;display:none;flex-direction:column;align-items:stretch;padding:22px 24px;border-top:1px solid rgba(255,255,255,.13)}
+      nav.open{display:flex}
+      nav a{padding:11px 0}
+      nav .btn{margin-top:4px}
+      .menu-toggle{display:grid;place-items:center}
+      .intro-grid,.review-layout,.find-grid,.order-grid{grid-template-columns:1fr;gap:46px}
+      .photo-frame img{height:480px}
+      .rating-block{position:static}
+      .hero-strip{grid-template-columns:1fr 1fr}
+      .hero-stat:last-child{grid-column:1/-1;border-left:0;border-top:1px solid rgba(255,255,255,.24);padding-left:0;margin-top:18px}
+      .food-band{height:400px}
+    }
+    @media (max-width:680px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .section{padding:66px 0}
+      .section-head{display:block;margin-bottom:34px}
+      .section-head p{margin-top:16px}
+      .nav{height:70px}
+      nav{top:70px}
+      .brand span:last-child{font-size:.88rem}
+      .hero{min-height:780px;background-position:61% center}
+      .hero-inner{padding:130px 0 44px}
+      h1{font-size:clamp(3rem,15vw,5.2rem)}
+      .hero-actions{display:grid;grid-template-columns:1fr}
+      .hero .btn{width:100%}
+      .hero-strip{grid-template-columns:1fr;margin-top:50px}
+      .hero-stat,.hero-stat+.hero-stat,.hero-stat:last-child{grid-column:auto;border-left:0;border-top:1px solid rgba(255,255,255,.24);padding:17px 0 0;margin-top:17px}
+      .photo-frame img{height:410px}
+      .photo-badge{left:12px;right:12px;bottom:12px;max-width:none}
+      .quick-list{grid-template-columns:1fr}
+      .menu-grid{grid-template-columns:1fr}
+      .menu-item,.menu-item:nth-child(even){padding:26px 0;border-left:0}
+      .menu-item{grid-template-columns:68px 1fr;gap:16px}
+      .menu-icon{width:58px;height:58px}
+      .food-band{grid-template-columns:1fr;height:auto}
+      .food-band .panel{height:300px}
+      .form-grid{grid-template-columns:1fr}
+      .full{grid-column:auto}
+      form{padding:22px}
+      .footer-grid{display:block}
+      .footer-links{margin-top:24px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
+</head>
+<body>
+  <!--
+    SINGLE-FILE DEMO
+    Source facts were taken from the provided Tacos Al Carbon page.
+    Stock imagery is illustrative only and does not depict this specific business.
+    Stock image provider: Unsplash.
+    Icons: Font Awesome Free via CDN.
+  -->
+
+  <header id="siteHeader">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Tacos Al Carbon home">
+        <span class="brand-mark">T</span>
+        <span>Tacos Al Carbon<small>Mexican Food Truck</small></span>
+      </a>
+      <nav id="navMenu" aria-label="Primary navigation">
+        <a href="#menu">The Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#find">Find the Truck</a>
+        <a class="btn" href="#order">Order Window</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Food truck · E Sahara Ave</span>
+          <h1 id="hero-title">Tacos al <em>Carbon</em>, Straight Off the Coals</h1>
+          <p>A taco truck parked at 5801 E Sahara Ave, grilling carne asada and lengua over charcoal Thursday through Sunday nights. Fresh made, folded fast, open until midnight.</p>
+          <div class="hero-actions">
+            <a class="btn light" href="#menu"><i class="fa-solid fa-utensils"></i> See the menu</a>
+            <a class="btn secondary" href="#find"><i class="fa-solid fa-location-dot"></i> Find the truck</a>
+          </div>
+        </div>
+        <div class="hero-strip" aria-label="Quick business details">
+          <div class="hero-stat">
+            <small>Tonight's window</small>
+            <strong>5 PM – 12 AM</strong>
+            <span>Thursday through Sunday</span>
+          </div>
+          <div class="hero-stat">
+            <small>Location</small>
+            <strong>5801 E Sahara Ave</strong>
+            <span>Las Vegas, NV 89142</span>
+          </div>
+          <div class="hero-stat">
+            <small>Closed</small>
+            <strong>Monday – Wednesday</strong>
+            <span>The grill relights Thursday at 5.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro" aria-labelledby="overview-title">
+      <div class="container intro-grid">
+        <div class="photo-frame">
+          <img src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1200&q=82" alt="Stock photo of tacos" loading="lazy">
+          <div class="photo-badge">
+            <strong>Thu – Sun</strong>
+            <span>5 PM until midnight</span>
+          </div>
+        </div>
+        <div class="intro-copy">
+          <span class="eyebrow">What comes off the truck</span>
+          <h2 id="overview-title">Fresh made at the window.</h2>
+          <p>Everything is fresh made at the window. The tacos are the headliner: big, doubled up on tortillas with melted cheese holding it all together.</p>
+          <div class="quick-list">
+            <div class="quick-item"><i class="fa-solid fa-fire-flame-curved"></i><div><strong>Carne asada</strong><span>Charred at the edges and juicy in the middle.</span></div></div>
+            <div class="quick-item"><i class="fa-solid fa-fire-burner"></i><div><strong>Lengua</strong><span>Slow-cooked and tender.</span></div></div>
+            <div class="quick-item"><i class="fa-solid fa-bowl-food"></i><div><strong>Guacamole</strong><span>Fresh guacamole goes on the tacos.</span></div></div>
+            <div class="quick-item"><i class="fa-solid fa-moon"></i><div><strong>Late-night window</strong><span>Open until midnight Thu – Sun.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section menu-section" id="menu" aria-labelledby="menu-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">The menu</span>
+            <h2 id="menu-title">Charcoal, tortillas, and not much else</h2>
+          </div>
+          <p>Tacos Al Carbon Mexican Food Truck keeps the menu tight so every order comes off the grill fresh made. Here is what the window serves, Thursday through Sunday from 5 PM to midnight.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-icon"><i class="fa-solid fa-fire"></i></div>
+            <div><h3>Tacos al carbon</h3><p>The classic, done big: your choice of carne asada or lengua, grilled over charcoal and served on two tortillas with melted cheese between them, guacamole piled on top.</p><span class="menu-tag">The headliner</span></div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+            <div><h3>Carne asada</h3><p>Chopped off the grill, charred at the edges and juicy in the middle. Order it in a taco, a burrito, or a quesadilla.</p><span class="menu-tag">Grilled to order</span></div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div><h3>Lengua</h3><p>Slow-cooked and tender, the one regulars swear by. Get it doubled up in a taco with the melted cheese and guacamole.</p><span class="menu-tag">Regular favorite</span></div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-icon"><i class="fa-solid fa-burrito"></i></div>
+            <div><h3>Burritos</h3><p>Rolled thick with asada or lengua and the works. Dinner-sized, foil-wrapped, and ready to go.</p><span class="menu-tag">Filling</span></div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-icon"><i class="fa-solid fa-cheese"></i></div>
+            <div><h3>Quesadillas</h3><p>Cheese melted on the comal until the edges crisp, folded over your meat of choice. Add guacamole, no extra lecture.</p><span class="menu-tag">Crispy edges</span></div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div><h3>Guacamole &amp; toppings</h3><p>Fresh guacamole goes on the tacos, and you can add it to anything else on the menu. The food is always fresh made, window to hand.</p><span class="menu-tag">Fresh made</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="food-band" aria-label="Stock food image gallery">
+      <div class="panel"><img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=1600&q=82" alt="Stock photo of Mexican tacos" loading="lazy"></div>
+      <div class="panel"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1200&q=82" alt="Stock photo of Mexican food" loading="lazy"></div>
+    </div>
+
+    <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="container review-layout">
+        <div class="rating-block">
+          <span class="eyebrow">Straight from the window</span>
+          <div class="rating-number">4.4</div>
+          <div class="stars" aria-label="4.4 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p>Rated 4.4 stars on Google by the late-night crowd.</p>
+          <button class="btn dark" type="button" data-locked="true" style="margin-top:22px"><i class="fa-brands fa-google"></i> See every review on Google</button>
+        </div>
+        <div>
+          <span class="eyebrow">Reviews</span>
+          <h2 id="reviews-title" style="margin:10px 0 30px">What people say after midnight</h2>
+          <div class="quotes">
+            <blockquote><p>“The tacos were insanely good. The flavors were amazing.”</p><footer>Google review</footer></blockquote>
+            <blockquote><p>“Best tacos in town!”</p><footer>Google review</footer></blockquote>
+            <blockquote><p>“These tacos are gigantic and well-worth the price!”</p><footer>Google review</footer></blockquote>
+            <blockquote><p>“The food is always fresh made.”</p><footer>Google review</footer></blockquote>
+            <blockquote><p>“Absolutely amazing food and service.”</p><footer>Google review</footer></blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section find" id="find" aria-labelledby="find-title">
+      <div class="container find-grid">
+        <div class="find-copy">
+          <span class="eyebrow">Find the truck</span>
+          <h2 id="find-title">Parked on E Sahara, Thu through Sun</h2>
+          <p>Look for the truck at 5801 E Sahara Ave. The window opens at 5 PM and stays open until midnight, Thursday through Sunday.</p>
+          <div class="contact-lines">
+            <div class="contact-line"><i class="fa-solid fa-location-dot"></i><div><strong>Tacos Al Carbon Mexican Food Truck</strong><span>5801 E Sahara Ave, Las Vegas, NV 89142</span><span>It is a food truck, so look for the truck parked at the address, not a storefront.</span></div></div>
+            <div class="contact-line"><i class="fa-solid fa-phone"></i><div><strong>Order window</strong><span>(702) 813-9611</span><span>Call or text the truck. If the window is busy, leave a message and keep the line moving.</span></div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px">
+            <button class="btn light" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open map</button>
+            <button class="btn secondary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the truck</button>
+          </div>
+        </div>
+        <aside class="hours" aria-label="Business hours">
+          <span class="eyebrow">Business hours</span>
+          <h3>Tonight's window</h3>
+          <div class="hours-row"><span>Sunday</span><span>5 PM – 12 AM</span></div>
+          <div class="hours-row"><span>Monday</span><span>Closed</span></div>
+          <div class="hours-row"><span>Tuesday</span><span>Closed</span></div>
+          <div class="hours-row"><span>Wednesday</span><span>Closed</span></div>
+          <div class="hours-row"><span>Thursday</span><span>5 PM – 12 AM</span></div>
+          <div class="hours-row"><span>Friday</span><span>5 PM – 12 AM</span></div>
+          <div class="hours-row"><span>Saturday</span><span>5 PM – 12 AM</span></div>
+          <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-comment-sms"></i> Text your order ahead</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section order" id="order" aria-labelledby="order-title">
+      <div class="container order-grid">
+        <div>
+          <span class="eyebrow">Order window</span>
+          <h2 id="order-title">Text your order ahead</h2>
+          <p>Skip the line: tell us what you want and when you are coming, and it will be hot at the window.</p>
+        </div>
+        <form id="orderForm" novalidate>
+          <div class="form-grid">
+            <div><label for="name">Your name</label><input id="name" name="name" type="text"></div>
+            <div><label for="phone">Phone number</label><input id="phone" name="phone" type="tel"></div>
+            <div class="full"><label for="orderText">Your order</label><textarea id="orderText" name="order"></textarea></div>
+            <div class="full"><button class="btn" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send my order</button></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand-mark">T</span>
+          <span>Tacos Al Carbon<small>Mexican Food Truck</small></span>
+        </a>
+        <div class="footer-copy">5801 E Sahara Ave, Las Vegas, NV 89142 · (702) 813-9611 · Thu – Sun 5 PM – midnight, closed Mon – Wed</div>
+        <div class="footer-copy">© Tacos Al Carbon Mexican Food Truck · Las Vegas, NV</div>
+      </div>
+      <div class="footer-links"><a href="#menu">Menu</a><a href="#reviews">Reviews</a><a href="#find">Find the Truck</a></div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal" tabindex="-1">
+      <h3 id="modalTitle">This is currently locked.</h3>
+      <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" type="button" id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const siteHeader = document.getElementById('siteHeader');
+    const modal = document.getElementById('lockedModal');
+    const modalBox = modal.querySelector('.modal');
+    const modalClose = document.getElementById('modalClose');
+    let lastFocused = null;
+
+    function closeMenu() {
+      navMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open menu');
+      menuToggle.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      menuToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    });
+
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 18);
+    }, { passive: true });
+
+    function openLockedModal(trigger) {
+      lastFocused = trigger || document.activeElement;
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      modalBox.focus();
+    }
+
+    function closeLockedModal() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el => {
+      el.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        openLockedModal(el);
+      });
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', event => {
+      event.preventDefault();
+      openLockedModal(event.submitter || event.currentTarget);
+    });
+
+    modalClose.addEventListener('click', closeLockedModal);
+    modal.addEventListener('click', event => {
+      if (event.target === modal) {
+        closeLockedModal();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closeLockedModal();
+      }
+      if (event.key === 'Tab' && modal.classList.contains('open')) {
+        const focusable = modal.querySelectorAll('button,[href],input,textarea,[tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    document.addEventListener('gesturestart', event => event.preventDefault());
+  </script>
+</body>
+</html>

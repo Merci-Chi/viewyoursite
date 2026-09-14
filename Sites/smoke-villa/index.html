@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0d1411">
+<title>Smoke villa | Philadelphia</title>
+<meta name="description" content="Smoke villa in Philadelphia. Premium flower & vapes, glass & accessories, CBD & wellness, and local-friendly staff.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --bg:#0c110f;
+  --panel:#111916;
+  --panel2:#17211d;
+  --text:#f3efe8;
+  --muted:#9fa8a2;
+  --green:#234c3c;
+  --green2:#31664f;
+  --gold:#d7b36a;
+  --cream:#eee7d8;
+  --ink:#151915;
+  --line:rgba(255,255,255,.12);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Manrope,system-ui,sans-serif;line-height:1.58;
+  overflow-x:hidden;-webkit-user-select:none;user-select:none
+}
+a{color:inherit}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 42px));margin:auto}
+h1,h2,h3{margin:0}
+h1,h2{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:-.04em}
+h1{font-size:clamp(4rem,9vw,8.5rem);line-height:.84}
+h2{font-size:clamp(2.7rem,5vw,4.8rem);line-height:.94}
+h3{font-size:1.08rem}
+p{margin:0}
+.kicker{
+  display:flex;align-items:center;gap:9px;
+  text-transform:uppercase;letter-spacing:.18em;
+  font-size:.68rem;font-weight:800;color:var(--gold);margin-bottom:12px
+}
+
+/* header */
+header{
+  position:sticky;top:0;z-index:60;background:rgba(12,17,15,.94);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(16px)
+}
+.nav{
+  width:min(var(--max),calc(100% - 42px));height:76px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{
+  width:44px;height:44px;border:1px solid var(--gold);display:grid;place-items:center;
+  font-family:"Archivo Black";font-size:.78rem;color:var(--gold)
+}
+.brand strong{display:block;font-size:1rem}
+.brand small{
+  display:block;text-transform:uppercase;letter-spacing:.16em;
+  color:var(--muted);font-size:.57rem;margin-top:2px
+}
+.navlinks{display:flex;gap:24px;align-items:center}
+.navlinks a{
+  text-decoration:none;text-transform:uppercase;letter-spacing:.11em;
+  font-size:.72rem;font-weight:800
+}
+.navlinks a:hover{color:var(--gold)}
+.menu{
+  display:none;width:44px;height:44px;border:1px solid var(--line);
+  background:var(--panel);color:#fff;font-size:1rem
+}
+
+/* hero */
+.hero{
+  min-height:760px;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(8,12,10,.98) 0%,rgba(8,12,10,.85) 45%,rgba(8,12,10,.2) 78%),
+    linear-gradient(0deg,rgba(8,12,10,.94),transparent 58%),
+    url("https://images.unsplash.com/photo-1777621728007-64b28c2731bc?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat
+}
+.hero:after{
+  content:"VILLA";position:absolute;right:-28px;bottom:-40px;
+  font-family:"Archivo Black";font-size:min(26vw,330px);
+  color:transparent;-webkit-text-stroke:2px rgba(215,179,106,.12);
+  letter-spacing:-.06em
+}
+.hero-grid{
+  min-height:760px;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;
+  align-items:end;padding:115px 0 66px;position:relative;z-index:2
+}
+.hero h1 span{display:block;color:var(--gold)}
+.hero-copy{max-width:830px}
+.hero-sub{
+  max-width:640px;color:#c9cec9;font-size:1.06rem;font-weight:600;
+  margin:24px 0 27px
+}
+.meta{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.055);
+  padding:8px 13px;font-size:.77rem;font-weight:700
+}
+.pill i{color:var(--gold)}
+.actions{display:flex;gap:11px;flex-wrap:wrap}
+.btn{
+  min-height:48px;padding:13px 20px;display:inline-flex;align-items:center;justify-content:center;
+  gap:9px;border:1px solid transparent;text-decoration:none;text-transform:uppercase;
+  letter-spacing:.1em;font-size:.72rem;font-weight:800;cursor:pointer;transition:.18s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#101410}
+.btn-dark{background:var(--panel2);border-color:var(--line);color:#fff}
+.btn-line{border-color:rgba(255,255,255,.38);color:#fff;background:transparent}
+.hero-side{
+  align-self:center;justify-self:end;width:290px;border:1px solid rgba(255,255,255,.22);
+  background:rgba(10,15,12,.52);backdrop-filter:blur(6px);padding:28px
+}
+.hero-side .score{font-family:"Archivo Black";font-size:5.6rem;line-height:.8;color:var(--gold)}
+.hero-side .stars{color:var(--gold);font-size:.75rem;letter-spacing:.12em;margin:18px 0 9px}
+.hero-side p{color:var(--muted);font-size:.73rem;text-transform:uppercase;letter-spacing:.13em}
+.asset-note{
+  position:absolute;right:14px;top:92px;z-index:3;
+  background:rgba(0,0,0,.68);padding:7px 10px;font-size:.59rem;
+  text-transform:uppercase;letter-spacing:.08em;color:#fff
+}
+
+/* ticker */
+.ticker{background:var(--gold);color:#111812;overflow:hidden;border-bottom:1px solid #f1d99f}
+.ticker-track{
+  display:flex;width:max-content;gap:34px;padding:12px 0;
+  animation:move 24s linear infinite;font-family:"Archivo Black";
+  text-transform:uppercase;font-size:.88rem;letter-spacing:.08em
+}
+.ticker-track span{display:flex;align-items:center;gap:9px}
+@keyframes move{to{transform:translateX(-50%)}}
+
+/* sections */
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-head{
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:end;margin-bottom:42px
+}
+.section-head p{max-width:650px;color:var(--muted)}
+
+/* about */
+.about{background:var(--cream);color:var(--ink)}
+.about .section-head p{color:#6f756e}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#c8c0b0;border:1px solid #c8c0b0
+}
+.about-cell{background:#f8f3e8;padding:28px}
+.about-cell i{color:var(--green2);font-size:1.2rem;margin-bottom:13px}
+.about-cell p{margin-top:8px;color:#686e68;font-size:.9rem}
+
+/* services */
+.services{
+  position:relative;background:
+    linear-gradient(rgba(11,16,14,.94),rgba(11,16,14,.96)),
+    url("https://images.unsplash.com/photo-1782588353870-03ae7f561e77?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat
+}
+.service-list{border-top:1px solid var(--line)}
+.service{
+  display:grid;grid-template-columns:58px 1fr auto;gap:18px;align-items:center;
+  padding:24px 0;border-bottom:1px solid var(--line)
+}
+.sicon{
+  width:46px;height:46px;border:1px solid rgba(215,179,106,.42);
+  display:grid;place-items:center;color:var(--gold)
+}
+.service p{color:var(--muted);font-size:.82rem}
+.service .avail{text-transform:uppercase;letter-spacing:.12em;font-size:.62rem;color:var(--gold);font-weight:800}
+
+/* hours */
+.hours{background:var(--panel)}
+.hours-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.hours-card{background:var(--bg);border:1px solid var(--line);padding:28px}
+.hrow{
+  display:flex;justify-content:space-between;gap:20px;padding:12px 0;
+  border-bottom:1px solid var(--line);font-size:.88rem
+}
+.hrow:last-child{border-bottom:0}
+.protected{
+  margin-top:22px;border-left:4px solid var(--gold);
+  padding:18px;background:rgba(255,255,255,.04)
+}
+.protected strong{
+  display:block;color:var(--gold);font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;margin-bottom:7px
+}
+
+/* reviews */
+.reviews{background:var(--cream);color:var(--ink)}
+.reviews .section-head p{color:#6c716c}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{
+  background:#fff;border-top:4px solid var(--green2);padding:26px;
+  box-shadow:0 12px 24px rgba(37,45,39,.07)
+}
+.review .stars{color:#b98d39;font-size:.74rem;margin-bottom:13px}
+.review p{font-size:.98rem}
+.review span{
+  display:block;margin-top:12px;text-transform:uppercase;letter-spacing:.1em;
+  font-size:.67rem;color:#7a8179
+}
+.rating-row{
+  margin-top:24px;border:1px solid #d7cfbf;padding:22px;text-align:center;
+  font-weight:800
+}
+.rating-row strong{font-family:"Archivo Black";font-size:1.6rem;color:var(--green2)}
+
+/* visit */
+.visit{
+  position:relative;background:
+    linear-gradient(rgba(11,16,14,.93),rgba(11,16,14,.96)),
+    url("https://images.unsplash.com/photo-1777621728007-64b28c2731bc?auto=format&fit=crop&w=2200&q=80") center/cover no-repeat
+}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.visit-card{
+  background:rgba(15,23,19,.76);border:1px solid var(--line);
+  padding:28px;backdrop-filter:blur(6px)
+}
+.contact-line{
+  display:grid;grid-template-columns:36px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)
+}
+.contact-line i{color:var(--gold);margin-top:4px}
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:.77rem;font-weight:800;margin-bottom:5px}
+.field input,.field textarea{
+  width:100%;padding:12px 14px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.22);color:#fff;font:inherit
+}
+.field textarea{min-height:105px;resize:vertical}
+
+/* footer */
+footer{background:#070a08;color:#8f9892;padding:36px 0}
+.footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap}
+.footer-nav a{color:#fff;text-decoration:none;font-size:.76rem}
+
+/* modal */
+.modal{
+  position:fixed;inset:0;z-index:1000;display:none;place-items:center;
+  background:rgba(0,0,0,.8);padding:22px
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(470px,100%);background:var(--panel);border:1px solid var(--line);
+  border-top:5px solid var(--gold);padding:32px;color:#fff
+}
+.modal-icon{
+  width:50px;height:50px;border:1px solid var(--gold);color:var(--gold);
+  display:grid;place-items:center;margin-bottom:20px
+}
+.modal-card h2{font-size:2.7rem}
+.modal-card p{color:var(--muted);margin:15px 0 24px}
+body.modal-open{overflow:hidden}
+
+@media(max-width:900px){
+  .menu{display:grid;place-items:center}
+  .navlinks{
+    display:none;position:absolute;top:76px;left:0;right:0;background:var(--bg);
+    flex-direction:column;align-items:stretch;padding:10px 22px 20px;border-bottom:1px solid var(--line)
+  }
+  .navlinks.open{display:flex}
+  .navlinks a{padding:14px 0;border-bottom:1px solid var(--line)}
+  .hero-grid,.section-head,.hours-grid,.visit-grid{grid-template-columns:1fr}
+  .hero-side{display:none}
+  .about-grid,.review-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .wrap,.nav{width:min(var(--max),calc(100% - 28px))}
+  .hero,.hero-grid{min-height:690px}
+  .hero-grid{padding:95px 0 55px}
+  .section{padding:68px 0}
+  .service{grid-template-columns:50px 1fr}
+  .service .avail{grid-column:2}
+  .btn{width:100%}
+  .footer-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="#home" aria-label="Smoke villa home">
+      <span class="brand-mark">SV</span>
+      <span><strong>Smoke villa</strong><small>Philadelphia</small></span>
+    </a>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker"><i class="fa-solid fa-location-dot"></i> Philadelphia</p>
+      <h1>Smoke <span>villa</span></h1>
+      <p class="hero-sub">Glass, flower, and good vibes. Your neighborhood smoke shop.</p>
+      <div class="meta">
+        <span class="pill"><i class="fa-solid fa-location-dot"></i> 8015 Castor Ave</span>
+        <span class="pill"><i class="fa-solid fa-phone"></i> (267) 991-4137</span>
+        <span class="pill"><i class="fa-solid fa-star"></i> 4.9</span>
+      </div>
+      <div class="actions">
+        <a class="btn btn-gold" href="#services"><i class="fa-solid fa-store"></i> Services</a>
+        <a class="btn btn-line" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+        <button class="btn btn-line" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="score">4.9</div>
+      <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p>Local listings</p>
+    </div>
+  </div>
+  <div class="asset-note">Stock retail image · Unsplash</div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span><i class="fa-solid fa-wine-bottle"></i> Glass wall</span>
+    <span><i class="fa-solid fa-battery-three-quarters"></i> Vape bar</span>
+    <span><i class="fa-solid fa-location-dot"></i> Local picks</span>
+    <span><i class="fa-solid fa-star"></i> 4.9</span>
+    <span><i class="fa-solid fa-wine-bottle"></i> Glass wall</span>
+    <span><i class="fa-solid fa-battery-three-quarters"></i> Vape bar</span>
+    <span><i class="fa-solid fa-location-dot"></i> Local picks</span>
+    <span><i class="fa-solid fa-star"></i> 4.9</span>
+  </div>
+</div>
+
+<section class="section about">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">About</p><h2>Your neighborhood smoke shop</h2></div>
+      <p>Smoke villa in Philadelphia. Your neighborhood smoke shop for glass, flower, vapes, and good vibes. Come in, ask questions, leave set.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-cell"><i class="fa-solid fa-wine-bottle"></i><h3>Glass wall</h3><p>What neighbors notice first.</p></div>
+      <div class="about-cell"><i class="fa-solid fa-battery-three-quarters"></i><h3>Vape bar</h3><p>What neighbors notice first.</p></div>
+      <div class="about-cell"><i class="fa-solid fa-location-dot"></i><h3>Local picks</h3><p>What neighbors notice first.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">Services</p><h2>What you'll find at Smoke villa</h2></div>
+      <p>The categories below are taken directly from the supplied site.</p>
+    </div>
+    <div class="service-list">
+      <div class="service"><div class="sicon"><i class="fa-solid fa-leaf"></i></div><h3>Premium flower & vapes</h3><div class="avail">Available in-store.</div></div>
+      <div class="service"><div class="sicon"><i class="fa-solid fa-wine-bottle"></i></div><h3>Glass & accessories</h3><div class="avail">Available in-store.</div></div>
+      <div class="service"><div class="sicon"><i class="fa-solid fa-spa"></i></div><h3>CBD & wellness</h3><div class="avail">Available in-store.</div></div>
+      <div class="service"><div class="sicon"><i class="fa-solid fa-comments"></i></div><h3>Local-friendly staff</h3><div class="avail">Available in-store.</div></div>
+    </div>
+  </div>
+  <div class="asset-note">Stock retail image · Unsplash</div>
+</section>
+
+<section class="section hours">
+  <div class="wrap hours-grid">
+    <div>
+      <p class="kicker">Hours</p>
+      <h2>Visit Smoke villa</h2>
+      <div class="protected">
+        <strong>Demo actions are protected</strong>
+        <p>Call and map actions are locked in this sample website.</p>
+      </div>
+      <p style="margin-top:14px;color:var(--muted);font-size:.84rem">Hours may change on holidays — call to confirm.</p>
+    </div>
+    <div class="hours-card">
+      <div class="hrow"><span>Sunday</span><strong>10:00 AM – 10:00 PM</strong></div>
+      <div class="hrow"><span>Monday</span><strong>10:00 AM – 10:00 PM</strong></div>
+      <div class="hrow"><span>Tuesday</span><strong>10:00 AM – 10:00 PM</strong></div>
+      <div class="hrow"><span>Wednesday</span><strong>10:00 AM – 10:00 PM</strong></div>
+      <div class="hrow"><span>Thursday</span><strong>10:00 AM – 10:00 PM</strong></div>
+      <div class="hrow"><span>Friday</span><strong>10:00 AM – 12:00 AM</strong></div>
+      <div class="hrow"><span>Saturday</span><strong>10:00 AM – 12:00 AM</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">Reviews</p><h2>4.9 on local listings</h2></div>
+      <p>The supplied site includes the following review text.</p>
+    </div>
+    <div class="review-grid">
+      <article class="review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Friendly stop in Philadelphia. Worth swinging by.”</p><span>Neighborhood visitor</span></article>
+      <article class="review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Good prices and solid smoke.”</p><span>Neighborhood visitor</span></article>
+      <article class="review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Neighborhood favorite — easy to find at 8015 Castor Ave.”</p><span>Neighborhood visitor</span></article>
+    </div>
+    <div class="rating-row"><strong>4.9</strong> on local listings</div>
+    <div class="actions" style="justify-content:center;margin-top:22px">
+      <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-map"></i> See more on Maps</button>
+    </div>
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">Visit</p><h2>8015 Castor Ave</h2></div>
+      <p>Smoke villa is listed at 8015 Castor Ave, Philadelphia, PA 19152.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-card">
+        <h3>Find us</h3>
+        <div class="contact-line"><i class="fa-solid fa-location-dot"></i><div><strong>Smoke villa</strong><br>8015 Castor Ave<br>Philadelphia, PA 19152</div></div>
+        <div class="contact-line"><i class="fa-solid fa-phone"></i><div>(267) 991-4137</div></div>
+        <div class="actions" style="margin-top:22px">
+          <button class="btn btn-gold" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Open in Google Maps</button>
+        </div>
+      </div>
+
+      <div class="visit-card">
+        <h3>Send a message</h3>
+        <form class="form" id="demoForm" style="margin-top:18px">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-gold" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Text the shop</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="asset-note">Stock retail image · Unsplash</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div><strong style="color:#fff">Smoke villa</strong><div style="font-size:.78rem">8015 Castor Ave, Philadelphia, PA 19152 · (267) 991-4137</div></div>
+    <nav class="footer-nav"><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-gold" id="closeModal" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeModal = document.getElementById('closeModal');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  function openLocked() {
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeModal.focus();
+  }
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked();
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked();
+  });
+
+  closeModal.addEventListener('click', closeLocked);
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>

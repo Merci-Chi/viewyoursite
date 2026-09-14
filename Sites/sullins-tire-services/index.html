@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#101417">
+  <title>Sullins Tire &amp; Services | Las Vegas</title>
+  <meta name="description" content="Sullins Tire & Services in Las Vegas. New tires, used tires, flat repair, mounting and balancing, wheels, overnight service, and 24/7 hours.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{--black:#101417;--graphite:#1b2227;--steel:#677782;--silver:#d4dce1;--orange:#f26b21;--orange2:#c94e0e;--white:#f8fafb;--paper:#eef2f4;--muted:#91a0aa;--line:rgba(255,255,255,.12);--darkline:rgba(16,20,23,.14);--max:1180px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{margin:0;background:var(--paper);color:var(--black);font-family:"DM Sans",sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
+    h1,h2,h3{margin-top:0}
+    h1,h2{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;line-height:.9}
+    h1{font-size:clamp(4.8rem,10vw,9rem);letter-spacing:-.035em;margin-bottom:22px;font-weight:900}
+    h2{font-size:clamp(3rem,6vw,5.2rem);letter-spacing:-.025em;margin-bottom:16px;font-weight:800}
+    h3{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;font-size:1.45rem;letter-spacing:.02em}
+    p{line-height:1.72}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+    .eyebrow:before{content:"";width:34px;height:3px;background:currentColor}
+    .btn{min-height:50px;padding:0 22px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.18s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-orange{background:var(--orange);color:#fff}
+    .btn-dark{background:var(--black);color:#fff}
+    .btn-line{background:transparent;border-color:rgba(255,255,255,.68);color:#fff}
+    header{position:sticky;top:0;z-index:100;background:rgba(16,20,23,.95);color:#fff;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .head{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{width:44px;height:44px;border:3px solid var(--orange);border-radius:50%;position:relative;flex-shrink:0}
+    .brand-mark:before,.brand-mark:after{content:"";position:absolute;inset:7px;border:2px dashed var(--orange);border-radius:50%}
+    .brand-mark:after{inset:15px;background:var(--orange);border:0}
+    .brand strong{display:block;font-family:"Barlow Condensed";text-transform:uppercase;font-size:1.16rem;letter-spacing:.04em;line-height:1}
+    .brand small{display:block;margin-top:4px;color:#9eabb4;font-size:.62rem;text-transform:uppercase;letter-spacing:.16em}
+    .nav{display:flex;align-items:center;gap:28px;font-size:.84rem;font-weight:700}
+    .nav a:hover{color:var(--orange)}
+    .menu{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent;color:#fff}
+    .mobile-menu{display:none;background:var(--black);border-top:1px solid var(--line);padding:8px 20px 18px}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+    .hero{min-height:760px;position:relative;overflow:hidden;display:grid;align-items:end;color:#fff;background:linear-gradient(90deg,rgba(10,14,17,.97) 0%,rgba(10,14,17,.76) 50%,rgba(10,14,17,.16) 100%),url("https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat}
+    .hero:after{content:"24/7";position:absolute;right:-10px;top:30px;font-family:"Barlow Condensed";font-size:min(31vw,390px);font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.08);line-height:.8}
+    .hero-inner{position:relative;z-index:2;padding:120px 0 86px;max-width:860px}
+    .hero-copy{max-width:650px;color:rgba(255,255,255,.82);font-size:1.07rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .stock-note{position:absolute;right:16px;bottom:14px;z-index:3;padding:7px 10px;background:rgba(0,0,0,.45);color:#ddd;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase}
+    .factsbar{background:var(--orange);color:#fff}
+    .facts-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .fact{padding:23px 24px;display:flex;gap:14px;border-right:1px solid rgba(255,255,255,.18)}
+    .fact:last-child{border-right:0}
+    .fact i{margin-top:3px}
+    .fact strong{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:4px}
+    .fact span{font-weight:800}
+    .section{padding:100px 0}
+    .section.white{background:#fff}
+    .section.dark{background:var(--graphite);color:#fff}
+    .section.light{background:var(--paper)}
+    .split{display:grid;grid-template-columns:.82fr 1.18fr;gap:72px;align-items:start}
+    .lead{max-width:700px;color:#687781;font-size:1.03rem}
+    .dark .lead{color:#a8b3ba}
+    .about-photo{min-height:470px;position:relative;background:linear-gradient(rgba(242,107,33,.08),rgba(242,107,33,.08)),url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1500&q=84") center/cover no-repeat;box-shadow:0 22px 50px rgba(16,20,23,.18)}
+    .about-photo:after{content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;background:rgba(16,20,23,.8);color:#fff;padding:7px 9px;font-size:.65rem;text-transform:uppercase;letter-spacing:.06em}
+    .service-list{margin-top:40px;border-top:1px solid var(--line)}
+    .service-row{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+    .service-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--orange);color:#fff}
+    .service-row h3{margin:0 0 6px}
+    .service-row p{margin:0;color:#aab5bc}
+    .service-tag{font-size:.69rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+    .photo-band{min-height:600px;display:grid;align-items:center;color:#fff;background:linear-gradient(90deg,rgba(14,18,21,.94),rgba(14,18,21,.58),rgba(14,18,21,.16)),url("https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat}
+    .photo-copy{max-width:650px;padding:90px 0}
+    .photo-copy p{color:rgba(255,255,255,.82)}
+    .review-wrap{max-width:820px;margin:0 auto}
+    .quote{background:#fff;border-left:7px solid var(--orange);padding:34px;box-shadow:0 12px 30px rgba(16,20,23,.08)}
+    .quote i{color:var(--orange);font-size:1.4rem}
+    .quote blockquote{margin:14px 0 12px;font-size:1.08rem;line-height:1.75}
+    .quote span{font-size:.76rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#6f7c84}
+    .rating{margin-top:28px;background:var(--black);color:#fff;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .rating-big{font-family:"Barlow Condensed";font-size:4.2rem;font-weight:900;color:var(--orange);line-height:.9}
+    .rating p{margin:5px 0 0;color:#a8b3ba}
+    .hours-grid{display:grid;grid-template-columns:.74fr 1.26fr;gap:68px}
+    .hours-list{border-top:2px solid var(--black)}
+    .hrow{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--darkline)}
+    .hrow strong{font-weight:800}
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+    .vcard{min-height:300px;background:#fff;border:1px solid var(--darkline);padding:34px}
+    .vcard.darkcard{background:var(--black);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+    .vcard.darkcard p{color:#a8b3ba}
+    .protected{margin-top:20px;border:2px dashed currentColor;padding:17px;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .cta{margin-top:34px;background:var(--orange);color:#fff;padding:44px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .cta h3{font-family:"Barlow Condensed";font-size:clamp(2rem,4vw,3.1rem);margin:0}
+    .cta p{margin:8px 0 0;color:#ffe6d8}
+    footer{background:#0b0f12;color:#9ca9b1;padding:38px 0}
+    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.83rem}
+    .foot strong{color:#fff}
+    .modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;padding:22px;background:rgba(0,0,0,.76)}
+    .modal.open{display:grid}
+    .modal-card{width:min(470px,100%);background:#fff;color:var(--black);padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+    .modal-icon{width:50px;height:50px;display:grid;place-items:center;background:var(--black);color:var(--orange);margin-bottom:20px}
+    .modal-card h2{font-size:2.5rem}
+    .modal-card p{color:#687781;margin:14px 0 24px}
+    .modal-card .btn{width:100%}
+    @media(max-width:900px){
+      .nav{display:none}.menu{display:grid;place-items:center}
+      .split,.hours-grid,.visit-grid{grid-template-columns:1fr}
+      .facts-grid{grid-template-columns:1fr}
+      .fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}
+      .fact:last-child{border-bottom:0}
+      .service-row{grid-template-columns:56px 1fr}
+      .service-tag{grid-column:2}
+      .rating,.cta{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .head{height:68px}.brand strong{font-size:1rem}.brand small{display:none}
+      .hero{min-height:640px;background-position:58% center}.hero-inner{padding:90px 0 54px}
+      h1{font-size:clamp(4rem,19vw,5.8rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .section{padding:74px 0}.about-photo{min-height:340px}.vcard{padding:26px}.cta{padding:30px 24px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap head">
+    <a class="brand" href="#home" aria-label="Sullins Tire & Services home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>
+        <strong>Sullins Tire &amp; Services</strong>
+        <small>Las Vegas · Open 24/7</small>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Find Us</a>
+    </nav>
+    <button class="menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#hours">Hours</a>
+    <a href="#visit">Find Us</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Stewart Ave · Las Vegas</div>
+      <h1>Sullins Tire &amp; Services</h1>
+      <p class="hero-copy">The 24/7 tire shop on Stewart Ave. Flat repaired at noon or at 4 AM, new and used tires fitted on the spot, and prices regulars call reasonable.</p>
+      <div class="hero-actions">
+        <a class="btn btn-orange" href="#services"><i class="fa-solid fa-gear"></i> View services</a>
+        <a class="btn btn-line" href="#hours"><i class="fa-solid fa-clock"></i> View hours</a>
+      </div>
+    </div>
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="factsbar">
+    <div class="wrap facts-grid">
+      <div class="fact"><i class="fa-solid fa-clock"></i><div><strong>Hours</strong><span>Open 24 hours, 7 days a week</span></div></div>
+      <div class="fact"><i class="fa-solid fa-star"></i><div><strong>Google rating shown in source</strong><span>4.1 · 471 reviews</span></div></div>
+      <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Las Vegas, Nevada</span></div></div>
+    </div>
+  </section>
+
+  <section class="section white" id="about">
+    <div class="wrap split">
+      <div class="about-photo" role="img" aria-label="Stock photo of tire service"></div>
+      <div>
+        <div class="eyebrow">Always open</div>
+        <h2>Needle stays on full around here.</h2>
+        <p class="lead">Sullins runs day and night, 7 days a week, because flats do not schedule themselves.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark" id="services">
+    <div class="wrap">
+      <div class="eyebrow">Services</div>
+      <h2>What the bays handle.</h2>
+      <p class="lead">Sullins Tire &amp; Services keeps the menu simple and the work solid: tires, repairs, and the basics done right, at any hour you roll in.</p>
+      <div class="service-list">
+        <div class="service-row"><div class="service-icon"><i class="fa-solid fa-circle-plus"></i></div><div><h3>New tire sales &amp; fitting</h3><p>Pick the tire, we mount and balance it the same visit. Day or night, same drill.</p></div><span class="service-tag">Tires</span></div>
+        <div class="service-row"><div class="service-icon"><i class="fa-solid fa-rotate"></i></div><div><h3>Used tires</h3><p>Checked before they go on, priced for the moment when a new set is not in the budget.</p></div><span class="service-tag">Tires</span></div>
+        <div class="service-row"><div class="service-icon"><i class="fa-solid fa-bandage"></i></div><div><h3>Flat repair: patch &amp; plug</h3><p>The proper fix for punctures, done from the inside so the repair actually holds.</p></div><span class="service-tag">Repair</span></div>
+        <div class="service-row"><div class="service-icon"><i class="fa-solid fa-gauge-high"></i></div><div><h3>Mounting &amp; balancing</h3><p>Standard on every install. No shaking steering wheel, no comeback.</p></div><span class="service-tag">Install</span></div>
+        <div class="service-row"><div class="service-icon"><i class="fa-solid fa-compact-disc"></i></div><div><h3>Wheels</h3><p>Wheel service alongside the tires so the whole corner is handled in one stop.</p></div><span class="service-tag">Wheels</span></div>
+        <div class="service-row"><div class="service-icon"><i class="fa-solid fa-moon"></i></div><div><h3>Overnight service</h3><p>The overnight crew is why the address stays saved in so many phones. Whatever hour it happens, come in.</p></div><span class="service-tag">24/7</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-band">
+    <div class="wrap photo-copy">
+      <div class="eyebrow">Day or night</div>
+      <h2>Open 24 hours, 7 days a week.</h2>
+      <p>This demo uses relevant generic tire-shop stock photography. It does not depict the actual Sullins Tire &amp; Services building, bays, employees, customers, or inventory.</p>
+    </div>
+  </section>
+
+  <section class="section white" id="reviews">
+    <div class="wrap review-wrap">
+      <div style="text-align:center;margin-bottom:34px"><div class="eyebrow">Reviews</div><h2>Google review excerpt.</h2></div>
+      <article class="quote">
+        <i class="fa-solid fa-quote-left"></i>
+        <blockquote>“I love coming here. Every time I’ve gotten a flat repair, this is my place to go to! Very reasonable prices.”</blockquote>
+        <span>Google review</span>
+      </article>
+      <div class="rating">
+        <div><div class="rating-big">4.1</div><p>471 Google reviews shown in the supplied source.</p></div>
+        <button class="btn btn-orange" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See reviews</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light" id="hours">
+    <div class="wrap hours-grid">
+      <div><div class="eyebrow">Hours</div><h2>Never closed.</h2><p class="lead">The supplied source lists the business as open 24 hours every day of the week.</p></div>
+      <div class="hours-list">
+        <div class="hrow"><span>Sunday</span><strong>Open 24 hours</strong></div>
+        <div class="hrow"><span>Monday</span><strong>Open 24 hours</strong></div>
+        <div class="hrow"><span>Tuesday</span><strong>Open 24 hours</strong></div>
+        <div class="hrow"><span>Wednesday</span><strong>Open 24 hours</strong></div>
+        <div class="hrow"><span>Thursday</span><strong>Open 24 hours</strong></div>
+        <div class="hrow"><span>Friday</span><strong>Open 24 hours</strong></div>
+        <div class="hrow"><span>Saturday</span><strong>Open 24 hours</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section white" id="visit">
+    <div class="wrap">
+      <div class="eyebrow">Find us</div>
+      <h2>Real-world contact details stay protected.</h2>
+      <p class="lead">The source includes a public business address, 24/7 phone line, Google Maps action, and quote form. Those actions remain disabled in this demo.</p>
+      <div class="visit-grid">
+        <article class="vcard darkcard">
+          <div><i class="fa-solid fa-location-dot" style="font-size:2rem;color:var(--orange)"></i><h3 style="margin-top:20px">Business address</h3><p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p></div>
+          <div class="actions"><button class="btn btn-orange" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button></div>
+        </article>
+        <article class="vcard">
+          <i class="fa-solid fa-phone" style="font-size:1.7rem;color:var(--orange)"></i>
+          <h3 style="margin-top:18px">24/7 line</h3>
+          <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+          <div class="actions"><button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call shop</button></div>
+        </article>
+      </div>
+      <div class="cta">
+        <div><h3>Request a quote</h3><p>The original page included a quote form. Submission stays protected in this demo.</p></div>
+        <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-lock"></i> Send request</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>Sullins Tire &amp; Services</strong><br>Las Vegas, Nevada</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal-card" tabindex="-1">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-dark" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalCard = modal.querySelector('.modal-card');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openLocked(trigger) {
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    setTimeout(() => modalCard.focus(), 0);
+  }
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  modalClose.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if (e.ctrlKey || e.metaKey) e.preventDefault();
+  }, { passive:false });
+})();
+</script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Sullins Tire & Services
+- Las Vegas, Nevada / Stewart Ave context
+- Source wording: The 24/7 tire shop on Stewart Ave
+- Hours: open 24 hours, 7 days a week
+- Services:
+  New tire sales & fitting
+  Used tires
+  Flat repair: patch & plug
+  Mounting & balancing
+  Wheels
+  Overnight service
+- Google rating shown: 4.1 stars across 471 reviews
+- Google review excerpt reproduced from supplied source
+- Source includes exact business address and phone, intentionally hidden in demo
+
+OMITTED / PROTECTED
+- Exact phone number and street address
+- Working tel link
+- Working Google Maps link
+- Working Google reviews link
+- Working quote form / SMS action
+- Any unsupported pricing, tire brands, warranties, certifications, owner/team details, or social links
+
+STOCK ASSETS
+- Relevant generic tire-shop / automotive imagery from Unsplash
+- Stock imagery does not depict the actual business, bays, staff, customers, or inventory
+- Font Awesome Free icons
+- Google Fonts: Barlow Condensed + DM Sans
+
+QUALITY CHECK
+- One complete HTML file
+- CSS and JavaScript inline
+- Fully responsive
+- Three-line mobile hamburger
+- Mobile zoom prevention
+- Text selection disabled
+- Internal navigation works
+- One reusable locked-feature modal
+- Locked actions do not redirect, submit, or fake success
+- Uses normal JavaScript operators such as &&
+-->
+</body>
+</html>

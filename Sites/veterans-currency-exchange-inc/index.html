@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#102d28">
+  <title>Veterans Currency Exchange Inc | St. Louis, MO</title>
+  <meta name="description" content="Veterans Currency Exchange Inc in St. Louis, Missouri. View business hours and protected demo contact information.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --green:#102d28;
+      --green2:#19443c;
+      --cream:#f4efe4;
+      --paper:#fffdf7;
+      --gold:#c49a3a;
+      --gold2:#e2bf69;
+      --ink:#17211e;
+      --muted:#65706b;
+      --line:rgba(16,45,40,.15);
+      --white:#fff;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;font-family:"Archivo",sans-serif;background:var(--cream);color:var(--ink);
+      overflow-x:hidden;user-select:none;-webkit-user-select:none
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
+    h1,h2,h3{margin-top:0}
+    h1,h2{font-family:"DM Serif Display",serif;font-weight:400}
+    h1{font-size:clamp(3.8rem,8vw,7rem);line-height:.9;letter-spacing:-.035em;margin-bottom:24px}
+    h2{font-size:clamp(2.5rem,5vw,4.4rem);line-height:1;letter-spacing:-.025em;margin-bottom:18px}
+    h3{font-size:1.15rem}
+    p{line-height:1.7}
+    .kicker{
+      text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;font-weight:800;color:var(--gold)
+    }
+    .btn{
+      min-height:50px;padding:0 21px;border:1px solid transparent;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      font-weight:800;cursor:pointer;transition:.18s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-gold{background:var(--gold);color:#1f2b26}
+    .btn-dark{background:var(--green);color:#fff}
+    .btn-outline{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.55);color:#fff}
+    .site-header{
+      position:sticky;top:0;z-index:100;background:rgba(244,239,228,.95);
+      backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+    }
+    .head{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand-icon{width:40px;height:40px;display:grid;place-items:center;background:var(--green);color:var(--gold2)}
+    .brand span:last-child{line-height:1.15}
+    .nav{display:flex;gap:28px;align-items:center;font-size:.9rem;font-weight:700}
+    .nav a:hover{color:#8a6720}
+    .menu-btn{display:none;width:46px;height:46px;border:0;background:transparent;cursor:pointer}
+    .menu-btn span{display:block;height:2px;background:var(--green);margin:6px 0}
+    .mobile-menu{display:none;padding:8px 20px 18px;background:var(--cream);border-top:1px solid var(--line)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+    .hero{
+      min-height:700px;color:#fff;display:grid;align-items:end;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(7,30,25,.94) 0%,rgba(7,30,25,.76) 49%,rgba(7,30,25,.28) 100%),
+        url("https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero-inner{padding:115px 0 80px;max-width:790px;position:relative;z-index:2}
+    .hero .kicker{color:var(--gold2)}
+    .hero-copy{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.84);max-width:620px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .stock-note{
+      position:absolute;right:18px;bottom:16px;font-size:.68rem;letter-spacing:.07em;
+      text-transform:uppercase;color:rgba(255,255,255,.65)
+    }
+
+    .quickbar{background:var(--green);color:#fff}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+    .quick:last-child{border-right:0}
+    .quick i{color:var(--gold2);margin-top:3px}
+    .quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+    .quick span{font-weight:700}
+
+    .section{padding:96px 0}
+    .section.white{background:#fff}
+    .overview-grid{display:grid;grid-template-columns:1fr .9fr;gap:62px;align-items:start}
+    .lead{max-width:700px;color:var(--muted);font-size:1.03rem}
+    .info-panel{background:var(--paper);border-top:5px solid var(--gold);padding:38px}
+    .facts{border-top:1px solid var(--line);margin-top:22px}
+    .fact{display:flex;gap:14px;padding:17px 0;border-bottom:1px solid var(--line);align-items:center}
+    .fact i{width:23px;color:#8a6720}
+    .protected{
+      margin-top:24px;padding:18px 20px;background:#f0eadc;border-left:4px solid var(--gold);
+      display:flex;gap:14px
+    }
+    .protected i{color:#8a6720;margin-top:3px}
+    .protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+    .protected p{margin:0;color:var(--muted);font-size:.92rem}
+
+    .services{background:#eee8dc}
+    .service-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:35px}
+    .service{background:#fff;padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:240px}
+    .service-icon{width:50px;height:50px;background:#edf3ef;display:grid;place-items:center;color:var(--green);margin-bottom:25px}
+    .service p{color:var(--muted);margin-bottom:0}
+
+    .photo-band{
+      min-height:560px;display:grid;align-items:center;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(8,31,26,.93),rgba(8,31,26,.58),rgba(8,31,26,.18)),
+        url("https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=2000&q=82") center/cover no-repeat;
+    }
+    .photo-copy{max-width:650px;padding:84px 0}
+    .photo-copy p{color:rgba(255,255,255,.8)}
+    .stock-label{display:inline-flex;gap:8px;align-items:center;padding:8px 11px;background:rgba(0,0,0,.38);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+
+    .hours{
+      color:#fff;background:
+        linear-gradient(90deg,rgba(12,45,39,.96),rgba(12,45,39,.88)),
+        url("https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+    .hours .lead{color:rgba(255,255,255,.72)}
+    .hours-list{border-top:1px solid rgba(255,255,255,.2)}
+    .hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+    .hour-row span{color:rgba(255,255,255,.82)}
+
+    .rating-box{
+      margin-top:34px;padding:34px;background:#fff;border-left:5px solid var(--gold);
+      display:flex;justify-content:space-between;align-items:center;gap:25px
+    }
+    .rating-score{font:400 3rem "DM Serif Display",serif;color:var(--green)}
+    .rating-box p{margin:4px 0 0;color:var(--muted)}
+
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+    .visit-card{background:#fff;border:1px solid var(--line);padding:34px;min-height:290px}
+    .visit-card.dark{background:var(--green);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+    .visit-card.dark p{color:rgba(255,255,255,.72)}
+    .protected-box{margin-top:20px;border:2px dashed currentColor;padding:17px;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+    .cta{margin-top:32px;background:var(--gold2);padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .cta h3{font-family:"DM Serif Display";font-size:clamp(2rem,4vw,3rem);font-weight:400;margin:0}
+    .cta p{margin:8px 0 0;color:#3b493f}
+
+    footer{background:#091f1b;color:rgba(255,255,255,.72);padding:38px 0}
+    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+    .foot strong{color:#fff}
+
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;
+      z-index:500;padding:20px
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+    .modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--green);color:var(--gold2);margin-bottom:20px}
+    .modal h2{font-size:2rem;margin-bottom:12px}
+    .modal p{color:var(--muted);margin-bottom:24px}
+    .modal .btn{width:100%}
+
+    @media(max-width:900px){
+      .nav{display:none}.menu-btn{display:block}
+      .overview-grid,.hours-grid,.visit-grid{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr 1fr}
+      .quick-grid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+      .quick:last-child{border-bottom:0}
+      .hero{min-height:640px}
+      .cta,.rating-box{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .head{height:68px}.brand{font-size:.88rem}.brand-icon{width:35px;height:35px}
+      .hero{min-height:610px;background-position:58% center}.hero-inner{padding:88px 0 50px}
+      h1{font-size:clamp(3.1rem,15vw,4.7rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .section{padding:72px 0}
+      .service-grid{grid-template-columns:1fr}
+      .service{min-height:0;padding:28px 24px}
+      .info-panel,.visit-card{padding:26px}
+      .cta{padding:30px 24px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap head">
+      <a class="brand" href="#home" aria-label="Veterans Currency Exchange Inc home">
+        <span class="brand-icon"><i class="fa-solid fa-building-columns"></i></span>
+        <span>Veterans Currency Exchange Inc</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#services">Services</a>
+        <a href="#hours">Hours</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#overview">Overview</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="kicker">St. Louis, Missouri</div>
+        <h1>Veterans Currency Exchange Inc</h1>
+        <p class="hero-copy">A neighborhood stop you can count on.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#hours"><i class="fa-regular fa-clock"></i> View hours</a>
+          <button class="btn btn-outline" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Contact business</button>
+        </div>
+      </div>
+      <div class="stock-note">Stock imagery — not the actual business</div>
+    </section>
+
+    <section class="quickbar">
+      <div class="wrap quick-grid">
+        <div class="quick">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>Location</strong><span>St. Louis, MO</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-regular fa-clock"></i>
+          <div><strong>Hours</strong><span>Hours listed for all seven days</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-solid fa-star"></i>
+          <div><strong>Rating shown in source</strong><span>2.0 on local listings</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="overview">
+      <div class="wrap overview-grid">
+        <div>
+          <div class="kicker">Business overview</div>
+          <h2>Veterans Currency Exchange Inc in St. Louis.</h2>
+          <p class="lead">The supplied page identifies Veterans Currency Exchange Inc at a St. Louis location and provides business hours, a phone number, a street address, and a local-listing rating.</p>
+        </div>
+        <div class="info-panel">
+          <h3>Supplied business facts</h3>
+          <div class="facts">
+            <div class="fact"><i class="fa-solid fa-store"></i><strong>Veterans Currency Exchange Inc</strong></div>
+            <div class="fact"><i class="fa-solid fa-city"></i><strong>St. Louis, Missouri</strong></div>
+            <div class="fact"><i class="fa-solid fa-star"></i><strong>2.0 on local listings</strong></div>
+          </div>
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The supplied page includes a real phone number and street address, but this demo keeps those real-world contact details locked.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="kicker">Services</div>
+        <h2>What you’ll find at Veterans Currency Exchange Inc.</h2>
+        <p class="lead">These labels are reproduced from the supplied page without adding unsupported service claims.</p>
+        <div class="service-grid">
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-star"></i></div>
+            <h3>Local favorites</h3>
+            <p>Ask our team for guidance.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-handshake"></i></div>
+            <h3>Friendly service</h3>
+            <p>Ask our team for guidance.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+            <h3>Everyday essentials</h3>
+            <p>Ask our team for guidance.</p>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-door-open"></i></div>
+            <h3>Come say hello</h3>
+            <p>Ask our team for guidance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-band" aria-label="Generic financial-service stock imagery">
+      <div class="wrap photo-copy">
+        <div class="kicker">St. Louis location</div>
+        <h2>Business information, presented clearly.</h2>
+        <p>This demo uses generic financial-service stock imagery for visual presentation. The images do not depict Veterans Currency Exchange Inc, its employees, customers, or actual location.</p>
+        <span class="stock-label"><i class="fa-solid fa-image"></i> Stock imagery — not the actual business</span>
+      </div>
+    </section>
+
+    <section class="section hours" id="hours">
+      <div class="wrap hours-grid">
+        <div>
+          <div class="kicker" style="color:var(--gold2)">Business hours</div>
+          <h2>Hours shown in the supplied source.</h2>
+          <p class="lead">The schedule below is reproduced from the provided HTML rather than inferred.</p>
+        </div>
+        <div class="hours-list">
+          <div class="hour-row"><strong>Sunday</strong><span>10:00 AM – 6:00 PM</span></div>
+          <div class="hour-row"><strong>Monday</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="hour-row"><strong>Tuesday</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="hour-row"><strong>Wednesday</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="hour-row"><strong>Thursday</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="hour-row"><strong>Friday</strong><span>9:00 AM – 7:00 PM</span></div>
+          <div class="hour-row"><strong>Saturday</strong><span>10:00 AM – 6:00 PM</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="visit">
+      <div class="wrap">
+        <div class="kicker">Visit &amp; contact</div>
+        <h2>Contact details stay protected in this demo.</h2>
+        <p class="lead">The supplied source includes a public business phone number and street address. Those real-world actions are intentionally disabled here until the site is unlocked.</p>
+
+        <div class="rating-box">
+          <div>
+            <div class="rating-score">2.0</div>
+            <p>Rating shown on local listings in the supplied source.</p>
+          </div>
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-map"></i> View listing</button>
+        </div>
+
+        <div class="visit-grid">
+          <article class="visit-card dark">
+            <div>
+              <i class="fa-solid fa-location-dot" style="font-size:2rem;color:var(--gold2)"></i>
+              <h3 style="margin-top:22px">Business address</h3>
+              <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+            </div>
+            <div class="actions">
+              <button class="btn btn-gold" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+            </div>
+          </article>
+          <article class="visit-card">
+            <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+            <div class="protected-box">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+            <div class="actions">
+              <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call business</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Need the full contact experience?</h3>
+            <p>Unlock the site to enable real-world contact actions.</p>
+          </div>
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-lock"></i> Contact</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div><strong>Veterans Currency Exchange Inc</strong><br>St. Louis, Missouri</div>
+      <div>Demo website · Contact details protected</div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h2 id="modalTitle">This is currently locked.</h2>
+      <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-dark" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const modal = document.getElementById('lockedModal');
+      const modalClose = document.getElementById('modalClose');
+      let lastFocus = null;
+
+      function closeMenu(){
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+
+      menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+      function openModal(trigger){
+        lastFocus = trigger || document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if(lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openModal(el);
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          e.preventDefault();
+          modalClose.focus();
+        }
+      });
+
+      document.addEventListener('gesturestart', e => e.preventDefault());
+      document.addEventListener('gesturechange', e => e.preventDefault());
+      document.addEventListener('gestureend', e => e.preventDefault());
+      document.addEventListener('wheel', e => {
+        if(e.ctrlKey || e.metaKey) e.preventDefault();
+      }, {passive:false});
+    })();
+  </script>
+
+  <!--
+  SOURCE-DERIVED CONTENT USED
+  - Veterans Currency Exchange Inc
+  - St. Louis, Missouri
+  - Supplied address and phone exist but are protected in visible demo
+  - Rating shown in supplied source: 2.0 on local listings
+  - Hours:
+      Sunday 10 AM–6 PM
+      Monday–Friday 9 AM–7 PM
+      Saturday 10 AM–6 PM
+  - Source labels:
+      Local favorites
+      Friendly service
+      Everyday essentials
+      Come say hello
+  - Hero phrase preserved from supplied source:
+      A neighborhood stop you can count on.
+
+  OMITTED
+  - Generic "Neighborhood visitor" testimonial quotes
+  - Owner/team names
+  - Email
+  - Prices/discounts
+  - Specific exchange products or financial services not explicitly listed
+  - Awards/licenses/certifications
+  - Years in business
+  - Social links
+  - Forms, booking, payments, login
+
+  ASSETS
+  - Generic stock imagery loaded from Unsplash
+  - Stock imagery does not depict the real business
+  - Font Awesome Free icons via CDN
+
+  QUALITY CHECK
+  - One HTML file
+  - CSS and JS inline
+  - Fully responsive
+  - Three-line mobile hamburger
+  - Mobile zoom prevention
+  - Text selection disabled
+  - Contact details protected
+  - One reusable locked modal
+  - No fake submission or redirect
+  -->
+</body>
+</html>

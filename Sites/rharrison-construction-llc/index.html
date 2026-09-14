@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>R.Harrison Construction LLC</title>
+<meta name="description" content="R.Harrison Construction LLC in Cincinnati, Ohio. Contractor and roofing contractor information based on the supplied business research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --charcoal:#24211c;
+  --charcoal-2:#322e26;
+  --orange:#e8622c;
+  --orange-dark:#c44f1f;
+  --plywood:#d9b77c;
+  --plywood-dark:#b9955c;
+  --paper:#f6f1e6;
+  --paper-2:#efe7d5;
+  --ink:#2b2822;
+  --muted:#6f675a;
+  --white:#ffffff;
+  --stripe:repeating-linear-gradient(-45deg,var(--orange) 0 18px,var(--charcoal) 18px 36px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+.biz-root{scroll-behavior:smooth}
+.biz-root{font-family:'Barlow',Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+h1,h2,h3,h4,.condensed{font-family:'Barlow Condensed',Impact,sans-serif;letter-spacing:.02em;text-transform:uppercase}
+a{color:inherit}
+img{max-width:100%}
+
+/* ===== HARD-HAT NAV ===== */
+.topstripe{height:10px;background:var(--stripe)}
+.site-header{background:var(--charcoal);color:var(--paper);position:sticky;top:0;z-index:100;border-bottom:4px solid var(--orange)}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.hat{width:46px;height:40px;flex:0 0 46px}
+.brand-text{line-height:1.1}
+.brand-text strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;letter-spacing:.03em;text-transform:uppercase}
+.brand-text span{font-size:.72rem;letter-spacing:.22em;color:var(--plywood);text-transform:uppercase}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{display:block;padding:12px 16px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);border-radius:4px}
+.nav-links a:hover{background:rgba(255,255,255,.08);color:var(--orange)}
+.nav-links a.active,.nav-links a.active{color:#fff;background:var(--orange)}
+.nav-call{display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--orange);color:#fff;font-weight:700;padding:10px 18px;border-radius:6px;font-size:1rem}
+.nav-call:hover{background:var(--orange-dark)}
+.hamburger{display:none;background:none;border:0;color:var(--paper);font-size:1.6rem;cursor:pointer;padding:10px}
+
+/* ===== PAGE ROUTER ===== */
+.biz-page{display:none}
+.biz-page.active{display:block}
+
+/* ===== JOBSITE-SIGN HERO ===== */
+.hero{padding:56px 20px 64px;background:
+  radial-gradient(circle at 20% 30%, rgba(0,0,0,.05), transparent 60%),
+  linear-gradient(180deg,var(--paper-2),var(--paper));position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:var(--stripe);height:12px;top:0}
+.hero-sign{max-width:940px;margin:26px auto 0;background:linear-gradient(135deg,var(--plywood) 0%,#cfa961 60%,var(--plywood-dark) 100%);border:6px solid var(--charcoal-2);border-radius:6px;box-shadow:0 18px 40px rgba(36,33,28,.25), inset 0 0 60px rgba(120,84,30,.25);padding:44px 40px;position:relative;text-align:center}
+.hero-sign .bolt{position:absolute;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#8a8a8a,#3c3c3c);box-shadow:inset 0 1px 2px #000}
+.bolt.tl{top:10px;left:10px}.bolt.tr{top:10px;right:10px}.bolt.bl{bottom:10px;left:10px}.bolt.br{bottom:10px;right:10px}
+.kicker{display:inline-block;background:var(--charcoal);color:var(--paper);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.28em;font-size:.85rem;padding:6px 16px;border-radius:3px;margin-bottom:18px;text-transform:uppercase}
+.hero-sign h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.02;color:var(--charcoal);text-shadow:1px 1px 0 rgba(255,255,255,.35)}
+.hero-sign h1 .accent{color:var(--orange-dark)}
+.hero-sub{max-width:640px;margin:16px auto 0;font-size:1.08rem;font-weight:500;color:#3d362b}
+.hero-cta{margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:1.1rem;padding:14px 26px;border-radius:6px;border:3px solid var(--charcoal);transition:transform .12s ease}
+.btn-primary{background:var(--orange);color:#fff;border-color:var(--charcoal)}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px)}
+.btn-ghost{background:var(--charcoal);color:var(--paper)}
+.btn-ghost:hover{background:#000;transform:translateY(-2px)}
+.hero-facts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.fact-chip{background:var(--charcoal);color:var(--paper);padding:10px 18px;border-radius:999px;font-size:.92rem;font-weight:600;display:flex;align-items:center;gap:8px}
+.fact-chip i{color:var(--orange)}
+
+/* ===== SECTIONS ===== */
+.section{max-width:1180px;margin:0 auto;padding:64px 20px}
+.section-head{text-align:center;margin-bottom:40px}
+.section-head .tag{display:inline-block;background:var(--stripe);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.2em;font-size:.85rem;padding:6px 18px;border-radius:3px;text-transform:uppercase}
+.section-head h2{font-size:clamp(1.9rem,4vw,2.8rem);margin:14px 0 8px}
+.section-head p{color:var(--muted);max-width:640px;margin:0 auto}
+
+/* ===== CREW SERVICES ===== */
+.crew-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.crew-card{background:#fff;border:3px solid var(--charcoal);border-radius:8px;overflow:hidden;box-shadow:6px 6px 0 var(--charcoal)}
+.crew-card .card-top{background:var(--charcoal);color:var(--paper);padding:18px;display:flex;align-items:center;gap:14px}
+.crew-card .card-top .badge{width:52px;height:52px;flex:0 0 52px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;border:3px solid var(--paper)}
+.crew-card .card-top h3{font-size:1.3rem;line-height:1.1}
+.crew-card .card-top .role{font-size:.75rem;letter-spacing:.18em;color:var(--plywood);text-transform:uppercase}
+.crew-card .card-body{padding:18px}
+.crew-card .card-body p{font-size:.96rem;color:#4a4438}
+.crew-card .card-foot{padding:0 18px 18px}
+.crew-card .card-foot a{font-weight:700;color:var(--orange-dark);text-decoration:none}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--paper-2);border:1px dashed var(--muted);color:var(--muted);padding:4px 10px;border-radius:999px;margin-top:10px}
+
+/* ===== SITE-POST GALLERY ===== */
+.post-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.post{background:linear-gradient(180deg,#e3c88d,var(--plywood));border:4px solid var(--charcoal-2);border-radius:6px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;box-shadow:0 10px 24px rgba(36,33,28,.18);overflow:hidden}
+.post::before{content:"";position:absolute;top:0;left:0;right:0;height:34px;background:var(--stripe)}
+.post .coming{margin:0 14px 14px;background:rgba(36,33,28,.92);color:var(--paper);border-radius:6px;padding:16px;text-align:center}
+.post .coming i{font-size:1.6rem;color:var(--orange);margin-bottom:6px;display:block}
+.post .coming strong{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:1.05rem}
+.post .coming span{font-size:.82rem;color:#cfc6b4}
+.post .cap{position:absolute;top:44px;left:0;right:0;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--charcoal);padding:0 12px;font-size:1.15rem}
+
+/* ===== INFO / ABOUT ===== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.panel{background:#fff;border:3px solid var(--charcoal);border-radius:8px;padding:28px;box-shadow:6px 6px 0 var(--charcoal)}
+.panel h3{font-size:1.5rem;margin-bottom:12px;color:var(--charcoal)}
+.panel h3 i{color:var(--orange);margin-right:8px}
+.fact-list{list-style:none;margin-top:6px}
+.fact-list li{padding:10px 0;border-bottom:1px solid #e5ddc9;display:flex;gap:12px;align-items:flex-start}
+.fact-list li:last-child{border-bottom:0}
+.fact-list i{color:var(--orange-dark);margin-top:4px}
+.hours-table{width:100%;border-collapse:collapse;margin-top:6px}
+.hours-table td{padding:9px 4px;border-bottom:1px solid #e5ddc9;font-size:.97rem}
+.hours-table tr:last-child td{border-bottom:0}
+.hours-table td:last-child{text-align:right;font-weight:600}
+
+/* ===== REVIEWS ===== */
+.review-note{background:#fff;border:3px dashed var(--orange);border-radius:8px;padding:30px;text-align:center;max-width:760px;margin:0 auto}
+.review-note h3{font-size:1.6rem;margin-bottom:10px}
+.review-note p{color:#4a4438}
+.stars{color:var(--orange);font-size:1.3rem;margin-bottom:8px;letter-spacing:4px}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.contact-card{background:var(--charcoal);color:var(--paper);border-radius:8px;padding:30px;border:3px solid var(--charcoal)}
+.contact-card h3{font-size:1.5rem;margin-bottom:14px}
+.contact-card h3 i{color:var(--orange);margin-right:8px}
+.contact-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.contact-row:last-child{border-bottom:0}
+.contact-row i{color:var(--orange);font-size:1.2rem;margin-top:3px}
+.contact-row a{color:#fff;font-weight:600}
+.form-card{background:#fff;border:3px solid var(--charcoal);border-radius:8px;padding:30px;box-shadow:6px 6px 0 var(--charcoal)}
+.form-card h3{font-size:1.5rem;margin-bottom:6px}
+.form-card p{font-size:.93rem;color:var(--muted);margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:2px solid var(--charcoal);border-radius:6px;font-family:inherit;font-size:1rem;background:var(--paper)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid var(--orange);outline-offset:1px}
+
+/* ===== CALL-FIRST FOOTER ===== */
+.call-first{background:var(--charcoal);color:var(--paper);text-align:center;padding:56px 20px;position:relative}
+.call-first::before{content:"";position:absolute;top:0;left:0;right:0;height:12px;background:var(--stripe)}
+.call-first h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:8px}
+.call-first p{color:#cfc6b4;max-width:560px;margin:0 auto 22px}
+.call-first .big-phone{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:#fff;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(1.5rem,4vw,2.2rem);letter-spacing:.04em;padding:16px 34px;border-radius:8px;border:3px solid #fff}
+.call-first .big-phone:hover{background:var(--orange-dark)}
+.site-footer{background:#1a1814;color:#8f867a;text-align:center;padding:22px 16px;font-size:.92rem}
+.site-footer p{margin:0}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:900px){
+  .two-col,.contact-grid{grid-template-columns:1fr}
+  .nav-links{position:fixed;top:86px;right:0;left:0;background:var(--charcoal);flex-direction:column;padding:10px 16px 18px;display:none;border-bottom:4px solid var(--orange)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .hamburger{display:block}
+  .nav-call span.ph-text{display:none}
+  .nav-call{padding:10px 14px}
+}
+@media (max-width:560px){
+  .hero-sign{padding:32px 20px}
+  .section{padding:48px 16px}
+}
+</style>
+
+<style id="rharrison-stock-enhancements">
+html{scroll-behavior:smooth;overflow-x:hidden}
+body,body *{-webkit-user-select:none;user-select:none}
+.hero{
+  background:
+    linear-gradient(rgba(246,241,230,.82),rgba(246,241,230,.91)),
+    url("https://images.unsplash.com/photo-1763665814605-a6489a3bf2a0?auto=format&fit=crop&fm=jpg&q=82&w=2200") center/cover no-repeat;
+}
+.hero::after{
+  content:"STOCK ROOFING PHOTO";
+  position:absolute;right:16px;bottom:14px;
+  background:rgba(36,33,28,.76);color:#f6f1e6;
+  padding:5px 8px;border-radius:999px;font-size:.58rem;font-weight:800;letter-spacing:.1em;
+}
+#page-services{
+  background:
+    linear-gradient(rgba(246,241,230,.94),rgba(246,241,230,.97)),
+    url("https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&fm=jpg&q=72&w=2000") center/cover fixed;
+}
+.crew-card{transition:transform .18s ease,box-shadow .18s ease}
+.crew-card:hover{transform:translateY(-4px);box-shadow:9px 9px 0 var(--charcoal)}
+.service-stock-photo{height:145px;position:relative;overflow:hidden;background:#ddd}
+.service-stock-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.crew-card:hover .service-stock-photo img{transform:scale(1.045)}
+.service-stock-photo span{position:absolute;right:9px;bottom:8px;background:rgba(36,33,28,.82);color:#fff;padding:4px 7px;border-radius:999px;font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.stock-post{min-height:280px;background:#24211c}
+.stock-post::before{z-index:3}
+.stock-post>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.stock-post:hover>img{transform:scale(1.04)}
+.stock-post::after{content:"";position:absolute;inset:34px 0 0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.55));z-index:1}
+.stock-post .cap{z-index:2;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.65)}
+.stock-note{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;background:rgba(36,33,28,.86);color:#fff;padding:10px 12px;border-radius:5px;font-size:.72rem;text-align:center;text-transform:uppercase;letter-spacing:.06em}
+.stock-note i{color:var(--orange);margin-right:6px}
+.stock-open{position:absolute;inset:34px 0 0;z-index:4;border:0;background:transparent;cursor:pointer}
+.mini-lock{border:0;background:var(--orange);color:#fff;padding:7px 10px;font-weight:800;cursor:pointer;margin-top:6px;border-radius:4px}
+.demo-backdrop{position:fixed;inset:0;z-index:999;background:rgba(14,12,10,.76);display:none;align-items:center;justify-content:center;padding:20px}
+.demo-backdrop.open{display:flex}
+.demo-modal{width:min(430px,100%);background:var(--paper);border:3px solid var(--charcoal);border-top:9px solid var(--orange);padding:28px;box-shadow:0 30px 85px rgba(0,0,0,.45)}
+.demo-modal h3{font-size:1.7rem;margin-bottom:8px}.demo-modal p{color:var(--muted);margin-bottom:18px}
+.modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--charcoal);color:var(--orange);margin-bottom:14px;font-size:19px}
+.photo-modal-inner{position:relative;width:min(980px,100%)}
+.photo-modal-inner img{width:100%;max-height:80vh;object-fit:contain;background:#111;border:4px solid var(--orange)}
+.photo-close{position:absolute;right:0;top:-48px;width:44px;height:44px;border:0;background:var(--orange);color:#fff;font-size:20px;cursor:pointer}
+body.modal-open{overflow:hidden}
+@media(max-width:560px){
+  .service-stock-photo{height:175px}
+  .hero::after{bottom:8px;right:8px}
+}
+</style>
+
+</head>
+<body>
+<div class="biz-root" id="biz-root">
+
+<div class="topstripe"></div>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="#" data-nav="home" aria-label="R.Harrison Construction LLC home">
+      <svg class="hat" viewBox="0 0 48 42" aria-hidden="true">
+        <path d="M24 4c-8 0-14 6-15 14l-6 2c-1.5.5-1.5 2.6 0 3.2l6.6 2.1c.4.9 1.2 1.5 2.2 1.5h24.4c1 0 1.8-.6 2.2-1.5l6.6-2.1c1.5-.6 1.5-2.7 0-3.2l-6-2C38 10 32 4 24 4z" fill="#e8622c" stroke="#f6f1e6" stroke-width="2"/>
+        <rect x="21" y="1" width="6" height="10" rx="2" fill="#e8622c" stroke="#f6f1e6" stroke-width="2"/>
+        <path d="M14 22c0-6 4-10 10-10s10 4 10 10" fill="none" stroke="#24211c" stroke-width="2.4" opacity=".55"/>
+      </svg>
+      <span class="brand-text"><strong>R.Harrison Construction</strong><span>Roofing Contractor</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" data-nav="home" class="active">Home</a></li>
+        <li><a href="#" data-nav="services">Services</a></li>
+        <li><a href="#" data-nav="about">About</a></li>
+        
+        <li><a href="#" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="nav-call" href="#" data-locked="true"><i class="fa-solid fa-phone"></i><span class="ph-text">Call</span></a>
+  </div>
+</header>
+
+<main id="wp--skip-link--target">
+
+<section class="biz-page active" id="page-home" data-page="home">
+  <div class="hero">
+    <div class="hero-sign">
+      <span class="bolt tl"></span><span class="bolt tr"></span><span class="bolt bl"></span><span class="bolt br"></span>
+      <span class="kicker">Licensed Job Site: Cincinnati, Ohio</span>
+      <h1>R.Harrison <span class="accent">Construction</span> LLC</h1>
+      <p class="hero-sub">Roofing contractor and general construction crew based at CONTACT DETAILS PROTECTED IN THIS DEMO in Cincinnati. When your roof needs work, you call the crew that shows up.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#" data-locked="true"><i class="fa-solid fa-phone"></i> Call CONTACT DETAILS PROTECTED IN THIS DEMO</a>
+        <a class="btn btn-ghost" href="#" data-nav="services"><i class="fa-solid fa-helmet-safety"></i> See the Work</a>
+      </div>
+      <div class="hero-facts">
+        <span class="fact-chip"><i class="fa-solid fa-location-dot"></i> Cincinnati, Ohio</span>
+        <span class="fact-chip"><i class="fa-solid fa-house-chimney"></i> Contractor / Roofer</span>
+        <span class="fact-chip"><i class="fa-solid fa-clock"></i> Open weekdays</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="tag">The Crew Board</span>
+      <h2>What This Crew Handles</h2>
+      <p>Core services are listed below. Specific offerings, materials, and pricing are confirmed by phone before any work is scheduled.</p>
+    </div>
+    <div class="crew-grid">
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-house"></i></span><div><div class="role">Crew 01</div><h3>Roofing</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1763665814605-a6489a3bf2a0?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Listed publicly as a roofing contractor serving the Cincinnati area. Full roof projects, repairs, and inspections handled by the crew.</p><span class="pill">Call to confirm details</span></div>
+        <div class="card-foot"><a href="#" data-nav="services">Full list <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-hammer"></i></span><div><div class="role">Crew 02</div><h3>General Construction</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Listed as a general contractor as well as a roofer. Construction and remodeling scope is confirmed per project by phone.</p><span class="pill">Call to confirm details</span></div>
+        <div class="card-foot"><a href="#" data-nav="services">Full list <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-clipboard-check"></i></span><div><div class="role">Crew 03</div><h3>Estimates &amp; Consults</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Reach out by phone or the contact form to describe your project and arrange a time to talk through it.</p><span class="pill">Call to confirm details</span></div>
+        <div class="card-foot"><a href="#" data-nav="contact">Get in touch <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="section-head">
+      <span class="tag">Site Posts</span>
+      <h2>From the Jobsite</h2>
+      <p>Project photos are coming. Real job photos will be posted here as they become available.</p>
+    </div>
+    <div class="post-grid">
+      <div class="post stock-post"><img src="https://images.unsplash.com/photo-1763665814605-a6489a3bf2a0?auto=format&fit=crop&fm=jpg&q=82&w=1200" alt="Stock photo of roof installation work" loading="lazy"><div class="cap">Roof Projects</div><button class="stock-open" type="button" data-image="https://images.unsplash.com/photo-1763665814605-a6489a3bf2a0?auto=format&fit=crop&fm=jpg&q=82&w=1200" aria-label="Open Roof Projects stock image"></button><div class="stock-note"><i class="fa-solid fa-camera"></i> Stock image · not actual company work</div></div>
+      <div class="post"><div class="cap">Repairs &amp; Fixes</div><div class="coming"><i class="fa-solid fa-camera"></i><strong>Photo coming soon</strong><span>Real jobsite photos will appear here</span></div></div>
+      <div class="post stock-post"><img src="https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&fm=jpg&q=82&w=1200" alt="Stock photo of roofing work on a home" loading="lazy"><div class="cap">Crew at Work</div><button class="stock-open" type="button" data-image="https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&fm=jpg&q=82&w=1200" aria-label="Open Crew at Work stock image"></button><div class="stock-note"><i class="fa-solid fa-camera"></i> Stock image · not actual company work</div></div>
+      <div class="post stock-post"><img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&fm=jpg&q=82&w=1200" alt="Stock photo of a finished residential exterior" loading="lazy"><div class="cap">Finished Work</div><button class="stock-open" type="button" data-image="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&fm=jpg&q=82&w=1200" aria-label="Open Finished Work stock image"></button><div class="stock-note"><i class="fa-solid fa-camera"></i> Stock image · not actual company work</div></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="biz-page" id="page-services" data-page="services">
+  <div class="section">
+    <div class="section-head">
+      <span class="tag">Crew Roster</span>
+      <h2>Services</h2>
+      <p>Public listings identify R.Harrison Construction LLC as a contractor and roofing contractor. Everything below reflects that public record. For exact services, materials, service area, and pricing, call CONTACT DETAILS PROTECTED IN THIS DEMO to confirm before booking.</p>
+    </div>
+    <div class="crew-grid">
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-house-chimney"></i></span><div><div class="role">Crew 01</div><h3>Roofing Work</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1763665814605-a6489a3bf2a0?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Roofing contractor services for homes and businesses in the Cincinnati area. Scope and materials confirmed per job.</p><span class="pill">Sample listing: call to confirm</span></div>
+        <div class="card-foot"><a href="#" data-locked="true"><i class="fa-solid fa-phone"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</a></div>
+      </div>
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-screwdriver-wrench"></i></span><div><div class="role">Crew 02</div><h3>Roof Repairs</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Leaks, storm damage, and wear and tear. Describe the problem by phone and the crew will tell you the next step.</p><span class="pill">Sample listing: call to confirm</span></div>
+        <div class="card-foot"><a href="#" data-locked="true"><i class="fa-solid fa-phone"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</a></div>
+      </div>
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-building"></i></span><div><div class="role">Crew 03</div><h3>General Contracting</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Listed under the contractor category. Construction and remodeling projects are scoped individually.</p><span class="pill">Sample listing: call to confirm</span></div>
+        <div class="card-foot"><a href="#" data-locked="true"><i class="fa-solid fa-phone"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</a></div>
+      </div>
+      <div class="crew-card">
+        <div class="card-top"><span class="badge"><i class="fa-solid fa-magnifying-glass"></i></span><div><div class="role">Crew 04</div><h3>Inspections &amp; Estimates</h3></div></div><div class="service-stock-photo"><img src="https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&fm=jpg&q=82&w=900" alt="Stock construction service photo" loading="lazy"><span><i class="fa-solid fa-camera"></i> Stock photo</span></div>
+        <div class="card-body"><p>Need a second opinion on a roof or a quote on a project? Start with a call or the contact form.</p><span class="pill">Sample listing: call to confirm</span></div>
+        <div class="card-foot"><a href="#" data-nav="contact">Contact the crew <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="biz-page" id="page-about" data-page="about">
+  <div class="section">
+    <div class="section-head">
+      <span class="tag">Site Office</span>
+      <h2>About the Company</h2>
+      <p>What public records actually say about R.Harrison Construction LLC. Nothing here is embellished.</p>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <h3><i class="fa-solid fa-id-card"></i> On the Record</h3>
+        <ul class="fact-list">
+          <li><i class="fa-solid fa-check"></i><span><strong>R.Harrison Construction LLC</strong>, a limited liability company operating as a contractor and roofing contractor in Cincinnati, Ohio.</span></li>
+          <li><i class="fa-solid fa-check"></i><span><strong>Address:</strong> Cincinnati, Ohio. Public listings also place the location in the Blue Ash area.</span></li>
+          <li><i class="fa-solid fa-check"></i><span><strong>Phone:</strong> <a href="#" data-locked="true">CONTACT DETAILS PROTECTED IN THIS DEMO</a></span></li>
+          <li><i class="fa-solid fa-check"></i><span><strong>Google business profile:</strong> <a href="#" data-locked="true">harrison-construction-llc.business.site</a></span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3><i class="fa-solid fa-clock"></i> Listed Hours</h3>
+        <p style="font-size:.9rem;color:var(--muted)">Per public business listings. Hours can change, so call to confirm before visiting.</p>
+        <table class="hours-table">
+          <tr><td>Monday</td><td>8:30 AM &#8211; 5:00 PM</td></tr>
+          <tr><td>Tuesday</td><td>9:00 AM &#8211; 6:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>9:00 AM &#8211; 6:00 PM</td></tr>
+          <tr><td>Thursday</td><td>9:00 AM &#8211; 6:00 PM</td></tr>
+          <tr><td>Friday</td><td>9:00 AM &#8211; 6:00 PM</td></tr>
+          <tr><td>Saturday</td><td>9:00 AM &#8211; 6:00 PM*</td></tr>
+          <tr><td>Sunday</td><td>Closed*</td></tr>
+        </table>
+        <span class="pill">* Saturday/Sunday per one public listing only; call to confirm</span>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:34px">
+      <h3><i class="fa-solid fa-triangle-exclamation"></i> What We Do Not Claim</h3>
+      <p>No founding date, no years in business, no license numbers, no crew bios, and no project history are published here, because none were verified in public records during research. What you see above is what is confirmed. For anything else, the honest answer is a phone call away at <a href="#" data-locked="true" style="font-weight:700;color:var(--orange-dark)">CONTACT DETAILS PROTECTED IN THIS DEMO</a>.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="biz-page" id="page-contact" data-page="contact">
+  <div class="section">
+    <div class="section-head">
+      <span class="tag">Dispatch</span>
+      <h2>Contact</h2>
+      <p>The fastest way to reach the crew is the phone. The form drafts an email in your own mail app.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3><i class="fa-solid fa-radio"></i> Reach the Crew</h3>
+        <div class="contact-row">
+          <i class="fa-solid fa-phone"></i>
+          <div><strong>Phone</strong><br><a href="#" data-locked="true">CONTACT DETAILS PROTECTED IN THIS DEMO</a></div>
+        </div>
+        <div class="contact-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>Address</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+        </div>
+        <div class="contact-row">
+          <i class="fa-solid fa-clock"></i>
+          <div><strong>Listed hours</strong><br>Mon 8:30 AM &#8211; 5:00 PM<br>Tue &#8211; Fri 9:00 AM &#8211; 6:00 PM<br><span style="font-size:.85rem;color:#cfc6b4">Hours per public listings; call to confirm.</span></div>
+        </div>
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="#" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Get Directions</a>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Send a Message</h3>
+        <p>This demo form does not send or store information.</p>
+        <form id="contactForm" data-locked-form="true">
+          <div class="field">
+            <label for="cf-name">Your name</label>
+            <input type="text" id="cf-name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="cf-phone">Your phone</label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="cf-topic">Topic</label>
+            <select id="cf-topic" name="topic">
+              <option>Roofing work</option>
+              <option>Roof repair</option>
+              <option>General construction</option>
+              <option>Estimate request</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-msg">Project details</label>
+            <textarea id="cf-msg" name="message" required placeholder="Describe the job: what needs work, where, and when."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="cursor:pointer;width:100%;justify-content:center"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="call-first">
+  <h2>Roof trouble? Call first, worry later.</h2>
+  <p>One call gets you straight to the crew at R.Harrison Construction LLC in Cincinnati, Ohio.</p>
+  <a class="big-phone" href="#" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Crew</a>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; R.Harrison Construction LLC</p>
+</footer>
+
+
+
+<div class="demo-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true">
+  <div class="demo-modal">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="closeLocked" type="button">Close</button>
+  </div>
+</div>
+<div class="demo-backdrop" id="photoModal" role="dialog" aria-modal="true" aria-label="Stock photo preview" aria-hidden="true">
+  <div class="photo-modal-inner">
+    <button class="photo-close" id="closePhoto" type="button" aria-label="Close photo"><i class="fa-solid fa-xmark"></i></button>
+    <img id="photoModalImg" alt="">
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  const map={home:'page-home',services:'page-services',about:'page-about',contact:'page-contact'};
+  function go(page){
+    if(!map[page])page='home';
+    document.querySelectorAll('.biz-page').forEach(s=>s.classList.toggle('active',s.id===map[page]));
+    document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===page));
+    document.getElementById('navLinks')?.classList.remove('open');
+    document.getElementById('hamburger')?.setAttribute('aria-expanded','false');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.querySelectorAll('[data-nav]').forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault(); const p=a.dataset.nav||'home'; history.replaceState(null,'','#'+p); go(p);
+  }));
+  document.getElementById('hamburger')?.addEventListener('click',()=>{
+    const n=document.getElementById('navLinks'); const open=n.classList.toggle('open');
+    document.getElementById('hamburger').setAttribute('aria-expanded',String(open));
+  });
+  go((location.hash||'#home').slice(1));
+
+  const locked=document.getElementById('lockedModal');
+  const closeLocked=document.getElementById('closeLocked');
+  let lastFocus=null;
+  function openLocked(){
+    lastFocus=document.activeElement;
+    locked.classList.add('open');locked.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');closeLocked.focus();
+  }
+  function shutLocked(){
+    locked.classList.remove('open');locked.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');if(lastFocus)lastFocus.focus();
+  }
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openLocked();}));
+  document.querySelectorAll('[data-locked-form="true"]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();openLocked();}));
+  closeLocked.addEventListener('click',shutLocked);
+  locked.addEventListener('click',e=>{if(e.target===locked)shutLocked();});
+
+  const photo=document.getElementById('photoModal'), img=document.getElementById('photoModalImg'), closePhoto=document.getElementById('closePhoto');
+  function shutPhoto(){photo.classList.remove('open');photo.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');}
+  document.querySelectorAll('.stock-open').forEach(btn=>btn.addEventListener('click',()=>{
+    const card=btn.closest('.stock-post'); const source=card.querySelector('img');
+    img.src=source.src; img.alt=source.alt; photo.classList.add('open');photo.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');closePhoto.focus();
+  }));
+  closePhoto.addEventListener('click',shutPhoto);
+  photo.addEventListener('click',e=>{if(e.target===photo)shutPhoto();});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(photo.classList.contains('open'))shutPhoto();
+      else if(locked.classList.contains('open'))shutLocked();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

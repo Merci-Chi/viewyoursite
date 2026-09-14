@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b2340" />
+  <meta name="description" content="Visit L.O.S. Liquidation Outlet Store in Atlanta, GA for home goods, furniture, flooring, tools, appliances, building supplies and changing liquidation inventory. Call (404) 839-9475." />
+  <title>L.O.S. Liquidation Outlet Store | Atlanta Liquidation & Home Goods</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --navy:#0b2340;
+      --navy-2:#12365f;
+      --yellow:#f5c400;
+      --cream:#f6f3e8;
+      --white:#ffffff;
+      --ink:#16191f;
+      --muted:#6e737b;
+      --line:rgba(22,25,31,.12);
+      --max:1200px;
+      --r-lg:30px;
+      --r-md:20px;
+      --shadow:0 24px 64px rgba(10,31,56,.18);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      margin:0;
+      background:var(--cream);
+      color:var(--ink);
+      font-family:"DM Sans",sans-serif;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button,a{-webkit-tap-highlight-color:transparent}
+    section{scroll-margin-top:86px}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+    h1,h2,h3{margin:0}
+    h1,h2{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:-.035em;line-height:.95}
+    h1{font-size:clamp(3.8rem,8.8vw,8.2rem)}
+    h2{font-size:clamp(2.55rem,5.2vw,5rem)}
+    h3{font-size:1.28rem}
+    p{line-height:1.7}
+    .section{padding:96px 0}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      text-transform:uppercase;letter-spacing:.15em;
+      font-size:.74rem;font-weight:800;color:var(--navy-2)
+    }
+    .eyebrow:before{content:"";width:28px;height:3px;border-radius:99px;background:var(--yellow)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:52px;padding:0 20px;border-radius:14px;
+      border:1px solid transparent;font-weight:800;transition:.22s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(1px) scale(.98)}
+    .btn-yellow{background:var(--yellow);color:var(--navy)}
+    .btn-navy{background:var(--navy);color:#fff}
+    .btn-light{background:#fff;border-color:var(--line)}
+    .btn-outline{border-color:rgba(255,255,255,.35);color:#fff}
+
+    header{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(246,243,232,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line)
+    }
+    .nav{
+      height:74px;display:flex;align-items:center;justify-content:space-between;gap:22px
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-mark{
+      width:48px;height:48px;border-radius:50%;
+      display:grid;place-items:center;background:var(--navy);color:var(--yellow);
+      font-family:"Archivo Black";font-size:.95rem;
+      box-shadow:inset 0 0 0 3px var(--yellow)
+    }
+    .brand-text strong{display:block}
+    .brand-text span{display:block;font-size:.72rem;color:var(--muted)}
+    .nav-links{display:flex;gap:22px;font-size:.92rem;font-weight:800}
+    .nav-links a{position:relative}
+    .nav-links a:after{
+      content:"";position:absolute;left:0;bottom:-7px;height:2px;width:0;background:var(--yellow);transition:.2s
+    }
+    .nav-links a:hover:after{width:100%}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .phone-icon,.hamburger{
+      width:46px;height:46px;border:1px solid var(--line);border-radius:14px;background:#fff;
+      display:none;align-items:center;justify-content:center
+    }
+    .hamburger{flex-direction:column;gap:5px;cursor:pointer}
+    .hamburger span{width:20px;height:2px;background:var(--navy);transition:.2s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{max-height:0;overflow:hidden;transition:max-height .28s ease;border-top:1px solid transparent}
+    .mobile-menu.open{max-height:420px;border-top-color:var(--line)}
+    .mobile-menu-inner{padding:14px 20px 24px;display:grid}
+    .mobile-menu a{padding:15px 4px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-weight:800}
+
+    .hero{
+      padding:68px 0 58px;
+      position:relative;
+      isolation:isolate;
+      background:
+        linear-gradient(90deg,rgba(246,243,232,.96) 0%,rgba(246,243,232,.88) 42%,rgba(246,243,232,.52) 68%,rgba(246,243,232,.20) 100%),
+        url("https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1800&q=88") center/cover no-repeat;
+      overflow:hidden
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:
+        radial-gradient(circle at 8% 16%,rgba(245,196,0,.18),transparent 26%),
+        linear-gradient(to bottom,rgba(255,255,255,.08),rgba(11,35,64,.06));
+      pointer-events:none
+    }
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch}
+    .hero-copy{
+      padding:54px 34px 40px;display:flex;flex-direction:column;justify-content:center;
+      background:rgba(246,243,232,.78);
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:30px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 24px 70px rgba(11,35,64,.14)
+    }
+    .hero-copy h1{margin:18px 0 20px;color:var(--navy)}
+    .hero-copy h1 span{color:var(--yellow);-webkit-text-stroke:2px var(--navy);text-shadow:2px 2px 0 var(--navy)}
+    .lead{font-size:1.12rem;color:#45505d;max-width:680px;margin:0 0 26px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+    .hero-facts{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{
+      padding:10px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);
+      font-size:.84rem;font-weight:800
+    }
+    .hero-media{
+      min-height:650px;border-radius:34px;overflow:hidden;position:relative;box-shadow:var(--shadow);
+      background:
+        linear-gradient(to top,rgba(11,35,64,.75),rgba(11,35,64,.05) 52%),
+        url("https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=88") center/cover;
+    }
+    .hero-label{
+      position:absolute;top:18px;right:18px;background:var(--yellow);color:var(--navy);
+      border-radius:18px;padding:14px 16px;font-family:"Archivo Black";text-transform:uppercase;
+      transform:rotate(3deg);box-shadow:0 14px 30px rgba(0,0,0,.18)
+    }
+    .hero-card{
+      position:absolute;left:18px;right:18px;bottom:18px;
+      padding:22px;border-radius:22px;background:rgba(11,35,64,.92);
+      backdrop-filter:blur(10px);color:#fff;display:flex;justify-content:space-between;gap:20px;align-items:end
+    }
+    .hero-card p{margin:6px 0 0;color:rgba(255,255,255,.72);font-size:.9rem}
+
+    .ticker{background:var(--navy);color:#fff;overflow:hidden;white-space:nowrap}
+    .ticker-track{
+      display:inline-flex;gap:34px;padding:14px 0;min-width:200%;animation:ticker 22s linear infinite;
+      text-transform:uppercase;font-weight:800;letter-spacing:.05em
+    }
+    .ticker-track span:before{content:"◆";color:var(--yellow);margin-right:34px}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}
+    .section-head p{max-width:640px;color:var(--muted);margin:0}
+
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .card{
+      background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;transition:.22s ease
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .card-img{aspect-ratio:1.1/1;background-position:center;background-size:cover;position:relative}
+    .tag{
+      position:absolute;left:13px;top:13px;background:rgba(246,243,232,.95);
+      padding:8px 10px;border-radius:999px;font-size:.72rem;font-weight:800
+    }
+    .card-body{padding:20px}
+    .card-body p{font-size:.9rem;color:var(--muted);margin:8px 0 16px}
+    .link{font-weight:800;color:var(--navy-2)}
+
+    .warehouse{
+      color:#fff;border-radius:34px;overflow:hidden;
+      display:grid;grid-template-columns:1.04fr .96fr;position:relative;
+      background:
+        linear-gradient(100deg,rgba(11,35,64,.98) 0%,rgba(11,35,64,.94) 47%,rgba(11,35,64,.55) 100%),
+        url("https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=1800&q=88") center/cover no-repeat
+    }
+    .warehouse-copy{padding:60px;display:flex;flex-direction:column;justify-content:center}
+    .warehouse-copy .eyebrow{color:#fff}
+    .warehouse-copy p{color:rgba(255,255,255,.74);max-width:600px}
+    .warehouse-media{
+      min-height:440px;
+      background:
+        linear-gradient(120deg,rgba(11,35,64,.02),rgba(11,35,64,.26)),
+        url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=88") center/cover
+    }
+
+    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .why{
+      background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:24px;padding:24px
+    }
+    .why-num{
+      width:42px;height:42px;border-radius:12px;background:var(--navy);color:var(--yellow);
+      display:grid;place-items:center;font-weight:800;margin-bottom:20px
+    }
+    .why p{font-size:.9rem;color:var(--muted);margin-bottom:0}
+
+    .review-panel{
+      display:grid;grid-template-columns:.75fr 1.25fr;background:#fff;border:1px solid var(--line);
+      border-radius:34px;overflow:hidden
+    }
+    .rating{
+      background:var(--navy);color:#fff;padding:46px;display:flex;flex-direction:column;justify-content:center
+    }
+    .stars{color:var(--yellow);font-size:1.3rem;letter-spacing:3px}
+    .rating-big{font-family:"Archivo Black";font-size:5rem;line-height:1;margin:10px 0}
+    .rating p{color:rgba(255,255,255,.7)}
+    .review-grid{padding:34px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .review-theme{border:1px solid var(--line);border-radius:20px;padding:22px}
+    .review-theme p{font-size:.9rem;color:var(--muted);margin:8px 0 0}
+
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .visit-card,.hours-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:32px}
+    .address{font-family:"Archivo Black";font-size:1.45rem;line-height:1.35;margin:20px 0;color:var(--navy)}
+    .visit-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .hours-list{display:grid;gap:10px;margin-top:18px}
+    .hours-row{display:flex;justify-content:space-between;gap:18px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+    .hours-row:last-child{border-bottom:0}
+
+    .faq-list{display:grid;gap:12px}
+    .faq-item{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+    .faq-q{
+      width:100%;border:0;background:none;padding:20px 22px;display:flex;justify-content:space-between;
+      text-align:left;font:inherit;font-weight:800;cursor:pointer;gap:20px
+    }
+    .faq-plus{
+      width:32px;height:32px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-size:1.2rem;transition:.2s
+    }
+    .faq-item.open .faq-plus{transform:rotate(45deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;color:var(--muted)}
+    .faq-item.open .faq-a{max-height:260px}
+    .faq-a div{padding:0 22px 22px;line-height:1.7}
+
+
+    #shop{
+      position:relative;
+      background:
+        linear-gradient(rgba(246,243,232,.94),rgba(246,243,232,.94)),
+        url("https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1800&q=80") center/cover fixed;
+    }
+    #why{
+      position:relative;
+      background:
+        linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
+        url("https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat;
+    }
+    #reviews{
+      position:relative;
+      background:
+        linear-gradient(rgba(246,243,232,.90),rgba(246,243,232,.90)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat;
+    }
+    #visit{
+      position:relative;
+      background:
+        linear-gradient(rgba(11,35,64,.87),rgba(11,35,64,.87)),
+        url("https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat;
+      color:#fff;
+    }
+    #visit .eyebrow,#visit h2{color:#fff}
+    #visit .section-head p{color:rgba(255,255,255,.74)}
+    #visit .visit-card,#visit .hours-card{background:rgba(255,255,255,.95);color:var(--ink);backdrop-filter:blur(8px)}
+    #faq{
+      background:
+        linear-gradient(rgba(246,243,232,.95),rgba(246,243,232,.95)),
+        url("https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat;
+    }
+
+    .cta{padding:30px 0 100px}
+    .cta-box{
+      color:#fff;border-radius:34px;padding:58px;position:relative;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(11,35,64,.95),rgba(11,35,64,.72)),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=88") center/cover no-repeat;
+      box-shadow:var(--shadow)
+    }
+    .cta-box:after{
+      content:"";position:absolute;right:-70px;top:-100px;width:300px;height:300px;border-radius:50%;
+      background:rgba(245,196,0,.16)
+    }
+    .cta-box p{max-width:640px;color:rgba(255,255,255,.78)}
+    .cta-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;position:relative;z-index:2}
+
+    footer{background:#07172a;color:#fff;padding:52px 0 26px}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:36px}
+    .footer-title{font-weight:800;margin-bottom:13px}
+    .footer-links{display:grid;gap:9px;color:rgba(255,255,255,.68)}
+    .footer-bottom{
+      margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);
+      display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+      color:rgba(255,255,255,.45);font-size:.82rem
+    }
+
+    .reveal{opacity:0;transform:translateY(24px);transition:.65s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    @media(max-width:1050px){
+      .nav-links{display:none}
+      .phone-icon,.hamburger{display:flex}
+      .desktop-call{display:none}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-media{min-height:560px}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .warehouse{grid-template-columns:1fr}
+      .why-grid{grid-template-columns:repeat(2,1fr)}
+      .review-panel{grid-template-columns:1fr}
+    }
+
+    @media(max-width:700px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav{height:68px}
+      .brand-mark{width:40px;height:40px}
+      .brand-text strong{font-size:.9rem}
+      .brand-text span{display:none}
+      .section{padding:70px 0}
+      .hero{padding:22px 0 28px;background-position:62% center}
+      .hero-copy{padding:28px 20px;background:rgba(246,243,232,.86);border-radius:24px}
+      h1{font-size:clamp(3.5rem,16vw,5.2rem)}
+      h2{font-size:clamp(2.3rem,11vw,3.5rem)}
+      .hero-actions{display:grid;grid-template-columns:1fr}
+      .hero-actions .btn{width:100%}
+      .hero-facts{display:grid;grid-template-columns:1fr 1fr}
+      .chip{text-align:center}
+      .hero-media{min-height:480px;border-radius:27px}
+      .hero-card{display:block;left:14px;right:14px;bottom:14px}
+      .hero-card .btn{margin-top:14px;width:100%}
+      .section-head{display:block;margin-bottom:26px}
+      .section-head p{margin-top:14px}
+      .product-grid,.why-grid,.review-grid,.visit-grid{grid-template-columns:1fr}
+      .warehouse{border-radius:27px}
+      .warehouse-copy{padding:36px 24px}
+      .warehouse-media{min-height:290px}
+      .rating{padding:32px}
+      .rating-big{font-size:4rem}
+      .review-grid{padding:20px}
+      .visit-card,.hours-card{padding:24px}
+      .address{font-size:1.2rem}
+      .cta-box{padding:36px 24px;border-radius:27px}
+      .cta-actions{display:grid;grid-template-columns:1fr}
+      .cta-actions .btn{width:100%}
+      .footer-grid{grid-template-columns:1fr}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Store",
+    "name":"L.O.S. Liquidation Outlet Store",
+    "telephone":"+1-404-839-9475",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"230 Cleveland Ave SW",
+      "addressLocality":"Atlanta",
+      "addressRegion":"GA",
+      "postalCode":"30315",
+      "addressCountry":"US"
+    },
+    "openingHoursSpecification":[
+      {
+        "@type":"OpeningHoursSpecification",
+        "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens":"10:00",
+        "closes":"19:00"
+      },
+      {
+        "@type":"OpeningHoursSpecification",
+        "dayOfWeek":"Sunday",
+        "opens":"10:00",
+        "closes":"18:00"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="L.O.S. Liquidation Outlet Store home">
+      <div class="brand-mark">LOS</div>
+      <div class="brand-text">
+        <strong>L.O.S. Liquidation Outlet Store</strong>
+        <span>Atlanta, Georgia</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#shop">Shop</a>
+      <a href="#warehouse">Warehouse</a>
+      <a href="#why">Why L.O.S.</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="phone-icon" href="tel:+14048399475" aria-label="Call L.O.S. Liquidation Outlet Store">☎</a>
+      <a class="btn btn-yellow desktop-call" href="tel:+14048399475">Call (404) 839-9475</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#shop">Shop <span>→</span></a>
+      <a href="#warehouse">Warehouse <span>→</span></a>
+      <a href="#why">Why L.O.S. <span>→</span></a>
+      <a href="#reviews">Reviews <span>→</span></a>
+      <a href="#visit">Visit <span>→</span></a>
+      <a href="#faq">FAQs <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Atlanta • Liquidation • Home Improvement</span>
+        <h1>Big Warehouse.<br><span>Big Finds.</span></h1>
+        <p class="lead">
+          Explore L.O.S. Liquidation Outlet Store in Atlanta for home goods, furniture, flooring, tools, plumbing supplies, appliances, building supplies and changing liquidation merchandise.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-yellow" href="https://www.google.com/maps/search/?api=1&query=L.O.S.+Liquidation+Outlet+Store+230+Cleveland+Ave+SW+Atlanta+GA+30315" target="_blank" rel="noopener">Get Directions ↗</a>
+          <a class="btn btn-light" href="tel:+14048399475">Call Before You Visit</a>
+        </div>
+
+        <div class="hero-facts">
+          <div class="chip">★ 3.9 Google Rating</div>
+          <div class="chip">764 Reviews</div>
+          <div class="chip">Open 7 Days</div>
+          <div class="chip">Atlanta, GA</div>
+        </div>
+      </div>
+
+      <div class="hero-media reveal" aria-label="Stock home improvement merchandise">
+        <div class="hero-label">Treasure Hunt<br>Shopping</div>
+        <div class="hero-card">
+          <div>
+            <strong>Inventory changes often.</strong>
+            <p>Come ready to browse, compare, and inspect your finds.</p>
+          </div>
+          <a class="btn btn-light" href="tel:+14048399475">Call Store</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Home Goods</span>
+      <span>Furniture</span>
+      <span>Flooring</span>
+      <span>Tools</span>
+      <span>Plumbing</span>
+      <span>Appliances</span>
+      <span>Building Supplies</span>
+      <span>Home Goods</span>
+      <span>Furniture</span>
+      <span>Flooring</span>
+      <span>Tools</span>
+      <span>Plumbing</span>
+      <span>Appliances</span>
+      <span>Building Supplies</span>
+    </div>
+  </div>
+
+  <section class="section" id="shop">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Explore the Store</span>
+          <h2>Something for the project.</h2>
+        </div>
+        <p>
+          Public business information consistently describes a large and varied home-improvement and home-goods selection. Inventory changes, so the exact mix can be different from visit to visit.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Home Goods</span>
+          </div>
+          <div class="card-body">
+            <h3>Home Goods</h3>
+            <p>Browse a broad assortment of changing home-related merchandise.</p>
+            <a class="link" href="tel:+14048399475">Call for current inventory →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Furniture</span>
+          </div>
+          <div class="card-body">
+            <h3>Furniture</h3>
+            <p>Furniture is repeatedly listed among the merchandise shoppers may find at L.O.S.</p>
+            <a class="link" href="tel:+14048399475">Check availability →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Flooring</span>
+          </div>
+          <div class="card-body">
+            <h3>Flooring</h3>
+            <p>Flooring is specifically referenced among the outlet's home-improvement merchandise.</p>
+            <a class="link" href="tel:+14048399475">Call before visiting →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Tools</span>
+          </div>
+          <div class="card-body">
+            <h3>Tools</h3>
+            <p>Tools are specifically mentioned in store descriptions and customer discussions.</p>
+            <a class="link" href="tel:+14048399475">See what's in store →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Plumbing</span>
+          </div>
+          <div class="card-body">
+            <h3>Plumbing Supplies</h3>
+            <p>Plumbing merchandise is specifically referenced in public store information.</p>
+            <a class="link" href="tel:+14048399475">Check inventory →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Appliances</span>
+          </div>
+          <div class="card-body">
+            <h3>Appliances</h3>
+            <p>Public listings associate the store with appliance merchandise, including washers.</p>
+            <a class="link" href="tel:+14048399475">Call for current finds →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Remodeling</span>
+          </div>
+          <div class="card-body">
+            <h3>Building & Remodeling</h3>
+            <p>Reviews specifically recommend the store for building and remodeling finds.</p>
+            <a class="link" href="tel:+14048399475">Plan your visit →</a>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=84')">
+            <span class="tag">Changing Inventory</span>
+          </div>
+          <div class="card-body">
+            <h3>Unexpected Finds</h3>
+            <p>Customer feedback repeatedly describes the store as a treasure-hunt style shopping experience.</p>
+            <a class="link" href="#visit">Visit the warehouse →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="warehouse">
+    <div class="wrap">
+      <div class="warehouse reveal">
+        <div class="warehouse-copy">
+          <span class="eyebrow">Warehouse-Style Shopping</span>
+          <h2>Take your time. Look around.</h2>
+          <p>
+            L.O.S. is known for a large warehouse-like shopping environment packed with varied merchandise.
+            Reviews consistently describe a broad selection and the possibility of finding unexpected bargains.
+          </p>
+          <p>
+            Because item condition, completeness, and pricing can vary, inspect merchandise carefully and ask questions before purchasing.
+          </p>
+          <div>
+            <a class="btn btn-outline" href="tel:+14048399475">Call (404) 839-9475</a>
+          </div>
+        </div>
+        <div class="warehouse-media" aria-label="Stock warehouse-style retail imagery"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Why Shop L.O.S.</span>
+          <h2>A different kind of store.</h2>
+        </div>
+        <p>
+          Public reviews point to a huge selection, bargain potential, project supplies, and a discovery-oriented shopping experience.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <article class="why reveal">
+          <div class="why-num">01</div>
+          <h3>Huge Selection</h3>
+          <p>Shoppers consistently mention a large assortment across home, project, and practical merchandise.</p>
+        </article>
+
+        <article class="why reveal">
+          <div class="why-num">02</div>
+          <h3>Changing Inventory</h3>
+          <p>The selection can change, so each trip may offer different finds.</p>
+        </article>
+
+        <article class="why reveal">
+          <div class="why-num">03</div>
+          <h3>Bargain Potential</h3>
+          <p>Customer feedback frequently mentions opportunities to save on useful home and project items.</p>
+        </article>
+
+        <article class="why reveal">
+          <div class="why-num">04</div>
+          <h3>Atlanta Location</h3>
+          <p>Visit the Cleveland Avenue store in southwest Atlanta, Georgia.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Customer Reputation</span>
+          <h2>Hundreds of shopper reviews.</h2>
+        </div>
+        <p>
+          Google-linked sources currently show a 3.9 out of 5 rating, with the review count changing over time. The latest research surfaced 764 reviews.
+        </p>
+      </div>
+
+      <div class="review-panel reveal">
+        <div class="rating">
+          <div class="stars">★★★★☆</div>
+          <div class="rating-big">3.9</div>
+          <strong>Google rating</strong>
+          <p>764 reviews surfaced in the current research.</p>
+          <a class="btn btn-light" href="https://www.google.com/maps/search/?api=1&query=L.O.S.+Liquidation+Outlet+Store+230+Cleveland+Ave+SW+Atlanta+GA+30315" target="_blank" rel="noopener">View on Google ↗</a>
+        </div>
+
+        <div class="review-grid">
+          <div class="review-theme">
+            <h3>Huge Selection</h3>
+            <p>Many shoppers highlight the amount and variety of merchandise in the store.</p>
+          </div>
+          <div class="review-theme">
+            <h3>Bargain Potential</h3>
+            <p>Reviews frequently mention opportunities to find fair prices and useful deals.</p>
+          </div>
+          <div class="review-theme">
+            <h3>Project Supplies</h3>
+            <p>Building and remodeling merchandise is a recurring positive theme.</p>
+          </div>
+          <div class="review-theme">
+            <h3>Treasure-Hunt Shopping</h3>
+            <p>Customers commonly describe the experience as browsing through changing and unexpected finds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Visit the Store</span>
+          <h2>Make time to browse.</h2>
+        </div>
+        <p>
+          The verified Cleveland Avenue location is open seven days a week. Call before your visit if you're looking for a specific item.
+        </p>
+      </div>
+
+      <div class="visit-grid">
+        <div class="visit-card reveal">
+          <h3>L.O.S. Liquidation Outlet Store</h3>
+          <div class="address">
+            230 Cleveland Ave SW<br>
+            Atlanta, GA 30315
+          </div>
+          <p><strong>Phone:</strong> <a href="tel:+14048399475">(404) 839-9475</a></p>
+          <div class="visit-actions">
+            <a class="btn btn-yellow" href="https://www.google.com/maps/search/?api=1&query=L.O.S.+Liquidation+Outlet+Store+230+Cleveland+Ave+SW+Atlanta+GA+30315" target="_blank" rel="noopener">Get Directions</a>
+            <a class="btn btn-light" href="tel:+14048399475">Call Store</a>
+          </div>
+        </div>
+
+        <div class="hours-card reveal">
+          <h3>Store Hours</h3>
+          <div class="hours-list">
+            <div class="hours-row"><span>Monday</span><strong>10:00 AM – 7:00 PM</strong></div>
+            <div class="hours-row"><span>Tuesday</span><strong>10:00 AM – 7:00 PM</strong></div>
+            <div class="hours-row"><span>Wednesday</span><strong>10:00 AM – 7:00 PM</strong></div>
+            <div class="hours-row"><span>Thursday</span><strong>10:00 AM – 7:00 PM</strong></div>
+            <div class="hours-row"><span>Friday</span><strong>10:00 AM – 7:00 PM</strong></div>
+            <div class="hours-row"><span>Saturday</span><strong>10:00 AM – 7:00 PM</strong></div>
+            <div class="hours-row"><span>Sunday</span><strong>10:00 AM – 6:00 PM</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">FAQs</span>
+          <h2>Know before you go.</h2>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>Where is L.O.S. Liquidation Outlet Store?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>The verified Atlanta store is at 230 Cleveland Ave SW, Atlanta, GA 30315.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>What are the store hours?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>Monday through Saturday: 10:00 AM–7:00 PM. Sunday: 10:00 AM–6:00 PM.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>What does L.O.S. sell?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>Public business information references home goods, furniture, flooring, tools, plumbing supplies, appliances, building and remodeling products, and changing miscellaneous liquidation merchandise.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>Is inventory always the same?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>No fixed inventory list was found. Public reviews consistently describe a changing, unpredictable, treasure-hunt style selection.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>Are prices shown on every item?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>No official pricing policy was found. Multiple public reviews say some items may not have visible pricing and shoppers may need to ask for a price.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>Are all items new and undamaged?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>No blanket condition claim should be made. Public reviews indicate merchandise condition can vary and some products may be damaged or incomplete, so individual items should be inspected carefully.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>Does L.O.S. offer delivery?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>Delivery could not be verified reliably from multiple sources. Call the store to confirm current delivery options.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            <span>What is the return policy?</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div>A verified return or exchange policy for the Cleveland Avenue store was not found. Ask the store about the current policy before purchasing.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <span class="eyebrow">230 Cleveland Ave SW</span>
+        <h2>Ready to hunt for your next find?</h2>
+        <p>
+          Visit L.O.S. Liquidation Outlet Store in Atlanta and give yourself time to explore the warehouse.
+          If you need something specific, call first.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-navy" href="https://www.google.com/maps/search/?api=1&query=L.O.S.+Liquidation+Outlet+Store+230+Cleveland+Ave+SW+Atlanta+GA+30315" target="_blank" rel="noopener">Get Directions</a>
+          <a class="btn btn-light" href="tel:+14048399475">Call (404) 839-9475</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">
+          <div class="brand-mark" style="background:#fff;color:#0b2340">LOS</div>
+          <div class="brand-text">
+            <strong>L.O.S. Liquidation Outlet Store</strong>
+            <span style="color:rgba(255,255,255,.5)">Atlanta, Georgia</span>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,.62);max-width:420px">
+          230 Cleveland Ave SW<br>
+          Atlanta, GA 30315<br><br>
+          <a href="tel:+14048399475">(404) 839-9475</a>
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">Explore</div>
+        <div class="footer-links">
+          <a href="#shop">Shop</a>
+          <a href="#warehouse">Warehouse</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Visit</a>
+          <a href="#faq">FAQs</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-title">Store Hours</div>
+        <div class="footer-links">
+          <span>Mon–Sat: 10 AM–7 PM</span>
+          <span>Sun: 10 AM–6 PM</span>
+          <a href="tel:+14048399475">Call Store</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> L.O.S. Liquidation Outlet Store.</span>
+      <span>Stock imagery is used for visual presentation and does not depict verified current inventory.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.querySelectorAll('.faq-q').forEach(button => {
+    button.addEventListener('click', () => {
+      button.closest('.faq-item').classList.toggle('open');
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

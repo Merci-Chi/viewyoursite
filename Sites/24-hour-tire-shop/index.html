@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0d0f12">
+  <meta name="description" content="24 Hour Tire Shop in Las Vegas. New and used tires, flat repair, mounting and balancing, wheels, and overnight tire help. Open 24 hours, 7 days a week.">
+  <title>24 Hour Tire Shop | Las Vegas Tire Service Open 24/7</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#0d0f12;
+      --bg2:#15181d;
+      --panel:#1b1f25;
+      --line:rgba(255,255,255,.12);
+      --text:#f4f5f7;
+      --muted:#aeb4bd;
+      --yellow:#f3c623;
+      --yellow2:#ffd84b;
+      --danger:#cf3333;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Inter",sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    img{max-width:100%;display:block}
+    h1,h2,h3{margin:0;font-family:"Barlow Condensed",sans-serif;line-height:.98;text-transform:uppercase}
+    p{margin:0}
+
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .section{padding:92px 0}
+    .kicker{
+      color:var(--yellow);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.76rem;
+      font-weight:800;
+    }
+    .section-title{
+      font-size:clamp(2.7rem,6vw,5.8rem);
+      margin-top:12px;
+      max-width:900px;
+    }
+    .section-copy{
+      margin-top:18px;
+      max-width:740px;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 24px;
+      border:1px solid rgba(255,255,255,.34);
+      color:#fff;
+      background:transparent;
+      text-decoration:none;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px);border-color:var(--yellow);color:var(--yellow)}
+    .btn-yellow{background:var(--yellow);border-color:var(--yellow);color:#141414}
+    .btn-yellow:hover{background:var(--yellow2);border-color:var(--yellow2);color:#141414}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(13,15,18,.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:22px;
+    }
+    .brand{
+      text-decoration:none;
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:1.65rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+    }
+    .brand span{color:var(--yellow)}
+    .nav-links{display:flex;align-items:center;gap:26px}
+    .nav-links a{text-decoration:none;font-size:.88rem;font-weight:800;text-transform:uppercase}
+    .nav-links a:hover{color:var(--yellow)}
+    .menu{
+      display:none;
+      width:46px;height:46px;
+      border:1px solid var(--line);
+      background:transparent;
+      color:#fff;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .hazard{
+      height:10px;
+      background:repeating-linear-gradient(
+        -45deg,
+        var(--yellow) 0 18px,
+        var(--yellow) 18px 36px,
+        #141414 36px 54px,
+        #141414 54px 72px
+      );
+    }
+
+    .hero{
+      min-height:82vh;
+      display:grid;
+      place-items:center;
+      position:relative;
+      background:
+        linear-gradient(90deg,rgba(9,10,12,.86),rgba(9,10,12,.42)),
+        url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+    }
+    .hero-inner{
+      width:min(var(--max),calc(100% - 40px));
+      padding:100px 0 90px;
+    }
+    .hero-content{max-width:850px}
+    .plate{
+      display:inline-block;
+      background:var(--yellow);
+      color:#111;
+      padding:8px 12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.78rem;
+      transform:skew(-8deg);
+    }
+    .plate span{display:block;transform:skew(8deg)}
+    .hero h1{
+      font-size:clamp(4rem,10vw,8.5rem);
+      margin-top:20px;
+    }
+    .hero .accent{color:var(--yellow)}
+    .hero p{
+      max-width:700px;
+      margin-top:22px;
+      color:rgba(255,255,255,.78);
+      font-size:1.08rem;
+    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .stock-note{margin-top:15px;font-size:.75rem;color:rgba(255,255,255,.58)}
+
+    .quick-strip{background:var(--yellow);color:#111}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick-item{
+      padding:26px;
+      border-right:1px solid rgba(0,0,0,.18);
+      display:flex;align-items:center;gap:14px;
+      min-height:110px;
+    }
+    .quick-item:last-child{border-right:0}
+    .quick-icon{font-size:1.35rem}
+    .quick-item strong{display:block;text-transform:uppercase;font-weight:900}
+    .quick-item span{font-size:.88rem;opacity:.72}
+
+    .services{
+      background:
+        linear-gradient(rgba(21,24,29,.94),rgba(21,24,29,.94)),
+        url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      margin-top:48px;
+      border-left:1px solid var(--line);
+      border-top:1px solid var(--line);
+    }
+    .service{
+      padding:30px;
+      min-height:240px;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(13,15,18,.56);
+    }
+    .service .num{
+      color:var(--yellow);
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:.86rem;
+      font-weight:900;
+      letter-spacing:.1em;
+    }
+    .service i{font-size:1.5rem;color:var(--yellow);margin:24px 0 20px}
+    .service h3{font-size:2rem}
+    .service p{margin-top:12px;color:var(--muted)}
+
+    .hours-band{
+      position:relative;
+      padding:82px 0;
+      text-align:center;
+      background:
+        linear-gradient(rgba(5,6,7,.8),rgba(5,6,7,.8)),
+        url("https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+    .hours-big{
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:clamp(3.6rem,9vw,7rem);
+      font-weight:900;
+      text-transform:uppercase;
+    }
+    .hours-big span{color:var(--yellow)}
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      border:1px solid rgba(255,255,255,.2);
+      padding:9px 14px;
+      margin-top:18px;
+      font-size:.86rem;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+    .dot{width:9px;height:9px;border-radius:50%;background:#56a65c;box-shadow:0 0 0 4px rgba(86,166,92,.14)}
+
+    .rating{
+      background:var(--bg);
+    }
+    .rating-grid{
+      display:grid;
+      grid-template-columns:.72fr 1.28fr;
+      gap:70px;
+      align-items:center;
+    }
+    .rating-number{
+      font-family:"Barlow Condensed",sans-serif;
+      font-size:clamp(6rem,14vw,10rem);
+      font-weight:900;
+      line-height:.8;
+      color:var(--yellow);
+    }
+    .stars{color:var(--yellow);letter-spacing:5px;margin:16px 0}
+    .rating-copy{color:var(--muted);max-width:650px}
+    .rating-actions{margin-top:26px}
+
+    .contact{
+      background:#111419;
+    }
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      margin-top:44px;
+    }
+    .contact-block{
+      border-top:3px solid var(--yellow);
+      padding:26px 0 0;
+    }
+    .contact-block h3{font-size:2rem}
+    .contact-block p{margin-top:12px;color:var(--muted)}
+    .protected{
+      margin-top:12px;
+      color:var(--yellow);
+      font-size:.76rem;
+      font-weight:900;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .contact-actions{margin-top:20px}
+
+    footer{
+      border-top:1px solid var(--line);
+      background:#090b0d;
+      padding:40px 0;
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      align-items:flex-end;
+    }
+    .foot-brand{
+      font-family:"Barlow Condensed",sans-serif;
+      text-transform:uppercase;
+      font-size:1.8rem;
+      font-weight:900;
+    }
+    .foot-brand span{color:var(--yellow)}
+    .foot p{margin-top:8px;color:#7f8791;font-size:.86rem}
+    .foot-nav{display:flex;gap:18px;flex-wrap:wrap}
+    .foot-nav a{text-decoration:none;color:#aeb4bd;font-size:.86rem}
+    .foot-nav a:hover{color:var(--yellow)}
+
+    .modal-backdrop{
+      position:fixed;inset:0;
+      background:rgba(0,0,0,.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:999;
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(480px,100%);
+      background:#171a1f;
+      border-top:6px solid var(--yellow);
+      padding:32px;
+      box-shadow:0 30px 90px rgba(0,0,0,.45);
+    }
+    .modal h2{font-size:2.4rem}
+    .modal p{margin-top:14px;color:var(--muted)}
+    .modal .btn{margin-top:24px}
+    body.modal-open{overflow:hidden}
+
+    @media(max-width:900px){
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:78px;
+        left:0;right:0;
+        background:var(--bg2);
+        padding:10px 20px 18px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:0;
+        border-bottom:1px solid var(--line);
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{width:100%;padding:12px 0}
+      .menu{display:flex}
+      .quick-grid{grid-template-columns:1fr}
+      .quick-item{border-right:0;border-bottom:1px solid rgba(0,0,0,.18)}
+      .service-grid{grid-template-columns:1fr 1fr}
+      .rating-grid,.contact-grid{grid-template-columns:1fr}
+      .rating-grid{gap:36px}
+    }
+
+    @media(max-width:650px){
+      .wrap,.hero-inner{width:min(100% - 28px,var(--max))}
+      .section{padding:70px 0}
+      .hero{min-height:76vh}
+      .hero-inner{padding:82px 0 70px}
+      .hero h1{font-size:clamp(3.7rem,19vw,5.5rem)}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .hero-actions .btn{width:100%}
+      .service-grid{grid-template-columns:1fr}
+      .service{min-height:0}
+      .foot{flex-direction:column;align-items:flex-start}
+      .modal{padding:26px 21px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand"><span>24 Hour</span> Tire Shop</a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a href="#services">Tires</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Location</a>
+    </nav>
+
+    <button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="hazard"></div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="plate"><span>Open 24 hours · 7 days</span></div>
+        <h1>Flat tire at <span class="accent">3 AM</span>?</h1>
+        <p>24 Hour Tire Shop on W Charleston Blvd is open around the clock for new and used tires, flat repair, mounting &amp; balancing, wheels, and overnight tire help.</p>
+        <div class="hero-actions">
+          <a class="btn btn-yellow" href="#services"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> What we do</a>
+          <button class="btn" data-locked="true"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call now</button>
+        </div>
+        <div class="stock-note">Background image is stock imagery and does not depict the actual shop or employees.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-strip" aria-label="Business highlights">
+    <div class="wrap quick-grid">
+      <div class="quick-item">
+        <div class="quick-icon"><i class="fa-regular fa-clock" aria-hidden="true"></i></div>
+        <div><strong>Open 24/7</strong><span>24 hours · 7 days a week</span></div>
+      </div>
+      <div class="quick-item">
+        <div class="quick-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></div>
+        <div><strong>Las Vegas</strong><span>W Charleston Blvd</span></div>
+      </div>
+      <div class="quick-item">
+        <div class="quick-icon"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+        <div><strong>3.9 Google rating</strong><span>Rating shown in the supplied source</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="kicker">Tires</div>
+      <h2 class="section-title">Pull in. We will take it from here.</h2>
+      <p class="section-copy">Services listed in the supplied business page are shown below.</p>
+
+      <div class="service-grid">
+        <article class="service">
+          <span class="num">01</span>
+          <i class="fa-solid fa-circle-notch" aria-hidden="true"></i>
+          <h3>New tire sales</h3>
+        </article>
+
+        <article class="service">
+          <span class="num">02</span>
+          <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
+          <h3>Used tire sales</h3>
+        </article>
+
+        <article class="service">
+          <span class="num">03</span>
+          <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+          <h3>Flat repair, patch &amp; plug</h3>
+        </article>
+
+        <article class="service">
+          <span class="num">04</span>
+          <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+          <h3>Mounting &amp; balancing</h3>
+        </article>
+
+        <article class="service">
+          <span class="num">05</span>
+          <i class="fa-solid fa-compact-disc" aria-hidden="true"></i>
+          <h3>Wheels</h3>
+        </article>
+
+        <article class="service">
+          <span class="num">06</span>
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          <h3>Overnight roadside relief</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="hours-band" id="hours">
+    <div class="wrap">
+      <div class="kicker">Hours</div>
+      <div class="hours-big">Open <span>24 Hours</span></div>
+      <p style="margin-top:12px;color:rgba(255,255,255,.7)">7 days a week.</p>
+      <div class="status"><span class="dot"></span><span>Open around the clock</span></div>
+    </div>
+  </section>
+
+  <section class="section rating" id="reviews">
+    <div class="wrap rating-grid">
+      <div>
+        <div class="rating-number">3.9</div>
+        <div class="stars" aria-label="3.9 out of 5 stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p>Google rating shown in the supplied source page.</p>
+      </div>
+
+      <div>
+        <div class="kicker">Reviews</div>
+        <h2 class="section-title">See current public reviews.</h2>
+        <p class="rating-copy">The supplied page identifies a current 3.9-star Google rating. This demo does not reproduce individual review text unless it can be independently verified for final publication.</p>
+        <div class="rating-actions">
+          <button class="btn" data-locked="true"><i class="fa-brands fa-google" aria-hidden="true"></i> View Google reviews</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <div class="kicker">Location</div>
+      <h2 class="section-title">W Charleston Blvd, Las Vegas.</h2>
+      <p class="section-copy">The verified source page includes a public street address and phone number, but this sample site protects those details until the full website is unlocked.</p>
+
+      <div class="contact-grid">
+        <div class="contact-block">
+          <h3>The shop</h3>
+          <p>Las Vegas, NV 89102</p>
+          <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+          <div class="contact-actions">
+            <button class="btn btn-yellow" data-locked="true"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Get directions</button>
+          </div>
+        </div>
+
+        <div class="contact-block">
+          <h3>Roadside? Call now</h3>
+          <p>Direct calling and quote actions are available in the full website.</p>
+          <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+          <div class="contact-actions">
+            <button class="btn" data-locked="true"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call the shop</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="foot-brand"><span>24 Hour</span> Tire Shop</div>
+      <p>Las Vegas, Nevada · Open 24 hours, 7 days a week</p>
+      <p>Stock imagery used in this demo is illustrative only.</p>
+    </div>
+
+    <nav class="foot-nav" aria-label="Footer navigation">
+      <a href="#services">Tires</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Location</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-yellow" id="closeModal">Close</button>
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockModal');
+  const closeModalBtn = document.getElementById('closeModal');
+  let lastFocused = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('.nav-links a, .foot-nav a, a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+    });
+  });
+
+  function openLocked(trigger){
+    lastFocused = trigger;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    closeModalBtn.focus();
+  }
+
+  function closeLocked(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  closeModalBtn.addEventListener('click', closeLocked);
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusable = modal.querySelectorAll('button,[href],input,textarea,select,[tabindex]:not([tabindex="-1"])');
+      if(!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)){
+      e.preventDefault();
+    }
+  });
+</script>
+
+<!--
+SOURCE-BASED BUSINESS DATA USED
+- Business name: 24 Hour Tire Shop
+- Location: Las Vegas, Nevada
+- Public source address: 15 W Charleston Blvd, Las Vegas, NV 89102
+- Public source phone: (702) 388-8822
+- Hours: Open 24 hours, 7 days a week
+- Google rating shown in source: 3.9 stars
+- Services shown in source:
+  - New tire sales
+  - Used tire sales
+  - Flat repair, patch & plug
+  - Mounting & balancing
+  - Wheels
+  - Overnight roadside relief
+
+DEMO RULES APPLIED
+- Street address and phone are intentionally hidden from the visible demo.
+- All real-world call, map, and external review actions are locked.
+- No real form submission is included.
+- One reusable locked modal handles all locked actions.
+- Internal navigation remains functional.
+- Mobile zoom is prevented.
+- Text selection is disabled.
+- Mobile hamburger navigation is functional.
+
+STOCK IMAGE ASSETS
+1. Hero automotive/tire shop image:
+   https://images.unsplash.com/photo-1486262715619-67b85e0b08d3
+2. Tire/service background:
+   https://images.unsplash.com/photo-1503736334956-4c8f8e92946d
+3. Automotive night/service image:
+   https://images.unsplash.com/photo-1590362891991-f776e747a588
+
+Stock imagery is illustrative and does not depict the actual business, staff, vehicles, storefront, equipment, or completed work.
+
+SEO
+Title:
+24 Hour Tire Shop | Las Vegas Tire Service Open 24/7
+
+Meta description:
+24 Hour Tire Shop in Las Vegas. New and used tires, flat repair, mounting and balancing, wheels, and overnight tire help. Open 24 hours, 7 days a week.
+
+LOCAL SEO RECOMMENDATIONS FOR FINAL UNLOCKED SITE
+- Reveal the verified public street address and phone number.
+- Connect the verified Google Maps / Business Profile.
+- Add original storefront and tire-service photos if provided by the owner.
+- Add LocalBusiness structured data only after final owner confirmation.
+
+MISSING / REQUIRES APPROVAL
+- Public email
+- Owner/team names
+- Years in business
+- Current tire pricing
+- Accepted payment methods
+- Warranty/return policies
+- Social media links
+- Exact inventory/brands/sizes
+- Verified service radius
+- Official original business photography
+
+QUALITY CHECK
+- Single HTML file: yes
+- CSS inside HTML: yes
+- JavaScript inside HTML: yes
+- Desktop/mobile/tablet responsive: yes
+- Mobile hamburger menu: yes
+- Zoom prevention: yes
+- Text highlighting disabled: yes
+- Stock background imagery: yes
+- Font Awesome icons: yes
+- Locked phone/map/review actions: yes
+- Reusable locked modal: yes
+- Modal closes via button/outside/Escape: yes
+- No fake form success: yes
+- No unsupported pricing, certifications, guarantees, or awards added: yes
+-->
+</body>
+</html>

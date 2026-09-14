@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Llantera Yeyass & Auto Services in North Las Vegas offers new and used tires, flat repair, mounting and balancing, wheels and rims, and free pressure checks.">
+  <meta name="theme-color" content="#0c1015">
+  <title>Llantera Yeyass & Auto Services | North Las Vegas Tire Shop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#0c1015;
+      --panel:#151b22;
+      --panel2:#1d252e;
+      --text:#f6f8fb;
+      --muted:#aeb7c2;
+      --red:#df2d2f;
+      --red2:#ff4e50;
+      --yellow:#f6c84b;
+      --line:rgba(255,255,255,.12);
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,system-ui,sans-serif;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+
+    .demo-strip{
+      background:#05070a;
+      border-bottom:1px solid var(--line);
+      color:#fff;
+      text-align:center;
+      padding:9px 14px;
+      font-size:.75rem;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background:rgba(12,16,21,.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      text-decoration:none;
+    }
+    .brand-mark{
+      width:54px;height:54px;
+      display:grid;place-items:center;
+      background:var(--red);
+      color:#fff;
+      font-family:Anton,sans-serif;
+      font-size:1.25rem;
+      letter-spacing:.04em;
+      transform:skew(-7deg);
+    }
+    .brand-copy strong{
+      display:block;
+      font-family:Anton,sans-serif;
+      font-size:1.2rem;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+    }
+    .brand-copy span{
+      display:block;
+      font-size:.72rem;
+      color:var(--muted);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-top:4px;
+    }
+    nav{display:flex;align-items:center;gap:26px}
+    nav a{
+      text-decoration:none;
+      font-size:.9rem;
+      font-weight:700;
+      color:#e9edf2;
+    }
+    nav a:hover{color:var(--yellow)}
+    .nav-cta{
+      border:0;
+      padding:12px 16px;
+      background:var(--red);
+      color:#fff;
+      font-weight:800;
+    }
+    .menu-btn{
+      display:none;
+      width:46px;height:42px;
+      border:1px solid var(--line);
+      background:transparent;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:5px;
+    }
+    .menu-btn span{display:block;width:22px;height:2px;background:#fff}
+
+    .hero{
+      min-height:740px;
+      position:relative;
+      display:grid;
+      align-items:end;
+      background:
+        linear-gradient(90deg,rgba(5,7,10,.93) 0%,rgba(5,7,10,.78) 44%,rgba(5,7,10,.34) 78%,rgba(5,7,10,.5) 100%),
+        url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1900&q=85") center/cover no-repeat;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(transparent 72%,var(--bg)),
+        radial-gradient(circle at 74% 35%,rgba(223,45,47,.14),transparent 34%);
+      pointer-events:none;
+    }
+    .hero-content{position:relative;z-index:2;padding:110px 0 160px;max-width:810px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      border:1px solid rgba(255,255,255,.34);
+      padding:9px 12px;
+      background:rgba(0,0,0,.32);
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-weight:800;
+      margin-bottom:24px;
+    }
+    .hero h1{
+      margin:0;
+      font-family:Anton,sans-serif;
+      font-size:clamp(4rem,9vw,8rem);
+      line-height:.88;
+      text-transform:uppercase;
+      letter-spacing:.01em;
+    }
+    .hero h1 span{color:var(--red2)}
+    .hero p{
+      max-width:700px;
+      margin:24px 0 0;
+      color:#d4d9df;
+      font-size:1.05rem;
+      line-height:1.75;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{
+      min-height:50px;
+      padding:0 20px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      border:2px solid #fff;
+      color:#fff;
+      background:transparent;
+      text-decoration:none;
+      font-weight:800;
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{background:var(--red);border-color:var(--red)}
+    .btn.yellow{background:var(--yellow);border-color:var(--yellow);color:#111}
+    .btn.dark{background:#0b0f14;border-color:#0b0f14}
+    .btn.ghost-dark{border-color:#2a3038;color:#111;background:transparent}
+
+    .quickbar{
+      margin-top:-70px;
+      position:relative;
+      z-index:5;
+    }
+    .quickgrid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      background:#11171d;
+      border:1px solid var(--line);
+      box-shadow:0 20px 60px rgba(0,0,0,.32);
+    }
+    .quick{
+      padding:27px 28px;
+      border-right:1px solid var(--line);
+      display:flex;
+      gap:15px;
+      align-items:flex-start;
+    }
+    .quick:last-child{border-right:0}
+    .quick i{color:var(--yellow);font-size:1.25rem;margin-top:3px}
+    .quick strong{display:block;margin-bottom:5px}
+    .quick span{font-size:.88rem;color:var(--muted);line-height:1.5}
+
+    section{padding:94px 0}
+    .kicker{
+      color:var(--red2);
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      font-size:.75rem;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+    .title{
+      margin:0;
+      font-family:Anton,sans-serif;
+      font-size:clamp(2.8rem,6vw,5.4rem);
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:.01em;
+    }
+    .lede{
+      max-width:780px;
+      color:var(--muted);
+      line-height:1.75;
+      margin:18px 0 0;
+      font-size:1rem;
+    }
+
+    .services{background:#0f141a}
+    .services-grid{
+      margin-top:42px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--line);
+      border-left:1px solid var(--line);
+    }
+    .service{
+      min-height:285px;
+      padding:30px;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+      transition:.25s ease;
+    }
+    .service:hover{background:#171f27}
+    .service::after{
+      content:"";
+      position:absolute;
+      width:130px;height:130px;
+      border:22px solid rgba(255,255,255,.025);
+      border-radius:50%;
+      right:-35px;bottom:-45px;
+    }
+    .service .num{
+      color:#69727d;
+      font-size:.72rem;
+      letter-spacing:.14em;
+    }
+    .service i{
+      display:block;
+      color:var(--yellow);
+      font-size:1.5rem;
+      margin:52px 0 20px;
+    }
+    .service h3{margin:0 0 12px;font-size:1.08rem}
+    .service p{margin:0;color:#aeb7c2;font-size:.9rem;line-height:1.68}
+
+    .spotlight{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:stretch;
+      min-height:560px;
+    }
+    .spot-image{
+      background:
+        linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),
+        url("https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1300&q=85") center/cover no-repeat;
+      min-height:520px;
+    }
+    .spot-copy{
+      background:var(--yellow);
+      color:#111;
+      padding:58px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .spot-copy .kicker{color:#8b1c1e}
+    .spot-copy p{line-height:1.75;color:#342f25}
+    .size-chip{
+      margin-top:18px;
+      display:inline-block;
+      width:max-content;
+      background:#111;
+      color:#fff;
+      padding:11px 14px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .reviews{
+      background:
+        linear-gradient(rgba(12,16,21,.91),rgba(12,16,21,.95)),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1900&q=85") center/cover fixed;
+    }
+    .review-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:38px;
+    }
+    .review{
+      background:#121820;
+      border:1px solid var(--line);
+      padding:28px;
+      position:relative;
+    }
+    .review .stars{color:var(--yellow);letter-spacing:2px;margin-bottom:16px}
+    .review blockquote{
+      margin:0;
+      font-size:1.08rem;
+      line-height:1.7;
+      color:#eef1f5;
+    }
+    .review small{display:block;margin-top:16px;color:var(--muted)}
+    .rating-note{
+      margin-top:18px;
+      border-left:4px solid var(--red);
+      padding:18px 20px;
+      background:#11171d;
+      color:#c4cbd3;
+      line-height:1.65;
+    }
+
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:52px;
+      align-items:start;
+    }
+    .hours{
+      margin-top:30px;
+      border-top:1px solid var(--line);
+    }
+    .hour{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      padding:13px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .hour span:last-child{font-weight:800}
+    .protected-card{
+      background:#f5f2eb;
+      color:#111;
+      border-top:8px solid var(--red);
+      padding:34px;
+      box-shadow:0 24px 55px rgba(0,0,0,.24);
+    }
+    .protected-card h3{
+      margin:0 0 22px;
+      font-family:Anton,sans-serif;
+      font-size:2rem;
+      text-transform:uppercase;
+    }
+    .info-row{
+      display:grid;
+      grid-template-columns:38px 1fr;
+      gap:12px;
+      padding:18px 0;
+      border-bottom:1px solid rgba(0,0,0,.14);
+    }
+    .info-row i{color:var(--red);margin-top:3px}
+    .info-row strong{display:block;margin-bottom:5px}
+    .protected{
+      font-size:.8rem;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:#676767;
+      font-weight:700;
+    }
+
+    .work-order{
+      margin-top:70px;
+      display:grid;
+      grid-template-columns:.8fr 1.2fr;
+      background:#11171d;
+      border:1px solid var(--line);
+    }
+    .work-order-copy{
+      padding:40px;
+      border-right:1px solid var(--line);
+    }
+    .work-order-copy h3{
+      font-family:Anton,sans-serif;
+      font-size:2.6rem;
+      margin:0 0 16px;
+      text-transform:uppercase;
+    }
+    .work-order-copy p{color:var(--muted);line-height:1.7}
+    form{padding:40px}
+    .field{margin-bottom:16px}
+    label{
+      display:block;
+      font-size:.78rem;
+      color:#d5dbe2;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:7px;
+      font-weight:700;
+    }
+    input,textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:#0d1217;
+      color:#fff;
+      padding:14px 15px;
+      outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    input:focus,textarea:focus{border-color:var(--red2)}
+
+    footer{
+      background:#05070a;
+      border-top:1px solid var(--line);
+      padding:58px 0 26px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr .8fr .8fr;
+      gap:45px;
+      padding-bottom:40px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand{
+      font-family:Anton,sans-serif;
+      font-size:2rem;
+      text-transform:uppercase;
+      margin-bottom:13px;
+    }
+    .footer-copy{color:#9da6b0;line-height:1.7;max-width:520px;font-size:.9rem}
+    .footer-col h4{
+      margin:0 0 15px;
+      color:var(--yellow);
+      font-size:.77rem;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+    }
+    .footer-col a,.footer-col span{
+      display:block;
+      margin:10px 0;
+      text-decoration:none;
+      color:#c5cbd2;
+      font-size:.9rem;
+    }
+    .copyright{margin-top:24px;color:#737c86;font-size:.78rem}
+
+    .modal-backdrop{
+      position:fixed;inset:0;z-index:1000;
+      background:rgba(0,0,0,.78);
+      display:none;
+      place-items:center;
+      padding:22px;
+    }
+    .modal-backdrop.open{display:grid}
+    .modal{
+      width:min(100%,470px);
+      background:#f6f2e9;
+      color:#111;
+      border-top:7px solid var(--red);
+      padding:30px;
+      box-shadow:0 28px 80px rgba(0,0,0,.4);
+    }
+    .modal-icon{
+      width:50px;height:50px;
+      background:#f1dada;
+      color:var(--red);
+      display:grid;place-items:center;
+      margin-bottom:18px;
+      font-size:1.25rem;
+    }
+    .modal h3{
+      font-family:Anton,sans-serif;
+      text-transform:uppercase;
+      font-size:2rem;
+      margin:0 0 10px;
+    }
+    .modal p{color:#555;line-height:1.65;margin:0 0 22px}
+    body.modal-open{overflow:hidden}
+
+    @media(max-width:940px){
+      .quickgrid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid var(--line)}
+      .quick:last-child{border-bottom:0}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .spotlight,.visit-grid,.work-order{grid-template-columns:1fr}
+      .work-order-copy{border-right:0;border-bottom:1px solid var(--line)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-grid>div:first-child{grid-column:1/-1}
+    }
+
+    @media(max-width:760px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .demo-strip{font-size:.66rem}
+      .nav{min-height:68px}
+      .brand-mark{width:44px;height:44px}
+      .brand-copy span{display:none}
+      .menu-btn{display:flex}
+      nav{
+        position:absolute;
+        top:68px;left:0;right:0;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        padding:10px 18px 18px;
+        background:#0d1217;
+        border-bottom:1px solid var(--line);
+      }
+      nav.open{display:flex}
+      nav a{padding:14px 0;border-bottom:1px solid var(--line)}
+      .nav-cta{margin-top:12px}
+      .hero{min-height:630px;background-position:61% center}
+      .hero-content{padding:85px 0 135px}
+      .hero h1{font-size:clamp(3.9rem,18vw,6.2rem)}
+      .hero-actions .btn{width:100%}
+      .quickbar{margin-top:-50px}
+      section{padding:72px 0}
+      .services-grid{grid-template-columns:1fr}
+      .service{min-height:240px}
+      .spot-copy{padding:34px 24px}
+      .spot-image{min-height:360px}
+      .review-grid{grid-template-columns:1fr}
+      .work-order{margin-top:48px}
+      .work-order-copy,form{padding:28px 22px}
+      .footer-grid{grid-template-columns:1fr}
+      .footer-grid>div:first-child{grid-column:auto}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-strip">Demo website · contact details protected in this demo</div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Llantera Yeyass & Auto Services home">
+        <div class="brand-mark">YY</div>
+        <div class="brand-copy">
+          <strong>YEYASS</strong>
+          <span>Llantera & Auto Services</span>
+        </div>
+      </a>
+
+      <button id="menuBtn" class="menu-btn" aria-label="Open mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="mobileNav">
+        <a href="#services">Tires & Auto</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+        <button class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Shop</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-content">
+        <div class="eyebrow"><i class="fa-solid fa-location-dot"></i> North Las Vegas tire shop</div>
+        <h1>Fresh rubber.<br><span>Fast fixes.</span></h1>
+        <p>
+          Llantera Yeyass & Auto Services keeps North Las Vegas rolling with new and used tires, flat repair, mounting and balancing, wheels and rims, and free pressure checks.
+        </p>
+        <div class="hero-actions">
+          <a href="#services" class="btn yellow"><i class="fa-solid fa-tire"></i> See Tire Services</a>
+          <button class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Shop</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="quickbar">
+      <div class="wrap quickgrid">
+        <div class="quick">
+          <i class="fa-solid fa-clock"></i>
+          <div><strong>Open Daily</strong><span>8:00 AM – Midnight</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-solid fa-gauge-high"></i>
+          <div><strong>Free Pressure Checks</strong><span>Stop in for a free air-pressure check while the shop is open.</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <div><strong>Tires & Repairs</strong><span>New tires, used tires, flat repair, mounting and balancing.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="kicker">What we do</div>
+        <h2 class="title">Tires & Auto</h2>
+        <p class="lede">
+          Tire services for cars, trucks and SUVs, with repair and wheel-related work handled at the shop.
+        </p>
+
+        <div class="services-grid">
+          <article class="service">
+            <span class="num">01</span>
+            <i class="fa-solid fa-circle"></i>
+            <h3>New Tires</h3>
+            <p>New tires for cars, trucks and SUVs, selected by tire size and driving needs.</p>
+          </article>
+
+          <article class="service">
+            <span class="num">02</span>
+            <i class="fa-solid fa-circle-dot"></i>
+            <h3>Used Tires</h3>
+            <p>Used tire options for customers looking for a lower-cost replacement.</p>
+          </article>
+
+          <article class="service">
+            <span class="num">03</span>
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <h3>Flat Repair</h3>
+            <p>Flat-tire service using a patch or plug depending on the tire and whether it is safe to repair.</p>
+          </article>
+
+          <article class="service">
+            <span class="num">04</span>
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <h3>Mounting & Balancing</h3>
+            <p>Mounting and balancing for new or used tires.</p>
+          </article>
+
+          <article class="service">
+            <span class="num">05</span>
+            <i class="fa-solid fa-compact-disc"></i>
+            <h3>Wheels & Rims</h3>
+            <p>Wheel and rim work handled alongside tire service.</p>
+          </article>
+
+          <article class="service">
+            <span class="num">06</span>
+            <i class="fa-solid fa-gauge-high"></i>
+            <h3>Free Pressure Checks</h3>
+            <p>Free tire-pressure checks and air top-offs during business hours.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap spotlight">
+        <div class="spot-image" role="img" aria-label="Stock image of a tire and auto service environment"></div>
+        <div class="spot-copy">
+          <div class="kicker">Tire size 101</div>
+          <h2 class="title" style="font-size:clamp(2.8rem,5vw,4.7rem)">Check the sidewall.</h2>
+          <p>
+            Your tire size is printed on the sidewall. The source page gives an example like <strong>215/60R16</strong>. If you cannot find it, the shop can help identify what you need.
+          </p>
+          <span class="size-chip">Example: 215/60R16</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <div class="kicker">Word on the street</div>
+        <h2 class="title">Reviews</h2>
+        <p class="lede">Customer comments shown below are the review excerpts already present in the supplied business page.</p>
+
+        <div class="review-grid">
+          <article class="review">
+            <div class="stars" aria-label="Five stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <blockquote>“This llantera is hands down the best in town.”</blockquote>
+            <small>Google review</small>
+          </article>
+
+          <article class="review">
+            <div class="stars" aria-label="Five stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <blockquote>“Great service and very friendly.”</blockquote>
+            <small>Google review</small>
+          </article>
+        </div>
+
+        <div class="rating-note">
+          The supplied business page states <strong>4.3 stars on Google</strong>. This demo keeps that source-provided figure but locks external review actions.
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px">
+          <button class="btn primary" data-locked="true"><i class="fa-brands fa-google"></i> See Every Review on Google</button>
+          <button class="btn" data-locked="true"><i class="fa-solid fa-star"></i> Read the Yelp Reviews</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit">
+      <div class="wrap">
+        <div class="visit-grid">
+          <div>
+            <div class="kicker">Come through</div>
+            <h2 class="title">Visit</h2>
+            <p class="lede">
+              Open every day from 8:00 AM to midnight. Contact and address details are protected in this demo.
+            </p>
+
+            <div class="hours">
+              <div class="hour"><span>Sunday</span><span>8:00 AM – Midnight</span></div>
+              <div class="hour"><span>Monday</span><span>8:00 AM – Midnight</span></div>
+              <div class="hour"><span>Tuesday</span><span>8:00 AM – Midnight</span></div>
+              <div class="hour"><span>Wednesday</span><span>8:00 AM – Midnight</span></div>
+              <div class="hour"><span>Thursday</span><span>8:00 AM – Midnight</span></div>
+              <div class="hour"><span>Friday</span><span>8:00 AM – Midnight</span></div>
+              <div class="hour"><span>Saturday</span><span>8:00 AM – Midnight</span></div>
+            </div>
+          </div>
+
+          <aside class="protected-card">
+            <h3>Find the shop</h3>
+
+            <div class="info-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>Shop Address</strong>
+                <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <strong>Phone</strong>
+                <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <i class="fa-solid fa-city"></i>
+              <div>
+                <strong>Location</strong>
+                <div>North Las Vegas, Nevada</div>
+              </div>
+            </div>
+
+            <button class="btn dark" data-locked="true" style="width:100%;margin-top:24px">
+              <i class="fa-solid fa-phone"></i> Call the Shop
+            </button>
+          </aside>
+        </div>
+
+        <div class="work-order">
+          <div class="work-order-copy">
+            <div class="kicker">Work order</div>
+            <h3>Tell us what it needs.</h3>
+            <p>
+              The original page includes a work-order form for a tire size, slow leak, wobble or other tire-service need. Submission stays locked in this demo because no backend was provided.
+            </p>
+          </div>
+
+          <form id="workOrderForm">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" type="text" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="phone">Your phone</label>
+              <input id="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="need">What does it need?</label>
+              <textarea id="need"></textarea>
+            </div>
+            <button type="submit" class="btn primary" data-locked="true">
+              <i class="fa-solid fa-paper-plane"></i> Send It Over
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">YEYASS</div>
+          <p class="footer-copy">
+            Llantera & Auto Services in North Las Vegas offering new and used tires, flat repair, mounting and balancing, wheels and rims, and free pressure checks.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#services">Tires & Auto</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#visit">Visit</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop Info</h4>
+          <span>North Las Vegas, NV</span>
+          <span>Open daily 8 AM – Midnight</span>
+          <span>CONTACT DETAILS PROTECTED IN THIS DEMO</span>
+        </div>
+      </div>
+
+      <div class="copyright">© Llantera Yeyass & Auto Services · North Las Vegas, NV</div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true">
+    <div class="modal" tabindex="-1">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn dark" id="closeModal" type="button">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const modalBackdrop = document.getElementById('lockedModal');
+    const modal = modalBackdrop.querySelector('.modal');
+    const closeModal = document.getElementById('closeModal');
+    const workOrderForm = document.getElementById('workOrderForm');
+    let lastFocus = null;
+
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    function openLocked(trigger){
+      lastFocus = trigger || document.activeElement;
+      modalBackdrop.classList.add('open');
+      modalBackdrop.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      setTimeout(() => modal.focus(), 0);
+    }
+
+    function closeLocked(){
+      modalBackdrop.classList.remove('open');
+      modalBackdrop.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        openLocked(el);
+      });
+    });
+
+    if(workOrderForm){
+      workOrderForm.addEventListener('submit', e => {
+        e.preventDefault();
+        openLocked(workOrderForm.querySelector('[type="submit"]'));
+      });
+    }
+
+    closeModal.addEventListener('click', closeLocked);
+
+    modalBackdrop.addEventListener('click', e => {
+      if(e.target === modalBackdrop) closeLocked();
+    });
+
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && modalBackdrop.classList.contains('open')) closeLocked();
+
+      if(e.key === 'Tab' && modalBackdrop.classList.contains('open')){
+        const focusable = modalBackdrop.querySelectorAll('button,[href],input,textarea,select,[tabindex]:not([tabindex="-1"])');
+        if(!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if(e.shiftKey && document.activeElement === first){
+          e.preventDefault();
+          last.focus();
+        }else if(!e.shiftKey && document.activeElement === last){
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    document.addEventListener('gesturestart', e => e.preventDefault());
+  </script>
+</body>
+</html>

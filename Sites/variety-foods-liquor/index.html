@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#22231f">
+<title>Variety Foods & Liquor | Dearborn, MI</title>
+<meta name="description" content="Variety Foods & Liquor in Dearborn. Wine, beer, spirits, everyday staples and cold drinks.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --ink:#22231f;--olive:#3f4a34;--olive2:#6d7b58;--gold:#d4a84f;--cream:#f3eee3;
+  --paper:#fffdf7;--muted:#6e7067;--line:rgba(34,35,31,.14);--max:1180px;
+  --shadow:0 22px 60px rgba(40,40,28,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;user-select:none;-webkit-user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(243,238,227,.95);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.header-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}
+.brand-icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--olive);color:#fff;border:4px solid #e7d8b0}
+.desktop-nav{display:flex;align-items:center;gap:28px;font-weight:700;font-size:.93rem}
+.desktop-nav a{position:relative}
+.desktop-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;background:var(--gold);transition:.2s}
+.desktop-nav a:hover:after{right:0}
+.menu-btn{display:none;border:0;background:none;width:46px;height:46px;padding:10px;cursor:pointer}
+.menu-btn span{display:block;height:2px;background:var(--ink);margin:6px 0}
+.mobile-menu{display:none;padding:8px 20px 18px;border-top:1px solid var(--line)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+main{padding-top:74px}
+.hero{
+  min-height:700px;color:#fff;display:grid;align-items:end;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(25,27,22,.94) 0%,rgba(25,27,22,.75) 50%,rgba(25,27,22,.34) 100%),
+    url("https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+}
+.hero:after{content:"";position:absolute;right:-120px;top:-160px;width:430px;height:430px;border-radius:50%;border:70px solid rgba(212,168,79,.15)}
+.hero-inner{position:relative;z-index:2;padding:115px 0 76px;max-width:790px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;font-size:.76rem;font-weight:800;color:#efd39a}
+.eyebrow:before{content:"";width:38px;height:2px;background:currentColor}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:"Manrope",sans-serif;font-size:clamp(3.5rem,7.8vw,6.8rem);line-height:.91;letter-spacing:-.065em;margin:20px 0 24px}
+.hero-copy{font-size:clamp(1rem,2vw,1.22rem);line-height:1.68;max-width:650px;color:rgba(255,255,255,.85)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{min-height:50px;padding:13px 20px;border:1px solid transparent;font:800 .92rem "DM Sans",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:transform .18s ease,background .18s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#251f14}
+.btn-ghost{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.55);color:white}
+.stock-note{position:absolute;right:18px;bottom:16px;z-index:3;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.64)}
+.quickbar{background:var(--ink);color:#fff}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+.quick:last-child{border-right:0}
+.quick i{color:#e4bd69;margin-top:3px}
+.quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+.quick span{font-weight:700;line-height:1.4}
+.section{padding:94px 0}
+.kicker{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.75rem;color:var(--olive2);margin-bottom:10px}
+.section h2{font-family:"Manrope",sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.055em;line-height:.98;margin-bottom:18px}
+.lead{max-width:720px;color:var(--muted);line-height:1.75;font-size:1.03rem}
+.about-grid{display:grid;grid-template-columns:1fr .92fr;gap:62px;align-items:start}
+.about-photo{
+  min-height:440px;background:
+    linear-gradient(rgba(54,64,42,.10),rgba(54,64,42,.10)),
+    url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=82") center/cover no-repeat;
+  box-shadow:var(--shadow);position:relative
+}
+.about-photo:after{content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;background:rgba(25,29,20,.8);color:#fff;padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em}
+.about-copy{padding-top:18px}
+.protected{margin-top:24px;border-left:4px solid var(--gold);background:#f9efd4;padding:18px 20px;display:flex;gap:14px}
+.protected i{color:var(--olive2);margin-top:3px}
+.protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+.services{background:#fff}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:38px}
+.service{background:#fff;padding:34px 28px;min-height:230px}
+.service-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#edf0e8;color:var(--olive);font-size:1.15rem;margin-bottom:26px}
+.service h3{font-size:1.15rem;margin-bottom:10px}
+.service p{color:var(--muted);line-height:1.6;margin-bottom:0}
+.highlights{
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(30,34,25,.96),rgba(30,34,25,.84)),
+    url("https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+}
+.highlights .kicker{color:#edd08e}
+.highlights .lead{color:rgba(255,255,255,.72)}
+.high-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.16);margin-top:36px}
+.high{padding:28px;background:rgba(0,0,0,.22)}
+.high i{color:#edc776;font-size:1.35rem;margin-bottom:16px}
+.high h3{margin-bottom:8px}
+.high p{color:rgba(255,255,255,.72);margin-bottom:0}
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.hours-list{border-top:1px solid var(--line)}
+.hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.hour-row span{color:var(--muted)}
+.today{color:var(--olive2)!important}
+.rating-band{margin-top:34px;background:#fff;border:1px solid var(--line);padding:28px;display:flex;justify-content:space-between;gap:24px;align-items:center}
+.rating-big{font-family:"Manrope",sans-serif;font-size:3.8rem;line-height:.9;color:var(--olive);font-weight:800}
+.rating-band p{margin:0;color:var(--muted)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:35px}
+.visit-card{background:#fff;border:1px solid var(--line);padding:33px;min-height:275px}
+.visit-card h3{font-size:1.15rem}
+.lock-panel{background:var(--olive);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.lock-panel i.big{font-size:2rem;color:#ecd18f}
+.lock-panel p{color:rgba(255,255,255,.72);line-height:1.65}
+.contact-note{margin:18px 0}
+.cta{margin-top:32px;background:#ead7a8;padding:45px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.cta h3{font-family:"Manrope",sans-serif;font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.05em;margin:0}
+.cta p{margin:8px 0 0;color:#554832}
+.cta .btn{background:var(--ink);color:#fff}
+footer{background:#181a16;color:rgba(255,255,255,.72);padding:38px 0}
+.foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+.foot strong{color:#fff}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.67);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.modal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--olive);color:#fff;margin-bottom:20px}
+.modal h2{font-family:"Manrope",sans-serif;font-size:2rem;letter-spacing:-.04em;margin-bottom:12px}
+.modal p{color:var(--muted);line-height:1.65;margin-bottom:24px}
+.modal .btn{width:100%;background:var(--olive);color:#fff}
+@media(max-width:1000px){.service-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+  .desktop-nav{display:none}.menu-btn{display:block}
+  .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+  .quick-grid{grid-template-columns:1fr}.quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .quick:last-child{border-bottom:0}.hero{min-height:640px}.high-grid{grid-template-columns:1fr}.cta{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:600px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .header-inner{min-height:68px}.brand{font-size:.88rem}.brand-icon{width:35px;height:35px}
+  main{padding-top:68px}.hero{min-height:610px;background-position:55% center}.hero-inner{padding:88px 0 50px}
+  h1{font-size:clamp(3.05rem,15vw,4.6rem)}.hero-actions{display:grid}.hero-actions .btn{width:100%}
+  .stock-note{left:14px;right:auto;bottom:12px}.section{padding:72px 0}.about-photo{min-height:330px}
+  .service-grid{grid-template-columns:1fr}.service{padding:28px 24px}.visit-card{padding:25px}.cta{padding:30px 24px}
+  .rating-band{align-items:flex-start;flex-direction:column}.foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand" aria-label="Variety Foods & Liquor home">
+      <span class="brand-icon"><i class="fa-solid fa-store"></i></span>
+      <span>Variety Foods &amp; Liquor</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#highlights">Highlights</a><a href="#hours">Hours</a><a href="#visit">Visit</a>
+    </nav>
+    <button id="menuBtn" class="menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#highlights">Highlights</a><a href="#hours">Hours</a><a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Dearborn, Michigan</div>
+      <h1 id="heroTitle">Variety Foods &amp; Liquor</h1>
+      <p class="hero-copy">Wine, beer, and spirits around the corner.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#services"><i class="fa-solid fa-basket-shopping"></i> View Services</a>
+        <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Contact Business</button>
+      </div>
+    </div>
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="quickbar">
+    <div class="wrap quick-grid">
+      <div class="quick"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Dearborn, MI</span></div></div>
+      <div class="quick"><i class="fa-regular fa-clock"></i><div><strong>Hours</strong><span>Mon–Sat 10 AM–10 PM · Sun 10 AM–8 PM</span></div></div>
+      <div class="quick"><i class="fa-solid fa-star"></i><div><strong>Local listing</strong><span>1.0 ★ shown in the supplied source</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock image of a convenience store counter"></div>
+      <div class="about-copy">
+        <div class="kicker">About</div>
+        <h2>Variety Foods &amp; Liquor in Dearborn.</h2>
+        <p class="lead">Cold drinks and fair prices around the corner. Wine, beer, and spirits with a quick counter hello.</p>
+        <div class="protected">
+          <i class="fa-solid fa-lock"></i>
+          <div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The supplied source contains the store's public street address and phone number. Those real-world contact details stay hidden in this sample site.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="kicker">Services</div>
+      <h2>What you'll find at Variety Foods &amp; Liquor.</h2>
+      <p class="lead">Only the categories named in the uploaded source are included here.</p>
+      <div class="service-grid">
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-wine-bottle"></i></div><h3>Wine, beer &amp; spirits</h3><p>Ask the counter team.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-basket-shopping"></i></div><h3>Everyday staples</h3><p>Ask the counter team.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-snowflake"></i></div><h3>Cold cases ready</h3><p>Ask the counter team.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-handshake-angle"></i></div><h3>Friendly counter help</h3><p>Ask the counter team.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section highlights" id="highlights">
+    <div class="wrap">
+      <div class="kicker">Highlights</div>
+      <h2>What neighbors notice first.</h2>
+      <div class="high-grid">
+        <article class="high"><i class="fa-solid fa-snowflake"></i><h3>Cold case</h3></article>
+        <article class="high"><i class="fa-solid fa-wine-bottle"></i><h3>Wine wall</h3></article>
+        <article class="high"><i class="fa-solid fa-tag"></i><h3>Weekly specials</h3></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="kicker">Business Hours</div>
+        <h2>Hours shown by the supplied source.</h2>
+        <p class="lead">Holiday hours may change; the source advises calling to confirm.</p>
+        <div class="rating-band">
+          <div class="rating-big">1.0 ★</div>
+          <p>The uploaded page labels this as the rating on local listings. No additional verified review count was supplied.</p>
+        </div>
+      </div>
+      <div class="hours-list">
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>10:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>10:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>10:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>10:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>10:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>10:00 AM – 10:00 PM</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="kicker">Visit &amp; Contact</div>
+      <h2>Real-world contact actions are protected in this demo.</h2>
+      <p class="lead">The source provides a public Dearborn street address and phone number, but this sample keeps them hidden until the site is unlocked.</p>
+      <div class="visit-grid">
+        <div class="visit-card lock-panel">
+          <div><i class="fa-solid fa-location-dot big"></i><h3>Business address</h3><p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p></div>
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open Directions</button>
+        </div>
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <div class="protected contact-note"><i class="fa-solid fa-lock"></i><div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The supplied phone number is intentionally not exposed as a working tel: link.</p></div></div>
+          <button class="btn" style="background:var(--olive);color:#fff" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call Business</button>
+        </div>
+      </div>
+      <div class="cta">
+        <div><h3>Ready to stop by?</h3><p>Wine, beer, and spirits around the corner in Dearborn.</p></div>
+        <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>Variety Foods &amp; Liquor</strong><br>Dearborn, Michigan</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileMenu=document.getElementById('mobileMenu');
+  const modal=document.getElementById('lockedModal');
+  const modalClose=document.getElementById('modalClose');
+  let lastFocus=null;
+
+  function closeMenu(){mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}
+  menuBtn.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open))});
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
+
+  function openModal(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+    el.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openModal(el)})
+  });
+  modalClose.addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();
+    if(e.key==='Tab'&&modal.classList.contains('open')){e.preventDefault();modalClose.focus()}
+  });
+
+  const today=new Intl.DateTimeFormat('en-US',{timeZone:'America/Detroit',weekday:'short'}).format(new Date());
+  const map={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row=document.querySelector('.hour-row[data-day="'+map[today]+'"]');
+  if(row){const d=row.querySelector('strong');d.classList.add('today');d.textContent+=' · Today'}
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+})();
+</script>
+</body>
+</html>

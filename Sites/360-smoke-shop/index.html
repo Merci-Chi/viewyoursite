@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0b0b0c">
+<title>360 Smoke Shop | Midway Rd, Dallas TX</title>
+<meta name="description" content="360 Smoke Shop on Midway Rd in Dallas. Vapes and disposables, glass and water pipes, hemp and CBD, wraps, papers, lighters and grinders. 21+ only.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --bg:#0a0a0b;--panel:#111214;--panel2:#17181b;--ink:#f4f4f4;--muted:#a6a8ad;
+  --line:#292b30;--accent:#f45b2a;--accent2:#ffb343;--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-y}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.55;
+  overflow-x:hidden;-webkit-user-select:none;user-select:none;
+}
+a,button,input,textarea{font:inherit}
+button,a{outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+header{
+  position:sticky;top:0;z-index:50;background:rgba(10,10,11,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)
+}
+.topbar{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:white;text-decoration:none}
+.brand-mark{width:42px;height:42px;display:grid;place-items:center;border:2px solid var(--accent);border-radius:50%;font-family:"Barlow Condensed";font-size:1.2rem;font-weight:800}
+.brand strong{font-family:"Barlow Condensed";font-size:1.35rem;letter-spacing:.06em}
+.brand small{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;letter-spacing:.14em}
+nav{display:flex;align-items:center;gap:24px}
+nav a{color:#e6e6e6;text-decoration:none;font-weight:700;font-size:.9rem}
+nav a:hover{color:var(--accent2)}
+.nav-cta{background:var(--accent);color:white;border:0;padding:11px 16px;border-radius:4px;font-weight:800;cursor:pointer}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:1.45rem;cursor:pointer}
+
+.hero{
+  min-height:680px;display:grid;align-items:center;position:relative;isolation:isolate;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.78) 46%,rgba(0,0,0,.40) 100%),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&fm=jpg&q=82&w=2200") center/cover no-repeat;
+}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:150px;background:linear-gradient(transparent,rgba(0,0,0,.4));z-index:-1}
+.hero-inner{max-width:780px;padding:92px 0}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--accent2);text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:800}
+.hero h1{font-family:"Barlow Condensed";font-size:clamp(4rem,10vw,8rem);line-height:.82;text-transform:uppercase;letter-spacing:.01em;margin:16px 0 22px}
+.hero .lead{font-size:1.1rem;max-width:690px;color:#dedede;margin:0 0 28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 18px;border-radius:4px;border:0;font-weight:800;text-decoration:none;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-secondary{background:transparent;border:1px solid #666;color:#fff}
+.age-note{margin-top:22px;padding:12px 14px;border-left:4px solid var(--accent2);background:rgba(0,0,0,.48);max-width:520px;font-weight:700;color:#f0f0f0}
+.stock-note{display:block;margin-top:14px;color:#a9a9a9;font-size:.72rem}
+
+.statbar{background:#080809;border-top:1px solid #171719;border-bottom:1px solid #171719}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:23px 26px;border-right:1px solid var(--line);display:flex;align-items:center;gap:13px}
+.stat:last-child{border-right:0}
+.stat i{color:var(--accent);font-size:1.2rem}
+.stat b{display:block;font-family:"Barlow Condensed";font-size:1.15rem;text-transform:uppercase}
+.stat span{color:var(--muted);font-size:.82rem}
+
+section.block{padding:88px 0}
+.sec-head{max-width:760px;margin-bottom:40px}
+.eyebrow{color:var(--accent);font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;font-weight:800}
+h2{font-family:"Barlow Condensed";font-size:clamp(2.8rem,6vw,5rem);line-height:.92;text-transform:uppercase;margin:10px 0 16px}
+.sec-head p{color:var(--muted);font-size:1.03rem;margin:0}
+
+.products{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.product{min-height:230px;padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.product i{font-size:1.45rem;color:var(--accent2);margin-bottom:24px}
+.product h3{font-family:"Barlow Condensed";font-size:1.65rem;text-transform:uppercase;margin:0 0 10px}
+.product p{margin:0;color:var(--muted)}
+
+.feature{
+  background:
+    linear-gradient(90deg,rgba(13,13,15,.95),rgba(13,13,15,.80)),
+    url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&fm=jpg&q=82&w=2200") center/cover no-repeat;
+}
+.feature-grid{display:grid;grid-template-columns:1fr .95fr;gap:64px;align-items:center}
+.feature-copy p{color:#b4b4b6}
+.big-score{font-family:"Barlow Condensed";font-size:7rem;line-height:.8;color:var(--accent2);font-weight:800}
+.score-label{font-family:"Barlow Condensed";text-transform:uppercase;font-size:1.5rem;margin-top:10px}
+.review-note{padding:26px;border:1px solid #3a3b3f;background:rgba(10,10,11,.7)}
+.review-note p{margin:0 0 18px;color:#cacacc}
+
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+.hours{border-top:1px solid var(--line)}
+.hrow{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.hrow span:first-child{color:#c6c7ca}
+.hrow.today{color:var(--accent2);font-weight:800}
+.contact-lock{background:var(--panel);border:1px solid var(--line);padding:32px}
+.contact-lock h3{font-family:"Barlow Condensed";font-size:1.8rem;text-transform:uppercase;margin:0 0 12px}
+.contact-lock p{color:var(--muted)}
+.protected{margin:18px 0;padding:16px 18px;border-left:4px solid var(--accent);background:#0d0d0e;font-weight:800;font-size:.83rem;letter-spacing:.05em}
+.contact-lock .btn{width:100%;margin-top:10px}
+
+.form-card{margin-top:22px;background:var(--panel);border:1px solid var(--line);padding:30px}
+.form-card h3{font-family:"Barlow Condensed";font-size:1.7rem;text-transform:uppercase;margin:0 0 8px}
+.form-card p{color:var(--muted);margin-top:0}
+.field{display:grid;gap:6px;margin-top:13px}
+.field label{font-weight:700}
+.field input,.field textarea{width:100%;background:#0d0e10;color:white;border:1px solid #35373c;padding:12px 13px;border-radius:3px}
+.field textarea{min-height:105px;resize:vertical}
+.form-card .btn{margin-top:16px}
+
+footer{background:#050506;border-top:1px solid #18181a;padding:44px 0 22px}
+.foot-grid{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:38px}
+footer h4{font-family:"Barlow Condensed";font-size:1.3rem;text-transform:uppercase;margin:0 0 12px}
+footer p,footer a{color:#9fa1a6;font-size:.88rem}
+footer a{text-decoration:none}
+.foot-links{display:grid;gap:7px}
+.copy{border-top:1px solid #1e1f22;margin-top:32px;padding-top:20px;color:#777a80;font-size:.8rem}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:22px;z-index:100}
+.modal-backdrop.open{display:flex}
+.modal{width:min(460px,100%);background:#111214;border:1px solid #33353a;padding:32px;box-shadow:0 25px 80px rgba(0,0,0,.55)}
+.modal h3{font-family:"Barlow Condensed";font-size:2rem;text-transform:uppercase;margin:0 0 11px}
+.modal p{color:#aaaeb3;margin:0 0 22px}
+.modal button{background:var(--accent);color:white;border:0;border-radius:4px;padding:12px 18px;font-weight:800;cursor:pointer}
+body.modal-open{overflow:hidden}
+
+@media(max-width:900px){
+  nav{display:none;position:absolute;top:74px;left:0;right:0;background:#0c0c0d;padding:20px 22px 26px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}
+  nav.open{display:flex}.menu-btn{display:block}.nav-cta{width:100%}
+  .hero{min-height:620px;background-position:58% center}.hero-inner{padding:70px 0}
+  .statgrid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}
+  .feature-grid,.visit-grid{grid-template-columns:1fr;gap:38px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .brand strong{font-size:1.12rem}.brand small{font-size:.61rem}.brand-mark{width:36px;height:36px}
+  .hero{min-height:610px;background-position:62% center}.hero h1{font-size:4.3rem}.hero .lead{font-size:1rem}
+  section.block{padding:66px 0}
+  .products{grid-template-columns:1fr}.product{min-height:0}
+  .foot-grid{grid-template-columns:1fr}
+  .actions .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <a class="brand" href="#home">
+      <span class="brand-mark">360</span>
+      <span><strong>360 SMOKE SHOP</strong><small>Midway Rd / Dallas, TX</small></span>
+    </a>
+    <nav id="navMenu">
+      <a href="#shop">The Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+      <button class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Call the counter</button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-inner">
+    <div class="kicker"><i class="fa-solid fa-location-dot"></i> Midway Rd / Dallas, TX</div>
+    <h1>Your smoke shop, full circle.</h1>
+    <p class="lead">Vapes, glass, hemp and CBD, wraps and lighters, all on one counter at 360 Smoke Shop on Midway Rd. Walk in, ask questions, walk out set.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#shop"><i class="fa-solid fa-store"></i> Browse the counter</a>
+      <a class="btn btn-secondary" href="#reviews"><i class="fa-solid fa-star"></i> Read reviews</a>
+    </div>
+    <div class="age-note"><i class="fa-solid fa-id-card"></i> 21 and over, valid ID required. We check IDs at the counter, every time.</div>
+    <small class="stock-note">Stock imagery used for this demo; it does not depict the actual store, staff, or inventory.</small>
+  </div>
+</section>
+
+<div class="statbar">
+  <div class="wrap statgrid">
+    <div class="stat"><i class="fa-solid fa-circle-check"></i><div><b>21+ only</b><span>Valid ID required for every purchase</span></div></div>
+    <div class="stat"><i class="fa-solid fa-star"></i><div><b>4.7 stars on Google</b><span>51 reviews shown in the supplied source</span></div></div>
+    <div class="stat"><i class="fa-solid fa-clock"></i><div><b>Open daily</b><span>Weekly hours listed below</span></div></div>
+  </div>
+</div>
+
+<section class="block" id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The Shop</div>
+      <h2>One counter, the whole loop</h2>
+      <p>The categories we keep on the floor at 360 Smoke Shop. Not sure what you need? Ask at the counter, that is what we are here for.</p>
+    </div>
+    <div class="products">
+      <article class="product"><i class="fa-solid fa-bolt"></i><h3>Vapes & Disposables</h3><p>Disposables, pod systems and the batteries and chargers that go with them.</p></article>
+      <article class="product"><i class="fa-solid fa-flask"></i><h3>Glass & Water Pipes</h3><p>Hand pipes, water pipes and glass pieces for the shelf at home.</p></article>
+      <article class="product"><i class="fa-solid fa-leaf"></i><h3>Hemp & CBD</h3><p>Hemp and CBD products, from flower to oils and topicals.</p></article>
+      <article class="product"><i class="fa-solid fa-fire-flame-simple"></i><h3>Wraps, Papers & More</h3><p>Wraps, papers, lighters, grinders and all the small things you always need.</p></article>
+    </div>
+    <div class="age-note" style="margin-top:30px;background:var(--panel)">21 and over, valid ID required for every purchase. No exceptions, no matter how old you look.</div>
+  </div>
+</section>
+
+<section class="block feature" id="reviews">
+  <div class="wrap feature-grid">
+    <div>
+      <div class="eyebrow">Reviews</div>
+      <div class="big-score">4.7</div>
+      <div class="score-label">Out of 5</div>
+      <p style="color:#aaa;margin-top:8px">51 Google reviews shown in the supplied source.</p>
+    </div>
+    <div class="review-note">
+      <h2 style="font-size:3rem">Read every review</h2>
+      <p>Our reviews live on Google, so that is where we send you. No cherry picking, no filtering: open the listing and read every single one yourself.</p>
+      <button class="btn btn-primary" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+      <p style="font-size:.86rem;margin-top:20px">The supplied source says the Google listing contains all 51 reviews, photos and the map pin for the shop.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Visit the Shop</div>
+      <h2>Midway Rd, Dallas</h2>
+      <p>On Midway Rd in Dallas, easy to reach from the whole Addison and North Dallas side of town.</p>
+    </div>
+    <div class="visit-grid">
+      <div>
+        <h3 style="font-family:'Barlow Condensed';font-size:1.8rem;text-transform:uppercase;margin-top:0">Hours</h3>
+        <div class="hours">
+          <div class="hrow" data-day="1"><span>Monday</span><strong>10:00 AM – 10:00 PM</strong></div>
+          <div class="hrow" data-day="2"><span>Tuesday</span><strong>10:00 AM – 10:00 PM</strong></div>
+          <div class="hrow" data-day="3"><span>Wednesday</span><strong>10:00 AM – 10:00 PM</strong></div>
+          <div class="hrow" data-day="4"><span>Thursday</span><strong>10:00 AM – 10:00 PM</strong></div>
+          <div class="hrow" data-day="5"><span>Friday</span><strong>10:00 AM – 10:00 PM</strong></div>
+          <div class="hrow" data-day="6"><span>Saturday</span><strong>10:00 AM – 10:00 PM</strong></div>
+          <div class="hrow" data-day="0"><span>Sunday</span><strong>11:00 AM – 8:00 PM</strong></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-lock">
+          <h3>Find us</h3>
+          <p>The supplied source includes the exact Dallas storefront address and phone number. They are intentionally hidden on this sample site.</p>
+          <div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+          <button class="btn btn-primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call the counter</button>
+          <button class="btn btn-secondary" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Get directions</button>
+        </div>
+
+        <div class="form-card">
+          <h3>Message the shop</h3>
+          <p>Questions about stock, hours or what just came in? The source site includes a contact form, but submission stays disabled in this demo.</p>
+          <form id="messageForm">
+            <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+            <div class="field"><label for="phone">Your phone</label><input id="phone" type="tel"></div>
+            <div class="field"><label for="msg">What do you need?</label><textarea id="msg"></textarea></div>
+            <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send it over</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><h4>360 Smoke Shop</h4><p>Vapes, glass, hemp and CBD, wraps and lighters on one Midway Rd counter.</p><p><strong>21 and over, valid ID required.</strong></p><p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p></div>
+      <div><h4>Explore</h4><div class="foot-links"><a href="#shop">The Shop</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></div></div>
+      <div><h4>Demo note</h4><p>Stock imagery is used for presentation and does not depict the actual shop, staff, or inventory.</p></div>
+    </div>
+    <div class="copy">© 360 Smoke Shop · Dallas, TX · Demo website concept</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal">
+    <h3 id="modalTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button id="closeModal">Close</button>
+  </div>
+</div>
+
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const navMenu=document.getElementById('navMenu');
+menuBtn.addEventListener('click',()=>{
+  const open=navMenu.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded',String(open));
+  menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+});
+navMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  navMenu.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded','false');
+  menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+}));
+
+const modal=document.getElementById('lockedModal');
+const closeBtn=document.getElementById('closeModal');
+let lastFocus=null;
+function openModal(){
+  lastFocus=document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeBtn.focus();
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  if(lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{
+  e.preventDefault();e.stopPropagation();openModal();
+}));
+closeBtn.addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+document.getElementById('messageForm').addEventListener('submit',e=>{e.preventDefault();openModal();});
+
+try{
+  const day=new Date().getDay();
+  const row=document.querySelector('.hrow[data-day="'+day+'"]');
+  if(row) row.classList.add('today');
+}catch(e){}
+
+document.addEventListener('gesturestart',e=>e.preventDefault());
+document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
+</script>
+</body>
+</html>

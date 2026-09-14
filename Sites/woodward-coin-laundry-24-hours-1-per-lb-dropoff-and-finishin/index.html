@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0d3352">
+  <meta name="description" content="Woodward Coin Laundry in Detroit, Michigan. Wash & fold, self-service machines, drop-off service, finishing service, and protected demo contact information.">
+  <title>Woodward Coin Laundry | Detroit, MI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --navy:#0d3352;
+      --blue:#1f73a8;
+      --sky:#82c8e8;
+      --foam:#f2f9fc;
+      --white:#fff;
+      --ink:#142a39;
+      --muted:#5d7180;
+      --line:rgba(13,51,82,.14);
+      --yellow:#f2c84b;
+      --max:1180px;
+      --shadow:0 22px 60px rgba(9,46,72,.16);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;
+      font-family:"DM Sans",sans-serif;
+      color:var(--ink);
+      background:var(--foam);
+      overflow-x:hidden;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    img{display:block;max-width:100%}
+    h1,h2,h3,p{margin-top:0}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+    .site-header{
+      position:sticky;top:0;z-index:100;
+      background:rgba(242,249,252,.94);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+      min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}
+    .brand-icon{
+      width:40px;height:40px;border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--navy);color:#fff;border:4px solid #d8f2ff;
+    }
+    .desktop-nav{display:flex;align-items:center;gap:29px;font-weight:700;font-size:.93rem}
+    .desktop-nav a{position:relative}
+    .desktop-nav a:after{
+      content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;background:var(--blue);transition:.2s
+    }
+    .desktop-nav a:hover:after{right:0}
+    .menu-btn{display:none;border:0;background:none;width:46px;height:46px;padding:10px;cursor:pointer}
+    .menu-btn span{height:2px;background:var(--navy);display:block;margin:6px 0}
+    .mobile-menu{display:none;padding:8px 20px 18px;border-top:1px solid var(--line)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+    .hero{
+      position:relative;min-height:710px;color:#fff;display:grid;align-items:end;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(5,37,61,.92) 0%,rgba(5,37,61,.72) 48%,rgba(5,37,61,.30) 100%),
+        url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"";position:absolute;left:-90px;bottom:-170px;width:430px;height:430px;border-radius:50%;
+      border:70px solid rgba(130,200,232,.17)
+    }
+    .hero-inner{position:relative;z-index:2;padding:115px 0 78px;max-width:820px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;
+      font-size:.76rem;font-weight:800;color:#b8e7fb
+    }
+    .eyebrow:before{content:"";width:38px;height:2px;background:currentColor}
+    h1{
+      font-family:"Manrope",sans-serif;font-size:clamp(3.3rem,7.4vw,6.3rem);
+      letter-spacing:-.065em;line-height:.91;margin:20px 0 24px;max-width:900px
+    }
+    .hero-copy{max-width:650px;font-size:clamp(1rem,2vw,1.23rem);line-height:1.68;color:rgba(255,255,255,.84)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}
+
+    .btn{
+      min-height:50px;padding:13px 20px;border:1px solid transparent;font:800 .92rem "DM Sans",sans-serif;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+      transition:transform .18s ease,background .18s ease,color .18s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--yellow);color:#132d3d}
+    .btn-ghost{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.56);color:#fff}
+    .stock-note{
+      position:absolute;right:18px;bottom:16px;z-index:3;font-size:.68rem;text-transform:uppercase;
+      letter-spacing:.07em;color:rgba(255,255,255,.64)
+    }
+
+    .quickbar{background:var(--navy);color:#fff}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+    .quick:last-child{border-right:0}
+    .quick i{color:#9bdaf5;margin-top:3px}
+    .quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+    .quick span{font-weight:700;line-height:1.4}
+
+    .section{padding:94px 0}
+    .kicker{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.75rem;color:var(--blue);margin-bottom:10px}
+    .section h2{font-family:"Manrope",sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.055em;line-height:.98;margin-bottom:18px}
+    .lead{max-width:720px;color:var(--muted);line-height:1.75;font-size:1.03rem}
+
+    .about-grid{display:grid;grid-template-columns:1fr .92fr;gap:62px;align-items:start}
+    .about-photo{
+      min-height:440px;
+      background:
+        linear-gradient(rgba(13,51,82,.10),rgba(13,51,82,.10)),
+        url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      box-shadow:var(--shadow);position:relative
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";
+      position:absolute;left:14px;bottom:12px;background:rgba(6,35,54,.78);
+      color:#fff;padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em
+    }
+    .about-copy{padding-top:18px}
+
+    .protected{
+      margin-top:24px;border-left:4px solid var(--blue);background:#e8f5fb;padding:18px 20px;display:flex;gap:14px
+    }
+    .protected i{color:var(--blue);margin-top:3px}
+    .protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+    .protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    .notice{
+      margin-top:24px;
+      border:1px solid rgba(242,200,75,.5);
+      background:#fff9db;
+      padding:18px 20px;
+      color:#5d5022;
+      line-height:1.6;
+    }
+    .notice strong{display:block;margin-bottom:5px;color:#3f3514}
+
+    .services{
+      color:#fff;
+      background:
+        linear-gradient(rgba(8,44,69,.92),rgba(8,44,69,.92)),
+        url("https://images.unsplash.com/photo-1551761429-8232f9f5955c?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .services .kicker{color:#a9e2fa}
+    .services .lead{color:rgba(255,255,255,.72)}
+    .service-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+      background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16);margin-top:38px
+    }
+    .service{background:rgba(255,255,255,.045);padding:34px 30px;min-height:210px}
+    .service-icon{
+      width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+      background:rgba(130,200,232,.15);color:#a9e2fa;font-size:1.15rem;margin-bottom:26px
+    }
+    .service h3{font-size:1.23rem;margin-bottom:10px}
+    .service p{color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:0}
+
+    .price-band{
+      background:var(--yellow);
+      color:#153249;
+      padding:48px 0;
+    }
+    .price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:30px;
+    }
+    .price-row h2{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(2.2rem,4.8vw,4rem);
+      line-height:1;
+      margin:0;
+      letter-spacing:-.05em;
+    }
+    .price-pill{
+      flex:0 0 auto;
+      background:var(--navy);
+      color:#fff;
+      padding:16px 22px;
+      font-weight:800;
+      font-size:1.15rem;
+    }
+
+    .hours{
+      color:#fff;position:relative;
+      background:
+        linear-gradient(90deg,rgba(8,44,69,.96),rgba(8,44,69,.86)),
+        url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+    .hours .kicker{color:#9fdcf5}
+    .hours .lead{color:rgba(255,255,255,.7)}
+    .hours-list{border-top:1px solid rgba(255,255,255,.2)}
+    .hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+    .hour-row span{color:rgba(255,255,255,.82)}
+    .hour-row.today strong{color:var(--yellow)}
+
+    .rating{
+      background:#fff;
+    }
+    .rating-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:58px;align-items:center}
+    .rating-number{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(6rem,13vw,10rem);
+      line-height:.8;
+      font-weight:800;
+      color:var(--blue);
+    }
+    .stars{color:#e4b733;letter-spacing:5px;margin:16px 0}
+    .rating .btn{margin-top:24px;background:var(--navy);color:#fff}
+
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:35px}
+    .visit-card{background:#fff;border:1px solid var(--line);padding:33px;min-height:275px}
+    .visit-card h3{font-size:1.15rem}
+    .lock-panel{background:var(--navy);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+    .lock-panel i.big{font-size:2rem;color:#9bdcf7}
+    .lock-panel p{color:rgba(255,255,255,.72);line-height:1.65}
+    .contact-note{margin:18px 0}
+
+    footer{background:#082b44;color:rgba(255,255,255,.72);padding:38px 0}
+    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+    .foot strong{color:#fff}
+
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.67);display:none;align-items:center;justify-content:center;z-index:500;padding:20px
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+    .modal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;margin-bottom:20px}
+    .modal h2{font-family:"Manrope",sans-serif;font-size:2rem;letter-spacing:-.04em;margin-bottom:12px}
+    .modal p{color:var(--muted);line-height:1.65;margin-bottom:24px}
+    .modal .btn{width:100%;background:var(--navy);color:#fff}
+
+    @media(max-width:900px){
+      .desktop-nav{display:none}.menu-btn{display:block}
+      .about-grid,.hours-grid,.rating-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+      .service-grid{grid-template-columns:1fr}
+      .quick-grid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+      .quick:last-child{border-bottom:0}
+      .hero{min-height:640px}
+      .price-row{align-items:flex-start;flex-direction:column}
+    }
+
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .header-inner{min-height:68px}.brand{font-size:.88rem}.brand-icon{width:35px;height:35px}
+      .hero{min-height:610px;background-position:55% center}.hero-inner{padding:88px 0 50px}
+      h1{font-size:clamp(3rem,14vw,4.4rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto;bottom:12px}
+      .section{padding:72px 0}.about-photo{min-height:330px}
+      .service{padding:28px 24px}.visit-card{padding:25px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-icon"><i class="fa-solid fa-soap"></i></span>
+      <span>Woodward Coin Laundry</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Rating</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <button id="menuBtn" class="menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#hours">Hours</a>
+    <a href="#reviews">Rating</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Detroit, Michigan</div>
+      <h1>Woodward Coin Laundry</h1>
+      <p class="hero-copy">Wash, dry, fold — without the hassle.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#services"><i class="fa-solid fa-shirt"></i> View services</a>
+        <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Contact business</button>
+      </div>
+    </div>
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="quickbar" aria-label="Business details">
+    <div class="wrap quick-grid">
+      <div class="quick">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><strong>Location</strong><span>Detroit, MI 48203</span></div>
+      </div>
+      <div class="quick">
+        <i class="fa-solid fa-star"></i>
+        <div><strong>Rating</strong><span>3.8 on local listings</span></div>
+      </div>
+      <div class="quick">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <div><strong>Drop-off price</strong><span>$1 per lb</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock image of laundry machines"></div>
+
+      <div class="about-copy">
+        <div class="kicker">About</div>
+        <h2>Woodward Coin Laundry in Detroit.</h2>
+        <p class="lead">The supplied page identifies Woodward Coin Laundry and lists wash &amp; fold, self-service machines, drop-off service, a clean, bright facility, and a finishing service where helpers dry it for you.</p>
+
+        <div class="protected">
+          <i class="fa-solid fa-lock"></i>
+          <div>
+            <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            <p>The source includes a business phone number and public street address. Those real-world contact details stay locked in this sample site.</p>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Source detail requiring review</strong>
+          The page title says “24 hours,” but the detailed hours section lists 7:00 AM – 10:00 PM every day. This demo shows the detailed hours and flags the conflict instead of choosing one silently.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="kicker">Services</div>
+      <h2>Laundry services listed in the supplied page.</h2>
+      <p class="lead">Only the service names and pricing supported by the uploaded source are included here.</p>
+
+      <div class="service-grid">
+        <article class="service">
+          <div class="service-icon"><i class="fa-solid fa-shirt"></i></div>
+          <h3>Wash &amp; fold</h3>
+        </article>
+
+        <article class="service">
+          <div class="service-icon"><i class="fa-solid fa-soap"></i></div>
+          <h3>Self-service machines</h3>
+        </article>
+
+        <article class="service">
+          <div class="service-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+          <h3>Drop-off service</h3>
+        </article>
+
+        <article class="service">
+          <div class="service-icon"><i class="fa-solid fa-sparkles"></i></div>
+          <h3>Clean, bright facility</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="price-band" aria-label="Drop-off price">
+    <div class="wrap price-row">
+      <h2>$1 per lb dropoff and finishing service</h2>
+      <div class="price-pill">You wash and helpers dry it for you</div>
+    </div>
+  </section>
+
+  <section class="section hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="kicker">Business hours</div>
+        <h2>Hours listed in the detailed source section.</h2>
+        <p class="lead">The provided HTML lists the same hours for every day of the week. The separate “24 hours” wording in the page title conflicts with these detailed hours.</p>
+      </div>
+
+      <div class="hours-list">
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>7:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>7:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>7:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>7:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>7:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>7:00 AM – 10:00 PM</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>7:00 AM – 10:00 PM</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rating" id="reviews">
+    <div class="wrap rating-grid">
+      <div>
+        <div class="rating-number">3.8</div>
+        <div class="stars" aria-label="3.8 out of 5 stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p>Rating shown in the supplied source.</p>
+      </div>
+
+      <div>
+        <div class="kicker">Reviews</div>
+        <h2>See current public reviews.</h2>
+        <p class="lead">The supplied page displays a 3.8 rating. The generic “Neighborhood visitor” quotes are not presented here as verified customer testimonials.</p>
+        <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> See more on Maps</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="kicker">Visit &amp; contact</div>
+      <h2>Real-world contact actions are protected in this demo.</h2>
+      <p class="lead">The uploaded source contains a public business address and phone number, but this sample keeps both actions locked until the site is unlocked.</p>
+
+      <div class="visit-grid">
+        <div class="visit-card lock-panel">
+          <div>
+            <i class="fa-solid fa-location-dot big"></i>
+            <h3>Business address</h3>
+            <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+          </div>
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+        </div>
+
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <div class="protected contact-note">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The supplied number is intentionally not exposed as a working tel: link.</p>
+            </div>
+          </div>
+          <button class="btn" style="background:var(--navy);color:#fff" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call business</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>Woodward Coin Laundry</strong><br>Detroit, Michigan</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+  function openModal(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Detroit',
+    weekday:'short'
+  }).format(new Date());
+  const map = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hour-row[data-day="'+map[today]+'"]');
+  if(row) row.classList.add('today');
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+})();
+</script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Business: Woodward Coin Laundry
+- Source title wording: "Woodward Coin Laundry 24 hours $1 per lb dropoff and finishing service, you wash and helpers dry it for you"
+- Location: Detroit, Michigan
+- Public source address: 17626 Woodward Ave, Detroit, MI 48203
+- Public source phone: (313) 305-7160
+- Rating shown: 3.8
+- Services listed:
+  - Wash & fold
+  - Self-service machines
+  - Drop-off service
+  - Clean, bright facility
+- Pricing / source title:
+  - $1 per lb dropoff and finishing service
+  - you wash and helpers dry it for you
+- Detailed hours section:
+  - Sunday–Saturday: 7:00 AM – 10:00 PM
+
+CONFLICT TO REVIEW
+- The page title says "24 hours" while the detailed hours section says 7:00 AM – 10:00 PM daily.
+- The demo does not silently resolve this conflict. It displays the detailed hours and flags the title conflict.
+
+OMITTED
+- Generic "Neighborhood visitor" quotes were not treated as verified testimonials.
+- Owner/team names
+- Email
+- Social links
+- Certifications/licenses/awards
+- Years in business
+- Payment systems
+- Booking systems
+- Working form backend
+
+STOCK ASSETS
+- Unsplash laundry imagery only.
+- Images do not depict the actual business, staff, machines, or customers.
+
+DEMO CHECK
+- One HTML file
+- CSS and JS inline
+- Responsive desktop/tablet/mobile
+- Hamburger menu
+- Text selection disabled
+- Mobile zoom prevention
+- Contact details protected
+- Real-world call/map actions locked
+- One reusable modal
+- Modal closes by Close button, outside click, and Escape
+- No fake submission or fake success state
+-->
+</body>
+</html>

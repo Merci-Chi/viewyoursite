@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#24343A">
+<title>Rainbow Laundromat | Las Vegas, NV</title>
+<meta name="description" content="Rainbow Laundromat at 2247 S Rainbow Blvd, Las Vegas, NV 89146. Self-service laundromat, open 6:00 AM to 11:00 PM, with a 4.2 out of 5 star rating.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --paper:#f7f3ee;
+  --cream:#efe8df;
+  --ink:#2a2520;
+  --muted:#81776d;
+  --terracotta:#c45d3e;
+  --teal:#456e76;
+  --line:#d9d2c8;
+  --white:#fff;
+  --max:1140px;
+  --shadow:0 28px 70px rgba(42,37,32,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Outfit",sans-serif;overflow-x:hidden;
+  -webkit-user-select:none;user-select:none
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+h1,h2,h3,p{margin-top:0}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+header{
+  position:sticky;top:0;z-index:100;background:rgba(247,243,238,.95);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:36px;height:36px;border-radius:50%;border:4px solid var(--terracotta);position:relative}
+.brand-mark:after{content:"";position:absolute;inset:7px;border-radius:50%;border:2px solid var(--teal)}
+.brand-name{font-family:"DM Serif Display",serif;font-size:1.45rem}
+.brand-name small{display:block;font:600 .67rem "Outfit",sans-serif;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.desktop-nav{display:flex;gap:27px;font-size:.86rem;font-weight:700}
+.desktop-nav a:hover{color:var(--terracotta)}
+.menu-btn{display:none;width:46px;height:46px;border:0;background:transparent;cursor:pointer}
+.menu-btn span{display:block;width:25px;height:2px;background:var(--ink);margin:5px auto}
+.mobile-menu{display:none;background:var(--white);border-top:1px solid var(--line);padding:8px 20px 18px}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+.hero{
+  min-height:730px;display:grid;align-items:end;position:relative;overflow:hidden;color:#fff;
+  background:
+    linear-gradient(90deg,rgba(36,52,58,.94),rgba(36,52,58,.58) 58%,rgba(36,52,58,.12)),
+    url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmfWcOqp2N-_5mTadfVNCZtbdseCsyQr7OCih_p0binO5mY6-gznaaOeXYoJyDby8x7pCJAR71cyIv2P3fe14NAt2Khp2woIWN2IJF2co742QxkFbTZ2n2WGXH0Y8EviPa438iY=w1600-h1000-k-no") center/cover no-repeat
+}
+.hero:after{content:"";position:absolute;right:-110px;top:-110px;width:340px;height:340px;border-radius:50%;border:50px solid rgba(196,93,62,.16)}
+.hero-in{position:relative;z-index:2;padding:112px 0 72px;max-width:800px}
+.kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.73rem;font-weight:700;color:#f1c1b1}
+.hero h1{font:clamp(4rem,8vw,7rem)/.9 "DM Serif Display",serif;letter-spacing:-.04em;margin:18px 0 24px}
+.hero h1 span{color:#efb29f}
+.hero-copy{max-width:680px;color:rgba(255,255,255,.82);line-height:1.75;font-size:1.07rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{min-height:50px;padding:13px 20px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:700;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--terracotta);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.4);color:#fff}
+.btn-dark{background:#26383f;color:#fff}
+.asset-note{position:absolute;right:18px;bottom:14px;z-index:3;background:rgba(36,52,58,.78);padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em}
+
+.factbar{background:#26383f;color:#fff}
+.factgrid{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{display:flex;gap:14px;padding:24px 22px;border-right:1px solid rgba(255,255,255,.12)}
+.fact:last-child{border-right:0}.fact i{color:#efb29f;margin-top:3px}
+.fact strong{display:block;font-size:.69rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:5px}
+.fact span{font-weight:600}
+
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-kicker{color:var(--terracotta);text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:700;margin-bottom:10px}
+.section h2{font:clamp(2.9rem,5.2vw,4.8rem)/.95 "DM Serif Display",serif;letter-spacing:-.035em;margin-bottom:18px}
+.lead{max-width:740px;color:var(--muted);line-height:1.75;font-size:1.03rem}
+
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:58px;align-items:center}
+.photo-stack{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.photo-stack img{width:100%;height:390px;object-fit:cover;display:block}
+.photo-stack img:first-child{margin-top:32px}
+.photo-caption{grid-column:1/-1;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.info-list{border-top:1px solid var(--line);margin-top:28px}
+.info-row{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.info-row span{color:var(--muted)}
+.info-row strong{text-align:right}
+
+.services{
+  color:#fff;
+  background:
+    linear-gradient(rgba(38,56,63,.94),rgba(38,56,63,.94)),
+    url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat
+}
+.services .section-kicker{color:#efb29f}
+.services .lead{color:rgba(255,255,255,.72)}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.service{border:1px solid rgba(255,255,255,.16);padding:24px;background:rgba(255,255,255,.04)}
+.service i{font-size:1.25rem;color:#efb29f;margin-bottom:14px}
+.service h3{font-family:"DM Serif Display",serif;font-size:1.45rem;margin-bottom:7px}
+.service p{margin:0;color:rgba(255,255,255,.68);line-height:1.6}
+
+.hours{
+  background:
+    linear-gradient(90deg,rgba(247,243,238,.97),rgba(247,243,238,.87)),
+    url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat
+}
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.hours-card{border-top:1px solid var(--line)}
+.hours-row{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.hours-row span{color:var(--muted)}
+
+.visit{background:#fff}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+.visit-card{background:var(--paper);border:1px solid var(--line);padding:30px}
+.visit-card h3{font-family:"DM Serif Display",serif;font-size:1.55rem}
+.visit-card p{color:var(--muted);line-height:1.65}
+.protected{margin-top:20px;border-left:4px solid var(--terracotta);background:#f1e7df;padding:18px 20px;display:flex;gap:13px}
+.protected i{color:var(--terracotta);margin-top:3px}
+.protected strong{display:block;font-size:.73rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px}
+.protected p{margin:0;font-size:.9rem}
+
+.gallery{background:var(--cream)}
+.gallery-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:34px}
+.gallery-grid img{width:100%;height:360px;object-fit:cover;display:block}
+
+footer{background:#26383f;color:#d3dcdf;padding:40px 0}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+footer h3{color:#fff;font-family:"DM Serif Display",serif;font-size:1.4rem}
+footer p{margin:0 0 7px;line-height:1.6}
+.copy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:.8rem;color:#95a6ab}
+
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);z-index:500}
+.modal-backdrop.open{display:flex}
+.modal{width:min(100%,460px);background:var(--paper);color:var(--ink);border-top:4px solid var(--terracotta);padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.modal-icon{width:48px;height:48px;display:grid;place-items:center;background:#26383f;color:#efb29f;margin-bottom:20px}
+.modal h2{font:1.8rem "DM Serif Display",serif}
+.modal p{color:var(--muted);line-height:1.65}.modal .btn{width:100%}
+
+@media(max-width:950px){
+  .desktop-nav{display:none}.menu-btn{display:block}
+  .overview-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+  .service-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .brand-name small{display:none}
+  .hero{min-height:650px;background-position:58% center}
+  .hero-in{padding:92px 0 52px}
+  .hero h1{font-size:clamp(3.6rem,16vw,5.2rem)}
+  .actions{display:grid}.actions .btn{width:100%}
+  .asset-note{left:14px;right:auto}
+  .factgrid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .section{padding:70px 0}
+  .photo-stack{grid-template-columns:1fr}
+  .photo-stack img,.photo-stack img:first-child{height:300px;margin-top:0}
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-grid img{height:280px}
+  .visit-card{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Rainbow Laundromat<small>Las Vegas · S Rainbow Blvd</small></span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#gallery">Photos</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#hours">Hours</a>
+    <a href="#gallery">Photos</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-in">
+      <div class="kicker">Self-service laundromat · Las Vegas</div>
+      <h1>Rainbow <span>Laundromat</span></h1>
+      <p class="hero-copy">2247 S Rainbow Blvd, Las Vegas, NV 89146.</p>
+
+      <div class="actions">
+        <a href="#services" class="btn btn-primary"><i class="fa-solid fa-soap"></i> Services</a>
+        <a href="#visit" class="btn btn-ghost"><i class="fa-solid fa-location-dot"></i> Visit</a>
+      </div>
+    </div>
+
+    <div class="asset-note">Source-provided business photo</div>
+  </section>
+
+  <section class="factbar">
+    <div class="wrap factgrid">
+      <div class="fact"><i class="fa-solid fa-star"></i><div><strong>Rating</strong><span>4.2 out of 5 stars</span></div></div>
+      <div class="fact"><i class="fa-regular fa-clock"></i><div><strong>Open</strong><span>6:00 AM</span></div></div>
+      <div class="fact"><i class="fa-regular fa-moon"></i><div><strong>Close</strong><span>11:00 PM</span></div></div>
+      <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Las Vegas, NV 89146</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap overview-grid">
+      <div class="photo-stack">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmfWcOqp2N-_5mTadfVNCZtbdseCsyQr7OCih_p0binO5mY6-gznaaOeXYoJyDby8x7pCJAR71cyIv2P3fe14NAt2Khp2woIWN2IJF2co742QxkFbTZ2n2WGXH0Y8EviPa438iY=w800-h800-k-no" alt="Rainbow Laundromat">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlXCqWXDKYW9lMuU2biQMnX1kqcQnGzgR33MUBF4vzUtqb8Ikt4h-5zggamsnAObu-m2KAL6LQzbYeiVqi5ppawkpw_quwslbQyrxUPFVBAmqu-91rBUMtVEfipJJwKnOX-IrWWdoufSbCl=w800-h800-k-no" alt="Rainbow Laundromat">
+        <div class="photo-caption">Source-provided Rainbow Laundromat photos</div>
+      </div>
+
+      <div>
+        <div class="section-kicker">Business overview</div>
+        <h2>Rainbow Laundromat in Las Vegas.</h2>
+        <p class="lead">Self-service laundromat at 2247 S Rainbow Blvd, Las Vegas, NV 89146.</p>
+
+        <div class="info-list">
+          <div class="info-row"><span>Phone</span><strong>(702) 333-2340</strong></div>
+          <div class="info-row"><span>Address</span><strong>2247 S Rainbow Blvd<br>Las Vegas, NV 89146</strong></div>
+          <div class="info-row"><span>Rating</span><strong>4.2 out of 5 stars</strong></div>
+          <div class="info-row"><span>Hours</span><strong>6:00 AM – 11:00 PM</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="section-kicker">Services</div>
+      <h2>Self-service laundromat.</h2>
+      <p class="lead">The supplied source identifies Rainbow Laundromat as a self-service laundromat.</p>
+
+      <div class="service-grid">
+        <div class="service">
+          <i class="fa-solid fa-shirt"></i>
+          <h3>Self-service laundry</h3>
+          <p>Use the laundromat during the posted operating hours.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>Las Vegas location</h3>
+          <p>2247 S Rainbow Blvd, Las Vegas, NV 89146.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa-regular fa-clock"></i>
+          <h3>Daily operating window</h3>
+          <p>Open at 6:00 AM and close at 11:00 PM.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="asset-note">Stock laundromat background · not the actual business</div>
+  </section>
+
+  <section class="section hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="section-kicker">Hours</div>
+        <h2>Open 6:00 AM to 11:00 PM.</h2>
+        <p class="lead">The supplied source provides opening and closing times but does not provide a day-by-day schedule.</p>
+      </div>
+
+      <div class="hours-card">
+        <div class="hours-row"><strong>Open</strong><span>6:00 AM</span></div>
+        <div class="hours-row"><strong>Close</strong><span>11:00 PM</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery" id="gallery">
+    <div class="wrap">
+      <div class="section-kicker">Photos</div>
+      <h2>Rainbow Laundromat.</h2>
+      <p class="lead">These are the two business images supplied in the source page.</p>
+
+      <div class="gallery-grid">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmfWcOqp2N-_5mTadfVNCZtbdseCsyQr7OCih_p0binO5mY6-gznaaOeXYoJyDby8x7pCJAR71cyIv2P3fe14NAt2Khp2woIWN2IJF2co742QxkFbTZ2n2WGXH0Y8EviPa438iY=w1200-h900-k-no" alt="Rainbow Laundromat">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlXCqWXDKYW9lMuU2biQMnX1kqcQnGzgR33MUBF4vzUtqb8Ikt4h-5zggamsnAObu-m2KAL6LQzbYeiVqi5ppawkpw_quwslbQyrxUPFVBAmqu-91rBUMtVEfipJJwKnOX-IrWWdoufSbCl=w1200-h900-k-no" alt="Rainbow Laundromat">
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="wrap">
+      <div class="section-kicker">Visit</div>
+      <h2>2247 S Rainbow Blvd.</h2>
+      <p class="lead">Las Vegas, NV 89146.</p>
+
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-location-dot"></i> Address</h3>
+          <p>2247 S Rainbow Blvd<br>Las Vegas, NV 89146</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The public business address is displayed, while the directions action remains disabled in this sample website.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Directions</button>
+        </div>
+
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <p>(702) 333-2340</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The call action is intentionally disabled in this sample website.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call Rainbow Laundromat</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>Rainbow Laundromat</h3>
+        <p>Self-service laundromat in Las Vegas.</p>
+      </div>
+
+      <div>
+        <h3>Visit</h3>
+        <p>2247 S Rainbow Blvd<br>Las Vegas, NV 89146</p>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <p>(702) 333-2340</p>
+        <p>6:00 AM – 11:00 PM</p>
+      </div>
+    </div>
+
+    <div class="copy">Rainbow Laundromat · Las Vegas, NV</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openModal(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+
+    if(lastFocus && typeof lastFocus.focus === 'function'){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal){
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')){
+      closeModal();
+    }
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey){
+      e.preventDefault();
+    }
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)){
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+</body>
+</html>

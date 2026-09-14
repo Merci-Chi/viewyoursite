@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#111111">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>M&M Muffler Automotive Repair | Atlanta Auto Repair</title>
+  <meta name="description" content="M&M Muffler Automotive Repair in Atlanta provides muffler and exhaust repair, oil changes, transmission repair, radiator and cooling work, and general automotive repair.">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#111111;
+      --ink-2:#1b1b1b;
+      --paper:#f4f1eb;
+      --paper-2:#e7e1d7;
+      --accent:#f04a2b;
+      --accent-dark:#c7341d;
+      --muted:#6c675f;
+      --line:rgba(17,17,17,.14);
+      --white:#fff;
+      --max:1180px;
+      --shadow:0 20px 50px rgba(0,0,0,.14);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--paper);
+      color:var(--ink);
+      line-height:1.6;
+      overflow-x:hidden;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{ -webkit-tap-highlight-color:transparent }
+    img{display:block;max-width:100%}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      font-size:.76rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--accent);
+    }
+    .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+    .section{padding:96px 0}
+    .section-title{
+      margin:12px 0 18px;
+      font-size:clamp(2.2rem,5vw,4.4rem);
+      line-height:.95;
+      letter-spacing:-.045em;
+      max-width:820px;
+      font-weight:900;
+    }
+    .lead{font-size:1.08rem;color:var(--muted);max-width:760px}
+    .btn{
+      border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;min-height:50px;padding:0 20px;font-weight:800;font-size:.92rem;
+      border-radius:6px;transition:.2s ease;letter-spacing:.01em;
+    }
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px)}
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-dark:hover{background:#292929;transform:translateY(-2px)}
+    .btn-ghost{border:1px solid rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(6px)}
+    .btn-ghost:hover{background:rgba(255,255,255,.13)}
+    header{
+      position:fixed;inset:0 0 auto 0;z-index:40;
+      background:rgba(15,15,15,.88);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .nav{
+      height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;color:#fff;font-weight:900;letter-spacing:-.02em}
+    .brand-mark{
+      width:40px;height:40px;border:2px solid var(--accent);display:grid;place-items:center;
+      font-size:1rem;color:var(--accent);font-weight:900;transform:skew(-8deg);
+    }
+    .brand span:last-child{max-width:260px;line-height:1.05}
+    nav ul{display:flex;align-items:center;gap:26px;list-style:none;margin:0;padding:0}
+    nav a{color:#fff;font-weight:700;font-size:.9rem;opacity:.88}
+    nav a:hover{color:var(--accent);opacity:1}
+    .menu-btn{
+      display:none;width:44px;height:44px;background:transparent;border:0;color:#fff;font-size:1.35rem;cursor:pointer
+    }
+
+    .hero{
+      min-height:760px;display:flex;align-items:flex-end;position:relative;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.64) 44%,rgba(0,0,0,.18) 100%),
+        url("https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:auto 0 0 0;height:34%;
+      background:linear-gradient(transparent,rgba(0,0,0,.68));
+      pointer-events:none;
+    }
+    .hero-content{position:relative;z-index:2;padding:160px 0 92px;max-width:820px}
+    .hero h1{
+      margin:16px 0 22px;
+      font-size:clamp(3.25rem,8vw,7rem);
+      line-height:.86;letter-spacing:-.06em;font-weight:950;text-transform:uppercase;
+    }
+    .hero p{font-size:1.12rem;max-width:670px;color:rgba(255,255,255,.85)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .hero-strip{
+      position:absolute;z-index:3;left:0;right:0;bottom:0;border-top:1px solid rgba(255,255,255,.18)
+    }
+    .hero-strip-inner{
+      min-height:68px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+      font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em
+    }
+    .hero-strip-item{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.86)}
+    .hero-strip-item i{color:var(--accent)}
+
+    .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+    .about-photo{
+      min-height:560px;background:
+      linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),
+      url("https://images.unsplash.com/photo-1632823471565-1ecdf5c6d7f7?auto=format&fit=crop&w=1200&q=84") center/cover no-repeat;
+      position:relative;box-shadow:var(--shadow)
+    }
+    .about-badge{
+      position:absolute;left:-24px;bottom:28px;background:var(--accent);color:#fff;
+      padding:22px 24px;width:min(280px,75%);font-weight:900;line-height:1.15;text-transform:uppercase;
+      box-shadow:0 14px 36px rgba(0,0,0,.2)
+    }
+    .about-copy .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+    .fact{border-top:1px solid var(--line);padding:16px 0 0;display:flex;gap:12px;align-items:flex-start}
+    .fact i{color:var(--accent);margin-top:5px}
+    .fact strong{display:block;font-size:.98rem}
+    .fact span{color:var(--muted);font-size:.9rem}
+
+    .services{
+      position:relative;color:#fff;background:#101010;
+      background-image:
+        linear-gradient(rgba(11,11,11,.92),rgba(11,11,11,.95)),
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=82");
+      background-size:cover;background-position:center;background-attachment:fixed;
+    }
+    .services .lead{color:rgba(255,255,255,.66)}
+    .service-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.14);margin-top:44px}
+    .service{
+      min-height:290px;background:#151515;padding:30px 24px;position:relative;overflow:hidden;
+      display:flex;flex-direction:column;justify-content:flex-end;transition:.25s ease
+    }
+    .service::before{
+      content:"";position:absolute;inset:0;background-size:cover;background-position:center;
+      opacity:.18;transform:scale(1.04);transition:.3s ease
+    }
+    .service:nth-child(1)::before{background-image:url("https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=900&q=80")}
+    .service:nth-child(2)::before{background-image:url("https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=900&q=80")}
+    .service:nth-child(3)::before{background-image:url("https://images.unsplash.com/photo-1615906655593-ad0386982a0f?auto=format&fit=crop&w=900&q=80")}
+    .service:nth-child(4)::before{background-image:url("https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=900&q=80")}
+    .service:nth-child(5)::before{background-image:url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=900&q=80")}
+    .service:hover{background:#1b1b1b}
+    .service:hover::before{opacity:.28;transform:scale(1.1)}
+    .service-content{position:relative;z-index:2}
+    .service-icon{font-size:1.45rem;color:var(--accent);margin-bottom:20px}
+    .service h3{margin:0 0 10px;font-size:1.28rem;line-height:1.05}
+    .service p{margin:0;color:rgba(255,255,255,.68);font-size:.92rem}
+
+    .process{background:var(--paper-2)}
+    .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:44px}
+    .step{border-top:4px solid var(--ink);padding-top:22px}
+    .step-num{font-size:.78rem;font-weight:900;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}
+    .step h3{font-size:1.45rem;margin:12px 0 8px}
+    .step p{color:var(--muted);margin:0}
+
+    .reviews{
+      background:
+        linear-gradient(90deg,rgba(240,74,43,.93),rgba(201,49,25,.92)),
+        url("https://images.unsplash.com/photo-1600861194942-f883de0dfe96?auto=format&fit=crop&w=2200&q=80") center/cover;
+      color:#fff;
+    }
+    .reviews .eyebrow{color:#fff}
+    .reviews .lead{color:rgba(255,255,255,.8)}
+    .review-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:54px;align-items:start}
+    .rating-block{padding-top:28px}
+    .rating-number{font-size:6rem;line-height:.85;font-weight:950;letter-spacing:-.07em}
+    .stars{margin:18px 0 10px;display:flex;gap:5px;color:#fff}
+    .rating-block p{color:rgba(255,255,255,.84)}
+    .review-cards{display:grid;gap:14px}
+    .review{background:#fff;color:var(--ink);padding:26px 28px;box-shadow:0 14px 40px rgba(0,0,0,.14)}
+    .review p{font-size:1rem;margin:0 0 12px}
+    .review small{font-weight:800;color:var(--muted)}
+
+    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:start}
+    .hours-table{border-top:1px solid var(--line)}
+    .hour-row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .hour-row span:last-child{font-weight:800}
+    .contact-panel{
+      min-height:430px;color:#fff;padding:34px;
+      background:
+        linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.78)),
+        url("https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1200&q=82") center/cover;
+      display:flex;flex-direction:column;justify-content:flex-end;box-shadow:var(--shadow)
+    }
+    .protected{
+      border:1px solid rgba(255,255,255,.28);padding:14px 16px;margin:14px 0 22px;
+      background:rgba(255,255,255,.08);font-size:.78rem;font-weight:900;letter-spacing:.08em;
+      text-transform:uppercase
+    }
+    .contact-panel p{color:rgba(255,255,255,.76);margin:0 0 20px}
+    .contact-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    footer{background:#0d0d0d;color:#fff;padding:42px 0}
+    .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;flex-wrap:wrap}
+    .footer-copy{max-width:520px;color:rgba(255,255,255,.65);font-size:.9rem}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer-links a{font-weight:800;font-size:.85rem}
+    .footer-links a:hover{color:var(--accent)}
+    .copyright{margin-top:24px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.48);font-size:.8rem}
+
+    .modal-backdrop{
+      position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);
+      display:none;align-items:center;justify-content:center;padding:20px
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(480px,100%);background:var(--paper);box-shadow:0 30px 80px rgba(0,0,0,.4);
+      padding:32px;position:relative
+    }
+    .modal-icon{
+      width:54px;height:54px;background:var(--ink);color:var(--accent);display:grid;place-items:center;
+      font-size:1.2rem;margin-bottom:20px
+    }
+    .modal h2{margin:0 0 10px;font-size:1.9rem;line-height:1}
+    .modal p{margin:0 0 24px;color:var(--muted)}
+    .modal .btn{width:100%}
+
+    @media (max-width:1020px){
+      .service-grid{grid-template-columns:repeat(2,1fr)}
+      .service:last-child{grid-column:1 / -1}
+      .about-grid,.hours-grid,.review-layout{grid-template-columns:1fr;gap:42px}
+      .about-photo{min-height:460px}
+      .review-layout{gap:24px}
+      .process-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:780px){
+      .container{width:min(100% - 28px,var(--max))}
+      .section{padding:72px 0}
+      .section-title{font-size:clamp(2.4rem,12vw,3.5rem)}
+      nav ul{
+        position:fixed;top:74px;left:0;right:0;background:#111;display:none;flex-direction:column;
+        align-items:stretch;gap:0;padding:10px 14px 16px;border-bottom:1px solid rgba(255,255,255,.1)
+      }
+      nav ul.open{display:flex}
+      nav li a{display:block;padding:15px 8px}
+      .desktop-cta{display:none}
+      .menu-btn{display:grid;place-items:center}
+      .hero{min-height:720px;background-position:62% center}
+      .hero-content{padding:130px 0 118px}
+      .hero h1{font-size:clamp(3rem,16vw,5.2rem)}
+      .hero-strip-inner{padding:13px 0;gap:12px 20px}
+      .about-copy .facts{grid-template-columns:1fr}
+      .about-badge{left:0}
+      .service-grid{grid-template-columns:1fr}
+      .service:last-child{grid-column:auto}
+      .service{min-height:250px}
+      .services{background-attachment:scroll}
+      .rating-number{font-size:5rem}
+      .contact-panel{min-height:380px;padding:26px}
+      .footer-inner{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="M&M Muffler Automotive Repair home">
+      <span class="brand-mark">M&M</span>
+      <span>M&M Muffler Automotive Repair</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#hours">Hours</a></li>
+      </ul>
+    </nav>
+    <button class="btn btn-primary desktop-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Contact Shop</button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <span class="eyebrow">Atlanta Automotive Repair</span>
+      <h1>Muffler. Exhaust. Everyday Repair.</h1>
+      <p>Family-run shop on Sylvan Road. Mufflers, exhaust and everyday repairs, handled swiftly and priced fairly.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#services"><i class="fa-solid fa-wrench"></i> See Our Services</a>
+        <button class="btn btn-ghost" data-locked="true"><i class="fa-solid fa-location-dot"></i> Visit the Shop</button>
+      </div>
+    </div>
+    <div class="hero-strip">
+      <div class="container hero-strip-inner">
+        <div class="hero-strip-item"><i class="fa-solid fa-car-side"></i> Muffler & Exhaust</div>
+        <div class="hero-strip-item"><i class="fa-solid fa-screwdriver-wrench"></i> General Repair</div>
+        <div class="hero-strip-item"><i class="fa-solid fa-location-dot"></i> Sylvan Road · Atlanta</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-photo" role="img" aria-label="Stock photo of an automotive repair shop">
+        <div class="about-badge">Family-run and customer-first</div>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">About the shop</span>
+        <h2 class="section-title">The shop Sylvan Road trusts.</h2>
+        <p class="lead">Bring the noise, the leak or the light on the dash. The family behind the counter will take a look and give it to you straight.</p>
+        <div class="facts">
+          <div class="fact"><i class="fa-solid fa-volume-high"></i><div><strong>Muffler & Exhaust</strong><span>Exhaust work is a house specialty.</span></div></div>
+          <div class="fact"><i class="fa-solid fa-gears"></i><div><strong>General Repair</strong><span>Everyday fixes and maintenance for daily drivers.</span></div></div>
+          <div class="fact"><i class="fa-solid fa-receipt"></i><div><strong>Fair Prices</strong><span>Customers repeatedly mention reasonable pricing.</span></div></div>
+          <div class="fact"><i class="fa-solid fa-people-roof"></i><div><strong>Family-run</strong><span>The supplied site identifies the shop as family-run.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="container">
+      <span class="eyebrow">What we do</span>
+      <h2 class="section-title">Services</h2>
+      <p class="lead">Exhaust work is the specialty. The supplied business site also lists several common automotive repair services.</p>
+      <div class="service-grid">
+        <article class="service"><div class="service-content"><div class="service-icon"><i class="fa-solid fa-wind"></i></div><h3>Muffler & Exhaust Repair</h3><p>Loud, dragging, hanging or rattling exhaust. Pipes, mufflers, hangers and leaks are listed among the shop's work.</p></div></article>
+        <article class="service"><div class="service-content"><div class="service-icon"><i class="fa-solid fa-oil-can"></i></div><h3>Oil Changes</h3><p>Oil changes are listed among the services available at the shop.</p></div></article>
+        <article class="service"><div class="service-content"><div class="service-icon"><i class="fa-solid fa-gears"></i></div><h3>Transmission Repair</h3><p>Transmission repair, including transmission leak work, is listed on the supplied site.</p></div></article>
+        <article class="service"><div class="service-content"><div class="service-icon"><i class="fa-solid fa-temperature-high"></i></div><h3>Radiator & Cooling</h3><p>Radiator, hose and cooling-system repair are included in the supplied service list.</p></div></article>
+        <article class="service"><div class="service-content"><div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div><h3>General Repair</h3><p>The supplied site references check-engine lights, brakes, belts and other everyday repair needs.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section process">
+    <div class="container">
+      <span class="eyebrow">How a visit works</span>
+      <h2 class="section-title">Straightforward from symptom to repair.</h2>
+      <div class="process-grid">
+        <div class="step"><span class="step-num">Step 01</span><h3>Tell us the symptom</h3><p>Describe the noise or what the car is doing.</p></div>
+        <div class="step"><span class="step-num">Step 02</span><h3>Bring the car by</h3><p>The supplied site welcomes in-person visits Monday through Saturday.</p></div>
+        <div class="step"><span class="step-num">Step 03</span><h3>Get it looked at</h3><p>The shop's supplied website emphasizes swift service and straightforward communication.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews">
+    <div class="container review-layout">
+      <div>
+        <span class="eyebrow">Word on the street</span>
+        <h2 class="section-title">Google reviews</h2>
+        <div class="rating-block">
+          <div class="rating-number">4.8</div>
+          <div class="stars" aria-label="4.8 out of 5 stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p>358 reviews are stated on the supplied business site.</p>
+          <button class="btn btn-dark" data-locked="true"><i class="fa-brands fa-google"></i> Open Google Listing</button>
+        </div>
+      </div>
+      <div class="review-cards">
+        <article class="review"><p>“Recently moving here from NYC he has become my trusted local mechanic. On this repair visit, he helped repair my transmission leak and install new heater hoses.”</p><small>Google review</small></article>
+        <article class="review"><p>“They swiftly fixed it within minutes. Family provided great customer service.”</p><small>Google review</small></article>
+        <article class="review"><p>“Very reasonable prices. Excellent service and quality care.”</p><small>Google review</small></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hours">
+    <div class="container hours-grid">
+      <div>
+        <span class="eyebrow">Business hours</span>
+        <h2 class="section-title">Monday through Saturday.</h2>
+        <div class="hours-table" aria-label="Business hours">
+          <div class="hour-row"><span>Monday</span><span>9:00 AM – 5:30 PM</span></div>
+          <div class="hour-row"><span>Tuesday</span><span>9:00 AM – 5:30 PM</span></div>
+          <div class="hour-row"><span>Wednesday</span><span>9:00 AM – 5:30 PM</span></div>
+          <div class="hour-row"><span>Thursday</span><span>9:00 AM – 5:30 PM</span></div>
+          <div class="hour-row"><span>Friday</span><span>9:00 AM – 5:30 PM</span></div>
+          <div class="hour-row"><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
+          <div class="hour-row"><span>Sunday</span><span>Closed</span></div>
+        </div>
+      </div>
+      <div class="contact-panel">
+        <span class="eyebrow">Visit / Contact</span>
+        <h2 style="font-size:2.3rem;line-height:1;margin:12px 0 8px">M&M Muffler Automotive Repair</h2>
+        <p>Located on Sylvan Road in Atlanta.</p>
+        <div class="protected"><i class="fa-solid fa-lock"></i>&nbsp; CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+        <div class="contact-actions">
+          <button class="btn btn-primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Shop</button>
+          <button class="btn btn-ghost" data-locked="true"><i class="fa-solid fa-location-dot"></i> Get Directions</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="brand"><span class="brand-mark">M&M</span><span>M&M Muffler Automotive Repair</span></div>
+        <p class="footer-copy">Family-run muffler, exhaust and auto repair on Sylvan Road in Atlanta.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a>
+      </div>
+    </div>
+    <div class="copyright">© M&M Muffler Automotive Repair · Atlanta, GA · Demo website</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalText">
+  <div class="modal" tabindex="-1">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalText">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-dark" id="closeModal">Close</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const menuBtn = document.getElementById('menuBtn');
+  const navMenu = document.getElementById('navMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalBox = modal.querySelector('.modal');
+  const closeModalBtn = document.getElementById('closeModal');
+  let lastFocused = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  function openLockedModal(trigger){
+    lastFocused = trigger;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalBox.focus();
+  }
+  function closeLockedModal(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLockedModal(el);
+    });
+  });
+
+  closeModalBtn.addEventListener('click', closeLockedModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeLockedModal(); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLockedModal();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusable = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+      if(!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length-1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0e1014">
+<title>SMOKE WORLD | Las Vegas</title>
+<meta name="description" content="SMOKE WORLD smoke and vape shop in Las Vegas on E Flamingo Rd. Open 24 hours every day.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --bg:#0e1014;--panel:#171a21;--panel2:#20242c;--white:#f8f8f6;--muted:#b7bcc5;
+  --lime:#b9ff3f;--violet:#8f63ff;--amber:#ffb347;--line:rgba(255,255,255,.12);
+  --light:#f3f0e9;--ink:#17181c;--max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,system-ui,sans-serif;line-height:1.6;overflow-x:hidden;user-select:none;-webkit-user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+h1,h2,h3{font-family:"Archivo Black",sans-serif;margin:0;line-height:.98;letter-spacing:-.03em}
+h1{font-size:clamp(4rem,8vw,7.4rem)}
+h2{font-size:clamp(2.7rem,5vw,4.5rem)}
+h3{font-size:1.15rem}
+p{margin-top:0}
+.section{padding:88px 0;scroll-margin-top:76px}
+.kicker{font-size:.74rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+
+header{position:sticky;top:0;z-index:100;background:rgba(14,16,20,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.navbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:44px;height:44px;background:var(--lime);color:#11150a;display:grid;place-items:center;font-family:"Archivo Black";font-size:.95rem}
+.brand strong{font-size:.98rem}
+.brand small{display:block;color:var(--muted);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.nav{display:flex;gap:24px}
+.nav a{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.nav a:hover{color:var(--lime)}
+.menu{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent;color:#fff;font-size:1.1rem}
+.mobile-nav{display:none;padding:8px 20px 18px;background:var(--bg);border-top:1px solid var(--line)}
+.mobile-nav.open{display:grid}
+.mobile-nav a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+.hero{
+  min-height:730px;display:grid;align-items:end;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(7,8,10,.96),rgba(14,16,20,.78) 52%,rgba(14,16,20,.28)),
+    linear-gradient(0deg,rgba(8,9,12,.94),transparent 55%),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+}
+.hero:after{content:"24";position:absolute;right:-15px;top:35px;font-family:"Archivo Black";font-size:min(34vw,450px);line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(185,255,63,.12)}
+.hero-in{position:relative;z-index:2;padding:110px 0 68px;max-width:900px}
+.hero h1 span{color:var(--lime)}
+.hero-copy{max-width:740px;color:#d3d7dd;font-size:1.08rem;margin:22px 0 26px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);padding:8px 13px;border-radius:999px;font-size:.82rem;font-weight:700}
+.chip i{color:var(--lime)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:13px 20px;border:1px solid transparent;font-size:.78rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--lime);color:#11150a}
+.btn-ghost{background:rgba(0,0,0,.08);border-color:rgba(255,255,255,.4);color:#fff}
+.stock-note{position:absolute;right:14px;bottom:12px;z-index:3;background:rgba(0,0,0,.62);padding:6px 9px;font-size:.62rem;text-transform:uppercase;letter-spacing:.06em}
+
+.quickbar{background:#11141a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.quick{padding:22px 20px;display:flex;gap:13px;align-items:flex-start;border-right:1px solid var(--line)}
+.quick:last-child{border-right:0}
+.quick i{color:var(--lime);margin-top:4px}
+.quick strong{display:block;color:#dfe4ea;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+
+.about{background:var(--light);color:var(--ink)}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.about-photo{min-height:430px;position:relative;background:url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=82") center/cover no-repeat}
+.about-photo:after{content:"Relevant stock imagery — not the actual business";position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.66);color:#fff;padding:6px 8px;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em}
+.about .kicker{color:#6846d8}
+.lead{color:#5e6269;font-size:1.03rem}
+.protected{margin-top:22px;background:#fff;border-left:5px solid var(--violet);padding:18px 20px}
+.protected strong{display:block;color:#5c3dc4;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.protected p{margin:0;color:#666b73}
+
+.stock{
+  background:
+    linear-gradient(rgba(14,16,20,.91),rgba(14,16,20,.95)),
+    url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+}
+.stock-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:36px}
+.item{background:#161920;padding:24px;min-height:180px}
+.item i{color:var(--lime);font-size:1.25rem;margin-bottom:15px}
+.item h3{margin-bottom:8px}
+.item p{color:var(--muted);font-size:.9rem;margin-bottom:0}
+
+.highlights{background:var(--light);color:var(--ink)}
+.highlight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.highlight{background:#fff;border:1px solid #d8d9dc;padding:26px}
+.highlight i{color:#6e4ee6;font-size:1.2rem;margin-bottom:14px}
+.highlight h3{margin-bottom:0}
+
+.reviews{background:#171a21}
+.review-head{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-bottom:28px}
+.score{width:112px;height:112px;display:grid;place-items:center;text-align:center;background:var(--violet)}
+.score strong{display:block;font-family:"Archivo Black";font-size:2.2rem}
+.score span{font-size:.72rem;color:#ffe28a;letter-spacing:.1em}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.quote{background:var(--panel2);border:1px solid var(--line);padding:24px}
+.quote .stars{color:var(--amber);margin-bottom:12px}
+.quote p{font-size:1rem}
+.quote small{color:var(--muted);font-weight:700}
+
+.hours{background:var(--light);color:var(--ink)}
+.hours-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px}
+.hours-card{background:#fff;border:1px solid #d7d9dc;padding:26px}
+.hrow{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #e4e5e7}
+.hrow:last-child{border-bottom:0}
+.hrow.today{color:#694ad1}
+
+.visit{background:#fff;color:var(--ink)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{border:1px solid #d8dadf;padding:28px}
+.info-line{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed #ddd}
+.info-line:last-child{border-bottom:0}
+.info-line i{color:#694ad1;margin-top:4px;width:18px;text-align:center}
+.form{display:grid;gap:13px}
+.field label{display:block;font-size:.82rem;font-weight:800;margin-bottom:5px}
+.field input,.field textarea{width:100%;padding:12px 13px;border:1px solid #bfc3ca;background:#f6f7f8;font:inherit}
+.field textarea{min-height:105px;resize:vertical}
+
+footer{background:#090b0f;color:#b9bec6;padding:36px 0}
+.footer-in{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+.footer-in strong{color:#fff}
+.footer-nav{display:flex;gap:16px}
+.footer-nav a{color:#fff}
+
+.modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.78);padding:22px}
+.modal.open{display:grid}
+.modal-card{width:min(470px,100%);background:#171a21;color:#fff;border:1px solid var(--line);padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.modal-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--lime);color:#11150a;margin-bottom:18px}
+.modal-card h2{text-align:left;font-size:2.1rem;margin-bottom:10px}
+.modal-card p{color:#bec4cc;margin-bottom:22px}
+
+@media(max-width:980px){.stock-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:840px){
+  .nav{display:none}.menu{display:block}
+  .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:32px}
+  .quick-grid{grid-template-columns:1fr}.quick{border-right:0;border-bottom:1px solid var(--line)}
+  .review-grid,.highlight-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .hero{min-height:650px;background-position:58% center}
+  .hero-in{padding:88px 0 52px}
+  .hero h1{font-size:clamp(3.2rem,15vw,5rem)}
+  .actions{display:grid}.actions .btn{width:100%}
+  .section{padding:66px 0}
+  .stock-grid{grid-template-columns:1fr}
+  .about-photo{min-height:320px}
+  .footer-in{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap navbar">
+    <a class="brand" href="#home" aria-label="SMOKE WORLD home">
+      <span class="brand-mark">SW</span>
+      <span><strong>SMOKE WORLD</strong><small>Smoke and Vape Shop · Las Vegas</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#stock">Stock</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Find Us</a>
+    </nav>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#stock">Stock</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Find Us</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <p class="kicker">Smoke and Vape Shop · E Flamingo Rd</p>
+    <h1>SMOKE <span>WORLD</span></h1>
+    <p class="hero-copy">The lights never really go off here. SMOKE WORLD keeps the Las Vegas strip-adjacent hours you would expect: vapes, glass, cigars, wraps, and everything around them, any hour you need them.</p>
+    <div class="meta">
+      <span class="chip"><i class="fa-solid fa-clock"></i> Open 24 hours, every day</span>
+      <span class="chip"><i class="fa-solid fa-id-card"></i> 21+ valid ID required</span>
+      <span class="chip"><i class="fa-solid fa-star"></i> 4.9 on Google</span>
+    </div>
+    <div class="actions">
+      <a class="btn btn-primary" href="#stock"><i class="fa-solid fa-store"></i> The Stock</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </div>
+  </div>
+  <div class="stock-note">Relevant stock retail image • Unsplash</div>
+</section>
+
+<section class="quickbar">
+  <div class="wrap quick-grid">
+    <div class="quick"><i class="fa-solid fa-clock"></i><div><strong>Hours</strong>Open 24 hours · 7 days</div></div>
+    <div class="quick"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong>E Flamingo Rd · Las Vegas</div></div>
+    <div class="quick"><i class="fa-solid fa-id-card"></i><div><strong>Age requirement</strong>21 and over · valid ID required</div></div>
+  </div>
+</section>
+
+<section class="section about">
+  <div class="wrap about-grid">
+    <div class="about-photo" role="img" aria-label="Stock retail image"></div>
+    <div>
+      <p class="kicker">SMOKE WORLD</p>
+      <h2>Open when you need it</h2>
+      <p class="lead">SMOKE WORLD is a smoke and vape shop on E Flamingo Rd in Las Vegas. The supplied source highlights 24-hour access, a wide product selection, and organized displays.</p>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>The supplied source contains a public business phone number and full street address. Those details remain hidden in this sample website.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section stock" id="stock">
+  <div class="wrap">
+    <p class="kicker">The stock</p>
+    <h2>What is on the shelves</h2>
+    <p style="color:var(--muted);max-width:730px">Customers keep saying the same two things: a big selection, and a layout that actually makes sense. Here is the wall by wall tour.</p>
+    <div class="stock-grid">
+      <article class="item"><i class="fa-solid fa-cloud"></i><h3>Vapes &amp; disposables</h3><p>The popular devices and flavors, restocked constantly.</p></article>
+      <article class="item"><i class="fa-solid fa-droplet"></i><h3>E-liquids &amp; juice</h3><p>Bottles and salts across the flavor range, from fruit to dessert.</p></article>
+      <article class="item"><i class="fa-solid fa-wine-bottle"></i><h3>Glass &amp; water pipes</h3><p>Hand pipes to water pieces, in glass that is built to last.</p></article>
+      <article class="item"><i class="fa-solid fa-smoking"></i><h3>Cigars &amp; cigarillos</h3><p>A working cigar selection for the walk home down Flamingo.</p></article>
+      <article class="item"><i class="fa-solid fa-scroll"></i><h3>Wraps &amp; papers</h3><p>Every wrap flavor and paper size the regulars ask for.</p></article>
+      <article class="item"><i class="fa-solid fa-fire-flame-curved"></i><h3>Lighters &amp; torches</h3><p>Disposables, refillables, and torches that survive the wind.</p></article>
+      <article class="item"><i class="fa-solid fa-leaf"></i><h3>CBD &amp; hemp</h3><p>CBD and hemp products on their own shelf, clearly labeled.</p></article>
+      <article class="item"><i class="fa-solid fa-gears"></i><h3>Accessories &amp; parts</h3><p>Coils, batteries, cases, grinders, and the small stuff that saves the night.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section highlights">
+  <div class="wrap">
+    <p class="kicker">Highlights</p>
+    <h2>What the source emphasizes</h2>
+    <div class="highlight-grid">
+      <article class="highlight"><i class="fa-solid fa-boxes-stacked"></i><h3>A wide selection across vapes and smoking accessories</h3></article>
+      <article class="highlight"><i class="fa-solid fa-table-cells-large"></i><h3>Organized displays that are easy to navigate</h3></article>
+      <article class="highlight"><i class="fa-solid fa-moon"></i><h3>Open 24 hours, made for late-night runs</h3></article>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <p class="kicker">Reviews</p>
+    <h2>Word from the regulars</h2>
+    <div class="review-head">
+      <div class="score"><div><strong>4.9</strong><span>★★★★★</span></div></div>
+      <div><p style="font-weight:800;margin-bottom:5px">4.9 stars on Google</p><p style="color:var(--muted);margin-bottom:0">The source includes three Google review excerpts.</p></div>
+    </div>
+    <div class="review-grid">
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Great smoking products and accessories!”</p><small>Google review</small></article>
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Customer service was great and everything was very easy to find!”</p><small>Google review</small></article>
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Good store for smoke!”</p><small>Google review</small></article>
+    </div>
+    <div class="actions" style="justify-content:center;margin-top:24px">
+      <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See Every Review on Google</button>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-brands fa-yelp"></i> Read the Yelp Reviews</button>
+    </div>
+  </div>
+</section>
+
+<section class="section hours">
+  <div class="wrap hours-grid">
+    <div>
+      <p class="kicker" style="color:#6846d8">Hours</p>
+      <h2>Open 24 HRS</h2>
+      <p class="lead">Every single day.</p>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>Call and directions stay protected until the full website is unlocked.</p>
+      </div>
+    </div>
+    <div class="hours-card">
+      <div class="hrow" data-day="0"><span>Sunday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="1"><span>Monday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="2"><span>Tuesday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="3"><span>Wednesday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="4"><span>Thursday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="5"><span>Friday</span><strong>Open 24 hours</strong></div>
+      <div class="hrow" data-day="6"><span>Saturday</span><strong>Open 24 hours</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <p class="kicker" style="color:#6846d8">Find us</p>
+    <h2>The door</h2>
+    <p class="lead">SMOKE WORLD (SMOKE AND VAPE SHOP) is on E Flamingo Rd in Las Vegas.</p>
+    <div class="visit-grid">
+      <div class="card">
+        <h3>Shop details</h3>
+        <div class="info-line"><i class="fa-solid fa-location-dot"></i><span><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></span></div>
+        <div class="info-line"><i class="fa-solid fa-clock"></i><span>Open 24 hours, 7 days</span></div>
+        <div class="info-line"><i class="fa-solid fa-id-card"></i><span>21 and over. Bring a valid government ID.</span></div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          <button class="btn" style="background:var(--violet);color:#fff" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Directions</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Questions about stock?</h3>
+        <p class="lead">The source includes a message form so customers can ask before driving over. Submission remains protected in this demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Your phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">Question for the shop</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send it over</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-in">
+    <div><strong>SMOKE WORLD (SMOKE AND VAPE SHOP)</strong><br>Las Vegas, NV · Open 24 hours, 7 days</div>
+    <nav class="footer-nav"><a href="#stock">Stock</a><a href="#reviews">Reviews</a><a href="#visit">Find Us</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  function openLocked(trigger) {
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) {
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked(form.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeLocked);
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      closeLocked();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeLocked();
+    }
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    weekday: 'short'
+  }).format(new Date());
+
+  const dayMap = {Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6};
+  const row = document.querySelector('.hrow[data-day="' + dayMap[today] + '"]');
+
+  if (row) {
+    row.classList.add('today');
+    row.querySelector('span').textContent += ' · Today';
+  }
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+})();
+</script>
+</body>
+</html>

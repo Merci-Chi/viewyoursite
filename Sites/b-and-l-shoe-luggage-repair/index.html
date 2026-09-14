@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#17324a">
+  <title>B &amp; L Shoe &amp; Luggage Repair | Las Vegas Repair Shop</title>
+  <meta name="description" content="B & L Shoe & Luggage Repair in Las Vegas offers shoe, boot, bag and luggage repair, including heel and sole work, stitching, zippers, straps, hardware, belts and cleanup.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+
+  <!--
+  BUILD / APPROVAL NOTES
+  ------------------------------------------------------------
+  Website structure:
+  1) Sticky header/navigation
+  2) Hero
+  3) Services
+  4) About
+  5) Review
+  6) FAQ
+  7) Hours
+  8) Visit/contact CTA
+  9) Footer
+
+  Desktop direction:
+  - Editorial cobbler/workshop look with strong image-backed sections
+  - Wide split layouts, restrained card use, warm workbench palette
+  - Max content width: 1180px
+
+  Mobile direction:
+  - Single-column layouts
+  - Hamburger navigation
+  - Large tap targets
+  - Image crops remain readable
+  - Zoom disabled per request
+  - Text selection disabled per request
+
+  Palette:
+  - Ink: #151719
+  - Deep navy: #17324A
+  - Leather/copper: #A65F35
+  - Sand: #E9DDC8
+  - Warm paper: #F7F2E9
+  - Soft gray: #6D7378
+
+  Typography:
+  - Headings: "Archivo Black" via Google Fonts
+  - Body: "Inter" via Google Fonts
+
+  Stock image assets used in this demo:
+  - Unsplash remote images depicting generic shoe/leather/cobbler work.
+  - These images are stock/demo imagery and do NOT depict the actual business,
+    employees, storefront, products or completed work.
+  - Reuse rights should be checked at the source before commercial publication.
+
+  SEO/local direction:
+  - Primary title targets business name + Las Vegas
+  - Use LocalBusiness schema only after owner/contact/hours are fully confirmed
+  - Recommended future local SEO pages/sections: shoe repair Las Vegas,
+    luggage repair Las Vegas, boot repair Las Vegas, leather repair Las Vegas
+  - Do not publish conflicting owner/history/Saturday-hours claims until confirmed
+
+  Missing / approval-required:
+  - Current owner's full name
+  - Current public email confirmation
+  - Saturday closing time (sources conflict: 2 PM vs 3 PM)
+  - Years in business / business history
+  - Current hotel pickup/delivery availability
+  - License/certification details
+  - Official social profiles
+  - Official logo
+  - Exact pricing
+  - Warranty/guarantee policy
+  - Confirmation/approval to publish real phone and street address in an unlocked site
+
+  Quality checklist:
+  - Mobile menu works: yes
+  - Mobile zoom disabled: yes
+  - Text highlighting disabled: yes
+  - No unavailable/empty sections: yes
+  - No unsupported marketing claims added: yes
+  - Real-world actions are locked in demo: yes
+  - One reusable accessible lock modal: yes
+  - Contact details visibly protected in demo: yes
+  - All internal navigation works: yes
+  ------------------------------------------------------------
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --ink:#151719;
+      --navy:#17324a;
+      --navy-2:#0e263b;
+      --copper:#a65f35;
+      --sand:#e9ddc8;
+      --paper:#f7f2e9;
+      --gray:#6d7378;
+      --white:#ffffff;
+      --line:rgba(21,23,25,.15);
+      --max:1180px;
+      --shadow:0 18px 60px rgba(12,26,38,.14);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.65;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+      -webkit-touch-callout:none;
+    }
+    body.modal-open{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    .container{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .eyebrow{
+      margin:0 0 12px;
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--copper);
+    }
+    h1,h2,h3{
+      margin:0;
+      font-family:"Archivo Black",system-ui,sans-serif;
+      font-weight:400;
+      line-height:1.02;
+      letter-spacing:-.025em;
+    }
+    h1{font-size:clamp(3rem,8vw,7.4rem)}
+    h2{font-size:clamp(2.1rem,4.5vw,4.6rem)}
+    h3{font-size:1.18rem}
+    p{margin:0}
+    section{scroll-margin-top:86px}
+    .sr-only{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:90;
+      background:rgba(247,242,233,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(21,23,25,.10);
+    }
+    .nav-shell{
+      min-height:76px;
+      display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:11px;
+      text-decoration:none;
+      font-family:"Archivo Black",sans-serif;
+      font-size:1rem;
+      line-height:1.1;
+    }
+    .brand-mark{
+      width:38px;height:38px;
+      display:grid;place-items:center;
+      background:var(--navy);
+      color:var(--paper);
+      border:1px solid var(--navy);
+    }
+    nav{display:flex;align-items:center;gap:8px}
+    nav a{
+      text-decoration:none;
+      padding:10px 12px;
+      font-weight:700;
+      font-size:.92rem;
+    }
+    nav a:hover, nav a:focus-visible{color:var(--copper)}
+    .header-cta{
+      border:1px solid var(--navy);
+      background:var(--navy);
+      color:#fff;
+      padding:12px 16px;
+      font-weight:800;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .header-cta:hover{background:var(--copper);border-color:var(--copper)}
+    .menu-btn{
+      display:none;
+      width:44px;height:44px;border:0;background:transparent;
+      font-size:1.35rem;color:var(--navy);
+    }
+
+    /* Hero */
+    .hero{
+      min-height:calc(100vh - 76px);
+      display:grid;
+      align-items:end;
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(9,20,29,.92) 0%,rgba(9,20,29,.76) 43%,rgba(9,20,29,.28) 100%),
+        url("https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=2200&q=86") center/cover no-repeat;
+      position:relative;
+    }
+    .hero::after{
+      content:"STOCK DEMO IMAGE";
+      position:absolute;right:18px;bottom:14px;
+      font-size:.62rem;letter-spacing:.14em;font-weight:800;
+      color:rgba(255,255,255,.72);
+    }
+    .hero-inner{
+      padding:90px 0 88px;
+      max-width:960px;
+    }
+    .hero .eyebrow{color:#e8b18d}
+    .hero h1{max-width:1000px}
+    .hero h1 span{color:#e5a77f}
+    .hero-copy{
+      max-width:720px;
+      margin-top:24px;
+      font-size:clamp(1.02rem,1.6vw,1.25rem);
+      color:rgba(255,255,255,.86);
+    }
+    .hero-actions{
+      margin-top:30px;
+      display:flex;flex-wrap:wrap;gap:12px;
+    }
+    .btn{
+      border:1px solid transparent;
+      padding:14px 18px;
+      min-height:52px;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      text-decoration:none;
+      font-weight:800;
+      transition:.22s ease;
+    }
+    .btn-primary{background:var(--copper);color:#fff}
+    .btn-primary:hover{background:#8f4f2c;transform:translateY(-2px)}
+    .btn-secondary{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.06)}
+    .btn-secondary:hover{background:#fff;color:var(--navy);transform:translateY(-2px)}
+    .hero-proof{
+      display:flex;flex-wrap:wrap;gap:24px;
+      margin-top:34px;padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.22);
+      color:rgba(255,255,255,.86);
+      font-size:.9rem;
+    }
+    .hero-proof span{display:inline-flex;align-items:center;gap:9px}
+
+    /* Services */
+    .services{padding:104px 0;background:var(--paper)}
+    .section-head{
+      display:grid;grid-template-columns:1.25fr .75fr;gap:56px;
+      align-items:end;margin-bottom:50px;
+    }
+    .section-head p{color:var(--gray);max-width:480px}
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      border-top:1px solid var(--line);
+    }
+    .service{
+      grid-column:span 6;
+      display:grid;grid-template-columns:auto 1fr auto;
+      gap:16px;align-items:center;
+      padding:22px 4px;
+      border-bottom:1px solid var(--line);
+      transition:.22s ease;
+    }
+    .service:nth-child(odd){padding-right:32px;border-right:1px solid var(--line)}
+    .service:nth-child(even){padding-left:32px}
+    .service:hover{background:rgba(166,95,53,.055)}
+    .service-icon{
+      width:42px;height:42px;
+      display:grid;place-items:center;
+      color:var(--copper);
+      border:1px solid rgba(166,95,53,.35);
+    }
+    .service span{font-weight:800}
+    .service small{display:block;color:var(--gray);font-weight:500;margin-top:3px}
+    .service .fa-arrow-right{color:#9a9da0;font-size:.85rem}
+
+    /* Story */
+    .story{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      min-height:720px;
+      background:var(--navy);
+      color:#fff;
+    }
+    .story-image{
+      position:relative;
+      background:
+        linear-gradient(rgba(23,50,74,.12),rgba(23,50,74,.18)),
+        url("https://images.unsplash.com/photo-1528701800489-20be3c8ea4b4?auto=format&fit=crop&w=1500&q=84") center/cover no-repeat;
+    }
+    .story-image::after{
+      content:"STOCK DEMO IMAGE";
+      position:absolute;left:16px;bottom:14px;
+      color:rgba(255,255,255,.72);
+      font-size:.62rem;letter-spacing:.14em;font-weight:800;
+    }
+    .story-copy{
+      display:flex;align-items:center;
+      padding:76px clamp(34px,7vw,100px);
+    }
+    .story-copy .eyebrow{color:#e8b18d}
+    .story-copy p{color:#d7e0e7;margin-top:22px;max-width:590px}
+    .story-list{
+      margin:32px 0 0;padding:0;list-style:none;
+      display:grid;gap:0;max-width:590px;
+      border-top:1px solid rgba(255,255,255,.18);
+    }
+    .story-list li{
+      padding:16px 0;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      display:flex;gap:12px;align-items:center;
+    }
+    .story-list i{color:#e8b18d;width:22px}
+
+    /* Review */
+    .review{
+      padding:105px 0;
+      background:
+        linear-gradient(rgba(247,242,233,.94),rgba(247,242,233,.94)),
+        url("https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1800&q=82") center/cover fixed;
+    }
+    .quote-wrap{max-width:950px;margin:0 auto;text-align:center}
+    .quote-mark{font-size:2rem;color:var(--copper);margin-bottom:22px}
+    blockquote{
+      margin:0;
+      font-family:"Archivo Black",sans-serif;
+      font-size:clamp(1.8rem,4vw,3.6rem);
+      line-height:1.12;
+    }
+    .quote-source{margin-top:24px;color:var(--gray);font-weight:700}
+
+    /* FAQ */
+    .faq{padding:100px 0;background:#fff}
+    .faq-grid{
+      display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start;
+    }
+    .faq-intro p{margin-top:20px;color:var(--gray);max-width:380px}
+    .accordion{border-top:1px solid var(--line)}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-q{
+      width:100%;border:0;background:transparent;color:var(--ink);
+      padding:22px 0;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      font-weight:800;text-align:left;
+    }
+    .faq-q i{transition:.2s ease;color:var(--copper)}
+    .faq-item.open .faq-q i{transform:rotate(45deg)}
+    .faq-a{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .25s ease;
+    }
+    .faq-a > div{overflow:hidden}
+    .faq-item.open .faq-a{grid-template-rows:1fr}
+    .faq-a p{padding:0 40px 22px 0;color:var(--gray)}
+
+    /* Hours */
+    .hours{
+      padding:104px 0;
+      background:var(--sand);
+    }
+    .hours-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+    }
+    .hours-copy p{margin-top:18px;color:#575b5e;max-width:500px}
+    .hours-table{border-top:2px solid var(--navy)}
+    .hours-row{
+      display:flex;justify-content:space-between;gap:24px;
+      padding:16px 2px;
+      border-bottom:1px solid rgba(23,50,74,.2);
+    }
+    .hours-row strong{font-weight:800}
+    .hours-note{margin-top:14px;font-size:.86rem;color:#5c6267}
+
+    /* Visit */
+    .visit{
+      min-height:620px;
+      display:grid;place-items:center;
+      text-align:center;color:#fff;
+      background:
+        linear-gradient(rgba(8,22,33,.82),rgba(8,22,33,.82)),
+        url("https://images.unsplash.com/photo-1604176354204-9268737828e4?auto=format&fit=crop&w=2100&q=84") center/cover no-repeat;
+      position:relative;
+    }
+    .visit::after{
+      content:"STOCK DEMO IMAGE";
+      position:absolute;right:16px;bottom:14px;
+      color:rgba(255,255,255,.66);
+      font-size:.62rem;letter-spacing:.14em;font-weight:800;
+    }
+    .visit-inner{max-width:780px;padding:90px 20px}
+    .visit .eyebrow{color:#e8b18d}
+    .visit p{margin:20px auto 0;color:#dae1e6;max-width:640px}
+    .protected{
+      margin:28px auto 0;
+      max-width:620px;
+      border:1px solid rgba(255,255,255,.38);
+      background:rgba(255,255,255,.08);
+      padding:18px 20px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+    .visit-actions{margin-top:22px;display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+
+    footer{background:#0b1e2d;color:#ccd7df;padding:30px 0}
+    .footer-inner{
+      display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+      font-size:.86rem;
+    }
+    .footer-note{color:#93a6b5}
+    .footer-nav{display:flex;gap:16px;flex-wrap:wrap}
+    .footer-nav a{text-decoration:none;color:#dce6ec}
+    .footer-nav a:hover{color:#e8b18d}
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed;inset:0;z-index:999;
+      background:rgba(4,12,18,.76);
+      display:grid;place-items:center;
+      padding:20px;
+      opacity:0;visibility:hidden;
+      transition:.18s ease;
+    }
+    .modal-backdrop.open{opacity:1;visibility:visible}
+    .modal{
+      width:min(100%,500px);
+      background:var(--paper);
+      color:var(--ink);
+      padding:34px;
+      box-shadow:0 30px 90px rgba(0,0,0,.38);
+      transform:translateY(12px);
+      transition:.18s ease;
+      border-top:5px solid var(--copper);
+    }
+    .modal-backdrop.open .modal{transform:none}
+    .modal-icon{
+      width:46px;height:46px;display:grid;place-items:center;
+      background:var(--navy);color:#fff;margin-bottom:20px;
+    }
+    .modal h2{font-size:1.8rem}
+    .modal p{margin-top:12px;color:var(--gray)}
+    .modal-actions{margin-top:24px}
+    .modal-close{
+      border:0;background:var(--navy);color:#fff;
+      padding:12px 18px;font-weight:800;
+    }
+
+    /* Animations */
+    [data-reveal]{
+      opacity:0;transform:translateY(18px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    [data-reveal].visible{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      .menu-btn{display:inline-grid;place-items:center}
+      nav{
+        position:absolute;left:0;right:0;top:76px;
+        background:var(--paper);
+        border-bottom:1px solid var(--line);
+        display:grid;
+        padding:14px 20px 20px;
+        transform:translateY(-12px);
+        opacity:0;visibility:hidden;
+        transition:.18s ease;
+      }
+      nav.open{transform:none;opacity:1;visibility:visible}
+      nav a{padding:13px 8px;border-bottom:1px solid var(--line)}
+      .header-cta{margin-top:6px}
+      .section-head,.faq-grid,.hours-grid{grid-template-columns:1fr;gap:30px}
+      .story{grid-template-columns:1fr;min-height:auto}
+      .story-image{min-height:480px}
+      .service{grid-column:span 12!important;padding:20px 0!important;border-right:0!important}
+    }
+
+    @media (max-width:640px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      .nav-shell{min-height:68px}
+      nav{top:68px}
+      .brand{font-size:.88rem;max-width:250px}
+      .brand-mark{width:34px;height:34px}
+      .hero{min-height:720px;background-position:62% center}
+      .hero-inner{padding:72px 0 70px}
+      .hero-copy{font-size:1rem}
+      .hero-actions{display:grid}
+      .btn{width:100%}
+      .hero-proof{display:grid;gap:10px}
+      .services,.faq,.hours,.review{padding:76px 0}
+      .section-head{margin-bottom:34px}
+      .story-image{min-height:360px}
+      .story-copy{padding:66px 24px}
+      .faq-a p{padding-right:6px}
+      .visit{min-height:560px}
+      .visit-actions{display:grid}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+      .modal{padding:26px 22px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+      [data-reveal]{opacity:1!important;transform:none!important}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-shell">
+      <a class="brand" href="#home" aria-label="B & L Shoe & Luggage Repair home">
+        <span class="brand-mark"><i class="fa-solid fa-shoe-prints"></i></span>
+        <span>B &amp; L Shoe &amp; Luggage Repair</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav id="siteNav" aria-label="Primary navigation">
+        <a href="#services">What We Fix</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#hours">Hours</a>
+        <button class="header-cta" type="button" data-locked="true">
+          <i class="fa-solid fa-camera"></i> Get a Repair Quote
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner" data-reveal>
+        <p class="eyebrow">S Eastern Ave · Las Vegas</p>
+        <h1>Shoes. Bags. Luggage. <span>Fixed.</span></h1>
+        <p class="hero-copy">
+          Broken heel? Split suitcase zip? Strap that gave up? Bring it to the B and L counter on Eastern and we will tell you straight what it needs and what it costs.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-locked="true">
+            <i class="fa-solid fa-camera"></i> Get a repair quote
+          </button>
+          <a class="btn btn-secondary" href="#services">
+            <i class="fa-solid fa-screwdriver-wrench"></i> See what we fix
+          </a>
+        </div>
+
+        <div class="hero-proof">
+          <span><i class="fa-solid fa-shoe-prints"></i> Shoe &amp; boot repair</span>
+          <span><i class="fa-solid fa-suitcase-rolling"></i> Luggage repair</span>
+          <span><i class="fa-solid fa-bag-shopping"></i> Bag &amp; strap repair</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow">What We Fix</p>
+            <h2>The board of repairs.</h2>
+          </div>
+          <p>
+            Everything on the list comes across the same counter. Not sure if yours is fixable? Text a photo, we will tell you honestly.
+          </p>
+        </div>
+
+        <div class="service-grid" data-reveal>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-shoe-prints"></i></span>
+            <div><span>Heel and sole work</span><small>dress shoes · boots</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-thread"></i></span>
+            <div><span>Stitching and patches</span><small>seams · vamps · linings</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-link"></i></span>
+            <div><span>Zippers</span><small>boots · bags · suitcases</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-grip-lines"></i></span>
+            <div><span>Handles and straps</span><small>handbags · duffels · luggage</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+            <div><span>Corners and hardware</span><small>suitcase corners · feet · locks</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-ruler-horizontal"></i></span>
+            <div><span>Belts</span><small>shorten · punch · re-buckle</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <div class="service">
+            <span class="service-icon"><i class="fa-solid fa-brush"></i></span>
+            <div><span>Shine and cleanup</span><small>polish · condition · dye touch-up</small></div>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="about">
+      <div class="story-image" aria-label="Stock image of leather shoe craftsmanship"></div>
+      <div class="story-copy">
+        <div data-reveal>
+          <p class="eyebrow">About the shop</p>
+          <h2>Repair first.</h2>
+          <p>
+            B &amp; L Shoe &amp; Luggage Repair serves Las Vegas with repairs for shoes, boots, bags, luggage and related leather goods.
+          </p>
+          <ul class="story-list">
+            <li><i class="fa-solid fa-comments"></i><span>Text first — send a photo, get a straight answer</span></li>
+            <li><i class="fa-regular fa-clock"></i><span>Quick quotes — most jobs priced at the counter</span></li>
+            <li><i class="fa-solid fa-thumbs-up"></i><span>Real repairs — done to last, not to look done</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="review" id="reviews">
+      <div class="container quote-wrap" data-reveal>
+        <div class="quote-mark"><i class="fa-solid fa-quote-left"></i></div>
+        <blockquote>
+          I love this place. They are friendly and did an excellent job repairing my shoes at an affordable price!
+        </blockquote>
+        <p class="quote-source">Client review</p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container faq-grid">
+        <div class="faq-intro" data-reveal>
+          <p class="eyebrow">Frequently Asked Questions</p>
+          <h2>Before you bring it in.</h2>
+          <p>Answers are limited to information supported by the available business research.</p>
+        </div>
+
+        <div class="accordion" data-reveal>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>What do you repair?</span><i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a"><div><p>Shoes, boots, luggage, handbags and related leather goods, including zippers, handles, straps, heels, soles and hardware.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>Can you repair luggage zippers and handles?</span><i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a"><div><p>Yes. Zippers, handles and straps are included in the available service information.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>How much does a repair cost?</span><i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a"><div><p>No public standard price list was confirmed. Most jobs are priced at the counter.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>Can I send a photo first?</span><i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="faq-a"><div><p>The available business information invites customers to send a photo for an initial answer about a repair.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hours" id="hours">
+      <div class="container hours-grid">
+        <div class="hours-copy" data-reveal>
+          <p class="eyebrow">Counter Hours</p>
+          <h2>Plan your visit.</h2>
+          <p>
+            Monday through Friday hours are consistent across the strongest current sources. Saturday closing time conflicts across sources, so it is not published as confirmed in this demo.
+          </p>
+        </div>
+
+        <div class="hours-table" data-reveal aria-label="Business hours">
+          <div class="hours-row"><strong>Monday</strong><span>10 AM – 6 PM</span></div>
+          <div class="hours-row"><strong>Tuesday</strong><span>10 AM – 6 PM</span></div>
+          <div class="hours-row"><strong>Wednesday</strong><span>10 AM – 6 PM</span></div>
+          <div class="hours-row"><strong>Thursday</strong><span>10 AM – 6 PM</span></div>
+          <div class="hours-row"><strong>Friday</strong><span>10 AM – 6 PM</span></div>
+          <div class="hours-row"><strong>Saturday</strong><span>Confirm with shop</span></div>
+          <div class="hours-row"><strong>Sunday</strong><span>Closed</span></div>
+          <p class="hours-note">Saturday closing time requires owner confirmation before publication.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="visit-inner" data-reveal>
+        <p class="eyebrow">Visit the counter</p>
+        <h2>Bring in the repair.</h2>
+        <p>The business location and current phone information are intentionally protected in this demo version.</p>
+
+        <div class="protected">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i>
+          &nbsp; CONTACT DETAILS PROTECTED IN THIS DEMO
+        </div>
+
+        <div class="visit-actions">
+          <button class="btn btn-primary" type="button" data-locked="true">
+            <i class="fa-solid fa-phone"></i> Call the counter
+          </button>
+          <button class="btn btn-secondary" type="button" data-locked="true">
+            <i class="fa-solid fa-location-dot"></i> Get directions
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>B &amp; L Shoe &amp; Luggage Repair</strong><br>
+        <span class="footer-note">Las Vegas, NV · Demo website</span>
+      </div>
+      <div class="footer-nav">
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#hours">Hours</a>
+      </div>
+      <div class="footer-note">Stock imagery is used for demo presentation only.</div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true">
+    <div class="modal" role="document">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h2 id="lockedTitle">This is currently locked.</h2>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <div class="modal-actions">
+        <button class="modal-close" id="modalClose" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const menuBtn = document.getElementById('menuBtn');
+      const nav = document.getElementById('siteNav');
+      const modal = document.getElementById('lockedModal');
+      const modalClose = document.getElementById('modalClose');
+      let lastFocus = null;
+
+      function closeMenu(){
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      }
+
+      menuBtn.addEventListener('click', function(){
+        const open = nav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.innerHTML = open
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>';
+      });
+
+      document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', closeMenu);
+      });
+
+      function openModal(trigger){
+        lastFocus = trigger || document.activeElement;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.classList.add('modal-open');
+        setTimeout(()=>modalClose.focus(), 0);
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.classList.remove('modal-open');
+        if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          openModal(el);
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){
+        if(e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          if(modal.classList.contains('open')) closeModal();
+          closeMenu();
+        }
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          const focusables = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+          if(!focusables.length) return;
+          const first = focusables[0], last = focusables[focusables.length - 1];
+          if(e.shiftKey && document.activeElement === first){
+            e.preventDefault(); last.focus();
+          } else if(!e.shiftKey && document.activeElement === last){
+            e.preventDefault(); first.focus();
+          }
+        }
+      });
+
+      document.querySelectorAll('.faq-q').forEach(btn=>{
+        btn.addEventListener('click', function(){
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+        });
+      });
+
+      const revealEls = document.querySelectorAll('[data-reveal]');
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver(entries=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, {threshold:.12});
+        revealEls.forEach(el=>io.observe(el));
+      } else {
+        revealEls.forEach(el=>el.classList.add('visible'));
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Smoking Starz Smoke Shop | Pittsburgh</title>
+  <meta name="description" content="Smoking Starz Smoke Shop in Pittsburgh at 433 Graeme St, Market Square. Glass, flower, vapes, accessories, CBD & wellness, and neighborhood-friendly service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#17151b;
+      --paper:#f5f0e8;
+      --paper2:#ebe1d4;
+      --plum:#5c234b;
+      --plum2:#7b3566;
+      --gold:#d5aa5b;
+      --cream:#fffaf2;
+      --muted:#756d76;
+      --line:rgba(23,21,27,.15);
+      --white:#fff;
+      --max:1160px;
+      --shadow:0 22px 70px rgba(38,20,32,.18);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:"DM Sans",system-ui,sans-serif;
+      background:var(--paper);
+      color:var(--ink);
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    a,button,input,textarea{font:inherit}
+    img{display:block;max-width:100%}
+    a,button{-webkit-tap-highlight-color:transparent}
+    h1,h2,h3{font-family:"Playfair Display",Georgia,serif;margin:0;line-height:1.04}
+    h1{font-size:clamp(3.4rem,7vw,6.6rem);letter-spacing:-.05em}
+    h2{font-size:clamp(2.4rem,5vw,4.5rem);letter-spacing:-.04em}
+    h3{font-size:1.55rem}
+    p{margin:0}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .section{padding:92px 0}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      color:var(--plum);font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase
+    }
+    .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:44px}
+    .section-head p{max-width:580px;color:var(--muted)}
+    .btn{
+      min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 20px;border:1px solid transparent;text-decoration:none;font-weight:800;
+      cursor:pointer;transition:.2s ease;border-radius:3px
+    }
+    .btn.primary{background:var(--plum);color:#fff}
+    .btn.primary:hover{background:var(--plum2);transform:translateY(-2px)}
+    .btn.outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+    .btn.outline:hover{background:var(--ink);color:#fff}
+    .btn.light{background:var(--cream);color:var(--ink)}
+    .btn.light:hover{background:#fff}
+
+    header{
+      position:fixed;inset:0 0 auto 0;z-index:70;
+      background:linear-gradient(to bottom,rgba(23,21,27,.83),rgba(23,21,27,.35),transparent);
+      transition:.25s ease
+    }
+    header.scrolled{background:rgba(23,21,27,.95);backdrop-filter:blur(12px);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+    .nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:800}
+    .brand-mark{
+      width:40px;height:40px;border:1px solid rgba(255,255,255,.65);display:grid;place-items:center;
+      font-family:"Playfair Display",serif;color:var(--gold);font-size:1.2rem
+    }
+    .brand span:last-child{line-height:1.05}
+    .brand small{display:block;color:rgba(255,255,255,.65);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+    nav{display:flex;align-items:center;gap:28px}
+    nav a{color:#fff;text-decoration:none;font-size:.88rem;font-weight:700}
+    nav a:hover{color:var(--gold)}
+    .menu-btn{
+      display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.4);
+      background:transparent;color:#fff;cursor:pointer;font-size:1.2rem
+    }
+
+    .hero{
+      min-height:100svh;display:flex;align-items:flex-end;position:relative;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(24,16,22,.91) 0%,rgba(24,16,22,.72) 46%,rgba(24,16,22,.30) 78%),
+        linear-gradient(0deg,rgba(24,16,22,.82) 0%,transparent 50%),
+        url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+    }
+    .hero-inner{padding:160px 0 68px}
+    .hero .eyebrow{color:#f0c978}.hero .eyebrow::before{background:#f0c978}
+    .hero h1{max-width:900px;margin-top:14px}
+    .hero h1 span{color:#f0c978}
+    .hero-copy{max-width:650px;color:rgba(255,255,255,.82);font-size:1.08rem;margin-top:24px}
+    .hero-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+    .meta-pill{
+      display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.06);padding:9px 12px;font-size:.86rem
+    }
+    .meta-pill i{color:#f0c978}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .hero .btn.outline{color:#fff;border-color:rgba(255,255,255,.5)}
+    .hero .btn.outline:hover{background:#fff;color:var(--ink)}
+
+    .about{background:var(--paper2)}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+    .about-photo{position:relative}
+    .about-photo img{width:100%;height:560px;object-fit:cover;box-shadow:var(--shadow)}
+    .about-photo::after{
+      content:"Stock imagery";position:absolute;left:16px;bottom:14px;background:rgba(0,0,0,.62);
+      color:#fff;padding:6px 9px;font-size:.67rem;text-transform:uppercase;letter-spacing:.08em
+    }
+    .about-copy h2{margin:10px 0 22px}
+    .about-copy p{color:var(--muted);font-size:1.05rem}
+    .highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+    .highlight{border-top:1px solid var(--line);padding-top:16px}
+    .highlight i{color:var(--plum);margin-bottom:10px}
+    .highlight strong{display:block}
+
+    .services{
+      color:#fff;
+      background:
+        linear-gradient(rgba(33,19,31,.93),rgba(33,19,31,.96)),
+        url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2200&q=82") center/cover fixed;
+    }
+    .services .eyebrow{color:#f0c978}.services .eyebrow::before{background:#f0c978}
+    .services .section-head p{color:rgba(255,255,255,.67)}
+    .service-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(255,255,255,.16)}
+    .service-card{
+      display:grid;grid-template-columns:62px 1fr;gap:18px;padding:30px 24px 30px 0;border-bottom:1px solid rgba(255,255,255,.16)
+    }
+    .service-card:nth-child(even){padding-left:28px;border-left:1px solid rgba(255,255,255,.16)}
+    .service-icon{width:54px;height:54px;border:1px solid rgba(240,201,120,.45);display:grid;place-items:center;color:#f0c978}
+    .service-card p{margin-top:8px;color:rgba(255,255,255,.68)}
+
+    .image-band{display:grid;grid-template-columns:1.25fr .75fr;height:430px;background:#111}
+    .image-panel{position:relative;overflow:hidden}
+    .image-panel img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .image-panel:hover img{transform:scale(1.03)}
+    .image-panel::after{
+      content:"Stock neighborhood imagery";position:absolute;left:18px;bottom:16px;background:rgba(0,0,0,.62);
+      color:#fff;padding:6px 9px;font-size:.67rem;letter-spacing:.08em;text-transform:uppercase
+    }
+
+    .reviews{background:#fff}
+    .rating-row{display:flex;align-items:end;gap:18px;margin-bottom:34px}
+    .rating-number{font:800 clamp(4.5rem,9vw,8rem)/.8 "Playfair Display",serif;color:var(--plum);letter-spacing:-.08em}
+    .rating-label{color:var(--muted)}
+    .quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    blockquote{
+      margin:0;background:var(--paper);border-top:4px solid var(--plum);padding:26px;min-height:220px;
+      display:flex;flex-direction:column;justify-content:space-between
+    }
+    blockquote p{font-family:"Playfair Display",serif;font-size:1.35rem;line-height:1.35}
+    blockquote footer{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-top:20px}
+
+    .visit{
+      color:#fff;
+      background:
+        linear-gradient(90deg,rgba(27,17,25,.96),rgba(27,17,25,.78)),
+        url("https://images.unsplash.com/photo-1485872299829-c673f5194813?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+    }
+    .visit .eyebrow{color:#f0c978}.visit .eyebrow::before{background:#f0c978}
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:68px}
+    .contact-list{margin-top:28px;border-top:1px solid rgba(255,255,255,.18)}
+    .contact-row{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+    .contact-row i{color:#f0c978;margin-top:4px}
+    .contact-row strong{display:block}
+    .contact-row span{display:block;color:rgba(255,255,255,.68);margin-top:3px}
+    .hours-card{background:rgba(255,250,242,.98);color:var(--ink);padding:32px;box-shadow:var(--shadow)}
+    .hours-card h3{font-size:2rem;margin:10px 0 20px}
+    .hours-row{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid var(--line)}
+    .hours-row:last-child{border-bottom:0}
+    .hours-row span:last-child{font-weight:800}
+    .visit-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .visit .btn.outline{color:#fff;border-color:rgba(255,255,255,.5)}
+    .visit .btn.outline:hover{background:#fff;color:var(--ink)}
+
+    footer{background:#151218;color:#fff;padding:44px 0}
+    .foot{display:flex;justify-content:space-between;align-items:end;gap:30px}
+    .foot p{color:rgba(255,255,255,.62);font-size:.86rem;margin-top:12px}
+    .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+    .foot-links a{color:#fff;text-decoration:none;font-size:.88rem;font-weight:700}
+    .foot-links a:hover{color:var(--gold)}
+
+    .modal-backdrop{
+      position:fixed;inset:0;z-index:1000;background:rgba(10,8,10,.74);display:none;
+      align-items:center;justify-content:center;padding:22px
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(100%,480px);background:var(--cream);color:var(--ink);padding:30px;
+      border-top:5px solid var(--plum);box-shadow:0 30px 90px rgba(0,0,0,.4)
+    }
+    .modal h3{font-size:2rem}
+    .modal p{color:var(--muted);margin:14px 0 24px}
+    body.modal-open{overflow:hidden}
+
+    @media(max-width:900px){
+      .section{padding:74px 0}
+      nav{
+        position:fixed;top:80px;left:0;right:0;background:#17151b;display:none;
+        flex-direction:column;align-items:stretch;padding:20px 22px;border-top:1px solid rgba(255,255,255,.12)
+      }
+      nav.open{display:flex}
+      nav a{padding:10px 0}
+      .menu-btn{display:grid;place-items:center}
+      .about-grid,.visit-grid{grid-template-columns:1fr;gap:46px}
+      .quote-grid{grid-template-columns:1fr}
+      .image-band{height:360px}
+    }
+
+    @media(max-width:680px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav{height:68px}
+      nav{top:68px}
+      .section{padding:62px 0}
+      .hero{min-height:780px;background-position:60% center}
+      .hero-inner{padding:130px 0 46px}
+      .hero-actions{display:grid;grid-template-columns:1fr}
+      .hero-actions .btn{width:100%}
+      .highlights{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr}
+      .service-card,.service-card:nth-child(even){padding:24px 0;border-left:0}
+      .image-band{grid-template-columns:1fr;height:auto}
+      .image-panel{height:280px}
+      .section-head{display:block}
+      .section-head p{margin-top:15px}
+      .foot{display:block}
+      .foot-links{margin-top:24px}
+      .visit-actions{display:grid;grid-template-columns:1fr}
+      .visit-actions .btn{width:100%}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
+</head>
+<body>
+  <!--
+    SINGLE-FILE DEMO
+    Business facts and copy come from the supplied Smoking Starz Smoke Shop page.
+    Stock imagery is illustrative only and does not depict this actual business, staff, products, or inventory.
+    Stock image provider: Unsplash.
+    Icons: Font Awesome Free via CDN.
+    Real-world actions remain locked in this demo.
+  -->
+
+  <header id="siteHeader">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Smoking Starz Smoke Shop home">
+        <span class="brand-mark">S</span>
+        <span>Smoking Starz Smoke Shop<small>Pittsburgh</small></span>
+      </a>
+
+      <nav id="navMenu" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <span class="eyebrow">Pittsburgh</span>
+        <h1>Smoking Starz <span>Smoke Shop</span></h1>
+        <p class="hero-copy">Glass, flower, and good vibes. Your neighborhood smoke shop.</p>
+
+        <div class="hero-meta">
+          <span class="meta-pill"><i class="fa-solid fa-location-dot"></i> 433 Graeme St</span>
+          <span class="meta-pill"><i class="fa-solid fa-phone"></i> (270) 289-1843</span>
+          <span class="meta-pill"><i class="fa-solid fa-star"></i> 4.8 ★★★★★</span>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call (270) 289-1843</button>
+          <a class="btn outline" href="#services">Services</a>
+          <a class="btn outline" href="#visit">Visit</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-photo">
+          <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=82" alt="Stock nighttime city lights" loading="lazy">
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow">About</span>
+          <h2>Your neighborhood smoke shop</h2>
+          <p>Smoking Starz Smoke Shop in Pittsburgh. Your neighborhood smoke shop for glass, flower, vapes, and good vibes. Come in, ask questions, leave set.</p>
+
+          <div class="highlights">
+            <div class="highlight"><i class="fa-solid fa-jar"></i><strong>Glass wall</strong></div>
+            <div class="highlight"><i class="fa-solid fa-bolt"></i><strong>Vape bar</strong></div>
+            <div class="highlight"><i class="fa-solid fa-location-dot"></i><strong>Local picks</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Services</span>
+            <h2>What you'll find</h2>
+          </div>
+          <p>What you'll find at Smoking Starz Smoke Shop.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div><h3>Premium flower &amp; vapes</h3><p>Available in-store.</p></div>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-jar"></i></div>
+            <div><h3>Glass &amp; accessories</h3><p>Available in-store.</p></div>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div><h3>CBD &amp; wellness</h3><p>Available in-store.</p></div>
+          </article>
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-people-group"></i></div>
+            <div><h3>Local-friendly staff</h3><p>Available in-store.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="image-band" aria-label="Stock image gallery">
+      <div class="image-panel">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=82" alt="Stock nightlife scene" loading="lazy">
+      </div>
+      <div class="image-panel">
+        <img src="https://images.unsplash.com/photo-1485872299829-c673f5194813?auto=format&fit=crop&w=1200&q=82" alt="Stock city scene" loading="lazy">
+      </div>
+    </div>
+
+    <section class="section reviews" id="reviews">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Reviews</span>
+            <h2>Neighborhood feedback</h2>
+          </div>
+          <div class="rating-row">
+            <div class="rating-number">4.8</div>
+            <div class="rating-label">★★★★★<br>on local listings</div>
+          </div>
+        </div>
+
+        <div class="quote-grid">
+          <blockquote>
+            <p>“Friendly stop in Pittsburgh. Worth swinging by.”</p>
+            <footer>Neighborhood visitor</footer>
+          </blockquote>
+          <blockquote>
+            <p>“Good prices and solid smoke.”</p>
+            <footer>Neighborhood visitor</footer>
+          </blockquote>
+          <blockquote>
+            <p>“Neighborhood favorite — easy to find at 433 Graeme St.”</p>
+            <footer>Neighborhood visitor</footer>
+          </blockquote>
+        </div>
+
+        <div style="text-align:center;margin-top:28px">
+          <button class="btn outline" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> See more on Maps</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visit" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <span class="eyebrow">Visit</span>
+          <h2 style="margin-top:10px">Find us in Pittsburgh</h2>
+          <p style="margin-top:20px;color:rgba(255,255,255,.72)">433 Graeme St, Market Square, Pittsburgh, PA 15222</p>
+
+          <div class="contact-list">
+            <div class="contact-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <div><strong>Address</strong><span>433 Graeme St, Market Square, Pittsburgh, PA 15222</span></div>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-phone"></i>
+              <div><strong>Phone</strong><span>(270) 289-1843</span></div>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-circle-info"></i>
+              <div><strong>Holiday hours</strong><span>Hours may change on holidays — call to confirm.</span></div>
+            </div>
+          </div>
+
+          <div class="visit-actions">
+            <button class="btn light" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call (270) 289-1843</button>
+            <button class="btn outline" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open in Google Maps</button>
+            <button class="btn outline" type="button" data-locked="true"><i class="fa-solid fa-comment-dots"></i> Text the shop</button>
+          </div>
+        </div>
+
+        <aside class="hours-card" aria-label="Business hours">
+          <span class="eyebrow">Hours</span>
+          <h3>Weekly hours</h3>
+          <div class="hours-row"><span>Sunday</span><span>10:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span>Monday</span><span>10:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span>Tuesday</span><span>10:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span>Wednesday</span><span>10:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span>Thursday</span><span>10:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span>Friday</span><span>10:00 AM – 12:00 AM</span></div>
+          <div class="hours-row"><span>Saturday</span><span>10:00 AM – 12:00 AM</span></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <a class="brand" href="#home">
+          <span class="brand-mark">S</span>
+          <span>Smoking Starz Smoke Shop<small>Pittsburgh</small></span>
+        </a>
+        <p>433 Graeme St, Market Square, Pittsburgh, PA 15222 · (270) 289-1843</p>
+        <p>© Smoking Starz Smoke Shop · Pittsburgh</p>
+      </div>
+
+      <div class="foot-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal" tabindex="-1">
+      <h3 id="modalTitle">This is currently locked.</h3>
+      <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn primary" type="button" id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const siteHeader = document.getElementById('siteHeader');
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+    const modal = document.getElementById('lockedModal');
+    const modalBox = modal.querySelector('.modal');
+    const modalClose = document.getElementById('modalClose');
+    let lastFocused = null;
+
+    function closeMenu() {
+      navMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Open menu');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      menuBtn.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    window.addEventListener('scroll', () => {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 18);
+    }, { passive: true });
+
+    function openLockedModal(trigger) {
+      lastFocused = trigger || document.activeElement;
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      modalBox.focus();
+    }
+
+    function closeLockedModal() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el => {
+      el.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        openLockedModal(el);
+      });
+    });
+
+    modalClose.addEventListener('click', closeLockedModal);
+
+    modal.addEventListener('click', event => {
+      if (event.target === modal) {
+        closeLockedModal();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && modal.classList.contains('open')) {
+        closeLockedModal();
+      }
+
+      if (event.key === 'Tab' && modal.classList.contains('open')) {
+        const focusable = modal.querySelectorAll('button,[href],input,textarea,[tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    document.addEventListener('gesturestart', event => event.preventDefault());
+  </script>
+</body>
+</html>

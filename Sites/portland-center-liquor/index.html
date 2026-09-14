@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<title>Portland Center Liquor | Portland, OR</title>
+<meta name="description" content="Portland Center Liquor at 2075 SW 1st Ave in Portland. Wine, beer, spirits, everyday staples, cold cases, and friendly counter help.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--aub:#402234;--wine:#7b3148;--cream:#f4eee6;--sand:#d7bd9b;--ink:#2d2730;--muted:#746a71;--line:#ddd1c9;--max:1140px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}body.modal-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(64,34,52,.97);color:#fff;border-bottom:3px solid var(--sand)}.nav{height:74px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;font:600 1.15rem "DM Serif Display",serif}.brand i{color:var(--sand)}.brand small{display:block;font:600 .64rem Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#e0c7ad}.desktop{display:flex;gap:26px;font-weight:700;font-size:.86rem}.desktop a:hover{color:var(--sand)}.menu{display:none;width:46px;height:46px;background:none;border:1px solid rgba(255,255,255,.35)}.menu span{display:block;width:24px;height:2px;background:#fff;margin:5px auto}.mobile{display:none;background:var(--aub);padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700}
+.hero{min-height:700px;display:grid;align-items:end;color:#fff;background:linear-gradient(90deg,rgba(64,34,52,.95),rgba(64,34,52,.55)),url("https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=2000&q=84") center/cover;position:relative}.hero .wrap{padding:110px 0 72px}.kicker{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:#e4c5a5;font-weight:700}h1,h2,h3{font-family:"DM Serif Display",serif}h1{font-size:clamp(4rem,8vw,7rem);line-height:.9;margin:15px 0 22px}.hero p{max-width:700px;line-height:1.75;color:#eadfe6;font-size:1.05rem}.meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}.meta span{border:1px solid rgba(255,255,255,.35);padding:8px 11px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 20px;border:1px solid transparent;font-weight:700;cursor:pointer}.btn-main{background:var(--sand);color:var(--aub)}.btn-outline{border-color:#fff;color:#fff}.btn-dark{background:var(--aub);color:#fff}.asset{position:absolute;right:18px;bottom:14px;font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;background:rgba(0,0,0,.55);padding:7px 9px}
+.section{padding:84px 0;scroll-margin-top:78px}.eyebrow{font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--wine);font-weight:700}h2{font-size:clamp(3rem,5vw,4.9rem);line-height:.98;margin:8px 0 18px}.lead{max-width:760px;color:var(--muted);line-height:1.7}.highlights{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.highlight{background:#fff;border-left:3px solid var(--wine);padding:13px 16px;font-weight:700}
+.services{background:#fff}.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}.service{border-top:3px solid var(--sand);padding:22px 0}.service i{color:var(--wine)}.service h3{font-size:1.4rem;margin:10px 0 8px}.service p{color:var(--muted);line-height:1.6}
+.reviews{background:linear-gradient(rgba(64,34,52,.94),rgba(64,34,52,.94)),url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=82") center/cover;color:#fff}.reviews .eyebrow{color:#e4c5a5}.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}.quote{background:#fff;color:var(--ink);padding:24px;border-top:3px solid var(--sand)}.quote p{line-height:1.65}.quote small{color:var(--muted)}.rating{margin-top:22px;font-weight:700}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.panel{background:#fff;border:1px solid var(--line);padding:28px}.hours{width:100%;border-collapse:collapse}.hours td{padding:9px 0;border-bottom:1px solid var(--line)}.hours td:last-child{text-align:right;font-weight:700}.phone{font:600 2rem "DM Serif Display";color:var(--wine)}label{display:block;font-size:.82rem;font-weight:700;margin:12px 0 6px}input,textarea{width:100%;padding:12px;border:1px solid var(--line);background:#fff}textarea{min-height:110px}footer{background:var(--aub);color:#dfd1db;padding:40px 0}.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}footer h3{color:#fff}.copy{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:.8rem}
+.lock-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.75);z-index:999;padding:20px}.lock-backdrop.open{display:flex}.lock-dialog{width:min(100%,450px);background:var(--cream);padding:30px;border-top:4px solid var(--wine)}.lock-icon{width:46px;height:46px;background:var(--aub);color:#fff;display:grid;place-items:center}.lock-dialog h2{font-size:2rem}.lock-dialog p{color:var(--muted);line-height:1.6}.lock-dialog button{width:100%;padding:12px;background:var(--aub);color:#fff;border:0;font-weight:700}
+@media(max-width:900px){.desktop{display:none}.menu{display:block}.service-grid{grid-template-columns:1fr 1fr}.quotes,.visit-grid,.foot{grid-template-columns:1fr}}@media(max-width:620px){.wrap{width:min(calc(100% - 28px),var(--max))}h1{font-size:clamp(3.6rem,16vw,5rem)}.service-grid{grid-template-columns:1fr}.buttons{display:grid}.btn{width:100%}.section{padding:66px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="#home"><i class="fa-solid fa-wine-bottle"></i><span>Portland Center Liquor<small>Portland · liquor</small></span></a><nav class="desktop"><a href="#about">Home</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#about">Home</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap"><div class="kicker">Portland · liquor</div><h1>Portland Center Liquor</h1><p>Wine, beer, and spirits around the corner — Cold drinks, fair prices.</p><div class="meta"><span>2075 SW 1st Ave</span><span>(503) 241-9354</span><span>4.5 on local listings</span></div><div class="buttons"><a class="btn btn-main" href="#services">Services</a><a class="btn btn-outline" href="#visit">Visit</a></div></div><div class="asset">Relevant stock liquor-store imagery · not the actual business</div></section>
+<section class="section" id="about"><div class="wrap"><div class="eyebrow">About</div><h2>Portland Center Liquor in Portland.</h2><p class="lead">Cold drinks and fair prices around the corner. Wine, beer, and spirits with a quick counter hello.</p><div class="highlights"><span class="highlight">Cold case</span><span class="highlight">Wine wall</span><span class="highlight">Weekly specials</span></div></div></section>
+<section class="section services" id="services"><div class="wrap"><div class="eyebrow">Services</div><h2>What you’ll find at Portland Center Liquor.</h2><div class="service-grid"><article class="service"><i class="fa-solid fa-wine-bottle"></i><h3>Wine, beer &amp; spirits</h3><p>Ask the team for what’s available today.</p></article><article class="service"><i class="fa-solid fa-basket-shopping"></i><h3>Everyday staples</h3><p>Ask the team for what’s available today.</p></article><article class="service"><i class="fa-solid fa-snowflake"></i><h3>Cold cases ready</h3><p>Ask the team for what’s available today.</p></article><article class="service"><i class="fa-solid fa-comments"></i><h3>Friendly counter help</h3><p>Ask the team for what’s available today.</p></article></div></div></section>
+<section class="section reviews" id="reviews"><div class="wrap"><div class="eyebrow">Reviews</div><h2>4.5 on local listings</h2><div class="quotes"><article class="quote"><p>“Friendly stop in Portland. Worth swinging by.”</p><small>Neighborhood visitor</small></article><article class="quote"><p>“Good prices and solid liquor.”</p><small>Neighborhood visitor</small></article><article class="quote"><p>“Neighborhood favorite — easy to find at 2075 SW 1st Ave.”</p><small>Neighborhood visitor</small></article></div><div class="buttons"><button class="btn btn-main" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See more on Maps</button></div></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="eyebrow">Visit</div><h2>2075 SW 1st Ave, Portland, OR 97201</h2><div class="visit-grid"><div class="panel"><h3>Find us</h3><p>2075 SW 1st Ave, Portland, OR 97201</p><p>Call (503) 241-9354</p><p>Hours may change on holidays — call to confirm.</p><table class="hours"><tr><td>Sunday</td><td>10:00 AM – 8:00 PM</td></tr><tr><td>Monday</td><td>10:00 AM – 10:00 PM</td></tr><tr><td>Tuesday</td><td>10:00 AM – 10:00 PM</td></tr><tr><td>Wednesday</td><td>10:00 AM – 10:00 PM</td></tr><tr><td>Thursday</td><td>10:00 AM – 10:00 PM</td></tr><tr><td>Friday</td><td>10:00 AM – 10:00 PM</td></tr><tr><td>Saturday</td><td>10:00 AM – 10:00 PM</td></tr></table><button class="btn btn-dark" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open in Google Maps</button></div><div class="panel"><h3>Send a message</h3><p class="phone">(503) 241-9354</p><form data-locked-form="true"><label>Your name</label><input type="text"><label>Your phone</label><input type="tel"><label>Message</label><textarea></textarea><button class="btn btn-dark" type="submit" data-locked="true">Text the shop</button></form></div></div></div></section>
+</main>
+<footer><div class="wrap"><div class="foot"><div><h3>Portland Center Liquor</h3><p>Wine, beer, and spirits around the corner — Cold drinks, fair prices.</p></div><div><h3>Visit</h3><p>2075 SW 1st Ave<br>Portland, OR 97201</p></div><div><h3>Contact</h3><p>(503) 241-9354</p></div></div><div class="copy">Portland Center Liquor · 2075 SW 1st Ave, Portland, OR 97201 · (503) 241-9354</div></div></footer>
+
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <div class="lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockModal');
+  const closeBtn = document.getElementById('lockClose');
+  let lastFocus = null;
+
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
+  }
+
+  function closeLocked(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  document.querySelectorAll('form[data-locked-form="true"]').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      openLocked(form.querySelector('[data-locked="true"]') || form);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = [...modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')];
+      if(!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+})();
+</script>
+
+</body></html>

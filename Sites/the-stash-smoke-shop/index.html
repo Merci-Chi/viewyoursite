@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#13161b">
+  <meta name="description" content="The Stash Smoke Shop 24/7 in Las Vegas, Nevada. Open 24 hours daily. Informational demo with protected contact actions.">
+  <title>The Stash Smoke Shop 24/7 | Las Vegas, NV</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#111318;
+      --panel:#1a1d23;
+      --panel2:#20242b;
+      --amber:#ffb020;
+      --amber2:#ffd27a;
+      --text:#f5f7fa;
+      --muted:#a9b0bb;
+      --line:rgba(255,255,255,.11);
+      --max:1160px;
+      --shadow:0 28px 80px rgba(0,0,0,.38);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Nunito Sans",sans-serif;
+      overflow-x:hidden;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    h1,h2,h3,p{margin-top:0}
+    img{display:block;max-width:100%}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(17,19,24,.93);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-family:"Bebas Neue",sans-serif;
+      font-size:1.7rem;
+      letter-spacing:.05em;
+    }
+    .brand-mark{
+      width:40px;height:40px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,176,32,.45);
+      color:var(--amber);
+      box-shadow:0 0 22px rgba(255,176,32,.12);
+    }
+    .desktop-nav{display:flex;gap:28px;font-size:.9rem;font-weight:800}
+    .desktop-nav a:hover{color:var(--amber)}
+    .menu-btn{
+      display:none;width:46px;height:46px;
+      border:0;background:transparent;cursor:pointer;
+    }
+    .menu-btn span{display:block;width:25px;height:2px;background:#fff;margin:5px auto}
+    .mobile-menu{
+      display:none;
+      padding:8px 20px 18px;
+      background:var(--panel);
+      border-top:1px solid var(--line);
+    }
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:800}
+
+    .hero{
+      min-height:76vh;
+      position:relative;
+      display:grid;
+      align-items:end;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(10,11,14,.94),rgba(10,11,14,.42)),
+        url("https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=1900&q=84") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:430px;height:430px;
+      right:-210px;bottom:-210px;
+      border-radius:50%;
+      border:62px solid rgba(255,176,32,.12);
+    }
+    .hero-inner{
+      position:relative;z-index:2;
+      max-width:820px;
+      padding:112px 0 78px;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      color:var(--amber2);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.75rem;font-weight:800;
+    }
+    .eyebrow:before{content:"";width:34px;height:2px;background:currentColor}
+    .hero h1{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:clamp(4rem,9vw,7.3rem);
+      line-height:.9;
+      margin:18px 0 22px;
+      letter-spacing:.03em;
+    }
+    .hero-copy{
+      max-width:700px;
+      color:rgba(255,255,255,.83);
+      line-height:1.72;
+      font-size:1.08rem;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .stock-note{
+      position:absolute;right:18px;bottom:14px;z-index:3;
+      color:rgba(255,255,255,.62);
+      text-transform:uppercase;letter-spacing:.08em;font-size:.68rem;
+    }
+
+    .btn{
+      min-height:50px;
+      padding:13px 20px;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border:1px solid transparent;
+      font-weight:800;cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--amber);color:#1c160a}
+    .btn-ghost{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.5);color:#fff}
+    .btn-dark{background:#0d0f13;color:#fff;border-color:var(--line)}
+
+    .facts{background:#0d0f13;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .facts-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .fact{
+      padding:24px 22px;
+      display:flex;gap:14px;
+      border-right:1px solid var(--line);
+    }
+    .fact:last-child{border-right:0}
+    .fact i{color:var(--amber);margin-top:3px}
+    .fact strong{
+      display:block;
+      color:#727a87;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-size:.69rem;
+      margin-bottom:5px;
+    }
+    .fact span{font-weight:700}
+
+    .section{padding:92px 0}
+    .section-kicker{
+      color:var(--amber);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.73rem;font-weight:800;
+      margin-bottom:11px;
+    }
+    .section h2{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:clamp(3rem,6vw,5.2rem);
+      line-height:.95;
+      letter-spacing:.03em;
+      margin-bottom:18px;
+    }
+    .lead{
+      max-width:720px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1.03rem;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:60px;
+      align-items:start;
+    }
+    .about-photo{
+      min-height:440px;
+      position:relative;
+      background:
+        linear-gradient(rgba(17,19,24,.16),rgba(17,19,24,.16)),
+        url("https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";
+      position:absolute;left:14px;bottom:12px;
+      background:rgba(13,15,19,.86);
+      color:#fff;padding:7px 9px;
+      font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
+    }
+    .about-copy{padding-top:15px}
+
+    .id-notice{
+      margin-top:24px;
+      display:flex;gap:16px;align-items:center;
+      padding:18px 20px;
+      border:1px solid rgba(255,176,32,.32);
+      background:rgba(255,176,32,.06);
+    }
+    .big21{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:2.5rem;
+      color:var(--amber);
+      min-width:58px;
+    }
+    .id-notice p{margin:0;color:var(--muted);line-height:1.55}
+    .id-notice strong{color:#fff}
+
+    .protected{
+      margin-top:24px;
+      border-left:4px solid var(--amber);
+      background:var(--panel2);
+      padding:18px 20px;
+      display:flex;gap:14px;
+    }
+    .protected i{color:var(--amber);margin-top:3px}
+    .protected strong{
+      display:block;
+      font-size:.74rem;text-transform:uppercase;
+      letter-spacing:.09em;margin-bottom:5px;
+    }
+    .protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    .catalog{
+      background:
+        linear-gradient(rgba(15,17,21,.94),rgba(15,17,21,.94)),
+        url("https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=1900&q=80") center/cover no-repeat;
+    }
+    .catalog .lead{color:rgba(255,255,255,.68)}
+    .catalog-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+      margin-top:38px;
+    }
+    .catalog-card{
+      background:rgba(255,255,255,.035);
+      padding:28px 24px;
+      min-height:210px;
+    }
+    .catalog-card i{
+      color:var(--amber);
+      font-size:1.35rem;
+      margin-bottom:20px;
+    }
+    .catalog-card h3{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:1.7rem;
+      letter-spacing:.04em;
+      margin-bottom:8px;
+    }
+    .catalog-card p{margin:0;color:#9ca4b0;line-height:1.6}
+
+    .reviews{background:var(--panel)}
+    .rating-row{
+      display:grid;
+      grid-template-columns:.75fr 1.25fr;
+      gap:56px;
+      align-items:center;
+    }
+    .rating-number{
+      font-family:"Bebas Neue",sans-serif;
+      color:var(--amber);
+      font-size:clamp(7rem,14vw,10rem);
+      line-height:.8;
+    }
+    .stars{color:var(--amber);letter-spacing:5px;margin:14px 0}
+    .review-note{color:var(--muted);line-height:1.65}
+    .reviews .btn{margin-top:22px}
+
+    .hours{
+      background:
+        linear-gradient(90deg,rgba(10,11,14,.96),rgba(10,11,14,.8)),
+        url("https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .hours-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
+    .hours-list{border-top:1px solid rgba(255,255,255,.18)}
+    .hour-row{
+      display:flex;justify-content:space-between;gap:20px;
+      padding:16px 0;border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .hour-row span{color:#a7afbb}
+    .hour-row.today strong{color:var(--amber)}
+    .holiday-note{margin-top:14px;color:#8f98a5;font-size:.9rem}
+
+    .visit-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:30px;margin-top:34px;
+    }
+    .visit-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      padding:32px;
+      box-shadow:var(--shadow);
+    }
+    .visit-card h3{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:1.75rem;
+      letter-spacing:.04em;
+    }
+    .visit-card p{color:var(--muted);line-height:1.65}
+    .visit-card .btn{margin-top:18px}
+
+    .form-demo{
+      margin-top:32px;
+      background:#15181d;
+      border:1px solid var(--line);
+      padding:32px;
+    }
+    .form-demo h3{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:2rem;
+      letter-spacing:.04em;
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:22px;
+    }
+    .field{display:grid;gap:7px}
+    .field.full{grid-column:1/-1}
+    label{font-size:.82rem;font-weight:800}
+    input,textarea{
+      width:100%;
+      background:#0f1115;
+      border:1px solid var(--line);
+      color:#fff;
+      padding:13px 14px;
+      border-radius:0;
+      font:inherit;
+    }
+    textarea{min-height:120px;resize:vertical}
+
+    footer{
+      background:#090b0e;
+      color:#8e97a4;
+      padding:38px 0;
+    }
+    .foot{
+      display:flex;justify-content:space-between;
+      align-items:center;gap:24px;font-size:.84rem;
+    }
+    .foot strong{color:#fff}
+
+    .modal-backdrop{
+      position:fixed;inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(0,0,0,.74);
+      z-index:500;
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(100%,460px);
+      background:var(--panel);
+      border-top:4px solid var(--amber);
+      padding:32px;
+      box-shadow:0 30px 90px rgba(0,0,0,.5);
+    }
+    .modal-icon{
+      width:48px;height:48px;
+      display:grid;place-items:center;
+      background:#0d0f13;color:var(--amber);
+      margin-bottom:20px;
+    }
+    .modal h2{
+      font-family:"Bebas Neue",sans-serif;
+      font-size:2rem;
+      letter-spacing:.04em;
+      margin-bottom:12px;
+    }
+    .modal p{color:var(--muted);line-height:1.65;margin-bottom:22px}
+    .modal .btn{width:100%}
+
+    @media(max-width:980px){
+      .catalog-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:900px){
+      .desktop-nav{display:none}
+      .menu-btn{display:block}
+      .about-grid,.rating-row,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+      .facts-grid{grid-template-columns:1fr 1fr}
+      .fact:nth-child(2){border-right:0}
+      .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    }
+
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .header-inner{min-height:68px}
+      .brand{font-size:1.35rem}
+      .brand-mark{width:35px;height:35px}
+      .hero{min-height:610px}
+      .hero-inner{padding:92px 0 52px}
+      .hero h1{font-size:clamp(3.9rem,18vw,5.2rem)}
+      .hero-actions{display:grid}
+      .hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .facts-grid{grid-template-columns:1fr}
+      .fact{border-right:0;border-bottom:1px solid var(--line)}
+      .fact:last-child{border-bottom:0}
+      .section{padding:70px 0}
+      .about-photo{min-height:330px}
+      .catalog-grid{grid-template-columns:1fr}
+      .visit-card,.form-demo{padding:24px}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-moon"></i></span>
+      <span>THE STASH</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#catalog">What We Stock</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Location</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#catalog">What We Stock</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#hours">Hours</a>
+    <a href="#visit">Location</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">W Tropicana Ave · Las Vegas</div>
+      <h1>The Stash Smoke Shop 24/7</h1>
+      <p class="hero-copy">Las Vegas never really closes, so neither do we. The Stash Smoke Shop 24/7 keeps the lights on and the counters staffed around the clock on W Tropicana Ave.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#catalog"><i class="fa-solid fa-box-open"></i> What We Stock</a>
+        <a class="btn btn-ghost" href="#hours"><i class="fa-regular fa-clock"></i> Open 24/7</a>
+      </div>
+    </div>
+
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="facts" aria-label="Business facts">
+    <div class="wrap facts-grid">
+      <div class="fact">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><strong>Location</strong><span>Las Vegas, NV 89103</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-regular fa-clock"></i>
+        <div><strong>Hours</strong><span>Open 24 hours daily</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-star"></i>
+        <div><strong>Google rating</strong><span>4.7</span></div>
+      </div>
+      <div class="fact">
+        <i class="fa-solid fa-id-card"></i>
+        <div><strong>Age requirement</strong><span>21+ · valid ID required</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock retail interior image"></div>
+
+      <div class="about-copy">
+        <div class="section-kicker">About</div>
+        <h2>The Stash Smoke Shop 24/7</h2>
+        <p class="lead">The Stash Smoke Shop 24/7 is a full service smoke shop on W Tropicana Ave in Las Vegas. Open 24 hours, every single day.</p>
+
+        <div class="id-notice">
+          <div class="big21">21+</div>
+          <p><strong>Valid ID required.</strong> We card every customer, every time, no exceptions.</p>
+        </div>
+
+        <div class="protected">
+          <i class="fa-solid fa-lock"></i>
+          <div>
+            <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            <p>The supplied source contains a public business address and phone number. Direct contact and directions actions remain protected in this demo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section catalog" id="catalog">
+    <div class="wrap">
+      <div class="section-kicker">The Shelves</div>
+      <h2>What We Stock</h2>
+      <p class="lead">The source lists these product categories. This demo is informational only and does not include purchasing, checkout, or ordering.</p>
+
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Disposables</h3>
+          <p>The latest disposables in all the flavors people actually ask for, restocked weekly.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-fill-drip"></i>
+          <h3>E-Liquids</h3>
+          <p>Freebase and salt nic juice in every style, from fruity to dessert to straight tobacco.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-jar"></i>
+          <h3>Glass &amp; Hand Pipes</h3>
+          <p>Pieces for every budget, from simple hand pipes to center-of-the-table glass.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-scroll"></i>
+          <h3>Wraps &amp; Papers</h3>
+          <p>Rolling papers, cones and wraps in every size.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-smoking"></i>
+          <h3>Cigars</h3>
+          <p>A solid cigar selection plus accessories.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-fire-flame-simple"></i>
+          <h3>Lighters &amp; Torches</h3>
+          <p>Jet torches, classic lighters and everything in between.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-battery-three-quarters"></i>
+          <h3>Batteries &amp; Coils</h3>
+          <p>Batteries, chargers and replacement coils.</p>
+        </article>
+
+        <article class="catalog-card">
+          <i class="fa-solid fa-leaf"></i>
+          <h3>CBD</h3>
+          <p>CBD flower, cartridges and edibles are listed in the supplied source.</p>
+        </article>
+      </div>
+
+      <div class="id-notice">
+        <div class="big21">21+</div>
+        <p><strong>Valid ID required for all tobacco and vape purchases.</strong> Stock varies by day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews">
+    <div class="wrap rating-row">
+      <div>
+        <div class="rating-number">4.7</div>
+        <div class="stars" aria-label="4.7 star Google rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="review-note">Google rating shown in the supplied source.</p>
+      </div>
+
+      <div>
+        <div class="section-kicker">Word of Mouth</div>
+        <h2>Reviews</h2>
+        <p class="lead">The source displays a 4.7 Google rating and multiple Google review excerpts. This demo does not add any reviews beyond what the source provided.</p>
+        <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="section-kicker">Hours</div>
+        <h2>Open 24 hours, 7 days a week.</h2>
+        <p class="lead">Call to confirm holiday hours.</p>
+      </div>
+
+      <div class="hours-list">
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>Open 24 hours</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>Open 24 hours</span></div>
+        <p class="holiday-note">Call to confirm holiday hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="section-kicker">Find Us</div>
+      <h2>Location &amp; Hours</h2>
+      <p class="lead">You will find us on W Tropicana Ave, just west of I-15.</p>
+
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-location-dot"></i> Address</h3>
+          <p>Las Vegas, NV 89103</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The full public street address is intentionally not exposed as a working directions link in this sample.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+        </div>
+
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <p>Quick question? Contact the shop.</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The supplied phone number is intentionally not exposed as a working tel: or SMS link.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call business</button>
+        </div>
+      </div>
+
+      <div class="form-demo">
+        <h3>Quick question? Text us.</h3>
+        <p class="lead">The source includes a quick-question form. In this demo, submission stays locked because no backend is provided.</p>
+
+        <form class="form-grid" id="demoForm">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text">
+          </div>
+
+          <div class="field">
+            <label for="phone">Your phone</label>
+            <input id="phone" type="tel">
+          </div>
+
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message"></textarea>
+          </div>
+
+          <div class="field full">
+            <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send it to the shop</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>The Stash Smoke Shop 24/7</strong><br>Las Vegas, NV</div>
+    <div>21+ · Valid ID required · Demo website</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const demoForm = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openModal(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function'){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  demoForm.addEventListener('submit', e => {
+    e.preventDefault();
+    openModal(demoForm.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal){
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')){
+      closeModal();
+    }
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault();
+        last.focus();
+      }else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Los_Angeles',
+    weekday:'short'
+  }).format(new Date());
+
+  const days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hour-row[data-day="'+days[today]+'"]');
+
+  if(row){
+    row.classList.add('today');
+  }
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey){
+      e.preventDefault();
+    }
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)){
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Business: The Stash Smoke Shop 24/7
+- Public source address: 4780 W Tropicana Ave, Unit 106, Las Vegas, NV 89103
+- Public source phone: (702) 462-2383
+- Hours: Open 24 hours, 7 days a week
+- Holiday note: Call to confirm holiday hours
+- Age rule: 21 and over, valid ID required
+- Rating shown in source: 4.7 on Google
+- Product categories shown in source:
+  Disposables
+  E-Liquids
+  Glass & Hand Pipes
+  Wraps & Papers
+  Cigars
+  Lighters & Torches
+  Batteries & Coils
+  CBD
+
+DEMO / SAFETY BEHAVIOR
+- Informational catalog only
+- No purchasing, cart, checkout, ordering, or payment features
+- Phone, directions, external review, and form submission actions locked
+- Contact details hidden in visible locked sections
+- One reusable locked-feature modal
+
+STOCK IMAGERY
+- Unsplash retail/night imagery
+- Does not depict the actual business, staff, storefront, customers, or inventory
+
+TECHNICAL CHECK
+- One complete HTML file
+- CSS and JavaScript inline
+- Normal JavaScript operators such as &&
+- Responsive desktop/tablet/mobile
+- Hamburger mobile menu
+- Text selection disabled
+- Mobile zoom prevention
+- Background images included
+- Font Awesome icons
+- Modal closes via Close button, backdrop click, and Escape
+- No fake success state
+-->
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0d3352">
+  <title>West Market Street Laundromat | Greensboro, NC</title>
+  <meta name="description" content="West Market Street Laundromat in Greensboro, NC. View laundry services, business hours, and protected demo contact information.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --navy:#0d3352;
+      --blue:#1f73a8;
+      --sky:#82c8e8;
+      --foam:#f2f9fc;
+      --white:#fff;
+      --ink:#142a39;
+      --muted:#5d7180;
+      --line:rgba(13,51,82,.14);
+      --yellow:#f2c84b;
+      --max:1180px;
+      --shadow:0 22px 60px rgba(9,46,72,.16);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+    body{
+      margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--foam);
+      overflow-x:hidden;user-select:none;-webkit-user-select:none
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{-webkit-tap-highlight-color:transparent}
+    img{display:block;max-width:100%}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+    .site-header{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(242,249,252,.94);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line)
+    }
+    .header-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}
+    .brand-icon{
+      width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+      background:var(--navy);color:#fff;border:4px solid #d8f2ff
+    }
+    .desktop-nav{display:flex;align-items:center;gap:29px;font-weight:700;font-size:.93rem}
+    .desktop-nav a{position:relative}
+    .desktop-nav a:after{
+      content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;background:var(--blue);transition:.2s
+    }
+    .desktop-nav a:hover:after{right:0}
+    .menu-btn{display:none;border:0;background:none;width:46px;height:46px;padding:10px;cursor:pointer}
+    .menu-btn span{height:2px;background:var(--navy);display:block;margin:6px 0}
+    .mobile-menu{display:none;padding:8px 20px 18px;border-top:1px solid var(--line)}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+    main{padding-top:74px}
+    .hero{
+      position:relative;min-height:710px;color:#fff;display:grid;align-items:end;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(5,37,61,.92) 0%,rgba(5,37,61,.72) 48%,rgba(5,37,61,.30) 100%),
+        url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"";position:absolute;left:-90px;bottom:-170px;width:430px;height:430px;border-radius:50%;
+      border:70px solid rgba(130,200,232,.17)
+    }
+    .hero-inner{position:relative;z-index:2;padding:115px 0 78px;max-width:760px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;
+      font-size:.76rem;font-weight:800;color:#b8e7fb
+    }
+    .eyebrow:before{content:"";width:38px;height:2px;background:currentColor}
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      font-family:"Manrope",sans-serif;font-size:clamp(3.5rem,7.8vw,6.8rem);
+      letter-spacing:-.065em;line-height:.91;margin:20px 0 24px;max-width:860px
+    }
+    .hero-copy{max-width:620px;font-size:clamp(1rem,2vw,1.23rem);line-height:1.68;color:rgba(255,255,255,.84)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}
+    .btn{
+      min-height:50px;padding:13px 20px;border:1px solid transparent;font:800 .92rem "DM Sans",sans-serif;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+      transition:transform .18s ease,background .18s ease,color .18s ease
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--yellow);color:#132d3d}
+    .btn-ghost{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.56);color:#fff}
+    .stock-note{position:absolute;right:18px;bottom:16px;z-index:3;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.64)}
+
+    .quickbar{background:var(--navy);color:#fff}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+    .quick:last-child{border-right:0}
+    .quick i{color:#9bdaf5;margin-top:3px}
+    .quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+    .quick span{font-weight:700;line-height:1.4}
+
+    .section{padding:94px 0}
+    .kicker{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.75rem;color:var(--blue);margin-bottom:10px}
+    .section h2{font-family:"Manrope",sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.055em;line-height:.98;margin-bottom:18px}
+    .lead{max-width:720px;color:var(--muted);line-height:1.75;font-size:1.03rem}
+
+    .about-grid{display:grid;grid-template-columns:1fr .92fr;gap:62px;align-items:start}
+    .about-photo{
+      min-height:440px;background:
+      linear-gradient(rgba(13,51,82,.10),rgba(13,51,82,.10)),
+      url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      box-shadow:var(--shadow);position:relative
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;background:rgba(6,35,54,.78);
+      color:#fff;padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em
+    }
+    .about-copy{padding-top:18px}
+    .protected{
+      margin-top:24px;border-left:4px solid var(--blue);background:#e8f5fb;padding:18px 20px;display:flex;gap:14px
+    }
+    .protected i{color:var(--blue);margin-top:3px}
+    .protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+    .protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    .services{background:#fff}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:38px}
+    .service{background:#fff;padding:34px 30px;min-height:245px}
+    .service-icon{
+      width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#dff3fb;color:var(--blue);font-size:1.15rem;margin-bottom:26px
+    }
+    .service h3{font-size:1.23rem;margin-bottom:10px}
+    .service p{color:var(--muted);line-height:1.65;margin-bottom:0}
+
+    .hours{
+      color:#fff;position:relative;
+      background:
+        linear-gradient(90deg,rgba(8,44,69,.96),rgba(8,44,69,.86)),
+        url("https://images.unsplash.com/photo-1551761429-8232f9f5955c?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+    .hours .kicker{color:#9fdcf5}
+    .hours .lead{color:rgba(255,255,255,.7)}
+    .hours-list{border-top:1px solid rgba(255,255,255,.2)}
+    .hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+    .hour-row span{color:rgba(255,255,255,.82)}
+    .today{color:var(--yellow)!important}
+
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:35px}
+    .visit-card{background:#fff;border:1px solid var(--line);padding:33px;min-height:275px}
+    .visit-card h3{font-size:1.15rem}
+    .lock-panel{background:var(--navy);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+    .lock-panel i.big{font-size:2rem;color:#9bdcf7}
+    .lock-panel p{color:rgba(255,255,255,.72);line-height:1.65}
+    .contact-copy{color:var(--muted);line-height:1.65}
+    .contact-note{margin:18px 0}
+
+    .cta{margin-top:32px;background:var(--sky);padding:45px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .cta h3{font-family:"Manrope",sans-serif;font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.05em;margin:0}
+    .cta p{margin:8px 0 0;color:#264557}
+    .cta .btn{background:var(--navy);color:#fff}
+
+    footer{background:#082b44;color:rgba(255,255,255,.72);padding:38px 0}
+    .foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+    .foot strong{color:#fff}
+
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.67);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+    .modal-backdrop.open{display:flex}
+    .modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+    .modal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;margin-bottom:20px}
+    .modal h2{font-family:"Manrope",sans-serif;font-size:2rem;letter-spacing:-.04em;margin-bottom:12px}
+    .modal p{color:var(--muted);line-height:1.65;margin-bottom:24px}
+    .modal .btn{width:100%;background:var(--navy);color:#fff}
+
+    @media(max-width:900px){
+      .desktop-nav{display:none}.menu-btn{display:block}
+      .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+      .service-grid{grid-template-columns:1fr}
+      .quick-grid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+      .quick:last-child{border-bottom:0}
+      .hero{min-height:640px}
+      .cta{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .header-inner{min-height:68px}.brand{font-size:.88rem}.brand-icon{width:35px;height:35px}
+      main{padding-top:68px}.hero{min-height:610px;background-position:55% center}.hero-inner{padding:88px 0 50px}
+      h1{font-size:clamp(3.05rem,15vw,4.6rem)}
+      .hero-actions{display:grid}.hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto;bottom:12px}
+      .section{padding:72px 0}.about-photo{min-height:330px}
+      .service{padding:28px 24px}.visit-card{padding:25px}.cta{padding:30px 24px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <!--
+    WEBSITE STRUCTURE:
+    Header → Hero → Business facts → About → Services → Hours → Visit/Contact → Footer
+
+    SOURCE-DERIVED CONTENT USED:
+    Business: West Market Street Laundromat
+    Location: Greensboro, NC
+    Services listed by the supplied page:
+      - Wash & fold
+      - Self-service machines
+      - Drop-off service
+    Hours in supplied page: 7:00 AM – 10:00 PM daily.
+
+    CONTACT DETAILS:
+    The uploaded source includes a real phone number and street address.
+    Per demo rules, they are not exposed as working links and are replaced in
+    locked contact areas with “CONTACT DETAILS PROTECTED IN THIS DEMO”.
+
+    STOCK ASSET NOTE:
+    Unsplash imagery is used only as generic laundromat/laundry imagery.
+    It does not depict the actual business, staff, equipment, or completed work.
+
+    OMITTED AS UNSUPPORTED / NOT APPROVED:
+    Owner/team names, email, pricing, social links, awards, licenses,
+    certifications, years in business, payment/booking integrations, and forms.
+
+    QUALITY CHECK:
+    - One complete HTML file
+    - CSS and JS inline
+    - Mobile hamburger menu works
+    - Mobile zoom blocked by viewport settings
+    - Text selection disabled
+    - Real-world contact actions use one reusable locked modal
+    - Locked actions do not submit, redirect, or fake success
+  -->
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#home" class="brand" aria-label="West Market Street Laundromat home">
+        <span class="brand-icon"><i class="fa-solid fa-soap"></i></span>
+        <span>West Market Street Laundromat</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#hours">Hours</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="wrap hero-inner">
+        <div class="eyebrow">Greensboro, North Carolina</div>
+        <h1 id="heroTitle">West Market Street Laundromat</h1>
+        <p class="hero-copy">Wash, dry, fold — without the hassle.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#services"><i class="fa-solid fa-shirt"></i> View services</a>
+          <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Contact business</button>
+        </div>
+      </div>
+      <div class="stock-note">Stock imagery — not the actual business</div>
+    </section>
+
+    <section class="quickbar" aria-label="Business details">
+      <div class="wrap quick-grid">
+        <div class="quick">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><strong>Location</strong><span>Greensboro, NC</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-regular fa-clock"></i>
+          <div><strong>Hours</strong><span>7:00 AM – 10:00 PM daily</span></div>
+        </div>
+        <div class="quick">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div><strong>Demo status</strong><span>Contact details protected</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-photo" role="img" aria-label="Stock image of laundry machines"></div>
+        <div class="about-copy">
+          <div class="kicker">About</div>
+          <h2>West Market Street Laundromat in Greensboro.</h2>
+          <p class="lead">The supplied business page identifies this Greensboro laundromat and lists wash &amp; fold, self-service machines, and drop-off service.</p>
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The source includes a business phone number and street address. Those real-world contact details stay locked in this sample site.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="wrap">
+        <div class="kicker">Services</div>
+        <h2>Laundry services listed in the supplied page.</h2>
+        <p class="lead">Only the service names supported by the uploaded source are included here.</p>
+
+        <div class="service-grid">
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-shirt"></i></div>
+            <h3>Wash &amp; fold</h3>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-soap"></i></div>
+            <h3>Self-service machines</h3>
+          </article>
+          <article class="service">
+            <div class="service-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+            <h3>Drop-off service</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hours" id="hours">
+      <div class="wrap hours-grid">
+        <div>
+          <div class="kicker">Business hours</div>
+          <h2>Open hours shown by the supplied source.</h2>
+          <p class="lead">The provided HTML lists the same hours for every day of the week.</p>
+        </div>
+        <div class="hours-list">
+          <div class="hour-row" data-day="0"><strong>Sunday</strong><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hour-row" data-day="1"><strong>Monday</strong><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hour-row" data-day="4"><strong>Thursday</strong><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hour-row" data-day="5"><strong>Friday</strong><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hour-row" data-day="6"><strong>Saturday</strong><span>7:00 AM – 10:00 PM</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visit">
+      <div class="wrap">
+        <div class="kicker">Visit & contact</div>
+        <h2>Real-world contact actions are protected in this demo.</h2>
+        <p class="lead">The uploaded source contains a public business address and phone number, but this sample keeps both actions locked until the site is unlocked.</p>
+
+        <div class="visit-grid">
+          <div class="visit-card lock-panel">
+            <div>
+              <i class="fa-solid fa-location-dot big"></i>
+              <h3>Business address</h3>
+              <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+            </div>
+            <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+          </div>
+
+          <div class="visit-card">
+            <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+            <div class="protected contact-note">
+              <i class="fa-solid fa-lock"></i>
+              <div>
+                <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+                <p>The supplied number is intentionally not exposed as a working tel: link.</p>
+              </div>
+            </div>
+            <button class="btn" style="background:var(--navy);color:#fff" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call business</button>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Want to contact the laundromat?</h3>
+            <p>Contact actions are part of the full website experience.</p>
+          </div>
+          <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-lock-open"></i> Contact</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div><strong>West Market Street Laundromat</strong><br>Greensboro, North Carolina</div>
+      <div>Demo website · Contact details protected</div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h2 id="modalTitle">This is currently locked.</h2>
+      <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const modal = document.getElementById('lockedModal');
+      const modalClose = document.getElementById('modalClose');
+      let lastFocus = null;
+
+      function closeMenu(){
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+
+      menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', closeMenu);
+      });
+
+      function openModal(trigger){
+        lastFocus = trigger || document.activeElement;
+        modal.classList.add('open');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        document.body.classList.remove('modal-open');
+        if(lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-locked="true"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openModal(el);
+        });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => {
+        if(e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', e => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        if(e.key === 'Tab' && modal.classList.contains('open')){
+          e.preventDefault();
+          modalClose.focus();
+        }
+      });
+
+      const today = new Intl.DateTimeFormat('en-US', {
+        timeZone:'America/New_York',
+        weekday:'short'
+      }).format(new Date());
+      const map = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+      const row = document.querySelector('.hour-row[data-day="'+map[today]+'"]');
+      if(row){
+        const day = row.querySelector('strong');
+        day.classList.add('today');
+        day.textContent += ' · Today';
+      }
+
+      document.addEventListener('gesturestart', e => e.preventDefault());
+    })();
+  </script>
+</body>
+</html>

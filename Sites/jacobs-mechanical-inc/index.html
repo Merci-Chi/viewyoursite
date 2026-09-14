@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Jacobs Mechanical, Inc. | Cincinnati HVAC & Mechanical Contractor</title>
+  <meta name="description" content="Jacobs Mechanical, Inc. is a Cincinnati HVAC and mechanical contractor with roots dating to 1922, serving residential, commercial, industrial, and institutional projects.">
+  <meta name="theme-color" content="#111417">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#101316;
+      --panel:#181d21;
+      --panel-2:#20262b;
+      --steel:#8d989f;
+      --paper:#edf2f5;
+      --paper-dim:#b9c2c8;
+      --copper:#b66432;
+      --brass:#cf9f4d;
+      --blue:#2f91d4;
+      --red:#d6513f;
+      --green:#67a77a;
+      --line:rgba(255,255,255,.12);
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'IBM Plex Sans',sans-serif;
+      color:var(--paper);
+      background:
+        linear-gradient(rgba(16,19,22,.94),rgba(16,19,22,.94)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=2200&q=82") center/cover fixed;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),92%);margin:auto}
+    .mono{font-family:'IBM Plex Mono',monospace}
+    h1,h2,h3{line-height:1.05}
+    h1,h2{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em}
+    h2{font-size:clamp(2.6rem,5.5vw,5rem)}
+    p{color:var(--paper-dim)}
+    .kicker{
+      font-family:'IBM Plex Mono',monospace;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.76rem;
+      font-weight:600;
+      color:var(--brass);
+    }
+    .section{padding:84px 0}
+    .section-head{max-width:790px;margin-bottom:2rem}
+    .section-head h2{margin:.25rem 0 .7rem}
+    .btn{
+      min-height:50px;padding:.9rem 1.15rem;
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+      border:1px solid transparent;border-radius:3px;
+      background:var(--copper);color:#fff;font-weight:700;cursor:pointer;
+      transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px);background:#914924}
+    .btn.ghost{background:transparent;border-color:#7e878e;color:#fff}
+    .btn.ghost:hover{border-color:var(--brass);color:var(--brass);background:transparent}
+
+    .topbar{
+      position:sticky;top:0;z-index:100;
+      background:rgba(15,18,21,.97);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+    }
+    .nav{
+      min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem
+    }
+    .brand{display:flex;align-items:center;gap:.9rem}
+    .brand-mark{
+      width:50px;height:50px;border:2px solid var(--brass);
+      display:grid;place-items:center;color:var(--brass);font-size:1.25rem;
+      box-shadow:inset 0 0 0 5px rgba(207,159,77,.08)
+    }
+    .brand strong{display:block;font-size:1rem}
+    .brand span{display:block;font-family:'IBM Plex Mono',monospace;font-size:.69rem;color:#8f9aa1;letter-spacing:.09em}
+    .nav-links{display:flex;align-items:center;gap:1.15rem}
+    .nav-links a{font-size:.88rem;font-weight:700;position:relative}
+    .nav-links a:not(.nav-cta)::after{
+      content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--brass);transition:right .2s
+    }
+    .nav-links a:not(.nav-cta):hover::after{right:0}
+    .nav-cta{background:var(--copper);padding:.72rem 1rem}
+    .hamburger{display:none;border:0;background:transparent;color:white;font-size:1.5rem;cursor:pointer}
+
+    .hero{
+      min-height:760px;position:relative;display:flex;align-items:center;overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(12,15,18,.94),rgba(12,15,18,.68) 58%,rgba(12,15,18,.30)),
+        url("https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=2200&q=86") center/cover;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:54px 54px;
+      pointer-events:none
+    }
+    .hero::after{
+      content:"";position:absolute;left:0;right:0;bottom:0;height:28px;
+      background:repeating-linear-gradient(135deg,var(--brass) 0 12px,#242a2f 12px 24px)
+    }
+    .hero-content{position:relative;z-index:2;max-width:850px;padding:5.5rem 0 6rem}
+    .hero h1{font-size:clamp(4.2rem,10vw,8.5rem);margin:.4rem 0 .9rem;max-width:10ch}
+    .hero h1 .accent{color:var(--brass)}
+    .hero p{max-width:700px;font-size:1.08rem;color:#dce3e7}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.35rem 0 0}
+    .chip{
+      font-family:'IBM Plex Mono',monospace;font-size:.73rem;
+      padding:.55rem .75rem;border:1px solid #59646c;background:rgba(255,255,255,.05)
+    }
+    .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.55rem}
+    .hero-note{margin-top:.85rem;font-size:.77rem;color:#8f9aa1}
+
+    .readout-band{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      background:#0b0e10;border-bottom:1px solid #30363b
+    }
+    .readout{
+      padding:1.05rem 1.15rem;border-right:1px solid #30363b;
+      font-family:'IBM Plex Mono',monospace;font-size:.78rem;text-align:center;color:#b6c0c7
+    }
+    .readout strong{color:var(--green);display:block;margin-top:.2rem}
+
+    .overview{
+      background:
+        linear-gradient(rgba(24,29,33,.92),rgba(24,29,33,.92)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1900&q=80") center/cover;
+    }
+    .overview-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:start}
+    .panel{
+      background:rgba(26,31,35,.91);border:1px solid var(--line);
+      border-top:4px solid var(--brass);padding:1.5rem;
+      box-shadow:0 18px 38px rgba(0,0,0,.18)
+    }
+    .panel h3{font-size:1.35rem;margin-bottom:.8rem}
+    .fact-list{display:grid;gap:.15rem}
+    .fact{
+      display:flex;gap:.8rem;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.08)
+    }
+    .fact:last-child{border-bottom:0}
+    .fact i{color:var(--brass);width:22px;margin-top:.16rem}
+    .fact strong{color:#fff}
+    .timeline{
+      display:grid;gap:1rem;margin-top:1rem
+    }
+    .timeline-item{
+      display:grid;grid-template-columns:92px 1fr;background:#111519;border-left:4px solid var(--copper)
+    }
+    .timeline-year{
+      display:grid;place-items:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--brass);
+      border-right:1px solid #30363b
+    }
+    .timeline-body{padding:1rem}
+    .timeline-body p{font-size:.91rem}
+
+    .services{
+      background:
+        linear-gradient(rgba(12,15,18,.94),rgba(12,15,18,.94)),
+        url("https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=2000&q=82") center/cover fixed;
+    }
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .service{
+      min-height:320px;position:relative;overflow:hidden;isolation:isolate;
+      display:flex;align-items:flex-end;border:1px solid rgba(255,255,255,.13);
+      cursor:pointer;transition:transform .28s ease,box-shadow .28s ease
+    }
+    .service:hover{transform:translateY(-7px);box-shadow:0 22px 45px rgba(0,0,0,.32)}
+    .service-img{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .45s ease}
+    .service:hover .service-img{transform:scale(1.08)}
+    .service::after{
+      content:"";position:absolute;inset:0;z-index:-1;
+      background:linear-gradient(to top,rgba(11,14,16,.97),rgba(11,14,16,.10) 73%)
+    }
+    .service-body{padding:1.3rem}
+    .service-body i{font-size:1.45rem;color:var(--brass);margin-bottom:.75rem}
+    .service-body h3{font-size:1.35rem;margin-bottom:.4rem}
+    .service-body p{font-size:.91rem;color:#d1d9de}
+    .learn{display:inline-flex;align-items:center;gap:.4rem;color:var(--brass);font-size:.81rem;font-weight:700;margin-top:.75rem}
+
+    .credentials{
+      background:
+        linear-gradient(rgba(29,34,38,.92),rgba(29,34,38,.92)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1900&q=80") center/cover;
+    }
+    .cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .cred{
+      background:rgba(16,19,22,.90);border:1px solid var(--line);padding:1.4rem;
+      transition:.25s ease
+    }
+    .cred:hover{transform:translateY(-5px)}
+    .cred i{font-size:1.45rem;color:var(--brass);margin-bottom:.8rem}
+    .cred h3{margin-bottom:.35rem}
+    .cred .mono{color:var(--green);font-size:.8rem}
+
+    .reviews{
+      background:
+        linear-gradient(rgba(12,15,18,.94),rgba(12,15,18,.94)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1900&q=78") center/cover;
+    }
+    .rating-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:2rem;align-items:start}
+    .rating-box{
+      background:#101417;border:1px solid var(--line);border-top:5px solid var(--brass);padding:1.7rem
+    }
+    .rating-big{font-family:'Bebas Neue',sans-serif;font-size:5.4rem;line-height:.9;color:var(--brass)}
+    .stars{color:#f1bd56;letter-spacing:.1em;margin:.55rem 0}
+    .themes{display:grid;gap:1rem}
+    .theme{
+      background:rgba(255,255,255,.05);border-left:4px solid var(--blue);padding:1.15rem
+    }
+    .theme.negative{border-left-color:var(--red)}
+    .theme h3{margin-bottom:.35rem}
+
+    .hours{
+      background:
+        linear-gradient(rgba(28,33,37,.92),rgba(28,33,37,.92)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1900&q=78") center/cover;
+    }
+    .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .hours-list{list-style:none;background:rgba(15,18,21,.9);border:1px solid var(--line);padding:1.2rem}
+    .hours-list li{display:flex;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .hours-list li:last-child{border-bottom:0}
+    .hours-note{background:#12171a;border-left:4px solid var(--brass);padding:1.4rem}
+    .hours-note p{color:#c9d1d6}
+
+    .faq{
+      background:
+        linear-gradient(rgba(17,20,23,.93),rgba(17,20,23,.93)),
+        url("https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=1900&q=78") center/cover;
+    }
+    details{background:rgba(26,31,35,.91);border:1px solid var(--line);padding:1rem 1.1rem;margin-bottom:.75rem}
+    summary{display:flex;justify-content:space-between;gap:1rem;cursor:pointer;font-weight:700;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";color:var(--brass);font-size:1.35rem}
+    details[open] summary::after{content:"−"}
+    details p{margin-top:.7rem}
+
+    .contact{
+      background:
+        linear-gradient(rgba(9,12,14,.95),rgba(9,12,14,.95)),
+        url("https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=2000&q=80") center/cover;
+    }
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .protected{
+      margin-top:1rem;padding:1rem 1.1rem;background:rgba(255,255,255,.05);
+      border-left:4px solid var(--brass);font-weight:700;color:#fff
+    }
+    .checklist{background:rgba(255,255,255,.05);border:1px solid var(--line);padding:1.4rem}
+    .check{display:flex;gap:.8rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .check:last-child{border-bottom:0}
+    .check i{color:var(--brass);width:22px;margin-top:.18rem}
+
+    footer{
+      background:#090b0d;border-top:4px solid var(--brass);padding:58px 0 28px;text-align:center
+    }
+    .giant{
+      font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,10vw,8rem);line-height:.92;color:var(--paper)
+    }
+    .giant span{color:transparent;-webkit-text-stroke:2px var(--copper)}
+    footer p{margin-top:1.2rem;font-size:.82rem;color:#7f8990}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    .modal-backdrop,.service-modal-backdrop{
+      position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.76);
+      display:none;align-items:center;justify-content:center;padding:1rem
+    }
+    .modal-backdrop.show,.service-modal-backdrop.show{display:flex}
+    .modal,.service-modal{
+      width:min(560px,100%);background:#eef2f4;color:#15191c;border-top:6px solid var(--copper);
+      box-shadow:0 30px 80px rgba(0,0,0,.5)
+    }
+    .modal-body,.service-modal-body{padding:1.5rem}
+    .modal p,.service-modal p{color:#536069}
+    .modal-icon{width:52px;height:52px;display:grid;place-items:center;background:#eadbd0;color:var(--copper);font-size:1.3rem;margin-bottom:1rem}
+    .modal h3,.service-modal h3{font-size:1.9rem;margin-bottom:.45rem}
+    .service-modal-img{height:250px;background-size:cover;background-position:center}
+    .modal .btn,.service-modal .btn{width:100%;margin-top:1rem}
+
+    @media(max-width:980px){
+      .nav-links{
+        display:none;position:absolute;top:82px;left:0;right:0;background:rgba(15,18,21,.99);
+        flex-direction:column;align-items:stretch;padding:1rem 4% 1.2rem
+      }
+      .nav-links.open{display:flex}
+      .nav-links a{padding:.65rem 0}
+      .hamburger{display:block}
+      .overview-grid,.rating-grid,.hours-grid,.contact-grid{grid-template-columns:1fr}
+      .service-grid,.cred-grid{grid-template-columns:1fr 1fr}
+      .readout-band{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:640px){
+      .nav{min-height:72px}
+      .nav-links{top:72px}
+      .brand span{display:none}
+      .hero{min-height:680px;background-position:58% center}
+      .hero-content{padding:4.5rem 0 5.4rem}
+      .hero h1{font-size:clamp(4rem,18vw,6rem)}
+      .section{padding:62px 0}
+      .service-grid,.cred-grid,.readout-band{grid-template-columns:1fr}
+      .timeline-item{grid-template-columns:76px 1fr}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap nav">
+    <a href="#home" class="brand">
+      <div class="brand-mark"><i class="fa-solid fa-gauge-high"></i></div>
+      <div>
+        <strong>Jacobs Mechanical, Inc.</strong>
+        <span>HVAC & MECHANICAL CONTRACTOR</span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav-links" id="navMenu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Service Call</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-content">
+    <div class="kicker">Cincinnati HVAC & mechanical contractor</div>
+    <h1>Built for <span class="accent">comfort.</span> Ready for <span class="accent">industry.</span></h1>
+    <p>Jacobs Mechanical, Inc. provides residential, commercial, industrial, and institutional HVAC and mechanical services in Greater Cincinnati, with company roots dating to 1922.</p>
+    <div class="hero-meta">
+      <span class="chip"><i class="fa-solid fa-snowflake"></i> Air conditioning</span>
+      <span class="chip"><i class="fa-solid fa-fire-flame-simple"></i> Heating</span>
+      <span class="chip"><i class="fa-solid fa-wind"></i> Ductwork & ventilation</span>
+      <span class="chip"><i class="fa-solid fa-industry"></i> Commercial / industrial</span>
+    </div>
+    <div class="actions">
+      <a href="#services" class="btn"><i class="fa-solid fa-screwdriver-wrench"></i> View Services</a>
+      <a href="#credentials" class="btn ghost"><i class="fa-solid fa-id-card"></i> Credentials</a>
+      <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-phone"></i> Request Service</a>
+    </div>
+    <div class="hero-note">Stock HVAC imagery is used in this demo and does not represent Jacobs Mechanical employees, vehicles, or specific completed projects.</div>
+  </div>
+</section>
+
+<div class="readout-band">
+  <div class="readout">HERITAGE<strong>ROOTS TO 1922</strong></div>
+  <div class="readout">OHIO HVAC LICENSE<strong>HV.27903</strong></div>
+  <div class="readout">BUILDZOOM SCORE<strong>106 / TOP 7%</strong></div>
+  <div class="readout">PRIMARY MARKET<strong>GREATER CINCINNATI</strong></div>
+</div>
+
+<section class="section overview" id="about">
+  <div class="wrap overview-grid reveal">
+    <div>
+      <div class="section-head">
+        <div class="kicker">Under the hood</div>
+        <h2>More than a residential HVAC shop.</h2>
+        <p>Public records and contractor directories support a broad mechanical scope: residential HVAC, commercial and industrial systems, ventilation and ductwork, sheet-metal fabrication, welding, and air/water balancing.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1922</div>
+          <div class="timeline-body"><strong>Company heritage</strong><p>Angi traces the company's roots to 1922 and identifies the previous name as B&J Jacobs Company.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1984</div>
+          <div class="timeline-body"><strong>Current corporation era</strong><p>BBB reports the current business started in 1984 and incorporated in 1985.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">NOW</div>
+          <div class="timeline-body"><strong>Active Cincinnati mechanical contractor</strong><p>Current permit, licensing, directory, and review data continue to show Jacobs Mechanical operating in Greater Cincinnati.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3><i class="fa-solid fa-clipboard-check"></i> Verified company profile</h3>
+      <div class="fact-list">
+        <div class="fact"><i class="fa-solid fa-user-tie"></i><div><strong>Owner / primary contact</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Business address</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="fact"><i class="fa-solid fa-phone"></i><div><strong>Business phone</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="fact"><i class="fa-solid fa-globe"></i><div><strong>Official domain</strong><br>jacobsmech.com</div></div>
+        <div class="fact"><i class="fa-solid fa-city"></i><div><strong>Service area</strong><br>Greater Cincinnati and surrounding areas</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">System checklist</div>
+      <h2>Verified HVAC & mechanical capabilities.</h2>
+      <p>Click a service card for a concise description based on the public research.</p>
+    </div>
+
+    <div class="service-grid">
+      <article class="service reveal" tabindex="0"
+        data-title="HVAC Service & Repair"
+        data-text="Public listings and customer reviews support heating and cooling diagnosis, repair, replacement, and fast-response service."
+        data-image="https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=1400&q=84">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1766414629984-73a93e7caba0?auto=format&fit=crop&w=1400&q=84')"></div>
+        <div class="service-body"><i class="fa-solid fa-screwdriver-wrench"></i><h3>HVAC Service & Repair</h3><p>Heating and cooling troubleshooting, service, repair, and replacement.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Air Conditioning"
+        data-text="Air-conditioning installation and replacement are publicly supported by contractor listings and Cincinnati permit records."
+        data-image="https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1400&q=84">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1724489180534-3931f3787cb7?auto=format&fit=crop&w=1400&q=84')"></div>
+        <div class="service-body"><i class="fa-solid fa-snowflake"></i><h3>Air Conditioning</h3><p>A/C installation, replacement, and related mechanical work.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Heating & Furnaces"
+        data-text="Public permit history supports furnace, heating-system, air-handler, heat-pump, and coil work."
+        data-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-fire-flame-simple"></i><h3>Heating & Furnaces</h3><p>Heating equipment and furnace-related mechanical work.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Commercial & Industrial HVAC"
+        data-text="BBB, permit records, and contractor listings support substantial commercial and industrial HVAC and mechanical work."
+        data-image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-industry"></i><h3>Commercial & Industrial HVAC</h3><p>Mechanical systems for commercial, industrial, and institutional environments.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Ventilation & Ductwork"
+        data-text="MacRae's and Cincinnati permit history support ventilation, ductwork, air distribution, and related mechanical-system work."
+        data-image="https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-wind"></i><h3>Ventilation & Ductwork</h3><p>Air distribution, ventilation, and duct-system work.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+
+      <article class="service reveal" tabindex="0"
+        data-title="Sheet Metal, Welding & Balancing"
+        data-text="Public contractor listings identify in-house sheet-metal fabrication, welding, and air/water balancing among Jacobs Mechanical's capabilities."
+        data-image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=82">
+        <div class="service-img" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=82')"></div>
+        <div class="service-body"><i class="fa-solid fa-gears"></i><h3>Sheet Metal, Welding & Balancing</h3><p>Fabrication and specialty mechanical support capabilities.</p><span class="learn">View details <i class="fa-solid fa-arrow-right"></i></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section credentials" id="credentials">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Credentials</div>
+      <h2>Licensed and publicly documented.</h2>
+      <p>These credentials are supported by BBB, BuildZoom, and public contractor records.</p>
+    </div>
+    <div class="cred-grid">
+      <div class="cred"><i class="fa-solid fa-id-badge"></i><h3>Ohio HVAC License</h3><div class="mono">HV.27903</div><p>Listed by BBB for Jacobs Mechanical, Inc.</p></div>
+      <div class="cred"><i class="fa-solid fa-building-circle-check"></i><h3>Cincinnati License</h3><div class="mono">CBRC000538</div><p>BuildZoom shows the Cincinnati general license active as of 2026.</p></div>
+      <div class="cred"><i class="fa-solid fa-chart-line"></i><h3>BuildZoom Score</h3><div class="mono">106 / TOP 7%</div><p>BuildZoom ranks the contractor in the top 7% of Ohio licensed contractors on its platform.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap rating-grid reveal">
+    <div class="rating-box">
+      <div class="kicker">Current review snapshot</div>
+      <div class="rating-big">4.1</div>
+      <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+      <p>Current map data: 4.1 out of 5 from 16 reviews.</p>
+      <p style="margin-top:.75rem;font-size:.85rem">Birdeye separately shows 4.0 from 14 Google reviews. Platform totals differ, so this site does not combine them into one artificial average.</p>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <div class="kicker">Customer feedback</div>
+        <h2>Fast response and practical problem-solving.</h2>
+      </div>
+      <div class="themes">
+        <div class="theme"><h3>Fast diagnosis</h3><p>Reviewers describe quick arrival, rapid troubleshooting, and same-day furnace repair in urgent situations.</p></div>
+        <div class="theme"><h3>Creative solutions</h3><p>One review describes an unusual A/C replacement where Jacobs proposed a workable solution at substantially less than competing estimates.</p></div>
+        <div class="theme"><h3>Professional crews</h3><p>Property managers and homeowners mention knowledgeable technicians, tenant consideration, cleanup, and good communication.</p></div>
+        <div class="theme negative"><h3>Shop logistics</h3><p>One public review criticizes a long material-unloading delay at the shop; the complaint was about delivery logistics rather than HVAC workmanship.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hours" id="hours">
+  <div class="wrap hours-grid reveal">
+    <div>
+      <div class="section-head">
+        <div class="kicker">Hours</div>
+        <h2>Current listed business hours.</h2>
+      </div>
+      <ul class="hours-list">
+        <li><span>Monday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Tuesday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Wednesday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Thursday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Friday</span><strong>8:00 AM – 4:00 PM</strong></li>
+        <li><span>Saturday</span><strong>Closed</strong></li>
+        <li><span>Sunday</span><strong>Closed</strong></li>
+      </ul>
+    </div>
+    <div class="hours-note">
+      <i class="fa-solid fa-bolt" style="font-size:1.8rem;color:var(--brass);margin-bottom:.8rem"></i>
+      <h3 style="font-size:1.45rem;margin-bottom:.55rem">Emergency service</h3>
+      <p>Angi lists emergency service availability, and public reviews describe same-day response. Exact after-hours procedures and availability should be confirmed directly with the company.</p>
+      <div class="actions"><a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Request Service</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="wrap reveal">
+    <div class="section-head"><div class="kicker">FAQ</div><h2>What public records support.</h2></div>
+
+    <details><summary>Does Jacobs Mechanical handle residential HVAC?</summary><p>Yes. Angi describes a residential division, and public permits show residential furnace, A/C, heat-pump, coil, and air-handler work.</p></details>
+    <details><summary>Does Jacobs Mechanical handle commercial HVAC?</summary><p>Yes. BBB specifically lists commercial heating and air-conditioning services, and public permit records document substantial commercial work.</p></details>
+    <details><summary>Does the company fabricate ductwork and sheet metal?</summary><p>Yes. MacRae's lists ventilation, ductwork, and sheet-metal fabrication, while Angi describes an in-house fabrication shop.</p></details>
+    <details><summary>Does Jacobs Mechanical offer emergency service?</summary><p>Angi advertises emergency services, and public reviews describe same-day response. Exact availability should be confirmed with the company.</p></details>
+    <details><summary>How long has Jacobs Mechanical been operating?</summary><p>The company has roots dating to 1922 under the earlier B&J Jacobs Company name. BBB reports the current corporation started in 1984 and incorporated in 1985.</p></details>
+    <details><summary>Is Jacobs Mechanical licensed?</summary><p>Yes. BBB lists Ohio HVAC license HV.27903, and BuildZoom shows an active Cincinnati license CBRC000538.</p></details>
+    <details><summary>Does the company publish standard pricing?</summary><p>No reliable public standard price list was found. Project and repair pricing should be confirmed directly.</p></details>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid reveal">
+    <div>
+      <div class="kicker">Service request</div>
+      <h2>Talk through the system, space, or project.</h2>
+      <p>Direct contact information and real-world actions remain protected in this demo.</p>
+      <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      <div class="actions">
+        <a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Shop</a>
+        <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Get Directions</a>
+        <a href="#" class="btn ghost" data-locked="true"><i class="fa-solid fa-envelope"></i> Email Contact</a>
+      </div>
+    </div>
+    <div class="checklist">
+      <h3>Useful information for a service conversation</h3>
+      <div class="check"><i class="fa-solid fa-temperature-half"></i><span>Describe what the system is doing or not doing.</span></div>
+      <div class="check"><i class="fa-solid fa-building"></i><span>Residential, rental, commercial, industrial, or institutional setting.</span></div>
+      <div class="check"><i class="fa-solid fa-circle-exclamation"></i><span>Note whether the issue is urgent or affecting building operations.</span></div>
+      <div class="check"><i class="fa-solid fa-file-lines"></i><span>For larger projects, have plans, equipment information, or project scope ready when relevant.</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="giant">Jacobs <span>Mechanical</span></div>
+    <p>HVAC & mechanical contractor serving Greater Cincinnati. Demo website presentation.</p>
+    <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+  </div>
+</footer>
+
+<div class="service-modal-backdrop" id="serviceModal" aria-hidden="true">
+  <div class="service-modal" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+    <div class="service-modal-img" id="serviceModalImg"></div>
+    <div class="service-modal-body">
+      <div class="kicker">Service detail</div>
+      <h3 id="serviceModalTitle"></h3>
+      <p id="serviceModalText"></p>
+      <button class="btn" id="serviceModalClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <div class="modal-body">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="lockedClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const hamburger=document.querySelector('.hamburger');
+  const navMenu=document.getElementById('navMenu');
+
+  hamburger.addEventListener('click',()=>{
+    const open=navMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded',open?'true':'false');
+    hamburger.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('#navMenu a[href^="#"]:not([data-locked])').forEach(a=>a.addEventListener('click',()=>{
+    navMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded','false');
+    hamburger.innerHTML='<i class="fa-solid fa-bars"></i>';
+  }));
+
+  const lockedModal=document.getElementById('lockedModal');
+  const lockedClose=document.getElementById('lockedClose');
+  let lastFocus=null;
+
+  function openLocked(e){
+    if(e)e.preventDefault();
+    lastFocus=document.activeElement;
+    lockedModal.classList.add('show');
+    lockedModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    lockedClose.focus();
+  }
+  function closeLocked(){
+    lockedModal.classList.remove('show');
+    lockedModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus)lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+  lockedClose.addEventListener('click',closeLocked);
+  lockedModal.addEventListener('click',e=>{if(e.target===lockedModal)closeLocked()});
+
+  const serviceModal=document.getElementById('serviceModal');
+  const serviceModalClose=document.getElementById('serviceModalClose');
+  const serviceModalTitle=document.getElementById('serviceModalTitle');
+  const serviceModalText=document.getElementById('serviceModalText');
+  const serviceModalImg=document.getElementById('serviceModalImg');
+
+  function openService(card){
+    serviceModalTitle.textContent=card.dataset.title;
+    serviceModalText.textContent=card.dataset.text;
+    serviceModalImg.style.backgroundImage=`url("${card.dataset.image}")`;
+    serviceModal.classList.add('show');
+    serviceModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    serviceModalClose.focus();
+  }
+  function closeService(){
+    serviceModal.classList.remove('show');
+    serviceModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('.service').forEach(card=>{
+    card.addEventListener('click',()=>openService(card));
+    card.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){
+        e.preventDefault();
+        openService(card);
+      }
+    });
+  });
+
+  serviceModalClose.addEventListener('click',closeService);
+  serviceModal.addEventListener('click',e=>{if(e.target===serviceModal)closeService()});
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(lockedModal.classList.contains('show'))closeLocked();
+      if(serviceModal.classList.contains('show'))closeService();
+    }
+  });
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
+</script>
+</body>
+</html>

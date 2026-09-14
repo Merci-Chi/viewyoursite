@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="description" content="Laundromax in Columbus, OH. Address, hours, phone, and business information.">
+<title>Laundromax | Columbus, OH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{--primary:#2846c7;--accent:#76d7ff;--soft:#edf5ff;--paper:#ffffff;--deep:#15256c;--ink:#17202a;--muted:#66717d;--line:rgba(23,32,42,.13)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Archivo,Arial,sans-serif;color:var(--ink);background:var(--paper);overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit}button{font:inherit}img{max-width:100%;display:block}
+.wrap{width:min(1160px,calc(100% - 38px));margin:auto}
+header{position:fixed;inset:0 0 auto;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:800;letter-spacing:-.03em;font-size:1.18rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{width:35px;height:35px;display:grid;place-items:center;background:var(--primary);color:#fff;border-radius:50%}
+.desktop{display:flex;align-items:center;gap:25px}.desktop a{text-decoration:none;font-weight:700;font-size:.9rem}
+.menu{display:none;border:0;background:var(--primary);color:#fff;width:44px;height:44px;border-radius:8px;font-size:1.15rem}
+.mobile{display:none;position:fixed;top:76px;left:0;right:0;z-index:29;background:#fff;border-bottom:1px solid var(--line);padding:16px 20px;box-shadow:0 18px 30px rgba(0,0,0,.08)}
+.mobile.open{display:grid}.mobile a,.mobile button{padding:14px 4px;text-align:left;border:0;background:none;text-decoration:none;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border:0;border-radius:8px;font-weight:800;text-decoration:none;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}.btn-accent{background:var(--accent);color:var(--deep)}.btn-outline{border:1px solid rgba(255,255,255,.6);color:#fff;background:transparent}
+.hero{min-height:760px;display:flex;align-items:flex-end;padding:150px 0 90px;color:#fff;background:linear-gradient(90deg,rgba(9,18,29,.88),rgba(9,18,29,.62) 48%,rgba(9,18,29,.25)),url("https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=1800&q=86") center/cover no-repeat}
+.hero-content{max-width:760px}.kicker{font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;color:var(--accent);margin-bottom:16px}
+h1,h2,h3{margin-top:0}h1{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(3.3rem,7.4vw,7rem);line-height:.93;letter-spacing:-.035em;margin-bottom:22px}h2{font-family:"DM Serif Display",serif;font-weight:400;font-size:clamp(2.35rem,5vw,4.3rem);line-height:1;margin-bottom:18px}h3{font-size:1.2rem}
+.hero p{font-size:1.08rem;line-height:1.75;max-width:650px;color:rgba(255,255,255,.84)}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.info-strip{background:var(--soft);border-bottom:1px solid var(--line)}.strip-grid{display:grid;grid-template-columns:repeat(3,1fr)}.strip-item{padding:24px;border-right:1px solid var(--line);display:flex;gap:13px;align-items:flex-start}.strip-item:last-child{border-right:0}.strip-item i{color:var(--primary);font-size:1.2rem;margin-top:3px}.strip-item small{display:block;color:var(--muted);text-transform:uppercase;font-weight:800;letter-spacing:.1em;font-size:.66rem;margin-bottom:3px}
+section{padding:92px 0}.section-head{max-width:730px;margin-bottom:42px}.section-head p{color:var(--muted);line-height:1.75}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.fact{padding:28px 0;border-top:3px solid var(--primary)}.fact .icon{width:48px;height:48px;display:grid;place-items:center;background:var(--soft);color:var(--primary);border-radius:50%;font-size:1.2rem;margin-bottom:18px}.fact p{color:var(--muted);line-height:1.7}
+.photo-band{min-height:390px;background:linear-gradient(rgba(8,18,29,.48),rgba(8,18,29,.56)),url("https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=1800&q=86") center/cover fixed;display:flex;align-items:center;color:#fff}.photo-band .wrap{max-width:820px;text-align:center}.photo-band p{color:rgba(255,255,255,.82)}
+.visit{background:var(--soft)}.visit-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}.contact-card{background:#fff;border:1px solid var(--line);padding:30px}.contact-row{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.contact-row:last-child{border-bottom:0}.contact-row i{color:var(--primary);margin-top:4px}.contact-row span{color:var(--muted);font-size:.94rem;display:block;margin-top:3px}
+.hours{border-top:1px solid var(--line);margin-top:20px}.hour{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line)}.stock{font-size:.78rem;color:var(--muted);margin-top:14px}
+footer{background:var(--deep);color:#fff;padding:38px 0}.foot{display:flex;justify-content:space-between;gap:20px;align-items:center}.foot p{margin:0;color:rgba(255,255,255,.65);font-size:.9rem}
+.modal-bg{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.7);align-items:center;justify-content:center;padding:20px}.modal-bg.open{display:flex}.modal{width:min(460px,100%);background:#fff;padding:32px;border-top:5px solid var(--primary);box-shadow:0 30px 90px rgba(0,0,0,.35)}.modal p{color:var(--muted);line-height:1.65}.modal .btn{width:100%}
+@media(max-width:820px){.desktop{display:none}.menu{display:grid;place-items:center}.hero{min-height:680px}.strip-grid{grid-template-columns:1fr}.strip-item{border-right:0;border-bottom:1px solid var(--line)}.facts{grid-template-columns:1fr 1fr}.visit-grid{grid-template-columns:1fr;gap:40px}}
+@media(max-width:560px){.wrap{width:min(100% - 28px,1160px)}.nav{height:68px}.mobile{top:68px}.brand{font-size:1rem}.hero{min-height:640px;padding:125px 0 60px;background-position:58% center}h1{font-size:3.5rem}section{padding:70px 0}.facts{grid-template-columns:1fr}.actions .btn{width:100%}.hour{font-size:.9rem}.foot{display:block}.foot p{margin-top:10px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="#home"><i class="fa-solid fa-soap"></i>Laundromax</a><nav class="desktop"><a href="#about">About</a><a href="#details">Details</a><a href="#visit">Visit</a><button class="btn btn-primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button></nav><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button></div></header>
+<div class="mobile" id="mobileNav"><a href="#about">About</a><a href="#details">Details</a><a href="#visit">Visit</a><button data-locked="true"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;Call</button></div>
+
+<main id="home">
+<section class="hero"><div class="wrap hero-content"><div class="kicker">E Dublin Granville Rd · Columbus</div><h1>Laundromax. 150+ washers and dryers.</h1><p>Self-service laundry at 2210 E Dublin Granville Rd, open every day from 7 AM to 10 PM.</p><div class="actions"><a class="btn btn-accent" href="#details"><i class="fa-solid fa-arrow-down"></i> View details</a><button class="btn btn-outline" data-locked="true"><i class="fa-solid fa-phone"></i> (614) 892-9912</button></div></div></section>
+
+<div class="info-strip"><div class="wrap strip-grid"><div class="strip-item"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>Columbus, OH</strong></div></div><div class="strip-item"><i class="fa-solid fa-clock"></i><div><small>Hours</small><strong>7:00 AM – 10:00 PM</strong></div></div><div class="strip-item"><i class="fa-solid fa-phone"></i><div><small>Phone</small><strong>(614) 892-9912</strong></div></div></div></div>
+
+<section id="about"><div class="wrap"><div class="section-head"><div class="kicker" style="color:var(--primary)">Business overview</div><h2>Laundromax</h2><p>Self-service laundry at 2210 E Dublin Granville Rd, open every day from 7 AM to 10 PM.</p></div></div></section>
+
+<section id="details" style="padding-top:0"><div class="wrap"><div class="facts">
+      <article class="fact">
+        <div class="icon"><i class="fa-solid fa-gauge-high"></i></div>
+        <h3>150+ machines</h3>
+        <p>The supplied business data states 150+ washers and dryers.</p>
+      </article>
+
+      <article class="fact">
+        <div class="icon"><i class="fa-solid fa-clock"></i></div>
+        <h3>Open daily</h3>
+        <p>7:00 AM to 10:00 PM, all seven days.</p>
+      </article>
+
+      <article class="fact">
+        <div class="icon"><i class="fa-solid fa-building"></i></div>
+        <h3>Remodeled space</h3>
+        <p>The supplied business data identifies the location as remodeled.</p>
+      </article></div></div></section>
+
+<section class="photo-band"><div class="wrap"><div class="kicker">Stock imagery</div><h2>Plan your visit.</h2><p>Photography on this demo is industry-relevant stock imagery and does not represent the actual location, staff, or equipment.</p></div></section>
+
+<section class="visit" id="visit"><div class="wrap visit-grid"><div><div class="kicker" style="color:var(--primary)">Hours & location</div><h2>Visit Laundromax</h2><p>2210 E Dublin Granville Rd, Columbus, OH 43229</p><div class="actions"><button class="btn btn-primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call (614) 892-9912</button><button class="btn" style="background:var(--deep);color:#fff" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Directions</button></div></div><div class="contact-card"><div class="contact-row"><i class="fa-solid fa-location-dot"></i><div><strong>Address</strong><span>2210 E Dublin Granville Rd, Columbus, OH 43229</span></div></div><div class="contact-row"><i class="fa-solid fa-phone"></i><div><strong>Phone</strong><span>(614) 892-9912</span></div></div><div class="contact-row"><i class="fa-solid fa-clock"></i><div style="width:100%"><strong>Business hours</strong><div class="hours"><div class="hour"><span>Sunday</span><strong>7:00 AM – 10:00 PM</strong></div>
+<div class="hour"><span>Monday</span><strong>7:00 AM – 10:00 PM</strong></div>
+<div class="hour"><span>Tuesday</span><strong>7:00 AM – 10:00 PM</strong></div>
+<div class="hour"><span>Wednesday</span><strong>7:00 AM – 10:00 PM</strong></div>
+<div class="hour"><span>Thursday</span><strong>7:00 AM – 10:00 PM</strong></div>
+<div class="hour"><span>Friday</span><strong>7:00 AM – 10:00 PM</strong></div>
+<div class="hour"><span>Saturday</span><strong>7:00 AM – 10:00 PM</strong></div></div></div></div><div class="stock">Stock photography is used throughout this demo.</div></div></div></section>
+</main>
+
+<footer><div class="wrap foot"><div><strong>Laundromax</strong><p>2210 E Dublin Granville Rd, Columbus, OH 43229</p></div><p>Demo website · Stock imagery used</p></div></footer>
+
+<div class="modal-bg" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockTitle"><div class="modal"><h3 id="lockTitle">This is currently locked.</h3><p>This feature is part of the full website. Purchase the site to unlock it.</p><button class="btn btn-primary" id="closeModal">Close</button></div></div>
+
+<script>
+const menuBtn=document.getElementById("menuBtn");
+const mobileNav=document.getElementById("mobileNav");
+const modal=document.getElementById("lockedModal");
+const closeModal=document.getElementById("closeModal");
+
+menuBtn.addEventListener("click",()=>{
+  const open=mobileNav.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded",String(open));
+  menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+});
+document.querySelectorAll(".mobile a").forEach(a=>a.addEventListener("click",()=>{
+  mobileNav.classList.remove("open");
+  menuBtn.setAttribute("aria-expanded","false");
+  menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+}));
+function openLocked(){
+  modal.classList.add("open");
+  document.body.style.overflow="hidden";
+  closeModal.focus();
+}
+function closeLocked(){
+  modal.classList.remove("open");
+  document.body.style.overflow="";
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openLocked();}));
+closeModal.addEventListener("click",closeLocked);
+modal.addEventListener("click",e=>{if(e.target===modal)closeLocked();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modal.classList.contains("open"))closeLocked();});
+</script>
+</body>
+</html>

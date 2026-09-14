@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>PUFF STOP SMOKE SHOP | Philadelphia</title>
+<meta name="description" content="PUFF STOP SMOKE SHOP in Philadelphia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
+
+:root{--bg:#0c1415;--panel:#132022;--ink:#f7f4ed;--muted:#a8bab9;--accent:#f08a5d;--line:rgba(255,255,255,.12);--modal-bg:#171719;--modal-text:#fff;--modal-muted:#d6cfd8}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif}
+.wrap{width:min(calc(100% - 40px),1160px);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(12,20,21,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:800 1rem "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em}.brand small{display:block;font:.62rem "Inter",sans-serif;color:var(--muted);letter-spacing:.14em;margin-top:4px}.navlinks{display:flex;gap:24px;font-size:.8rem;font-weight:800}.navlinks a:hover{color:var(--accent)}
+.hamb{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--line)}.hamb span{display:block;width:23px;height:2px;background:var(--ink);margin:5px auto}
+.mobile{display:none;background:var(--panel);padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:800}
+.hero{min-height:710px;display:flex;align-items:end;position:relative;background:linear-gradient(90deg,rgba(10,12,12,.95),rgba(10,12,12,.62) 52%,rgba(10,12,12,.18)),url("https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat}
+.hero-in{padding:108px 0 70px;max-width:830px}.kicker{color:var(--accent);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900}
+.hero h1{font:800 clamp(3.8rem,8vw,7rem)/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:16px 0 20px;letter-spacing:-.03em}.hero p{font-size:1.08rem;color:var(--muted);line-height:1.75;max-width:680px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{min-height:48px;padding:12px 20px;border:1px solid var(--accent);background:transparent;color:var(--ink);font-weight:900;cursor:pointer}.btn.fill{background:var(--accent);color:#111}
+.stock{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.68);padding:7px 9px;font-size:.62rem;text-transform:uppercase;color:var(--ink)}
+.factbar{background:var(--panel);border-block:1px solid var(--line)}.factgrid{display:grid;grid-template-columns:repeat(3,1fr)}.fact{padding:22px;border-right:1px solid var(--line);display:flex;gap:12px}.fact:last-child{border-right:0}.fact i{color:var(--accent)}.fact small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.11em;font-size:.62rem}.fact strong{display:block;margin-top:5px}
+.section{padding:88px 0;scroll-margin-top:74px}.section.alt{background:var(--panel)}.section h2{font:800 clamp(2.7rem,5vw,4.8rem)/.98 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 18px}.lead{max-width:760px;color:var(--muted);line-height:1.8}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.highlight{background:#132022;border:1px solid var(--line);padding:22px}.highlight i{color:var(--accent);margin-bottom:10px}.highlight strong{display:block}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}.service{background:#132022;border:1px solid var(--line);padding:22px}.service i{color:var(--accent)}.service h3{font-size:1rem}.service p{color:var(--muted);line-height:1.6}
+.reviews{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}.review{background:#132022;border:1px solid var(--line);padding:24px}.review p{line-height:1.7}.review span{color:var(--muted);font-size:.75rem;text-transform:uppercase}
+.hours{max-width:760px;border-top:1px solid var(--line);margin-top:28px}.hour{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}.hour span{color:var(--muted)}
+.visitgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:#132022;border:1px solid var(--line);padding:28px}.card p{color:var(--muted)}.protected{border-left:4px solid var(--accent);background:#1b1d1b;padding:16px;margin:18px 0}
+.notice{margin-top:20px;padding:16px;border:1px solid var(--line);font-weight:800}
+footer{padding:34px 0;color:var(--muted);border-top:1px solid var(--line)}
+@media(max-width:900px){.navlinks{display:none}.hamb{display:block}.services{grid-template-columns:1fr 1fr}.reviews,.visitgrid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{width:min(calc(100% - 28px),1160px)}.hero{min-height:640px;background-position:60% center}.hero-in{padding:92px 0 48px}.actions{display:grid}.btn{width:100%}.factgrid{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid var(--line)}.highlights,.services{grid-template-columns:1fr}.section{padding:68px 0}}
+
+
+.lock-backdrop{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.74)}
+.lock-backdrop.open{display:flex}
+.lock-dialog{width:min(100%,440px);background:var(--modal-bg,#181818);color:var(--modal-text,#fff);padding:30px;border-top:4px solid var(--accent);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.lock-dialog h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}
+.lock-dialog p{margin:0 0 20px;color:var(--modal-muted,#d0d0d0);line-height:1.65}
+.lock-dialog button{width:100%;min-height:46px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav"><a href="#home" class="brand">PUFF STOP SMOKE SHOP<small>Philadelphia</small></a><nav class="navlinks"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav><button class="hamb" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-in"><div class="kicker">Philadelphia</div><h1>PUFF STOP SMOKE SHOP</h1><p>Glass, flower, and good vibes</p><div class="actions"><a class="btn fill" href="#services">Services</a><a class="btn" href="#visit">Visit</a><button class="btn" type="button" data-locked="true">Call</button></div></div><div class="stock">Relevant stock smoke-shop imagery · not the actual business</div></section>
+<section class="factbar"><div class="wrap factgrid"><div class="fact"><i class="fa-solid fa-star"></i><div><small>Rating</small><strong>4.9 on local listings</strong></div></div><div class="fact"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>Philadelphia, PA 19102</strong></div></div><div class="fact"><i class="fa-regular fa-clock"></i><div><small>Hours</small><strong>Sun–Thu 10 AM–10 PM · Fri–Sat 10 AM–12 AM</strong></div></div></div></section>
+<section class="section" id="about"><div class="wrap"><div class="kicker">About</div><h2>PUFF STOP SMOKE SHOP</h2><p class="lead">PUFF STOP SMOKE SHOP in Philadelphia. Your neighborhood smoke shop for glass, flower, vapes, and good vibes. Come in, ask questions, leave set.</p><div class="highlights"><div class="highlight"><i class="fa-solid fa-flask"></i><strong>Glass wall</strong></div><div class="highlight"><i class="fa-solid fa-wind"></i><strong>Vape bar</strong></div><div class="highlight"><i class="fa-solid fa-location-dot"></i><strong>Local picks</strong></div></div></div></section>
+<section class="section alt" id="services"><div class="wrap"><div class="kicker">Services</div><h2>What you’ll find at PUFF STOP SMOKE SHOP.</h2><div class="services"><article class="service"><i class="fa-solid fa-leaf"></i><h3>Premium flower & vapes</h3><p>Available in-store.</p></article><article class="service"><i class="fa-solid fa-flask"></i><h3>Glass & accessories</h3><p>Available in-store.</p></article><article class="service"><i class="fa-solid fa-scroll"></i><h3>CBD & wellness</h3><p>Available in-store.</p></article><article class="service"><i class="fa-solid fa-user-group"></i><h3>Local-friendly staff</h3><p>Available in-store.</p></article></div></div></section>
+<section class="section" id="reviews"><div class="wrap"><div class="kicker">Reviews</div><h2>4.9 on local listings</h2><div class="reviews"><article class="review"><p>“Friendly stop in Philadelphia. Worth swinging by.”</p><span>Neighborhood visitor</span></article><article class="review"><p>“Good prices and solid smoke.”</p><span>Neighborhood visitor</span></article></div><div class="actions"><button class="btn fill" type="button" data-locked="true">See more on Maps</button></div></div></section>
+<section class="section alt" id="hours"><div class="wrap"><div class="kicker">Hours</div><h2>Open late</h2><div class="hours"><div class="hour"><strong>Sunday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Monday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Tuesday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Wednesday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Thursday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Friday</strong><span>10:00 AM – 12:00 AM</span></div><div class="hour"><strong>Saturday</strong><span>10:00 AM – 12:00 AM</span></div></div><p class="lead">Hours may change on holidays — call to confirm.</p></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="kicker">Visit</div><h2>PUFF STOP SMOKE SHOP</h2><div class="visitgrid"><div class="card"><h3>Find us</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public street address is hidden in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Get directions</button></div><div class="card"><h3>Call</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Phone actions are disabled in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Call</button></div></div></div></section>
+</main>
+<footer><div class="wrap">PUFF STOP SMOKE SHOP · Philadelphia, PA 19102</div></footer>
+
+
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileNav=document.getElementById('mobileNav');
+  const modal=document.getElementById('lockModal');
+  const closeBtn=document.getElementById('lockClose');
+  let lastFocus=null;
+
+  if(menuBtn && mobileNav){
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',String(open));
+    });
+    document.querySelectorAll('#mobileNav a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',()=>{
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  function openLock(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus && typeof lastFocus.focus==='function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
+    });
+  });
+
+  document.querySelectorAll('form').forEach(form=>{
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      openLock(e.submitter||form);
+    });
+  });
+
+  closeBtn.addEventListener('click',closeLock);
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeLock(); });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && modal.classList.contains('open')) closeLock();
+    if(e.key==='Tab' && modal.classList.contains('open')){ e.preventDefault(); closeBtn.focus(); }
+    if((e.ctrlKey||e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('gesturechange',e=>e.preventDefault());
+  document.addEventListener('gestureend',e=>e.preventDefault());
+  document.addEventListener('wheel',e=>{ if(e.ctrlKey)e.preventDefault(); },{passive:false});
+})();
+</script>
+
+</body>
+</html>

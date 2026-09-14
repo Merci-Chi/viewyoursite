@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#17120f">
+<title>The Happy Grape Liquors Baltimore | Baltimore, MD</title>
+<meta name="description" content="The Happy Grape Liquors Baltimore. Wine, beer, and spirits in Baltimore.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --ink:#211713;
+  --espresso:#17120f;
+  --wine:#6e2132;
+  --wine2:#8b3044;
+  --grape:#51345d;
+  --gold:#d7b36a;
+  --cream:#f6efe5;
+  --paper:#fffaf3;
+  --muted:#786b63;
+  --line:rgba(65,41,31,.16);
+  --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+  touch-action:pan-y;
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2,h3,.serif{font-family:"Fraunces",serif}
+h1,h2,h3,p{margin-top:0}
+img{max-width:100%;display:block}
+
+/* header */
+.site-header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(23,18,15,.94);
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(14px);
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:13px}
+.brand-mark{
+  width:44px;height:44px;border:1px solid rgba(215,179,106,.55);
+  display:grid;place-items:center;color:var(--gold);
+  font-family:"Fraunces",serif;font-weight:800;
+}
+.brand-copy{line-height:1}
+.brand-copy strong{display:block;font-family:"Fraunces",serif;font-size:1rem}
+.brand-copy small{display:block;margin-top:5px;color:#cfc1b6;font-size:.62rem;letter-spacing:.17em;text-transform:uppercase}
+.navlinks{display:flex;align-items:center;gap:28px}
+.navlinks a{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#eadfd7}
+.navlinks a:hover{color:var(--gold)}
+.menu{
+  display:none;width:46px;height:44px;border:1px solid rgba(255,255,255,.18);
+  background:transparent;color:#fff;font-size:1rem
+}
+
+/* hero */
+.hero{
+  min-height:760px;
+  display:flex;align-items:end;
+  position:relative;overflow:hidden;color:#fff;
+  background:
+    linear-gradient(90deg,rgba(20,13,10,.86) 0%,rgba(20,13,10,.67) 44%,rgba(20,13,10,.27) 100%),
+    linear-gradient(0deg,rgba(20,13,10,.75),transparent 50%),
+    url("https://unsplash.com/photos/e0d-QR0gUFE/download?force=true") center/cover no-repeat;
+}
+.hero:after{
+  content:"HG";position:absolute;right:-10px;top:20px;
+  font:800 min(33vw,440px)/.8 "Fraunces",serif;
+  color:transparent;-webkit-text-stroke:2px rgba(215,179,106,.10)
+}
+.hero-in{position:relative;z-index:2;padding:118px 0 76px;max-width:830px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  color:#f1d49f;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase
+}
+.eyebrow:before{content:"";width:36px;height:1px;background:var(--gold)}
+.hero h1{
+  margin:20px 0 22px;
+  font-size:clamp(4rem,8.6vw,8rem);
+  line-height:.92;letter-spacing:-.045em;
+}
+.hero h1 span{color:var(--gold)}
+.hero-copy{max-width:650px;color:#eadfd7;font-size:1.1rem;line-height:1.75}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 20px;border:1px solid transparent;
+  font:700 .8rem "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:.18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#20160f}
+.btn-ghost{background:rgba(0,0,0,.12);border-color:rgba(255,255,255,.44);color:#fff}
+.stock-note{
+  margin-top:18px;color:rgba(255,255,255,.56);
+  font-size:.65rem;letter-spacing:.06em;text-transform:uppercase
+}
+
+/* strip */
+.info-strip{background:var(--espresso);color:#fff}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.info{padding:22px 24px;border-right:1px solid rgba(255,255,255,.1);display:flex;gap:12px}
+.info:last-child{border-right:0}
+.info i{color:var(--gold);margin-top:3px}
+.info small{display:block;color:#bbaea4;font-size:.64rem;text-transform:uppercase;letter-spacing:.13em;margin-bottom:4px}
+.info strong{font-size:.94rem}
+
+/* sections */
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-head{display:grid;grid-template-columns:.82fr 1.18fr;gap:50px;align-items:end;margin-bottom:40px}
+.kicker{color:var(--wine);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+.section-head h2{font-size:clamp(2.8rem,5.2vw,5rem);line-height:.96;margin:0;letter-spacing:-.035em}
+.section-head p{color:var(--muted);max-width:650px;line-height:1.75}
+.about{
+  background:
+    linear-gradient(rgba(246,239,229,.9),rgba(246,239,229,.9)),
+    url("https://unsplash.com/photos/Qh-sNlFreXE/download?force=true") center/cover fixed;
+}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--line);gap:1px}
+.highlight{background:rgba(255,250,243,.96);padding:30px}
+.highlight i{color:var(--wine);font-size:1.25rem;margin-bottom:18px}
+.highlight h3{font-size:1.35rem;margin-bottom:8px}
+.highlight p{color:var(--muted);font-size:.92rem}
+
+/* selection */
+.selection{
+  color:#fff;
+  background:
+    linear-gradient(rgba(23,18,15,.84),rgba(23,18,15,.9)),
+    url("https://unsplash.com/photos/dxN0PSEeO04/download?force=true") center/cover no-repeat;
+}
+.selection .kicker{color:#e9c987}
+.selection .section-head p{color:#d8ccc4}
+.selection-list{border-top:1px solid rgba(255,255,255,.16)}
+.selection-row{
+  display:grid;grid-template-columns:55px 1fr;gap:16px;align-items:center;
+  padding:23px 0;border-bottom:1px solid rgba(255,255,255,.14)
+}
+.selection-row .icon{
+  width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(215,179,106,.45);color:var(--gold)
+}
+.selection-row h3{font-size:1.25rem;margin:0}
+
+/* hours */
+.hours{background:var(--paper)}
+.hours-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:56px}
+.protected{
+  margin-top:24px;padding:19px 20px;background:#f5e9e6;border-left:4px solid var(--wine)
+}
+.protected strong{display:block;color:var(--wine);font-size:.73rem;letter-spacing:.11em;text-transform:uppercase;margin-bottom:5px}
+.protected p{color:var(--muted);font-size:.91rem;margin:0}
+.hours-list{border-top:1px solid var(--line)}
+.hrow{display:flex;justify-content:space-between;gap:22px;padding:14px 0;border-bottom:1px solid var(--line)}
+.hrow span{color:var(--muted)}
+.hrow.today strong{color:var(--wine)}
+
+/* reviews */
+.reviews{
+  color:#fff;
+  background:
+    linear-gradient(rgba(46,25,35,.88),rgba(46,25,35,.92)),
+    url("https://unsplash.com/photos/9E1-wY5u1f4/download?force=true") center/cover no-repeat;
+}
+.reviews .kicker{color:#f0ce91}
+.reviews .section-head p{color:#dfd0d5}
+.rating{display:flex;align-items:end;gap:14px;margin-bottom:28px}
+.rating strong{font:700 5rem/.8 "Fraunces",serif;color:var(--gold)}
+.rating span{color:#e3d3d9}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.review{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);padding:26px}
+.review .stars{color:var(--gold);font-size:.8rem;margin-bottom:13px}
+.review p{line-height:1.65}
+.review span{display:block;margin-top:12px;color:#cbb8c0;font-size:.72rem;text-transform:uppercase;letter-spacing:.09em}
+
+/* visit */
+.visit{
+  background:
+    linear-gradient(rgba(246,239,229,.9),rgba(246,239,229,.9)),
+    url("https://unsplash.com/photos/CCyY4QNORJc/download?force=true") center/cover no-repeat;
+}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.card{background:rgba(255,250,243,.95);border:1px solid var(--line);padding:30px}
+.card h3{font-size:1.4rem;margin-bottom:12px}
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:6px}
+.field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cdbeb2;background:#fff;font:inherit}
+.field textarea{min-height:108px;resize:vertical}
+
+/* footer */
+footer{
+  background:var(--espresso);color:#c7b9af;padding:38px 0;
+  border-top:1px solid rgba(255,255,255,.08)
+}
+.footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center}
+.footer-row strong{font-family:"Fraunces",serif;color:#fff}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap}
+.footer-nav a{color:#fff;font-size:.8rem}
+
+/* modal */
+.modal{
+  position:fixed;inset:0;z-index:1000;display:none;place-items:center;
+  background:rgba(0,0,0,.76);padding:20px
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(470px,100%);background:var(--paper);color:var(--ink);
+  border-top:6px solid var(--wine);padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.45)
+}
+.modal-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--espresso);color:var(--gold);margin-bottom:18px}
+.modal-card h2{font-size:2rem;margin-bottom:10px}
+.modal-card p{color:var(--muted);margin-bottom:22px}
+
+@media(max-width:900px){
+  .menu{display:grid;place-items:center}
+  .navlinks{
+    display:none;position:absolute;top:76px;left:0;right:0;background:var(--espresso);
+    padding:8px 20px 18px;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid rgba(255,255,255,.08)
+  }
+  .navlinks.open{display:flex}
+  .navlinks a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .section-head,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:30px}
+  .highlights,.review-grid,.info-grid{grid-template-columns:1fr}
+  .info{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .info:last-child{border-bottom:0}
+}
+@media(max-width:600px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .hero{min-height:670px;background-position:55% center}
+  .hero-in{padding:94px 0 54px}
+  .hero h1{font-size:clamp(3.5rem,16vw,5.4rem)}
+  .actions{display:grid}
+  .btn{width:100%}
+  .section{padding:68px 0}
+  .about{background-attachment:scroll}
+  .footer-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="The Happy Grape Liquors Baltimore home">
+      <span class="brand-mark">HG</span>
+      <span class="brand-copy">
+        <strong>The Happy Grape Liquors Baltimore</strong>
+        <small>Baltimore</small>
+      </span>
+    </a>
+    <button class="menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#selection">Selection</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <div class="eyebrow">Baltimore nights</div>
+    <h1>The Happy <span>Grape</span></h1>
+    <p class="hero-copy">Wine, beer, and spirits around the corner in Baltimore.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#selection"><i class="fa-solid fa-wine-bottle"></i> View selection</a>
+      <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </div>
+    <p class="stock-note">Relevant stock wine-shop imagery is used for presentation and does not depict the actual business, staff, products, or premises.</p>
+  </div>
+</section>
+
+<section class="info-strip">
+  <div class="wrap info-grid">
+    <div class="info"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>Baltimore, Maryland</strong></div></div>
+    <div class="info"><i class="fa-solid fa-star"></i><div><small>Local listing</small><strong>4.1 rating shown in source</strong></div></div>
+    <div class="info"><i class="fa-regular fa-clock"></i><div><small>Hours</small><strong>10 AM opening daily</strong></div></div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">About</div><h2>A Baltimore liquor shop around the corner.</h2></div>
+      <p>The supplied source describes The Happy Grape Liquors Baltimore as a Baltimore shop for wine, beer, and spirits, with cold drinks, fair prices, and counter service.</p>
+    </div>
+    <div class="highlights">
+      <div class="highlight"><i class="fa-solid fa-snowflake"></i><h3>Cold case</h3><p>Listed as a highlight in the supplied page.</p></div>
+      <div class="highlight"><i class="fa-solid fa-wine-bottle"></i><h3>Wine wall</h3><p>Listed as a highlight in the supplied page.</p></div>
+      <div class="highlight"><i class="fa-solid fa-tags"></i><h3>Weekly specials</h3><p>Listed as a highlight in the supplied page.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section selection" id="selection">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">Selection</div><h2>What the supplied page lists.</h2></div>
+      <p>No prices, brands, inventory counts, or additional product claims have been added.</p>
+    </div>
+    <div class="selection-list">
+      <div class="selection-row"><div class="icon"><i class="fa-solid fa-wine-glass"></i></div><h3>Wine, beer &amp; spirits</h3></div>
+      <div class="selection-row"><div class="icon"><i class="fa-solid fa-basket-shopping"></i></div><h3>Everyday staples</h3></div>
+      <div class="selection-row"><div class="icon"><i class="fa-solid fa-temperature-low"></i></div><h3>Cold cases ready</h3></div>
+      <div class="selection-row"><div class="icon"><i class="fa-solid fa-comments"></i></div><h3>Friendly counter help</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="section hours" id="hours">
+  <div class="wrap hours-grid">
+    <div>
+      <div class="kicker">Hours</div>
+      <h2>Hours listed in the source.</h2>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>The source contains a public street address and phone number. Those exact contact details are intentionally hidden in this sample.</p>
+      </div>
+      <p style="margin-top:14px;color:var(--muted);font-size:.88rem">The source notes that hours may change on holidays and says to call to confirm.</p>
+    </div>
+    <div class="hours-list">
+      <div class="hrow" data-day="0"><strong>Sunday</strong><span>10:00 AM – 8:00 PM</span></div>
+      <div class="hrow" data-day="1"><strong>Monday</strong><span>10:00 AM – 10:00 PM</span></div>
+      <div class="hrow" data-day="2"><strong>Tuesday</strong><span>10:00 AM – 10:00 PM</span></div>
+      <div class="hrow" data-day="3"><strong>Wednesday</strong><span>10:00 AM – 10:00 PM</span></div>
+      <div class="hrow" data-day="4"><strong>Thursday</strong><span>10:00 AM – 10:00 PM</span></div>
+      <div class="hrow" data-day="5"><strong>Friday</strong><span>10:00 AM – 10:00 PM</span></div>
+      <div class="hrow" data-day="6"><strong>Saturday</strong><span>10:00 AM – 10:00 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">Reviews</div><h2>Customer comments from the supplied page.</h2></div>
+      <p>The source shows a 4.1 local-listing rating and the following three review statements. No additional reviews have been created.</p>
+    </div>
+    <div class="rating"><strong>4.1</strong><span>rating shown on local listings in the supplied source</span></div>
+    <div class="review-grid">
+      <article class="review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Friendly stop in Baltimore. Worth swinging by.”</p><span>Neighborhood visitor</span></article>
+      <article class="review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Good prices and solid liquor.”</p><span>Neighborhood visitor</span></article>
+      <article class="review"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“Neighborhood favorite — easy to find at 29 Light St.”</p><span>Neighborhood visitor</span></article>
+    </div>
+    <div class="actions" style="justify-content:center"><button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map"></i> See more on Maps</button></div>
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">Visit</div><h2>The Happy Grape Liquors Baltimore</h2></div>
+      <p>The source includes a public Baltimore street address, phone number, Google Maps action, and text-message form. Those real-world actions stay protected in this demo.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="card">
+        <h3><i class="fa-solid fa-location-dot"></i> Find us</h3>
+        <div class="protected">
+          <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+          <p>Business street address and phone number are hidden in this sample website.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          <button class="btn" style="border-color:var(--wine);color:var(--wine);background:transparent" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-message"></i> Send a message</h3>
+        <p style="color:var(--muted);margin-bottom:18px">The original page includes a text-message form. Submission remains locked in this demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Text the shop</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div><strong>The Happy Grape Liquors Baltimore</strong><div style="font-size:.8rem;margin-top:4px">Baltimore · Demo website</div></div>
+    <nav class="footer-nav"><a href="#about">About</a><a href="#selection">Selection</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="closeModal" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeModal = document.getElementById('closeModal');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }));
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeModal.focus();
+  }
+
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked(form.querySelector('[data-locked="true"]'));
+  });
+
+  closeModal.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/New_York',
+    weekday:'short'
+  }).format(new Date());
+  const days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hrow[data-day="' + days[today] + '"]');
+  if(row) row.classList.add('today');
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+})();
+</script>
+
+<!--
+DEMO NOTES
+- Source-supported business: The Happy Grape Liquors Baltimore.
+- Source-supported location: Baltimore.
+- Source-supported categories: Wine, beer & spirits; Everyday staples; Cold cases ready; Friendly counter help.
+- Source-supported highlights: Cold case; Wine wall; Weekly specials.
+- Source-supported rating/review statements preserved from the uploaded page.
+- Source-supported hours preserved.
+- Exact phone number and street address are protected in this demo.
+- Relevant free-use Unsplash wine-shop imagery is used as stock imagery and does not depict the actual business.
+- JavaScript uses normal && operators, never encoded HTML entities for operators.
+-->
+</body>
+</html>

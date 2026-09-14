@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#3f184a">
+<title>Sunshine Smoke Shop | Sacramento, CA</title>
+<meta name="description" content="Sunshine Smoke Shop in Sacramento. Vapes, papers and wraps, hemp and CBD. Open daily 8 AM to midnight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --purple:#4c1f63;
+  --purple-dark:#2e1539;
+  --orange:#ff8a1f;
+  --gold:#ffc24f;
+  --cream:#fff8ef;
+  --paper:#fffdf9;
+  --ink:#2d201b;
+  --muted:#75645b;
+  --line:rgba(76,31,99,.14);
+  --max:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Urbanist",sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+  touch-action:pan-y;
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2,.script{font-family:"Pacifico",cursive;font-weight:400}
+h3{font-family:"Urbanist",sans-serif}
+h1,h2,h3,p{margin-top:0}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(46,21,57,.94);
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(14px);
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;background:var(--orange);color:#fff;
+  box-shadow:0 0 0 7px rgba(255,138,31,.14)
+}
+.brand-copy strong{display:block;font:400 1.3rem "Pacifico",cursive}
+.brand-copy small{display:block;margin-top:2px;color:#d8c7df;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+.navlinks{display:flex;align-items:center;gap:26px}
+.navlinks a{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f0e7f3}
+.navlinks a:hover{color:var(--gold)}
+.menu{display:none;width:46px;height:44px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-size:1rem}
+
+.hero{
+  min-height:740px;
+  display:flex;align-items:end;
+  position:relative;overflow:hidden;color:#fff;
+  background:
+    linear-gradient(90deg,rgba(34,14,42,.88) 0%,rgba(34,14,42,.66) 46%,rgba(34,14,42,.28) 100%),
+    linear-gradient(0deg,rgba(34,14,42,.76),transparent 58%),
+    url("https://unsplash.com/photos/_YWVTsFYo-g/download?force=true") center/cover no-repeat;
+}
+.hero:after{
+  content:"";position:absolute;right:-80px;top:70px;width:320px;height:320px;border-radius:50%;
+  border:2px solid rgba(255,194,79,.13);box-shadow:0 0 0 34px rgba(255,194,79,.05),0 0 0 68px rgba(255,194,79,.03)
+}
+.hero-in{position:relative;z-index:2;padding:110px 0 72px;max-width:820px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:#ffd793;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow:before{content:"";width:38px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(3.7rem,8.4vw,7.6rem);line-height:.98;margin:18px 0 22px}
+.hero h1 span{color:var(--gold)}
+.hero-copy{max-width:650px;color:#efe3f0;font-size:1.08rem;line-height:1.75}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 20px;border:1px solid transparent;
+  font:700 .8rem "Urbanist",sans-serif;letter-spacing:.08em;text-transform:uppercase;
+  cursor:pointer;transition:.18s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--orange);color:#28170d}
+.btn-ghost{border-color:rgba(255,255,255,.45);color:#fff;background:rgba(0,0,0,.12)}
+.stock-note{margin-top:17px;color:rgba(255,255,255,.56);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase}
+
+.quick{background:var(--purple-dark);color:#fff}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.fact{padding:22px 24px;border-right:1px solid rgba(255,255,255,.1);display:flex;gap:12px}
+.fact:last-child{border-right:0}
+.fact i{color:var(--gold);margin-top:3px}
+.fact small{display:block;color:#cdbfd2;font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:4px}
+.fact strong{font-size:.94rem}
+
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-head{display:grid;grid-template-columns:.86fr 1.14fr;gap:50px;align-items:end;margin-bottom:40px}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
+.section-head h2{font-size:clamp(2.6rem,5vw,4.8rem);line-height:1.02;margin:0;color:var(--purple)}
+.section-head p{color:var(--muted);max-width:650px;line-height:1.75}
+
+.goods{
+  background:
+    linear-gradient(rgba(255,248,239,.9),rgba(255,248,239,.9)),
+    url("https://unsplash.com/photos/drtB7KU-y2s/download?force=true") center/cover fixed;
+}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.item{background:rgba(255,253,249,.96);padding:30px;min-height:220px}
+.item-icon{width:48px;height:48px;border:1px solid var(--purple);display:grid;place-items:center;color:var(--orange);margin-bottom:20px}
+.item h3{font-size:1.2rem;color:var(--purple);margin-bottom:8px}
+.item p{color:var(--muted);font-size:.93rem;line-height:1.65}
+
+.hours{background:var(--paper)}
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.hours-list{border-top:1px solid var(--line)}
+.hrow{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+.hrow span{color:var(--muted)}
+.hrow.today strong{color:var(--orange)}
+.protected{margin-top:24px;padding:18px 20px;background:#f7eafa;border-left:4px solid var(--purple)}
+.protected strong{display:block;color:var(--purple);font-size:.73rem;letter-spacing:.11em;text-transform:uppercase;margin-bottom:5px}
+.protected p{margin:0;color:var(--muted);font-size:.91rem}
+
+.reviews{
+  color:#fff;
+  background:
+    linear-gradient(rgba(46,21,57,.9),rgba(46,21,57,.93)),
+    url("https://unsplash.com/photos/0rgZp-E8iIs/download?force=true") center/cover no-repeat;
+}
+.reviews .kicker{color:#ffd18b}
+.reviews .section-head h2{color:#fff}
+.reviews .section-head p{color:#ded0e1}
+.rating{display:flex;align-items:end;gap:14px;margin-bottom:28px}
+.rating strong{font:400 5rem/.8 "Pacifico",cursive;color:var(--gold)}
+.rating span{color:#dfd3e2}
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.quote{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);padding:26px}
+.stars{color:var(--gold);font-size:.8rem;margin-bottom:12px}
+.quote p{line-height:1.7}
+.quote span{display:block;margin-top:12px;color:#cdbfd2;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+
+.visit{
+  background:
+    linear-gradient(rgba(255,248,239,.9),rgba(255,248,239,.9)),
+    url("https://unsplash.com/photos/0rgZp-E8iIs/download?force=true") center/cover no-repeat;
+}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.card{background:rgba(255,253,249,.95);border:1px solid var(--line);padding:30px}
+.card h3{font-size:1.25rem;color:var(--purple);margin-bottom:12px}
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:6px}
+.field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #cabccf;background:#fff;font:inherit}
+.field textarea{min-height:108px;resize:vertical}
+
+footer{background:var(--purple-dark);color:#cdbfd2;padding:38px 0}
+.footer-row{display:flex;justify-content:space-between;gap:28px;align-items:center}
+.footer-row strong{font:400 1.25rem "Pacifico",cursive;color:#fff}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap}
+.footer-nav a{color:#fff;font-size:.8rem}
+
+.modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.76);padding:20px}
+.modal.open{display:grid}
+.modal-card{width:min(470px,100%);background:var(--paper);color:var(--ink);border-top:6px solid var(--orange);padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.modal-icon{width:52px;height:52px;display:grid;place-items:center;background:var(--purple-dark);color:var(--gold);margin-bottom:18px}
+.modal-card h2{font-size:2rem;color:var(--purple);margin-bottom:10px}
+.modal-card p{color:var(--muted);margin-bottom:22px}
+
+@media(max-width:900px){
+  .menu{display:grid;place-items:center}
+  .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--purple-dark);padding:8px 20px 18px;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid rgba(255,255,255,.08)}
+  .navlinks.open{display:flex}
+  .navlinks a{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .section-head,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:30px}
+  .grid,.quick-grid,.quote-grid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .fact:last-child{border-bottom:0}
+}
+@media(max-width:600px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .hero{min-height:660px;background-position:60% center}
+  .hero-in{padding:94px 0 54px}
+  .hero h1{font-size:clamp(3.2rem,16vw,5.2rem)}
+  .actions{display:grid}
+  .btn{width:100%}
+  .section{padding:68px 0}
+  .goods{background-attachment:scroll}
+  .footer-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Sunshine Smoke Shop home">
+      <span class="brand-mark"><i class="fa-solid fa-sun"></i></span>
+      <span class="brand-copy">
+        <strong>Sunshine Smoke Shop</strong>
+        <small>Sacramento, California</small>
+      </span>
+    </a>
+    <button class="menu" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#goods">Goods</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <div class="eyebrow">Auburn Blvd · Sacramento</div>
+    <h1>Sunshine <span>Smoke Shop</span></h1>
+    <p class="hero-copy">The supplied page identifies Sunshine Smoke Shop in Sacramento and lists vapes, papers and wraps, hemp and CBD, daily hours from 8 AM to midnight, and a 4.6 Google rating.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#goods"><i class="fa-solid fa-store"></i> Browse the goods</a>
+      <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </div>
+    <p class="stock-note">Relevant stock smoke/vape-shop imagery is used for presentation and does not depict the actual business, staff, products, or premises.</p>
+  </div>
+</section>
+
+<section class="quick">
+  <div class="wrap quick-grid">
+    <div class="fact"><i class="fa-solid fa-clock"></i><div><small>Hours</small><strong>Every day · 8 AM – midnight</strong></div></div>
+    <div class="fact"><i class="fa-solid fa-star"></i><div><small>Google rating</small><strong>4.6 stars in the supplied source</strong></div></div>
+    <div class="fact"><i class="fa-solid fa-id-card"></i><div><small>Age requirement</small><strong>21 and over · valid ID required</strong></div></div>
+  </div>
+</section>
+
+<section class="section goods" id="goods">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">The goods</div><h2>Product categories from the supplied page.</h2></div>
+      <p>Only the categories explicitly present in the uploaded source are included here. No brands, prices, discounts, inventory counts, or extra product claims have been added.</p>
+    </div>
+    <div class="grid">
+      <article class="item"><div class="item-icon"><i class="fa-solid fa-wind"></i></div><h3>Vapes</h3><p>Vapes are listed as a core category in the supplied page.</p></article>
+      <article class="item"><div class="item-icon"><i class="fa-solid fa-scroll"></i></div><h3>Papers &amp; wraps</h3><p>Papers and wraps are listed as a core category in the supplied page.</p></article>
+      <article class="item"><div class="item-icon"><i class="fa-solid fa-leaf"></i></div><h3>Hemp &amp; CBD</h3><p>Hemp and CBD products are listed in the supplied page.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section hours" id="hours">
+  <div class="wrap hours-grid">
+    <div>
+      <div class="kicker">Hours</div>
+      <h2>Daily hours from the source.</h2>
+      <div class="protected">
+        <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+        <p>The supplied page includes a public business street address and phone number. Those exact contact details remain hidden in this sample website.</p>
+      </div>
+    </div>
+    <div class="hours-list">
+      <div class="hrow" data-day="0"><strong>Sunday</strong><span>8:00 AM – Midnight</span></div>
+      <div class="hrow" data-day="1"><strong>Monday</strong><span>8:00 AM – Midnight</span></div>
+      <div class="hrow" data-day="2"><strong>Tuesday</strong><span>8:00 AM – Midnight</span></div>
+      <div class="hrow" data-day="3"><strong>Wednesday</strong><span>8:00 AM – Midnight</span></div>
+      <div class="hrow" data-day="4"><strong>Thursday</strong><span>8:00 AM – Midnight</span></div>
+      <div class="hrow" data-day="5"><strong>Friday</strong><span>8:00 AM – Midnight</span></div>
+      <div class="hrow" data-day="6"><strong>Saturday</strong><span>8:00 AM – Midnight</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">Reviews</div><h2>Customer feedback from the supplied page.</h2></div>
+      <p>The source shows a 4.6 Google rating and includes the three customer review quotes below. No additional reviews have been created.</p>
+    </div>
+    <div class="rating"><strong>4.6</strong><span>stars on Google in the supplied source</span></div>
+    <div class="quote-grid">
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Very clean and friendly staff. Price is good and reasonable."</p><span>Google review</span></article>
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Unbeatable prices and really friendly service."</p><span>Google review</span></article>
+      <article class="quote"><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"This is a great smoke shop: good selection and prices"</p><span>Google review</span></article>
+    </div>
+    <div class="actions" style="justify-content:center">
+      <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-brands fa-google"></i> View reviews</button>
+    </div>
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="kicker">Visit</div><h2>Sunshine Smoke Shop</h2></div>
+      <p>The original page includes a Sacramento street address, business phone number, Google Maps action, and message form. Those real-world actions stay protected in this demo.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="card">
+        <h3><i class="fa-solid fa-location-dot"></i> Sacramento</h3>
+        <div class="protected">
+          <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+          <p>Street address and phone number are hidden in this sample website.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+          <button class="btn" style="border-color:var(--purple);color:var(--purple);background:transparent" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Directions</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-message"></i> Send a note</h3>
+        <p style="color:var(--muted);margin-bottom:18px">The original page includes a message form. Submission remains locked in this demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg"></textarea></div>
+          <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div><strong>Sunshine Smoke Shop</strong><div style="font-size:.8rem;margin-top:4px">Sacramento, California · Demo website</div></div>
+    <nav class="footer-nav"><a href="#goods">Goods</a><a href="#hours">Hours</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }));
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked(form.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Los_Angeles',
+    weekday:'short'
+  }).format(new Date());
+  const days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hrow[data-day="' + days[today] + '"]');
+  if(row) row.classList.add('today');
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+})();
+</script>
+
+<!--
+DEMO NOTES
+- Built as a new single-file HTML design.
+- Source-supported business: Sunshine Smoke Shop.
+- Source-supported location: Sacramento, California / Auburn Blvd.
+- Source-supported categories: Vapes; Papers & wraps; Hemp & CBD.
+- Source-supported hours: every day 8 AM to midnight.
+- Source-supported rating/reviews: 4.6 Google rating and three review quotes preserved above.
+- Exact business phone number and street address are protected in this demo.
+- Relevant stock smoke/vape-shop imagery is used for presentation and does not depict the actual business.
+- JavaScript uses normal operators such as && and never encoded HTML entities for operators.
+-->
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#140d25">
+  <meta name="description" content="Vegas Mini Mart in Las Vegas, Nevada. Snacks, drinks, everyday essentials, and protected demo contact information. Open 24 hours, 7 days a week.">
+  <title>Vegas Mini Mart | Las Vegas, NV</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --purple:#160d29;
+      --purple2:#21123b;
+      --purple3:#302057;
+      --mint:#7defcb;
+      --pink:#ff5ea8;
+      --yellow:#ffd34e;
+      --white:#ffffff;
+      --text:#f7f3ff;
+      --muted:#b7aeca;
+      --line:rgba(255,255,255,.12);
+      --max:1160px;
+      --shadow:0 24px 70px rgba(0,0,0,.32);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;
+      background:var(--purple);
+      color:var(--text);
+      font-family:"Inter",sans-serif;
+      overflow-x:hidden;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    img{display:block;max-width:100%}
+    h1,h2,h3,p{margin-top:0}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(22,13,41,.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-family:"Bungee",sans-serif;
+      font-size:1rem;
+      letter-spacing:.02em;
+    }
+    .brand-mark{
+      width:40px;height:40px;
+      display:grid;place-items:center;
+      border:1px solid rgba(125,239,203,.55);
+      color:var(--mint);
+      box-shadow:0 0 18px rgba(125,239,203,.18);
+    }
+    .desktop-nav{display:flex;gap:28px;font-weight:700;font-size:.9rem}
+    .desktop-nav a:hover{color:var(--mint)}
+    .menu-btn{
+      display:none;width:46px;height:46px;
+      border:0;background:transparent;
+      color:#fff;cursor:pointer;
+      align-items:center;justify-content:center;
+    }
+    .menu-btn span{
+      display:block;width:25px;height:2px;
+      background:#fff;margin:5px auto;
+    }
+    .mobile-menu{
+      display:none;
+      padding:8px 20px 18px;
+      background:var(--purple2);
+      border-top:1px solid var(--line);
+    }
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+    .hero{
+      min-height:76vh;
+      position:relative;
+      display:grid;
+      align-items:end;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(17,7,32,.93),rgba(17,7,32,.52)),
+        url("https://images.unsplash.com/photo-1601598851547-4302969d0614?auto=format&fit=crop&w=1900&q=84") center/cover no-repeat;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:480px;height:480px;
+      right:-220px;bottom:-220px;
+      border:64px solid rgba(255,94,168,.12);
+      border-radius:50%;
+    }
+    .hero-inner{
+      position:relative;z-index:2;
+      max-width:800px;
+      padding:112px 0 78px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--mint);
+      font-size:.75rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+    }
+    .eyebrow:before{content:"";width:34px;height:2px;background:currentColor}
+    .hero h1{
+      font-family:"Bungee",sans-serif;
+      font-size:clamp(3rem,7.5vw,6.5rem);
+      line-height:.96;
+      margin:18px 0 22px;
+      text-shadow:0 0 24px rgba(255,94,168,.16);
+    }
+    .hero-copy{
+      max-width:640px;
+      color:rgba(255,255,255,.84);
+      font-size:1.08rem;
+      line-height:1.72;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .stock-note{
+      position:absolute;right:18px;bottom:14px;z-index:3;
+      color:rgba(255,255,255,.62);
+      text-transform:uppercase;
+      font-size:.68rem;
+      letter-spacing:.08em;
+    }
+
+    .btn{
+      min-height:50px;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:13px 20px;
+      border:1px solid transparent;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--mint);color:#142118}
+    .btn-ghost{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.48);color:#fff}
+    .btn-pink{background:var(--pink);color:#fff}
+
+    .quickbar{background:var(--purple2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .quick{
+      padding:25px 23px;
+      display:flex;gap:14px;
+      border-right:1px solid var(--line);
+    }
+    .quick:last-child{border-right:0}
+    .quick i{color:var(--mint);margin-top:3px}
+    .quick strong{
+      display:block;
+      color:#8f84a8;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-size:.7rem;
+      margin-bottom:5px;
+    }
+    .quick span{font-weight:700}
+
+    .section{padding:92px 0}
+    .kicker{
+      color:var(--mint);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:.74rem;
+      font-weight:800;
+      margin-bottom:11px;
+    }
+    .section h2{
+      font-family:"Bungee",sans-serif;
+      font-size:clamp(2.2rem,5vw,4.4rem);
+      line-height:1.02;
+      margin-bottom:18px;
+    }
+    .lead{
+      color:var(--muted);
+      max-width:720px;
+      line-height:1.75;
+      font-size:1.03rem;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:60px;
+      align-items:start;
+    }
+    .about-photo{
+      min-height:440px;
+      background:
+        linear-gradient(rgba(22,13,41,.14),rgba(22,13,41,.14)),
+        url("https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1400&q=82") center/cover no-repeat;
+      box-shadow:var(--shadow);
+      position:relative;
+      border:1px solid var(--line);
+    }
+    .about-photo:after{
+      content:"Stock imagery — not the actual business";
+      position:absolute;
+      left:14px;bottom:12px;
+      background:rgba(22,13,41,.84);
+      padding:7px 9px;
+      font-size:.66rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+    .about-copy{padding-top:16px}
+
+    .protected{
+      margin-top:24px;
+      background:rgba(125,239,203,.07);
+      border-left:4px solid var(--mint);
+      padding:18px 20px;
+      display:flex;
+      gap:14px;
+    }
+    .protected i{color:var(--mint);margin-top:3px}
+    .protected strong{
+      display:block;
+      font-size:.74rem;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      margin-bottom:5px;
+    }
+    .protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    .products{
+      background:
+        linear-gradient(rgba(29,16,52,.94),rgba(29,16,52,.94)),
+        url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+      margin-top:38px;
+    }
+    .product{
+      background:rgba(255,255,255,.035);
+      padding:32px;
+      min-height:220px;
+    }
+    .product i{
+      color:var(--mint);
+      font-size:1.4rem;
+      margin-bottom:23px;
+    }
+    .product h3{
+      font-family:"Bungee",sans-serif;
+      font-size:1.3rem;
+      margin-bottom:11px;
+    }
+    .product p{color:var(--muted);line-height:1.65;margin:0}
+
+    .hours{
+      background:
+        linear-gradient(90deg,rgba(12,7,24,.96),rgba(12,7,24,.82)),
+        url("https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+    }
+    .hours-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
+    .hours-list{border-top:1px solid rgba(255,255,255,.18)}
+    .hour-row{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:16px 0;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .hour-row span{color:var(--muted)}
+    .hour-row.today strong{color:var(--mint)}
+
+    .review-band{
+      background:linear-gradient(135deg,#2a164b,#18102c);
+      padding:80px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .review-card{
+      max-width:820px;
+      margin:0 auto;
+      padding:36px;
+      border:1px solid rgba(125,239,203,.28);
+      box-shadow:0 0 34px rgba(125,239,203,.08);
+    }
+    .review-card blockquote{
+      margin:0;
+      font-size:clamp(1.35rem,3vw,2rem);
+      line-height:1.55;
+      color:#fff;
+    }
+    .review-meta{
+      margin-top:22px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .stars{color:var(--yellow)}
+    .review-card .btn{margin-top:26px}
+
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      margin-top:34px;
+    }
+    .visit-card{
+      border:1px solid var(--line);
+      padding:32px;
+      background:var(--purple2);
+    }
+    .visit-card h3{
+      font-family:"Bungee",sans-serif;
+      font-size:1.2rem;
+    }
+    .visit-card p{color:var(--muted);line-height:1.65}
+    .visit-card .btn{margin-top:18px}
+
+    footer{
+      background:#0d0718;
+      color:var(--muted);
+      padding:38px 0;
+    }
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      font-size:.84rem;
+    }
+    .foot strong{color:#fff}
+
+    .modal-backdrop{
+      position:fixed;inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(0,0,0,.74);
+      z-index:500;
+    }
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(100%,460px);
+      background:var(--purple2);
+      border:1px solid rgba(125,239,203,.35);
+      padding:32px;
+      box-shadow:0 30px 90px rgba(0,0,0,.48);
+    }
+    .modal-icon{
+      width:48px;height:48px;
+      display:grid;place-items:center;
+      color:var(--mint);
+      border:1px solid rgba(125,239,203,.4);
+      margin-bottom:20px;
+    }
+    .modal h2{font-family:"Bungee",sans-serif;font-size:1.5rem;margin-bottom:12px}
+    .modal p{color:var(--muted);line-height:1.65;margin-bottom:22px}
+    .modal .btn{width:100%}
+
+    @media(max-width:900px){
+      .desktop-nav{display:none}
+      .menu-btn{display:block}
+      .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+      .product-grid{grid-template-columns:1fr}
+      .quick-grid{grid-template-columns:1fr}
+      .quick{border-right:0;border-bottom:1px solid var(--line)}
+      .quick:last-child{border-bottom:0}
+      .hero{min-height:650px}
+    }
+
+    @media(max-width:600px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .header-inner{min-height:68px}
+      .brand{font-size:.82rem}
+      .brand-mark{width:35px;height:35px}
+      .hero{min-height:610px}
+      .hero-inner{padding:92px 0 52px}
+      .hero h1{font-size:clamp(3rem,15vw,4.6rem)}
+      .hero-actions{display:grid}
+      .hero-actions .btn{width:100%}
+      .stock-note{left:14px;right:auto}
+      .section{padding:70px 0}
+      .about-photo{min-height:330px}
+      .product,.visit-card,.review-card{padding:25px}
+      .foot{flex-direction:column;align-items:flex-start}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-bolt-lightning"></i></span>
+      <span>VEGAS MINI MART</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#instore">In Store</a>
+      <a href="#hours">Open 24/7</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#instore">In Store</a>
+    <a href="#hours">Open 24/7</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">4550 E Bonanza Rd, Unit A, Las Vegas</div>
+      <h1>Vegas Mini Mart</h1>
+      <p class="hero-copy">Snacks, drinks, and everyday stuff. All night. Every night.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#instore"><i class="fa-solid fa-basket-shopping"></i> Peek inside</a>
+        <a class="btn btn-ghost" href="#hours"><i class="fa-regular fa-clock"></i> Open 24/7</a>
+      </div>
+    </div>
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="quickbar" aria-label="Business facts">
+    <div class="wrap quick-grid">
+      <div class="quick">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><strong>Location</strong><span>Las Vegas, NV 89110</span></div>
+      </div>
+      <div class="quick">
+        <i class="fa-regular fa-clock"></i>
+        <div><strong>Hours</strong><span>Open 24 hours, 7 days a week</span></div>
+      </div>
+      <div class="quick">
+        <i class="fa-solid fa-store"></i>
+        <div><strong>Store</strong><span>Vegas Mini Mart</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock convenience store image"></div>
+
+      <div class="about-copy">
+        <div class="kicker">About</div>
+        <h2>Mini Mart on E Bonanza Rd</h2>
+        <p class="lead">Your around-the-clock neighborhood stop for snacks, drinks, and everyday essentials.</p>
+
+        <div class="protected">
+          <i class="fa-solid fa-lock"></i>
+          <div>
+            <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            <p>The supplied page includes a public street address and phone number. Direct contact and directions actions stay protected in this sample website.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section products" id="instore">
+    <div class="wrap">
+      <div class="kicker">In store</div>
+      <h2>Short aisles, good finds</h2>
+      <p class="lead">We're a mini mart, not a maze. Walk in, find your stuff fast, and you're back out the door in minutes.</p>
+
+      <div class="product-grid">
+        <article class="product">
+          <i class="fa-solid fa-cookie-bite"></i>
+          <h3>The snack aisle</h3>
+          <p>Chips, candy, pastries, and the salty-sweet mix everyone grabs on a gas-station-adjacent budget.</p>
+        </article>
+
+        <article class="product">
+          <i class="fa-solid fa-bottle-water"></i>
+          <h3>The cooler</h3>
+          <p>Cold sodas, bottled water, juice, and energy drinks for the long shift ahead.</p>
+        </article>
+
+        <article class="product">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <h3>Everyday essentials</h3>
+          <p>Bread, ice, and the small household stuff you always need and always forget.</p>
+        </article>
+
+        <article class="product">
+          <i class="fa-solid fa-moon"></i>
+          <h3>After-dark shopping</h3>
+          <p>Convenient hours are the whole point. Whenever you're off the clock, we're open.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="kicker">Hours</div>
+        <h2>Open 24/7</h2>
+        <p class="lead">Midnight, 4 AM, Sunday morning at 6. The doors are open and the cooler is cold. Check today below – it always says the same thing.</p>
+      </div>
+
+      <div class="hours-list">
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>Open 24 hrs</span></div>
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>Open 24 hrs</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>Open 24 hrs</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>Open 24 hrs</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>Open 24 hrs</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>Open 24 hrs</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>Open 24 hrs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="review-band" id="reviews">
+    <div class="wrap">
+      <div class="review-card">
+        <div class="kicker">Reviews</div>
+        <blockquote>“People working here make for a great atmosphere. One of the best neighborhood spots for sure.”</blockquote>
+
+        <div class="review-meta">
+          <span class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </span>
+          <span>Google review</span>
+        </div>
+
+        <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="kicker">Visit &amp; contact</div>
+      <h2>Vegas Mini Mart</h2>
+      <p class="lead">The source provides the business address and phone number, but real-world contact actions stay protected in this demo.</p>
+
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-location-dot"></i> Location</h3>
+          <p>Las Vegas, NV 89110</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The full street address is intentionally not exposed as a clickable directions link.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-pink" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+        </div>
+
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <p>Call or text us any hour.</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The supplied phone number is intentionally not exposed as a working phone or SMS link.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Contact business</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>VEGAS MINI MART</strong><br>Las Vegas, NV</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+  function openModal(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      const focusables = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if(e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      } else if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Los_Angeles',
+    weekday:'short'
+  }).format(new Date());
+
+  const days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hour-row[data-day="'+days[today]+'"]');
+  if(row) row.classList.add('today');
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey) e.preventDefault();
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+})();
+</script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Business: Vegas Mini Mart
+- Address in source: 4550 E Bonanza Rd, Unit A, Las Vegas, NV 89110
+- Phone in source: (702) 452-7703
+- Hours: Open 24 hours, 7 days a week
+- Source hero: "Snacks, drinks, and everyday stuff. All night. Every night."
+- Source about/footer: "Your around-the-clock neighborhood stop for snacks, drinks, and everyday essentials."
+- Product / store sections:
+  - The snack aisle
+  - The cooler
+  - Everyday essentials
+  - After-dark shopping
+- Review reproduced exactly from supplied source and labeled there as "Google review."
+
+STOCK IMAGERY
+- Unsplash convenience-store / retail imagery.
+- Images do not depict the actual business, employees, storefront, products, or customers.
+
+OMITTED / NOT INVENTED
+- Owner/team names
+- Email
+- Product prices
+- Specific inventory beyond source wording
+- Social media links
+- Awards/licenses/certifications
+- Years in business
+- Payment systems
+- Booking systems
+- Working backend form
+
+DEMO CHECK
+- One complete HTML file
+- CSS and JS inline
+- Responsive desktop/mobile/tablet
+- Hamburger menu
+- Mobile zoom prevention
+- Text selection disabled
+- Background imagery included
+- Font Awesome icons via CDN
+- Contact details protected
+- Real-world actions locked
+- One reusable modal
+- Close button / outside click / Escape supported
+- No fake success state
+-->
+</body>
+</html>

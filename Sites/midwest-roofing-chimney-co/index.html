@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>Midwest Roofing & Chimney Co | Cincinnati Roofing Contractor</title>
+<meta name="description" content="Midwest Roofing & Chimney Co is a Cincinnati, Ohio roofing contractor. Explore verified business information and request service through this demo website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --brick:#8f3b27;--brick2:#b34b2e;--char:#241f1a;--char2:#332a23;
+  --cream:#f7f0e3;--paper:#eee3d0;--sand:#d9c6aa;--copper:#d98a3d;
+  --ink:#2b211b;--muted:#75675b;--white:#fffaf2;--max:1180px;
+  --shadow:0 22px 60px rgba(36,31,26,.18)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Barlow,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+body,body *{-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+h1,h2,h3,h4{font-family:'Zilla Slab',Georgia,serif;margin:0;line-height:1.02}
+.kicker{display:inline-flex;align-items:center;gap:.55rem;font-size:.73rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--copper)}
+.kicker.dark{color:var(--brick)}
+.stock-label{position:absolute;right:13px;bottom:13px;z-index:4;background:rgba(36,31,26,.82);color:#fff;padding:6px 9px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;border:0;padding:14px 21px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--copper);color:var(--char);box-shadow:5px 5px 0 rgba(0,0,0,.22)}
+.btn-dark{background:var(--char);color:#fff}
+
+/* header */
+.topbar{background:#181411;color:#d8c9b7;font-size:.75rem;border-bottom:1px solid #3a3028}
+.topbar .wrap{min-height:34px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.topbar span{display:flex;align-items:center;gap:7px}
+.topbar i{color:var(--copper)}
+.site-header{position:sticky;top:0;z-index:60;background:rgba(247,240,227,.97);backdrop-filter:blur(12px);border-bottom:1px solid #d5c5b2}
+.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:50px;height:50px;position:relative;display:grid;place-items:center;background:var(--brick);color:#fff;clip-path:polygon(50% 0,100% 28%,88% 100%,12% 100%,0 28%)}
+.brand-mark:after{content:"";position:absolute;bottom:6px;width:24px;height:14px;border:3px solid var(--copper);border-top:0}
+.brand-copy b{display:block;font:700 19px/1 'Zilla Slab',serif}
+.brand-copy small{display:block;margin-top:5px;color:#78695c;font-size:.66rem;text-transform:uppercase;letter-spacing:.12em}
+.navlinks{display:flex;align-items:center;gap:4px}
+.navlinks a,.navlinks button{border:0;background:transparent;padding:10px 12px;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:#43372e}
+.navlinks a:hover,.navlinks a.active{color:var(--brick)}
+.navlinks .header-cta{background:var(--brick);color:#fff;margin-left:8px}
+.hamburger{display:none;width:46px;height:44px;border:0;background:var(--brick);color:#fff;font-size:19px}
+
+/* hero */
+.hero{position:relative;min-height:680px;color:#fff;display:flex;align-items:center;overflow:hidden;background:
+ linear-gradient(90deg,rgba(29,24,20,.96) 0%,rgba(29,24,20,.83) 47%,rgba(29,24,20,.34) 100%),
+ url('https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?auto=format&fit=crop&fm=jpg&q=84&w=2200') center/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:
+ linear-gradient(115deg,rgba(143,59,39,.58) 0 16%,transparent 16%),
+ repeating-linear-gradient(90deg,transparent 0 108px,rgba(255,255,255,.025) 108px 109px)}
+.hero-copy{position:relative;z-index:2;max-width:730px;padding:94px 0}
+.hero h1{font-size:clamp(52px,7.7vw,96px);margin:18px 0 18px;letter-spacing:-.035em}
+.hero p{max-width:650px;color:#e2d7ca;font-size:1.08rem;margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-meta div{display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.25);border-left:4px solid var(--copper);padding:9px 12px;font-size:.77rem}
+.hero-meta i{color:var(--copper)}
+
+/* summary strip */
+.summary{background:var(--brick);color:#fff}
+.summary .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.summary-item{padding:24px 22px;border-right:1px solid rgba(255,255,255,.17)}
+.summary-item:last-child{border-right:0}
+.summary-item b{display:block;font:700 27px 'Zilla Slab',serif}
+.summary-item span{font-size:.71rem;text-transform:uppercase;letter-spacing:.1em;color:#f1d9ca}
+
+/* sections */
+.section{padding:82px 0}
+.section.alt{background:var(--paper)}
+.section.dark{background:var(--char);color:#fff}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.65fr);align-items:end;gap:28px;margin-bottom:34px}
+.section-head h2{font-size:clamp(38px,5.2vw,64px);margin-top:9px}
+.section-head p{margin:0;color:var(--muted)}
+.dark .section-head p{color:#c9bba9}
+
+/* verified service */
+.service-feature{display:grid;grid-template-columns:1.06fr .94fr;background:#fff;box-shadow:var(--shadow);min-height:470px}
+.service-image{position:relative;overflow:hidden}
+.service-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.service-feature:hover .service-image img{transform:scale(1.035)}
+.service-copy{padding:42px;display:flex;flex-direction:column;justify-content:center}
+.icon-tile{width:54px;height:54px;display:grid;place-items:center;background:var(--brick);color:#fff;font-size:22px;margin-bottom:19px}
+.service-copy h3{font-size:38px;margin-bottom:12px}
+.service-copy p{color:#6d6054}
+.verify-line{display:flex;align-items:center;gap:8px;margin-top:18px;color:#486846;font-weight:700;font-size:.82rem}
+.verify-line i{color:#527853}
+
+/* research note */
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.research-card{padding:24px;border:1px solid #d4c5b3;background:#fff}
+.research-card i{color:var(--brick);font-size:22px;margin-bottom:14px}
+.research-card h3{font-size:23px;margin-bottom:8px}
+.research-card p{margin:0;color:#6e6256;font-size:.91rem}
+.research-card.unverified{border-left:6px solid var(--copper)}
+
+/* issue selector */
+.issue-panel{background:
+ linear-gradient(rgba(36,31,26,.93),rgba(36,31,26,.93)),
+ url('https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?auto=format&fit=crop&fm=jpg&q=80&w=2000') center/cover no-repeat;color:#fff;padding:38px}
+.issue-panel h2{font-size:42px;margin:8px 0 8px}
+.issue-panel>p{color:#cfbfac;max-width:760px}
+.issue-buttons{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 18px}
+.issue-chip{border:1px solid #6e5e50;background:rgba(255,255,255,.04);color:#fff;padding:11px 14px;font-weight:700}
+.issue-chip.active{background:var(--copper);border-color:var(--copper);color:var(--char)}
+.issue-result{display:none;border-top:1px solid #5a4b40;padding-top:18px;color:#e8ded1}
+.issue-result.show{display:block}
+.issue-result b{color:var(--copper)}
+
+/* about */
+.about-layout{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:stretch}
+.about-photo{position:relative;min-height:520px;overflow:hidden}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-panel{background:#fff;padding:34px;border:1px solid #d8cbb9}
+.about-panel h2{font-size:43px;margin:10px 0 16px}
+.about-panel p{color:#6b5e52}
+.info-list{margin-top:20px}
+.info-row{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:15px 0;border-top:1px solid #e2d7c8}
+.info-row i{width:36px;height:36px;display:grid;place-items:center;background:var(--char);color:var(--copper)}
+.info-row b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.protected{margin-top:18px;background:var(--char);color:#fff;padding:15px 17px;border-left:5px solid var(--copper);font-weight:800;font-size:.73rem;letter-spacing:.07em;text-transform:uppercase}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:260px 215px;gap:12px}
+.gitem{position:relative;overflow:hidden;background:#333}
+.gitem:first-child{grid-row:1/3}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.gitem:hover img{transform:scale(1.045)}
+.gitem button{position:absolute;inset:0;border:0;background:transparent}
+.gcap{position:absolute;left:12px;bottom:12px;background:rgba(36,31,26,.86);color:#fff;padding:7px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;z-index:2}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:920px}
+.faq-item{background:#fff;border-left:6px solid var(--brick);box-shadow:0 8px 20px rgba(36,31,26,.07)}
+.faq-q{width:100%;border:0;background:transparent;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left;color:var(--ink);font-weight:800}
+.faq-q i{color:var(--brick);transition:transform .2s}
+.faq-a{display:none;padding:0 20px 20px;color:#6a5d51}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-q i{transform:rotate(45deg)}
+
+/* contact */
+.contact-wrap{display:grid;grid-template-columns:.9fr 1.1fr;box-shadow:var(--shadow)}
+.contact-copy{background:var(--brick);color:#fff;padding:38px}
+.contact-copy h2{font-size:48px;margin:10px 0 13px}
+.contact-copy p{color:#f0d7ca}
+.contact-form{background:#fff;padding:38px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field.full{grid-column:1/-1}
+label{display:block;margin-bottom:6px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--ink)}
+input,textarea{width:100%;border:1px solid #cfc0ae;background:#fbf7f0;color:var(--ink);padding:13px 14px;font-size:16px}
+textarea{min-height:130px;resize:vertical}
+.form-note{font-size:.72rem;color:#837568;margin-top:10px}
+
+footer{background:#171310;color:#fff;border-top:7px solid var(--copper)}
+.footer-big{font:700 clamp(48px,9vw,125px)/.9 'Zilla Slab',serif;padding:45px 0 14px;letter-spacing:-.04em}
+.footer-big span{color:var(--copper)}
+.footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:24px;padding:28px 0 36px;border-top:1px solid #392f27}
+.footer-grid h4{color:var(--copper);font-size:14px;margin-bottom:8px}
+.footer-grid p,.footer-grid a{font-size:.78rem;color:#bba999}
+.copy{text-align:center;border-top:1px solid #392f27;padding:15px;color:#74685d;font-size:.7rem}
+
+/* dialogs */
+.backdrop{position:fixed;inset:0;z-index:120;background:rgba(15,12,10,.78);display:none;align-items:center;justify-content:center;padding:20px}
+.backdrop.open{display:flex}
+.modal{width:min(440px,100%);background:var(--cream);border-top:8px solid var(--brick);padding:28px;box-shadow:0 35px 90px rgba(0,0,0,.45)}
+.modal-icon{width:48px;height:48px;display:grid;place-items:center;background:var(--char);color:var(--copper);margin-bottom:15px}
+.modal h3{font-size:30px;margin-bottom:8px}
+.modal p{color:#66594e}
+body.modal-open{overflow:hidden}
+.lightbox-shell{position:relative;width:min(1000px,100%)}
+.lightbox-shell img{width:100%;max-height:80vh;object-fit:contain;background:#000}
+.close-x{position:absolute;right:0;top:-50px;width:44px;height:44px;border:0;background:var(--copper);color:var(--char);font-size:19px}
+
+@media(max-width:900px){
+  .section-head,.service-feature,.about-layout,.contact-wrap{grid-template-columns:1fr}
+  .research-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:260px 220px}
+  .gitem:first-child{grid-column:1/-1;grid-row:auto}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .topbar .wrap{justify-content:center}.topbar .wrap span:last-child{display:none}
+  .navlinks{display:none;position:absolute;left:0;right:0;top:100%;background:var(--cream);padding:10px 14px 16px;flex-direction:column;align-items:stretch;border-top:1px solid #d6c6b2}
+  .navlinks.open{display:flex}.navlinks a,.navlinks button{text-align:left;width:100%}.hamburger{display:block}
+  .hero{min-height:650px;background-position:60% center}.hero-copy{padding:72px 0}.hero h1{font-size:clamp(50px,15vw,78px)}
+  .summary .wrap{grid-template-columns:1fr}.summary-item{border-right:0;border-top:1px solid rgba(255,255,255,.15)}
+  .section{padding:65px 0}.service-copy,.about-panel,.contact-copy,.contact-form{padding:27px}
+  .gallery{grid-template-columns:1fr;grid-template-rows:repeat(3,235px)}.gitem:first-child{grid-column:auto}
+  .field-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span><i class="fa-solid fa-location-dot"></i> Cincinnati, Ohio</span><span><i class="fa-solid fa-shield-halved"></i> Demo website · contact actions protected</span></div></div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="Midwest Roofing and Chimney Co home">
+      <span class="brand-mark"><i class="fa-solid fa-house-chimney"></i></span>
+      <span class="brand-copy"><b>Midwest Roofing &amp; Chimney Co</b><small>Cincinnati, Ohio</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navlinks" aria-label="Primary navigation">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#photos">Photos</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      <button class="header-cta" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap"><div class="hero-copy">
+    <span class="kicker"><i class="fa-solid fa-house-chimney"></i> Roofing Contractor · Cincinnati, Ohio</span>
+    <h1>Roof protection starts at the top.</h1>
+    <p>Midwest Roofing &amp; Chimney Co is publicly listed as a Cincinnati roofing contractor. This demo uses only verified business information and clearly separates confirmed facts from items that still need owner confirmation.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#services"><i class="fa-solid fa-layer-group"></i> View Verified Service</a><button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-file-signature"></i> Request Estimate</button></div>
+    <div class="hero-meta"><div><i class="fa-solid fa-location-dot"></i><span>Cincinnati, Ohio</span></div><div><i class="fa-solid fa-briefcase"></i><span>Roofing contractor</span></div><div><i class="fa-solid fa-circle-info"></i><span>Chimney details need confirmation</span></div></div>
+  </div></div>
+  <span class="stock-label">Stock roofing image · Unsplash</span>
+</section>
+
+<div class="summary"><div class="wrap">
+  <div class="summary-item"><b>Roofing Contractor</b><span>Verified public category</span></div>
+  <div class="summary-item"><b>Cincinnati</b><span>Verified public business location</span></div>
+  <div class="summary-item"><b>No Public Pricing</b><span>No rates published in verified sources</span></div>
+</div></div>
+
+<section class="section" id="services"><div class="wrap">
+  <div class="section-head"><div><span class="kicker dark"><i class="fa-solid fa-screwdriver-wrench"></i> Services</span><h2>What we can verify</h2></div><p>The exact company is publicly categorized as a roofing contractor. Detailed roof systems, materials, repair types, chimney services, and pricing were not independently verified, so this site does not present them as confirmed offerings.</p></div>
+  <article class="service-feature">
+    <div class="service-image"><img src="https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?auto=format&fit=crop&fm=jpg&q=84&w=1400" alt="Stock photo of a roofer working on a residential roof" loading="lazy"><span class="stock-label">Stock photo · Unsplash</span></div>
+    <div class="service-copy"><div class="icon-tile"><i class="fa-solid fa-house"></i></div><h3>Roofing Contractor Services</h3><p>Roofing is the verified public business category for Midwest Roofing &amp; Chimney Co. Specific repair, replacement, material, warranty, emergency, or inspection offerings should be confirmed with the business before they are advertised.</p><div class="verify-line"><i class="fa-solid fa-circle-check"></i> Verified at category level</div></div>
+  </article>
+  <div class="research-grid">
+    <article class="research-card unverified"><i class="fa-solid fa-trowel-bricks"></i><h3>Chimney work</h3><p>The company name includes “Chimney,” and a same-phone Yellow Pages listing under a slightly different name is categorized for chimney work. Because the listing name differs, exact chimney services remain unverified.</p></article>
+    <article class="research-card unverified"><i class="fa-solid fa-water"></i><h3>Gutters &amp; downspouts</h3><p>A same-phone Yellow Pages listing is also categorized for gutters and downspouts. This should be confirmed by the business before being added as a normal service.</p></article>
+  </div>
+</div></section>
+
+<section class="section dark"><div class="wrap">
+  <div class="issue-panel">
+    <span class="kicker"><i class="fa-solid fa-magnifying-glass"></i> Interactive project guide</span>
+    <h2>What are you trying to solve?</h2>
+    <p>Select an issue to see how this demo should route the conversation. These buttons do not claim the business offers every listed job; they simply organize common customer questions for confirmation.</p>
+    <div class="issue-buttons"><button class="issue-chip" data-issue="roof">Roofing question</button><button class="issue-chip" data-issue="chimney">Chimney question</button><button class="issue-chip" data-issue="gutter">Gutter question</button><button class="issue-chip" data-issue="other">Something else</button></div>
+    <div class="issue-result" id="issueResult"></div>
+    <button class="btn btn-primary" type="button" data-locked="true" style="margin-top:18px"><i class="fa-solid fa-paper-plane"></i> Ask the Business</button>
+  </div>
+</div></section>
+
+<section class="section alt" id="about"><div class="wrap">
+  <div class="about-layout">
+    <figure class="about-photo"><img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?auto=format&fit=crop&fm=jpg&q=82&w=1500" alt="Stock image of a residential roof and chimney" loading="lazy"><span class="stock-label">Stock roof &amp; chimney image · Unsplash</span></figure>
+    <div class="about-panel"><span class="kicker dark"><i class="fa-solid fa-circle-info"></i> About</span><h2>Public business information</h2><p>Midwest Roofing &amp; Chimney Co is publicly listed in Cincinnati, Ohio and categorized as a roofing contractor. No owner name, founding year, official website, public email, verified business hours, licenses, certifications, or published pricing were found in the researched sources.</p>
+      <div class="info-list">
+        <div class="info-row"><i class="fa-solid fa-building"></i><div><b>Business name</b>Midwest Roofing &amp; Chimney Co</div></div>
+        <div class="info-row"><i class="fa-solid fa-location-dot"></i><div><b>Public location</b>Cincinnati, Ohio</div></div>
+        <div class="info-row"><i class="fa-solid fa-briefcase"></i><div><b>Verified category</b>Roofing contractor</div></div>
+        <div class="info-row"><i class="fa-solid fa-globe"></i><div><b>Official website</b>Not found</div></div>
+      </div>
+      <div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section dark" id="photos"><div class="wrap">
+  <div class="section-head"><div><span class="kicker"><i class="fa-solid fa-images"></i> Visuals</span><h2>Roof &amp; chimney stock imagery</h2></div><p>No verified company project photos were found. These images are free stock references from Unsplash and are not represented as Midwest Roofing &amp; Chimney Co projects, employees, vehicles, or completed work.</p></div>
+  <div class="gallery">
+    <figure class="gitem"><img src="https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?auto=format&fit=crop&fm=jpg&q=84&w=1500" alt="Stock roofing work photo" loading="lazy"><figcaption class="gcap">Stock roofing work</figcaption><button class="gallery-open" type="button" aria-label="Open stock roofing image"></button></figure>
+    <figure class="gitem"><img src="https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?auto=format&fit=crop&fm=jpg&q=82&w=1100" alt="Stock residential roof and chimney" loading="lazy"><figcaption class="gcap">Stock roof &amp; chimney</figcaption><button class="gallery-open" type="button" aria-label="Open stock roof and chimney image"></button></figure>
+    <figure class="gitem"><img src="https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?auto=format&fit=crop&fm=jpg&q=82&w=1100" alt="Stock residential roof detail" loading="lazy"><figcaption class="gcap">Stock roof detail</figcaption><button class="gallery-open" type="button" aria-label="Open stock roof detail image"></button></figure>
+  </div>
+</div></section>
+
+<section class="section" id="faq"><div class="wrap">
+  <div class="section-head"><div><span class="kicker dark"><i class="fa-solid fa-circle-question"></i> FAQ</span><h2>What the research supports</h2></div><p>Answers below stay within the verified research and flag anything that still needs confirmation.</p></div>
+  <div class="faq">
+    <div class="faq-item"><button class="faq-q" type="button">Where is the business located?<i class="fa-solid fa-plus"></i></button><div class="faq-a">The business is publicly listed in Cincinnati, Ohio. Exact contact details are protected in this demo.</div></div>
+    <div class="faq-item"><button class="faq-q" type="button">Is Midwest Roofing &amp; Chimney Co a roofing contractor?<i class="fa-solid fa-plus"></i></button><div class="faq-a">Yes. Roofing contractor is the verified public category for the exact company.</div></div>
+    <div class="faq-item"><button class="faq-q" type="button">Does the company repair chimneys?<i class="fa-solid fa-plus"></i></button><div class="faq-a">Unverified. The company name includes “Chimney,” and a same-phone directory listing uses a similar business name and chimney category, but exact chimney services should be confirmed before publishing them as fact.</div></div>
+    <div class="faq-item"><button class="faq-q" type="button">Does the company handle gutters?<i class="fa-solid fa-plus"></i></button><div class="faq-a">Unverified. A same-phone Yellow Pages listing is categorized under gutters and downspouts, but the listing name differs from the exact company name.</div></div>
+    <div class="faq-item"><button class="faq-q" type="button">Are prices, hours, warranties, licenses, or certifications published?<i class="fa-solid fa-plus"></i></button><div class="faq-a">No reliable public information for those items was found in the research used for this demo.</div></div>
+  </div>
+</div></section>
+
+<section class="section alt" id="contact"><div class="wrap">
+  <div class="contact-wrap">
+    <div class="contact-copy"><span class="kicker"><i class="fa-solid fa-paper-plane"></i> Contact</span><h2>Start the conversation.</h2><p>This demo previews a professional estimate-request flow without exposing the protected phone number or business address and without pretending a backend is connected.</p><div class="protected"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+    <div class="contact-form"><form id="estimateForm"><div class="field-grid"><div class="field"><label for="name">Name</label><input id="name" type="text" autocomplete="name"></div><div class="field"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel"></div><div class="field full"><label for="issue">Roofing or property concern</label><input id="issue" type="text" placeholder="Describe the issue you want to ask about"></div><div class="field full"><label for="details">Details</label><textarea id="details"></textarea></div><div class="field full"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-file-signature"></i> Request Estimate</button></div></div><p class="form-note">Demo only. No information is sent or stored.</p></form></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><div class="footer-big">MIDWEST <span>ROOFING</span> &amp; CHIMNEY</div><div class="footer-grid"><div><h4>Business</h4><p>Midwest Roofing &amp; Chimney Co<br>Cincinnati, Ohio</p></div><div><h4>Verified category</h4><p>Roofing contractor</p></div><div><h4>Demo status</h4><p>CONTACT DETAILS PROTECTED IN THIS DEMO</p></div></div></div><div class="copy">Midwest Roofing &amp; Chimney Co · Demo website</div></footer>
+
+<div class="backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true"><div class="modal"><div class="modal-icon"><i class="fa-solid fa-lock"></i></div><h3 id="lockedTitle">This is currently locked.</h3><p>This feature is part of the full website. Purchase the site to unlock it.</p><button class="btn btn-primary" id="closeLocked" type="button">Close</button></div></div>
+<div class="backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Stock image preview" aria-hidden="true"><div class="lightbox-shell"><button class="close-x" id="closeLightbox" type="button" aria-label="Close image"><i class="fa-solid fa-xmark"></i></button><img id="lightboxImage" alt=""></div></div>
+
+<script>
+const hamburger=document.getElementById('hamburger');const nav=document.getElementById('navlinks');
+hamburger.addEventListener('click',()=>{const open=nav.classList.toggle('open');hamburger.setAttribute('aria-expanded',String(open));hamburger.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';});
+nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.innerHTML='<i class="fa-solid fa-bars"></i>'; }));
+
+document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item');const was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!was)item.classList.add('open');}));
+
+const issueResult=document.getElementById('issueResult');
+const issueCopy={roof:'Roofing is the verified public business category. Specific repair or replacement work should be confirmed directly with the business.',chimney:'Chimney services are not fully verified. Ask the business which chimney work is currently offered.',gutter:'Gutter work appears only in a same-phone directory listing with a different business name, so it should be confirmed.',other:'Describe the issue to the business so they can confirm whether it fits their current services.'};
+document.querySelectorAll('.issue-chip').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.issue-chip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');issueResult.innerHTML='<b>'+btn.textContent+':</b> '+issueCopy[btn.dataset.issue];issueResult.classList.add('show');}));
+
+const locked=document.getElementById('lockedModal');const closeLocked=document.getElementById('closeLocked');let lastFocus=null;
+function openLocked(){lastFocus=document.activeElement;locked.classList.add('open');locked.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');closeLocked.focus();}
+function shutLocked(){locked.classList.remove('open');locked.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');if(lastFocus)lastFocus.focus();}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openLocked();}));
+document.getElementById('estimateForm').addEventListener('submit',e=>{e.preventDefault();openLocked();});closeLocked.addEventListener('click',shutLocked);locked.addEventListener('click',e=>{if(e.target===locked)shutLocked();});
+
+const lightbox=document.getElementById('lightbox');const lightboxImage=document.getElementById('lightboxImage');const closeLightbox=document.getElementById('closeLightbox');
+document.querySelectorAll('.gallery-open').forEach(btn=>btn.addEventListener('click',()=>{const img=btn.parentElement.querySelector('img');lightboxImage.src=img.src;lightboxImage.alt=img.alt;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');closeLightbox.focus();}));
+function shutPhoto(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');}
+closeLightbox.addEventListener('click',shutPhoto);lightbox.addEventListener('click',e=>{if(e.target===lightbox)shutPhoto();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(lightbox.classList.contains('open'))shutPhoto();else if(locked.classList.contains('open'))shutLocked();}});
+
+const sections=[...document.querySelectorAll('main section[id]')],navLinks=[...document.querySelectorAll('.navlinks a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));}});},{rootMargin:'-35% 0px -55% 0px',threshold:0});sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

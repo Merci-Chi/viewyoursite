@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Sepulveda Meats and Provisions | San Diego, CA</title>
+<meta name="description" content="Sepulveda Meats and Provisions in San Diego, California.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
+
+:root{--bg:#f4ede2;--paper:#fffaf2;--ink:#2b211d;--muted:#74665e;--red:#8f2e28;--accent:#8f2e28;--line:#d8c8b7;--modal-bg:#2b211d;--modal-text:#fff;--modal-muted:#ddd0c4}
+body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3",sans-serif}
+.wrap{width:min(calc(100% - 40px),1160px);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(244,237,226,.96);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{font:700 1rem "Cormorant Garamond";font-size:1.35rem}.brand small{display:block;font:.64rem "Source Sans 3";text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}.navlinks{display:flex;gap:24px;font-size:.8rem;font-weight:800}.hamb{display:none;background:transparent;border:1px solid var(--line);width:44px;height:44px}.hamb span{display:block;width:23px;height:2px;background:var(--ink);margin:5px auto}.mobile{display:none;background:var(--paper);padding:8px 20px 18px}.mobile.open{display:grid}.mobile a{padding:13px 0;border-bottom:1px solid var(--line)}
+.hero{min-height:700px;display:flex;align-items:end;position:relative;background:
+linear-gradient(90deg,rgba(244,237,226,.96),rgba(244,237,226,.76) 47%,rgba(244,237,226,.2)),
+url("https://images.unsplash.com/photo-1603048297172-c92544798d5a?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat}
+.hero-in{padding:110px 0 72px;max-width:760px}.kicker{color:var(--red);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800}.hero h1{font:700 clamp(3.6rem,7vw,6.8rem)/.9 "Cormorant Garamond";margin:14px 0 20px}.hero p{font-size:1.1rem;color:#5f5149;max-width:640px;line-height:1.75}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{min-height:48px;padding:12px 20px;border:1px solid var(--red);background:transparent;color:var(--red);font-weight:800;cursor:pointer}.btn.fill{background:var(--red);color:#fff}
+.stock{position:absolute;right:14px;bottom:12px;background:rgba(255,250,242,.9);padding:7px 9px;font-size:.62rem;text-transform:uppercase}
+.section{padding:88px 0;scroll-margin-top:76px}.section.paper{background:var(--paper)}.section h2{font:700 clamp(2.8rem,5vw,4.8rem)/.95 "Cormorant Garamond";margin:0 0 18px}.lead{max-width:760px;color:var(--muted);line-height:1.8}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}.highlight{padding:20px;border-top:3px solid var(--red);background:var(--paper)}.highlight i{color:var(--red);margin-bottom:10px}
+.service-list{border-top:1px solid var(--line);margin-top:30px}.service{display:grid;grid-template-columns:42px 1fr 1.2fr;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}.service i{color:var(--red)}.service p{margin:0;color:var(--muted)}
+.reviews{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}.review{padding:24px;background:#efe3d4;border:1px solid var(--line)}.review p{line-height:1.7}.review span{font-size:.75rem;color:var(--muted);text-transform:uppercase}
+.hours{max-width:760px;border-top:1px solid var(--line);margin-top:28px}.hour{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}.hour span{color:var(--muted)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:var(--paper);border:1px solid var(--line);padding:28px}.card p{color:var(--muted)}.protected{background:#f1e3dc;border-left:4px solid var(--red);padding:16px;margin:18px 0}
+footer{padding:34px 0;color:#7c6d64;border-top:1px solid var(--line)}
+@media(max-width:900px){.navlinks{display:none}.hamb{display:block}.highlights,.reviews,.visit-grid{grid-template-columns:1fr}.service{grid-template-columns:36px 1fr}.service p{grid-column:2}}
+@media(max-width:620px){.wrap{width:min(calc(100% - 28px),1160px)}.hero{min-height:640px;background-position:58% center}.hero-in{padding:92px 0 48px}.actions{display:grid}.btn{width:100%}.section{padding:68px 0}}
+
+
+.lock-backdrop{
+  position:fixed; inset:0; z-index:99999; display:none; align-items:center; justify-content:center;
+  padding:20px; background:rgba(0,0,0,.72);
+}
+.lock-backdrop.open{display:flex}
+.lock-dialog{
+  width:min(100%,440px); background:var(--modal-bg,#17151a); color:var(--modal-text,#fff);
+  padding:30px; border-top:4px solid var(--accent); box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+.lock-dialog h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}
+.lock-dialog p{margin:0 0 20px;color:var(--modal-muted,#cfc7d2);line-height:1.65}
+.lock-dialog button{width:100%;min-height:46px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav"><a class="brand" href="#home">Sepulveda Meats and Provisions<small>San Diego</small></a><nav class="navlinks"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav><button class="hamb" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-in"><div class="kicker">San Diego</div><h1>Sepulveda Meats and Provisions</h1><p>A neighborhood stop you can count on</p><div class="actions"><a class="btn fill" href="#services">Services</a><a class="btn" href="#visit">Visit</a><button class="btn" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button></div></div><div class="stock">Relevant stock butcher-shop imagery · not the actual business or products</div></section>
+<section class="section" id="about"><div class="wrap"><div class="kicker">About</div><h2>Sepulveda Meats and Provisions</h2><p class="lead">Sepulveda Meats and Provisions in San. A neighborhood stop you can count on. Friendly service and everyday essentials.</p><div class="highlights"><div class="highlight"><i class="fa-solid fa-basket-shopping"></i><strong>Neighborhood staples</strong></div><div class="highlight"><i class="fa-solid fa-handshake"></i><strong>Friendly counter</strong></div><div class="highlight"><i class="fa-solid fa-location-dot"></i><strong>Easy stop</strong></div></div></div></section>
+<section class="section paper" id="services"><div class="wrap"><div class="kicker">Services</div><h2>What you’ll find at Sepulveda Meats and Provisions.</h2><div class="service-list"><div class="service"><i class="fa-solid fa-basket-shopping"></i><strong>Local favorites</strong><p>Ask our team for guidance.</p></div><div class="service"><i class="fa-solid fa-handshake"></i><strong>Friendly service</strong><p>Ask our team for guidance.</p></div><div class="service"><i class="fa-solid fa-bag-shopping"></i><strong>Everyday essentials</strong><p>Ask our team for guidance.</p></div><div class="service"><i class="fa-solid fa-store"></i><strong>Come say hello</strong><p>Ask our team for guidance.</p></div></div></div></section>
+<section class="section" id="reviews"><div class="wrap"><div class="kicker">Reviews</div><h2>4.8 on local listings</h2><div class="reviews"><article class="review"><p>“Friendly stop in San. Worth swinging by.”</p><span>Neighborhood visitor</span></article><article class="review"><p>“Good prices and solid service.”</p><span>Neighborhood visitor</span></article></div><div class="actions"><button class="btn fill" type="button" data-locked="true">See more on Maps</button></div></div></section>
+<section class="section paper" id="hours"><div class="wrap"><div class="kicker">Hours</div><h2>Weekly hours</h2><div class="hours"><div class="hour"><strong>Sunday</strong><span>10:00 AM – 6:00 PM</span></div><div class="hour"><strong>Monday</strong><span>9:00 AM – 7:00 PM</span></div><div class="hour"><strong>Tuesday</strong><span>9:00 AM – 7:00 PM</span></div><div class="hour"><strong>Wednesday</strong><span>9:00 AM – 7:00 PM</span></div><div class="hour"><strong>Thursday</strong><span>9:00 AM – 7:00 PM</span></div><div class="hour"><strong>Friday</strong><span>9:00 AM – 7:00 PM</span></div><div class="hour"><strong>Saturday</strong><span>10:00 AM – 6:00 PM</span></div></div><p class="lead">Hours may change on holidays — call to confirm.</p></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="kicker">Visit</div><h2>Sepulveda Meats and Provisions</h2><div class="visit-grid"><div class="card"><h3>Find us</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public street address is hidden in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Get directions</button></div><div class="card"><h3>Call</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Phone actions are disabled in this sample website.</p></div><button class="btn fill" type="button" data-locked="true">Call</button></div></div></div></section>
+</main>
+<footer><div class="wrap">Sepulveda Meats and Provisions · San Diego, CA 92102</div></footer>
+
+
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockModal');
+  const closeBtn = document.getElementById('lockClose');
+  let lastFocus = null;
+
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('#mobileNav a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  function openLock(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
+    });
+  });
+
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      openLock(e.submitter || form);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLock);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLock();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLock();
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+    if ((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+  document.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+</body>
+</html>

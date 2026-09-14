@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="description" content="King City Smoke Shop at 418 Wood St in Pittsburgh, Pennsylvania.">
+<meta name="theme-color" content="#7df9ff">
+<title>King City Smoke Shop | Pittsburgh, PA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--accent:#7df9ff;--accent2:#e0ff4f;--bg:#07070a;--surface:#101018;--text:#f5f6fa;--muted:#a8a9b3;--head:"Unbounded",sans-serif;--body:"Karla",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit}
+img{max-width:100%;display:block}
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.09)}
+.header-row{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:var(--head);font-weight:800;text-decoration:none;font-size:clamp(18px,2.2vw,25px);line-height:1.05;max-width:62%}
+.brand b{color:var(--accent)}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{text-decoration:none;font-weight:700;padding:10px 13px;border-radius:9px}
+.nav a:hover{background:rgba(127,127,127,.10)}
+.menu-btn{display:none;border:0;background:transparent;color:inherit;font-size:24px;padding:10px;cursor:pointer}
+.hero{min-height:680px;display:flex;align-items:center;position:relative;background:url("https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.43),rgba(0,0,0,.12))}
+.hero .wrap{position:relative;z-index:2}
+.hero-copy{max-width:690px;padding:42px;color:#ffffff}
+.eyebrow,.section-kicker{margin:0 0 12px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:12px;color:var(--accent)}
+.hero h1{font-family:var(--head);font-size:clamp(43px,7vw,78px);line-height:.98;margin:0 0 20px;color:inherit}
+.hero p{font-size:18px;max-width:58ch;margin:0 0 24px;color:inherit}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;padding:13px 18px;font-weight:800;border:1px solid transparent;cursor:pointer}
+.cta.primary{background:var(--accent);color:#071114}
+.cta.secondary{border-color:currentColor;background:transparent}
+.rating-pill{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border:1px solid currentColor;font-weight:800}
+.rating-pill i{color:var(--accent2)}
+section{padding:84px 0}
+.section-alt{background:var(--surface)}
+.section-kicker{color:var(--accent)}
+.section-title{font-family:var(--head);font-size:clamp(34px,5vw,52px);line-height:1.06;margin:0 0 14px}
+.section-lede{max-width:720px;color:var(--muted);font-size:17px;margin:0 0 32px}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.service-card{padding:28px;min-height:240px;transition:transform .2s,box-shadow .2s}
+.service-card:hover{transform:translateY(-4px)}
+.service-card i{width:48px;height:48px;display:grid;place-items:center;font-size:21px;color:var(--accent);margin:12px 0 24px}
+.service-card h3{font-family:var(--head);font-size:20px;margin:0 0 10px}
+.service-card p{color:var(--muted);margin:0}
+.service-num{color:var(--muted)}
+.info-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start}
+.contact-panel,.hours-panel{background:var(--surface);border:1px solid rgba(0,0,0,.10);padding:30px}
+.contact-item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(127,127,127,.18)}
+.contact-item:last-child{border-bottom:0}
+.contact-item>i{width:42px;height:42px;display:grid;place-items:center;background:var(--accent);color:#071114;flex:0 0 auto}
+.contact-item span{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:800}
+.contact-item p,.contact-item a{margin:2px 0 0;font-weight:700;text-decoration:none}
+.hours-row{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid rgba(127,127,127,.20)}
+.hours-row:last-child{border-bottom:0}
+.hours-row strong{text-align:right}
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.review-card{margin:0;padding:28px;background:var(--surface);border:1px solid rgba(0,0,0,.10)}
+.review-card p{font-family:var(--head);font-size:21px;line-height:1.45;margin:14px 0}
+.review-card footer{color:var(--muted);font-weight:700;font-size:14px}
+.stars{color:var(--accent2);letter-spacing:3px}
+.social-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.social-link{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid rgba(127,127,127,.28);text-decoration:none;font-weight:700}
+.final-cta{padding:70px 0;background:var(--accent);color:#071114}
+.final-cta .wrap{display:flex;justify-content:space-between;gap:30px;align-items:center}
+.final-cta h2{font-family:var(--head);font-size:clamp(30px,4vw,48px);margin:0}
+.final-cta .cta{border-color:currentColor}
+.site-footer{padding:30px 0;background:#0b0b0d;color:#d8d8dc;font-size:14px}
+.site-footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.stock-note{font-size:12px;color:var(--muted);margin-top:12px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(480px,100%);background:var(--surface);color:var(--text);border:1px solid rgba(127,127,127,.24);padding:30px;box-shadow:0 22px 80px rgba(0,0,0,.35)}
+.modal h2{font-family:var(--head);margin:0 0 12px}
+.modal p{color:var(--muted)}
+.modal button{border:0;background:var(--accent);color:#071114;font-weight:800;padding:11px 18px;cursor:pointer}
+
+          body{background:#07070a}
+          .site-header{background:rgba(7,7,10,.88);border-bottom:1px solid rgba(125,249,255,.22)}
+          .hero:before{background:linear-gradient(90deg,rgba(7,7,10,.94),rgba(7,7,10,.58),rgba(7,7,10,.22))}
+          .hero-copy{background:rgba(12,12,18,.72);border:1px solid rgba(125,249,255,.34);box-shadow:0 0 50px rgba(125,249,255,.11)}
+          .service-card{background:#101018;border:1px solid #28283a}
+          .service-card:hover{box-shadow:0 0 26px rgba(125,249,255,.13)}
+          .service-card i,.stars,.eyebrow{color:var(--accent)}
+          .contact-panel,.hours-panel,.review-card{background:#101018;border-color:#28283a}
+        
+@media(max-width:900px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .info-grid{grid-template-columns:1fr}
+  .hero{min-height:620px}
+}
+@media(max-width:720px){
+  .wrap{width:min(100% - 28px,1120px)}
+  .header-row{height:66px}
+  .menu-btn{display:block}
+  .nav{display:none;position:absolute;top:66px;left:0;right:0;background:var(--surface);padding:10px 14px 18px;flex-direction:column;align-items:stretch;border-bottom:1px solid rgba(127,127,127,.18)}
+  .nav.open{display:flex}
+  .nav a{padding:13px}
+  .hero{min-height:590px}
+  .hero-copy{padding:28px 22px}
+  .hero h1{font-size:clamp(39px,13vw,62px)}
+  section{padding:62px 0}
+  .services-grid,.reviews-grid{grid-template-columns:1fr}
+  .service-card{min-height:0}
+  .final-cta .wrap{display:block}
+  .final-cta .cta{margin-top:18px}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="#home" class="brand">King City <b>Smoke Shop</b></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav" id="nav">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">418 Wood St · Pittsburgh</p>
+      <h1>Glass, flower,<br><b style='color:var(--accent)'>and good vibes.</b></h1>
+      <p>The source site lists glass, flower, vapes, CBD &amp; wellness items, accessories, and local-friendly staff.</p>
+      <div class="hero-actions">
+        
+        <a class="cta secondary" href="#services"><i class="fa-solid fa-arrow-down"></i> Explore</a>
+        <div class="rating-pill"><i class="fa-solid fa-star"></i><strong>4.9 · local listings</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <p class="section-kicker">What you&#x27;ll find</p>
+    <h2 class="section-title">What you’ll find</h2>
+    <p class="section-lede">Product categories listed on the source site.</p>
+    <div class="services-grid"><article class="service-card"><div class="service-num">01</div><i class="fa-solid fa-cloud"></i><h3>Premium flower &amp; vapes</h3><p>Listed product category.</p></article><article class="service-card"><div class="service-num">02</div><i class="fa-solid fa-flask"></i><h3>Glass &amp; accessories</h3><p>Listed product category.</p></article><article class="service-card"><div class="service-num">03</div><i class="fa-solid fa-leaf"></i><h3>CBD &amp; wellness</h3><p>Listed product category.</p></article><article class="service-card"><div class="service-num">04</div><i class="fa-solid fa-comments"></i><h3>Local-friendly staff</h3><p>Listed service highlight.</p></article></div>
+    
+    <p class="stock-note">Stock imagery used for presentation only; it does not depict the actual business.</p>
+  </div>
+</section>
+
+
+
+<section id="visit">
+  <div class="wrap">
+    <p class="section-kicker">Visit</p>
+    <h2 class="section-title">Find us</h2>
+    <div class="info-grid">
+      <div class="contact-panel">
+        <div class="contact-item"><i class="fa-solid fa-location-dot"></i><div><span>Address</span><p>418 Wood St, Pittsburgh, PA 15222</p></div></div>
+        <div class="contact-item"><i class="fa-solid fa-phone-slash"></i><div><span>Phone</span><p>Phone not listed.</p></div></div>
+        
+        <div style="margin-top:22px"><a href="https://www.google.com/maps/search/?api=1&amp;query=King%20City%20Smoke%20Shop%20418%20Wood%20St%2C%20Pittsburgh%2C%20PA%2015222" class="cta primary" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Get directions</a></div>
+      </div>
+      <div class="hours-panel">
+        <h3 style="font-family:var(--head);margin-top:0">Hours</h3>
+        <div class="hours-row"><span>Sunday</span><strong>10:00 AM – 10:00 PM</strong></div><div class="hours-row"><span>Monday</span><strong>10:00 AM – 10:00 PM</strong></div><div class="hours-row"><span>Tuesday</span><strong>10:00 AM – 10:00 PM</strong></div><div class="hours-row"><span>Wednesday</span><strong>10:00 AM – 10:00 PM</strong></div><div class="hours-row"><span>Thursday</span><strong>10:00 AM – 10:00 PM</strong></div><div class="hours-row"><span>Friday</span><strong>10:00 AM – 12:00 AM</strong></div><div class="hours-row"><span>Saturday</span><strong>10:00 AM – 12:00 AM</strong></div>
+        <p class="stock-note">Hours may change on holidays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <div><p class="section-kicker" style="color:inherit;opacity:.8">Visit today</p><h2>King City Smoke Shop</h2></div>
+    <a class="cta secondary" href="https://www.google.com/maps/search/?api=1&amp;query=King%20City%20Smoke%20Shop%20418%20Wood%20St%2C%20Pittsburgh%2C%20PA%2015222" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Open map</a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap"><span>© King City Smoke Shop</span><span>418 Wood St, Pittsburgh, PA 15222</span></div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+  <div class="modal">
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="closeModal">Close</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const menuBtn=document.getElementById("menuBtn");
+  const nav=document.getElementById("nav");
+  const modal=document.getElementById("lockedModal");
+  const closeModal=document.getElementById("closeModal");
+  function closeMenu(){nav.classList.remove("open");menuBtn.setAttribute("aria-expanded","false");}
+  menuBtn.addEventListener("click",function(){
+    const open=nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded",String(open));
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener("click",function(){closeMenu();});
+  });
+  function openLocked(e){
+    e.preventDefault();
+    modal.classList.add("open");
+    document.body.style.overflow="hidden";
+    closeModal.focus();
+  }
+  function closeLocked(){
+    modal.classList.remove("open");
+    document.body.style.overflow="";
+  }
+  document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+    el.addEventListener("click",openLocked);
+  });
+  closeModal.addEventListener("click",closeLocked);
+  modal.addEventListener("click",function(e){if(e.target===modal) closeLocked();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape" && modal.classList.contains("open")) closeLocked();});
+})();
+</script>
+
+<!--
+ASSET LIST
+- Hero/background: Atmospheric retail stock photograph from Unsplash (stock image)
+- Icons: Font Awesome Free via CDN
+- Fonts: Google Fonts via CDN
+
+MISSING / UNSUPPORTED / REQUIRES APPROVAL
+  - No phone number was provided.
+  - No public email address was provided.
+  - No owner/team name was provided.
+  - No supported customer review quotations were retained.
+  - No prices were provided.
+
+FINAL QUALITY CHECK
+- Mobile hamburger menu: included and functional
+- Mobile zoom: disabled in viewport
+- Text highlighting/selection: disabled
+- Unsupported empty sections: omitted
+- Unsupported claims: not intentionally added
+- Locked demo actions: reusable modal used
+- CSS and JavaScript: contained inside this HTML file
+-->
+</body>
+</html>

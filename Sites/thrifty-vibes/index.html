@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0f6f6f">
+<title>Thrifty Vibes | Las Vegas Thrift Store</title>
+<meta name="description" content="Thrifty Vibes in Las Vegas. Clothing, accessories, vintage pieces, shoes, bags, furniture, lighting, kitchen and dining, books, media, toys and games.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --bg:#fff9f0;--ink:#2b2118;--teal:#0e9e9e;--teal-dark:#0a7070;--mustard:#f2b705;
+  --coral:#ff6b57;--cream:#fffdf8;--muted:#6b5b4c;--line:rgba(43,33,24,.18);
+  --max:1120px;--shadow:0 20px 50px rgba(43,33,24,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito",sans-serif;overflow-x:hidden;user-select:none;-webkit-user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,249,240,.96);
+  backdrop-filter:blur(14px);border-bottom:3px dotted var(--ink)
+}
+.header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:"Righteous",cursive;color:var(--teal);font-size:1.45rem;display:flex;align-items:center;gap:10px}
+.brand i{color:var(--mustard)}
+.desktop-nav{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.94rem}
+.desktop-nav a{padding:9px 14px;border-radius:999px}
+.desktop-nav a:hover{background:var(--mustard)}
+.menu-btn{display:none;border:2px solid var(--ink);background:none;border-radius:10px;width:46px;height:42px;cursor:pointer}
+.menu-btn span{display:block;height:3px;background:var(--ink);margin:5px 8px;border-radius:2px}
+.mobile-menu{display:none;padding:10px 20px 16px;border-top:3px dotted var(--ink)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:13px 2px;border-bottom:1px solid var(--line);font-weight:800}
+main{padding-top:72px}
+
+.hero{
+  min-height:690px;display:grid;align-items:end;position:relative;overflow:hidden;color:#fff;
+  background:
+    linear-gradient(90deg,rgba(34,25,19,.94) 0%,rgba(34,25,19,.73) 52%,rgba(34,25,19,.34) 100%),
+    url("https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+}
+.hero-inner{position:relative;z-index:2;padding:100px 0 70px;max-width:800px}
+.rating-pill{
+  display:inline-flex;align-items:center;gap:8px;background:var(--mustard);color:var(--ink);
+  border:2px solid var(--ink);border-radius:999px;padding:8px 14px;font-weight:800;
+  box-shadow:3px 3px 0 var(--ink)
+}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:"Righteous",cursive;font-size:clamp(3.6rem,8vw,6.7rem);line-height:.92;margin:20px 0 22px;font-weight:400}
+h1 em{color:#ffd757;font-style:normal}
+.hero-copy{max-width:660px;font-size:1.12rem;line-height:1.7;color:rgba(255,255,255,.88)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  min-height:49px;padding:13px 20px;border:2px solid transparent;border-radius:10px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:.18s
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-teal{background:var(--teal);color:#fff;border-color:#fff}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:#fff;color:#fff}
+.stock-note{position:absolute;right:18px;bottom:14px;z-index:2;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65)}
+
+.quickbar{background:var(--teal-dark);color:#fff}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.quick{padding:23px 24px;display:flex;gap:14px;border-right:1px solid rgba(255,255,255,.15)}
+.quick:last-child{border-right:0}
+.quick i{color:#ffd65f;margin-top:3px}
+.quick strong{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px}
+.quick span{font-weight:800}
+
+.section{padding:88px 0}
+.eyebrow{
+  display:inline-block;background:var(--mustard);color:var(--ink);font-weight:800;font-size:.78rem;
+  letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:999px;border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);margin-bottom:14px
+}
+.section h2{font-family:"Righteous",cursive;font-size:clamp(2.6rem,5vw,4.5rem);line-height:1;margin-bottom:18px;font-weight:400}
+.lead{max-width:740px;color:var(--muted);font-size:1.03rem;line-height:1.72}
+
+.about-grid{display:grid;grid-template-columns:1fr .92fr;gap:58px;align-items:start}
+.about-photo{
+  min-height:450px;background:
+    linear-gradient(rgba(14,158,158,.08),rgba(14,158,158,.08)),
+    url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1500&q=82") center/cover no-repeat;
+  border:3px solid var(--ink);box-shadow:8px 8px 0 var(--mustard);position:relative
+}
+.about-photo:after{
+  content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;
+  background:rgba(43,33,24,.85);color:#fff;padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em
+}
+.protected{
+  margin-top:24px;border:2px dashed var(--ink);background:#fff5dc;padding:18px 20px;display:flex;gap:14px
+}
+.protected i{color:var(--teal);margin-top:3px}
+.protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+.goods{background:#fff}
+.goods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.good{
+  background:var(--bg);border:2px solid var(--ink);padding:28px;box-shadow:5px 5px 0 var(--coral)
+}
+.good i{font-size:1.45rem;color:var(--teal);margin-bottom:18px}
+.good h3{font-family:"Righteous",cursive;font-size:1.3rem;margin-bottom:9px;font-weight:400}
+.good p{color:var(--muted);margin-bottom:0}
+
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:36px}
+.service{background:var(--cream);padding:28px 24px;min-height:220px}
+.service i{font-size:1.35rem;color:var(--coral);margin-bottom:20px}
+.service h3{font-size:1.08rem;margin-bottom:8px}
+.service p{color:var(--muted);line-height:1.6;margin-bottom:0;font-size:.93rem}
+
+.steps{
+  margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.step{background:var(--teal);color:#fff;padding:26px;border:2px solid var(--ink)}
+.step-num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--mustard);color:var(--ink);font-weight:900;border:2px solid var(--ink);margin-bottom:14px}
+.step h3{margin-bottom:7px}.step p{color:rgba(255,255,255,.8);margin-bottom:0}
+
+.reviews{
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(29,20,14,.96),rgba(29,20,14,.84)),
+    url("https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+}
+.review-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:60px;align-items:start}
+.review-score{border:2px solid rgba(255,255,255,.35);padding:30px;background:rgba(0,0,0,.18)}
+.review-score .big{font-family:"Righteous",cursive;font-size:5.3rem;color:#ffd65f;line-height:.9}
+.stars{color:#ffd65f;margin:12px 0}
+.review-score p{color:rgba(255,255,255,.75)}
+.themes{display:grid;gap:1px;background:rgba(255,255,255,.16)}
+.theme{background:rgba(0,0,0,.22);padding:26px}
+.theme i{color:#ffd65f;font-size:1.3rem;margin-bottom:12px}
+.theme h3{margin-bottom:7px}.theme p{margin-bottom:0;color:rgba(255,255,255,.76)}
+
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.hours-list{border-top:2px dotted var(--ink)}
+.hour-row{display:flex;justify-content:space-between;gap:18px;padding:15px 0;border-bottom:2px dotted var(--ink)}
+.hour-row span{color:var(--muted)}
+.today{color:var(--teal)!important}
+
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+.visit-card{background:#fff;border:2px solid var(--ink);padding:30px;min-height:270px}
+.lock-panel{background:var(--teal-dark);color:#fff}
+.lock-panel p{color:rgba(255,255,255,.78)}
+.contact-note{margin:18px 0}
+.form-card{margin-top:28px;background:#fff;border:2px solid var(--ink);padding:28px}
+.form-card h3{font-family:"Righteous",cursive;font-size:1.35rem;font-weight:400}
+.field{display:grid;gap:6px;margin-top:13px}
+.field label{font-weight:800}
+.field textarea{width:100%;min-height:120px;border:2px solid var(--ink);padding:12px;background:#fff9f0;resize:vertical;color:var(--ink);font:inherit}
+.form-card .btn{width:100%;margin-top:16px;background:var(--teal);color:#fff;border-color:var(--ink)}
+
+footer{background:var(--ink);color:rgba(255,255,255,.74);padding:38px 0}
+.foot{display:flex;justify-content:space-between;gap:22px;align-items:center;font-size:.84rem}
+.foot strong{color:#fff}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.68);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(100%,470px);background:var(--bg);border:3px solid var(--ink);padding:32px;box-shadow:9px 9px 0 var(--mustard)}
+.modal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#fff;margin-bottom:18px;border:2px solid var(--ink)}
+.modal h2{font-family:"Righteous",cursive;font-size:2rem;font-weight:400;margin-bottom:10px}
+.modal p{color:var(--muted);line-height:1.6;margin-bottom:22px}
+.modal .btn{width:100%;background:var(--teal);color:#fff;border-color:var(--ink)}
+
+@media(max-width:980px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){
+  .desktop-nav{display:none}.menu-btn{display:block}
+  .about-grid,.review-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+  .quick-grid{grid-template-columns:1fr}.quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
+  .quick:last-child{border-bottom:0}.goods-grid,.steps{grid-template-columns:1fr}.hero{min-height:630px}
+}
+@media(max-width:600px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .header-inner{min-height:66px}.brand{font-size:1.1rem}
+  main{padding-top:66px}.hero{min-height:600px;background-position:58% center}.hero-inner{padding:80px 0 52px}
+  h1{font-size:clamp(3rem,15vw,4.5rem)}.hero-actions{display:grid}.hero-actions .btn{width:100%}
+  .stock-note{left:14px;right:auto}.section{padding:68px 0}.about-photo{min-height:330px}
+  .services-grid{grid-template-columns:1fr}.foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand"><i class="fa-solid fa-tags"></i><span>Thrifty Vibes</span></a>
+    <nav class="desktop-nav">
+      <a href="#about">About</a><a href="#goods">The Goods</a><a href="#services">What We Carry</a><a href="#reviews">Reviews</a><a href="#visit">Visit Us</a>
+    </nav>
+    <button id="menuBtn" class="menu-btn" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu">
+    <a href="#about">About</a><a href="#goods">The Goods</a><a href="#services">What We Carry</a><a href="#reviews">Reviews</a><a href="#visit">Visit Us</a>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="rating-pill"><i class="fa-solid fa-star"></i> 4.9 stars · 83 Google reviews</span>
+    <h1>Secondhand surprises with <em>first-rate vibes</em></h1>
+    <p class="hero-copy">Thrifty Vibes is your neighborhood thrift stop on N Rainbow Blvd. Racks of clothing, shelves of home goods and furniture, and a fresh drop of new stock every single week. Come dig, you never know what treasure is waiting.</p>
+    <div class="hero-actions">
+      <a class="btn btn-teal" href="#services"><i class="fa-solid fa-shirt"></i> See What We Carry</a>
+      <button class="btn btn-ghost" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Get Directions</button>
+    </div>
+  </div>
+  <div class="stock-note">Stock imagery — not the actual business</div>
+</section>
+
+<section class="quickbar">
+  <div class="wrap quick-grid">
+    <div class="quick"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>N Rainbow Blvd · Las Vegas</span></div></div>
+    <div class="quick"><i class="fa-solid fa-clock"></i><div><strong>Hours</strong><span>Mon–Sat 10 AM–8 PM · Sunday closed</span></div></div>
+    <div class="quick"><i class="fa-solid fa-star"></i><div><strong>Google rating</strong><span>4.9 stars · 83 reviews</span></div></div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo" role="img" aria-label="Stock photo of clothing racks in a thrift-style shop"></div>
+    <div>
+      <span class="eyebrow">About</span>
+      <h2>Shop secondhand in Las Vegas.</h2>
+      <p class="lead">The supplied source describes Thrifty Vibes as a neighborhood thrift store with clothing, furniture, home goods and new stock added every week.</p>
+      <div class="protected">
+        <i class="fa-solid fa-lock"></i>
+        <div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The source contains a public business street address and phone number. Those real-world contact details remain hidden in this sample site.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section goods" id="goods">
+  <div class="wrap">
+    <span class="eyebrow">The Goods</span>
+    <h2>Three aisles, endless finds</h2>
+    <div class="goods-grid">
+      <article class="good"><i class="fa-solid fa-shirt"></i><h3>Clothing and Accessories</h3><p>Tops, jackets, jeans, dresses, shoes and bags for the whole family, with vintage pieces mixed into every rack.</p></article>
+      <article class="good"><i class="fa-solid fa-couch"></i><h3>Furniture and Home Decor</h3><p>Lamps, frames, small furniture and one-of-a-kind decor that gives a room character without emptying your wallet.</p></article>
+      <article class="good"><i class="fa-solid fa-book"></i><h3>Books, Media and More</h3><p>Paperbacks, DVDs, toys, kitchenware and the kind of random gems that make thrift shopping addictive.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <span class="eyebrow">What We Carry</span>
+    <h2>A little bit of everything</h2>
+    <p class="lead">The source says inventory changes constantly. These are the categories it specifically lists.</p>
+    <div class="services-grid">
+      <article class="service"><i class="fa-solid fa-shirt"></i><h3>Everyday Clothing</h3><p>Tees, jeans, workwear and kids clothes at prices that make stocking up easy.</p></article>
+      <article class="service"><i class="fa-solid fa-hat-cowboy"></i><h3>Vintage Pieces</h3><p>Denim jackets, retro dresses and accessories with real character.</p></article>
+      <article class="service"><i class="fa-solid fa-shoe-prints"></i><h3>Shoes and Bags</h3><p>Sneakers, boots, purses and backpacks, checked and shelf ready.</p></article>
+      <article class="service"><i class="fa-solid fa-couch"></i><h3>Small Furniture</h3><p>Chairs, side tables, shelves and stools. When they come in, they go fast.</p></article>
+      <article class="service"><i class="fa-solid fa-lightbulb"></i><h3>Lamps and Lighting</h3><p>Table lamps, floor lamps and fixtures, tested before they are sold.</p></article>
+      <article class="service"><i class="fa-solid fa-utensils"></i><h3>Kitchen and Dining</h3><p>Glasses, mugs, plates and small appliances for every kitchen.</p></article>
+      <article class="service"><i class="fa-solid fa-book-open"></i><h3>Books and Media</h3><p>Paperbacks, hardcovers, DVDs and CDs priced to move.</p></article>
+      <article class="service"><i class="fa-solid fa-puzzle-piece"></i><h3>Toys and Games</h3><p>Puzzles, board games and toys for kids and collectors alike.</p></article>
+    </div>
+    <div class="steps">
+      <article class="step"><div class="step-num">1</div><h3>Come Dig</h3><p>Grab a cart and take your time. Sections get restocked throughout the week.</p></article>
+      <article class="step"><div class="step-num">2</div><h3>Check It Over</h3><p>Everything on the floor has been inspected first, so you can shop with confidence.</p></article>
+      <article class="step"><div class="step-num">3</div><h3>Score the Deal</h3><p>Fair prices on everything, every day. No haggling stress at the register.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap review-grid">
+    <div>
+      <span class="eyebrow">Reviews</span>
+      <h2 style="color:#fff">4.9 stars from Las Vegas thrifters</h2>
+      <div class="review-score">
+        <div class="big">4.9</div>
+        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p>Based on 83 Google reviews in the supplied source.</p>
+        <button class="btn btn-teal" data-locked="true"><i class="fa-brands fa-google"></i> Read Reviews on Google</button>
+      </div>
+    </div>
+    <div class="themes">
+      <article class="theme"><i class="fa-solid fa-gem"></i><h3>Real Finds</h3><p>Shoppers love the rotation. Regulars say every visit turns up something different, from vintage denim to furniture steals.</p></article>
+      <article class="theme"><i class="fa-solid fa-face-smile"></i><h3>Friendly Vibes</h3><p>Reviews describe a welcoming, easygoing team that lets you browse without pressure and helps when you need it.</p></article>
+      <article class="theme"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Clean and Organized</h3><p>People notice the difference: sorted racks, checked items and a store that feels cared for.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="visit">
+  <div class="wrap">
+    <span class="eyebrow">Visit Us</span>
+    <h2>Come say hi on Rainbow</h2>
+    <p class="lead">The source places Thrifty Vibes in Suite 110 on N Rainbow Blvd in Las Vegas.</p>
+    <div class="hours-grid" style="margin-top:34px">
+      <div>
+        <h3 style="font-family:'Righteous',cursive;font-weight:400;font-size:1.8rem">Hours</h3>
+        <p class="lead">Hours from Google in the supplied source. Call ahead to confirm holiday hours.</p>
+      </div>
+      <div class="hours-list">
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>10:00 AM – 8:00 PM</span></div>
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>Closed</span></div>
+      </div>
+    </div>
+
+    <div class="visit-grid">
+      <div class="visit-card lock-panel">
+        <div><i class="fa-solid fa-location-dot" style="font-size:2rem;color:#ffd65f"></i><h3>Business address</h3><p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p></div>
+        <button class="btn" data-locked="true" style="background:var(--mustard);color:var(--ink);border-color:var(--ink)"><i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps</button>
+      </div>
+      <div class="visit-card">
+        <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+        <div class="protected contact-note"><i class="fa-solid fa-lock"></i><div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The supplied phone number is intentionally not exposed as a working tel: link.</p></div></div>
+        <button class="btn" data-locked="true" style="background:var(--teal);color:#fff;border-color:var(--ink)"><i class="fa-solid fa-phone"></i> Call Now</button>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3><i class="fa-solid fa-comment-dots"></i> Ask Us Anything</h3>
+      <p class="lead">Looking for something specific? Send us a message and we will keep an eye out for it.</p>
+      <form id="questionForm">
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message">Hi! I found Thrifty Vibes online and I have a question: </textarea>
+        </div>
+        <button class="btn" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send a Text</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>Thrifty Vibes</strong><br>Las Vegas, NV</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  let lastFocus = null;
+
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openModal(trigger) {
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) {
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  document.getElementById('questionForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    openModal(e.currentTarget.querySelector('[data-locked="true"]'));
+  });
+
+  const today = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    weekday: 'short'
+  }).format(new Date());
+
+  const dayMap = {Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6};
+  const row = document.querySelector('.hour-row[data-day="' + dayMap[today] + '"]');
+
+  if (row) {
+    const day = row.querySelector('strong');
+    day.classList.add('today');
+    day.textContent += ' · Today';
+  }
+
+  document.addEventListener('gesturestart', (e) => e.preventDefault());
+})();
+</script>
+</body>
+</html>

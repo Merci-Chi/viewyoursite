@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#14121A">
+<title>Smoke Shop in the Short North | Smoke Zone Smoke Shop</title>
+<meta name="description" content="Smoke Zone Smoke Shop in the Short North on N High St in Columbus. Glass, vapes, wraps, lighters, CBD, Delta products, hours, reviews, and visit information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --uv:#7C4DFF;
+  --uv-soft:#EDE7FF;
+  --uv-glow:#B388FF;
+  --uv-deep:#5E35B1;
+  --night:#14121A;
+  --night-soft:#1E1B28;
+  --white:#FFFFFF;
+  --ink:#2A2733;
+  --muted:#C9C3DC;
+  --line:rgba(124,77,255,.28);
+  --max:1120px;
+  --shadow:0 26px 70px rgba(0,0,0,.36);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{
+  margin:0;background:var(--white);color:var(--ink);
+  font-family:'Barlow',sans-serif;overflow-x:hidden;
+  -webkit-user-select:none;user-select:none
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+h1,h2,h3,p{margin-top:0}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(20,18,26,.96);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)
+}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-ring{
+  width:42px;height:42px;display:grid;place-items:center;border-radius:50%;
+  border:3px solid var(--uv);color:var(--uv-glow);
+  box-shadow:0 0 22px rgba(124,77,255,.4)
+}
+.brand-text{font-family:'Audiowide',cursive;color:#fff;font-size:1.05rem}
+.brand-text small{display:block;font:700 .68rem 'Barlow',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--uv-glow);margin-top:3px}
+.desktop-nav{display:flex;gap:26px;font-weight:800;font-size:.87rem;color:#fff}
+.desktop-nav a:hover{color:var(--uv-glow)}
+.menu-btn{
+  display:none;width:46px;height:46px;border:1px solid var(--uv);
+  background:transparent;color:#fff;cursor:pointer
+}
+.menu-btn span{display:block;width:24px;height:2px;background:#fff;margin:5px auto}
+.mobile-menu{display:none;background:var(--night-soft);padding:8px 20px 18px;border-top:1px solid var(--line)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);color:#fff;font-weight:800}
+
+.hero{
+  min-height:740px;display:grid;align-items:end;position:relative;overflow:hidden;color:#fff;
+  background:
+    linear-gradient(90deg,rgba(20,18,26,.97),rgba(20,18,26,.65) 58%,rgba(20,18,26,.18)),
+    url("https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=2000&q=84") center/cover no-repeat
+}
+.hero:after{
+  content:"";position:absolute;right:-150px;top:-150px;width:390px;height:390px;border-radius:50%;
+  border:62px solid rgba(124,77,255,.14)
+}
+.hero-in{position:relative;z-index:2;padding:112px 0 76px;max-width:900px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid var(--uv);
+  padding:8px 12px;color:#E4DBFF;background:rgba(124,77,255,.12);
+  font-size:.78rem;font-weight:800;letter-spacing:.05em
+}
+.hero h1{
+  font-family:'Audiowide',cursive;font-size:clamp(3.8rem,7.5vw,6.6rem);
+  line-height:.92;letter-spacing:-.045em;margin:0 0 22px
+}
+.hero h1 em{font-style:normal;color:var(--uv-glow);text-shadow:0 0 18px rgba(179,136,255,.55)}
+.hero-copy{max-width:760px;color:#D3CCE2;line-height:1.75;font-size:1.08rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{
+  min-height:50px;padding:13px 20px;border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-weight:800;cursor:pointer;transition:.18s ease
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--uv);color:#fff;box-shadow:0 0 20px rgba(124,77,255,.28)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.4);color:#fff}
+.btn-dark{background:var(--night);color:#fff}
+.asset-note{
+  position:absolute;right:18px;bottom:14px;z-index:3;
+  background:rgba(20,18,26,.78);padding:7px 9px;
+  font-size:.66rem;text-transform:uppercase;letter-spacing:.07em
+}
+
+.factbar{background:var(--night);color:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.factgrid{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{display:flex;gap:14px;padding:24px 22px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact i{color:var(--uv-glow);margin-top:3px}
+.fact strong{display:block;font-size:.69rem;text-transform:uppercase;letter-spacing:.1em;color:#8E8AA0;margin-bottom:5px}
+.fact span{font-weight:700}
+
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-kicker{color:var(--uv-deep);text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;margin-bottom:10px}
+.section h2{font-family:'Audiowide',cursive;font-size:clamp(2.8rem,5vw,4.7rem);line-height:.97;letter-spacing:-.03em;margin-bottom:18px}
+.lead{max-width:760px;color:#66606f;line-height:1.75;font-size:1.03rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-photo{
+  min-height:460px;position:relative;
+  background:url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=84") center/cover no-repeat;
+  box-shadow:var(--shadow)
+}
+.about-photo:after{
+  content:"Stock smoke-shop/retail imagery — not the actual business";
+  position:absolute;left:14px;bottom:12px;background:rgba(20,18,26,.84);color:#fff;
+  padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em
+}
+.known-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.known{border:1px solid #E2DBF5;background:#fff;padding:22px}
+.known i{width:44px;height:44px;display:grid;place-items:center;background:var(--uv-soft);color:var(--uv-deep);margin-bottom:14px}
+.known h3{font-family:'Audiowide',cursive;font-size:1rem;margin-bottom:7px}
+.known p{margin:0;color:#6c6576;line-height:1.55;font-size:.9rem}
+
+.shop{
+  color:#fff;
+  background:
+    linear-gradient(rgba(30,27,40,.94),rgba(30,27,40,.94)),
+    url("https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat
+}
+.shop .section-kicker{color:var(--uv-glow)}
+.shop .lead{color:#C9C3DC}
+.product-list{margin-top:38px;border-top:1px solid var(--line)}
+.product-row{
+  display:grid;grid-template-columns:56px .85fr 1.35fr;gap:18px;align-items:center;
+  padding:22px 0;border-bottom:1px solid var(--line)
+}
+.product-row i{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);color:var(--uv-glow)}
+.product-name{font-family:'Audiowide',cursive;font-size:1.16rem}
+.product-row p{margin:0;color:#BEB4CA;line-height:1.6}
+.age-band{
+  margin-top:30px;padding:16px 18px;background:rgba(124,77,255,.14);
+  border:1px solid var(--uv);font-weight:800;text-align:center;color:#E4DBFF
+}
+
+.reviews{background:var(--uv-soft)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.review{background:#fff;border:1px solid #DED5F3;border-left:5px solid var(--uv);padding:24px}
+.review p{line-height:1.7}
+.review span{display:block;color:#6E6784;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin-top:13px}
+.rating{margin-top:25px;display:inline-flex;align-items:center;gap:10px;background:var(--night);color:#fff;border:1px solid var(--uv);padding:12px 18px;font-weight:800}
+.rating i{color:var(--uv-glow)}
+
+.hours{
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(20,18,26,.96),rgba(20,18,26,.83)),
+    url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat
+}
+.hours .section-kicker{color:var(--uv-glow)}
+.hours .lead{color:#C9C3DC}
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.hours-list{border-top:1px solid var(--line)}
+.hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.hour-row span{color:#C9C3DC}
+.hour-row.today strong{color:var(--uv-glow)}
+.confirm{margin-top:14px;color:#BDB4C9;font-size:.9rem}
+
+.visit{background:#fff}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+.visit-card,.form-demo{background:#FAF8FF;border:1px solid #E2DBF5;padding:30px}
+.visit-card h3,.form-demo h3{font-family:'Audiowide',cursive;font-size:1.28rem}
+.visit-card p,.form-demo p{color:#6f687a;line-height:1.65}
+.protected{margin-top:20px;border-left:4px solid var(--uv);background:var(--uv-soft);padding:18px 20px;display:flex;gap:13px}
+.protected i{color:var(--uv-deep);margin-top:3px}
+.protected strong{display:block;font-size:.73rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px}
+.protected p{margin:0;font-size:.9rem}
+.form-demo{margin-top:30px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.field{display:grid;gap:7px}.field.full{grid-column:1/-1}
+label{font-size:.82rem;font-weight:800}
+input,textarea{width:100%;background:#fff;border:1px solid #D8CDEF;padding:13px 14px;color:var(--ink);border-radius:0}
+textarea{min-height:120px;resize:vertical}
+
+footer{background:var(--night);color:#C9C3DC;padding:40px 0}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+footer h3{color:#fff;font-family:'Audiowide',cursive;font-size:1rem}
+footer p{margin:0 0 7px;line-height:1.6}
+.copy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:.8rem;color:#8E8AA0}
+
+.modal-backdrop{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(0,0,0,.75);z-index:500
+}
+.modal-backdrop.open{display:flex}
+.modal{
+  width:min(100%,460px);background:var(--night-soft);color:#fff;
+  border-top:4px solid var(--uv);padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.5)
+}
+.modal-icon{width:48px;height:48px;display:grid;place-items:center;background:#0E0C13;color:var(--uv-glow);margin-bottom:20px}
+.modal h2{font-family:'Audiowide',cursive;font-size:1.7rem}
+.modal p{color:#C9C3DC;line-height:1.65}
+.modal .btn{width:100%}
+
+@media(max-width:900px){
+  .desktop-nav{display:none}.menu-btn{display:block}
+  .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+  .known-grid,.review-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .product-row{grid-template-columns:50px 1fr}
+  .product-row p{grid-column:2}
+}
+@media(max-width:650px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .hero{min-height:650px;background-position:58% center}
+  .hero-in{padding:92px 0 52px}
+  .hero h1{font-size:clamp(3.3rem,15vw,4.8rem)}
+  .actions{display:grid}.actions .btn{width:100%}
+  .asset-note{left:14px;right:auto}
+  .factgrid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid var(--line)}
+  .section{padding:70px 0}
+  .about-photo{min-height:330px}
+  .visit-card,.form-demo{padding:24px}
+  .form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand">
+      <span class="brand-ring">Z</span>
+      <span class="brand-text">Smoke Zone Smoke Shop<small>N High St · Short North · Columbus</small></span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#shop">The Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#shop">The Shop</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#hours">Hours</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-in">
+      <div class="badges">
+        <span class="badge"><i class="fa-solid fa-moon"></i> Open late Fri + Sat till midnight</span>
+        <span class="badge"><i class="fa-solid fa-location-dot"></i> Short North, N High St</span>
+        <span class="badge"><i class="fa-solid fa-id-card"></i> 21+ valid ID</span>
+      </div>
+
+      <h1>The zone on <em>High Street</em></h1>
+      <p class="hero-copy">Smoke Zone Smoke Shop holds it down in the Short North with glass people rate on point, deals worth the trip and a counter that is super friendly and helpful.</p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="#shop"><i class="fa-solid fa-box-open"></i> Enter the zone</a>
+        <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Find us</a>
+      </div>
+    </div>
+
+    <div class="asset-note">Stock smoke-shop/retail imagery · not the actual business</div>
+  </section>
+
+  <section class="factbar">
+    <div class="wrap factgrid">
+      <div class="fact"><i class="fa-solid fa-star"></i><div><strong>Google rating</strong><span>4.4 stars</span></div></div>
+      <div class="fact"><i class="fa-solid fa-id-card"></i><div><strong>Age requirement</strong><span>21 and over, valid ID required</span></div></div>
+      <div class="fact"><i class="fa-solid fa-moon"></i><div><strong>Late close</strong><span>Midnight Fri + Sat</span></div></div>
+      <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Short North · N High St</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock retail interior image"></div>
+
+      <div>
+        <div class="section-kicker">What the zone is known for</div>
+        <h2>Straight from the reviews, no spin.</h2>
+
+        <div class="known-grid">
+          <div class="known">
+            <i class="fa-solid fa-jar"></i>
+            <h3>Glass on point</h3>
+            <p>Customers single out the glass case. One review calls it one of the only places open late with glass on point.</p>
+          </div>
+
+          <div class="known">
+            <i class="fa-solid fa-tags"></i>
+            <h3>Tons of great deals</h3>
+            <p>Deals come up around the shop often enough that people check back just to see what moved.</p>
+          </div>
+
+          <div class="known">
+            <i class="fa-solid fa-hand-sparkles"></i>
+            <h3>Friendly every time</h3>
+            <p>Always super friendly and helpful, in a customer's words. Raffle tickets from purchases come up in reviews too.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shop" id="shop">
+    <div class="wrap">
+      <div class="section-kicker">The Shop</div>
+      <h2>Inside the zone.</h2>
+      <p class="lead">The High St counter for glass, vapes and the rest of the kit, in the Short North.</p>
+
+      <div class="product-list">
+        <div class="product-row"><i class="fa-solid fa-jar"></i><div class="product-name">Glass</div><p>The lineup people come up and down High St for.</p></div>
+        <div class="product-row"><i class="fa-solid fa-bolt"></i><div class="product-name">Vapes</div><p>The lineup people come up and down High St for.</p></div>
+        <div class="product-row"><i class="fa-solid fa-scroll"></i><div class="product-name">Wraps</div><p>The lineup people come up and down High St for.</p></div>
+        <div class="product-row"><i class="fa-solid fa-fire"></i><div class="product-name">Lighters</div><p>The lineup people come up and down High St for.</p></div>
+        <div class="product-row"><i class="fa-solid fa-leaf"></i><div class="product-name">CBD</div><p>The lineup people come up and down High St for.</p></div>
+        <div class="product-row"><i class="fa-solid fa-flask"></i><div class="product-name">Delta products</div><p>The lineup people come up and down High St for.</p></div>
+      </div>
+
+      <div class="age-band"><i class="fa-solid fa-id-card"></i> 21 and over, valid ID required</div>
+    </div>
+
+    <div class="asset-note">Stock retail imagery · not the actual business</div>
+  </section>
+
+  <section class="section reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-kicker">Reviews</div>
+      <h2>Every collected customer quote, in full and exactly as written.</h2>
+
+      <div class="review-grid">
+        <article class="review">
+          <p>"Always super friendly and helpful"</p>
+          <span>Google review</span>
+        </article>
+
+        <article class="review">
+          <p>"One of the only places open late, the glass is on point!"</p>
+          <span>Google review</span>
+        </article>
+
+        <article class="review">
+          <p>"Great shop . Tons of great deals. Staff is very helpful. They do a raffle every so often with tickets you get from purchases. Highly recommend checking out."</p>
+          <span>Google review</span>
+        </article>
+      </div>
+
+      <div class="rating"><i class="fa-solid fa-star"></i> 4.4 stars on Google</div>
+
+      <div class="actions">
+        <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hours" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="section-kicker">Hours</div>
+        <h2>Late-night headquarters.</h2>
+        <p class="lead">Most of the Short North wraps up early. The zone keeps Friday and Saturday going until midnight.</p>
+      </div>
+
+      <div class="hours-list">
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>10 AM - 11 PM</span></div>
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>9 AM - 10 PM</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>9 AM - 10 PM</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>9 AM - 10 PM</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>9 AM - 10 PM</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>9 AM - midnight</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>9 AM - midnight</span></div>
+        <p class="confirm">Hours are estimated. Please call to confirm holiday hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="wrap">
+      <div class="section-kicker">Visit</div>
+      <h2>1202 N High St, Columbus, OH 43201.</h2>
+      <p class="lead">In the Short North, open late on weekends.</p>
+
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-location-dot"></i> Find us</h3>
+          <p>1202 N High St, Columbus, OH 43201</p>
+          <p>In the Short North arts district on N High St</p>
+          <p>21 and over, valid ID required</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The public business address is shown for reference, while the external map action remains disabled in this sample.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+        </div>
+
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Text the zone</h3>
+          <p>Smoke Zone Smoke Shop</p>
+          <p>(614) 754-1656</p>
+          <p>Short North · open late on weekends</p>
+
+          <div class="protected">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>Phone and text actions are intentionally disabled in this sample website.</p>
+            </div>
+          </div>
+
+          <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the shop</button>
+        </div>
+      </div>
+
+      <div class="form-demo">
+        <h3>Message the shop</h3>
+        <p>Wondering if a piece is still in the case, or what deals are running? Write it here and it becomes a text to the shop.</p>
+
+        <form class="form-grid" id="demoForm">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" placeholder="First name is fine">
+          </div>
+
+          <div class="field">
+            <label for="phone">Your phone</label>
+            <input id="phone" type="tel" placeholder="So we can text you back">
+          </div>
+
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="What do you need?"></textarea>
+          </div>
+
+          <div class="field full">
+            <button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send to the shop</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>Smoke Zone Smoke Shop</h3>
+        <p>1202 N High St, Columbus, OH 43201</p>
+        <p>(614) 754-1656</p>
+      </div>
+
+      <div>
+        <h3>Hours</h3>
+        <p>Mon - Thu 9 AM - 10 PM</p>
+        <p>Fri - Sat till midnight, Sun 10 - 11</p>
+      </div>
+
+      <div>
+        <h3>Good to know</h3>
+        <p>21 and over, valid ID required</p>
+        <p>Short North · N High St</p>
+      </div>
+    </div>
+
+    <div class="copy">© Smoke Zone Smoke Shop · Columbus, OH</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const modal = document.getElementById('lockedModal');
+  const modalClose = document.getElementById('modalClose');
+  const demoForm = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  function openModal(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && typeof lastFocus.focus === 'function'){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal(el);
+    });
+  });
+
+  demoForm.addEventListener('submit', e => {
+    e.preventDefault();
+    openModal(demoForm.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal){
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')){
+      closeModal();
+    }
+
+    if(e.key === 'Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  const weekday = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/New_York',
+    weekday:'short'
+  }).format(new Date());
+
+  const days = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row = document.querySelector('.hour-row[data-day="'+days[weekday]+'"]');
+
+  if(row){
+    row.classList.add('today');
+  }
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if(e.ctrlKey){
+      e.preventDefault();
+    }
+  }, {passive:false});
+
+  document.addEventListener('keydown', e => {
+    if((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)){
+      e.preventDefault();
+    }
+  });
+})();
+</script>
+</body>
+</html>

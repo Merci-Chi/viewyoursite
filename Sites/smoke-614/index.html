@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Columbus Smoke Shop on N High St | Smoke 614</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --scarlet:#C6272F;
+  --scarlet-deep:#9C1E25;
+  --cream:#FFF6E9;
+  --gray:#455A64;
+  --gray-deep:#33434C;
+  --white:#FFFFFF;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--cream);
+  color:var(--gray-deep);
+  line-height:1.65;
+}
+h1,h2,h3{ font-family:'Barlow Condensed',sans-serif; line-height:1.05; margin:0 0 .5rem; text-transform:uppercase; letter-spacing:.02em; }
+a{ color:var(--scarlet-deep); }
+.wrap{ max-width:1060px; margin:0 auto; padding:0 20px; }
+
+/* Footer pinning shell */
+.site-shell{ min-height:100vh; display:flex; flex-direction:column; }
+main{ flex:1 0 auto; }
+footer{ flex-shrink:0; }
+
+/* Header */
+header.site{
+  background:var(--scarlet); color:var(--cream);
+  position:relative; z-index:30;
+  border-bottom:3px solid var(--gray-deep);
+}
+.bar{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:12px; }
+.brand{ text-decoration:none; color:var(--cream); display:flex; align-items:center; gap:11px; }
+.brand-mark{
+  font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.15rem;
+  background:var(--cream); color:var(--scarlet);
+  padding:6px 11px; border-radius:8px; letter-spacing:.05em; flex:none;
+}
+.brand-name{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.35rem; letter-spacing:.03em; }
+.brand-sub{ display:block; font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; opacity:.85; font-weight:600; }
+.nav-links{ display:flex; align-items:center; gap:4px; }
+.nav-links a{
+  color:var(--cream); text-decoration:none; font-weight:600; font-size:.93rem;
+  padding:9px 14px; border-radius:8px; text-transform:uppercase; letter-spacing:.06em;
+  transition:background .18s ease;
+}
+.nav-links a:hover{ background:rgba(255,255,255,.16); }
+.menu-btn{
+  display:none; background:transparent; border:2px solid var(--cream);
+  color:var(--cream); border-radius:8px; font-size:1.15rem;
+  width:44px; height:44px; cursor:pointer; align-items:center; justify-content:center;
+}
+.menu-btn.open{ background:var(--cream); color:var(--scarlet); }
+
+/* Status + age chips */
+.status-chip{
+  display:inline-flex; align-items:center; gap:8px;
+  font-weight:600; font-size:.88rem;
+  padding:7px 14px; border-radius:999px;
+  background:var(--white); color:var(--gray-deep);
+  border:1px solid rgba(69,90,100,.28);
+}
+.status-chip .dot{ width:9px; height:9px; border-radius:50%; background:#9E9E9E; flex:none; }
+.status-chip.open .dot{ background:#2E9E44; box-shadow:0 0 0 3px rgba(46,158,68,.18); }
+.status-chip.closed .dot{ background:var(--scarlet); box-shadow:0 0 0 3px rgba(198,39,47,.16); }
+.age-chip{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--gray-deep); color:var(--cream);
+  font-weight:600; font-size:.85rem; padding:8px 15px; border-radius:8px;
+}
+
+/* Pages */
+.page{ display:none; }
+.page.active{ display:block; }
+
+/* Hero: centered with giant 614 digits */
+.hero{ text-align:center; padding:44px 0 40px; overflow:hidden; }
+.big614{
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:clamp(8rem, 26vw, 16rem);
+  line-height:.8; letter-spacing:.03em;
+  color:transparent;
+  -webkit-text-stroke:3px var(--scarlet);
+  text-stroke:3px var(--scarlet);
+  margin:0 -6px;
+}
+.hero h1{
+  font-size:clamp(2.4rem, 6vw, 4rem); color:var(--scarlet);
+  margin-top:-14px; position:relative;
+}
+.hero .lede{ max-width:56ch; margin:6px auto 20px; font-size:1.05rem; color:var(--gray); }
+.hero-chips{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:22px; }
+.cta-row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  text-decoration:none; font-weight:700; font-size:.97rem;
+  padding:13px 22px; border-radius:9px; cursor:pointer; border:none;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(51,67,76,.2); }
+.btn-scarlet{ background:var(--scarlet); color:var(--cream); }
+.btn-line{ background:transparent; color:var(--gray-deep); border:2px solid var(--gray-deep); }
+
+/* Stat band */
+.stat-band{
+  background:var(--gray-deep); color:var(--cream);
+  padding:26px 0;
+}
+.stat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; text-align:center; }
+.stat-grid .num{ font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:2.2rem; color:var(--cream); line-height:1; }
+.stat-grid .lbl{ font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:#B0BEC5; margin-top:4px; }
+
+/* Minimal product rows */
+.page-head{ padding:46px 0 8px; }
+.page-head h1{ font-size:clamp(2.1rem, 4.6vw, 3.1rem); color:var(--scarlet); }
+.page-head p{ color:var(--gray); max-width:60ch; margin:0; }
+.rows{ padding:28px 0 52px; }
+.prow{
+  display:flex; align-items:center; gap:16px;
+  background:var(--white); border:1px solid rgba(69,90,100,.18);
+  border-radius:10px; padding:16px 18px; margin-bottom:10px;
+}
+.prow i{ color:var(--scarlet); font-size:1.2rem; width:26px; text-align:center; flex:none; }
+.prow h3{ margin:0; font-size:1.25rem; color:var(--gray-deep); }
+.prow p{ margin:0; font-size:.92rem; color:var(--gray); }
+.notice{
+  display:flex; gap:12px; align-items:flex-start;
+  background:var(--scarlet-deep); color:var(--cream);
+  border-radius:10px; padding:15px 18px; margin-top:18px;
+}
+.notice i{ margin-top:3px; }
+
+/* Hours chips */
+.chips7{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-top:18px; }
+.day-chip{
+  background:var(--white); border:1px solid rgba(69,90,100,.2);
+  border-radius:9px; text-align:center; padding:10px 4px;
+}
+.day-chip .d{ font-weight:700; font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--gray); }
+.day-chip .h{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.05rem; color:var(--gray-deep); }
+.day-chip.today{ background:var(--scarlet); border-color:var(--scarlet-deep); }
+.day-chip.today .d, .day-chip.today .h{ color:var(--cream); }
+
+/* Reviews: big numeral */
+.rating-wrap{ text-align:center; padding:34px 0 12px; }
+.rating-num{
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:clamp(5rem, 14vw, 8.5rem); line-height:.9; color:var(--scarlet);
+}
+.stars5{ color:var(--scarlet); font-size:1.15rem; letter-spacing:6px; display:block; margin:10px 0 8px; }
+.rating-line{ font-weight:600; color:var(--gray-deep); font-size:1.08rem; }
+.link-cards{ display:grid; grid-template-columns:1fr; gap:12px; max-width:520px; margin:30px auto 56px; }
+.link-card{
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  background:var(--white); border:2px solid var(--scarlet);
+  color:var(--scarlet-deep); text-decoration:none; font-weight:700;
+  padding:16px 20px; border-radius:12px;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.link-card:hover{ transform:translateY(-2px); box-shadow:0 10px 20px rgba(51,67,76,.15); }
+.link-card.solid{ background:var(--scarlet); color:var(--cream); }
+
+/* Visit: area-code card */
+.visit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; padding-bottom:56px; align-items:start; }
+.areacard{
+  background:var(--white); border-radius:16px; overflow:hidden;
+  border:1px solid rgba(69,90,100,.2);
+  box-shadow:0 10px 24px rgba(51,67,76,.1);
+}
+.ac-head{ background:var(--gray-deep); color:var(--cream); padding:14px 22px; font-weight:700; font-size:.85rem; letter-spacing:.16em; text-transform:uppercase; }
+.ac-body{ padding:24px 22px; }
+.ac-number{
+  display:flex; align-items:baseline; justify-content:center; gap:10px;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  text-decoration:none; color:var(--scarlet);
+  font-size:clamp(2.4rem, 6vw, 3.4rem); line-height:1;
+  transition:color .15s ease;
+}
+.ac-number:hover{ color:var(--scarlet-deep); }
+.ac-number .ac-code{ color:var(--gray-deep); }
+.ac-note{ display:block; text-align:center; font-size:.85rem; color:var(--gray); margin-top:12px; }
+.ac-meta{ margin-top:18px; padding-top:16px; border-top:1px dashed rgba(69,90,100,.3); font-size:.95rem; }
+.ac-meta div{ display:flex; gap:10px; align-items:flex-start; padding:6px 0; }
+.ac-meta i{ color:var(--scarlet); margin-top:4px; width:16px; text-align:center; flex:none; }
+
+/* Form */
+.form-card{
+  background:var(--gray-deep); color:var(--cream);
+  border-radius:16px; padding:26px; border-top:5px solid var(--scarlet);
+}
+.form-card h3{ color:var(--cream); font-size:1.5rem; }
+.form-card p.form-note{ font-size:.9rem; color:#B0BEC5; margin:0 0 8px; }
+label{ display:block; font-weight:600; font-size:.85rem; margin:12px 0 5px; color:#CFD8DC; }
+input, textarea{
+  width:100%; padding:12px 14px; border-radius:9px;
+  border:1px solid rgba(255,246,233,.25);
+  background:rgba(255,246,233,.07); color:var(--cream);
+  font-family:'Inter',sans-serif; font-size:.95rem;
+}
+input:focus, textarea:focus{ outline:2px solid var(--scarlet); border-color:var(--scarlet); }
+textarea{ min-height:110px; resize:vertical; }
+.form-card .btn{ margin-top:16px; width:100%; justify-content:center; }
+#form-feedback{ margin:12px 0 0; font-size:.92rem; color:var(--cream); font-weight:600; min-height:1.3em; }
+
+/* Footer */
+footer.site{ background:var(--scarlet-deep); color:var(--cream); padding:28px 0 24px; margin-top:40px; }
+.foot-grid{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; align-items:center; }
+.foot-brand{ font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.25rem; letter-spacing:.04em; text-transform:uppercase; }
+.foot-quiet{ font-size:.86rem; color:#F3D9C8; }
+.foot-copy{ font-size:.86rem; color:rgba(255,246,233,.8); width:100%; border-top:1px solid rgba(255,246,233,.2); padding-top:13px; margin-top:4px; }
+
+/* Responsive */
+@media (max-width:900px){
+  .stat-grid{ grid-template-columns:1fr; gap:22px; }
+  .visit-grid{ grid-template-columns:1fr; }
+  .chips7{ grid-template-columns:repeat(4,1fr); }
+}
+@media (max-width:760px){
+  .menu-btn{ display:flex; }
+  .nav-links{
+    display:none; position:absolute; top:100%; left:0; right:0;
+    background:var(--scarlet-deep); flex-direction:column; align-items:stretch;
+    padding:10px 16px 16px; gap:4px;
+    border-bottom:3px solid var(--gray-deep);
+    box-shadow:0 14px 24px rgba(0,0,0,.25);
+  }
+  .nav-links.open{ display:flex; }
+  .nav-links a{ padding:13px 12px; }
+  .chips7{ grid-template-columns:repeat(3,1fr); }
+}
+</style>
+
+<style id="steady-hands-demo-protection">
+html{
+  -webkit-text-size-adjust:100%;
+  touch-action:manipulation;
+}
+html,body,*{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+}
+body{
+  background-image:
+    linear-gradient(rgba(8,12,18,.82),rgba(8,12,18,.82)),
+    url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=84") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-attachment:fixed !important;
+}
+.hero{
+  position:relative;
+  background-image:
+    linear-gradient(90deg,rgba(8,12,18,.90),rgba(8,12,18,.52)),
+    url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2200&q=84") !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+.hero::after{
+  content:"Stock imagery — not the actual business";
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  z-index:20;
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  padding:6px 9px;
+  font:700 10px/1.2 Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+[data-locked="true"]{cursor:pointer}
+.demo-lock-modal{
+  position:fixed;inset:0;z-index:2147483000;display:none;
+  place-items:center;padding:22px;background:rgba(0,0,0,.76);
+}
+.demo-lock-modal.open{display:grid}
+.demo-lock-card{
+  width:min(460px,100%);background:#fff;color:#161616;
+  padding:30px;border:1px solid rgba(0,0,0,.14);
+  box-shadow:0 30px 90px rgba(0,0,0,.42);
+}
+.demo-lock-icon{
+  width:48px;height:48px;display:grid;place-items:center;
+  background:#111;color:#fff;margin-bottom:18px;
+}
+.demo-lock-card h2{
+  margin:0 0 12px;font:800 clamp(24px,5vw,34px)/1.08 Arial,sans-serif;
+  text-transform:none;letter-spacing:0;color:#111;
+}
+.demo-lock-card p{
+  margin:0 0 22px;font:400 16px/1.6 Arial,sans-serif;color:#555;
+}
+.demo-lock-close{
+  width:100%;min-height:48px;border:0;background:#111;color:#fff;
+  font:800 14px/1 Arial,sans-serif;text-transform:uppercase;
+  letter-spacing:.08em;cursor:pointer;
+}
+body.demo-modal-open{overflow:hidden !important}
+@media(max-width:700px){
+  .hero::after{left:12px;right:auto;bottom:10px}
+}
+</style>
+
+</head>
+<body>
+<div class="site-shell">
+  <header class="site">
+    <div class="wrap bar">
+      <a href="#/home" class="brand" data-page="home" aria-label="Smoke 614 home">
+        <span class="brand-mark" aria-hidden="true">614</span>
+        <span>
+          <span class="brand-name">Smoke 614</span>
+          <span class="brand-sub">N High St · Columbus</span>
+        </span>
+      </a>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#/home" data-page="home">Home</a>
+        <a href="#/shop" data-page="shop">The Shop</a>
+        <a href="#/reviews" data-page="reviews">Reviews</a>
+        <a href="#/visit" data-page="visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="wrap hero">
+        <div class="big614" aria-hidden="true">614</div>
+        <h1>Smoke 614</h1>
+        <p class="lede">A High Street smoke shop with Columbus in its name and nearly five hundred neighbors backing the rating. Straightforward stock, fair counter talk, open ten to ten every day.</p>
+        <div class="hero-chips">
+          <span class="status-chip"><span class="dot"></span>Checking hours...</span>
+          <span class="age-chip"><i class="fa-solid fa-id-card" aria-hidden="true"></i> 21 and over, valid ID required</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-scarlet" href="#/shop" data-page="shop"><i class="fa-solid fa-store" aria-hidden="true"></i> Browse the shop</a>
+          <a class="btn btn-line" href="#/visit" data-page="visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit us</a>
+        </div>
+      </div>
+      <div class="stat-band">
+        <div class="wrap stat-grid">
+          <div><div class="num">4.9</div><div class="lbl">Stars on Google</div></div>
+          <div><div class="num">219</div><div class="lbl">Google reviews</div></div>
+          <div><div class="num">10 - 10</div><div class="lbl">Every day</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section class="page" id="page-shop">
+      <div class="wrap page-head">
+        <p class="eyebrow" style="font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--scarlet);">The Shop</p>
+        <h1>Clean shelves, no fuss</h1>
+        <p>Smoke 614 keeps the layout simple so you can find your section, grab what you came for and go. The counter is glad to point you to the right shelf.</p>
+      </div>
+      <div class="wrap rows">
+        <div class="prow">
+          <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+          <div><h3>Vapes</h3><p>Devices and the everyday vaping staples, kept stocked on the regular.</p></div>
+        </div>
+        <div class="prow">
+          <i class="fa-solid fa-jar" aria-hidden="true"></i>
+          <div><h3>Glass</h3><p>A clean, bright glass case worth an actual look while you are in line.</p></div>
+        </div>
+        <div class="prow">
+          <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+          <div><h3>Wraps and papers</h3><p>All the usual brands lined up where you expect them.</p></div>
+        </div>
+        <div class="prow">
+          <i class="fa-solid fa-fire-flame-simple" aria-hidden="true"></i>
+          <div><h3>Lighters and extras</h3><p>The small stuff you always forget, right by the register.</p></div>
+        </div>
+        <div class="notice">
+          <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+          <span><strong>21 and over, valid ID required.</strong> Everyone gets carded, every time, no exceptions.</span>
+        </div>
+        <div class="chips7">
+          <div class="day-chip" data-day="0"><div class="d">Sun</div><div class="h">10 - 10</div></div>
+          <div class="day-chip" data-day="1"><div class="d">Mon</div><div class="h">10 - 10</div></div>
+          <div class="day-chip" data-day="2"><div class="d">Tue</div><div class="h">10 - 10</div></div>
+          <div class="day-chip" data-day="3"><div class="d">Wed</div><div class="h">10 - 10</div></div>
+          <div class="day-chip" data-day="4"><div class="d">Thu</div><div class="h">10 - 10</div></div>
+          <div class="day-chip" data-day="5"><div class="d">Fri</div><div class="h">10 - 10</div></div>
+          <div class="day-chip" data-day="6"><div class="d">Sat</div><div class="h">10 - 10</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="page" id="page-reviews">
+      <div class="wrap page-head" style="text-align:center;">
+        <p style="font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--scarlet);margin:0 0 6px;">Reviews</p>
+        <h1>Let the number talk</h1>
+      </div>
+      <div class="wrap rating-wrap">
+        <div class="rating-num" aria-hidden="true">4.9</div>
+        <span class="stars5" aria-label="4.9 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+        <p class="rating-line">4.9 stars with 219 Google reviews</p>
+        <div class="link-cards">
+          <a class="link-card solid" href="#" data-locked="true">
+            <i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="page" id="page-visit">
+      <div class="wrap page-head">
+        <p style="font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--scarlet);margin:0 0 6px;">Visit</p>
+        <h1>Come through 614</h1>
+        <p>Right on N High St with easy in and out. Text ahead if you want to check stock, or just walk in and ask.</p>
+      </div>
+      <div class="wrap visit-grid">
+        <div class="areacard">
+          <div class="ac-head">Text the counter</div>
+          <div class="ac-body">
+            <a class="ac-number" href="#" data-locked="true"><span class="ac-code">(380)</span> 895-4600</a>
+            <span class="ac-note">Yes, (380) is right. It is Columbus's newer overlay area code, and it is ours.</span>
+            <div class="ac-meta">
+              <div><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>2465 N High St, Columbus, OH 43202</span></div>
+              <div><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Every day 10 AM - 10 PM</span></div>
+              <div><i class="fa-solid fa-id-card" aria-hidden="true"></i><span>21 and over, valid ID required</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-card">
+          <h3>Ask about stock</h3>
+          <p class="form-note">Send a quick note and the counter will get back to you.</p>
+          <form id="quote-form" novalidate>
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="First name is fine">
+            <label for="f-phone">Your phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="So we can text you back">
+            <label for="f-msg">Your message</label>
+            <textarea id="f-msg" name="message" placeholder="Ask about a brand, a restock, anything"></textarea>
+            <button class="btn btn-scarlet" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send it</button>
+            <p id="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap foot-grid">
+      <span class="foot-brand">Smoke 614</span>
+      <span class="foot-quiet">(380) 895-4600 · 2465 N High St, Columbus, OH 43202 · Every day 10 AM - 10 PM</span>
+      <span class="foot-copy">© Smoke 614 · Columbus, OH</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+var BUSINESS = "Smoke 614";
+var TITLES = { home: "Columbus Smoke Shop on N High St", shop: "The Shop", reviews: "Reviews", visit: "Visit Us" };
+function getPageFromHash(){
+  var h = (location.hash || "").replace(/^#\/?/, "");
+  return TITLES[h] ? h : "home";
+}
+function navigateTo(id, push){
+  document.querySelectorAll(".page").forEach(function(p){
+    p.classList.toggle("active", p.id === "page-" + id);
+  });
+  if (push) history.pushState({ page: id }, "", "#/" + id);
+  document.title = TITLES[id] + " | " + BUSINESS;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  var mb = document.getElementById("menu-btn");
+  var nl = document.querySelector(".nav-links");
+  if (mb && nl) { mb.classList.remove("open"); nl.classList.remove("open"); }
+}
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-page]");
+  if (t) { e.preventDefault(); navigateTo(t.getAttribute("data-page"), true); }
+});
+window.addEventListener("popstate", function(){ navigateTo(getPageFromHash(), false); });
+navigateTo(getPageFromHash(), false);
+
+var mb = document.getElementById("menu-btn");
+var nl = document.querySelector(".nav-links");
+mb.addEventListener("click", function(){
+  mb.classList.toggle("open");
+  nl.classList.toggle("open");
+  mb.setAttribute("aria-expanded", mb.classList.contains("open") ? "true" : "false");
+});
+
+var CITY_TZ = "America/New_York";
+var HOURS = { 0: [10, 22], 1: [10, 22], 2: [10, 22], 3: [10, 22], 4: [10, 22], 5: [10, 22], 6: [10, 22] };
+function cityNow(){
+  var parts = new Intl.DateTimeFormat("en-US", { timeZone: CITY_TZ,
+    weekday: "short", hour: "numeric", minute: "numeric", hour12: false })
+    .formatToParts(new Date());
+  var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+  var days = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  return { day: days[o.weekday], hour: (+o.hour) % 24, minute: +o.minute };
+}
+function fmtH(t){
+  var h = Math.floor(t), m = Math.round((t - h) * 60);
+  var ap = h >= 12 && h < 24 ? "PM" : "AM", hh = h % 12; if (hh === 0) hh = 12;
+  return hh + (m ? ":" + String(m).padStart(2, "0") : ":00") + " " + ap;
+}
+function openState(){
+  var n = cityNow(), t = n.hour + n.minute / 60, today = HOURS[n.day];
+  if (today) {
+    if (today[1] > 24 && t < today[1] - 24) return { open: true, label: "Open now" };
+    if (t >= today[0] && t < (today[1] > 24 ? 24 : today[1])) return { open: true, label: "Open now" };
+  }
+  var names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  for (var i = 0; i < 7; i++) {
+    var d = (n.day + i) % 7, h = HOURS[d];
+    if (!h) continue;
+    if (i === 0 && t < h[0]) return { open: false, label: "Opens " + fmtH(h[0]) + " today" };
+    if (i > 0) return { open: false, label: "Opens " + names[d] + (h[0] ? " at " + fmtH(h[0]) : "") };
+  }
+  return { open: false, label: "Closed" };
+}
+function renderChips(){
+  var st = openState();
+  document.querySelectorAll(".status-chip").forEach(function(c){
+    c.classList.remove("open", "closed");
+    c.classList.add(st.open ? "open" : "closed");
+    c.innerHTML = '<span class="dot"></span>' + st.label;
+  });
+}
+(function highlightToday(){
+  var d = cityNow().day;
+  document.querySelectorAll("[data-day]").forEach(function(el){
+    if (+el.getAttribute("data-day") === d) el.classList.add("today");
+  });
+})();
+renderChips();
+
+var PHONE = "+13808954600";
+var PRETTY = "(380) 895-4600";
+var form = document.getElementById("quote-form");
+var feedback = document.getElementById("form-feedback");
+if (form) {
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("f-name").value.trim();
+    var fphone = document.getElementById("f-phone").value.trim();
+    var msg = document.getElementById("f-msg").value.trim();
+    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
+    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
+    } else {
+      navigator.clipboard.writeText(text).then(function(){
+        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
+      });
+    }
+  });
+}
+</script>
+
+<div class="demo-lock-modal" id="demoLockModal" role="dialog" aria-modal="true" aria-labelledby="demoLockTitle" aria-describedby="demoLockMessage">
+  <div class="demo-lock-card" tabindex="-1">
+    <div class="demo-lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="demoLockTitle">This is currently locked.</h2>
+    <p id="demoLockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="demo-lock-close" id="demoLockClose" type="button">Close</button>
+  </div>
+</div>
+
+
+<script id="steady-hands-demo-protection-script">
+(function(){
+  var modal = document.getElementById("demoLockModal");
+  var card = modal ? modal.querySelector(".demo-lock-card") : null;
+  var closeBtn = document.getElementById("demoLockClose");
+  var lastFocus = null;
+
+  function openLock(trigger){
+    if(!modal) return;
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add("open");
+    document.body.classList.add("demo-modal-open");
+    setTimeout(function(){ if(card) card.focus(); },0);
+  }
+
+  function closeLock(){
+    if(!modal) return;
+    modal.classList.remove("open");
+    document.body.classList.remove("demo-modal-open");
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener("click",function(e){
+    var locked = e.target.closest('[data-locked="true"]');
+    if(!locked) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openLock(locked);
+  },true);
+
+  document.addEventListener("submit",function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var trigger = e.submitter || e.target;
+    openLock(trigger);
+  },true);
+
+  if(closeBtn) closeBtn.addEventListener("click",closeLock);
+  if(modal) modal.addEventListener("click",function(e){ if(e.target === modal) closeLock(); });
+
+  document.addEventListener("keydown",function(e){
+    if(e.key === "Escape" && modal && modal.classList.contains("open")) closeLock();
+    if(e.key === "Tab" && modal && modal.classList.contains("open")){
+      e.preventDefault();
+      if(closeBtn) closeBtn.focus();
+    }
+  });
+
+  document.addEventListener("gesturestart",function(e){e.preventDefault();});
+  document.addEventListener("gesturechange",function(e){e.preventDefault();});
+  document.addEventListener("gestureend",function(e){e.preventDefault();});
+  document.addEventListener("wheel",function(e){
+    if(e.ctrlKey || e.metaKey) e.preventDefault();
+  },{passive:false});
+})();
+</script>
+
+</body>
+</html>

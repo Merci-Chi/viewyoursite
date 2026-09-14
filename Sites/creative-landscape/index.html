@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>Creative Landscape | Landscape Designer in Cincinnati, OH</title>
+<meta name="description" content="Creative Landscape is a Cincinnati, Ohio landscape design and landscape contracting business. Explore its design-first style, public reviews, and project inspiration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --paper:#f8f3e4;--paper-deep:#efe6cf;--ink:#2e2a22;--ink-soft:#5b5347;
+  --leaf:#476b4f;--leaf-dark:#334d3a;--moss:#8aa583;--clay:#d0763f;
+  --card:#fffdf6;--shadow:0 12px 34px rgba(46,42,34,.13);--radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;overflow-x:hidden}
+body,body *{-webkit-user-select:none;user-select:none}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1140px,calc(100% - 42px));margin:auto}
+.hand,h1,h2,h3{font-family:Caveat,cursive;line-height:1.06}
+.kicker{display:inline-flex;align-items:center;gap:.45rem;padding:.34rem .72rem;background:var(--leaf);color:#fff;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.nav-spiral{height:17px;background:radial-gradient(circle at 50% 50%,transparent 5px,var(--ink) 5px,var(--ink) 7px,transparent 7px);background-size:46px 18px;opacity:.82}
+.site-nav{position:sticky;top:0;z-index:50;background:rgba(255,253,246,.97);border-bottom:2px dashed rgba(46,42,34,.32);box-shadow:0 5px 18px rgba(46,42,34,.08);backdrop-filter:blur(10px)}
+.nav-inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none;min-width:0}
+.logo-mark{width:44px;height:44px;border-radius:50%;background:var(--leaf);color:#fff;display:grid;place-items:center;border:2px dashed var(--paper);box-shadow:var(--shadow);flex:0 0 auto}
+.logo-text{font-family:Caveat,cursive;font-size:1.85rem;font-weight:700;line-height:.92}
+.logo-text small{display:block;font-family:Inter,sans-serif;font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+.nav-links{display:flex;align-items:center;gap:1.2rem;list-style:none;margin:0;padding:0}
+.nav-links a{font-weight:700;font-size:.92rem;text-decoration:none;position:relative}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:3px;background:var(--leaf);transition:width .2s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:.72rem 1.15rem;border-radius:11px;background:var(--clay);color:#fff;text-decoration:none;font-weight:800;cursor:pointer;transition:transform .16s,box-shadow .16s}
+.nav-cta:hover,.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.btn.secondary{background:var(--card);color:var(--ink)}
+.btn.green{background:var(--leaf);color:#fff}
+#menuToggle{display:none;width:46px;height:46px;background:var(--card);border:2px solid var(--ink);border-radius:10px;font-size:1.2rem;color:var(--ink)}
+
+.hero{position:relative;min-height:660px;display:flex;align-items:center;color:#fff;overflow:hidden;background-image:linear-gradient(90deg,rgba(28,37,30,.91) 0%,rgba(36,48,39,.78) 47%,rgba(36,48,39,.28) 100%),url("https://images.unsplash.com/photo-1775593047935-9f124b3f4e03?auto=format&fit=crop&q=82&w=1800");background-size:cover;background-position:center}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 34px,rgba(255,255,255,.028) 34px 35px);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero-copy{max-width:680px;padding:88px 0}
+.hero h1{font-size:clamp(3.5rem,8vw,6.7rem);margin:.65rem 0 1rem;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,.25)}
+.hero h1 span{color:#f5d2bd;text-decoration:underline;text-decoration-color:var(--clay);text-decoration-style:wavy;text-underline-offset:.12em}
+.hero p{max-width:650px;font-size:1.08rem;color:#f4efe3;margin:0}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-top:1.7rem}
+.hero .btn.secondary{background:rgba(255,253,246,.94)}
+.hero-note{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.8rem;font-size:.88rem;color:#f0e9dc}
+.hero-note span{display:flex;align-items:center;gap:.45rem}
+.stock-label{position:absolute;right:18px;bottom:16px;z-index:2;padding:.35rem .55rem;background:rgba(0,0,0,.55);color:#fff;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase}
+
+.section{padding:78px 0}
+.section.alt{background:var(--paper-deep)}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);gap:2rem;align-items:end;margin-bottom:34px}
+.section h2{font-size:clamp(2.6rem,5vw,4.4rem);margin:.35rem 0 .5rem}
+.section-lede{color:var(--ink-soft);max-width:760px}
+.note-card{background:var(--card);border:2px dashed rgba(46,42,34,.55);padding:1rem 1.1rem;border-radius:12px;color:var(--ink-soft);font-size:.9rem}
+
+.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.service-card{min-height:400px;position:relative;overflow:hidden;border:2px solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);background:#ddd}
+.service-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.service-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,28,23,.06) 20%,rgba(21,28,23,.84) 100%)}
+.service-content{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:28px;color:#fff}
+.service-content h3{font-size:2.2rem;color:#fff;margin:0 0 .35rem}
+.service-content p{margin:0;color:#f4efe8;max-width:33rem}
+.service-tag{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,253,246,.92);color:var(--leaf-dark);font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;padding:.32rem .6rem;border-radius:999px;margin-bottom:.7rem}
+
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+.about-photo{position:relative;min-height:470px;border:2px solid var(--ink);border-radius:6px 6px 18px 18px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(-.8deg)}
+.about-photo img{width:100%;height:100%;min-height:470px;object-fit:cover}
+.about-card{background:var(--card);padding:34px;border:2px solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow)}
+.about-card h2{margin-top:0}
+.fact-list{display:grid;gap:12px;margin-top:22px}
+.fact{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:2px dashed rgba(46,42,34,.18)}
+.fact i{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--paper-deep);color:var(--leaf-dark);flex:0 0 auto}
+
+.review-wrap{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+.rating-card{background:var(--leaf-dark);color:#fff;border:2px solid var(--ink);border-radius:var(--radius);padding:28px;text-align:center;box-shadow:var(--shadow)}
+.rating-number{font:700 5rem/1 Caveat,cursive}
+.stars{color:#f0b879;letter-spacing:.13em;margin:.4rem 0}
+.review-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.review-card{background:var(--card);border:2px dashed var(--ink);padding:23px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.review-card blockquote{font:600 1.55rem/1.3 Caveat,cursive;margin:0 0 .8rem}
+.review-card p{color:var(--ink-soft);font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0}
+
+.gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:260px 220px;gap:16px}
+.gallery-item{position:relative;overflow:hidden;border:2px solid var(--ink);background:#ddd;box-shadow:var(--shadow)}
+.gallery-item:first-child{grid-row:1/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-item:hover img{transform:scale(1.035)}
+.gallery-cap{position:absolute;left:12px;bottom:12px;background:rgba(255,253,246,.94);padding:.55rem .75rem;border:1px solid rgba(46,42,34,.35);font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.asset-note{font-size:.82rem;color:var(--ink-soft);margin-top:14px}
+
+.contact-panel{display:grid;grid-template-columns:.9fr 1.1fr;border:2px solid var(--ink);background:var(--card);box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden}
+.contact-copy{padding:36px;background:var(--leaf-dark);color:#fff}
+.contact-copy h2{color:#fff;margin-top:0}
+.contact-copy p{color:#eef1e8}
+.protected{margin-top:24px;padding:18px;border:2px dashed rgba(255,255,255,.55);background:rgba(255,255,255,.06);font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.inquiry{padding:36px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field.full{grid-column:1/-1}
+label{display:block;font-weight:800;font-size:.82rem;margin-bottom:6px}
+input,textarea{width:100%;padding:.85rem .9rem;border:2px solid var(--ink);border-radius:9px;background:var(--paper);font-size:16px;color:var(--ink)}
+textarea{min-height:130px;resize:vertical}
+.form-note{font-size:.78rem;color:var(--ink-soft);margin-top:10px}
+
+.call-banner{padding:56px 0;background:var(--leaf);color:#fff;text-align:center;border-top:3px dashed rgba(255,255,255,.4)}
+.call-banner h2{font-size:clamp(2.5rem,5vw,4rem);color:#fff;margin:0 0 .65rem}
+.call-banner p{max-width:620px;margin:0 auto 1.3rem;color:#eef2ea}
+footer{background:var(--ink);color:#fff;padding:24px 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-inner small{opacity:.75}
+.footer-links{display:flex;gap:14px;flex-wrap:wrap}
+.footer-links a{text-decoration:none;font-size:.86rem}
+
+.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(19,18,15,.7);display:none;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(430px,100%);background:var(--card);border:2px solid var(--ink);border-radius:var(--radius);box-shadow:0 25px 80px rgba(0,0,0,.35);padding:28px}
+.modal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--paper-deep);color:var(--leaf-dark);font-size:1.15rem;margin-bottom:14px}
+.modal h3{font-size:2rem;margin:0 0 .4rem}
+.modal p{color:var(--ink-soft);margin:0 0 1.2rem}
+body.modal-open{overflow:hidden}
+
+@media(max-width:900px){
+  .section-head,.about-grid,.review-wrap,.contact-panel{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:270px 220px 220px}
+  .gallery-item:first-child{grid-column:1/-1;grid-row:auto}
+}
+@media(max-width:760px){
+  .wrap{width:min(100% - 28px,1140px)}
+  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;background:var(--card);padding:12px 18px 18px;flex-direction:column;align-items:stretch;border-bottom:2px dashed rgba(46,42,34,.35);box-shadow:var(--shadow)}
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:.7rem .3rem}
+  .nav-cta{width:100%}
+  #menuToggle{display:block}
+  .hero{min-height:610px;background-position:60% center}
+  .hero-copy{padding:70px 0}
+  .hero h1{font-size:clamp(3.3rem,16vw,5.1rem)}
+  .service-grid,.review-cards,.form-grid{grid-template-columns:1fr}
+  .service-card{min-height:350px}
+  .gallery-grid{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(3,250px)}
+  .gallery-item:first-child{grid-column:auto}
+  .about-photo,.about-photo img{min-height:350px}
+  .contact-copy,.inquiry{padding:26px}
+  .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="nav-spiral" aria-hidden="true"></div>
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#home" aria-label="Creative Landscape home">
+      <span class="logo-mark"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span>
+      <span class="logo-text">Creative Landscape<small>Landscape Designer</small></span>
+    </a>
+    <button id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#inspiration">Photos</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button class="nav-cta" type="button" data-locked="true"><i class="fa-solid fa-phone"></i>Call</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="kicker"><i class="fa-solid fa-compass-drafting"></i> Landscape designer · Cincinnati, Ohio</span>
+      <h1>Outdoor spaces that begin <span>with a plan.</span></h1>
+      <p>Creative Landscape is publicly listed as a landscape designer and landscape contractor in Cincinnati. The site keeps that design-first, hand-sketched personality while presenting only the services and public information supported by the available research.</p>
+      <div class="hero-actions">
+        <a class="btn green" href="#services"><i class="fa-solid fa-seedling"></i>Explore services</a>
+        <button class="btn secondary" type="button" data-locked="true"><i class="fa-solid fa-calendar-check"></i>Request service</button>
+      </div>
+      <div class="hero-note">
+        <span><i class="fa-solid fa-star"></i>5.0 on Birdeye · 3 reviews</span>
+        <span><i class="fa-solid fa-location-dot"></i>Cincinnati, Ohio</span>
+      </div>
+    </div>
+  </div>
+  <span class="stock-label">Stock photo · Unsplash</span>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker"><i class="fa-solid fa-ruler-combined"></i> Services</span>
+        <h2>Design and landscape work</h2>
+        <p class="section-lede">The available public listings support two broad service categories. More specific services are intentionally not added until they are confirmed.</p>
+      </div>
+      <div class="note-card"><i class="fa-solid fa-circle-info"></i> Service details, prices, warranties, and availability were not supplied in the research, so they are not presented as facts here.</div>
+    </div>
+    <div class="service-grid">
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=82&w=1200" alt="Stock photo of lush garden plants" loading="lazy">
+        <div class="service-content">
+          <span class="service-tag"><i class="fa-solid fa-compass-drafting"></i> Publicly listed category</span>
+          <h3>Landscape Design</h3>
+          <p>Creative Landscape is publicly categorized as a landscape designer in Cincinnati.</p>
+        </div>
+        <span class="stock-label">Stock photo · Unsplash</span>
+      </article>
+      <article class="service-card">
+        <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=82&w=1200" alt="Stock photo representing hands-on garden work" loading="lazy">
+        <div class="service-content">
+          <span class="service-tag"><i class="fa-solid fa-shovel"></i> Publicly listed category</span>
+          <h3>Landscape Contracting</h3>
+          <p>Public directory information also categorizes the business as a landscape contractor.</p>
+        </div>
+        <span class="stock-label">Stock photo · Unsplash</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <figure class="about-photo">
+        <img src="https://images.unsplash.com/photo-1775593047935-9f124b3f4e03?auto=format&fit=crop&q=82&w=1800" alt="Stock photo of a landscaped residential garden" loading="lazy">
+        <span class="stock-label">Stock photo · Unsplash</span>
+      </figure>
+      <div class="about-card">
+        <span class="kicker"><i class="fa-solid fa-book-open"></i> About</span>
+        <h2>A Cincinnati landscape business</h2>
+        <p>Creative Landscape is publicly listed in Cincinnati, Ohio and appears in directory results under landscape design and landscape contracting.</p>
+        <p>The available Birdeye profile shows a 5.0 rating based on three reviews. One public review describes skilled design work, fair pricing, and quick turnaround, while also indicating experience with projects of different sizes.</p>
+        <div class="fact-list">
+          <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><br>Cincinnati, Ohio</div></div>
+          <div class="fact"><i class="fa-solid fa-pen-ruler"></i><div><strong>Public categories</strong><br>Landscape designer and landscape contractor</div></div>
+          <div class="fact"><i class="fa-solid fa-star"></i><div><strong>Public rating</strong><br>5.0 out of 5 from 3 Birdeye reviews</div></div>
+          <div class="fact"><i class="fa-solid fa-lock"></i><div><strong>Contact details</strong><br>CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker"><i class="fa-solid fa-comment-dots"></i> Public reviews</span>
+        <h2>What the available reviews say</h2>
+        <p class="section-lede">These summaries are paraphrased from the public review information already included in the supplied research.</p>
+      </div>
+      <div class="note-card">Reviewer names are not displayed here. The site does not add new testimonials or claims beyond the available review information.</div>
+    </div>
+    <div class="review-wrap">
+      <aside class="rating-card" aria-label="Birdeye rating">
+        <div class="rating-number">5.0</div>
+        <div class="stars" aria-label="Five stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <strong>3 Birdeye reviews</strong>
+      </aside>
+      <div class="review-cards">
+        <article class="review-card"><blockquote>Skilled design work, fair pricing, and quick turnaround.</blockquote><p>Paraphrased from a public five-star review</p></article>
+        <article class="review-card"><blockquote>Recommended for projects of different sizes.</blockquote><p>Paraphrased from a public five-star review</p></article>
+        <article class="review-card"><blockquote>A long-term customer described continuing to use the business over many years.</blockquote><p>Paraphrased from available public review information</p></article>
+        <article class="review-card"><blockquote>Two additional public ratings were five stars.</blockquote><p>No additional written claims added</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="inspiration">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="kicker"><i class="fa-solid fa-images"></i> Visual direction</span>
+        <h2>Landscape inspiration</h2>
+        <p class="section-lede">No verified project photos were supplied, so these images are stock landscaping references only. They do not depict Creative Landscape projects, employees, or clients.</p>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=82&w=1200" alt="Stock photo of a green garden setting" loading="lazy"><figcaption class="gallery-cap">Stock garden image</figcaption></figure>
+      <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1775593047935-9f124b3f4e03?auto=format&fit=crop&q=82&w=1800" alt="Stock photo of a landscaped garden" loading="lazy"><figcaption class="gallery-cap">Stock landscape image</figcaption></figure>
+      <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&q=82&w=1200" alt="Stock photo of garden plants" loading="lazy"><figcaption class="gallery-cap">Stock planting image</figcaption></figure>
+    </div>
+    <p class="asset-note"><strong>Asset note:</strong> stock imagery is loaded online from Unsplash and is used only as industry-appropriate visual context.</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div class="contact-copy">
+        <span class="kicker" style="background:var(--clay)"><i class="fa-solid fa-paper-plane"></i> Contact</span>
+        <h2>Start a project conversation</h2>
+        <p>This demo keeps real-world contact actions locked. The full purchased site can connect the approved phone, address, email, form destination, and other contact actions.</p>
+        <div class="protected"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+      </div>
+      <div class="inquiry">
+        <h3 style="font-size:2.3rem;margin:0 0 .4rem">Project inquiry</h3>
+        <p style="color:var(--ink-soft);margin-top:0">Use the form layout to preview the finished experience. It does not send information in this demo.</p>
+        <form id="demoForm">
+          <div class="form-grid">
+            <div class="field"><label for="name">Name</label><input id="name" type="text" autocomplete="name"></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel"></div>
+            <div class="field full"><label for="message">Project details</label><textarea id="message"></textarea></div>
+            <div class="field full"><button class="btn green" type="submit"><i class="fa-solid fa-paper-plane"></i>Request service</button></div>
+          </div>
+          <p class="form-note">Demo only. Submission is locked and no information is sent.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="call-banner">
+  <div class="wrap">
+    <h2>Have a landscape project in mind?</h2>
+    <p>Use the finished site to connect directly with Creative Landscape once the contact actions are unlocked.</p>
+    <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-seedling"></i>Request service</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>Creative Landscape</strong><br><small>Cincinnati, Ohio · Demo website</small></div>
+    <div class="footer-links">
+      <a href="#services">Services</a><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn green" id="closeModal" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const navLinks=document.getElementById('navLinks');
+menuToggle.addEventListener('click',()=>{
+  const open=navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded',String(open));
+  menuToggle.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+});
+navLinks.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{
+  navLinks.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded','false');
+  menuToggle.innerHTML='<i class="fa-solid fa-bars"></i>';
+}));
+
+const modal=document.getElementById('lockedModal');
+const closeModal=document.getElementById('closeModal');
+let lastFocus=null;
+function openLocked(){
+  lastFocus=document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeModal.focus();
+}
+function closeLocked(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  if(lastFocus)lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openLocked();}));
+document.getElementById('demoForm').addEventListener('submit',e=>{e.preventDefault();openLocked();});
+closeModal.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked();});
+
+const sections=[...document.querySelectorAll('main section[id]')];
+const navAnchors=[...document.querySelectorAll('.nav-links a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+    }
+  });
+},{rootMargin:'-35% 0px -55% 0px',threshold:0});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>

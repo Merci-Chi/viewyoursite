@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="description" content="Exclusive Tailoring at 4440 S Durango Dr, Ste F in Las Vegas, Nevada.">
+<title>Exclusive Tailoring | Las Vegas, NV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--accent:#d6b455;--accent2:#f2df9b;--bg:#0a162b;--surface:#101f38;--text:#f4f0e8;--muted:#aeb8c7;--head:"Cormorant Garamond",sans-serif;--body:"Inter",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.65;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(8,8,12,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
+.top{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-family:var(--head);font-weight:800;text-decoration:none;font-size:clamp(18px,2vw,25px);max-width:68%;line-height:1.08}
+.brand b{color:var(--accent)}
+nav{display:flex;gap:8px}
+nav a{text-decoration:none;padding:10px 12px;font-weight:700}
+nav a:hover{color:var(--accent)}
+.menu{display:none;background:none;border:0;color:var(--text);font-size:24px}
+.hero{min-height:690px;display:flex;align-items:center;position:relative;background:url("https://images.unsplash.com/photo-1555069519-127aadedf1ee?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0}
+.hero .wrap{position:relative;z-index:2}
+.hero-card{max-width:700px;padding:42px}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.17em;font-weight:800;color:var(--accent);margin:0 0 12px}
+h1,h2,h3{font-family:var(--head)}
+h1{font-size:clamp(43px,7vw,76px);line-height:.98;margin:0 0 18px}
+.hero p{font-size:18px;max-width:58ch}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-flex;gap:9px;align-items:center;justify-content:center;padding:13px 18px;text-decoration:none;font-weight:800;border:1px solid currentColor;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#0a162b}
+section{padding:82px 0}
+h2{font-size:clamp(34px,5vw,52px);line-height:1.06;margin:0 0 16px}
+.lede{max-width:760px;color:var(--muted);margin:0 0 32px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.svc{padding:28px;min-height:230px;transition:transform .2s}
+.svc:hover{transform:translateY(-4px)}
+.svc i{width:48px;height:48px;display:grid;place-items:center;font-size:21px;margin-bottom:22px}
+.svc h3{margin:0 0 8px;font-size:20px}
+.svc p{margin:0;color:var(--muted)}
+.info{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact,.hours{padding:30px;border:1px solid}
+.item{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.item:last-child{border-bottom:0}
+.item i{width:42px;height:42px;display:grid;place-items:center;background:var(--accent);color:#0a162b;flex:0 0 auto}
+.item small{display:block;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:800}
+.item p,.item a{margin:3px 0 0;font-weight:700;text-decoration:none}
+.hrow{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.hrow:last-child{border-bottom:0}
+.hrow strong{text-align:right}
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+blockquote{margin:0;padding:28px;background:var(--surface);border:1px solid rgba(255,255,255,.12)}
+blockquote p{font-family:var(--head);font-size:21px;line-height:1.45}
+blockquote footer{color:var(--muted);font-weight:700}
+.stars{color:var(--accent2);letter-spacing:3px}
+.cta{padding:64px 0;background:var(--accent);color:#0a162b}
+.cta .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.cta h2{margin:0}
+.sitefoot{padding:28px 0;background:#050508;color:#bbb;font-size:14px}
+.sitefoot .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.74);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{width:min(470px,100%);background:var(--surface);padding:30px;border:1px solid rgba(255,255,255,.15)}
+.modal button{background:var(--accent);color:#0a162b;border:0;padding:11px 18px;font-weight:800}
+
+        .hero:before{background:linear-gradient(90deg,rgba(10,22,43,.94),rgba(10,22,43,.6),rgba(10,22,43,.15))}
+        .hero-card{border:1px solid rgba(214,180,85,.35);background:rgba(10,22,43,.86)}
+        .svc{border-top:1px solid var(--accent);background:#101f38}
+        .svc i{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+        .alt{background:#0e1b31}
+        .contact,.hours{background:#101f38;border-color:rgba(214,180,85,.24)}
+        
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.info{grid-template-columns:1fr}}
+@media(max-width:720px){
+ .wrap{width:min(100% - 28px,1120px)}
+ .top{height:66px}
+ .menu{display:block}
+ nav{display:none;position:absolute;top:66px;left:0;right:0;background:var(--surface);padding:12px 14px 18px;flex-direction:column}
+ nav.open{display:flex}
+ .hero{min-height:590px}
+ .hero-card{padding:28px 22px}
+ h1{font-size:clamp(39px,13vw,60px)}
+ section{padding:60px 0}
+ .grid,.reviews{grid-template-columns:1fr}
+ .svc{min-height:0}
+ .cta .wrap{display:block}
+ .cta .btn{margin-top:18px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap top">
+<a href="#home" class="brand">Exclusive <b>Tailoring</b></a>
+<button class="menu" id="menu" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+<nav id="nav">
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href='#reviews'>Reviews</a>
+<a href="#visit">Visit</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="wrap">
+<div class="hero-card">
+<p class="kicker">Since 2006 · Durango Dr</p>
+<h1>Tailoring for the<br><b style='color:var(--accent)'>moments that matter.</b></h1>
+<p>A suit for the interview. A gown for the night. A uniform that finally sits right.</p>
+<div class="actions">
+<a href="tel:+17022209232" class="btn primary" data-locked="true"><i class="fa-solid fa-phone"></i> (702) 220-9232</a>
+<a href="#services" class="btn"><i class="fa-solid fa-arrow-down"></i> Explore</a>
+<span class="btn"><i class="fa-solid fa-star"></i> 4.8 Google rating</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="services">
+<div class="wrap">
+<p class="kicker">The craft</p>
+<h2>Done properly, or not at all</h2>
+<p class="lede">Every piece is measured, marked and fitted by hand. Rush jobs by arrangement.</p>
+<div class="grid"><article class="svc"><i class="fa-solid fa-person"></i><h3>Men’s tailoring</h3><p>Suit jackets, trousers, shirts and vests. Tapers, breaks and sleeves set to your frame.</p></article><article class="svc"><i class="fa-solid fa-person-dress"></i><h3>Women’s tailoring</h3><p>Dresses, blouses, skirts and formal wear, shaped and finished to measure.</p></article><article class="svc"><i class="fa-solid fa-ribbon"></i><h3>Formal and bridal</h3><p>Gown fittings with as many visits as the dress needs, right up to the day.</p></article><article class="svc"><i class="fa-solid fa-scissors"></i><h3>Repairs</h3><p>Zippers, linings, hems, tears and buttons, restored quietly and well.</p></article></div>
+<p class="lede" style="margin-top:22px;font-size:13px">Stock imagery is used for presentation only and does not depict the actual business, staff, products, or completed work.</p>
+</div>
+</section>
+
+
+<section id="reviews" class="alt">
+  <div class="wrap">
+    <p class="kicker">Reviews</p>
+    <h2>4.8 Google rating</h2>
+    <div class="reviews"><blockquote><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>“The best tailor in Vegas. They did an amazing job.”</p><footer>Client review · 4.8 stars on Google</footer></blockquote></div>
+  </div>
+</section>
+
+<section id="visit">
+<div class="wrap">
+<p class="kicker">Visit</p>
+<h2>Reserve the fitting room</h2>
+<div class="info">
+<div class="contact">
+<div class="item"><i class="fa-solid fa-location-dot"></i><div><small>Address</small><p>4440 S Durango Dr, Ste F, Las Vegas, NV 89147</p></div></div>
+<div class='item'><i class='fa-solid fa-phone'></i><div><small>Phone</small><a href='tel:+17022209232' data-locked='true'>(702) 220-9232</a></div></div>
+<div class="actions"><a href="https://www.google.com/maps/search/?api=1&amp;query=4440%20S%20Durango%20Dr%20Ste%20F%20Las%20Vegas%20NV%2089147" class="btn primary" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Get directions</a></div>
+</div>
+<div class="hours">
+<h3 style="margin-top:0">Hours</h3>
+<div class="hrow"><span>Monday</span><strong>Closed</strong></div><div class="hrow"><span>Tuesday</span><strong>10 AM – 6 PM</strong></div><div class="hrow"><span>Wednesday</span><strong>10 AM – 6 PM</strong></div><div class="hrow"><span>Thursday</span><strong>10 AM – 6 PM</strong></div><div class="hrow"><span>Friday</span><strong>10 AM – 6 PM</strong></div><div class="hrow"><span>Saturday</span><strong>10 AM – 4 PM</strong></div><div class="hrow"><span>Sunday</span><strong>Closed</strong></div>
+<p class="lede" style="font-size:13px;margin:14px 0 0"></p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta">
+<div class="wrap">
+<h2>Exclusive Tailoring</h2>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=4440%20S%20Durango%20Dr%20Ste%20F%20Las%20Vegas%20NV%2089147" class="btn" data-locked="true"><i class="fa-solid fa-location-arrow"></i> Open map</a>
+</div>
+</section>
+</main>
+
+<footer class="sitefoot">
+<div class="wrap"><span>© Exclusive Tailoring</span><span>4440 S Durango Dr, Ste F, Las Vegas, NV 89147</span></div>
+</footer>
+
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal">
+<h2 id="modalTitle">This is currently locked.</h2>
+<p>This feature is part of the full website. Purchase the site to unlock it.</p>
+<button type="button" id="close">Close</button>
+</div>
+</div>
+
+<script>
+(function(){
+ const menu=document.getElementById("menu");
+ const nav=document.getElementById("nav");
+ const modal=document.getElementById("modal");
+ const close=document.getElementById("close");
+ menu.addEventListener("click",function(){
+   const open=nav.classList.toggle("open");
+   menu.setAttribute("aria-expanded",String(open));
+ });
+ document.querySelectorAll('a[href^="#"]').forEach(function(a){
+   a.addEventListener("click",function(){nav.classList.remove("open");menu.setAttribute("aria-expanded","false");});
+ });
+ function openLocked(e){e.preventDefault();modal.classList.add("open");document.body.style.overflow="hidden";close.focus();}
+ function closeLocked(){modal.classList.remove("open");document.body.style.overflow="";}
+ document.querySelectorAll('[data-locked="true"]').forEach(function(el){el.addEventListener("click",openLocked);});
+ close.addEventListener("click",closeLocked);
+ modal.addEventListener("click",function(e){if(e.target===modal) closeLocked();});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape" && modal.classList.contains("open")) closeLocked();});
+})();
+</script>
+
+<!--
+ASSET LIST
+- Background/hero: relevant stock photo from Unsplash
+- Icons: Font Awesome Free CDN
+- Fonts: Google Fonts CDN
+
+QUALITY CHECK
+- Single HTML file
+- CSS and JavaScript inside HTML
+- Responsive desktop/mobile layout
+- Functional hamburger menu
+- Mobile zoom disabled
+- Text selection disabled
+- Locked external/real-world actions use reusable modal
+- No backend, payment, booking, or fake submission functionality added
+-->
+</body>
+</html>

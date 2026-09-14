@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#18110d">
+<title>XO Mini Mart & Liquor | Las Vegas, NV</title>
+<meta name="description" content="XO Mini Mart & Liquor on E Sahara Ave in Las Vegas. Late-night convenience store with liquor, drinks, snacks, coffee, frozen treats and everyday needs.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --espresso:#18110d;--brown:#3a261d;--amber:#d88a2e;--gold:#f1bf62;
+  --cream:#f6efe6;--paper:#fffaf4;--ink:#221b17;--muted:#6d5e55;--line:rgba(56,34,24,.14);
+  --max:1180px;--shadow:0 22px 60px rgba(48,27,16,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:pan-x pan-y}
+body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--cream);overflow-x:hidden;user-select:none;-webkit-user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(246,239,230,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.header-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}
+.brand-icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--espresso);color:#fff;border:4px solid #f5d8b3}
+.desktop-nav{display:flex;align-items:center;gap:29px;font-weight:700;font-size:.93rem}
+.desktop-nav a{position:relative}
+.desktop-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;background:var(--amber);transition:.2s}
+.desktop-nav a:hover:after{right:0}
+.menu-btn{display:none;border:0;background:none;width:46px;height:46px;padding:10px;cursor:pointer}
+.menu-btn span{height:2px;background:var(--espresso);display:block;margin:6px 0}
+.mobile-menu{display:none;padding:8px 20px 18px;border-top:1px solid var(--line)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+main{padding-top:74px}
+.hero{
+  position:relative;min-height:710px;color:#fff;display:grid;align-items:end;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(24,17,13,.93) 0%,rgba(24,17,13,.75) 50%,rgba(24,17,13,.34) 100%),
+    url("https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+}
+.hero:after{content:"";position:absolute;left:-100px;bottom:-180px;width:430px;height:430px;border-radius:50%;border:70px solid rgba(241,191,98,.14)}
+.hero-inner{position:relative;z-index:2;padding:115px 0 78px;max-width:780px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.15em;font-size:.76rem;font-weight:800;color:#f8d89a}
+.eyebrow:before{content:"";width:38px;height:2px;background:currentColor}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:"Manrope",sans-serif;font-size:clamp(3.6rem,8vw,7rem);letter-spacing:-.065em;line-height:.9;margin:20px 0 24px;max-width:880px}
+.hero-copy{max-width:650px;font-size:clamp(1rem,2vw,1.23rem);line-height:1.68;color:rgba(255,255,255,.86)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}
+.btn{min-height:50px;padding:13px 20px;border:1px solid transparent;font:800 .92rem "DM Sans",sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gold);color:#24150e}
+.btn-ghost{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.56);color:#fff}
+.stock-note{position:absolute;right:18px;bottom:16px;z-index:3;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.64)}
+.quickbar{background:var(--espresso);color:#fff}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.quick{padding:25px 24px;display:flex;gap:15px;border-right:1px solid rgba(255,255,255,.12)}
+.quick:last-child{border-right:0}
+.quick i{color:#f0bd68;margin-top:3px}
+.quick strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:5px}
+.quick span{font-weight:700;line-height:1.4}
+.section{padding:94px 0}
+.kicker{text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:.75rem;color:var(--amber);margin-bottom:10px}
+.section h2{font-family:"Manrope",sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.055em;line-height:.98;margin-bottom:18px}
+.lead{max-width:720px;color:var(--muted);line-height:1.75;font-size:1.03rem}
+.about-grid{display:grid;grid-template-columns:1fr .92fr;gap:62px;align-items:start}
+.about-photo{
+  min-height:440px;background:
+  linear-gradient(rgba(50,26,14,.08),rgba(50,26,14,.12)),
+  url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1500&q=82") center/cover no-repeat;
+  box-shadow:var(--shadow);position:relative
+}
+.about-photo:after{content:"Stock imagery — not the actual business";position:absolute;left:14px;bottom:12px;background:rgba(30,17,10,.82);color:#fff;padding:7px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em}
+.about-copy{padding-top:18px}
+.protected{margin-top:24px;border-left:4px solid var(--amber);background:#fff1dc;padding:18px 20px;display:flex;gap:14px}
+.protected i{color:var(--amber);margin-top:3px}
+.protected strong{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.protected p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+.services{background:#fff}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:38px}
+.service{background:#fff;padding:30px 26px;min-height:220px}
+.service-icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:#fff0d8;color:var(--amber);font-size:1.12rem;margin-bottom:24px}
+.service h3{font-size:1.12rem;margin-bottom:10px}
+.service p{color:var(--muted);line-height:1.6;margin-bottom:0;font-size:.94rem}
+.reviews{
+  color:#fff;position:relative;
+  background:
+  linear-gradient(90deg,rgba(35,20,13,.96),rgba(35,20,13,.86)),
+  url("https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?auto=format&fit=crop&w=1900&q=82") center/cover no-repeat;
+}
+.review-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.reviews .kicker{color:#f2c982}
+.reviews .lead{color:rgba(255,255,255,.72)}
+.rating-card{border-top:1px solid rgba(255,255,255,.22);padding-top:24px}
+.rating-number{font-family:"Manrope",sans-serif;font-size:5rem;line-height:.9;color:var(--gold);font-weight:800}
+.rating-card p{color:rgba(255,255,255,.72)}
+.reason-list{border-top:1px solid rgba(255,255,255,.18)}
+.reason{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.reason strong{display:block;color:#fff;margin-bottom:4px}
+.reason span{color:rgba(255,255,255,.7)}
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px}
+.hours-list{border-top:1px solid var(--line)}
+.hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.hour-row span{color:var(--muted)}
+.today{color:var(--amber)!important}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:35px}
+.visit-card{background:#fff;border:1px solid var(--line);padding:33px;min-height:275px}
+.visit-card h3{font-size:1.15rem}
+.lock-panel{background:var(--espresso);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.lock-panel i.big{font-size:2rem;color:#f0bd68}
+.lock-panel p{color:rgba(255,255,255,.72);line-height:1.65}
+.contact-note{margin:18px 0}
+.cta{margin-top:32px;background:#f3d399;padding:45px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.cta h3{font-family:"Manrope",sans-serif;font-size:clamp(2rem,4vw,3.1rem);letter-spacing:-.05em;margin:0}
+.cta p{margin:8px 0 0;color:#4d382d}
+.cta .btn{background:var(--espresso);color:#fff}
+footer{background:#120c09;color:rgba(255,255,255,.7);padding:38px 0}
+.foot{display:flex;justify-content:space-between;gap:25px;align-items:center;font-size:.82rem}
+.foot strong{color:#fff}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.67);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(100%,470px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.modal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--espresso);color:#fff;margin-bottom:20px}
+.modal h2{font-family:"Manrope",sans-serif;font-size:2rem;letter-spacing:-.04em;margin-bottom:12px}
+.modal p{color:var(--muted);line-height:1.65;margin-bottom:24px}
+.modal .btn{width:100%;background:var(--espresso);color:#fff}
+@media(max-width:1000px){.service-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+  .desktop-nav{display:none}.menu-btn{display:block}
+  .about-grid,.review-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+  .quick-grid{grid-template-columns:1fr}.quick{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .quick:last-child{border-bottom:0}.hero{min-height:640px}.cta{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:600px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .header-inner{min-height:68px}.brand{font-size:.88rem}.brand-icon{width:35px;height:35px}
+  main{padding-top:68px}.hero{min-height:610px;background-position:55% center}.hero-inner{padding:88px 0 50px}
+  h1{font-size:clamp(3.05rem,15vw,4.6rem)}.hero-actions{display:grid}.hero-actions .btn{width:100%}
+  .stock-note{left:14px;right:auto;bottom:12px}.section{padding:72px 0}.about-photo{min-height:330px}
+  .service-grid{grid-template-columns:1fr}.service{padding:28px 24px}.visit-card{padding:25px}.cta{padding:30px 24px}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="brand" aria-label="XO Mini Mart & Liquor home">
+      <span class="brand-icon"><i class="fa-solid fa-store"></i></span>
+      <span>XO Mini Mart &amp; Liquor</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#aisles">The Aisles</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#hours">Hours</a>
+      <a href="#visit">Find Us</a>
+    </nav>
+    <button id="menuBtn" class="menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+    <a href="#about">About</a><a href="#aisles">The Aisles</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Find Us</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Historic Commercial Center District · Las Vegas</div>
+      <h1 id="heroTitle">Your late-night stop for everything.</h1>
+      <p class="hero-copy">Sitting in the Historic Commercial Center District on E Sahara Ave, XO Mini Mart and Liquor keeps the fridge stocked, the shelves full and the doors open long after everyone else closes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#aisles"><i class="fa-solid fa-basket-shopping"></i> Walk the Aisles</a>
+        <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Directions</button>
+      </div>
+    </div>
+    <div class="stock-note">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="quickbar" aria-label="Business details">
+    <div class="wrap quick-grid">
+      <div class="quick"><i class="fa-solid fa-clock"></i><div><strong>Late hours</strong><span>Open until 1 AM weeknights, 2 AM weekends</span></div></div>
+      <div class="quick"><i class="fa-solid fa-star"></i><div><strong>Google rating</strong><span>4.9 from 1,508 reviews</span></div></div>
+      <div class="quick"><i class="fa-solid fa-location-dot"></i><div><strong>Area</strong><span>E Sahara Ave · Las Vegas</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-photo" role="img" aria-label="Stock image of a convenience store checkout area"></div>
+      <div class="about-copy">
+        <div class="kicker">About</div>
+        <h2>Part convenience store, part liquor shop.</h2>
+        <p class="lead">The supplied business page describes XO Mini Mart &amp; Liquor as a late-night neighborhood stop with drinks, snacks, liquor, smoke items, coffee, frozen treats and everyday needs.</p>
+        <div class="protected">
+          <i class="fa-solid fa-lock"></i>
+          <div>
+            <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+            <p>The source includes a public business phone number and street address. Those real-world contact details stay locked in this sample site.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="aisles">
+    <div class="wrap">
+      <div class="kicker">The Aisles</div>
+      <h2>Every aisle, covered.</h2>
+      <p class="lead">Only the product categories and descriptions supported by the uploaded source are included here.</p>
+      <div class="service-grid">
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-bottle-droplet"></i></div><h3>Spirits</h3><p>Everything from well bottles to top shelf favorites.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-wine-glass"></i></div><h3>Wine</h3><p>Reds, whites and bubbly for any budget or occasion.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-beer-mug-empty"></i></div><h3>Beer</h3><p>Cold singles, six packs and cases, always rotated fresh.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-bottle-water"></i></div><h3>Cold Drinks</h3><p>Sodas, energy drinks, juices and water, iced and ready.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-cookie-bite"></i></div><h3>Snacks</h3><p>Chips, candy, cookies and the munchies aisle of your dreams.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-mug-hot"></i></div><h3>Hot Coffee</h3><p>Brewed fresh for the night shift and early birds alike.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-ice-cream"></i></div><h3>Frozen Treats</h3><p>Ice cream and freezer favorites for the late night sweet tooth.</p></article>
+        <article class="service"><div class="service-icon"><i class="fa-solid fa-bag-shopping"></i></div><h3>Everyday Needs</h3><p>The forgotten things you need right now, always on hand.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews" id="reviews">
+    <div class="wrap review-grid">
+      <div>
+        <div class="kicker">Reviews</div>
+        <h2>4.9 from 1,508 Google reviews.</h2>
+        <p class="lead">The supplied page highlights repeated customer themes rather than individual quoted reviews.</p>
+      </div>
+      <div>
+        <div class="rating-card">
+          <div class="rating-number">4.9</div>
+          <p>Based on 1,508 Google reviews in the supplied source.</p>
+        </div>
+        <div class="reason-list">
+          <div class="reason"><strong>Hours That Fit Real Life</strong><span>Open late every night, 2 AM on weekends, for shift workers, night owls and everyone in between.</span></div>
+          <div class="reason"><strong>Service People Remember</strong><span>Regulars describe the same warm welcome every visit.</span></div>
+          <div class="reason"><strong>Staffed With Good People</strong><span>Reviewers consistently mention friendly faces behind the counter.</span></div>
+          <div class="reason"><strong>Always In Stock</strong><span>Customers love that the shelves stay full and the coolers stay cold, even deep into the night.</span></div>
+        </div>
+        <button class="btn btn-primary" type="button" data-locked="true" style="margin-top:24px"><i class="fa-brands fa-google"></i> Read Reviews on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <div class="kicker">Weekly Hours</div>
+        <h2>Open late every night.</h2>
+        <p class="lead">Closing times are after midnight. The supplied source notes that holiday hours should be confirmed.</p>
+      </div>
+      <div class="hours-list">
+        <div class="hour-row" data-day="1"><strong>Monday</strong><span>8:00 AM – 1:00 AM</span></div>
+        <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>8:00 AM – 1:00 AM</span></div>
+        <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>8:00 AM – 1:00 AM</span></div>
+        <div class="hour-row" data-day="4"><strong>Thursday</strong><span>8:00 AM – 1:00 AM</span></div>
+        <div class="hour-row" data-day="5"><strong>Friday</strong><span>8:00 AM – 2:00 AM</span></div>
+        <div class="hour-row" data-day="6"><strong>Saturday</strong><span>8:00 AM – 2:00 AM</span></div>
+        <div class="hour-row" data-day="0"><strong>Sunday</strong><span>8:00 AM – 1:00 AM</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="kicker">Find Us</div>
+      <h2>On E Sahara in Las Vegas.</h2>
+      <p class="lead">The source places XO Mini Mart &amp; Liquor in the Historic Commercial Center District on E Sahara Ave.</p>
+      <div class="visit-grid">
+        <div class="visit-card lock-panel">
+          <div>
+            <i class="fa-solid fa-location-dot big"></i>
+            <h3>Business address</h3>
+            <p><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong></p>
+          </div>
+          <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open directions</button>
+        </div>
+        <div class="visit-card">
+          <h3><i class="fa-solid fa-phone"></i> Phone</h3>
+          <div class="protected contact-note">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong>
+              <p>The supplied number is intentionally not exposed as a working tel: link.</p>
+            </div>
+          </div>
+          <button class="btn" style="background:var(--espresso);color:#fff" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call business</button>
+        </div>
+      </div>
+      <div class="cta">
+        <div><h3>Want to check if something is in stock?</h3><p>Contact actions are part of the full website experience.</p></div>
+        <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-comment-dots"></i> Text Us</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong>XO Mini Mart &amp; Liquor</strong><br>Las Vegas, Nevada</div>
+    <div>Demo website · Contact details protected</div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+  <div class="modal">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileMenu=document.getElementById('mobileMenu');
+  const modal=document.getElementById('lockedModal');
+  const modalClose=document.getElementById('modalClose');
+  let lastFocus=null;
+
+  function closeMenu(){mobileMenu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}
+  menuBtn.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open))});
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
+
+  function openModal(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openModal(el)}));
+  modalClose.addEventListener('click',closeModal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();
+    if(e.key==='Tab'&&modal.classList.contains('open')){e.preventDefault();modalClose.focus()}
+  });
+
+  const today=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short'}).format(new Date());
+  const map={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row=document.querySelector('.hour-row[data-day="'+map[today]+'"]');
+  if(row){const day=row.querySelector('strong');day.classList.add('today');day.textContent+=' · Today'}
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+})();
+</script>
+</body>
+</html>

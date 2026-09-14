@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Smiley Smokes | Louisville, KY</title>
+<meta name="description" content="Smiley Smokes in Louisville, Kentucky.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
+
+:root{--bg:#120f16;--panel:#1d1722;--ink:#fff8f2;--muted:#c7b8ca;--accent:#ff7b45;--gold:#efc16e;--line:rgba(255,123,69,.22);--modal-bg:#1d1722;--modal-text:#fff;--modal-muted:#c7b8ca}
+body{background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif}
+.wrap{width:min(calc(100% - 40px),1160px);margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(18,15,22,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font:800 1rem "Space Grotesk",sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.brand small{display:block;color:var(--muted);font:.65rem "Inter";letter-spacing:.14em;margin-top:4px}
+.navlinks{display:flex;gap:24px;font-size:.82rem;font-weight:800}
+.navlinks a:hover{color:var(--accent)}
+.hamb{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent}
+.hamb span{display:block;width:23px;height:2px;background:#fff;margin:5px auto}
+.mobile{display:none;background:var(--panel);padding:8px 20px 18px}
+.mobile.open{display:grid}
+.mobile a{padding:13px 0;border-bottom:1px solid var(--line);font-weight:700}
+.hero{min-height:710px;display:flex;align-items:end;position:relative;background:
+linear-gradient(90deg,rgba(18,15,22,.96),rgba(18,15,22,.68) 52%,rgba(18,15,22,.25)),
+url("https://unsplash.com/photos/_YWVTsFYo-g/download?force=true") center/cover no-repeat}
+.hero-in{padding:105px 0 72px;max-width:800px}
+.eyebrow{color:#ffc39d;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:800}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif}
+.hero h1{font-size:clamp(3.6rem,8vw,7rem);line-height:.92;margin:16px 0 22px;text-transform:uppercase}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:1.08rem;color:#e6dce7;line-height:1.7;max-width:650px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{min-height:50px;padding:13px 20px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff}.btn.ghost{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.05);color:#fff}
+.stock{position:absolute;right:14px;bottom:12px;background:rgba(0,0,0,.68);padding:7px 9px;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em}
+.stats{background:#0d0a10;border-block:1px solid var(--line)}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.stat{padding:22px;border-right:1px solid var(--line);display:flex;gap:12px}.stat:last-child{border-right:0}.stat i{color:var(--accent)}.stat small{display:block;color:#8f8095;text-transform:uppercase;letter-spacing:.12em;font-size:.62rem}.stat strong{display:block;margin-top:5px}
+.section{padding:88px 0;scroll-margin-top:74px}.section.alt{background:var(--panel)}
+.section h2{font-size:clamp(2.5rem,5vw,4.5rem);line-height:.98;margin:0 0 18px;text-transform:uppercase}
+.lead{color:var(--muted);line-height:1.75;max-width:760px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.photo{min-height:440px;background:url("https://unsplash.com/photos/drtB7KU-y2s/download?force=true") center/cover;position:relative}
+.photo:after{content:"Relevant stock smoke-shop imagery — not the actual business";position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.7);padding:7px 9px;font-size:.62rem;text-transform:uppercase}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.highlights div{padding:20px;border:1px solid var(--line);background:#151019}.highlights i{color:var(--accent);margin-bottom:10px}.highlights strong{display:block}
+.service-list{margin-top:35px;border-top:1px solid var(--line)}
+.service{display:grid;grid-template-columns:48px 1fr 1.2fr;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}.service i{color:var(--accent)}.service strong{text-transform:uppercase}.service p{margin:0;color:var(--muted)}
+.reviews{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}.review{padding:24px;border:1px solid var(--line);background:#151019}.review p{line-height:1.7}.review span{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em}
+.hours{max-width:760px;border-top:1px solid var(--line);margin-top:28px}.hour{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}.hour span{color:var(--muted)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{padding:28px;background:#fff;color:#261f29}.card p{color:#746b77;line-height:1.65}.protected{border-left:4px solid var(--accent);background:#f8eee9;padding:16px;margin:18px 0}
+footer{padding:34px 0;color:#9d8fa5;background:#0b080d;border-top:1px solid var(--line)}
+@media(max-width:900px){.navlinks{display:none}.hamb{display:block}.about-grid,.visit-grid{grid-template-columns:1fr}.highlights,.reviews{grid-template-columns:1fr}.service{grid-template-columns:40px 1fr}.service p{grid-column:2}}
+@media(max-width:620px){.wrap{width:min(calc(100% - 28px),1160px)}.hero{min-height:640px;background-position:60% center}.hero-in{padding:90px 0 50px}.actions{display:grid}.btn{width:100%}.statgrid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.section{padding:68px 0}}
+
+
+.lock-backdrop{
+  position:fixed; inset:0; z-index:99999; display:none; align-items:center; justify-content:center;
+  padding:20px; background:rgba(0,0,0,.72);
+}
+.lock-backdrop.open{display:flex}
+.lock-dialog{
+  width:min(100%,440px); background:var(--modal-bg,#17151a); color:var(--modal-text,#fff);
+  padding:30px; border-top:4px solid var(--accent); box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+.lock-dialog h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}
+.lock-dialog p{margin:0 0 20px;color:var(--modal-muted,#cfc7d2);line-height:1.65}
+.lock-dialog button{width:100%;min-height:46px;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav"><a class="brand" href="#home">Smiley Smokes<small>Louisville</small></a><nav class="navlinks"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav><button class="hamb" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div><nav class="mobile" id="mobileNav"><a href="#about">About</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-in"><div class="eyebrow">Louisville nights</div><h1>Smiley <span>Smokes</span></h1><p>Glass, flower, and good vibes</p><div class="actions"><a class="btn primary" href="#services"><i class="fa-solid fa-box-open"></i> Services</a><a class="btn ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a><button class="btn ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button></div></div><div class="stock">Relevant stock smoke-shop imagery · not the actual business</div></section>
+<section class="stats"><div class="wrap statgrid"><div class="stat"><i class="fa-solid fa-star"></i><div><small>Rating</small><strong>4.9 on local listings</strong></div></div><div class="stat"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>Louisville, KY 40228</strong></div></div><div class="stat"><i class="fa-regular fa-clock"></i><div><small>Hours</small><strong>Sun–Thu 10 AM–10 PM · Fri–Sat 10 AM–12 AM</strong></div></div></div></section>
+<section class="section" id="about"><div class="wrap about-grid"><div class="photo"></div><div><div class="eyebrow">About</div><h2>Smiley Smokes</h2><p class="lead">Smiley Smokes in Louisville. Your neighborhood smoke shop for glass, flower, vapes, and good vibes. Come in, ask questions, leave set.</p><div class="highlights"><div><i class="fa-solid fa-flask"></i><strong>Glass wall</strong></div><div><i class="fa-solid fa-wind"></i><strong>Vape bar</strong></div><div><i class="fa-solid fa-location-dot"></i><strong>Local picks</strong></div></div></div></div></section>
+<section class="section alt" id="services"><div class="wrap"><div class="eyebrow">Services</div><h2>What you’ll find at Smiley Smokes.</h2><div class="service-list"><div class="service"><i class="fa-solid fa-leaf"></i><strong>Premium flower &amp; vapes</strong><p>Ready when you are.</p></div><div class="service"><i class="fa-solid fa-flask"></i><strong>Glass &amp; accessories</strong><p>Ready when you are.</p></div><div class="service"><i class="fa-solid fa-droplet"></i><strong>CBD &amp; wellness</strong><p>Ready when you are.</p></div><div class="service"><i class="fa-solid fa-user-group"></i><strong>Local-friendly staff</strong><p>Ready when you are.</p></div></div></div></section>
+<section class="section" id="reviews"><div class="wrap"><div class="eyebrow">Reviews</div><h2>4.9 on local listings</h2><div class="reviews"><article class="review"><p>“Friendly stop in Louisville. Worth swinging by.”</p><span>Neighborhood visitor</span></article><article class="review"><p>“Good prices and solid smoke.”</p><span>Neighborhood visitor</span></article></div><div class="actions"><button class="btn primary" type="button" data-locked="true"><i class="fa-solid fa-map"></i> See more on Maps</button></div></div></section>
+<section class="section alt" id="hours"><div class="wrap"><div class="eyebrow">Hours</div><h2>Open late.</h2><div class="hours"><div class="hour"><strong>Sunday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Monday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Tuesday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Wednesday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Thursday</strong><span>10:00 AM – 10:00 PM</span></div><div class="hour"><strong>Friday</strong><span>10:00 AM – 12:00 AM</span></div><div class="hour"><strong>Saturday</strong><span>10:00 AM – 12:00 AM</span></div></div><p class="lead">Hours may change on holidays — call to confirm.</p></div></section>
+<section class="section" id="visit"><div class="wrap"><div class="eyebrow">Visit</div><h2>Smiley Smokes</h2><div class="visit-grid"><div class="card"><h3>Find us</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public street address is hidden in this sample website.</p></div><button class="btn primary" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right"></i> Get directions</button></div><div class="card"><h3>Call</h3><div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Phone actions are disabled in this sample website.</p></div><button class="btn primary" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button></div></div></div></section>
+</main>
+<footer><div class="wrap">Smiley Smokes · Louisville, KY 40228</div></footer>
+
+
+<div class="lock-backdrop" id="lockModal" aria-hidden="true">
+  <div class="lock-dialog" role="dialog" aria-modal="true" aria-labelledby="lockTitle" aria-describedby="lockMessage">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p id="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="lockClose">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockModal');
+  const closeBtn = document.getElementById('lockClose');
+  let lastFocus = null;
+
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('#mobileNav a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  function openLock(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+
+  function closeLock(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLock(el);
+    });
+  });
+
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      openLock(e.submitter || form);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLock);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLock();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLock();
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+    if ((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+  document.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+</body>
+</html>

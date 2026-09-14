@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#17121d">
+<title>Smoker's Den(New Ownership ) | Portland, OR</title>
+<meta name="description" content="Smoker's Den(New Ownership ) in Portland. Premium flower and vapes, glass and accessories, CBD and wellness, hours, reviews, and protected demo contact information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{
+  --bg:#17121d;
+  --panel:#211827;
+  --panel2:#2a1e31;
+  --ink:#f8f3fa;
+  --muted:#b9acbf;
+  --accent:#ff8a3d;
+  --accent2:#e6c46a;
+  --line:rgba(255,138,61,.2);
+  --soft:#f7f2f8;
+  --dark:#271e2b;
+  --max:1160px;
+  --shadow:0 28px 80px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+h1,h2,h3,p{margin-top:0}
+.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+
+header{position:sticky;top:0;z-index:100;background:rgba(23,18,29,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:"Bungee",sans-serif;font-size:1rem;line-height:1.05}
+.brand small{display:block;font:700 .64rem "Inter",sans-serif;color:var(--muted);margin-top:5px;letter-spacing:.12em;text-transform:uppercase}
+.desktop-nav{display:flex;gap:26px;font-size:.84rem;font-weight:800}
+.desktop-nav a:hover{color:var(--accent)}
+.menu-btn{display:none;width:46px;height:46px;border:1px solid var(--line);background:transparent}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px auto}
+.mobile-menu{display:none;background:var(--panel);padding:8px 20px 18px;border-top:1px solid var(--line)}
+.mobile-menu.open{display:grid}
+.mobile-menu a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+.hero{
+  min-height:735px;
+  display:grid;
+  align-items:end;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(23,18,29,.96),rgba(23,18,29,.68) 54%,rgba(23,18,29,.2)),
+    url("https://unsplash.com/photos/_YWVTsFYo-g/download?force=true") center/cover no-repeat;
+}
+.hero:after{
+  content:"";
+  position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;
+  border:52px solid rgba(255,138,61,.11)
+}
+.hero-in{position:relative;z-index:2;padding:112px 0 76px;max-width:860px}
+.kicker{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:800;color:#ffc391}
+.kicker:before{content:"";width:34px;height:2px;background:currentColor}
+.hero h1{font-family:"Bungee",sans-serif;font-size:clamp(3.4rem,7.2vw,6.6rem);line-height:.93;letter-spacing:-.04em;margin:20px 0 24px}
+.hero h1 span{color:var(--accent)}
+.hero-copy{max-width:690px;color:rgba(255,255,255,.8);line-height:1.75;font-size:1.08rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{min-height:50px;padding:13px 20px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.36);color:#fff}
+.btn-dark{background:var(--panel2);color:#fff;border-color:var(--line)}
+.asset-note{position:absolute;right:18px;bottom:14px;z-index:3;background:rgba(23,18,29,.78);padding:7px 9px;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em}
+
+.factbar{background:#100c14;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.factgrid{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{display:flex;gap:14px;padding:24px 22px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact i{color:var(--accent)}
+.fact strong{display:block;font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;color:#927f99;margin-bottom:5px}
+.fact span{font-weight:700}
+
+.section{padding:92px 0;scroll-margin-top:76px}
+.section-kicker{color:#ffc391;text-transform:uppercase;letter-spacing:.14em;font-size:.73rem;font-weight:800;margin-bottom:10px}
+.section h2{font-family:"Bungee",sans-serif;font-size:clamp(2.6rem,4.8vw,4.5rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px}
+.lead{max-width:740px;color:var(--muted);line-height:1.75;font-size:1.02rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:58px;align-items:center}
+.about-photo{min-height:440px;position:relative;background:url("https://unsplash.com/photos/drtB7KU-y2s/download?force=true") center/cover;box-shadow:var(--shadow)}
+.about-photo:after{content:"Relevant stock smoke/vape-shop imagery — not the actual business";position:absolute;left:14px;bottom:12px;background:rgba(23,18,29,.84);padding:7px 9px;font-size:.64rem;text-transform:uppercase;letter-spacing:.06em}
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.highlight{border:1px solid var(--line);background:var(--panel);padding:20px}
+.highlight i{color:var(--accent);margin-bottom:12px}
+.highlight strong{display:block}
+
+.services{
+  background:
+    linear-gradient(rgba(33,24,39,.93),rgba(33,24,39,.93)),
+    url("https://unsplash.com/photos/0rgZp-E8iIs/download?force=true") center/cover no-repeat;
+}
+.service-list{margin-top:40px;border-top:1px solid var(--line)}
+.service-row{display:grid;grid-template-columns:56px .9fr 1.3fr;gap:18px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.service-row i{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);color:var(--accent)}
+.service-name{font-family:"Bungee",sans-serif;font-size:1rem}
+.service-row p{margin:0;color:var(--muted);line-height:1.6}
+
+.reviews{background:#100c14}
+.review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:38px}
+.review{border:1px solid var(--line);background:var(--panel);padding:24px}
+.review p{line-height:1.7}
+.review span{display:block;color:var(--muted);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;margin-top:13px}
+.rating{margin-top:25px;color:#ffc391;font-weight:800}
+
+.hours{
+  background:
+    linear-gradient(90deg,rgba(23,18,29,.96),rgba(23,18,29,.82)),
+    url("https://unsplash.com/photos/_YWVTsFYo-g/download?force=true") center/cover no-repeat;
+}
+.hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.hours-list{border-top:1px solid var(--line)}
+.hour-row{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.hour-row span{color:var(--muted)}
+.hour-row.today strong{color:#ffc391}
+.holiday{margin-top:14px;color:var(--muted);font-size:.9rem}
+
+.visit{background:var(--soft);color:var(--dark)}
+.visit .section-kicker{color:#a84a1f}
+.visit .lead{color:#766b79}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+.visit-card,.form-demo{background:#fff;border:1px solid rgba(46,29,53,.15);padding:30px}
+.visit-card h3,.form-demo h3{font-family:"Bungee",sans-serif;font-size:1.08rem}
+.visit-card p,.form-demo p{color:#75697a;line-height:1.65}
+.protected{margin-top:20px;border-left:4px solid #a84a1f;background:#f6ece7;padding:18px 20px;display:flex;gap:13px}
+.protected i{color:#a84a1f;margin-top:3px}
+.protected strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px}
+.protected p{margin:0;font-size:.9rem}
+.form-demo{margin-top:30px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.field{display:grid;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:.82rem;font-weight:800}
+input,textarea{width:100%;background:#fff;border:1px solid rgba(46,29,53,.18);padding:13px 14px;color:var(--dark);border-radius:0}
+textarea{min-height:120px}
+
+footer{background:#0d0910;color:#9d8fa5;padding:38px 0}
+.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px}
+footer h3{color:#fff;font-family:"Bungee",sans-serif;font-size:.96rem}
+footer p{margin:0 0 7px;line-height:1.6}
+.copy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem}
+
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.75);z-index:500}
+.modal-backdrop.open{display:flex}
+.modal{width:min(100%,460px);background:var(--panel);color:var(--ink);border-top:4px solid var(--accent);padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.modal-icon{width:48px;height:48px;display:grid;place-items:center;background:#0d0910;color:var(--accent);margin-bottom:20px}
+.modal h2{font-family:"Bungee",sans-serif;font-size:1.45rem}
+.modal p{color:var(--muted);line-height:1.65}
+.modal .btn{width:100%}
+
+@media(max-width:900px){
+  .desktop-nav{display:none}
+  .menu-btn{display:block}
+  .about-grid,.hours-grid,.visit-grid{grid-template-columns:1fr;gap:34px}
+  .highlights,.review-grid,.footer-grid{grid-template-columns:1fr}
+  .service-row{grid-template-columns:50px 1fr}
+  .service-row p{grid-column:2}
+}
+@media(max-width:650px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .hero{min-height:650px;background-position:58% center}
+  .hero-in{padding:92px 0 52px}
+  .hero h1{font-size:clamp(3rem,15vw,4.8rem)}
+  .actions{display:grid}
+  .actions .btn{width:100%}
+  .asset-note{left:14px;right:auto}
+  .factgrid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid var(--line)}
+  .section{padding:70px 0}
+  .about-photo{min-height:330px}
+  .visit-card,.form-demo{padding:24px}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand">Smoker's Den(New Ownership )<small>Portland</small></a>
+    <nav class="desktop-nav"><a href="#home">Home</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu"><a href="#home">Home</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#hours">Hours</a><a href="#visit">Visit</a></nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <div class="kicker">Portland</div>
+    <h1>Smoker's Den <span>(New Ownership)</span></h1>
+    <p class="hero-copy">Glass, flower, and good vibes. Your neighborhood smoke shop.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#services"><i class="fa-solid fa-box-open"></i> Services</a>
+      <a class="btn btn-ghost" href="#visit"><i class="fa-solid fa-location-dot"></i> Visit</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </div>
+  </div>
+  <div class="asset-note">Relevant stock smoke/vape-shop imagery · not the actual business</div>
+</section>
+
+<section class="factbar"><div class="wrap factgrid">
+  <div class="fact"><i class="fa-solid fa-star"></i><div><strong>Rating</strong><span>4.8</span></div></div>
+  <div class="fact"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><span>Portland, OR 97219</span></div></div>
+  <div class="fact"><i class="fa-regular fa-clock"></i><div><strong>Sun–Thu</strong><span>10 AM – 10 PM</span></div></div>
+  <div class="fact"><i class="fa-regular fa-moon"></i><div><strong>Fri–Sat</strong><span>10 AM – 12 AM</span></div></div>
+</div></section>
+
+<section class="section" id="about"><div class="wrap about-grid">
+  <div class="about-photo"></div>
+  <div>
+    <div class="section-kicker">About</div>
+    <h2>Your neighborhood smoke shop in Portland.</h2>
+    <p class="lead">Smoker's Den(New Ownership ) in Portland. Your neighborhood smoke shop for glass, flower, vapes, and good vibes. Come in, ask questions, leave set.</p>
+    <div class="highlights">
+      <div class="highlight"><i class="fa-solid fa-flask"></i><strong>Glass wall</strong></div>
+      <div class="highlight"><i class="fa-solid fa-wind"></i><strong>Vape bar</strong></div>
+      <div class="highlight"><i class="fa-solid fa-location-dot"></i><strong>Local picks</strong></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section services" id="services"><div class="wrap">
+  <div class="section-kicker">Services</div>
+  <h2>What you’ll find at Smoker's Den(New Ownership ).</h2>
+  <div class="service-list">
+    <div class="service-row"><i class="fa-solid fa-leaf"></i><div class="service-name">Premium flower &amp; vapes</div><p>Available in-store.</p></div>
+    <div class="service-row"><i class="fa-solid fa-flask"></i><div class="service-name">Glass &amp; accessories</div><p>Available in-store.</p></div>
+    <div class="service-row"><i class="fa-solid fa-droplet"></i><div class="service-name">CBD &amp; wellness</div><p>Available in-store.</p></div>
+    <div class="service-row"><i class="fa-solid fa-user-group"></i><div class="service-name">Local-friendly staff</div><p>Available in-store.</p></div>
+  </div>
+</div><div class="asset-note">Relevant stock smoke/vape-shop imagery · not the actual business</div></section>
+
+<section class="section reviews" id="reviews"><div class="wrap">
+  <div class="section-kicker">Reviews</div>
+  <h2>Source-provided local feedback.</h2>
+  <p class="lead">These excerpts are reproduced from the supplied source page.</p>
+  <div class="review-grid">
+    <article class="review"><p>“Friendly stop in Portland. Worth swinging by.”</p><span>Neighborhood visitor</span></article>
+    <article class="review"><p>“Good prices and solid smoke.”</p><span>Neighborhood visitor</span></article>
+  </div>
+  <div class="rating">4.8 on local listings</div>
+  <div class="actions"><button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-map"></i> See more on Maps</button></div>
+</div></section>
+
+<section class="section hours" id="hours"><div class="wrap hours-grid">
+  <div>
+    <div class="section-kicker">Hours</div>
+    <h2>Open late.</h2>
+    <p class="lead">Hours may change on holidays — call to confirm.</p>
+  </div>
+  <div class="hours-list">
+    <div class="hour-row" data-day="0"><strong>Sunday</strong><span>10:00 AM – 10:00 PM</span></div>
+    <div class="hour-row" data-day="1"><strong>Monday</strong><span>10:00 AM – 10:00 PM</span></div>
+    <div class="hour-row" data-day="2"><strong>Tuesday</strong><span>10:00 AM – 10:00 PM</span></div>
+    <div class="hour-row" data-day="3"><strong>Wednesday</strong><span>10:00 AM – 10:00 PM</span></div>
+    <div class="hour-row" data-day="4"><strong>Thursday</strong><span>10:00 AM – 10:00 PM</span></div>
+    <div class="hour-row" data-day="5"><strong>Friday</strong><span>10:00 AM – 12:00 AM</span></div>
+    <div class="hour-row" data-day="6"><strong>Saturday</strong><span>10:00 AM – 12:00 AM</span></div>
+    <p class="holiday">Holiday hours may vary.</p>
+  </div>
+</div></section>
+
+<section class="section visit" id="visit"><div class="wrap">
+  <div class="section-kicker">Visit</div>
+  <h2>Smoker's Den(New Ownership )</h2>
+  <p class="lead">The source places the shop on SW Barbur Blvd in Portland. External directions and phone actions stay protected in this demo.</p>
+
+  <div class="visit-grid">
+    <div class="visit-card">
+      <h3><i class="fa-solid fa-location-dot"></i> Find us</h3>
+      <div class="protected"><i class="fa-solid fa-lock"></i><div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The public business address is protected in this sample website.</p></div></div>
+      <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Open in Google Maps</button>
+    </div>
+    <div class="visit-card">
+      <h3><i class="fa-solid fa-phone"></i> Call Smoker's Den(New Ownership )</h3>
+      <div class="protected"><i class="fa-solid fa-lock"></i><div><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Phone and text actions are disabled in this sample website.</p></div></div>
+      <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+    </div>
+  </div>
+
+  <div class="form-demo">
+    <h3>Send a message</h3>
+    <p>Use the visual form below to preview the full-site experience. Submission is locked in the demo.</p>
+    <form class="form-grid" id="demoForm">
+      <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+      <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
+      <div class="field full"><label for="message">How can we help?</label><textarea id="message"></textarea></div>
+      <div class="field full"><button class="btn btn-primary" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Text the shop</button></div>
+    </form>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="footer-grid">
+    <div><h3>Smoker's Den(New Ownership )</h3><p>Glass, flower, and good vibes in Portland.</p></div>
+    <div><h3>Contact</h3><p>Contact details protected in this demo.</p></div>
+    <div><h3>Hours</h3><p>Sun–Thu 10 AM – 10 PM</p><p>Fri–Sat 10 AM – 12 AM</p></div>
+  </div>
+  <div class="copy">Smoker's Den(New Ownership ) · Portland</div>
+</div></footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMessage">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="modalTitle">This is currently locked.</h2>
+    <p id="modalMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn=document.getElementById('menuBtn');
+  const mobileMenu=document.getElementById('mobileMenu');
+  const modal=document.getElementById('lockedModal');
+  const modalClose=document.getElementById('modalClose');
+  const demoForm=document.getElementById('demoForm');
+  let lastFocus=null;
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+
+  menuBtn.addEventListener('click',()=>{
+    const open=mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',closeMenu));
+
+  function openModal(trigger){
+    lastFocus=trigger||document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    modalClose.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus&&typeof lastFocus.focus==='function'){
+      lastFocus.focus();
+    }
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    openModal(el);
+  }));
+
+  demoForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    openModal(demoForm.querySelector('[data-locked="true"]'));
+  });
+
+  modalClose.addEventListener('click',closeModal);
+
+  modal.addEventListener('click',e=>{
+    if(e.target===modal) closeModal();
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal.classList.contains('open')) closeModal();
+    if(e.key==='Tab'&&modal.classList.contains('open')){
+      e.preventDefault();
+      modalClose.focus();
+    }
+  });
+
+  const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short'}).format(new Date());
+  const days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  const row=document.querySelector('.hour-row[data-day="'+days[p]+'"]');
+  if(row) row.classList.add('today');
+
+  document.addEventListener('gesturestart',e=>e.preventDefault());
+  document.addEventListener('gesturechange',e=>e.preventDefault());
+  document.addEventListener('gestureend',e=>e.preventDefault());
+  document.addEventListener('wheel',e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
+  document.addEventListener('keydown',e=>{
+    if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].includes(e.key)) e.preventDefault();
+  });
+})();
+</script>
+</body>
+</html>

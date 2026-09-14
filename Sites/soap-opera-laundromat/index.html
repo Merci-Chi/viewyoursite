@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Soap Opera Laundromat | Cleveland</title>
+  <meta name="description" content="Soap Opera Laundromat in Cleveland. Wash, dry, fold — without the hassle.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --navy:#0b1722;
+      --blue:#18354d;
+      --sky:#8fd2f4;
+      --aqua:#c7f3ee;
+      --cream:#f7f4ec;
+      --ink:#11161b;
+      --muted:#b7c0c8;
+      --line:rgba(255,255,255,.14);
+      --darkline:rgba(17,22,27,.13);
+      --max:1180px;
+      --shadow:0 24px 68px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--navy)}
+    body{
+      margin:0;
+      font-family:Archivo,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--navy);
+      color:#fff;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+      -webkit-text-size-adjust:100%;
+      -webkit-tap-highlight-color:transparent
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    section{scroll-margin-top:82px}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 14px;color:var(--sky);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:28px;height:2px;background:currentColor}
+    .section-title{margin:0;font-family:"DM Serif Display",Georgia,serif;font-size:clamp(3rem,6vw,5.8rem);line-height:.95;font-weight:400}
+    .section-copy{max-width:700px;margin:22px 0 0;color:#d4dbe0;font-size:1.02rem}
+    .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid var(--line);background:transparent;color:#fff;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:.2s ease}
+    .btn:hover,.btn:focus-visible{transform:translateY(-2px);border-color:var(--sky)}
+    .btn-primary{background:var(--sky);border-color:var(--sky);color:#07131c}
+    .btn-primary:hover,.btn-primary:focus-visible{background:var(--aqua)}
+    :focus-visible{outline:2px solid var(--sky);outline-offset:4px}
+
+    .site-header{position:fixed;inset:0 0 auto;z-index:50;height:76px;background:rgba(11,23,34,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+    .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+    .brand-mark{width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(143,210,244,.45);background:rgba(143,210,244,.08);color:var(--sky)}
+    .brand small{display:block;color:var(--muted);font-size:.6rem;letter-spacing:.14em}
+    .nav{display:flex;gap:28px;align-items:center}
+    .nav a{position:relative;font-size:.8rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#e8edf0}
+    .nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:2px;background:var(--sky);transition:right .2s ease}
+    .nav a:hover:after,.nav a:focus-visible:after{right:0}
+    .menu-btn{display:none;width:44px;height:44px;place-items:center;border:1px solid var(--line);background:transparent;color:#fff;cursor:pointer}
+
+    .hero{min-height:100svh;padding:132px 0 70px;display:flex;align-items:flex-end;position:relative;overflow:hidden;background:
+      linear-gradient(90deg,rgba(7,18,28,.97) 0%,rgba(7,18,28,.82) 47%,rgba(7,18,28,.35) 100%),
+      linear-gradient(0deg,rgba(7,18,28,.92),transparent 48%),
+      url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2000&q=85") center/cover no-repeat}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);gap:60px;align-items:end}
+    .hero h1{margin:0;max-width:920px;font-family:"DM Serif Display",Georgia,serif;font-size:clamp(4.8rem,10vw,9.2rem);font-weight:400;line-height:.83}
+    .hero h1 span{display:block;color:var(--sky)}
+    .hero-copy{max-width:690px;margin:26px 0 0;color:#e1e8ec;font-size:clamp(1rem,2vw,1.18rem)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .hero-card{padding:28px;border:1px solid var(--line);background:rgba(14,31,45,.78);backdrop-filter:blur(12px);box-shadow:var(--shadow)}
+    .hero-card .label{display:block;color:var(--muted);font-size:.69rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+    .hero-card strong{display:block;margin-top:6px;font-size:1.06rem}
+    .hero-card hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+    .rating{display:flex;align-items:center;gap:12px}
+    .stars{color:var(--sky);font-size:.8rem;letter-spacing:2px}
+
+    .ticker{overflow:hidden;background:var(--sky);color:#08141d}
+    .ticker-track{display:flex;width:max-content;animation:ticker 24s linear infinite;font-size:.8rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+    .ticker-track span{padding:13px 26px;white-space:nowrap}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+
+    .about{padding:110px 0;background:var(--cream);color:var(--ink)}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:74px;align-items:center}
+    .about-image{min-height:560px;position:relative;background:
+      linear-gradient(180deg,transparent 48%,rgba(10,19,26,.75)),
+      url("https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=1400&q=85") center/cover no-repeat;box-shadow:var(--shadow)}
+    .stock-tag{position:absolute;left:18px;bottom:18px;padding:7px 9px;background:rgba(9,18,26,.84);border:1px solid rgba(255,255,255,.15);color:#edf3f5;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase}
+    .about .eyebrow{color:#287aa5}
+    .about .section-copy{color:#5b6369}
+    .highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:34px;background:var(--darkline);border:1px solid var(--darkline)}
+    .highlight{padding:24px;background:var(--cream)}
+    .highlight i{color:#287aa5;font-size:1.12rem}
+    .highlight strong{display:block;margin-top:15px;font-size:.86rem;text-transform:uppercase}
+
+    .services{padding:110px 0;background:
+      linear-gradient(rgba(13,30,44,.94),rgba(13,30,44,.96)),
+      url("https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=2000&q=85") center/cover fixed no-repeat}
+    .services-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:46px}
+    .service-list{border-top:1px solid var(--line)}
+    .service-row{display:grid;grid-template-columns:68px 1fr auto;gap:24px;align-items:center;min-height:126px;padding:20px 0;border-bottom:1px solid var(--line);transition:.2s ease}
+    .service-row:hover{padding-left:14px;background:rgba(255,255,255,.025)}
+    .service-num{font-family:"DM Serif Display",Georgia,serif;font-size:2.2rem;color:var(--sky)}
+    .service-row h3{margin:0;font-size:clamp(1.4rem,2.6vw,2.2rem)}
+    .service-row p{margin:7px 0 0;color:var(--muted)}
+    .service-icon{font-size:1.2rem;color:var(--sky)}
+
+    .reviews{padding:110px 0;background:#dceff7;color:var(--ink)}
+    .reviews .eyebrow{color:#287aa5}
+    .review-top{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:46px}
+    .big-rating{font-family:"DM Serif Display",Georgia,serif;font-size:clamp(5rem,10vw,8.6rem);line-height:.8}
+    .reviews .stars{color:#287aa5}
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--darkline);border-left:1px solid var(--darkline)}
+    .review{min-height:265px;margin:0;padding:30px;border-right:1px solid var(--darkline);border-bottom:1px solid var(--darkline);display:flex;flex-direction:column;justify-content:space-between}
+    .quote{font-family:"DM Serif Display",Georgia,serif;font-size:1.45rem;line-height:1.4}
+    .attrib{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#626a70}
+
+    .visit{padding:110px 0;background:
+      linear-gradient(90deg,rgba(7,18,28,.97) 0%,rgba(7,18,28,.90) 52%,rgba(7,18,28,.55) 100%),
+      url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=85") center/cover no-repeat}
+    .visit-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:68px;align-items:start}
+    .contact-block{margin-top:36px;border-top:1px solid var(--line)}
+    .contact-line{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:19px 0;border-bottom:1px solid var(--line)}
+    .iconbox{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--sky)}
+    .contact-line span{display:block;color:var(--muted);margin-top:3px}
+    .visit-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .hours-card{border:1px solid var(--line);background:rgba(14,31,45,.87);box-shadow:var(--shadow)}
+    .hours-head{padding:23px 26px;border-bottom:1px solid var(--line)}
+    .hours-head h3{margin:0;font-size:1.08rem;text-transform:uppercase}
+    .hours-list{list-style:none;margin:0;padding:0}
+    .hours-list li{display:flex;justify-content:space-between;gap:18px;padding:14px 26px;border-bottom:1px solid var(--line);color:#dde4e8}
+    .hours-list li:last-child{border-bottom:0}
+    .hours-list li.today{background:rgba(143,210,244,.11);color:#fff}
+    .today-badge{display:none;margin-left:8px;color:var(--sky);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .hours-list li.today .today-badge{display:inline}
+    .hours-note{padding:17px 26px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+
+    .cta{padding:54px 0;background:#287aa5;color:#fff}
+    .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .cta h2{margin:0;font-family:"DM Serif Display",Georgia,serif;font-size:clamp(2.6rem,6vw,4.8rem);line-height:.95;font-weight:400}
+    .cta .btn{border-color:rgba(255,255,255,.55)}
+    .cta .btn:hover{background:#fff;color:#287aa5}
+
+    .site-footer{padding:38px 0 30px;background:#071019;color:#c7d0d6}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .footer-meta{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:20px;color:#8d9aa4;font-size:.78rem}
+    .stock-note{color:#aab5bc}
+
+    .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.78);backdrop-filter:blur(7px)}
+    .modal.open{display:flex}
+    .modal-dialog{width:min(100%,470px);padding:30px;background:#10202d;border:1px solid rgba(143,210,244,.4);box-shadow:var(--shadow)}
+    .modal-icon{width:48px;height:48px;display:grid;place-items:center;margin-bottom:20px;color:var(--sky);background:rgba(143,210,244,.08);border:1px solid rgba(143,210,244,.3)}
+    .modal h2{margin:0;font-size:1.4rem}
+    .modal p{margin:12px 0 24px;color:#c8d2d9}
+    .modal .btn{width:100%}
+
+    @media(max-width:900px){
+      .hero-grid,.about-grid,.visit-grid{grid-template-columns:1fr}
+      .hero{align-items:center}
+      .hero-card{max-width:520px}
+      .about-grid{gap:42px}
+      .about-image{order:2;min-height:430px}
+      .services-head,.review-top{align-items:flex-start;flex-direction:column}
+      .review-grid{grid-template-columns:1fr}
+      .review{min-height:210px}
+    }
+    @media(max-width:760px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .site-header{height:66px}
+      section{scroll-margin-top:74px}
+      .brand{font-size:.86rem}
+      .nav{position:absolute;top:66px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;padding:14px;background:#0b1722;border-bottom:1px solid var(--line)}
+      .nav.open{display:flex}
+      .nav a{padding:14px 8px;border-bottom:1px solid var(--line)}
+      .nav a:last-child{border-bottom:0}
+      .nav a:after{display:none}
+      .menu-btn{display:grid}
+      .hero{min-height:760px;padding:118px 0 56px;background-position:62% center}
+      .hero h1{font-size:clamp(4rem,20vw,6.7rem)}
+      .hero-grid{gap:34px}
+      .hero-card{padding:20px}
+      .hero-actions .btn{flex:1 1 100%}
+      .about,.services,.reviews,.visit{padding:80px 0}
+      .section-title{font-size:clamp(3rem,16vw,4.8rem)}
+      .about-image{min-height:340px}
+      .highlights{grid-template-columns:1fr}
+      .service-row{grid-template-columns:46px 1fr auto;gap:14px;min-height:108px}
+      .hours-list li{padding:13px 18px}
+      .cta-inner,.footer-row{align-items:flex-start;flex-direction:column}
+      .cta .btn{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#home" aria-label="Soap Opera Laundromat home">
+        <span class="brand-mark"><i class="fa-solid fa-shirt" aria-hidden="true"></i></span>
+        <span>Soap Opera Laundromat<small>Cleveland</small></span>
+      </a>
+      <nav class="nav" id="mainNav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Cleveland</p>
+          <h1>Soap Opera <span>Laundromat</span></h1>
+          <p class="hero-copy">Wash, dry, fold — without the hassle. Clean clothes, easy routine.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-locked="true">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              Call (216) 579-0606
+            </button>
+            <a class="btn" href="#services"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Services</a>
+            <a class="btn" href="#visit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Visit</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Business details">
+          <span class="label">Address</span>
+          <strong>3028 W 25th St</strong>
+          <hr>
+          <div class="rating">
+            <strong style="margin:0">3.9</strong>
+            <span class="stars" aria-label="3.9 star rating">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </span>
+          </div>
+          <hr>
+          <span class="label">Phone</span>
+          <strong>(216) 579-0606</strong>
+        </aside>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Wash &amp; fold</span><span>Big machines</span><span>Drop-off</span><span>Clean clothes</span>
+        <span>Wash &amp; fold</span><span>Big machines</span><span>Drop-off</span><span>Clean clothes</span>
+      </div>
+    </div>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-image" role="img" aria-label="Stock photo of a laundromat interior">
+          <span class="stock-tag">Stock imagery</span>
+        </div>
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Clean clothes, easy routine.</h2>
+          <p class="section-copy">Soap Opera Laundromat in Cleveland. Clean machines, bright space, and a routine that does not fight you. Wash, dry, fold — done.</p>
+          <div class="highlights">
+            <div class="highlight"><i class="fa-solid fa-shirt" aria-hidden="true"></i><strong>Wash &amp; fold</strong></div>
+            <div class="highlight"><i class="fa-solid fa-soap" aria-hidden="true"></i><strong>Big machines</strong></div>
+            <div class="highlight"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i><strong>Drop-off</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="services-head">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2 class="section-title">What you’ll find.</h2>
+          </div>
+          <p class="section-copy">What you’ll find at Soap Opera Laundromat.</p>
+        </div>
+        <div class="service-list">
+          <article class="service-row"><span class="service-num">01</span><div><h3>Wash &amp; fold</h3><p>Available in-store.</p></div><span class="service-icon"><i class="fa-solid fa-shirt" aria-hidden="true"></i></span></article>
+          <article class="service-row"><span class="service-num">02</span><div><h3>Self-service machines</h3><p>Available in-store.</p></div><span class="service-icon"><i class="fa-solid fa-circle-notch" aria-hidden="true"></i></span></article>
+          <article class="service-row"><span class="service-num">03</span><div><h3>Drop-off service</h3><p>Available in-store.</p></div><span class="service-icon"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i></span></article>
+          <article class="service-row"><span class="service-num">04</span><div><h3>Clean, bright facility</h3><p>Available in-store.</p></div><span class="service-icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <p class="eyebrow">Reviews</p>
+        <div class="review-top">
+          <div>
+            <h2 class="section-title">Local listings.</h2>
+            <p class="section-copy" style="color:#5b6369">3.9 ★★★★ on local listings</p>
+          </div>
+          <div>
+            <div class="big-rating">3.9</div>
+            <div class="stars" aria-label="3.9 star rating">
+              <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="review-grid">
+          <blockquote class="review"><div class="quote">“Friendly stop in Cleveland. Worth swinging by.”</div><footer class="attrib">Neighborhood visitor</footer></blockquote>
+          <blockquote class="review"><div class="quote">“Good prices and solid laundry.”</div><footer class="attrib">Neighborhood visitor</footer></blockquote>
+          <blockquote class="review"><div class="quote">“Neighborhood favorite — easy to find at 3028 W 25th St.”</div><footer class="attrib">Neighborhood visitor</footer></blockquote>
+        </div>
+        <div style="margin-top:24px">
+          <button class="btn" type="button" data-locked="true" style="color:var(--ink);border-color:var(--ink)">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> See more on Maps
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap visit-grid">
+        <div>
+          <p class="eyebrow">Visit</p>
+          <h2 class="section-title">Find us in Cleveland.</h2>
+          <div class="contact-block">
+            <div class="contact-line">
+              <span class="iconbox"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+              <div><strong>3028 W 25th St</strong><span>Cleveland, OH 44113</span></div>
+            </div>
+            <div class="contact-line">
+              <span class="iconbox"><i class="fa-solid fa-phone" aria-hidden="true"></i></span>
+              <div><strong>(216) 579-0606</strong><span>Call the laundromat</span></div>
+            </div>
+          </div>
+          <div class="visit-actions">
+            <button class="btn btn-primary" type="button" data-locked="true"><i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Open in Google Maps</button>
+            <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-message" aria-hidden="true"></i> Send a message</button>
+            <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-comment-sms" aria-hidden="true"></i> Text the shop</button>
+          </div>
+        </div>
+
+        <aside class="hours-card" aria-label="Business hours">
+          <div class="hours-head"><h3><i class="fa-regular fa-clock" aria-hidden="true"></i> Business hours</h3></div>
+          <ul class="hours-list">
+            <li data-day="0"><span>Sunday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+            <li data-day="1"><span>Monday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+            <li data-day="2"><span>Tuesday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+            <li data-day="3"><span>Wednesday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+            <li data-day="4"><span>Thursday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+            <li data-day="5"><span>Friday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+            <li data-day="6"><span>Saturday <small class="today-badge">Today</small></span><span>7:00 AM – 10:00 PM</span></li>
+          </ul>
+          <div class="hours-note">Hours may change on holidays — call to confirm.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta" aria-label="Call to action">
+      <div class="wrap cta-inner">
+        <div>
+          <h2>Ready to stop by?</h2>
+          <p style="margin:12px 0 0">Wash, dry, fold — without the hassle in Cleveland.</p>
+        </div>
+        <button class="btn" type="button" data-locked="true"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (216) 579-0606</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="#home">
+          <span class="brand-mark"><i class="fa-solid fa-shirt" aria-hidden="true"></i></span>
+          <span>Soap Opera Laundromat<small>Cleveland</small></span>
+        </a>
+        <a class="btn" href="#home"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Back to top</a>
+      </div>
+      <div class="footer-meta">
+        <span>3028 W 25th St, Cleveland, OH 44113</span>
+        <span>(216) 579-0606</span>
+        <span class="stock-note">Stock imagery is used for visual presentation and does not depict the actual business.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+    <div class="modal-dialog">
+      <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+      <h2 id="lockedTitle">This is currently locked.</h2>
+      <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-primary" id="modalClose" type="button">Close</button>
+    </div>
+  </div>
+
+  <!--
+    STOCK ASSET LIST
+    1. Unsplash laundromat / washing machine scene:
+       https://images.unsplash.com/photo-1545173168-9f1947eebb7f
+    2. Unsplash laundromat interior:
+       https://images.unsplash.com/photo-1626806787461-102c1bfaaea1
+    3. Unsplash laundry background:
+       https://images.unsplash.com/photo-1582735689369-4fe89db7114c
+    4. Unsplash Cleveland/city atmosphere:
+       https://images.unsplash.com/photo-1500530855697-b586d89ba3ee
+    These are stock images and are not presented as photos of Soap Opera Laundromat.
+  -->
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mainNav = document.getElementById("mainNav");
+    const modal = document.getElementById("lockedModal");
+    const modalClose = document.getElementById("modalClose");
+    let lastFocusedElement = null;
+
+    function closeMenu() {
+      mainNav.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.setAttribute("aria-label", "Open menu");
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    }
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      menuBtn.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+        : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+    });
+
+    document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    function openLockedModal(trigger) {
+      lastFocusedElement = trigger;
+      modal.classList.add("open");
+      document.body.classList.add("modal-open");
+      modalClose.focus();
+    }
+
+    function closeLockedModal() {
+      modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach((element) => {
+      element.addEventListener("click", (event) => {
+        event.preventDefault();
+        openLockedModal(element);
+      });
+    });
+
+    modalClose.addEventListener("click", closeLockedModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeLockedModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeLockedModal();
+      }
+
+      if (event.key === "Tab" && modal.classList.contains("open")) {
+        const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    const today = new Date().getDay();
+    const todayRow = document.querySelector('[data-day="' + today + '"]');
+    if (todayRow) {
+      todayRow.classList.add("today");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#111820">
+<title>E & J Electrical Contractor | Milford, Ohio</title>
+<meta name="description" content="E & J Electrical Contractor is a Milford, Ohio electrical contractor with public business records dating to 1987. Demo website based on verified public business information.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --bg:#0f151c;
+  --panel:#151e27;
+  --panel2:#1b2632;
+  --steel:#2f3c4b;
+  --line:#3e4c5b;
+  --ink:#f1f3f4;
+  --muted:#aeb8c2;
+  --copper:#c67a3a;
+  --copper2:#e29a5d;
+  --volt:#f4c542;
+  --paper:#f2f3f0;
+  --dark:#12171d;
+  --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Archivo,Arial,sans-serif;overflow-x:hidden;
+  -webkit-user-select:none;user-select:none
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{border:0}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{width:min(var(--max),calc(100% - 42px));margin:auto}
+.mono{font-family:"IBM Plex Mono",monospace}
+.eyebrow{
+  font:600 11px/1 "IBM Plex Mono",monospace;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--volt);margin:0 0 14px
+}
+h1,h2,h3{margin:0}
+h1{font-size:clamp(3.5rem,7.3vw,7.2rem);line-height:.88;letter-spacing:-.055em;text-transform:uppercase}
+h2{font-size:clamp(2.4rem,4.5vw,4.4rem);line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
+h3{font-size:1.08rem;letter-spacing:.02em}
+p{line-height:1.7}
+.btn{
+  min-height:50px;padding:0 19px;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  border:1px solid var(--line);cursor:pointer;font-weight:800;text-transform:uppercase;letter-spacing:.025em;
+  transition:.2s ease;position:relative;overflow:hidden
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:after{
+  content:"";position:absolute;top:-90%;left:-50%;width:30%;height:280%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  transform:rotate(20deg);transition:left .45s ease
+}
+.btn:hover:after{left:120%}
+.btn-volt{background:var(--volt);color:#111820;border-color:var(--volt)}
+.btn-ghost{background:rgba(255,255,255,.03);color:#fff}
+.btn-ghost:hover{border-color:var(--copper);background:rgba(198,122,58,.08)}
+.protected{
+  display:inline-flex;align-items:center;gap:8px;border:1px dashed #64707d;
+  padding:9px 11px;background:rgba(255,255,255,.035);
+  font:600 10px/1.4 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase
+}
+.stock-note{
+  position:absolute;right:14px;top:14px;z-index:8;
+  background:rgba(11,16,22,.78);border:1px solid rgba(255,255,255,.18);
+  padding:7px 9px;color:#fff;font:600 9px/1.2 "IBM Plex Mono",monospace;
+  letter-spacing:.06em;text-transform:uppercase
+}
+
+/* Header */
+.header{
+  position:sticky;top:0;z-index:80;background:rgba(15,21,28,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line)
+}
+.header:after{
+  content:"";display:block;height:2px;
+  background:linear-gradient(90deg,var(--copper) 0 43%,transparent 43% 47%,var(--volt) 47% 73%,transparent 73%)
+}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-bolt{
+  width:42px;height:42px;background:var(--copper);display:grid;place-items:center;
+  color:#111820;font-size:1.25rem;clip-path:polygon(0 0,100% 0,100% 76%,76% 100%,0 100%)
+}
+.brand strong{display:block;font-size:1rem;text-transform:uppercase;letter-spacing:.03em}
+.brand small{display:block;margin-top:2px;color:#95a2af;font:600 9px/1.2 "IBM Plex Mono";letter-spacing:.11em}
+.navlinks{display:flex;align-items:center;gap:25px}
+.navlinks a{font-size:.83rem;font-weight:700;color:#cbd3da;position:relative}
+.navlinks a:after{
+  content:"";position:absolute;left:50%;right:50%;bottom:-8px;height:2px;background:var(--volt);
+  transition:.18s ease
+}
+.navlinks a:hover:after,.navlinks a.active:after{left:0;right:0}
+.navlinks a:hover,.navlinks a.active{color:#fff}
+.nav-cta{white-space:nowrap}
+.burger{display:none;background:transparent;color:#fff;font-size:1.3rem;padding:10px}
+
+/* Hero */
+.hero{
+  position:relative;min-height:690px;display:flex;align-items:center;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(12,18,24,.97) 0%,rgba(12,18,24,.84) 50%,rgba(12,18,24,.32) 100%),
+    url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1900&q=88') center/cover no-repeat;
+}
+.hero:after{
+  content:"";position:absolute;right:-170px;bottom:-230px;width:560px;height:560px;
+  border:54px solid rgba(244,197,66,.09);border-radius:50%
+}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,760px) 360px;gap:54px;align-items:end}
+.hero h1 span{color:var(--copper2)}
+.lede{max-width:690px;color:#d3dae1;font-size:1.04rem;margin:25px 0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.fact-panel{
+  background:rgba(17,25,34,.86);border:1px solid rgba(255,255,255,.17);border-top:4px solid var(--copper);
+  backdrop-filter:blur(8px);padding:22px
+}
+.fact-row{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.fact-row:last-child{border-bottom:0}
+.fact-row i{width:22px;color:var(--volt);margin-top:4px}
+.fact-row b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.fact-row span{display:block;color:#b9c2cb;font-size:.88rem;margin-top:4px}
+
+/* main electrical panel */
+.breaker-strip{
+  background:
+    radial-gradient(circle at center, rgba(24,36,50,.55), rgba(7,11,16,.98) 68%),
+    linear-gradient(90deg,#0c1117,#121a23);
+  border-top:1px solid #1f2a34;border-bottom:1px solid #1f2a34;
+  overflow:hidden
+}
+.panel-wrap{padding:32px 0 36px}
+.panel-shell{
+  position:relative;background:
+    linear-gradient(180deg,#06101a 0%,#07121d 100%);
+  border:6px solid #243247;border-radius:28px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 18px 48px rgba(0,0,0,.36);
+  padding:56px 44px 44px;
+}
+.panel-shell:before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg, transparent 0 19%, rgba(255,255,255,.025) 19% 19.3%, transparent 19.3% 44%, rgba(255,255,255,.025) 44% 44.3%, transparent 44.3% 69%, rgba(255,255,255,.025) 69% 69.3%, transparent 69.3%);
+  pointer-events:none;border-radius:22px
+}
+.panel-title{
+  position:absolute;left:50%;top:-26px;transform:translateX(-50%);
+  min-width:244px;padding:14px 28px;text-align:center;
+  background:linear-gradient(180deg,#d38b41,#c67a3a);
+  color:#111820;border-radius:10px;
+  font:800 clamp(1rem,2vw,1.35rem)/1 Archivo,Arial,sans-serif;
+  letter-spacing:.38em;text-transform:uppercase;
+  box-shadow:0 14px 30px rgba(0,0,0,.24)
+}
+.panel-screw{
+  position:absolute;width:24px;height:24px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #d1d9e6 0%, #95a2b7 26%, #556273 58%, #1c2532 100%);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.5), 0 0 14px rgba(201,214,235,.15)
+}
+.panel-screw.tl{left:16px;top:16px}
+.panel-screw.tr{right:16px;top:16px}
+.panel-screw.bl{left:16px;bottom:16px}
+.panel-screw.br{right:16px;bottom:16px}
+.breaker-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:0
+}
+.breaker{
+  min-height:164px;padding:22px 14px 18px;
+  background:linear-gradient(180deg,#101a28,#0d1622);
+  border:4px solid #33496d;border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  cursor:pointer;transition:.2s ease;position:relative;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)
+}
+.breaker:hover{
+  transform:translateY(-3px);
+  border-color:#466089;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 18px 34px rgba(0,0,0,.22)
+}
+.breaker-slot{
+  width:52px;height:68px;border-radius:10px;
+  background:linear-gradient(180deg,#06111d,#020810);
+  border:4px solid #40577d;
+  position:relative;display:flex;align-items:flex-end;justify-content:center;
+  padding:5px;
+  box-shadow:inset 0 10px 18px rgba(255,255,255,.03), inset 0 -10px 14px rgba(0,0,0,.6)
+}
+.breaker-handle{
+  width:26px;height:26px;border-radius:6px;
+  background:linear-gradient(180deg,#86de90,#68c875);
+  box-shadow:0 0 16px rgba(129,228,142,.45);
+  transition:.22s ease;transform:translateY(0)
+}
+.breaker.off .breaker-handle{
+  background:linear-gradient(180deg,#ef8b72,#dd5b49);
+  box-shadow:0 0 14px rgba(239,139,114,.28);
+  transform:translateY(-30px)
+}
+.breaker-label{
+  margin-top:18px;text-align:center;
+  font:600 clamp(.96rem,1.4vw,1.04rem)/1.1 "IBM Plex Mono",monospace;
+  letter-spacing:.10em;text-transform:uppercase;color:#d7d1c4
+}
+.panel-bus{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
+  margin-top:28px
+}
+.panel-bus .bus-text{
+  color:#d58a42;font:600 clamp(1.1rem,2.3vw,1.8rem)/1 "IBM Plex Mono",monospace;
+  letter-spacing:.22em;text-transform:uppercase
+}
+.panel-bus .bus-line{
+  height:14px;border-radius:999px;background:linear-gradient(180deg,#d38b41,#c67a3a);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 0 18px rgba(198,122,58,.12)
+}
+.panel-note{
+  margin-top:26px;text-align:center;color:#aaa397;
+  font:500 clamp(.88rem,1.4vw,1.05rem)/1.5 "IBM Plex Mono",monospace;
+  letter-spacing:.03em
+}
+
+/* sections */
+.section{padding:78px 0;position:relative}
+.section-head{max-width:760px;margin-bottom:34px}
+.section-head p{color:var(--muted)}
+.light-section{background:var(--paper);color:#1c232a}
+.light-section h2,.light-section h3{color:#1b2228}
+.light-section .eyebrow{color:#9f5629}
+.light-section p{color:#59646d}
+
+.history-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:56px;align-items:center}
+.year{font:800 clamp(6rem,14vw,11rem)/.8 Archivo;color:var(--copper);letter-spacing:-.07em}
+.history-copy{border-left:4px solid var(--volt);padding-left:28px}
+.history-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#d8dcde;border:1px solid #d8dcde;margin-top:25px}
+.hfact{background:#fff;padding:18px}
+.hfact i{color:var(--copper);font-size:1.2rem;margin-bottom:10px}
+.hfact strong{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em}
+.hfact span{display:block;color:#65717a;font-size:.83rem;margin-top:5px}
+
+/* services */
+.services{
+  background:
+    linear-gradient(rgba(15,21,28,.91),rgba(15,21,28,.95)),
+    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1900&q=87') center/cover fixed no-repeat;
+}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.service-card{
+  min-height:250px;padding:27px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(17,25,34,.72);cursor:pointer;position:relative;transition:.22s ease;backdrop-filter:blur(4px)
+}
+.service-card:hover{background:rgba(30,42,54,.86);transform:translateY(-4px);box-shadow:0 20px 45px rgba(0,0,0,.25)}
+.service-card .icon{font-size:1.6rem;color:var(--volt);margin-bottom:28px}
+.service-card h3{text-transform:uppercase;font-size:1.12rem}
+.service-card p{color:#aeb8c2;font-size:.9rem;margin-bottom:12px}
+.badge{display:inline-flex;padding:6px 8px;border:1px solid #4a5866;font:600 9px/1.1 "IBM Plex Mono";text-transform:uppercase;letter-spacing:.07em}
+.badge.verified{color:#f2d669;border-color:#806d2c}
+.badge.third{color:#d59c72;border-color:#774c2f}
+.expand-icon{position:absolute;right:17px;top:17px;color:#d6dee5;transition:.2s}
+.service-card.open .expand-icon{transform:rotate(45deg);color:var(--volt)}
+.more{max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .2s ease,margin .2s ease}
+.service-card.open .more{max-height:140px;opacity:1;margin-top:12px}
+
+/* about + image */
+.about{
+  background:
+   linear-gradient(90deg,rgba(242,243,240,.97) 0%,rgba(242,243,240,.93) 57%,rgba(242,243,240,.74) 100%),
+   url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1900&q=85') center/cover no-repeat;
+}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:58px;align-items:start}
+.record-card{background:#fff;border:1px solid #d3d8db;padding:24px;box-shadow:0 18px 45px rgba(12,20,27,.08)}
+.record-list{list-style:none;margin:0;padding:0}
+.record-list li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid #e4e7e8}
+.record-list li:last-child{border-bottom:0}
+.record-list b{font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
+.record-list span{text-align:right;color:#616c74;font-size:.88rem}
+.caution{
+  margin-top:22px;padding:15px 17px;border-left:4px solid var(--copper);background:#fff;
+  color:#4f5b64;font-size:.84rem
+}
+
+/* gallery */
+.gallery{background:#0b1117}
+.gallery-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr;grid-auto-rows:245px;gap:12px}
+.photo-card{position:relative;overflow:hidden;cursor:pointer;border:1px solid #27323e}
+.photo-card:first-child{grid-row:span 2}
+.photo-card img{transition:transform .45s ease,filter .3s ease}
+.photo-card:hover img{transform:scale(1.055);filter:brightness(1.08)}
+.photo-label{
+  position:absolute;left:12px;bottom:12px;z-index:2;background:rgba(11,16,22,.76);
+  border-left:3px solid var(--volt);padding:7px 9px;
+  font:600 9px/1.2 "IBM Plex Mono";letter-spacing:.06em;text-transform:uppercase
+}
+.photo-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.7) 100%)}
+
+/* faq */
+.faq{background:#f4f5f2;color:#1e252b}
+.faq h2{color:#1e252b}
+.faq-list{max-width:900px}
+.faq-item{border-top:1px solid #cfd4d7}
+.faq-item:last-child{border-bottom:1px solid #cfd4d7}
+.faq-q{
+  width:100%;padding:21px 0;background:transparent;color:#1f272e;text-align:left;
+  display:flex;justify-content:space-between;gap:20px;align-items:center;cursor:pointer;font-weight:800
+}
+.faq-q i{transition:.2s;color:#a85e2d}
+.faq-item.open .faq-q i{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;opacity:0;transition:.3s ease;color:#58636b}
+.faq-item.open .faq-a{max-height:260px;opacity:1;padding-bottom:20px}
+
+/* contact */
+.contact{
+  background:
+   linear-gradient(90deg,rgba(11,17,23,.97),rgba(11,17,23,.84)),
+   url('https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1900&q=86') center/cover no-repeat;
+}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px}
+.contact-panel{background:rgba(21,30,39,.86);border:1px solid #354252;padding:25px;backdrop-filter:blur(9px)}
+.contact-row{padding:16px 0;border-bottom:1px solid #34404c}
+.contact-row:last-child{border-bottom:0}
+.contact-row label{display:block;font:600 10px/1.2 "IBM Plex Mono";text-transform:uppercase;letter-spacing:.09em;color:var(--volt);margin-bottom:8px}
+.contact-form{display:grid;gap:12px}
+.contact-form input,.contact-form textarea,.contact-form select{
+  width:100%;background:#111820;color:#fff;border:1px solid #475564;padding:13px;outline:none
+}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-color:var(--copper)}
+.form-note{font-size:.76rem;color:#9ba6af;margin:0}
+
+/* footer */
+.footer{background:#070b0f;border-top:1px solid #26313b;padding:31px 0}
+.footer-grid{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.footer p{margin:7px 0 0;color:#85919d;font-size:.76rem}
+.footer-links{display:flex;gap:17px;flex-wrap:wrap;font-size:.78rem}
+
+/* modal */
+.modal{
+  position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.72);padding:20px
+}
+.modal.open{display:flex}
+.modal-card{width:min(470px,100%);background:#f5f5f2;color:#1b2228;padding:29px;border-top:6px solid var(--copper);box-shadow:0 30px 90px rgba(0,0,0,.45)}
+.modal-card h3{font-size:1.75rem;text-transform:uppercase}
+.modal-card p{color:#5b666e}
+
+/* lightbox */
+.lightbox{
+  position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;
+  padding:28px;background:rgba(0,0,0,.88)
+}
+.lightbox.open{display:flex}
+.lightbox figure{margin:0;max-width:1050px;width:100%;position:relative}
+.lightbox img{max-height:78vh;object-fit:contain;background:#0d1319}
+.lightbox figcaption{color:#dce2e7;font:500 11px/1.4 "IBM Plex Mono";margin-top:10px}
+.lb-close{position:absolute;right:0;top:-48px;background:#fff;color:#111820;width:38px;height:38px;cursor:pointer}
+
+/* reveals */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:950px){
+  .navlinks{display:none;position:absolute;left:0;right:0;top:76px;background:#0f151c;padding:16px 21px 21px;flex-direction:column;align-items:stretch;border-top:1px solid #34404c}
+  .navlinks.open{display:flex}
+  .nav-cta{display:none}
+  .burger{display:block}
+  .hero-grid,.history-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .fact-panel{max-width:560px}
+  .breaker-grid{grid-template-columns:repeat(3,1fr)}
+  .service-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .photo-card:first-child{grid-row:span 1}
+  .history-facts{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .section{padding:58px 0}
+  .nav{height:68px}
+  .navlinks{top:68px}
+  .brand small{display:none}
+  .hero{min-height:730px;background-position:63% center}
+  h1{font-size:3.6rem}
+  .hero-actions{display:grid;grid-template-columns:1fr}
+  .btn{width:100%}
+  .breaker-grid{grid-template-columns:repeat(2,1fr)}
+  .service-grid,.gallery-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-auto-rows:235px}
+  .footer-grid{flex-direction:column}
+  .stock-note{font-size:7px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  .reveal,.btn,.service-card,.photo-card img,.faq-a{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="E and J Electrical Contractor home">
+      <span class="brand-bolt"><i class="fa-solid fa-bolt"></i></span>
+      <span><strong>E &amp; J Electrical</strong><small>CONTRACTOR · MILFORD, OHIO</small></span>
+    </a>
+    <nav class="navlinks" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn btn-volt nav-cta" data-locked="true"><i class="fa-solid fa-phone"></i> Call E &amp; J</button>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <span class="stock-note">Stock electrical imagery · demo presentation</span>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Milford, Ohio · Business records since 1987</p>
+      <h1>E &amp; J <span>Electrical</span> Contractor</h1>
+      <p class="lede">E &amp; J Electrical Contractor is a Milford, Ohio electrical contractor with public business records dating to April 1, 1987. Multiple established directories consistently identify the company as an electrician/electrical contractor in the 45150 area.</p>
+      <div class="hero-actions">
+        <button class="btn btn-volt" data-locked="true"><i class="fa-solid fa-phone"></i> Call E &amp; J</button>
+        <a class="btn btn-ghost" href="#services"><i class="fa-solid fa-plug-circle-bolt"></i> View Services</a>
+      </div>
+    </div>
+    <aside class="fact-panel">
+      <div class="fact-row"><i class="fa-solid fa-calendar-check"></i><div><b>Business history</b><span>Public records date the business to 1987</span></div></div>
+      <div class="fact-row"><i class="fa-solid fa-location-dot"></i><div><b>Location</b><span>Milford, Ohio 45150</span></div></div>
+      <div class="fact-row"><i class="fa-solid fa-bolt"></i><div><b>Primary trade</b><span>Electrician / electrical contractor</span></div></div>
+      <div class="fact-row"><i class="fa-solid fa-user-shield"></i><div><b>Owner/contact</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></div></div>
+    </aside>
+  </div>
+</section>
+
+<section class="breaker-strip" aria-label="Interactive decorative main electrical panel" id="panel">
+  <div class="wrap panel-wrap">
+    <div class="panel-shell">
+      <div class="panel-title">Main Panel</div>
+      <span class="panel-screw tl" aria-hidden="true"></span>
+      <span class="panel-screw tr" aria-hidden="true"></span>
+      <span class="panel-screw bl" aria-hidden="true"></span>
+      <span class="panel-screw br" aria-hidden="true"></span>
+
+      <div class="breaker-grid" id="breakerGrid">
+        <div class="breaker off" tabindex="0" role="button" aria-pressed="false" aria-label="Kitchen breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Kitchen</div>
+        </div>
+        <div class="breaker off" tabindex="0" role="button" aria-pressed="false" aria-label="Range breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Range</div>
+        </div>
+        <div class="breaker" tabindex="0" role="button" aria-pressed="true" aria-label="Dryer breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Dryer</div>
+        </div>
+        <div class="breaker" tabindex="0" role="button" aria-pressed="true" aria-label="HVAC breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">HVAC</div>
+        </div>
+        <div class="breaker" tabindex="0" role="button" aria-pressed="true" aria-label="Lights breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Lights</div>
+        </div>
+        <div class="breaker" tabindex="0" role="button" aria-pressed="true" aria-label="Outlets breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Outlets</div>
+        </div>
+        <div class="breaker" tabindex="0" role="button" aria-pressed="true" aria-label="Garage breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Garage</div>
+        </div>
+        <div class="breaker" tabindex="0" role="button" aria-pressed="true" aria-label="Water heater breaker">
+          <div class="breaker-slot"><div class="breaker-handle"></div></div>
+          <div class="breaker-label">Water Htr</div>
+        </div>
+      </div>
+
+      <div class="panel-bus" aria-hidden="true">
+        <span class="bus-text">Main</span>
+        <span class="bus-line"></span>
+        <span class="bus-text">200A</span>
+      </div>
+    </div>
+    <div class="panel-note">Tap a breaker to flip it. Breaker labels are decorative.</div>
+  </div>
+</section>
+
+<section class="section light-section" id="history">
+  <div class="wrap history-grid">
+    <div class="reveal">
+      <p class="eyebrow">Public business record</p>
+      <div class="year">1987</div>
+    </div>
+    <div class="history-copy reveal">
+      <h2>Nearly four decades on the public record.</h2>
+      <p>BBB records list E &amp; J Electrical Contractors as starting on April 1, 1987 and currently report 39 years in business. Manta independently lists the business as established in 1987. BBB also identifies an owner for the business, but that personal name is protected in this demo.</p>
+      <div class="history-facts">
+        <div class="hfact"><i class="fa-solid fa-calendar-days"></i><strong>Started</strong><span>April 1, 1987</span></div>
+        <div class="hfact"><i class="fa-solid fa-building"></i><strong>BBB status</strong><span>Not accredited · Not Rated</span></div>
+        <div class="hfact"><i class="fa-solid fa-user-tie"></i><strong>Owner record</strong><span>Verified by BBB; protected in demo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section services" id="services">
+  <span class="stock-note">Stock electrical imagery · demo presentation</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Service information</p>
+      <h2>What public listings associate with E &amp; J</h2>
+      <p>The cards separate strongly verified business categories from third-party service listings. Click any card for more context. Specific scope, scheduling and pricing should be confirmed directly with the business.</p>
+    </div>
+    <div class="service-grid">
+      <article class="service-card reveal" tabindex="0" role="button" aria-expanded="false">
+        <i class="fa-solid fa-plus expand-icon"></i><div class="icon"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+        <h3>Electrical Contracting</h3>
+        <p>The core business category consistently shown across BBB, Yellow Pages, Manta and OhioBiz.</p>
+        <span class="badge verified">Verified category</span>
+        <div class="more"><p>Public directories describe the business as an electrician/electrical contractor in Milford. No detailed official service menu was found.</p></div>
+      </article>
+      <article class="service-card reveal" tabindex="0" role="button" aria-expanded="false">
+        <i class="fa-solid fa-plus expand-icon"></i><div class="icon"><i class="fa-solid fa-kitchen-set"></i></div>
+        <h3>Major Appliances</h3>
+        <p>Yellow Pages lists Major Appliances as an additional category for this exact business listing.</p>
+        <span class="badge verified">Verified listing</span>
+        <div class="more"><p>The directory does not clarify whether this means wiring, installation, repair, service or sales, so the exact scope should be confirmed.</p></div>
+      </article>
+      <article class="service-card reveal" tabindex="0" role="button" aria-expanded="false">
+        <i class="fa-solid fa-plus expand-icon"></i><div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>General Electrical Work</h3>
+        <p>A probable matching BuildZoom profile using the Milford address lists Electrical Work.</p>
+        <span class="badge third">Probable match</span>
+        <div class="more"><p>BuildZoom also presents an Indiana headquarters on that profile, so this service detail should be owner-confirmed before being treated as an official claim.</p></div>
+      </article>
+      <article class="service-card reveal" tabindex="0" role="button" aria-expanded="false">
+        <i class="fa-solid fa-plus expand-icon"></i><div class="icon"><i class="fa-solid fa-temperature-half"></i></div>
+        <h3>Thermostat Repair</h3>
+        <p>HomeYou associates thermostat repair with the exact Milford business profile.</p>
+        <span class="badge third">Third-party listing</span>
+        <div class="more"><p>This is not confirmed by an official company website. Call to confirm whether this work is currently offered.</p></div>
+      </article>
+      <article class="service-card reveal" tabindex="0" role="button" aria-expanded="false">
+        <i class="fa-solid fa-plus expand-icon"></i><div class="icon"><i class="fa-solid fa-tree-city"></i></div>
+        <h3>Landscape Lighting</h3>
+        <p>HomeYou associates landscape lighting with the Milford listing.</p>
+        <span class="badge third">Third-party listing</span>
+        <div class="more"><p>Service availability and exact project scope should be confirmed directly.</p></div>
+      </article>
+      <article class="service-card reveal" tabindex="0" role="button" aria-expanded="false">
+        <i class="fa-solid fa-plus expand-icon"></i><div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Light Fixture Repair</h3>
+        <p>HomeYou associates light fixture repair with the Milford listing.</p>
+        <span class="badge third">Third-party listing</span>
+        <div class="more"><p>No public pricing was found. Availability and estimate policies are not verified.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section light-section about" id="about">
+  <span class="stock-note">Stock electrical imagery · demo presentation</span>
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <p class="eyebrow">About E &amp; J</p>
+      <h2>An established Milford electrical business record.</h2>
+      <p>E &amp; J Electrical Contractor has maintained a public business presence in Milford, Ohio since 1987. Multiple independent business directories connect the company with the same Milford business listing and telephone number, while BBB identifies a current owner on its profile.</p>
+      <p>The strongest verified positioning is straightforward: a long-running Milford electrical contractor. No official standalone company website, verified public email, current social-media profile, published price list or company-owned photo gallery was found during research.</p>
+      <div class="caution"><strong>License note:</strong> a probable matching contractor profile contains historical Ohio electrical license numbers, but current active status was not conclusively verified. This demo therefore does not claim that the company is currently licensed, insured, bonded or certified.</div>
+    </div>
+    <aside class="record-card reveal">
+      <p class="eyebrow">On the public record</p>
+      <ul class="record-list">
+        <li><b>Business</b><span>E &amp; J Electrical Contractor</span></li>
+        <li><b>Location</b><span>Milford, Ohio 45150</span></li>
+        <li><b>Started</b><span>April 1, 1987</span></li>
+        <li><b>Trade</b><span>Electrician / electrical contractor</span></li>
+        <li><b>Also listed</b><span>Major Appliances</span></li>
+        <li><b>Owner</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></li>
+        <li><b>Phone</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></li>
+        <li><b>Address</b><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></li>
+        <li><b>Hours</b><span>Conflicting third-party information; confirm directly</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section gallery" id="gallery">
+  <span class="stock-note">All gallery images are stock photos</span>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Visual gallery</p>
+      <h2>Electrical work, represented with stock photography.</h2>
+      <p>No verified company-owned project, employee, vehicle or storefront photographs were found. These photos are industry-appropriate stock imagery and do not depict E &amp; J Electrical Contractor or its completed work.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="photo-card reveal" data-caption="Stock photo — electrical panel / electrical trade imagery">
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1100&q=86" alt="Stock electrical panel imagery">
+        <span class="photo-label">Stock photo · electrical panel</span>
+      </figure>
+      <figure class="photo-card reveal" data-caption="Stock photo — electrician tools and electrical work">
+        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=84" alt="Stock electrician tools">
+        <span class="photo-label">Stock photo · tools</span>
+      </figure>
+      <figure class="photo-card reveal" data-caption="Stock photo — lighting and electrical installation">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=84" alt="Stock lighting installation imagery">
+        <span class="photo-label">Stock photo · lighting</span>
+      </figure>
+      <figure class="photo-card reveal" data-caption="Stock photo — construction and skilled trade work">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&q=84" alt="Stock skilled trade imagery">
+        <span class="photo-label">Stock photo · skilled trade</span>
+      </figure>
+      <figure class="photo-card reveal" data-caption="Stock photo — electrical maintenance">
+        <img src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=900&q=84" alt="Stock electrical maintenance imagery">
+        <span class="photo-label">Stock photo · maintenance</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Frequently asked questions</p>
+      <h2>What the public information does — and does not — confirm.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>How long has E &amp; J Electrical Contractor been in business?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>BBB reports that the business started on April 1, 1987. Manta independently lists 1987 as the establishment year.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>What type of work does E &amp; J perform?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>The strongest verified category is electrician/electrical contractor. Yellow Pages also lists Major Appliances. HomeYou associates thermostat repair, landscape lighting and light fixture repair with the listing, but those specific services should be confirmed directly.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>What are the current business hours?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Current hours could not be independently verified. Third-party sources conflict, so exact hours are intentionally not published as fact on this demo.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Is E &amp; J currently licensed?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Current active license status was not conclusively verified. Historical Ohio electrical-license records appear on a probable matching contractor profile, but that is not enough to claim a current license on this website.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Does the business have customer reviews?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>No verified customer reviews were found on the primary public profiles researched. For that reason, this website does not display a Reviews section or fabricated star rating.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>Does E &amp; J have an official website, email or social media?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>No trustworthy standalone official website, verified public email address or confirmed social-media profile was found during research.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span>What areas does E &amp; J serve?</span><i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Milford, Ohio 45150 is the verified business market/location. A broader official service radius was not found, so this demo does not claim countywide or Greater Cincinnati coverage.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <span class="stock-note">Stock electrical imagery · demo presentation</span>
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Ask about your electrical project.</h2>
+      <p style="color:#b9c3cc">This is a protected website demo. Verified contact details exist in public business records, but real-world call, directions and form actions remain locked until the site is purchased/unlocked.</p>
+      <div class="contact-panel">
+        <div class="contact-row"><label>Phone</label><div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="contact-row"><label>Business address</label><div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="contact-row"><label>Owner / primary contact</label><div class="protected"><i class="fa-solid fa-lock"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></div>
+        <div class="contact-row"><label>Verified location</label><span>Milford, Ohio 45150</span></div>
+      </div>
+    </div>
+    <div class="contact-panel reveal">
+      <p class="eyebrow">Project details</p>
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Name" aria-label="Name">
+        <input type="tel" placeholder="Phone" aria-label="Phone">
+        <select aria-label="Project type">
+          <option value="">Project type</option>
+          <option>General electrical work</option>
+          <option>Major appliance question</option>
+          <option>Thermostat repair inquiry</option>
+          <option>Landscape lighting inquiry</option>
+          <option>Light fixture repair inquiry</option>
+          <option>Other electrical project</option>
+        </select>
+        <textarea placeholder="Tell us what you need" aria-label="Project details"></textarea>
+        <button class="btn btn-volt" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send Request</button>
+        <p class="form-note">This demo does not send or store form data. Submission is locked and will not pretend to succeed.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand">
+        <span class="brand-bolt"><i class="fa-solid fa-bolt"></i></span>
+        <span><strong>E &amp; J Electrical Contractor</strong><small>MILFORD, OHIO · PUBLIC RECORDS SINCE 1987</small></span>
+      </div>
+      <p>Demo website based on verified public business information. Stock photos do not depict the actual company, staff, vehicles or completed projects.</p>
+    </div>
+    <nav class="footer-links">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lockedTitle">
+  <div class="modal-card">
+    <p class="eyebrow">Demo feature</p>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-volt" id="closeModal">Close</button>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <figure>
+    <button class="lb-close" id="lbClose" aria-label="Close image"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lbImg" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+</div>
+
+<script>
+const burger=document.getElementById('burger');
+const navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>{
+  const open=navLinks.classList.toggle('open');
+  burger.setAttribute('aria-expanded',String(open));
+  burger.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+});
+document.querySelectorAll('.navlinks a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    navLinks.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    burger.innerHTML='<i class="fa-solid fa-bars"></i>';
+  });
+});
+
+const sections=[...document.querySelectorAll('main section[id]')];
+const navItems=[...document.querySelectorAll('.navlinks a')];
+const sectionObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navItems.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px',threshold:0});
+sections.forEach(s=>sectionObserver.observe(s));
+
+document.querySelectorAll('.breaker').forEach(b=>{
+  const sync=()=>b.setAttribute('aria-pressed', String(!b.classList.contains('off')));
+  b.addEventListener('click',()=>{b.classList.toggle('off');sync();});
+  b.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();b.classList.toggle('off');sync();}
+  });
+  sync();
+});
+
+document.querySelectorAll('.service-card').forEach(card=>{
+  const toggle=()=>{
+    const open=card.classList.toggle('open');
+    card.setAttribute('aria-expanded',String(open));
+  };
+  card.addEventListener('click',toggle);
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}
+  });
+});
+
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=item.classList.toggle('open');
+    item.querySelector('.faq-q').setAttribute('aria-expanded',String(open));
+  });
+});
+
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('show');revealObserver.unobserve(e.target);}
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+const modal=document.getElementById('lockedModal');
+const closeModalBtn=document.getElementById('closeModal');
+let lastFocus=null;
+function openLocked(e){
+  if(e)e.preventDefault();
+  lastFocus=document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeModalBtn.focus();
+}
+function closeLocked(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  if(lastFocus)lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+closeModalBtn.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked();});
+
+document.getElementById('contactForm').addEventListener('submit',openLocked);
+
+const lightbox=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCaption=document.getElementById('lbCaption');
+const lbClose=document.getElementById('lbClose');
+document.querySelectorAll('.photo-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const img=card.querySelector('img');
+    lbImg.src=img.src;
+    lbImg.alt=img.alt;
+    lbCaption.textContent=card.dataset.caption||'Stock image';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    lbClose.focus();
+  });
+});
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+}
+lbClose.addEventListener('click',closeLightbox);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(modal.classList.contains('open'))closeLocked();
+    if(lightbox.classList.contains('open'))closeLightbox();
+  }
+});
+</script>
+</body>
+</html>
