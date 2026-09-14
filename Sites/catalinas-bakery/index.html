@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Catalina's Bakery | Panadería y Pastelería in Phoenix, AZ</title>
+  <meta name="description" content="Catalina's Bakery Panadería y Pastelería in Phoenix, Arizona. Fresh pan dulce, conchas, pastries, tres leches cake, coffee, and specialty drinks." />
+  <meta name="theme-color" content="#7b2d26" />
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    :root{
+      --cream:#fff8ee;
+      --paper:#fffdf9;
+      --cocoa:#321d16;
+      --terracotta:#b34a35;
+      --brick:#7b2d26;
+      --gold:#e3a949;
+      --rose:#f3d7ce;
+      --sage:#728c69;
+      --muted:#74675f;
+      --border:rgba(80,46,34,.14);
+      --shadow:0 20px 60px rgba(83,48,34,.15);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--cream);
+      color:var(--cocoa);
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+    .wrap{width:min(1180px,92%);margin:auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.5rem;
+      text-transform:uppercase;letter-spacing:.13em;
+      font-size:.78rem;font-weight:800;color:var(--brick);
+    }
+    .eyebrow::before{content:"";width:30px;height:2px;background:var(--gold)}
+    h1,h2,h3{font-family:Georgia, "Times New Roman", serif;line-height:1.05}
+    h2{font-size:clamp(2rem,4vw,3.5rem);margin:.55rem 0 1rem}
+    .section-copy{color:var(--muted);max-width:720px}
+
+    header{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      background:rgba(255,248,238,.88);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(90,48,34,.08);
+    }
+    .nav{
+      height:82px;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    }
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:900}
+    .logo{
+      width:44px;height:44px;border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,var(--terracotta),var(--brick));
+      color:white;box-shadow:0 8px 20px rgba(123,45,38,.25);
+      font-family:Georgia,serif;font-size:1.25rem
+    }
+    .brand strong{display:block;font-size:1rem}
+    .brand span{display:block;font-size:.72rem;letter-spacing:.08em;color:var(--muted)}
+    nav ul{display:flex;align-items:center;gap:1.35rem;list-style:none}
+    nav a{font-size:.92rem;font-weight:700}
+    .nav-cta{
+      padding:.8rem 1rem;border-radius:999px;background:var(--brick);color:white;
+    }
+    .menu-btn{
+      display:none;border:0;background:transparent;font-size:1.5rem;color:var(--cocoa);cursor:pointer;
+    }
+
+    .hero{
+      min-height:760px;padding-top:82px;
+      display:grid;place-items:center;
+      position:relative;isolation:isolate;
+      background:
+        linear-gradient(90deg,rgba(48,24,17,.78),rgba(48,24,17,.43) 55%,rgba(48,24,17,.18)),
+        url("https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1800&q=85") center/cover;
+      color:white;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:auto 0 0;height:150px;z-index:-1;
+      background:linear-gradient(to bottom,transparent,var(--cream));
+    }
+    .hero-content{
+      width:min(760px,92%);margin-right:auto;margin-left:max(4%,calc((100vw - 1180px)/2));
+      padding:5rem 0 7rem;
+    }
+    .hero .eyebrow{color:#ffe0b2}
+    .hero h1{
+      font-size:clamp(3.2rem,8vw,6.9rem);
+      max-width:780px;
+      text-shadow:0 4px 25px rgba(0,0,0,.25);
+      margin:.7rem 0 1.15rem;
+    }
+    .hero p{font-size:clamp(1rem,2vw,1.2rem);max-width:650px;color:#fff5ec}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.8rem}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+      min-height:52px;padding:.9rem 1.2rem;border-radius:999px;
+      font-weight:800;border:1px solid transparent;transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--gold);color:#321d16}
+    .btn-light{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:white;backdrop-filter:blur(7px)}
+    .hero-badges{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+    .badge{
+      padding:.55rem .8rem;border-radius:999px;
+      background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.22);
+      font-size:.86rem;
+    }
+
+    section{padding:92px 0}
+    .intro-grid{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;
+    }
+    .photo-stack{position:relative;min-height:520px}
+    .photo-main,.photo-small{
+      position:absolute;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow);
+      border:8px solid rgba(255,255,255,.75);
+    }
+    .photo-main{inset:0 90px 60px 0}
+    .photo-small{width:52%;height:48%;right:0;bottom:0}
+    .photo-main img,.photo-small img{width:100%;height:100%;object-fit:cover}
+    .copy-card{
+      background:var(--paper);border:1px solid var(--border);
+      border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)
+    }
+    .feature-list{display:grid;gap:1rem;margin-top:1.5rem}
+    .feature{
+      display:flex;gap:.9rem;align-items:flex-start;
+      padding:1rem;border-radius:18px;background:#fff7f1;
+    }
+    .feature i{width:38px;height:38px;border-radius:12px;background:var(--rose);display:grid;place-items:center;color:var(--brick)}
+
+    .favorites{background:#f5e8dd}
+    .cards{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;
+    }
+    .card{
+      background:white;border-radius:24px;overflow:hidden;
+      box-shadow:0 14px 36px rgba(82,48,35,.10);
+      border:1px solid rgba(91,52,36,.08);
+      transition:.25s ease;
+    }
+    .card:hover{transform:translateY(-6px)}
+    .card-image{height:230px;overflow:hidden;position:relative}
+    .card-image img{width:100%;height:100%;object-fit:cover;transition:.35s ease}
+    .card:hover .card-image img{transform:scale(1.05)}
+    .card-body{padding:1.25rem}
+    .card-body h3{font-size:1.45rem;margin-bottom:.4rem}
+    .card-body p{color:var(--muted);font-size:.93rem}
+
+    .visit{
+      background:
+       linear-gradient(rgba(57,31,23,.86),rgba(57,31,23,.86)),
+       url("https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1800&q=85") center/cover fixed;
+      color:white;
+    }
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .hours-card,.location-card{
+      background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);
+      border-radius:28px;padding:2rem;backdrop-filter:blur(8px);
+    }
+    .hours-list{list-style:none;margin-top:1.2rem;display:grid;gap:.75rem}
+    .hours-list li{display:flex;justify-content:space-between;gap:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(255,255,255,.12)}
+    .location-card p{color:#f4eae4;margin:.65rem 0}
+    .location-card .btn{margin-top:.8rem}
+
+    .reviews-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:2rem;align-items:start}
+    .rating{
+      background:var(--brick);color:white;padding:2rem;border-radius:var(--radius);
+      box-shadow:var(--shadow)
+    }
+    .rating .big{font-size:4rem;font-family:Georgia,serif;line-height:1}
+    .stars{color:#ffd279;letter-spacing:.15em;margin:.7rem 0}
+    .quote-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    .quote{
+      padding:1.4rem;background:white;border-radius:22px;border:1px solid var(--border)
+    }
+    .quote i{color:var(--gold);font-size:1.3rem}
+    .quote p{margin-top:.8rem;color:var(--muted)}
+
+    .faq{background:#fffdf9}
+    details{
+      background:white;border:1px solid var(--border);border-radius:18px;
+      padding:1rem 1.2rem;margin-top:.8rem;
+    }
+    summary{font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";font-size:1.3rem;color:var(--terracotta)}
+    details[open] summary::after{content:"−"}
+    details p{margin-top:.8rem;color:var(--muted)}
+
+    .cta{
+      padding:70px 0;
+      background:linear-gradient(135deg,var(--terracotta),var(--brick));
+      color:white;text-align:center;
+    }
+    .cta h2{max-width:800px;margin:.4rem auto 1rem}
+    .cta p{max-width:650px;margin:auto;color:#ffece7}
+    .cta .hero-actions{justify-content:center}
+
+    footer{background:#251712;color:#f4e8df;padding:42px 0 25px}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:2rem}
+    footer h3{font-size:1.2rem;margin-bottom:.75rem}
+    footer p,footer a{color:#d5c5bc;font-size:.92rem}
+    .footer-links{display:grid;gap:.5rem}
+    .subfooter{margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:#ae9d94}
+
+    .floating-call{
+      display:none;position:fixed;right:18px;bottom:18px;z-index:45;
+      width:56px;height:56px;border-radius:50%;
+      background:var(--gold);color:#301b14;place-items:center;
+      box-shadow:0 12px 30px rgba(0,0,0,.2);font-size:1.2rem;
+    }
+
+    @media (max-width: 980px){
+      nav ul{
+        position:absolute;top:82px;left:0;right:0;
+        background:rgba(255,248,238,.98);padding:1rem 4% 1.5rem;
+        display:none;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--border)
+      }
+      nav ul.open{display:flex}
+      nav ul a{display:block;padding:.7rem 0}
+      .menu-btn{display:block}
+      .intro-grid,.visit-grid,.reviews-grid,.footer-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .photo-stack{min-height:450px}
+      .quote-grid{grid-template-columns:1fr 1fr}
+      .floating-call{display:grid}
+    }
+
+    @media (max-width: 640px){
+      .nav{height:72px}
+      nav ul{top:72px}
+      .brand span{display:none}
+      .hero{padding-top:72px;min-height:700px;background-position:58% center}
+      .hero-content{padding:4rem 0 6rem;margin-left:5%;width:90%}
+      .hero h1{font-size:clamp(3rem,15vw,4.7rem)}
+      section{padding:68px 0}
+      .cards,.quote-grid{grid-template-columns:1fr}
+      .card-image{height:250px}
+      .photo-stack{min-height:390px}
+      .photo-main{inset:0 45px 50px 0}
+      .photo-small{width:52%;height:46%}
+      .copy-card,.hours-card,.location-card,.rating{padding:1.4rem}
+      .hero-actions{flex-direction:column}
+      .hero-actions .btn{width:100%}
+      .hours-list li{font-size:.92rem}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#home" class="brand" aria-label="Catalina's Bakery home">
+        <div class="logo">C</div>
+        <div>
+          <strong>Catalina's Bakery</strong>
+          <span>PANADERÍA Y PASTELERÍA</span>
+        </div>
+      </a>
+
+      <nav>
+        <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul id="navMenu">
+          <li><a href="#favorites">Favorites</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#visit">Hours & Location</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a class="nav-cta" href="tel:+16236324503"><i class="fa-solid fa-phone"></i> Call Bakery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">Phoenix, Arizona</span>
+        <h1>Fresh bakery favorites with a neighborhood feel.</h1>
+        <p>
+          Visit Catalina's Bakery Panadería y Pastelería for pan dulce, soft conchas,
+          pastries, tres leches cake, coffee, and specialty drinks in East Phoenix.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+16236324503"><i class="fa-solid fa-phone"></i> Call (623) 632-4503</a>
+          <a class="btn btn-light" href="https://maps.apple.com/place?place-id=I6C742031DBBE6817" target="_blank" rel="noopener">
+            <i class="fa-solid fa-location-dot"></i> Get Directions
+          </a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge"><i class="fa-solid fa-bread-slice"></i> Pan Dulce</span>
+          <span class="badge"><i class="fa-solid fa-cake-candles"></i> Tres Leches</span>
+          <span class="badge"><i class="fa-solid fa-mug-hot"></i> Coffee</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap intro-grid">
+        <div class="photo-stack" aria-label="Stock bakery imagery">
+          <div class="photo-main">
+            <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1200&q=85" alt="Fresh assorted baked goods - stock image">
+          </div>
+          <div class="photo-small">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85" alt="Cake - stock image">
+          </div>
+        </div>
+
+        <div class="copy-card">
+          <span class="eyebrow">About the bakery</span>
+          <h2>A local stop for Mexican bakery classics.</h2>
+          <p class="section-copy">
+            Catalina's Bakery is a Phoenix panadería and pastelería serving fresh baked goods
+            and sweet favorites. Public reviews especially highlight the conchas, pan dulce,
+            tres leches cake, and friendly service.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <i class="fa-solid fa-heart"></i>
+              <div>
+                <strong>Customer favorites</strong>
+                <p>Soft conchas, fresh pan dulce, and tres leches cake are repeatedly praised.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-clock"></i>
+              <div>
+                <strong>Early weekday hours</strong>
+                <p>Open from 6:00 AM Monday through Saturday, with Sunday hours beginning at 8:00 AM.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fa-solid fa-shield-heart"></i>
+              <div>
+                <strong>County-inspected bakery</strong>
+                <p>The latest located routine Maricopa County inspection, dated July 20, 2026, received an A.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="favorites" id="favorites">
+      <div class="wrap">
+        <span class="eyebrow">What people come for</span>
+        <h2>Bakery favorites</h2>
+        <p class="section-copy">These items are supported by current business and review information. Exact prices and full menu availability were not publicly verified.</p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85" alt="Sweet breads - stock image">
+            </div>
+            <div class="card-body">
+              <h3>Pan Dulce</h3>
+              <p>Traditional Mexican sweet breads are part of the bakery's core offering.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=85" alt="Fresh pastries - stock image">
+            </div>
+            <div class="card-body">
+              <h3>Conchas</h3>
+              <p>Soft conchas are among the most frequently highlighted customer favorites.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=85" alt="Cake slice - stock image">
+            </div>
+            <div class="card-body">
+              <h3>Tres Leches</h3>
+              <p>Tres leches cake receives especially strong praise in current customer feedback.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85" alt="Cup of coffee - stock image">
+            </div>
+            <div class="card-body">
+              <h3>Coffee & Drinks</h3>
+              <p>Coffee and a small selection of specialty drinks are also listed with the bakery.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap visit-grid">
+        <div class="hours-card">
+          <span class="eyebrow" style="color:#ffd999">Hours</span>
+          <h2>Plan your visit</h2>
+          <ul class="hours-list">
+            <li><span>Monday</span><strong>6:00 AM – 8:00 PM</strong></li>
+            <li><span>Tuesday</span><strong>6:00 AM – 8:00 PM</strong></li>
+            <li><span>Wednesday</span><strong>6:00 AM – 8:00 PM</strong></li>
+            <li><span>Thursday</span><strong>6:00 AM – 8:00 PM</strong></li>
+            <li><span>Friday</span><strong>6:00 AM – 8:00 PM</strong></li>
+            <li><span>Saturday</span><strong>6:00 AM – 6:00 PM</strong></li>
+            <li><span>Sunday</span><strong>8:00 AM – 4:00 PM</strong></li>
+          </ul>
+        </div>
+
+        <div class="location-card">
+          <span class="eyebrow" style="color:#ffd999">Location</span>
+          <h2>East Phoenix</h2>
+          <p><i class="fa-solid fa-location-dot"></i> 1617 N 32nd St, Ste 9 & 10<br>Phoenix, AZ 85008</p>
+          <p><i class="fa-solid fa-phone"></i> (623) 632-4503</p>
+          <p>Public listings place Catalina's Bakery in Phoenix's 85008 area. No formal delivery or service radius is publicly listed.</p>
+          <a class="btn btn-primary" href="https://maps.apple.com/place?place-id=I6C742031DBBE6817" target="_blank" rel="noopener">
+            <i class="fa-solid fa-diamond-turn-right"></i> Open in Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap reviews-grid">
+        <div class="rating">
+          <span class="eyebrow" style="color:#ffd999">Current map rating</span>
+          <div class="big">4.8</div>
+          <div class="stars">★★★★★</div>
+          <p>Current map data reports 4.8/5 from 13 reviews. Apple Maps separately shows 80% from 5 ratings, so totals vary by platform.</p>
+        </div>
+
+        <div>
+          <span class="eyebrow">Customer feedback</span>
+          <h2>Fresh, friendly, and worth coming back for.</h2>
+          <div class="quote-grid">
+            <div class="quote">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>Customers frequently describe the conchas and pan dulce as soft and fresh.</p>
+            </div>
+            <div class="quote">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>Tres leches cake receives particularly strong praise in current customer feedback.</p>
+            </div>
+            <div class="quote">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>Visitors describe the bakery as welcoming, with friendly service and helpful recommendations.</p>
+            </div>
+            <div class="quote">
+              <i class="fa-solid fa-quote-left"></i>
+              <p>Customers also mention the pleasant neighborhood-bakery atmosphere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <span class="eyebrow">Frequently asked questions</span>
+        <h2>Before you visit</h2>
+
+        <details>
+          <summary>Where is Catalina's Bakery?</summary>
+          <p>1617 N 32nd St, Ste 9 & 10, Phoenix, AZ 85008.</p>
+        </details>
+        <details>
+          <summary>What is the bakery's phone number?</summary>
+          <p><a href="tel:+16236324503">(623) 632-4503</a>.</p>
+        </details>
+        <details>
+          <summary>Do you sell pan dulce and conchas?</summary>
+          <p>Yes. Both are prominently associated with the bakery in current public business and review information.</p>
+        </details>
+        <details>
+          <summary>Do you sell tres leches cake?</summary>
+          <p>Yes. Tres leches is specifically mentioned in current customer feedback. Exact sizes and prices are not publicly verified.</p>
+        </details>
+        <details>
+          <summary>Do you make custom cakes or take advance orders?</summary>
+          <p>A published custom-cake or advance-order policy was not located. Please call the bakery directly to confirm current options.</p>
+        </details>
+        <details>
+          <summary>Do you deliver?</summary>
+          <p>No reliable public delivery information was found. Please call the bakery to ask about current options.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <span class="eyebrow" style="color:#ffd999">Visit Catalina's</span>
+        <h2>Pick up something fresh in Phoenix.</h2>
+        <p>Call the bakery for current availability, cake questions, or anything not listed publicly online.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+16236324503"><i class="fa-solid fa-phone"></i> Call Now</a>
+          <a class="btn btn-light" href="https://maps.apple.com/place?place-id=I6C742031DBBE6817" target="_blank" rel="noopener">
+            <i class="fa-solid fa-location-arrow"></i> Get Directions
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>Catalina's Bakery</h3>
+        <p>Panadería y Pastelería in Phoenix, Arizona.</p>
+        <p style="margin-top:.8rem">Website imagery shown is stock photography and is not represented as actual Catalina's Bakery products, employees, or storefront imagery.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <div class="footer-links">
+          <a href="tel:+16236324503">(623) 632-4503</a>
+          <a href="https://maps.apple.com/place?place-id=I6C742031DBBE6817" target="_blank" rel="noopener">1617 N 32nd St, Phoenix, AZ 85008</a>
+        </div>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <div class="footer-links">
+          <a href="#favorites">Bakery Favorites</a>
+          <a href="#visit">Hours & Location</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap subfooter">© 2026 Catalina's Bakery. Business information based on publicly available listings and should be confirmed by the business before publication.</div>
+  </footer>
+
+  <a class="floating-call" href="tel:+16236324503" aria-label="Call Catalina's Bakery">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const navMenu = document.getElementById('navMenu');
+
+    menuBtn.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.innerHTML = open
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('#navMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
+    document.addEventListener('dblclick', function(e){ e.preventDefault(); }, {passive:false});
+  </script>
+</body>
+</html>

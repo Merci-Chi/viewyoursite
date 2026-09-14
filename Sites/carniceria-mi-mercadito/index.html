@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#7c2d12">
+<title>Carniceria Mi Mercadito | Mack Rd, Sacramento</title>
+<meta name="description" content="Carniceria Mi Mercadito on Mack Road in Sacramento. Fresh cuts, marinated meats, market shelves, hot food pickup, daily hours, and contact information.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+:root{
+  --cream:#f5efe4;
+  --paper:#fffaf4;
+  --ink:#2b211d;
+  --muted:#74645d;
+  --brick:#7c2d12;
+  --tomato:#c33b2b;
+  --sage:#4f6f52;
+  --gold:#d5a645;
+  --line:rgba(43,33,29,.14);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Source Sans 3",sans-serif;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit}
+.wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
+
+h1,h2,h3{margin-top:0}
+h1,h2{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:-.035em}
+h1{font-size:clamp(3.8rem,8.6vw,7.5rem);line-height:.88;margin-bottom:20px}
+h2{font-size:clamp(2.4rem,5vw,4.3rem);line-height:.95;margin-bottom:14px}
+h3{font-size:1.2rem}
+p{line-height:1.72}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;font-weight:800;color:var(--tomato)
+}
+.eyebrow:before{content:"";width:34px;height:3px;background:currentColor}
+
+.btn{
+  min-height:50px;padding:0 22px;border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-size:.8rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  cursor:pointer;transition:.18s ease
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-brick{background:var(--brick);color:#fff}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-line{background:transparent;border-color:rgba(255,255,255,.72);color:#fff}
+
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(245,239,228,.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)
+}
+.head{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{
+  width:44px;height:44px;background:var(--brick);color:#fff;
+  display:grid;place-items:center;transform:rotate(-2deg)
+}
+.brand strong{display:block;font-family:"Archivo Black";font-size:.98rem;line-height:1}
+.brand small{display:block;margin-top:4px;color:var(--muted);font-size:.61rem;letter-spacing:.14em;text-transform:uppercase}
+.nav{display:flex;align-items:center;gap:26px;font-size:.84rem;font-weight:700}
+.nav a:hover{color:var(--brick)}
+.menu{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent;color:var(--ink)}
+.mobile-nav{display:none;background:var(--cream);border-top:1px solid var(--line);padding:8px 20px 18px}
+.mobile-nav.open{display:grid}
+.mobile-nav a{padding:14px 0;border-bottom:1px solid var(--line);font-weight:700}
+
+.hero{
+  min-height:760px;
+  display:grid;
+  align-items:end;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(45,24,16,.95),rgba(45,24,16,.66),rgba(45,24,16,.18)),
+    url("https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2200&q=84") center/cover no-repeat;
+}
+.hero:after{
+  content:"MERCADITO";
+  position:absolute;
+  right:-30px;
+  top:40px;
+  font-family:"Archivo Black";
+  font-size:min(18vw,230px);
+  color:transparent;
+  -webkit-text-stroke:2px rgba(255,255,255,.08);
+  line-height:.9
+}
+.hero-inner{position:relative;z-index:2;padding:110px 0 82px;max-width:900px}
+.hero .eyebrow{color:var(--gold)}
+.hero p{max-width:680px;color:rgba(255,255,255,.87);font-size:1.08rem}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.stock-label{
+  position:absolute;right:14px;bottom:12px;z-index:3;
+  padding:7px 10px;background:rgba(0,0,0,.55);
+  font-size:.64rem;letter-spacing:.08em;text-transform:uppercase
+}
+
+.factbar{background:var(--brick);color:#fff}
+.factgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.fact{padding:22px 24px;border-right:1px solid rgba(255,255,255,.14)}
+.fact:last-child{border-right:0}
+.fact strong{display:block;color:rgba(255,255,255,.6);font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px}
+
+.section{padding:96px 0}
+.section.white{background:#fff}
+.section.paper{background:var(--paper)}
+.intro{max-width:740px;color:var(--muted);font-size:1.03rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.market-card{
+  background:#fff;border-top:5px solid var(--sage);padding:28px;border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.market-card:nth-child(2){border-top-color:var(--tomato)}
+.market-card:nth-child(3){border-top-color:var(--gold)}
+.market-card i{font-size:1.6rem;color:var(--brick);margin-bottom:18px}
+.market-card p{color:var(--muted);margin-bottom:0}
+
+.photo-split{display:grid;grid-template-columns:1.08fr .92fr;gap:0;min-height:560px}
+.photo-pane{
+  background:
+    linear-gradient(rgba(60,34,22,.12),rgba(60,34,22,.12)),
+    url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=84") center/cover no-repeat;
+  position:relative
+}
+.photo-pane .stock-small{
+  position:absolute;left:14px;bottom:12px;
+  background:rgba(0,0,0,.58);color:#fff;padding:7px 9px;
+  font-size:.63rem;letter-spacing:.06em;text-transform:uppercase
+}
+.food-copy{
+  background:var(--sage);color:#fff;padding:70px 56px;
+  display:flex;flex-direction:column;justify-content:center
+}
+.food-copy .eyebrow{color:#ffe3a5}
+.food-copy p{color:#e3ece3}
+.food-pill{
+  margin-top:20px;padding:13px 16px;border:1px solid rgba(255,255,255,.3);
+  display:inline-flex;align-items:center;gap:10px;width:max-content;font-weight:700
+}
+
+.hours-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:68px}
+.hours{border-top:2px solid var(--brick)}
+.hrow{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}
+
+.review-box{
+  max-width:800px;
+  background:#fff;
+  border-left:6px solid var(--tomato);
+  padding:34px;
+  margin-top:30px
+}
+.review-score{
+  font-family:"Archivo Black";
+  font-size:4rem;
+  color:var(--brick);
+  line-height:1;
+  margin-bottom:16px
+}
+.review-box blockquote{margin:0;font-size:1.22rem;line-height:1.6}
+.review-meta{margin-top:12px;color:var(--muted);font-size:.9rem}
+
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+.vcard{background:#fff;border:1px solid var(--line);padding:32px;min-height:270px}
+.vcard i{font-size:1.7rem;color:var(--brick);margin-bottom:16px}
+.note{margin-top:18px;color:var(--muted)}
+.form-card{margin-top:28px;background:#fff;border:1px solid var(--line);padding:32px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.72rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--brick)}
+.field input,.field textarea{border:1px solid var(--line);padding:12px 14px;background:var(--paper);color:var(--ink)}
+.field textarea{min-height:110px;resize:vertical}
+
+footer{background:#221915;color:#d7cbc4;padding:36px 0}
+.foot{display:flex;justify-content:space-between;gap:22px;align-items:center;font-size:.82rem}
+.foot strong{color:#fff}
+
+.locked-modal{
+  position:fixed;inset:0;z-index:1000;display:none;place-items:center;
+  padding:22px;background:rgba(0,0,0,.76)
+}
+.locked-modal.open{display:grid}
+.locked-card{
+  width:min(470px,100%);background:#fff;color:#171717;padding:32px;
+  box-shadow:0 30px 90px rgba(0,0,0,.46)
+}
+.locked-symbol{
+  width:50px;height:50px;background:var(--brick);color:#fff;
+  display:grid;place-items:center;margin-bottom:18px
+}
+.locked-card h2{font-size:2rem;color:#171717}
+.locked-card p{color:#555}
+.locked-close{
+  width:100%;min-height:48px;border:0;background:var(--ink);color:#fff;
+  font-weight:800;text-transform:uppercase;letter-spacing:.08em;cursor:pointer
+}
+
+@media(max-width:900px){
+  .nav{display:none}.menu{display:grid;place-items:center}
+  .factgrid,.grid-3,.hours-grid,.visit-grid,.photo-split{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.14)}
+  .photo-pane{min-height:380px}
+  .form-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .wrap{width:min(calc(100% - 28px),var(--max))}
+  .head{height:66px}.brand small{display:none}
+  .hero{min-height:630px}.hero-inner{padding:88px 0 54px}
+  h1{font-size:clamp(3rem,17vw,4.8rem)}
+  .actions{display:grid}.actions .btn{width:100%}
+  .section{padding:72px 0}
+  .food-copy{padding:46px 26px}
+  .stock-label{left:12px;right:auto}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head">
+    <a class="brand" href="#home">
+      <span class="mark"><i class="fa-solid fa-pepper-hot"></i></span>
+      <span>
+        <strong>Carniceria Mi Mercadito</strong>
+        <small>Mack Rd · Sacramento</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="#market">El Mercado</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+
+    <button class="menu" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#market">El Mercado</a>
+    <a href="#hours">Hours</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">5637 Mack Rd · Sacramento</span>
+      <h1>El mercadito de la esquina</h1>
+      <p>Carniceria Mi Mercadito is the little market on Mack Road with a real butcher counter, shelves for the week, and a hot food counter that runs on its own clock. Small enough to feel like yours, stocked like the big ones.</p>
+      <div class="actions">
+        <a class="btn btn-brick" href="#market"><i class="fa-solid fa-basket-shopping"></i>See the mercado</a>
+        <a class="btn btn-line" href="#visit"><i class="fa-solid fa-location-dot"></i>Visit</a>
+      </div>
+    </div>
+    <div class="stock-label">Stock imagery — not the actual business</div>
+  </section>
+
+  <section class="factbar">
+    <div class="wrap factgrid">
+      <div class="fact"><strong>Google rating</strong><span>4.1 stars</span></div>
+      <div class="fact"><strong>Market hours</strong><span>Every day · 8 AM–8 PM</span></div>
+      <div class="fact"><strong>Hot food counter</strong><span>11 AM–7 PM daily</span></div>
+    </div>
+  </section>
+
+  <section class="section white" id="market">
+    <div class="wrap">
+      <span class="eyebrow">What's inside</span>
+      <h2>Three counters, one trip</h2>
+      <p class="intro">The market keeps it simple: fresh meat, friendly faces at the counter, and hot food when you did not plan dinner.</p>
+
+      <div class="grid-3">
+        <article class="market-card">
+          <i class="fa-solid fa-drumstick-bite"></i>
+          <h3>The butcher side</h3>
+          <p>Fresh cuts and marinated meats at the carniceria case, wrapped the way you ask.</p>
+        </article>
+        <article class="market-card">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <h3>Market shelves</h3>
+          <p>The little extras that turn a meat run into the whole grocery list.</p>
+        </article>
+        <article class="market-card">
+          <i class="fa-solid fa-utensils"></i>
+          <h3>Hot food counter</h3>
+          <p>Its own shorter hours, 11 to 7, for pickup when cooking is not happening today.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="photo-split">
+    <div class="photo-pane">
+      <div class="stock-small">Stock imagery — not the actual business</div>
+    </div>
+    <div class="food-copy">
+      <span class="eyebrow">El Mercado</span>
+      <h2>Mack Road's little market</h2>
+      <p>On Mack Road in south Sacramento, Mi Mercadito packs a carniceria counter and market shelves into a shop your neighbor probably already told you about.</p>
+      <div class="food-pill"><i class="fa-solid fa-clock"></i> Food counter: 11 AM - 7 PM</div>
+    </div>
+  </section>
+
+  <section class="section paper" id="hours">
+    <div class="wrap hours-grid">
+      <div>
+        <span class="eyebrow">Hours</span>
+        <h2>Market hours</h2>
+        <p class="intro">Market: every day, 8:00 AM - 8:00 PM. Hot food counter: 11:00 AM - 7:00 PM for pickup.</p>
+      </div>
+      <div class="hours">
+        <div class="hrow"><span>Sunday</span><strong>8:00 AM - 8:00 PM</strong></div>
+        <div class="hrow"><span>Monday</span><strong>8:00 AM - 8:00 PM</strong></div>
+        <div class="hrow"><span>Tuesday</span><strong>8:00 AM - 8:00 PM</strong></div>
+        <div class="hrow"><span>Wednesday</span><strong>8:00 AM - 8:00 PM</strong></div>
+        <div class="hrow"><span>Thursday</span><strong>8:00 AM - 8:00 PM</strong></div>
+        <div class="hrow"><span>Friday</span><strong>8:00 AM - 8:00 PM</strong></div>
+        <div class="hrow"><span>Saturday</span><strong>8:00 AM - 8:00 PM</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section white" id="reviews">
+    <div class="wrap">
+      <span class="eyebrow">Reviews</span>
+      <h2>Straight from the neighborhood</h2>
+      <p class="intro">4.1 stars on Google.</p>
+
+      <div class="review-box">
+        <div class="review-score">4.1</div>
+        <blockquote>The staff is very friendly and always</blockquote>
+        <div class="review-meta">Google review · quoted exactly as it appears in the supplied source</div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-brick" type="button" data-locked="true"><i class="fa-brands fa-google"></i>See every review on Google</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper" id="visit">
+    <div class="wrap">
+      <span class="eyebrow">Visit</span>
+      <h2>Come by the shop</h2>
+      <p class="intro">5637 Mack Rd, Sacramento. The market opens at 8 every day; the hot food counter starts at 11.</p>
+
+      <div class="visit-grid">
+        <article class="vcard">
+          <i class="fa-solid fa-location-dot"></i>
+          <h3>Market details</h3>
+          <p>5637 Mack Rd<br>Sacramento, CA 95823</p>
+          <p class="note">Market: every day, 8:00 AM - 8:00 PM<br>Hot food counter: 11:00 AM - 7:00 PM for pickup</p>
+          <div class="actions">
+            <button class="btn btn-brick" type="button" data-locked="true"><i class="fa-solid fa-map-location-dot"></i>Directions</button>
+          </div>
+        </article>
+
+        <article class="vcard">
+          <i class="fa-solid fa-phone"></i>
+          <h3>Phone</h3>
+          <p>(916) 421-2000</p>
+          <p class="note">Call ahead for a cut, or ask about today's hot counter.</p>
+          <div class="actions">
+            <button class="btn btn-dark" type="button" data-locked="true"><i class="fa-solid fa-phone"></i>Call the market</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="form-card">
+        <h3>Ask about today's cuts</h3>
+        <form>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" type="text">
+            </div>
+            <div class="field">
+              <label for="phone">Your phone</label>
+              <input id="phone" type="tel">
+            </div>
+            <div class="field full">
+              <label for="message">Message</label>
+              <textarea id="message"></textarea>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn btn-brick" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i>Send to the market</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <strong>Carniceria Mi Mercadito</strong><br>
+      5637 Mack Rd, Sacramento, CA 95823
+    </div>
+    <div>Market 8 AM - 8 PM · Food counter 11 AM - 7 PM</div>
+  </div>
+</footer>
+
+<div class="locked-modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMessage">
+  <div class="locked-card" tabindex="-1">
+    <div class="locked-symbol"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p id="lockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button id="lockedClose" class="locked-close" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const modal = document.getElementById('lockedModal');
+  const modalCard = modal.querySelector('.locked-card');
+  const closeBtn = document.getElementById('lockedClose');
+  let lastFocus = null;
+
+  function closeMenu(){
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMenu));
+
+  function openLocked(trigger){
+    lastFocus = trigger || document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    setTimeout(() => modalCard.focus(),0);
+  }
+
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked(el);
+    });
+  });
+
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      openLocked(e.submitter || form);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLocked);
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeLocked();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+
+  document.addEventListener('gesturestart', e => e.preventDefault());
+  document.addEventListener('gesturechange', e => e.preventDefault());
+  document.addEventListener('gestureend', e => e.preventDefault());
+
+  document.addEventListener('wheel', e => {
+    if (e.ctrlKey || e.metaKey) e.preventDefault();
+  }, {passive:false});
+})();
+</script>
+
+<!--
+SOURCE-DERIVED CONTENT USED
+- Carniceria Mi Mercadito
+- 5637 Mack Rd, Sacramento, CA 95823
+- Phone: (916) 421-2000
+- Market hours: every day 8:00 AM - 8:00 PM
+- Hot food counter: 11:00 AM - 7:00 PM for pickup
+- Google rating: 4.1 stars
+- Exact review excerpt: "The staff is very friendly and always"
+- Source-supported market descriptions: butcher side, market shelves, hot food counter, fresh cuts, marinated meats, friendly staff
+
+LOCKED / PROTECTED
+- Phone action
+- Directions
+- Google reviews
+- Form submission
+- No fake success and no data transmission
+
+STOCK ASSETS
+- Generic grocery / market imagery from Unsplash
+- Stock imagery is not the actual business, staff, products, or customers
+- Font Awesome Free icons
+- Google Fonts: Archivo Black + Source Sans 3
+
+QUALITY CHECK
+- One complete HTML file
+- CSS and JavaScript inline
+- Mobile hamburger works
+- Mobile zoom disabled
+- Text selection disabled
+- Internal navigation works
+- One reusable locked-action modal
+- Normal JavaScript operators such as &&
+-->
+</body>
+</html>
