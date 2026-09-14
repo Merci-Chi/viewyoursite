@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#173f2d">
+<title>420 Smoke Shop | A 24 Hour Corner Store on Alvernon</title>
+<meta name="description" content="420 Smoke Shop in Tucson, Arizona. Open 24 hours with vapes, glass, wraps and papers, cigars, lighters, CBD, and more. 21+ with valid ID required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{--forest:#1B4332;--forest2:#2D6A4F;--lime:#A8D26D;--lime2:#dff1b9;--paper:#f7f9f2;--ink:#1f2d25;--white:#fff;--line:rgba(27,67,50,.18);--max:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Asap,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+a{color:inherit}
+img{max-width:100%;display:block}
+button,a,input,textarea{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+h1,h2,h3{font-family:"Passion One",sans-serif;line-height:.98;margin:0}
+h1{font-size:clamp(3.9rem,8vw,7.2rem)}
+h2{font-size:clamp(2.5rem,5vw,4.5rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+.kicker{font-size:.76rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+
+header{position:sticky;top:0;z-index:50;background:rgba(27,67,50,.96);color:#fff;border-bottom:1px solid rgba(255,255,255,.13);backdrop-filter:blur(12px)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.badge{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--forest);border:3px solid #fff;font-family:"Passion One";font-size:1.05rem}
+.brand strong{font-family:"Passion One";font-size:1.3rem;letter-spacing:.03em}
+.brand small{display:block;font-family:Asap;font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:var(--lime)}
+.navlinks{display:flex;align-items:center;gap:24px}
+.navlinks a{text-decoration:none;text-transform:uppercase;font-size:.78rem;font-weight:800;letter-spacing:.08em}
+.navlinks a:hover{color:var(--lime)}
+.menu{display:none;width:44px;height:44px;border:2px solid var(--lime);background:transparent;color:var(--lime);border-radius:10px;font-size:1.1rem}
+
+.hero{position:relative;min-height:720px;color:#fff;display:flex;align-items:end;overflow:hidden;background:linear-gradient(90deg,rgba(20,55,39,.97),rgba(20,55,39,.78) 52%,rgba(20,55,39,.25)),linear-gradient(0deg,rgba(20,55,39,.9),transparent 55%),url("https://images.unsplash.com/photo-1786684597542-f3867abd0dc9?auto=format&fit=crop&fm=jpg&q=82&w=2200") center/cover no-repeat}
+.hero:after{content:"24/7";position:absolute;right:-10px;top:18px;font-family:"Passion One";font-size:min(34vw,430px);color:transparent;-webkit-text-stroke:2px rgba(168,210,109,.23);line-height:.8}
+.hero-in{position:relative;z-index:2;padding:110px 0 70px}
+.hero h1 span{color:var(--lime)}
+.hero .lead{max-width:760px;color:#d7e8dc;font-size:1.1rem;margin:24px 0 28px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(168,210,109,.45);background:rgba(255,255,255,.08);border-radius:999px;font-size:.83rem;font-weight:700}
+.chip i{color:var(--lime)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:13px 21px;border:2px solid transparent;border-radius:12px;text-decoration:none;text-transform:uppercase;font-size:.78rem;font-weight:800;letter-spacing:.08em;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-lime{background:var(--lime);color:var(--forest)}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:#fff;background:transparent}
+.asset-note{position:absolute;right:14px;bottom:14px;z-index:3;background:rgba(0,0,0,.66);color:#fff;border:1px solid rgba(255,255,255,.22);padding:7px 10px;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em}
+
+.agebar{background:#eff7e5;border-bottom:1px solid var(--line)}
+.agebar .wrap{min-height:66px;display:flex;align-items:center;gap:11px;font-weight:700;color:var(--forest)}
+.agebar i{font-size:1.15rem}
+
+.section{padding:90px 0;scroll-margin-top:76px}
+.head{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:end;margin-bottom:40px}
+.head p{color:#53665a;max-width:650px}
+.products{background:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{border:2px solid #dce8d4;border-radius:16px;padding:22px;background:#fff;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:var(--lime)}
+.icon{width:48px;height:48px;border-radius:12px;background:var(--forest);color:var(--lime);display:grid;place-items:center;margin-bottom:13px}
+.card p{font-size:.9rem;color:#5d6c62;margin-top:6px}
+
+.night{position:relative;color:#fff;background:linear-gradient(rgba(19,51,37,.9),rgba(19,51,37,.94)),url("https://images.unsplash.com/photo-1782303255287-6397fa3262eb?auto=format&fit=crop&fm=jpg&q=80&w=2200") center/cover no-repeat}
+.night .head p{color:#d1e0d6}
+.hoursbox{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.big24{border:2px solid rgba(168,210,109,.6);padding:30px;background:rgba(255,255,255,.07);border-radius:18px}
+.big24 strong{font-family:"Passion One";font-size:3.6rem;color:var(--lime);display:block;line-height:1}
+.big24 p{color:#d1e0d6;margin-top:10px}
+.protected{padding:22px;border-left:4px solid var(--lime);background:rgba(255,255,255,.08)}
+.protected strong{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+
+.reviews{background:#edf5e8}
+.receipts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}
+.receipt{background:#fff;border:2px solid #dce8d4;border-radius:0 0 14px 14px;padding:0 24px 22px;box-shadow:0 12px 28px rgba(27,67,50,.08)}
+.receipt:before{content:"";display:block;height:12px;margin:0 -24px 18px;background:repeating-linear-gradient(90deg,var(--lime) 0 22px,var(--forest) 22px 44px)}
+.stars{color:#3e8e4b;font-size:.8rem;margin:12px 0}
+.who{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#748078;font-weight:700}
+.summary{margin-top:24px;padding:24px;border-radius:16px;background:var(--forest);color:#fff;text-align:center}
+.summary strong{font-family:"Passion One";font-size:1.8rem;color:var(--lime)}
+
+.contact{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.contact-card{border:2px solid var(--forest);border-radius:18px;padding:30px;box-shadow:8px 8px 0 var(--lime)}
+.contact-card .protected{background:#eff7e5;color:var(--forest);border-left-color:var(--forest)}
+.contact-card .protected strong{color:var(--forest)}
+.form{display:grid;gap:14px}
+.field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:5px}
+.field input,.field textarea{width:100%;padding:12px 14px;border:2px solid #dce8d4;border-radius:12px;background:#f5faef;font:inherit}
+.field textarea{min-height:110px;resize:vertical}
+
+footer{background:var(--forest);color:#cde0d2;padding:38px 0}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:30px}
+.footnav{display:flex;gap:18px;flex-wrap:wrap}
+.footnav a{text-decoration:none;color:#fff;font-size:.8rem}
+
+.modal{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(0,0,0,.72);padding:22px}
+.modal.open{display:grid}
+.modal-card{width:min(470px,100%);background:#fff;border-radius:18px;padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.modal-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--forest);color:var(--lime);margin-bottom:20px}
+.modal-card h2{font-size:2.5rem}
+.modal-card p{margin:15px 0 24px;color:#56665b}
+body.modal-open{overflow:hidden}
+
+@media(max-width:860px){
+ .menu{display:grid;place-items:center}
+ .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--forest);padding:8px 20px 20px;flex-direction:column;align-items:stretch;gap:0;border-top:1px solid rgba(255,255,255,.12)}
+ .navlinks.open{display:flex}
+ .navlinks a{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+ .head,.hoursbox,.contact-grid{grid-template-columns:1fr;gap:30px}
+ .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+ .wrap{width:min(var(--max),calc(100% - 28px))}
+ .hero{min-height:680px;background-position:60% center}
+ .hero-in{padding:92px 0 52px}
+ .section{padding:68px 0}
+ .grid,.receipts{grid-template-columns:1fr}
+ .btn{width:100%}
+ .foot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="420 Smoke Shop home">
+      <span class="badge">420</span>
+      <span><strong>420 Smoke Shop</strong><small>Alvernon Way</small></span>
+    </a>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#shop">The Shop</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-in">
+    <p class="kicker">Alvernon Way, Tucson</p>
+    <h1>The <span>24-hour</span> corner store for smoke runs</h1>
+    <p class="lead">420 Smoke Shop on N Alvernon keeps corner-store hours, meaning none: pull up at noon or at 3 in the morning and the counter is staffed and stocked.</p>
+    <div class="meta">
+      <span class="chip"><i class="fa-solid fa-clock"></i> Open 24 hours</span>
+      <span class="chip"><i class="fa-solid fa-id-card"></i> 21+, valid ID required</span>
+      <span class="chip"><i class="fa-solid fa-star"></i> 4.7 stars, 172 Google reviews</span>
+    </div>
+    <div class="actions">
+      <a class="btn btn-lime" href="#shop"><i class="fa-solid fa-store"></i> What's on the shelves</a>
+      <button class="btn btn-ghost" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Come by</button>
+    </div>
+  </div>
+  <div class="asset-note">Stock convenience-store image • Unsplash</div>
+</section>
+
+<div class="agebar"><div class="wrap"><i class="fa-solid fa-id-card"></i><span>21 and over, valid ID required. Every purchase, every hour.</span></div></div>
+
+<section class="section products" id="shop">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker" style="color:#2D6A4F">The Shop</p><h2>Corner-store footprint, smoke-shop selection</h2></div>
+      <p>The product categories below come directly from the supplied site. No prices, discounts, guarantees, or additional inventory claims have been added.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="icon"><i class="fa-solid fa-battery-three-quarters"></i></div><h3>Vapes</h3><p>Disposables and batteries for the usual setups.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-jar"></i></div><h3>Glass</h3><p>Hand pieces and basics for the home shelf.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-scroll"></i></div><h3>Wraps and papers</h3><p>The roll-your-own wall, restocked weekly.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-fire-flame-simple"></i></div><h3>Cigars</h3><p>Quick sticks and classics behind the glass.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-lightbulb"></i></div><h3>Lighters</h3><p>By the register, where they belong.</p></article>
+      <article class="card"><div class="icon"><i class="fa-solid fa-leaf"></i></div><h3>CBD</h3><p>Ask the counter what's currently on the shelf.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section night" id="hours">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker">Hours</p><h2>Open 24 hours</h2></div>
+      <p>The supplied business information says the shop is open 24 hours, every day.</p>
+    </div>
+    <div class="hoursbox">
+      <div class="big24"><strong>24 / 7</strong><p>Open 24 hours, seven days a week.</p></div>
+      <div class="protected"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>The street address, phone number, and direct real-world contact actions are intentionally hidden in this sample site.</p></div>
+    </div>
+  </div>
+  <div class="asset-note">Stock convenience-store image • Unsplash</div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker" style="color:#2D6A4F">Reviews</p><h2>Customer reviews</h2></div>
+      <p>The supplied site identifies the following excerpts as Google reviews and reports a 4.7-star rating from 172 reviews.</p>
+    </div>
+    <div class="receipts">
+      <article class="receipt"><blockquote>“Tommy's staff are great.”</blockquote><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span class="who">Google review · 5 stars</span></article>
+      <article class="receipt"><blockquote>“Nice store.”</blockquote><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><span class="who">Google review · 5 stars</span></article>
+    </div>
+    <div class="summary"><strong>4.7 stars · 172 Google reviews</strong><p>Rating and count shown exactly as supplied in the attached site.</p></div>
+    <div class="actions" style="justify-content:center;margin-top:24px"><button class="btn btn-lime" type="button" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</button></div>
+  </div>
+</section>
+
+<section class="section contact" id="visit">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="kicker" style="color:#2D6A4F">Visit</p><h2>On Alvernon in Tucson</h2></div>
+      <p>The original site includes a direct phone number, full address, Google Maps link, and a text-message form. Those real-world actions are protected in this demo.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Store details</h3>
+        <div class="protected" style="margin-top:18px"><strong>CONTACT DETAILS PROTECTED IN THIS DEMO</strong><p>Business phone number and street address are intentionally hidden in this sample.</p></div>
+        <div class="actions" style="margin-top:22px">
+          <button class="btn btn-lime" type="button" data-locked="true"><i class="fa-solid fa-location-dot"></i> Get Directions</button>
+          <button class="btn" style="border-color:var(--forest);color:var(--forest)" type="button" data-locked="true"><i class="fa-solid fa-phone"></i> Call the Counter</button>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Ask the corner store</h3>
+        <p style="margin:6px 0 18px;color:#5d6d62">The original site provides a quick text form. Submission stays locked here because this is a demo.</p>
+        <form class="form" id="demoForm">
+          <div class="field"><label for="name">Your name</label><input id="name" type="text"></div>
+          <div class="field"><label for="phone">Your phone number</label><input id="phone" type="tel"></div>
+          <div class="field"><label for="question">Your question</label><textarea id="question"></textarea></div>
+          <button class="btn btn-lime" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send it over</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong style="color:#fff">420 Smoke Shop</strong><div style="font-size:.8rem">Tucson, Arizona · Open 24 hours · 21+</div></div>
+    <nav class="footnav"><a href="#shop">The Shop</a><a href="#reviews">Reviews</a><a href="#visit">Visit</a></nav>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-describedby="lockedMsg">
+  <div class="modal-card">
+    <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p id="lockedMsg">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-lime" id="closeModal" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeModal = document.getElementById('closeModal');
+  const form = document.getElementById('demoForm');
+  let lastFocus = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }));
+
+  function openLocked(){
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeModal.focus();
+  }
+  function closeLocked(){
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openLocked();
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    openLocked();
+  });
+
+  closeModal.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => { if(e.target === modal) closeLocked(); });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+    if(e.key === 'Tab' && modal.classList.contains('open')) {
+      e.preventDefault();
+      closeModal.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>

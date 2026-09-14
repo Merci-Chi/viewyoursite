@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#33204C">
+  <title>ABQ Top Market & Smoke Shop | Albuquerque, NM</title>
+  <meta name="description" content="ABQ Top Market & Smoke Shop in Albuquerque, New Mexico. Market essentials, age-restricted smoke-shop products, business hours, and protected demo contact information.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --peak:#452C63;
+      --peak-deep:#33204C;
+      --peak-ink:#241A33;
+      --sunset:#E8763D;
+      --sunset-deep:#D0642C;
+      --mist:#F3EFF9;
+      --white:#fff;
+      --ink:#2B2338;
+      --muted:#6A5F7D;
+      --line:#E1D9EB;
+      --max:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
+    body{
+      margin:0;
+      font-family:'Barlow',sans-serif;
+      background:var(--white);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-user-select:none;
+      user-select:none;
+    }
+    body.modal-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,a{touch-action:manipulation}
+    button{font:inherit}
+    .wrap{width:min(calc(100% - 42px),var(--max));margin:auto}
+    h1,h2,h3{font-family:'Anton',sans-serif;text-transform:uppercase;margin-top:0;line-height:1}
+    h1{font-size:clamp(3.5rem,8vw,7.2rem);letter-spacing:.01em;margin-bottom:22px}
+    h2{font-size:clamp(2.2rem,5vw,4rem);letter-spacing:.01em;margin-bottom:16px}
+    h3{font-size:1.25rem;letter-spacing:.03em}
+    p{line-height:1.7}
+    .kicker{
+      font-size:.72rem;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--sunset)
+    }
+    .btn{
+      min-height:50px;padding:0 22px;border:2px solid transparent;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.08em;
+      cursor:pointer;transition:.2s ease;
+    }
+    .btn-solid{background:var(--sunset);border-color:var(--sunset);color:#fff}
+    .btn-solid:hover{background:var(--sunset-deep);border-color:var(--sunset-deep);transform:translateY(-2px)}
+    .btn-ghost{background:transparent;border-color:rgba(255,255,255,.7);color:#fff}
+    .btn-ghost:hover{background:rgba(255,255,255,.08)}
+    .btn-dark{background:var(--peak-ink);color:#fff}
+    .btn-dark:hover{background:#15101e}
+    .site-header{
+      position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px);border-bottom:1px solid var(--line)
+    }
+    .head{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--peak-ink)}
+    .brand-mark{width:44px;height:38px;flex-shrink:0}
+    .brand-name{display:block;font-family:'Anton';text-transform:uppercase;font-size:1.05rem;letter-spacing:.04em}
+    .brand-sub{display:block;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sunset-deep);font-weight:800}
+    .nav{display:flex;align-items:center;gap:27px}
+    .nav a:not(.btn){font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.84rem}
+    .nav a:not(.btn):hover{color:var(--sunset)}
+    .menu{display:none;width:44px;height:44px;border:0;background:transparent;color:var(--peak);font-size:1.35rem}
+
+    .hero{
+      min-height:720px;position:relative;display:grid;align-items:end;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(36,26,51,.94) 0%,rgba(51,32,76,.78) 48%,rgba(51,32,76,.32) 100%),
+        url("https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=2000&q=82") center/cover no-repeat;
+    }
+    .hero-grid{padding:110px 0 82px;display:grid;grid-template-columns:minmax(0,760px) 1fr;gap:50px;align-items:end}
+    .hero h1 em{font-style:normal;color:var(--sunset)}
+    .hero .lead{max-width:650px;font-size:1.08rem;color:#ece5f4;margin-bottom:28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .demo-tag{
+      margin-top:24px;display:inline-flex;gap:8px;align-items:center;
+      font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:#ddd4e8
+    }
+    .demo-tag i{color:var(--sunset)}
+    .hero-card{
+      justify-self:end;align-self:end;width:min(100%,340px);
+      background:rgba(36,26,51,.82);backdrop-filter:blur(8px);
+      border-left:5px solid var(--sunset);padding:26px
+    }
+    .hero-card strong{font-family:'Anton';font-size:1.45rem;text-transform:uppercase;display:block;margin-bottom:7px}
+    .hero-card p{margin:0;color:#e1d8ec}
+
+    .basecamp{background:var(--sunset);color:#fff}
+    .basecamp .wrap{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .basecamp strong{font-family:'Anton';text-transform:uppercase;font-size:1.45rem}
+    .basecamp span{font-weight:800}
+
+    .section{padding:100px 0}
+    .section.mist{background:var(--mist)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:48px}
+    .section-head p{max-width:540px;color:var(--muted);margin:0}
+    .card-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--line);border-left:1px solid var(--line)
+    }
+    .card{
+      padding:32px;background:#fff;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+      min-height:245px;transition:.2s ease
+    }
+    .card:hover{transform:translateY(-2px);background:#fdfbff}
+    .iconbox{
+      width:52px;height:52px;background:var(--mist);display:grid;place-items:center;
+      color:var(--peak);font-size:1.3rem;margin-bottom:26px
+    }
+    .card p{color:var(--muted);margin-bottom:0}
+    .age-band{
+      margin-top:26px;background:var(--peak-ink);color:#fff;border-left:6px solid var(--sunset);
+      padding:18px 20px;display:flex;align-items:center;gap:14px
+    }
+    .age-band i{color:var(--sunset);font-size:1.2rem}
+    .age-band p{margin:0;font-weight:700}
+
+    .photo-band{
+      min-height:580px;display:grid;align-items:center;color:#fff;
+      background:
+        linear-gradient(90deg,rgba(36,26,51,.92),rgba(36,26,51,.60),rgba(36,26,51,.22)),
+        url("https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&w=2000&q=82") center/cover no-repeat;
+    }
+    .photo-copy{max-width:650px;padding:85px 0}
+    .photo-copy p{color:#e4daed;font-size:1.05rem}
+    .stock-note{
+      display:inline-flex;gap:8px;align-items:center;padding:8px 11px;background:rgba(0,0,0,.36);
+      font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em
+    }
+
+    .hours{padding:100px 0;background:#fff}
+    .hours-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+    .hours-list{border-top:2px solid var(--peak)}
+    .day{display:flex;justify-content:space-between;gap:20px;padding:17px 0;border-bottom:1px solid var(--line)}
+    .day span:last-child{font-weight:800}
+
+    .reviews{padding:100px 0;background:var(--peak);color:#fff}
+    .reviews .kicker{color:#ff9a69}
+    .reviews p{color:#ddd4e8}
+    .rating{
+      margin-top:32px;padding:42px 34px;background:var(--peak-deep);border-left:6px solid var(--sunset);
+      display:flex;align-items:center;justify-content:space-between;gap:35px
+    }
+    .score{font-family:'Anton';font-size:4rem;color:var(--sunset);line-height:1}
+    .rating-copy strong{font-size:1.05rem}
+    .rating-copy p{margin:5px 0 0}
+
+    .visit{padding:100px 0;background:#f8f5fb}
+    .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .visit-card{min-height:380px;padding:40px;background:#fff;border-top:6px solid var(--sunset);display:flex;flex-direction:column;justify-content:space-between}
+    .visit-card.dark{background:var(--peak-ink);color:#fff}
+    .visit-card.dark p{color:#d7cee1}
+    .protected{
+      margin-top:24px;padding:18px;border:2px dashed currentColor;font-size:.82rem;
+      font-weight:800;letter-spacing:.08em;text-transform:uppercase
+    }
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+    .cta{
+      padding:100px 0;color:#fff;
+      background:
+        linear-gradient(rgba(36,26,51,.87),rgba(36,26,51,.92)),
+        url("https://images.unsplash.com/photo-1601598851547-4302969d0614?auto=format&fit=crop&w=2000&q=82") center/cover no-repeat;
+    }
+    .cta-inner{display:grid;grid-template-columns:1fr auto;gap:50px;align-items:center}
+    .cta p{max-width:680px;color:#ddd4e8}
+    footer{background:#1d1628;color:#bfb3cf;padding:34px 0;border-top:4px solid var(--sunset)}
+    .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:.84rem}
+    .foot-links{display:flex;gap:20px}
+
+    .modal{
+      display:none;position:fixed;inset:0;z-index:1000;padding:24px;align-items:center;justify-content:center;
+      background:rgba(18,12,26,.76);backdrop-filter:blur(5px)
+    }
+    .modal.open{display:flex}
+    .modal-card{width:min(100%,460px);background:#fff;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.4)}
+    .modal-icon{width:50px;height:50px;display:grid;place-items:center;background:var(--peak);color:#fff;margin-bottom:20px}
+    .modal-card h3{font-size:1.65rem}
+    .modal-card p{color:var(--muted)}
+    .modal-card .btn{width:100%}
+    :focus-visible{outline:3px solid var(--sunset);outline-offset:3px}
+
+    @media(max-width:940px){
+      .hero-grid,.hours-grid,.visit-grid,.cta-inner{grid-template-columns:1fr}
+      .hero-card{justify-self:start}
+      .card-grid{grid-template-columns:1fr 1fr}
+      .cta .btn{justify-self:start}
+    }
+    @media(max-width:760px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .head{height:66px}
+      .brand-sub{display:none}
+      .menu{display:grid;place-items:center}
+      .nav{
+        position:absolute;left:0;right:0;top:66px;display:none;flex-direction:column;align-items:stretch;
+        gap:0;padding:10px 16px 18px;background:#fff;border-top:1px solid var(--line)
+      }
+      .nav.open{display:flex}
+      .nav a{padding:14px 10px}
+      .nav .btn{margin-top:8px}
+      .hero{min-height:700px;background-position:60% center}
+      .hero-grid{padding:90px 0 70px}
+      h1{font-size:clamp(3.3rem,16vw,5.4rem)}
+      .basecamp .wrap{padding:20px 0;flex-direction:column;align-items:flex-start}
+      .section,.hours,.reviews,.visit,.cta{padding:72px 0}
+      .section-head{display:block}
+      .section-head p{margin-top:18px}
+      .card-grid{grid-template-columns:1fr}
+      .card{min-height:0}
+      .photo-band{min-height:540px;background-position:56% center}
+      .rating{align-items:flex-start;flex-direction:column}
+      .visit-card{min-height:0;padding:30px 24px}
+      .foot{align-items:flex-start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap head">
+      <a class="brand" href="#home" aria-label="ABQ Top Market and Smoke Shop home">
+        <svg class="brand-mark" viewBox="0 0 44 38" aria-hidden="true">
+          <path d="M2 36 L15 8 L22 22 L28 4 L42 36 Z" fill="#452C63"/>
+          <path d="M25.5 8.6 L28 4 L30.5 8.6 L28 7.4 Z" fill="#E8763D"/>
+        </svg>
+        <span>
+          <span class="brand-name">ABQ Top Market &amp; Smoke Shop</span>
+          <span class="brand-sub">Albuquerque, New Mexico</span>
+        </span>
+      </a>
+      <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="#shop">The Shop</a>
+        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+        <button class="btn btn-solid" data-locked="true">Contact</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">Market &amp; Smoke Shop • Albuquerque, New Mexico</div>
+          <h1>The top stop on <em>Montgomery</em></h1>
+          <p class="lead">Market shelves for everyday convenience items and a 21+ smoke-shop counter, open late every day of the week.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#shop"><i class="fa-solid fa-basket-shopping"></i> See the Shop</a>
+            <a class="btn btn-ghost" href="#hours"><i class="fa-solid fa-clock"></i> View Hours</a>
+          </div>
+          <div class="demo-tag"><i class="fa-solid fa-lock"></i> Demo website — real-world actions are protected</div>
+        </div>
+        <aside class="hero-card">
+          <strong>Open Daily</strong>
+          <p>9:00 AM – 11:00 PM<br>Seven days a week</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="basecamp">
+      <div class="wrap">
+        <strong>Montgomery Blvd NE</strong>
+        <span><i class="fa-solid fa-id-card"></i> 21+ with valid ID for age-restricted products</span>
+      </div>
+    </section>
+
+    <section class="section mist" id="shop">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">The Shop</div>
+            <h2>One stop, two sides</h2>
+          </div>
+          <p>The supplied site describes both a neighborhood market and an age-restricted smoke-shop counter. No online ordering or purchase functions are included in this demo.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="iconbox"><i class="fa-solid fa-basket-shopping"></i></div>
+            <h3>Market Shelves</h3>
+            <p>Drinks, snacks, and everyday convenience items are listed in the supplied site.</p>
+          </article>
+          <article class="card">
+            <div class="iconbox"><i class="fa-solid fa-cloud"></i></div>
+            <h3>Smoke Shop</h3>
+            <p>The supplied site identifies a separate 21+ smoke-shop side with age-restricted products.</p>
+          </article>
+          <article class="card">
+            <div class="iconbox"><i class="fa-solid fa-moon"></i></div>
+            <h3>Open Late</h3>
+            <p>The listed hours run until 11 PM every day.</p>
+          </article>
+        </div>
+
+        <div class="age-band">
+          <i class="fa-solid fa-id-card"></i>
+          <p>Valid ID required for all age-restricted tobacco, vape, and related products.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-band" aria-label="Generic market stock imagery">
+      <div class="wrap">
+        <div class="photo-copy">
+          <div class="kicker">Neighborhood Market</div>
+          <h2>Everyday convenience on Montgomery</h2>
+          <p>This demo uses generic market stock photography for presentation. The imagery does not depict the actual ABQ Top Market &amp; Smoke Shop location, employees, inventory, or customers.</p>
+          <span class="stock-note"><i class="fa-solid fa-image"></i> Stock imagery — not the actual business</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="hours" id="hours">
+      <div class="wrap hours-grid">
+        <div>
+          <div class="kicker">Hours</div>
+          <h2>Open seven days</h2>
+          <p>The supplied site lists the same hours every day.</p>
+        </div>
+        <div class="hours-list">
+          <div class="day"><span>Monday</span><span>9:00 AM – 11:00 PM</span></div>
+          <div class="day"><span>Tuesday</span><span>9:00 AM – 11:00 PM</span></div>
+          <div class="day"><span>Wednesday</span><span>9:00 AM – 11:00 PM</span></div>
+          <div class="day"><span>Thursday</span><span>9:00 AM – 11:00 PM</span></div>
+          <div class="day"><span>Friday</span><span>9:00 AM – 11:00 PM</span></div>
+          <div class="day"><span>Saturday</span><span>9:00 AM – 11:00 PM</span></div>
+          <div class="day"><span>Sunday</span><span>9:00 AM – 11:00 PM</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <div class="kicker">Reviews</div>
+        <h2>Google rating</h2>
+        <p>The supplied source reports the following Google rating and review count.</p>
+        <div class="rating">
+          <div class="score">4.6</div>
+          <div class="rating-copy">
+            <strong>4.6 stars · 195 Google reviews</strong>
+            <p>No individual review text is reproduced because none was needed for this protected demo.</p>
+          </div>
+          <button class="btn btn-solid" data-locked="true"><i class="fa-brands fa-google"></i> View Reviews</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Visit</div>
+            <h2>Albuquerque, New Mexico</h2>
+          </div>
+          <p>The source provides a specific street address and phone number, but they are intentionally hidden in this demo.</p>
+        </div>
+
+        <div class="visit-grid">
+          <article class="visit-card">
+            <div>
+              <i class="fa-solid fa-location-dot" style="font-size:1.45rem;color:var(--sunset);margin-bottom:24px"></i>
+              <h3>Business Address</h3>
+              <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+            </div>
+            <div class="actions">
+              <button class="btn btn-solid" data-locked="true"><i class="fa-solid fa-map-location-dot"></i> Get Directions</button>
+            </div>
+          </article>
+
+          <article class="visit-card dark">
+            <div>
+              <i class="fa-solid fa-phone" style="font-size:1.45rem;color:var(--sunset);margin-bottom:24px"></i>
+              <h3>Contact</h3>
+              <p>Real-world phone and contact actions remain disabled until this demo is unlocked.</p>
+              <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+            </div>
+            <div class="actions">
+              <button class="btn btn-solid" data-locked="true"><i class="fa-solid fa-phone"></i> Call</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap cta-inner">
+        <div>
+          <div class="kicker">Demo Contact</div>
+          <h2>Contact actions are protected</h2>
+          <p>This sample site does not enable ordering, payments, age-restricted product purchases, or external contact actions.</p>
+        </div>
+        <button class="btn btn-solid" data-locked="true"><i class="fa-solid fa-lock"></i> Contact</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© ABQ Top Market &amp; Smoke Shop · Albuquerque, NM</div>
+      <div class="foot-links">
+        <a href="#shop">The Shop</a>
+        <a href="#hours">Hours</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" aria-hidden="true">
+    <div class="modal-card" tabindex="-1">
+      <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+      <h3 id="lockedTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn btn-dark" id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('nav');
+    const modal = document.getElementById('lockedModal');
+    const modalCard = modal.querySelector('.modal-card');
+    const modalClose = document.getElementById('modalClose');
+    let previousFocus = null;
+
+    menuBtn.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.innerHTML = open
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('a[href^="#"]:not([data-locked="true"])').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    function openLocked(trigger){
+      previousFocus = trigger || document.activeElement;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      setTimeout(() => modalCard.focus(),0);
+    }
+
+    function closeLocked(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      if(previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+    }
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        openLocked(el);
+      });
+    });
+
+    modalClose.addEventListener('click', closeLocked);
+    modal.addEventListener('click', e => {
+      if(e.target === modal) closeLocked();
+    });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && modal.classList.contains('open')) closeLocked();
+      if(e.key === 'Tab' && modal.classList.contains('open')){
+        e.preventDefault();
+        modalClose.focus();
+      }
+    });
+
+    document.addEventListener('gesturestart', e => e.preventDefault());
+    document.addEventListener('gesturechange', e => e.preventDefault());
+    document.addEventListener('gestureend', e => e.preventDefault());
+    document.addEventListener('wheel', e => {
+      if(e.ctrlKey || e.metaKey) e.preventDefault();
+    }, {passive:false});
+  </script>
+
+  <!--
+  ============================================================
+  DEVELOPMENT / APPROVAL NOTES
+  ============================================================
+
+  SOURCE-DERIVED DETAILS USED
+  - Business: ABQ Top Market & Smoke Shop
+  - City: Albuquerque, New Mexico
+  - Montgomery Blvd NE location context
+  - Market side + 21+ smoke-shop side
+  - Market items described in source: drinks, snacks, daily essentials
+  - Age-restricted products are mentioned only categorically
+  - Hours: 9 AM–11 PM daily
+  - Google rating statement: 4.6 stars / 195 reviews
+  - Valid ID / 21+ notice from supplied source
+
+  DEMO PROTECTIONS
+  - Exact street address hidden from visible page
+  - Phone hidden from visible page
+  - Directions locked
+  - Call/contact actions locked
+  - Review external-link action locked
+  - No forms
+  - No purchases
+  - No checkout
+  - No payment system
+  - No age-restricted product ordering
+
+  STOCK ASSETS
+  - Hero: generic convenience-store / market stock image loaded from Unsplash
+  - Mid-page: generic retail shelves stock image loaded from Unsplash
+  - CTA: generic retail stock image loaded from Unsplash
+  - Stock imagery is not presented as the real business
+  - Icons: Font Awesome Free via CDN
+
+  MISSING / UNSUPPORTED ITEMS NOT ADDED
+  - Owner or employee names
+  - Email
+  - Prices
+  - Discounts
+  - Product brands
+  - Inventory claims
+  - Weekly restocking claims
+  - Parking claims
+  - Awards
+  - Licenses/certifications
+  - Years in business
+  - Individual testimonials
+  - Social-media profiles
+  - Working form destination
+  - Booking/payment/login functionality
+
+  SEO
+  Title: ABQ Top Market & Smoke Shop | Albuquerque, NM
+  Meta description included in the head.
+  Suggested local terms:
+  ABQ Top Market
+  Albuquerque market
+  Montgomery Blvd convenience market
+  Albuquerque smoke shop
+
+  QUALITY CHECK
+  [x] Single HTML file
+  [x] CSS in HTML
+  [x] JavaScript in HTML
+  [x] Desktop responsive
+  [x] Tablet responsive
+  [x] Mobile responsive
+  [x] Three-line hamburger navigation
+  [x] Mobile zoom prevention
+  [x] Text selection disabled
+  [x] Background imagery
+  [x] Professional icon library
+  [x] Real-world actions locked
+  [x] One reusable modal
+  [x] Modal closes by button, backdrop, Escape
+  [x] Contact details visibly protected
+  [x] No fake success states
+  [x] No online ordering/payment behavior
+  [x] Internal navigation works
+  ============================================================
+  -->
+</body>
+</html>

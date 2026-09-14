@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Aerts Woodworking | Fine Cabinetry & Woodworking in Cincinnati</title>
+  <meta name="description" content="Aerts Woodworking is an owner-operated Cincinnati woodworking shop offering custom cabinetry, cabinet repair, built-ins, furniture repair, finish carpentry, and custom pieces.">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#1c1814;
+      --ink-2:#3a3028;
+      --cream:#f6f0e6;
+      --paper:#fffdf8;
+      --wood:#8a5a32;
+      --wood-dark:#5d3b23;
+      --brass:#b88952;
+      --line:#d8cab9;
+      --muted:#766a5f;
+      --max:1180px;
+      --shadow:0 18px 50px rgba(42,29,20,.12);
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;background:linear-gradient(rgba(246,240,230,.9),rgba(246,240,230,.9)),url("https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=1600&q=80") center/cover fixed;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden}
+    body.modal-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    .container{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:800;color:var(--wood-dark)}
+    .eyebrow:before{content:"";width:34px;height:1px;background:currentColor}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.02;margin:0;font-weight:500}
+    h1{font-size:clamp(3rem,7vw,6.8rem);letter-spacing:-.04em}
+    h2{font-size:clamp(2.2rem,4vw,4.2rem);letter-spacing:-.035em}
+    h3{font-size:1.55rem}
+    p{margin:0;color:var(--ink-2)}
+    .section{padding:100px 0}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:60px;align-items:end;margin-bottom:50px}
+    .section-head p{max-width:600px;font-size:1.04rem}
+
+    .with-bg{position:relative;isolation:isolate;overflow:hidden}
+    .with-bg > .container,.with-bg > div,.with-bg > form{position:relative;z-index:1}
+    .with-bg::before,.with-bg::after{content:"";position:absolute;inset:0}
+    .with-bg::before{background-size:cover;background-position:center;background-repeat:no-repeat;transform:scale(1.03);z-index:-2}
+    .with-bg::after{z-index:-1}
+
+    .facts.with-bg::before{background-image:url("https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=1500&q=86")}
+    .facts.with-bg::after{background:linear-gradient(90deg,rgba(20,14,10,.9),rgba(20,14,10,.84))}
+
+    #signature.with-bg::before{background-image:url("https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=1600&q=84")}
+    #signature.with-bg::after{background:linear-gradient(rgba(255,253,248,.8),rgba(246,240,230,.84))}
+
+    .services.with-bg::before{background-image:url("https://images.unsplash.com/photo-1609205807107-e8ec2120f9de?auto=format&fit=crop&w=1600&q=84")}
+    .services.with-bg::after{background:linear-gradient(rgba(255,253,248,.76),rgba(255,253,248,.84))}
+
+    .pricing.with-bg::before{background-image:url("https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1600&q=84")}
+    .pricing.with-bg::after{background:linear-gradient(rgba(239,226,208,.68),rgba(223,209,191,.76))}
+
+    .about.with-bg::before{background-image:url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1600&q=84")}
+    .about.with-bg::after{background:linear-gradient(rgba(246,240,230,.8),rgba(246,240,230,.86))}
+
+    .reviews.with-bg::before{background-image:url("https://images.unsplash.com/photo-1565791380713-1756b9a05343?auto=format&fit=crop&w=1600&q=84")}
+    .reviews.with-bg::after{background:linear-gradient(rgba(255,253,248,.78),rgba(255,253,248,.86))}
+
+    .contact.with-bg::before{background-image:url("https://images.unsplash.com/photo-1605027990121-cbae9e0642df?auto=format&fit=crop&w=1600&q=84")}
+    .contact.with-bg::after{background:linear-gradient(90deg,rgba(18,13,10,.88),rgba(18,13,10,.78))}
+
+
+    .topbar{background:var(--ink);color:#f6efe5;padding:9px 0;font-size:.82rem}
+    .topbar .container{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .topbar strong{font-weight:700}
+    .protected{display:inline-flex;align-items:center;gap:8px;color:#e8d9c8;font-weight:700;letter-spacing:.02em}
+    .protected i{color:var(--brass)}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(246,240,230,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(93,59,35,.13)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .brand{display:flex;align-items:center;gap:13px;min-width:0}
+    .brand-mark{width:42px;height:42px;border:1px solid var(--wood-dark);display:grid;place-items:center;transform:rotate(45deg)}
+    .brand-mark i{transform:rotate(-45deg);font-size:1rem}
+    .brand-text{display:grid;line-height:1.05}
+    .brand-text strong{font-family:Georgia,serif;font-size:1.1rem}
+    .brand-text span{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:5px}
+    nav{display:flex;align-items:center;gap:28px}
+    nav a{font-size:.9rem;font-weight:700;position:relative}
+    nav a:not(.btn):after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:var(--wood-dark);transition:.25s ease}
+    nav a:hover:after{right:0}
+    .btn{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--ink);color:#fff;border:1px solid var(--ink);font-weight:800;transition:transform .2s ease,background .2s ease,color .2s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.light{background:transparent;color:var(--ink);border-color:var(--wood-dark)}
+    .btn.light:hover{background:var(--wood-dark);color:#fff}
+    .menu-btn{display:none;width:46px;height:46px;background:transparent;border:1px solid var(--line);font-size:1.15rem;color:var(--ink)}
+
+    .hero{min-height:calc(100vh - 111px);display:grid;grid-template-columns:1.02fr .98fr;background:var(--paper)}
+    .hero-copy{padding:clamp(70px,8vw,120px) clamp(26px,6vw,90px);display:flex;flex-direction:column;justify-content:center;position:relative}
+    .hero-copy:after{content:"";position:absolute;right:30px;bottom:32px;width:120px;height:120px;border:1px solid var(--line);transform:rotate(45deg);opacity:.55}
+    .hero h1 span{color:var(--wood)}
+    .hero-copy>p{font-size:clamp(1.05rem,1.5vw,1.28rem);max-width:680px;margin:26px 0 32px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:2}
+    .hero-media{position:relative;min-height:610px;overflow:hidden;background:#3c2b1f}
+    .hero-media img{filter:saturate(.9) contrast(1.02)}
+    .hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,24,20,.05),rgba(28,24,20,.22))}
+    .hero-caption{position:absolute;z-index:2;right:30px;bottom:30px;background:rgba(255,253,248,.92);padding:15px 18px;max-width:250px;border-left:3px solid var(--wood)}
+    .hero-caption small{display:block;color:var(--muted);line-height:1.4}
+
+    .facts{margin-top:-1px;background:var(--ink);color:#fff}
+    .facts-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .fact{padding:34px 28px;border-right:1px solid rgba(255,255,255,.12)}
+    .fact:last-child{border-right:0}
+    .fact i{color:var(--brass);font-size:1.15rem;margin-bottom:16px}
+    .fact strong{display:block;font-size:1rem}
+    .fact span{font-size:.84rem;color:#cfc4ba;display:block;margin-top:5px}
+
+    .signature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .signature-card{min-height:440px;position:relative;overflow:hidden;background:#261c15;color:#fff}
+    .signature-card img{position:absolute;inset:0;transition:transform .6s ease;filter:saturate(.84)}
+    .signature-card:hover img{transform:scale(1.04)}
+    .signature-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(20,14,10,.88) 100%)}
+    .signature-content{position:absolute;z-index:2;left:28px;right:28px;bottom:28px}
+    .signature-content h3{margin-bottom:9px}.signature-content p{color:#e7ddd2;font-size:.92rem}
+    .signature-content .mini{display:inline-flex;margin-top:15px;color:#e9c8a5;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800}
+
+    .bench{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+    .bench .section-head p{color:#cfc4ba}
+    .bench .eyebrow{color:#d8b07b}
+    .bench-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:22px}
+    .bench-main{min-height:560px;position:relative;overflow:hidden}
+    .bench-main:after,.bench-small:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(16,11,8,.75))}
+    .bench-label{position:absolute;z-index:2;left:24px;bottom:22px}
+    .bench-label span{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:#d8b07b;font-weight:800}
+    .bench-side{display:grid;grid-template-rows:1fr 1fr;gap:22px}
+    .bench-small{min-height:260px;position:relative;overflow:hidden}
+
+    .services{background:var(--paper)}
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+    .service-row{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:start;padding:30px 22px 30px 0;border-bottom:1px solid var(--line);background:rgba(255,253,248,.48)}
+    .service-row:nth-child(odd){border-right:1px solid var(--line);padding-right:34px}
+    .service-row:nth-child(even){padding-left:34px}
+    .service-icon{width:52px;height:52px;border:1px solid var(--line);display:grid;place-items:center;color:var(--wood-dark)}
+    .service-copy p{font-size:.92rem;margin-top:8px;color:var(--muted)}
+    .service-action{border:0;background:transparent;color:var(--wood-dark);cursor:pointer;padding:7px;font-size:.95rem}
+    .service-row:hover .service-icon{background:var(--wood-dark);color:#fff;border-color:var(--wood-dark)}
+
+    .pricing{display:grid;grid-template-columns:.9fr 1.1fr;min-height:500px;background:#dfd1bf}
+    .pricing-image{min-height:420px;background:#3a2a20}
+    .pricing-copy{padding:70px clamp(28px,6vw,80px);display:flex;flex-direction:column;justify-content:center}
+    .pricing-copy p{font-size:1.04rem;margin:22px 0 28px;max-width:700px}
+
+    .about{background:var(--cream)}
+    .about-grid{display:grid;grid-template-columns:.96fr 1.04fr;gap:68px;align-items:center}
+    .about-media{position:relative;min-height:600px}
+    .about-media .main-img{position:absolute;inset:0 70px 70px 0}
+    .about-media .detail-img{position:absolute;width:48%;height:45%;right:0;bottom:0;border:10px solid var(--cream);box-shadow:var(--shadow)}
+    .about-copy h2{margin:12px 0 28px}
+    .about-points{margin-top:32px;border-top:1px solid var(--line)}
+    .about-point{padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:44px 1fr;gap:14px}
+    .about-point i{color:var(--wood);margin-top:4px}
+    .about-point p{font-size:.92rem;color:var(--muted);margin-top:5px}
+
+    .reviews{background:var(--paper)}
+    .rating-strip{display:grid;grid-template-columns:200px 1fr;gap:38px;align-items:center;padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px}
+    .score{font-family:Georgia,serif;font-size:4.6rem;line-height:1;color:var(--wood-dark)}
+    .stars{color:var(--brass);letter-spacing:.16em;margin:8px 0}
+    .review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .review{border:1px solid var(--line);padding:28px;background:rgba(255,255,255,.88);backdrop-filter:blur(2px)}
+    .review .meta{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}
+    .review .source{font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;color:var(--wood-dark);font-weight:800}
+    .review p{color:var(--ink-2)}
+    .review .notice{margin-top:18px;font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+
+    .contact{background:var(--ink);color:#fff}
+    .contact .eyebrow{color:#d8b07b}.contact h2{margin:12px 0 18px}.contact p{color:#cfc4ba}
+    .contact-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:68px;align-items:start}
+    .contact-cards{display:grid;gap:12px;margin-top:30px}
+    .contact-card{display:grid;grid-template-columns:48px 1fr;gap:14px;padding:18px;border:1px solid rgba(255,255,255,.14)}
+    .contact-card i{width:42px;height:42px;display:grid;place-items:center;background:rgba(255,255,255,.06);color:#d8b07b}
+    .contact-card strong{display:block}.contact-card span{display:block;color:#d1c4b7;font-size:.88rem;margin-top:4px}
+    .form{background:rgba(255,253,248,.96);backdrop-filter:blur(3px);color:var(--ink);padding:34px}
+    .form h3{margin-bottom:22px}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field{display:grid;gap:7px;margin-bottom:14px}
+    .field.full{grid-column:1/-1}
+    .field label{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--muted)}
+    .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fff;padding:13px 14px;color:var(--ink);outline:none;border-radius:0}
+    .field textarea{min-height:130px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--wood)}
+
+    footer{position:relative;overflow:hidden;background:#120f0d;color:#c9bbae;padding:28px 0}
+    footer:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(18,15,13,.86),rgba(18,15,13,.9)),url("https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;z-index:0}
+    footer .container{position:relative;z-index:1}
+    footer .container{display:flex;justify-content:space-between;gap:24px;align-items:center;font-size:.82rem}
+    footer a{color:#fff}
+
+    .modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(10,8,7,.72)}
+    .modal.open{display:flex}
+    .modal-card{width:min(100%,460px);background:var(--paper);padding:34px;box-shadow:0 35px 90px rgba(0,0,0,.35);position:relative}
+    .modal-icon{width:54px;height:54px;display:grid;place-items:center;border:1px solid var(--line);color:var(--wood-dark);margin-bottom:20px}
+    .modal h3{font-size:2rem;margin-bottom:12px}.modal p{color:var(--muted);margin-bottom:24px}
+    .modal .btn{width:100%}
+
+    @media (max-width:980px){
+      nav{position:fixed;inset:111px 18px auto 18px;background:var(--paper);box-shadow:var(--shadow);border:1px solid var(--line);padding:20px;display:none;flex-direction:column;align-items:stretch;gap:0}
+      nav.open{display:flex}nav a{padding:15px;border-bottom:1px solid var(--line)}nav .btn{margin-top:10px}.menu-btn{display:grid;place-items:center}
+      .hero{grid-template-columns:1fr}.hero-media{min-height:520px}.facts-grid{grid-template-columns:repeat(2,1fr)}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.12)}
+      .section-head,.bench-grid,.pricing,.about-grid,.contact-grid{grid-template-columns:1fr}.section-head{gap:20px}.signature-grid{grid-template-columns:1fr 1fr}.bench-side{grid-template-columns:1fr 1fr;grid-template-rows:none}.pricing-image{min-height:460px}.about-media{min-height:520px}.services-grid{grid-template-columns:1fr}.service-row:nth-child(odd){border-right:0;padding-right:0}.service-row:nth-child(even){padding-left:0}.review-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .container{width:min(calc(100% - 28px),var(--max))}.section{padding:72px 0}.topbar .container{justify-content:center}.topbar strong{display:none}.topbar{font-size:.73rem}header{top:0}.nav{height:70px}nav{inset:103px 14px auto 14px}.brand-text span{font-size:.62rem}.hero{min-height:auto}.hero-copy{padding:70px 22px 54px}.hero-copy:after{display:none}.hero-media{min-height:420px}.hero-caption{right:18px;left:18px;bottom:18px;max-width:none}.facts-grid{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)!important}.fact:last-child{border-bottom:0!important}.signature-grid{grid-template-columns:1fr}.signature-card{min-height:400px}.bench-main{min-height:420px}.bench-side{grid-template-columns:1fr}.bench-small{min-height:240px}.service-row{grid-template-columns:52px 1fr auto;gap:12px;padding:24px 0}.service-icon{width:46px;height:46px}.pricing-copy{padding:52px 22px}.about-grid{gap:42px}.about-media{min-height:420px}.about-media .main-img{inset:0 38px 48px 0}.about-media .detail-img{border-width:6px}.rating-strip{grid-template-columns:1fr;gap:12px}.field-grid{grid-template-columns:1fr}.form{padding:24px}.field.full{grid-column:auto}footer .container{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <!-- Stock imagery and background photography are used for visual presentation only; they are not represented as actual business projects, staff, or property. Sources: Unsplash remote image URLs. -->
+  <div class="topbar">
+    <div class="container">
+      <strong>Owner operated. No subs. Flat rate work.</strong>
+      <span class="protected"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Aerts Woodworking home">
+        <span class="brand-mark"><i class="fa-solid fa-compass-drafting"></i></span>
+        <span class="brand-text"><strong>Aerts Woodworking</strong><span>Fine Cabinetry, Cincinnati</span></span>
+      </a>
+      <nav id="siteNav" aria-label="Primary navigation">
+        <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+        <a href="#" class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call Now</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">Cincinnati, Ohio woodworker</span>
+        <h1>Fine woodworking,<br><span>built the old way.</span></h1>
+        <p>Custom cabinetry and fine woodworking from a one man shop. Twenty six years at the bench, every joint cut by the owner himself.</p>
+        <div class="hero-actions">
+          <button class="btn" data-locked="true"><i class="fa-solid fa-phone"></i> Call the shop</button>
+          <a href="#bench" class="btn light"><i class="fa-solid fa-arrow-down"></i> See the work</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=1500&q=86" alt="Stock image of woodworking tools and timber">
+        <div class="hero-caption"><strong>Craft-first approach</strong><small>Stock imagery shown for presentation. Project photos are not yet available online.</small></div>
+      </div>
+    </section>
+
+    <section class="facts with-bg" aria-label="Shop facts">
+      <div class="container facts-grid">
+        <div class="fact"><i class="fa-solid fa-user-gear"></i><strong>Owner operated</strong><span>No subcontractors</span></div>
+        <div class="fact"><i class="fa-solid fa-tag"></i><strong>Flat rate pricing</strong><span>No service fees</span></div>
+        <div class="fact"><i class="fa-solid fa-truck"></i><strong>No travel charges</strong><span>In the area</span></div>
+        <div class="fact"><i class="fa-regular fa-clock"></i><strong>Mon to Fri</strong><span>9 AM to 6 PM · call to confirm</span></div>
+      </div>
+    </section>
+
+    <section class="section with-bg" id="signature">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">The joinery-first shop</span><h2>Three ways this shop earns its keep.</h2></div>
+          <p>Details are based on the shop’s public listing; call to confirm any specific project.</p>
+        </div>
+        <div class="signature-grid">
+          <article class="signature-card"><img src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=1000&q=84" alt="Stock image of wood cabinetry"><div class="signature-content"><h3>Custom Cabinetry</h3><p>Kitchens, baths, and built ins designed around your room and built to last.</p><button class="service-action mini" data-locked="true">Call to confirm</button></div></article>
+          <article class="signature-card"><img src="https://images.unsplash.com/photo-1583845112203-29329902332e?auto=format&fit=crop&w=1000&q=84" alt="Stock image of cabinet detail"><div class="signature-content"><h3>Cabinet Repair</h3><p>Hinges, drawers, doors, and worn finishes put right by a craftsman, not a crew.</p><button class="service-action mini" data-locked="true">Call to confirm</button></div></article>
+          <article class="signature-card"><img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1000&q=84" alt="Stock image of fine wood furniture"><div class="signature-content"><h3>Fine Woodworking</h3><p>One off pieces, furniture repair, and detail carpentry with traditional joinery.</p><button class="service-action mini" data-locked="true">Call to confirm</button></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bench" id="bench">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">From the bench</span><h2>Work shaped by joinery.</h2></div><p>A dovetail joint is strong because every piece locks its neighbor in place. That is how this shop treats every project. Project photos are not yet available online.</p></div>
+        <div class="bench-grid">
+          <div class="bench-main"><img src="https://images.unsplash.com/photo-1605027990121-cbae9e0642df?auto=format&fit=crop&w=1400&q=84" alt="Stock close-up of woodworking"><div class="bench-label"><span>Stock image</span><h3>Dovetail Drawers</h3></div></div>
+          <div class="bench-side">
+            <div class="bench-small"><img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=900&q=84" alt="Stock kitchen cabinetry image"><div class="bench-label"><span>Stock image</span><h3>Kitchen Cabinetry</h3></div></div>
+            <div class="bench-small"><img src="https://images.unsplash.com/photo-1565791380713-1756b9a05343?auto=format&fit=crop&w=900&q=84" alt="Stock wooden furniture image"><div class="bench-label"><span>Stock image</span><h3>Furniture Repair</h3></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services with-bg" id="services">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">What the shop does</span><h2>Services</h2></div><p>The shop’s public listing describes the trade as fine woodworking and cabinetry. Specific offerings below reflect that listing; call to confirm your project is a fit. The listing states the shop does not offer free project estimates.</p></div>
+        <div class="services-grid">
+          <article class="service-row"><div class="service-icon"><i class="fa-solid fa-kitchen-set"></i></div><div class="service-copy"><h3>Custom Cabinets</h3><p>New cabinetry for kitchens, baths, laundry rooms, and home offices. Designed, built, and installed by the owner.</p></div><button class="service-action" data-locked="true" aria-label="Call to confirm Custom Cabinets"><i class="fa-solid fa-arrow-right"></i></button></article>
+          <article class="service-row"><div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div><div class="service-copy"><h3>Cabinet Repair</h3><p>Door and drawer repair, hinge replacement, refacing, and finish touch ups on existing cabinetry.</p></div><button class="service-action" data-locked="true" aria-label="Call to confirm Cabinet Repair"><i class="fa-solid fa-arrow-right"></i></button></article>
+          <article class="service-row"><div class="service-icon"><i class="fa-solid fa-layer-group"></i></div><div class="service-copy"><h3>Built Ins and Shelving</h3><p>Bookcases, entertainment centers, and storage walls fitted to your exact space.</p></div><button class="service-action" data-locked="true" aria-label="Call to confirm Built Ins and Shelving"><i class="fa-solid fa-arrow-right"></i></button></article>
+          <article class="service-row"><div class="service-icon"><i class="fa-solid fa-chair"></i></div><div class="service-copy"><h3>Furniture Repair</h3><p>Regluing, refinishing, and structural repair for wood furniture worth saving.</p></div><button class="service-action" data-locked="true" aria-label="Call to confirm Furniture Repair"><i class="fa-solid fa-arrow-right"></i></button></article>
+          <article class="service-row"><div class="service-icon"><i class="fa-solid fa-ruler-combined"></i></div><div class="service-copy"><h3>Finish Carpentry</h3><p>Trim, molding, and detail work finished with a cabinetmaker’s eye.</p></div><button class="service-action" data-locked="true" aria-label="Call to confirm Finish Carpentry"><i class="fa-solid fa-arrow-right"></i></button></article>
+          <article class="service-row"><div class="service-icon"><i class="fa-solid fa-hammer"></i></div><div class="service-copy"><h3>Custom Pieces</h3><p>One of a kind tables, boxes, and gifts built from solid hardwood.</p></div><button class="service-action" data-locked="true" aria-label="Call to confirm Custom Pieces"><i class="fa-solid fa-arrow-right"></i></button></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing with-bg">
+      <div class="pricing-image"><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1400&q=84" alt="Stock image of a woodworking shop"></div>
+      <div class="pricing-copy"><span class="eyebrow">How pricing works</span><h2>Flat rate, direct terms.</h2><p>Per the shop’s public profile: owner operated with no subcontractors, flat rate charges, no travel charges, and no service fees. Estimates are not free. Every project is discussed directly with the craftsman, so what you are quoted is what the work costs.</p><button class="btn" data-locked="true"><i class="fa-solid fa-comments"></i> Discuss your project</button></div>
+    </section>
+
+    <section class="section about with-bg" id="about">
+      <div class="container about-grid">
+        <div class="about-media"><div class="main-img"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=84" alt="Stock image of a woodworker at a workbench"></div><div class="detail-img"><img src="https://images.unsplash.com/photo-1609205807107-e8ec2120f9de?auto=format&fit=crop&w=700&q=84" alt="Stock image of woodworking tools"></div></div>
+        <div class="about-copy"><span class="eyebrow">The shop and the craftsman</span><h2>About Aerts Woodworking</h2><p>A one man woodworking shop in Cincinnati’s Northside area. Contact details are protected in this demo.</p><div class="about-points"><div class="about-point"><i class="fa-solid fa-user-check"></i><div><h3>Owner operated, start to finish</h3><p>The shop’s public profile states it plainly: owner operated, no subs. The person who measures your kitchen is the person who cuts the joints. Twenty six years of experience is listed on the shop’s public Angi profile.</p></div></div><div class="about-point"><i class="fa-solid fa-file-invoice-dollar"></i><div><h3>Flat rate, honest terms</h3><p>Flat rate pricing with no travel charges and no service fees, per the public listing. The listing states estimates are not free and no warranty is advertised, so ask about both when you call.</p></div></div></div></div>
+      </div>
+    </section>
+
+    <section class="section reviews with-bg" id="reviews">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">What customers say</span><h2>Reviews</h2></div><p>The shop holds a 5.0 rating across 4 public reviews on Angi, spanning 2007 to 2016.</p></div>
+        <div class="rating-strip"><div><div class="score">5.0</div><div class="stars" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div><div><h3>100% five star reviews</h3><p>Source: Angi public listing for Aerts Woodworking.</p><button class="btn light" data-locked="true" style="margin-top:18px"><i class="fa-solid fa-arrow-up-right-from-square"></i> View source</button></div></div>
+        <div class="review-grid">
+          <article class="review"><div class="meta"><span class="source">Angi · May 2016</span><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><p>Five star review, reviewer recommends this pro. Reported project cost: $6,500.</p><div class="notice"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></article>
+          <article class="review"><div class="meta"><span class="source">Angi · April 2016</span><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><p>Five star review, reviewer recommends this pro.</p><div class="notice"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></article>
+          <article class="review"><div class="meta"><span class="source">Angi · May 2008</span><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><p>Five star review, reviewer recommends this pro. Reported project cost: $400.</p><div class="notice"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></article>
+          <article class="review"><div class="meta"><span class="source">Angi · October 2007</span><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><p>“He was the only one that appeared to be willing to do the job. He showed on time and did a great.”</p><div class="notice"><i class="fa-solid fa-shield-halved"></i> CONTACT DETAILS PROTECTED IN THIS DEMO</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact with-bg" id="contact">
+      <div class="container contact-grid">
+        <div><span class="eyebrow">Start with a call</span><h2>Contact</h2><p>This is a call first shop. The phone number and address are intentionally hidden in this demo.</p><div class="contact-cards"><div class="contact-card"><i class="fa-solid fa-phone"></i><div><strong>Phone</strong><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></div></div><div class="contact-card"><i class="fa-solid fa-location-dot"></i><div><strong>Address</strong><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></div></div><div class="contact-card"><i class="fa-regular fa-clock"></i><div><strong>Hours</strong><span>Monday to Friday, 9 AM to 6 PM · publicly listed; call to confirm before visiting.</span></div></div></div></div>
+        <form class="form" id="projectForm"><h3>Draft a project inquiry</h3><div class="field-grid"><div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name"></div><div class="field"><label for="phone">Your phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div><div class="field full"><label for="type">Project type</label><select id="type" name="type"><option>Custom cabinets</option><option>Cabinet repair</option><option>Built ins or shelving</option><option>Furniture repair</option><option>Finish carpentry</option><option>Something else</option></select></div><div class="field full"><label for="details">Project details</label><textarea id="details" name="details"></textarea></div><div class="field full"><button class="btn" type="submit" data-locked="true"><i class="fa-regular fa-envelope"></i> Draft project inquiry</button></div></div></form>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><span>© Aerts Woodworking</span><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span><a href="#home">Back to top <i class="fa-solid fa-arrow-up"></i></a></div></footer>
+
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-card"><div class="modal-icon"><i class="fa-solid fa-lock"></i></div><h3 id="modalTitle">This is currently locked.</h3><p id="modalDesc">This feature is part of the full website. Purchase the site to unlock it.</p><button class="btn" id="closeModal">Close</button></div>
+  </div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn');
+    const siteNav=document.getElementById('siteNav');
+    const modal=document.getElementById('lockedModal');
+    const closeModal=document.getElementById('closeModal');
+    let lastFocus=null;
+
+    menuBtn.addEventListener('click',()=>{
+      const open=siteNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',String(open));
+      menuBtn.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+    });
+    siteNav.querySelectorAll('a[href^="#"]:not([data-locked])').forEach(a=>a.addEventListener('click',()=>{
+      siteNav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+    }));
+
+    function openLocked(e){
+      if(e){e.preventDefault();e.stopPropagation();}
+      lastFocus=document.activeElement;
+      modal.classList.add('open');document.body.classList.add('modal-open');
+      closeModal.focus();
+    }
+    function closeLocked(){modal.classList.remove('open');document.body.classList.remove('modal-open');if(lastFocus)lastFocus.focus();}
+    document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+    closeModal.addEventListener('click',closeLocked);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeLocked()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked()});
+    document.getElementById('projectForm').addEventListener('submit',openLocked);
+
+    document.addEventListener('gesturestart',e=>e.preventDefault());
+    document.addEventListener('dblclick',e=>e.preventDefault(),{passive:false});
+  </script>
+</body>
+</html>
