@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>24 Hour Laundromat in SE Albuquerque | XXL WASHERS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -338,8 +338,109 @@ footer{
   .foot-meta{ text-align:left; }
   .size-scale{ gap:16px; }
 }
+
+/* ===== Locked demo additions ===== */
+html, body, *{
+  -webkit-user-select:none;
+  user-select:none;
+}
+body.modal-open{ overflow:hidden; }
+
+.hero{
+  position:relative;
+  background:
+    linear-gradient(180deg, rgba(227,240,251,.94) 0%, rgba(255,255,255,.94) 100%),
+    url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(21,101,192,.05));
+}
+.hero > *{ position:relative; z-index:1; }
+
+.block.bg-laundry{
+  position:relative;
+  background:
+    linear-gradient(rgba(236,239,241,.93), rgba(236,239,241,.93)),
+    url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat fixed;
+}
+
+.demo-protected{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  border:2px solid var(--blue);
+  background:var(--blue-tint);
+  color:var(--blue-deep);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  border-radius:10px;
+}
+.demo-protected i{ color:var(--blue); }
+
+.demo-lock-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(13,71,161,.68);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.demo-lock-modal.open{ display:flex; }
+
+.demo-lock-box{
+  width:min(100%, 500px);
+  background:#fff;
+  color:var(--ink);
+  border-top:7px solid var(--blue);
+  border-radius:14px;
+  box-shadow:0 30px 80px rgba(0,0,0,.28);
+  padding:30px;
+}
+.demo-lock-box h2{
+  color:var(--blue-deep);
+  font-size:1.8rem;
+}
+.demo-lock-box p{
+  margin:12px 0 22px;
+  color:#455A64;
+}
+.demo-lock-close{
+  width:100%;
+  justify-content:center;
+}
+[data-locked="true"]{
+  cursor:pointer;
+}
+
+.stock-note{
+  margin-top:14px;
+  font-size:.78rem;
+  color:#607D8B;
+  text-align:center;
+}
+
 </style>
 </head>
+
+<!--
+DEMO BUILD NOTES
+- Contact details are intentionally protected.
+- Real-world actions are locked.
+- Stock images:
+  1) https://images.unsplash.com/photo-1545173168-9f1947eebb7f
+  2) https://images.unsplash.com/photo-1604335399105-a0c585fd81a1
+- Stock images are decorative and do not represent XXL WASHERS, its staff, or actual premises.
+- Font Awesome is loaded from cdnjs for free icons.
+-->
+
 <body>
 <div class="site-shell">
   <header class="site">
@@ -372,7 +473,7 @@ footer{
         <div class="wrap hero-grid">
           <div>
             <span class="tue-badge tue-hero"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Free dryers on Tuesdays</span>
-            <p class="kicker">Laundromat · 611 San Mateo Blvd SE</p>
+            <p class="kicker">Laundromat · Southeast Albuquerque</p>
             <h1>Really big washers. Open 24 hours.</h1>
             <p class="lead">XXL WASHERS on San Mateo Blvd SE keeps the doors unlocked around the clock, with a full spread of machine sizes from a small load to the giant XXL drums. Wash on your schedule, not on a timer.</p>
             <div class="hero-cta">
@@ -389,7 +490,8 @@ footer{
             </div>
           </div>
         </div>
-        <div class="size-scale" aria-label="Machine sizes from small to XXL">
+        <p class="stock-note">Background photography is stock imagery for this demo and does not depict the actual business.</p>
+<div class="size-scale" aria-label="Machine sizes from small to XXL">
           <div class="size-step ss1"><span class="size-dot"></span><small>S</small></div>
           <div class="size-step ss2"><span class="size-dot"></span><small>M</small></div>
           <div class="size-step ss3"><span class="size-dot"></span><small>L</small></div>
@@ -430,7 +532,7 @@ footer{
         </div>
       </section>
 
-      <section class="block tint">
+      <section class="block tint bg-laundry">
         <div class="wrap">
           <div class="sec-head">
             <h2>What neighbors say</h2>
@@ -551,7 +653,7 @@ footer{
           </div>
           <p class="rating-summary">4.3 stars with 410 reviews on Google</p>
           <div class="link-cards">
-            <a class="link-card" href="https://www.google.com/maps/search/?api=1&query=XXL%20Washers%2C%20611%20San%20Mateo%20Blvd%20SE%2C%20Albuquerque%2C%20NM%2087108" target="_blank" rel="noopener"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</a>
+            <button class="link-card" type="button" data-locked="true"><i class="fa-brands fa-google" aria-hidden="true"></i> See every review on Google</button>
           </div>
         </div>
       </section>
@@ -563,20 +665,19 @@ footer{
         <div class="wrap">
           <div class="sec-head">
             <h2>Visit XXL WASHERS</h2>
-            <p>On San Mateo Blvd SE in Albuquerque. Walk in any hour, any day.</p>
+            <p>In Southeast Albuquerque. Walk in any hour, any day.</p>
           </div>
           <div class="visit-grid">
             <div class="info-card">
               <h3>Find us</h3>
-              <p class="info-line"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span><strong>611 San Mateo Blvd SE</strong><br>Albuquerque, NM 87108</span></p>
+              <div class="demo-protected"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>CONTACT DETAILS PROTECTED IN THIS DEMO</span></div>
               <p class="info-line"><i class="fa-solid fa-clock" aria-hidden="true"></i><span><strong>Open 24 hours</strong><br>Every day, including nights and holidays.</span></p>
               <p class="info-line"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>Free dryers on Tuesdays</strong><br>The weekly perk regulars swear by.</span></p>
             </div>
             <div class="dial-card">
               <div class="dial" aria-hidden="false">
                 <div class="dial-inner">
-                  <span class="lbl">Call the shop</span>
-                  <a href="tel:+15055488860">(505) 548-8860</a>
+                  <span class="lbl">Call the shop</span><button class="btn" type="button" data-locked="true"><i class="fa-solid fa-lock" aria-hidden="true"></i> Call</button>
                 </div>
               </div>
               <p style="margin:0; font-size:.9rem; color:#546E7A;">Questions about machine sizes or a lost item? Call during your visit, any hour.</p>
@@ -599,7 +700,7 @@ footer{
               </div>
               <label for="f-msg">Message</label>
               <textarea id="f-msg" name="message" required placeholder="Which drum size fits a king comforter?"></textarea>
-              <button class="btn form-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send message</button>
+              <button class="btn form-btn" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send message</button>
               <p id="form-feedback" role="status" aria-live="polite"></p>
             </form>
           </div>
@@ -616,8 +717,8 @@ footer{
           <p class="foot-note">Big drums, clean machines, and free dryers on Tuesdays. Self service laundry for Southeast Albuquerque, open 24 hours.</p>
         </div>
         <div class="foot-meta">
-          <div>611 San Mateo Blvd SE, Albuquerque, NM 87108</div>
-          <div><a href="tel:+15055488860" style="color:#D6E4F5;">(505) 548-8860</a></div>
+          <div>CONTACT DETAILS PROTECTED IN THIS DEMO</div>
+          <div>CONTACT DETAILS PROTECTED IN THIS DEMO</div>
           <div>Open 24 hours, 7 days a week</div>
         </div>
       </div>
@@ -706,27 +807,67 @@ function renderChips(){
 })();
 renderChips();
 
-var PHONE = "+15055488860";
-var PRETTY = "(505) 548-8860";
+var lockModal = document.getElementById("demoLockModal");
+var lockClose = document.getElementById("demoLockClose");
+var lastFocus = null;
+
+function openLockModal(){
+  lastFocus = document.activeElement;
+  lockModal.classList.add("open");
+  document.body.classList.add("modal-open");
+  lockClose.focus();
+}
+function closeLockModal(){
+  lockModal.classList.remove("open");
+  document.body.classList.remove("modal-open");
+  if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+}
+
+document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+  el.addEventListener("click", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    openLockModal();
+  });
+});
+
 var form = document.getElementById("quote-form");
-var feedback = document.getElementById("form-feedback");
-if (form) {
+if(form){
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    if (!name || !msg) { feedback.textContent = "Please add your name and a short message."; return; }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + encodeURIComponent(text);
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY;
-      });
-    }
+    openLockModal();
   });
 }
+
+lockClose.addEventListener("click", closeLockModal);
+lockModal.addEventListener("click", function(e){
+  if(e.target === lockModal) closeLockModal();
+});
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && lockModal.classList.contains("open")){
+    closeLockModal();
+  }
+  if(e.key === "Tab" && lockModal.classList.contains("open")){
+    var focusable = lockModal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if(e.shiftKey && document.activeElement === first){
+      e.preventDefault(); last.focus();
+    } else if(!e.shiftKey && document.activeElement === last){
+      e.preventDefault(); first.focus();
+    }
+  }
+});
 </script>
+
+<div class="demo-lock-modal" id="demoLockModal" role="dialog" aria-modal="true" aria-labelledby="demoLockTitle" aria-describedby="demoLockMessage">
+  <div class="demo-lock-box" role="document">
+    <h2 id="demoLockTitle">This is currently locked.</h2>
+    <p id="demoLockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn demo-lock-close" id="demoLockClose" type="button">Close</button>
+  </div>
+</div>
+
 </body>
 </html>
