@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <meta name='robots' content='max-image-preview:large' />
 <title>Wheel Fixers by Ramirez Tires Services &#8211; bjvfi.com</title>
 <link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
@@ -185,6 +185,112 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel="icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-180x180.png" />
 <meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
+
+<style id="wheel-fixers-protected-demo">
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  -webkit-user-select:none!important;
+  user-select:none!important;
+  touch-action:pan-y;
+  overflow-x:hidden;
+}
+body.demo-modal-open{overflow:hidden!important}
+.wf-protected{
+  background:#edf8fb;
+  border-left:5px solid #00b4d8;
+  color:#14213d;
+  padding:16px 18px;
+  border-radius:10px;
+  font-weight:800;
+  margin:14px 0;
+}
+.wf-stock-note{
+  font-size:.76rem;
+  color:#677482;
+  margin-top:12px;
+}
+#wf-demo-modal{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(7,15,28,.72);
+}
+#wf-demo-modal.open{display:flex}
+#wf-demo-modal .wf-modal-box{
+  width:min(470px,100%);
+  background:#fff;
+  color:#14213d;
+  border-top:6px solid #00b4d8;
+  border-radius:14px;
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+  padding:30px;
+}
+#wf-demo-modal .wf-modal-icon{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  border-radius:14px;
+  background:#14213d;
+  color:#00b4d8;
+  margin-bottom:16px;
+}
+#wf-demo-modal h3{
+  margin:0 0 10px;
+  font-size:1.65rem;
+  color:#14213d;
+}
+#wf-demo-modal p{
+  margin:0;
+  color:#607080;
+  line-height:1.6;
+}
+#wf-demo-modal .wf-close{
+  width:100%;
+  margin-top:20px;
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  font-weight:800;
+  background:#14213d;
+  color:#fff;
+  cursor:pointer;
+}
+/* Background-image treatment added for the demo */
+.biz-page#page-home{
+  background:
+    linear-gradient(rgba(246,249,251,.90),rgba(246,249,251,.90)),
+    url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2100&q=84") center/cover fixed;
+}
+.biz-page#page-services{
+  background:
+    linear-gradient(rgba(246,249,251,.94),rgba(246,249,251,.94)),
+    url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=2000&q=84") center/cover;
+}
+.biz-page#page-reviews{
+  background:
+    linear-gradient(rgba(246,249,251,.94),rgba(246,249,251,.94)),
+    url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=84") center/cover;
+}
+.biz-page#page-contact{
+  background:
+    linear-gradient(rgba(246,249,251,.93),rgba(246,249,251,.93)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=84") center/cover;
+}
+footer{
+  background:
+    linear-gradient(rgba(20,33,61,.96),rgba(20,33,61,.96)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80") center/cover!important;
+}
+@media(max-width:700px){
+  .biz-page#page-home,.biz-page#page-services,.biz-page#page-reviews,.biz-page#page-contact{
+    background-attachment:scroll;
+  }
+}
+</style>
+
 </head>
 
 <body class="wp-singular page-template page-template-blank page page-id-596571 wp-embed-responsive wp-theme-business-identity-mvp">
@@ -373,7 +479,7 @@ footer{background:var(--dark-2);color:var(--silver)}.foot-grid{display:grid;grid
         </figure>
       </div>
       <p class="rating-line"><i class="fa-brands fa-google g-ico"></i>4.9 stars on Google</p>
-      <a class="map-card" href="https://www.google.com/maps/search/?api=1&#038;query=Wheel%20Fixers%20by%20Ramirez%20Tires%20Services%2C%201015%20NW%2036th%20St%2C%20Miami%2C%20FL%2033127" target="_blank" rel="noopener">
+      <a class="map-card" href="#" data-locked="true">
         <i class="fa-brands fa-google"></i>
         <span class="mc-txt"><strong>See every review on Google</strong><em>Open the full listing for directions too</em></span>
         <i class="fa-solid fa-arrow-right"></i>
@@ -392,7 +498,7 @@ footer{background:var(--dark-2);color:var(--silver)}.foot-grid{display:grid;grid
       <div class="visit-grid">
         <div>
           <h3>Find the shop</h3>
-          <p class="addr-line">1015 NW 36th St<br>Miami, FL 33127</p>
+          <div class="wf-protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
           <p>Open Monday through Friday, 8:00 AM to 5:30 PM. Closed Saturday and Sunday.</p>
           <p class="confirm-note" style="margin-top:0"><i class="fa-solid fa-circle-info"></i> Call to confirm holiday hours</p>
           <ul class="hours-list" style="margin-top:18px">
@@ -410,7 +516,7 @@ footer{background:var(--dark-2);color:var(--silver)}.foot-grid{display:grid;grid
             <svg class="rim-spokes" viewBox="0 0 200 200" aria-hidden="true"><g stroke="#B7BDC4" stroke-width="7" stroke-linecap="round" opacity=".8"><path d="M100 6v52M100 142v52M6 100h52M142 100h52M34 34l37 37M129 129l37 37M166 34l-37 37M71 129l-37 37"/></g></svg>
             <div class="rq-hub">
               <span class="rq-label">Call for a quote</span>
-              <a href="tel:+17868065040">(786) 806-5040</a>
+              <button type="button" data-locked="true" style="border:0;background:transparent;color:#fff;font:inherit;font-weight:800;cursor:pointer">CONTACT DETAILS PROTECTED IN THIS DEMO</button>
               <span class="rq-sub">Mon &#8211; Fri, 8 AM &#8211; 5:30 PM</span>
             </div>
           </div>
@@ -419,12 +525,12 @@ footer{background:var(--dark-2);color:var(--silver)}.foot-grid{display:grid;grid
       </div>
       <div class="form-card">
         <h3>Get a rim quote</h3>
-        <p class="fc-sub">Describe the damage and the wheel. On a phone this opens a text to the shop; on a computer it copies a message you can paste into a text. A photo of the wheel always helps.</p>
+        <p class="fc-sub">Describe the damage and the wheel. This demo keeps submission locked until the full website is unlocked.</p>
         <form id="quote-form" novalidate>
           <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="First name is plenty"></div>
           <div class="field"><label for="f-phone">Your phone</label><input id="f-phone" type="tel" autocomplete="tel" placeholder="So the shop can reach you"></div>
           <div class="field"><label for="f-msg">What needs fixing?</label><textarea id="f-msg" placeholder="Example: 17 inch alloy, curb rash on the right rear, looking for a repaint quote"></textarea></div>
-          <button class="btn-send" type="submit"><i class="fa-solid fa-paper-plane"></i> Send to the shop</button>
+          <button class="btn-send" type="submit" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send to the shop</button>
           <p class="form-feedback" id="form-feedback"></p>
         </form>
       </div>
@@ -441,7 +547,7 @@ footer{background:var(--dark-2);color:var(--silver)}.foot-grid{display:grid;grid
     </div>
     <div>
       <h4>Visit</h4>
-      <p>1015 NW 36th St<br>Miami, FL 33127</p>
+      <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
     </div>
     <div>
       <h4>Hours</h4>
@@ -449,7 +555,7 @@ footer{background:var(--dark-2);color:var(--silver)}.foot-grid{display:grid;grid
     </div>
     <div>
       <h4>Call</h4>
-      <p><a href="tel:+17868065040">(786) 806-5040</a></p>
+      <p><button type="button" data-locked="true" style="border:0;background:transparent;color:#fff;font:inherit;font-weight:800;cursor:pointer">CONTACT DETAILS PROTECTED IN THIS DEMO</button></p>
     </div>
   </div>
   <div class="copyright">© Wheel Fixers by Ramirez Tires Services · Miami, FL</div>
@@ -540,7 +646,7 @@ form.addEventListener("submit", function(e){
   var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + msg;
   var body = encodeURIComponent(text);
   if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
+    location.href = "" + PHONE + "?&body=" + body;
   } else {
     navigator.clipboard.writeText(text).then(function(){
       fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
@@ -562,5 +668,62 @@ form.addEventListener("submit", function(e){
 var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
 //# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
 </script>
+
+<div id="wf-demo-modal" aria-hidden="true">
+  <div class="wf-modal-box" role="dialog" aria-modal="true" aria-labelledby="wf-modal-title" tabindex="-1">
+    <div class="wf-modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="wf-modal-title">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="wf-close" type="button" id="wf-modal-close">Close</button>
+  </div>
+</div>
+
+<script id="wheel-fixers-protected-demo-js">
+(function(){
+  const modal = document.getElementById('wf-demo-modal');
+  const closeBtn = document.getElementById('wf-modal-close');
+  let lastFocus = null;
+
+  function openModal(e){
+    if(e){e.preventDefault();e.stopPropagation();}
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('demo-modal-open');
+    closeBtn.focus();
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('demo-modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+    el.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && modal.classList.contains('open')) closeModal();
+    if(e.key==='Tab' && modal.classList.contains('open')){
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+  document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
+  document.addEventListener('dblclick', function(e){ e.preventDefault(); }, {passive:false});
+})();
+</script>
+
+<!--
+PROTECTED DEMO NOTES
+- Existing Wheel Fixers business content, services, hours, reviews, history, and award text were preserved.
+- Stock automotive imagery is used for presentation only and does not depict the actual business.
+- Phone, address, Google review/directions, and quote submission actions are protected.
+- One reusable modal handles all locked actions.
+-->
+
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <meta name='robots' content='max-image-preview:large' />
 <title>XO Liquor Boulder &#8211; bjvfi.com</title>
 <link rel="alternate" type="application/rss+xml" title="bjvfi.com &raquo; Feed" href="https://bjvfi.com/feed" />
@@ -187,6 +187,23 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <meta name="msapplication-TileImage" content="https://bjvfi.com/wp-content/uploads/2026/09/cropped-bjvfi-1-270x270.png" />
 </head>
 
+
+<!--
+DEMO BUILD NOTES
+- Single HTML file.
+- Existing XO Liquor Boulder layout retained.
+- Mobile zoom disabled.
+- Text selection/highlighting disabled.
+- Existing Font Awesome CDN retained for free icons.
+- Real-world call, external Google review, and form actions are locked.
+- Address and phone are protected in visible demo areas.
+- One reusable accessible lock modal is used.
+- Stock background images:
+  https://images.unsplash.com/photo-1569529465841-dfecdab7503b
+  https://images.unsplash.com/photo-1510812431401-41d2bd2722f3
+- Stock imagery does not depict the actual business, staff, products, or premises.
+-->
+
 <body class="wp-singular page-template page-template-blank page page-id-626618 wp-embed-responsive wp-theme-business-identity-mvp">
 
 <a class="skip-link screen-reader-text" id="wp-skip-link" href="#wp--skip-link--target">Skip to content</a><div class="wp-site-blocks"><div class="entry-content alignfull wp-block-post-content is-layout-flow wp-block-post-content-is-layout-flow">
@@ -221,6 +238,115 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
 @media(max-width:760px){#menu-btn{display:inline-flex}.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;border-bottom:3px solid var(--ink);flex-direction:column;padding:12px 22px 18px;gap:2px;align-items:flex-start}.nav-links.open{display:flex}.nav-links li{padding:8px 0;width:100%}
 }
 @media(max-width:600px){.cats{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr;gap:22px}.bottles{height:80px;gap:12px}}
+
+/* ===== LOCKED DEMO ADDITIONS ===== */
+html,body,.biz-root,.biz-root *{
+  -webkit-user-select:none !important;
+  user-select:none !important;
+}
+html{touch-action:pan-x pan-y}
+body.demo-modal-open{overflow:hidden !important}
+
+.biz-root .hero{
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.92),rgba(255,255,255,.80)),
+    url("https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+}
+.biz-root .hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(120deg,rgba(31,60,187,.08),transparent 45%,rgba(255,210,63,.10));
+}
+.biz-root .hero > *{position:relative;z-index:1}
+
+.biz-root .stripes{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.90),rgba(255,255,255,.90)),
+    url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=82") center/cover no-repeat;
+}
+
+.demo-protected{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  max-width:100%;
+  padding:10px 14px;
+  border:2px solid var(--line);
+  background:var(--wash);
+  color:var(--ink);
+  border-radius:10px;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+.demo-protected i{color:var(--cobalt)}
+
+.demo-stock-note{
+  margin:16px 0 0;
+  font-size:.72rem;
+  color:var(--sub);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.demo-lock-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(16,19,38,.72);
+  backdrop-filter:blur(5px);
+}
+.demo-lock-backdrop.open{display:flex}
+.demo-lock-modal{
+  width:min(100%,480px);
+  background:#fff;
+  color:var(--ink);
+  border-top:6px solid var(--yellow);
+  border-radius:14px;
+  padding:30px;
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+}
+.demo-lock-icon{
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--ink);color:#fff;
+  margin-bottom:18px;
+}
+.demo-lock-modal h2{
+  font-size:1.75rem;
+  text-transform:uppercase;
+  margin:0 0 10px;
+}
+.demo-lock-modal p{
+  color:var(--sub);
+  margin:0 0 22px;
+}
+.demo-lock-close{
+  width:100%;
+  background:var(--cobalt);
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:14px 20px;
+  font-weight:800;
+  cursor:pointer;
+}
+[data-locked="true"]{cursor:pointer}
+
+@media(max-width:600px){
+  .demo-lock-modal{padding:24px 20px}
+}
+
 </style>
 <div class="biz-root" id="biz-root">
 <div class="site-shell">
@@ -243,13 +369,13 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
 <div class="wrap">
 <div class="hero">
 <div class="sale-tag">
-<span class="st-label">Call the shop</span>
-<a class="st-phone" href="tel:+17024330325">(702) 433-0325</a>
+<span class="st-label">Contact</span>
+<button class="st-phone" type="button" data-locked="true" style="background:none;border:0;cursor:pointer">CONTACT DETAILS PROTECTED IN THIS DEMO</button>
 </div>
 <div class="hero-copy">
 <span class="kicker"><i class="fa-solid fa-road"></i> Boulder Highway · Henderson</span>
 <h1>The bottle shop on <span class="yl">Boulder Highway</span>.</h1>
-<p class="lede">Beer, wine, spirits, mixers and snacks at 700 S Boulder Hwy. Easy pull-in off the highway, cold doors, and a counter that keeps the regulars&#8217; favorites in stock.</p>
+<p class="lede">Beer, wine, spirits, mixers and snacks on Boulder Highway in Henderson.</p><p class="demo-stock-note">Background photography is stock imagery for this demo and does not depict the actual business, staff, products, or premises.</p>
 <div class="hero-meta">
 <span class="status-chip"><span class="dot"></span><span class="status-label">Checking hours&#8230;</span></span>
 <a class="quiet-link" href="#/visit" data-page="visit">Hours and directions</a>
@@ -307,7 +433,7 @@ body.page-template-blank .wp-site-blocks { padding: 0 !important; }
 Rather than paste a hand-picked wall of quotes here, we send you straight to the source. Every review of XO Liquor Boulder, the great ones and the tough ones, lives on our Google listing. Read them all and judge for yourself.
 </div>
 <div class="revlinks">
-<a class="revlink goog" href="https://www.google.com/maps/search/?api=1&#038;query=XO%20Liquor%20Boulder%2C%20700%20S%20Boulder%20Hwy%2C%20Henderson%2C%20NV%2089015" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
+<button class="revlink goog" type="button" data-locked="true" style="border:0"><i class="fa-brands fa-google"></i> See every review on Google</button>
 </div>
 </div>
 </section>
@@ -321,14 +447,11 @@ Rather than paste a hand-picked wall of quotes here, we send you straight to the
 <div class="visit-grid">
 <div class="infocard">
 <h3><i class="fa-solid fa-location-dot" style="color:var(--cobalt);margin-right:8px"></i>Address</h3>
-<address>
-700 S Boulder Hwy<br>
-Henderson, NV 89015
-</address>
+<div class="demo-protected"><i class="fa-solid fa-shield-halved"></i>CONTACT DETAILS PROTECTED IN THIS DEMO</div>
 <div style="margin-top:16px">
 <span class="status-chip"><span class="dot"></span><span class="status-label">Checking hours&#8230;</span></span>
 </div>
-<p class="tiny"><i class="fa-solid fa-circle-info"></i> Call to confirm holiday hours. 21 and over, valid ID required for all alcohol purchases.</p>
+<p class="tiny"><i class="fa-solid fa-circle-info"></i> Holiday hours may differ. 21 and over, valid ID required for all alcohol purchases.</p>
 </div>
 <div class="infocard">
 <h3>Hours</h3>
@@ -356,7 +479,7 @@ Henderson, NV 89015
 <input id="f-phone" type="tel" required placeholder="(702) 555-0100">
 <label for="f-msg">What do you need?</label>
 <textarea id="f-msg" required placeholder="Tell us the bottle, the brand, or the occasion."></textarea>
-<button class="send" type="submit"><i class="fa-solid fa-paper-plane"></i>&nbsp; Send as a text</button>
+<button class="send" type="submit" data-locked="true"><i class="fa-solid fa-lock"></i>&nbsp; Send as a text</button>
 <p class="feedback" id="form-feedback"></p>
 </form>
 </div>
@@ -374,8 +497,8 @@ Henderson, NV 89015
 <div>
 <h4>Visit</h4>
 <ul>
-<li>700 S Boulder Hwy</li>
-<li>Henderson, NV 89015</li>
+<li>CONTACT DETAILS PROTECTED IN THIS DEMO</li>
+<li>Henderson, NV</li>
 <li>Mon &#8211; Sat 9 AM &#8211; 10 PM</li>
 <li>Sun 10 AM &#8211; 10 PM</li>
 </ul>
@@ -383,7 +506,7 @@ Henderson, NV 89015
 <div>
 <h4>Contact</h4>
 <ul>
-<li><a href="tel:+17024330325">(702) 433-0325</a></li>
+<li><button type="button" data-locked="true" style="background:none;border:0;padding:0;color:var(--ink);font-weight:700;cursor:pointer">Contact business</button></li>
 <li><a href="#/visit" data-page="visit">Hours and directions</a></li>
 <li><a href="#/reviews" data-page="reviews">Our Google rating</a></li>
 </ul>
@@ -468,29 +591,54 @@ function renderToday(){
     if (+el.getAttribute("data-day") === n.day) el.classList.add("today");
   });
 }
-var PHONE = "+17024330325";
-var PRETTY = "(702) 433-0325";
+var PHONE = "";
+var PRETTY = "";
+var demoModal = document.getElementById("demoLockedModal");
+var demoClose = document.getElementById("demoLockedClose");
+var demoLastFocus = null;
+
+function openDemoLocked(trigger){
+  demoLastFocus = trigger || document.activeElement;
+  demoModal.classList.add("open");
+  document.body.classList.add("demo-modal-open");
+  demoClose.focus();
+}
+function closeDemoLocked(){
+  demoModal.classList.remove("open");
+  document.body.classList.remove("demo-modal-open");
+  if(demoLastFocus && typeof demoLastFocus.focus === "function") demoLastFocus.focus();
+}
+
+document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+  el.addEventListener("click", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    openDemoLocked(el);
+  });
+});
+
 var quoteForm = document.getElementById("quote-form");
-if (quoteForm) {
+if(quoteForm){
   quoteForm.addEventListener("submit", function(e){
     e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var phone = document.getElementById("f-phone").value.trim();
-    var msg = document.getElementById("f-msg").value.trim();
-    var feedback = document.getElementById("form-feedback");
-    var text = "Hi " + BUSINESS + ", this is " + name + ". My number is " + phone + ". " + msg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-      }).catch(function(){
-        feedback.textContent = "Please text " + PRETTY + " with your message.";
-      });
-    }
+    openDemoLocked(quoteForm.querySelector('[data-locked="true"]'));
   });
 }
+
+demoClose.addEventListener("click", closeDemoLocked);
+demoModal.addEventListener("click", function(e){
+  if(e.target === demoModal) closeDemoLocked();
+});
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && demoModal.classList.contains("open")) closeDemoLocked();
+  if(e.key === "Tab" && demoModal.classList.contains("open")){
+    e.preventDefault();
+    demoClose.focus();
+  }
+});
+document.addEventListener("gesturestart", function(e){ e.preventDefault(); });
+
 renderStatus();
 renderToday();
 navigateTo(getPageFromHash(), false);
@@ -507,5 +655,15 @@ navigateTo(getPageFromHash(), false);
 var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
 //# sourceURL=https://bjvfi.com/wp-includes/js/wp-emoji-loader.min.js
 </script>
+
+<div class="demo-lock-backdrop" id="demoLockedModal" role="dialog" aria-modal="true" aria-labelledby="demoLockedTitle" aria-describedby="demoLockedMessage">
+  <div class="demo-lock-modal" role="document">
+    <div class="demo-lock-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h2 id="demoLockedTitle">This is currently locked.</h2>
+    <p id="demoLockedMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="demo-lock-close" id="demoLockedClose" type="button">Close</button>
+  </div>
+</div>
+
 </body>
 </html>

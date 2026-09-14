@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>The Wash | Wash & Dry Laundromat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,8 +111,107 @@ footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wr
 footer .copy{color:var(--white); font-weight:600}
 footer a{color:var(--tang); text-decoration:none}
 @media(max-width:700px){footer .wrap{flex-direction:column; text-align:center}}
+
+/* ===== Locked demo additions ===== */
+html, body, *{
+  -webkit-user-select:none;
+  user-select:none;
+}
+body.modal-open{overflow:hidden}
+
+.hero{
+  background:
+    linear-gradient(rgba(63,81,181,.88), rgba(44,58,140,.90)),
+    url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+}
+.sec.alt.stock-bg{
+  background:
+    linear-gradient(rgba(238,240,250,.94), rgba(238,240,250,.94)),
+    url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=2200&q=82") center/cover no-repeat;
+}
+
+.demo-protected{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:12px 15px;
+  border:2px solid var(--indigo);
+  background:var(--soft);
+  color:var(--deep);
+  border-radius:12px;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.demo-protected i{color:var(--tang)}
+
+.demo-stock-note{
+  margin-top:16px;
+  font-size:.78rem;
+  color:#DCE1F7;
+  opacity:.9;
+}
+
+.demo-lock-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(35,43,58,.74);
+  backdrop-filter:blur(5px);
+}
+.demo-lock-modal.open{display:flex}
+
+.demo-lock-box{
+  width:min(100%,500px);
+  background:var(--white);
+  color:var(--ink);
+  border:1.5px solid var(--line);
+  border-top:6px solid var(--tang);
+  border-radius:18px;
+  padding:30px;
+  box-shadow:0 28px 80px rgba(35,43,58,.28);
+}
+.demo-lock-box h2{
+  color:var(--deep);
+  font-size:1.8rem;
+  margin-bottom:10px;
+}
+.demo-lock-box p{
+  color:#5A6172;
+  margin-bottom:22px;
+}
+.demo-lock-close{
+  width:100%;
+}
+[data-locked="true"]{
+  cursor:pointer;
+}
+
 </style>
 </head>
+
+<!--
+DEMO BUILD NOTES
+- Single HTML file.
+- Existing Wash & Dry Laundromat design and supported content retained.
+- Mobile zoom disabled.
+- Text selection/highlighting disabled.
+- Font Awesome CDN retained for free icons.
+- Real-world contact, phone, external Google, and form actions are locked.
+- One reusable accessible locked-feature modal is used.
+- Contact phone/address are protected in the visible demo and phone constants removed from JavaScript.
+- Stock background images:
+  https://images.unsplash.com/photo-1604335399105-a0c585fd81a1
+  https://images.unsplash.com/photo-1545173168-9f1947eebb7f
+- Stock imagery is decorative only and does not depict the actual business, employees, machines, or premises.
+- Missing/unverified in supplied materials: public email, owner/team names, official social profiles, pricing, awards/licenses/certifications.
+-->
+
 <body>
 <div class="site-shell">
 <header>
@@ -142,7 +241,8 @@ footer a{color:var(--tang); text-decoration:none}
         <span class="status-chip" id="chip-home"><span class="dot"></span><span class="lbl">Loading...</span></span>
         <a class="btn" href="#/services" data-page="services">What we offer</a>
       </div>
-      <div class="duo-pair" style="margin-top:30px">
+      <p class="demo-stock-note">Background photography is stock imagery used for this demo and does not depict the actual business, employees, or premises.</p>
+<div class="duo-pair" style="margin-top:30px">
         <div class="pw"><i class="fa-solid fa-soap"></i></div>
         <div class="pd"><i class="fa-solid fa-fire"></i></div>
       </div>
@@ -156,10 +256,10 @@ footer a{color:var(--tang); text-decoration:none}
       <div class="quote"><p>"Helpful and very friendly, clean and spotless laundry mat"</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
     </div>
   </div>
-  <div class="sec alt">
+  <div class="sec alt stock-bg">
     <div class="wrap" style="text-align:center">
       <h2>Laundry day, minus the headache</h2>
-      <p class="sub">4140 N West Ave, Fresno, CA 93705. Early open, late close, every day.</p>
+      <p class="sub">CONTACT DETAILS PROTECTED IN THIS DEMO · Early open, late close, every day.</p>
       <p><span class="status-chip" id="chip-duo"><span class="dot"></span><span class="lbl">Loading...</span></span></p>
     </div>
   </div>
@@ -183,7 +283,7 @@ footer a{color:var(--tang); text-decoration:none}
       <h2>Hours</h2>
       <p class="sub" style="text-align:center">Mon - Fri 7 AM - 10 PM · Sat 6:30 AM - 10 PM · Sun 7 AM - 10 PM.</p>
       <ul class="daylist" id="daylist"></ul>
-      <p class="confirm">Hours can shift around holidays. Call (559) 701-6973 to confirm.</p>
+      <p class="confirm">Hours can shift around holidays. Contact details are protected in this demo.</p>
     </div>
   </div>
 </section>
@@ -197,7 +297,7 @@ footer a{color:var(--tang); text-decoration:none}
       <div class="quote"><p>"It's clean, the everybody I've ran into is just so nice."</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
       <div class="quote"><p>"Helpful and very friendly, clean and spotless laundry mat"</p><div class="attr"><span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span> Google review</div></div>
       <div class="linkcards">
-        <a class="linkcard" href="https://www.google.com/maps/search/?api=1&query=Wash%20%26%20Dry%20Laundromat%2C%204140%20N%20West%20Ave%2C%20Fresno%2C%20CA%2093705" rel="noopener"><i class="fa-brands fa-google"></i>See every review on Google</a>
+        <button class="linkcard" type="button" data-locked="true"><i class="fa-brands fa-google"></i>See every review on Google</button>
       </div>
     </div>
   </div>
@@ -208,16 +308,16 @@ footer a{color:var(--tang); text-decoration:none}
     <div class="wrap">
       <span class="kicker">Visit</span>
       <h2>Come by</h2>
-      <p class="sub">4140 N West Ave, Fresno, CA 93705.</p>
+      <p class="sub"><span class="demo-protected"><i class="fa-solid fa-shield-halved"></i>CONTACT DETAILS PROTECTED IN THIS DEMO</span></p>
       <div class="visit-grid">
         <div class="card">
-          <div class="vrow"><i class="fa-solid fa-location-dot"></i><div><strong>4140 N West Ave</strong><br>Fresno, CA 93705</div></div>
+          <div class="vrow"><i class="fa-solid fa-location-dot"></i><div><span class="demo-protected"><i class="fa-solid fa-shield-halved"></i>CONTACT DETAILS PROTECTED IN THIS DEMO</span></div></div>
           <div class="vrow"><i class="fa-solid fa-clock"></i><div>Mon - Fri 7 AM - 10 PM · Sat 6:30 AM - 10 PM · Sun 7 AM - 10 PM</div></div>
-          <div class="vrow"><i class="fa-solid fa-phone"></i><div><a href="tel:+15597016973">(559) 701-6973</a> - questions, drop-off, lost and found</div></div>
+          <div class="vrow"><i class="fa-solid fa-phone"></i><div><button class="btn" type="button" data-locked="true">Call the laundromat</button></div></div>
         </div>
         <div class="duotag">
           <div class="taglbl">Wash &amp; Dry</div>
-          <div class="num">(559) 701-6973</div>
+          <div class="num">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
           <div class="sub">Call about drop-off or a machine issue.</div>
           <div class="pairline"><span></span><span></span></div>
         </div>
@@ -232,7 +332,7 @@ footer a{color:var(--tang); text-decoration:none}
           <input id="f-phone" type="tel" required>
           <label for="f-msg">Message</label>
           <textarea id="f-msg" required></textarea>
-          <p style="margin-top:16px"><button class="btn" type="submit">Send it over</button></p>
+          <p style="margin-top:16px"><button class="btn" type="submit" data-locked="true">Send it over</button></p>
           <div class="feedback" id="form-feedback"></div>
         </form>
       </div>
@@ -243,7 +343,7 @@ footer a{color:var(--tang); text-decoration:none}
 </main>
 <footer>
   <div class="wrap">
-    <div><span class="copy">© Wash & Dry Laundromat · Fresno, CA</span><br>4140 N West Ave, Fresno, CA 93705 · Mon - Fri 7 AM - 10 PM · (559) 701-6973</div>
+    <div><span class="copy">© Wash & Dry Laundromat · Fresno, CA</span><br>CONTACT DETAILS PROTECTED IN THIS DEMO · Mon - Fri 7 AM - 10 PM</div>
     <div><a href="#/services" data-page="services">Services</a> · <a href="#/reviews" data-page="reviews">Reviews</a></div>
   </div>
 </footer>
@@ -334,24 +434,68 @@ function renderChips(){
 }
 renderChips();
 
-var PHONE = "+15597016973";
-var PRETTY = "(559) 701-6973";
-document.getElementById("contact-form").addEventListener("submit", function(e){
-  e.preventDefault();
-  var name = document.getElementById("f-name").value.trim();
-  var phone = document.getElementById("f-phone").value.trim();
-  var msg = document.getElementById("f-msg").value.trim();
-  var text = "Hi Wash & Dry Laundromat! My name is " + name + ". " + msg + " (Reply to " + phone + ")";
-  var body = encodeURIComponent(text);
-  var fb = document.getElementById("form-feedback");
-  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-    location.href = "sms:" + PHONE + "?&body=" + body;
-  } else {
-    navigator.clipboard.writeText(text).then(function(){
-      fb.textContent = "Copied. Now paste it in a text to " + PRETTY + ".";
-    });
+var PHONE = "";
+var PRETTY = "";
+var demoModal = document.getElementById("demoLockModal");
+var demoClose = document.getElementById("demoLockClose");
+var demoLastFocus = null;
+
+function openDemoLock(){
+  demoLastFocus = document.activeElement;
+  demoModal.classList.add("open");
+  document.body.classList.add("modal-open");
+  demoClose.focus();
+}
+function closeDemoLock(){
+  demoModal.classList.remove("open");
+  document.body.classList.remove("modal-open");
+  if(demoLastFocus && typeof demoLastFocus.focus === "function"){ demoLastFocus.focus(); }
+}
+
+document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+  el.addEventListener("click", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    openDemoLock();
+  });
+});
+
+var contactForm = document.getElementById("contact-form");
+if(contactForm){
+  contactForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    openDemoLock();
+  });
+}
+
+demoClose.addEventListener("click", closeDemoLock);
+demoModal.addEventListener("click", function(e){
+  if(e.target === demoModal){ closeDemoLock(); }
+});
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && demoModal.classList.contains("open")){
+    closeDemoLock();
+  }
+  if(e.key === "Tab" && demoModal.classList.contains("open")){
+    var focusables = demoModal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])');
+    var first = focusables[0], last = focusables[focusables.length - 1];
+    if(e.shiftKey && document.activeElement === first){
+      e.preventDefault(); last.focus();
+    } else if(!e.shiftKey && document.activeElement === last){
+      e.preventDefault(); first.focus();
+    }
   }
 });
 </script>
+
+<div class="demo-lock-modal" id="demoLockModal" role="dialog" aria-modal="true" aria-labelledby="demoLockTitle" aria-describedby="demoLockMessage">
+  <div class="demo-lock-box" role="document">
+    <h2 id="demoLockTitle">This is currently locked.</h2>
+    <p id="demoLockMessage">This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn demo-lock-close" id="demoLockClose" type="button">Close</button>
+  </div>
+</div>
+
 </body>
 </html>

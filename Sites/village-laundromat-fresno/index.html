@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Village Laundromat | Open 6 AM - 3 AM Daily, Fresno</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:'Karla',sans-serif;background:var(--linen);color:var(--ink);line-height:1.65;font-size:17px}
+body{font-family:'Karla',sans-serif;background:var(--linen);color:var(--ink);line-height:1.65;font-size:17px;-webkit-user-select:none;user-select:none;touch-action:pan-y;overflow-x:hidden}
 h1,h2,h3{font-family:'Amatic SC',cursive;font-weight:700;line-height:1;margin:0 0 14px}
 a{color:var(--sage-deep)}
 .site-shell{min-height:100vh;display:flex;flex-direction:column}
@@ -29,6 +29,21 @@ main{flex:1 0 auto}
 footer{flex-shrink:0}
 .page{display:none}
 .page.active{display:block}
+#page-wash{
+background:
+  linear-gradient(rgba(245,241,232,.94),rgba(245,241,232,.94)),
+  url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1900&q=84") center/cover fixed
+}
+#page-reviews{
+background:
+  linear-gradient(rgba(245,241,232,.94),rgba(245,241,232,.94)),
+  url("https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=1900&q=84") center/cover
+}
+#page-visit{
+background:
+  linear-gradient(rgba(245,241,232,.93),rgba(245,241,232,.93)),
+  url("https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?auto=format&fit=crop&w=1900&q=84") center/cover
+}
 .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
 
 /* header */
@@ -55,7 +70,13 @@ footer{flex-shrink:0}
 .status-chip.lite{background:transparent;border-style:dashed}
 
 /* hero */
-.hero{padding:52px 0 66px;text-align:center;overflow:hidden}
+.hero{
+padding:62px 0 70px;text-align:center;overflow:hidden;
+background:
+  linear-gradient(rgba(245,241,232,.90),rgba(245,241,232,.90)),
+  url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1900&q=84") center/cover;
+border-bottom:1px solid var(--line)
+}
 .clothesline{max-width:900px;margin:0 auto 8px;display:block;width:100%;height:auto}
 .hero h1{font-size:clamp(3.4rem,9vw,5.6rem);color:var(--ink);margin:10px 0 4px}
 .hero h1 em{font-style:normal;color:var(--sage-deep)}
@@ -76,7 +97,11 @@ footer{flex-shrink:0}
 
 /* sections */
 section.block{padding:58px 0}
-section.tint{background:#fff}
+section.tint{
+background:
+  linear-gradient(rgba(255,255,255,.93),rgba(255,255,255,.93)),
+  url("https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=1900&q=84") center/cover
+}
 .sec-title{text-align:center;font-size:clamp(2.6rem,6vw,3.8rem)}
 .sec-sub{text-align:center;max-width:620px;margin:0 auto 36px;color:var(--gray)}
 .line-under{display:block;width:120px;height:4px;border-radius:2px;background:var(--accent);margin:0 auto 18px;position:relative}
@@ -156,11 +181,57 @@ section.tint{background:#fff}
 .form-feedback.warn{color:#C0574B}
 
 /* footer */
-.site-foot{background:var(--sage-deep);color:#E9EDE3;margin-top:70px}
+.site-foot{
+background:
+  linear-gradient(rgba(94,110,84,.96),rgba(94,110,84,.96)),
+  url("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1700&q=80") center/cover;
+color:#E9EDE3;margin-top:70px
+}
 .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:34px;padding:48px 22px 32px;max-width:1040px;margin:0 auto}
 .foot-grid h4{font-family:'Amatic SC',cursive;font-size:1.9rem;color:#fff;margin:0 0 10px}
 .foot-grid p{margin:0 0 8px;font-size:.93rem}
 .copyright{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:18px 22px;font-size:.9rem;color:#fff}
+
+
+.protected{
+  border:2px dashed var(--sage);
+  background:var(--sage-soft);
+  color:var(--ink);
+  padding:15px 18px;
+  text-align:center;
+  font-weight:700;
+  border-radius:8px;
+}
+.stock-note{
+  margin:16px auto 0;
+  max-width:680px;
+  color:var(--gray);
+  font-size:.78rem;
+}
+.modal-backdrop{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.68);
+  display:none;align-items:center;justify-content:center;padding:20px
+}
+.modal-backdrop.open{display:flex}
+body.modal-open{overflow:hidden}
+.lock-modal{
+  width:min(470px,100%);
+  background:var(--linen);
+  border:2px solid var(--sage);
+  border-top:7px solid var(--accent);
+  border-radius:10px;
+  padding:30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.35)
+}
+.lock-modal .modal-icon{
+  width:54px;height:54px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--sage-deep);color:#fff;margin-bottom:16px
+}
+.lock-modal h3{font-size:2.2rem}
+.lock-modal p{color:var(--gray)}
+.lock-modal .village-btn{width:100%;justify-content:center;border:0;margin-top:16px}
 
 @media (max-width:860px){
   .quote-grid{grid-template-columns:1fr;gap:38px}
@@ -232,6 +303,7 @@ section.tint{background:#fff}
         <a class="village-btn" href="#/wash" data-page="wash">The wash <i class="fa-solid fa-arrow-right"></i></a>
         <a class="village-btn ghost" href="#/visit" data-page="visit">Visit</a>
       </div>
+      <p class="stock-note">Stock laundromat imagery is used in this demo and does not depict the actual Village Laundromat, staff, machines, or storefront.</p>
     </div>
   </div>
 
@@ -387,7 +459,7 @@ section.tint{background:#fff}
         <span class="big">4.4</span>
         <span class="rest">stars on Google</span>
       </div>
-      <a class="g-link-card" href="https://www.google.com/maps/search/?api=1&query=Village%20Laundromat%2C%201428%20N%20Van%20Ness%20Ave%2C%20Fresno%2C%20CA%2093728" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> See every review on Google</a>
+      <a class="g-link-card" href="#" data-locked="true"><i class="fa-brands fa-google"></i> See every review on Google</a>
     </div>
   </section>
 </section>
@@ -401,7 +473,7 @@ section.tint{background:#fff}
         <div>
           <div class="info-card">
             <h3><i class="fa-solid fa-location-dot"></i> The Laundromat</h3>
-            <p class="addr">1428 N Van Ness Ave<br>Fresno, CA 93728</p>
+            <div class="protected">CONTACT DETAILS PROTECTED IN THIS DEMO</div>
             <p>On Van Ness, with room to pull up and carry baskets in without a hike.</p>
           </div>
           <div class="info-card">
@@ -418,8 +490,8 @@ section.tint{background:#fff}
           <div class="pin-tag">
             <span class="pin-clip" aria-hidden="true"></span>
             <p class="pt-label">call the village</p>
-            <a class="pt-phone" href="tel:+15598145470">(559) 814-5470</a>
-            <p class="pt-sub">Tap to call. The attendant can check if the big washers are free.</p>
+            <button class="pt-phone" type="button" data-locked="true" style="border:0;background:transparent;width:100%;cursor:pointer">CONTACT DETAILS PROTECTED IN THIS DEMO</button>
+            <p class="pt-sub">Calling is protected in this demo.</p>
           </div>
         </div>
       </div>
@@ -429,7 +501,7 @@ section.tint{background:#fff}
     <div class="wrap">
       <div class="form-card">
         <h3>Ask about wash-and-fold</h3>
-        <p class="form-note">Name and what you need washed. We will text you back with the details.</p>
+        <p class="form-note">This demo shows the contact form layout. Submission is locked until the full website is unlocked.</p>
         <form id="quote-form">
           <div class="f-row">
             <div class="f-field">
@@ -445,7 +517,7 @@ section.tint{background:#fff}
             <label for="f-msg">Message</label>
             <textarea id="f-msg" rows="4" placeholder="How many loads, and what kind?"></textarea>
           </div>
-          <button type="submit" class="f-send"><i class="fa-solid fa-paper-plane"></i> Send to the village</button>
+          <button type="submit" class="f-send" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Send to the village</button>
           <p class="form-feedback" id="form-feedback"></p>
         </form>
       </div>
@@ -463,18 +535,28 @@ section.tint{background:#fff}
     </div>
     <div>
       <h4>Find Us</h4>
-      <p>1428 N Van Ness Ave<br>Fresno, CA 93728</p>
+      <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
       <p>Every day, 6 AM to 3 AM</p>
     </div>
     <div>
       <h4>Call</h4>
-      <p>(559) 814-5470</p>
-      <p>The attendant desk answers.</p>
+      <p>CONTACT DETAILS PROTECTED IN THIS DEMO</p>
+      <p>Calling is protected in this demo.</p>
     </div>
   </div>
   <div class="copyright">© Village Laundromat · Fresno, CA</div>
 </footer>
 
+</div>
+
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle" tabindex="-1">
+    <div class="modal-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="village-btn" id="modalClose" type="button">Close</button>
+  </div>
 </div>
 
 <script>
@@ -557,33 +639,51 @@ function openState(){
   });
 })();
 
-var PHONE = "+15598145470";
-var PRETTY_PHONE = "(559) 814-5470";
-var quoteForm = document.getElementById("quote-form");
-if (quoteForm) {
-  quoteForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("f-name").value.trim();
-    var fphone = document.getElementById("f-phone").value.trim();
-    var fmsg = document.getElementById("f-msg").value.trim();
-    var feedback = document.getElementById("form-feedback");
-    if (!name || !fmsg) {
-      feedback.textContent = "Add your name and a short message so we know what you need washed.";
-      feedback.className = "form-feedback warn";
-      return;
-    }
-    var text = "Hi " + BUSINESS + ", this is " + name + (fphone ? " (" + fphone + ")" : "") + ". " + fmsg;
-    var body = encodeURIComponent(text);
-    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
-      location.href = "sms:" + PHONE + "?&body=" + body;
-    } else {
-      navigator.clipboard.writeText(text).then(function(){
-        feedback.textContent = "Copied. Now paste it in a text to " + PRETTY_PHONE;
-        feedback.className = "form-feedback ok";
-      });
-    }
-  });
+
+var lockedModal = document.getElementById("lockedModal");
+var modalClose = document.getElementById("modalClose");
+var lastFocus = null;
+
+function openLockedModal(e){
+  if(e) e.preventDefault();
+  lastFocus = document.activeElement;
+  lockedModal.classList.add("open");
+  lockedModal.setAttribute("aria-hidden","false");
+  document.body.classList.add("modal-open");
+  modalClose.focus();
 }
+function closeLockedModal(){
+  lockedModal.classList.remove("open");
+  lockedModal.setAttribute("aria-hidden","true");
+  document.body.classList.remove("modal-open");
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(function(el){
+  el.addEventListener("click", openLockedModal);
+});
+modalClose.addEventListener("click", closeLockedModal);
+lockedModal.addEventListener("click", function(e){
+  if(e.target === lockedModal) closeLockedModal();
+});
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && lockedModal.classList.contains("open")) closeLockedModal();
+  if(e.key === "Tab" && lockedModal.classList.contains("open")){
+    e.preventDefault();
+    modalClose.focus();
+  }
+});
+document.addEventListener("gesturestart", function(e){ e.preventDefault(); });
+document.addEventListener("dblclick", function(e){ e.preventDefault(); }, {passive:false});
+
 </script>
+
+<!--
+PROTECTED DEMO / ASSET NOTES
+- Stock laundromat/laundry imagery is loaded from Unsplash for presentation only.
+- It does not depict Village Laundromat, its employees, storefront, machines, or completed work.
+- Direct address, phone, Google review, and form-submission actions are protected in this demo.
+- Internal navigation, mobile menu, live open/closed indicator, and day highlighting remain functional.
+-->
+
 </body>
 </html>
