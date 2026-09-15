@@ -1,94 +1,246 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Hermanos Gonzales Lawns And Landscaping</title><meta name="description" content="A landscaping-focused demo using only the business name plus a likely public match that still requires owner confirmation."><link rel="preconnect" href="https://images.unsplash.com"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"><style>
-:root{--accent:#9fce6a;--accent2:#d8e8b0;--bg:#10170f;--text:#f8f8f5;--muted:rgba(255,255,255,.68);--line:rgba(255,255,255,.16);--max:1180px;--radius:4px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;touch-action:manipulation}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}
-body.modal-open{overflow:hidden}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
-header{position:sticky;top:0;z-index:30;background:rgba(7,10,12,.86);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{font-weight:950;letter-spacing:.01em;text-decoration:none;max-width:56%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-nav{display:flex;align-items:center;gap:20px}nav a{text-decoration:none;font-size:.9rem;font-weight:800;color:rgba(255,255,255,.76)}nav a:hover{color:white}.menu{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent;color:white;border-radius:8px}
-.hero{min-height:82vh;display:flex;align-items:center;background:linear-gradient(90deg,rgba(8,18,9,.92),rgba(8,18,9,.58)),url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=2200&q=85') center/cover no-repeat;background-attachment:fixed}.hero-copy{padding:96px 0;max-width:820px}.eyebrow{font-size:.74rem;text-transform:uppercase;letter-spacing:.18em;font-weight:900;color:var(--accent);margin:0 0 18px}
-h1,h2{font-family:Arial Black,Arial,sans-serif}h1{font-size:clamp(3rem,7.8vw,7rem);line-height:.92;letter-spacing:-.05em;margin:0 0 24px;text-transform:uppercase}.lead{font-size:1.15rem;line-height:1.7;color:rgba(255,255,255,.78);max-width:720px;margin:0}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{min-height:48px;padding:0 20px;border:1px solid var(--line);border-radius:var(--radius);display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;font-weight:900;background:rgba(255,255,255,.06);color:white;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:#111}
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:-1px}.fact{padding:24px;background:rgba(8,11,14,.94)}.fact i{color:var(--accent);font-size:1.15rem;margin-bottom:18px}.fact strong{display:block;margin-bottom:5px}.fact span{display:block;color:var(--muted);font-size:.84rem;line-height:1.5}
-section{padding:86px 0;border-top:1px solid rgba(255,255,255,.08)}.section-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:34px}.section-head h2{font-size:clamp(2rem,4vw,3.7rem);letter-spacing:-.04em;margin:0}.section-head p{max-width:560px;line-height:1.7;color:var(--muted);margin:0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.045)}.card i{font-size:1.2rem;color:var(--accent);margin-bottom:22px}.card h3{margin:0 0 10px}.card p{margin:0;color:var(--muted);line-height:1.65;font-size:.93rem}
-.about{background:linear-gradient(120deg,rgba(255,255,255,.04),rgba(255,255,255,.01)),url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=2200&q=85') center 62%/cover fixed no-repeat;position:relative}.about:before{content:"";position:absolute;inset:0;background:rgba(6,9,11,.82)}.about .wrap{position:relative}.big{font-family:Arial Black,Arial,sans-serif;font-size:clamp(1.8rem,4.4vw,4.2rem);line-height:1.14;max-width:980px;margin:0}.big strong{color:var(--accent)}
-.info-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}.note{border-left:3px solid var(--accent);padding:18px 20px;background:rgba(255,255,255,.04);color:var(--muted);line-height:1.7}
-.socials{display:flex;gap:10px;flex-wrap:wrap}.social{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:rgba(255,255,255,.05)}.social:hover{background:rgba(255,255,255,.12)}
-.sources a{color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)}.sources p{color:var(--muted);line-height:1.8}
-footer{padding:36px 0;border-top:1px solid var(--line);background:#07090b}.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(255,255,255,.55);font-size:.86rem}
-.modal{position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.78);opacity:0;transition:opacity .16s ease}.modal.show{opacity:1}.modal[hidden]{display:none}.modal-card{width:min(440px,100%);background:#111821;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:30px;text-align:center;box-shadow:0 30px 100px rgba(0,0,0,.55)}.modal-card>i{font-size:1.35rem;color:var(--accent)}.modal-card h2{font-family:Arial,Helvetica,sans-serif;font-size:1.45rem;margin:12px 0 8px}.modal-card p{color:var(--muted);line-height:1.6}
-@media(max-width:900px){.menu{display:grid;place-items:center}nav{position:absolute;top:64px;left:20px;right:20px;display:none;flex-direction:column;align-items:stretch;padding:14px;background:#0b1015;border:1px solid var(--line);border-radius:10px}nav.open{display:flex}nav a{padding:10px}.facts,.cards{grid-template-columns:1fr 1fr}.section-head{align-items:flex-start;flex-direction:column}.info-grid{grid-template-columns:1fr}}
-@media(max-width:560px){.wrap{width:calc(100% - 28px)}.hero{min-height:auto;background-attachment:scroll}.hero-copy{padding:64px 0}h1{font-size:clamp(2.65rem,15vw,4.6rem)}.facts,.cards{grid-template-columns:1fr}section{padding:64px 0}.actions .btn{width:100%}.about{background-attachment:scroll}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-</style></head><body>
-<header><div class="wrap nav"><a class="logo" href="#top">Hermanos Gonzales Lawns And Landscaping</a><button class="menu" type="button" data-menu aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><nav data-nav><a href="#services">Services</a><a href="#about">About</a></nav></div></header>
-<main id="top">
-<section class="hero"><div class="wrap hero-copy"><p class="eyebrow">Lawns · Landscaping</p><h1>Hermanos Gonzales Lawns And Landscaping</h1><p class="lead">A landscaping-focused demo using only the business name plus a likely public match that still requires owner confirmation.</p><div class="actions"><a class="btn" href="#about"><i class="fa-solid fa-arrow-down"></i>Learn more</a></div></div></section>
-<div class="facts"><div class="fact"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><strong>Public match needs confirmation</strong><span>Listings were found for Hnos Gonzales Landscaping and Hardscaping LLC, but the public name does not exactly match this CRM name.</span></div></div>
-<section id="services"><div class="wrap"><div class="section-head"><h2>Services</h2><p>Only services supported by the public research or the supplied business name are shown.</p></div><div class="cards"><article class="card"><i class="fa-solid fa-seedling" aria-hidden="true"></i><h3>Lawns and landscaping</h3><p>Supported by the uploaded business name.</p></article></div></div></section>
-<section id="about" class="about"><div class="wrap"><p class="eyebrow">About</p><p class="big"><strong>Likely public match — verify before launch</strong><br>Public listings for Hnos Gonzales Landscaping and Hardscaping LLC describe landscaping, hardscaping, garden installation, irrigation, maintenance, patios, walkways, retaining walls, outdoor living areas, and tree services. Because that name is not an exact match to the uploaded business name, those services are not presented here as confirmed offerings.</p></div></section>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0f1110">
+<title>Hermanos Gonzales Lawns & Landscaping</title>
+<meta name="description" content="Hermanos Gonzales Lawns & Landscaping">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root {
+  --bg:#0f1110;
+  --panel:#171a18;
+  --text:#f6f7f4;
+  --muted:#b8bdb7;
+  --accent:#88a96b;
+  --accent2:#d5e4c3;
+  --line:rgba(255,255,255,.13);
+  --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-user-select:none;user-select:none;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{display:block;max-width:100%}
+.shell{width:min(calc(100% - 40px),var(--max));margin:auto}
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  background:linear-gradient(to bottom,rgba(10,12,11,.88),rgba(10,12,11,.45),transparent);
+}
+.nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:800;letter-spacing:-.03em;font-size:1.03rem;max-width:70%}
+.nav-links{display:flex;align-items:center;gap:26px;color:#e5e8e2;font-size:.94rem}
+.nav-links a:hover{color:var(--accent2)}
+.menu-btn{
+  display:none;background:none;border:0;color:white;width:44px;height:44px;
+  align-items:center;justify-content:center;font-size:1.35rem;cursor:pointer
+}
+.hero{
+  min-height:100svh;position:relative;display:grid;align-items:end;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(9,11,10,.88) 0%,rgba(9,11,10,.58) 43%,rgba(9,11,10,.18) 75%),
+    linear-gradient(0deg,rgba(9,11,10,.95) 0%,transparent 45%),
+    url("https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 72% 32%,transparent 0 25%,rgba(8,10,9,.12) 55%,rgba(8,10,9,.55) 100%);
+  pointer-events:none
+}
+.hero-inner{position:relative;z-index:2;padding:180px 0 90px;max-width:830px}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--accent2);font-size:.78rem;text-transform:uppercase;letter-spacing:.2em;font-weight:800}
+.eyebrow:before{content:"";width:42px;height:2px;background:var(--accent)}
+h1{font-size:clamp(3.5rem,8vw,7.8rem);line-height:.91;letter-spacing:-.065em;margin:24px 0 24px;max-width:1000px}
+.lead{font-size:clamp(1.05rem,1.8vw,1.35rem);line-height:1.55;color:#e1e5df;max-width:650px;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{
+  min-height:50px;padding:0 20px;border:1px solid var(--line);display:inline-flex;align-items:center;gap:10px;
+  text-transform:uppercase;letter-spacing:.09em;font-size:.78rem;font-weight:800;cursor:pointer;
+  background:rgba(255,255,255,.04);color:white
+}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#10120f}
+.btn:hover{transform:translateY(-1px)}
+.fact-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#111412}
+.fact-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.fact{padding:34px 26px;border-right:1px solid var(--line)}
+.fact:first-child{padding-left:0}
+.fact:last-child{border-right:0}
+.fact small{display:block;color:var(--accent2);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;font-weight:800}
+.fact strong{font-size:1.05rem;line-height:1.4}
+.section{padding:96px 0}
+.two-col{display:grid;grid-template-columns:.82fr 1.18fr;gap:80px;align-items:start}
+.kicker{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.76rem}
+h2{font-size:clamp(2.4rem,4.5vw,4.6rem);line-height:1;letter-spacing:-.05em;margin:16px 0 0}
+.copy{color:var(--muted);font-size:1.08rem;line-height:1.75}
+.copy p{margin-top:0}
+.preview-band{position:relative;min-height:520px;display:grid;align-items:center;background:
+linear-gradient(90deg,rgba(9,11,10,.92),rgba(9,11,10,.48)),
+url("https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1800&q=85") center 58%/cover no-repeat;background-attachment:fixed}
+.preview-card{width:min(620px,100%);padding:42px;border-left:3px solid var(--accent);background:rgba(13,16,14,.80);backdrop-filter:blur(10px)}
+.preview-card h3{font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.045em;margin:10px 0 16px}
+.preview-card p{color:#d8ddd6;line-height:1.7;margin:0}
+.footer{padding:40px 0 55px;border-top:1px solid var(--line);color:#9ca29b}
+.footer-row{display:flex;justify-content:space-between;gap:24px;align-items:center}
+.modal{
+  position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);
+  display:none;align-items:center;justify-content:center;padding:20px
+}
+.modal.open{display:flex}
+.modal-box{width:min(460px,100%);background:#171a18;border:1px solid var(--line);padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+.modal-box h3{font-size:1.7rem;margin:0 0 10px}
+.modal-box p{color:var(--muted);line-height:1.6;margin:0 0 22px}
+.modal-close{width:100%;min-height:48px;border:0;background:var(--accent);color:#111;font-weight:800;cursor:pointer}
+.mobile-panel{display:none}
+@media(max-width:800px){
+  .shell{width:min(calc(100% - 28px),var(--max))}
+  .nav{height:72px}
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .mobile-panel{
+    position:fixed;top:72px;left:14px;right:14px;z-index:60;background:#151815;border:1px solid var(--line);
+    padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.38)
+  }
+  .mobile-panel.open{display:block}
+  .mobile-panel a{display:block;padding:15px 14px;border-bottom:1px solid var(--line)}
+  .mobile-panel a:last-child{border-bottom:0}
+  .hero{min-height:820px;background-position:center}
+  .hero-inner{padding:135px 0 60px}
+  h1{font-size:clamp(3.2rem,14vw,5.2rem)}
+  .fact-grid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid var(--line);padding:24px 0}
+  .fact:last-child{border-bottom:0}
+  .two-col{grid-template-columns:1fr;gap:36px}
+  .section{padding:72px 0}
+  .preview-band{min-height:480px;background-attachment:scroll}
+  .preview-card{padding:28px}
+  .footer-row{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="shell nav">
+    <a class="brand" href="#top" aria-label="Hermanos Gonzales Lawns & Landscaping home">Hermanos Gonzales Lawns & Landscaping</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#overview">Overview</a>
+      <a href="#preview">Preview</a>
+      <a href="#" data-locked="true">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
 
+<div class="mobile-panel" id="mobilePanel" aria-label="Mobile navigation">
+  <a href="#overview">Overview</a>
+  <a href="#preview">Preview</a>
+  <a href="#" data-locked="true">Contact</a>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div class="eyebrow">Website Preview</div>
+      <h1>Hermanos Gonzales Lawns & Landscaping</h1>
+      <p class="lead">A clean, grounded web presence designed around the business name you provided.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#overview"><span>View Preview</span><i class="fa-solid fa-arrow-down"></i></a>
+        <a class="btn" href="#" data-locked="true"><span>Contact</span><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fact-strip" aria-label="Available information">
+    <div class="shell fact-grid">
+      <div class="fact"><small>Business name</small><strong>Hermanos Gonzales Lawns & Landscaping</strong></div>
+      <div class="fact"><small>Site type</small><strong>Single-file responsive HTML demo</strong></div>
+      <div class="fact"><small>Data policy</small><strong>No unsupported business details added</strong></div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="shell two-col">
+      <div>
+        <div class="kicker">Overview</div>
+        <h2>Built around what is actually known.</h2>
+      </div>
+      <div class="copy">
+        <p>This preview uses the exact business name supplied for Hermanos Gonzales Lawns & Landscaping. No address, phone number, email address, hours, pricing, reviews, services, team members, social profiles, or other business claims were provided in the source files, so they are intentionally not presented as facts.</p>
+        <p>The layout is designed as a polished visual starting point while keeping real-world actions locked until verified business information is available.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-band" id="preview">
+    <div class="shell">
+      <div class="preview-card">
+        <div class="kicker">Demo Website</div>
+        <h3>Hermanos Gonzales Lawns & Landscaping</h3>
+        <p>This section is intentionally content-light because the source material did not provide verified business details to publish. Additional sections can be populated once reliable company research is supplied.</p>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="wrap footer"><strong>Hermanos Gonzales Lawns And Landscaping</strong><span>Demo website</span></div></footer>
-<div id="lockedModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="lockedTitle"><div class="modal-card"><i class="fa-solid fa-lock"></i><h2 id="lockedTitle">This is currently locked.</h2><p>This feature is part of the full website. Purchase the site to unlock it.</p><button type="button" class="btn primary" data-close-modal>Close</button></div></div>
+
+<footer class="footer">
+  <div class="shell footer-row">
+    <strong>Hermanos Gonzales Lawns & Landscaping</strong>
+    <span>Website preview</span>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+  <div class="modal-box">
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="modal-close" id="modalClose">Close</button>
+  </div>
+</div>
+
 <script>
-const menu = document.querySelector('[data-menu]');
-const nav = document.querySelector('[data-nav]');
-if (menu && nav) {
-  menu.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    menu.setAttribute('aria-expanded', String(open));
-  });
-  nav.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open');
-    menu.setAttribute('aria-expanded','false');
-  }));
-}
-document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-  const id = a.getAttribute('href');
-  if (id.length > 1) {
-    const target = document.querySelector(id);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({behavior:'smooth',block:'start'});
-    }
-  }
-}));
+const menuBtn = document.getElementById('menuBtn');
+const mobilePanel = document.getElementById('mobilePanel');
 const modal = document.getElementById('lockedModal');
-const closeBtn = modal.querySelector('[data-close-modal]');
-const card = modal.querySelector('.modal-card');
-let previousFocus = null;
-function openLocked(e) {
-  e.preventDefault();
-  previousFocus = document.activeElement;
-  modal.hidden = false;
-  document.body.classList.add('modal-open');
-  requestAnimationFrame(() => modal.classList.add('show'));
-  closeBtn.focus();
+const modalClose = document.getElementById('modalClose');
+
+menuBtn.addEventListener('click', () => {
+  const open = mobilePanel.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+
+document.querySelectorAll('.mobile-panel a[href^="#"]:not([data-locked])').forEach(link => {
+  link.addEventListener('click', () => {
+    mobilePanel.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  });
+});
+
+function openLockedModal(event) {
+  event.preventDefault();
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalClose.focus();
 }
-function closeLocked() {
-  modal.classList.remove('show');
-  document.body.classList.remove('modal-open');
-  setTimeout(() => { modal.hidden = true; }, 160);
-  if (previousFocus && previousFocus.focus) previousFocus.focus();
+function closeLockedModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
 }
-document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLocked));
-closeBtn.addEventListener('click', closeLocked);
-modal.addEventListener('click', e => { if (e.target === modal) closeLocked(); });
+document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLockedModal));
+modalClose.addEventListener('click', closeLockedModal);
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeLockedModal();
+});
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !modal.hidden) closeLocked();
-  if (e.key === 'Tab' && !modal.hidden) {
-    const focusable = [...card.querySelectorAll('button,a[href]')];
-    if (!focusable.length) return;
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
+  if (e.key === 'Escape' && modal.classList.contains('open')) closeLockedModal();
 });
 </script>
-<!--
-STOCK IMAGE: Unsplash background loaded from https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=2200&q=85. It is stock imagery and is not presented as the actual business, owner, employees, products, or completed work.
-MISSING / REQUIRES APPROVAL: Likely but unverified match: Hnos Gonzales Landscaping and Hardscaping LLC, phone (302) 563-7170, website https://www.hnosgonzalezlandscapingllc.com/. Do not publish those contact/service details until the owner confirms this is the same business.
-QUALITY CHECK: responsive desktop/mobile layouts; hamburger menu implemented; mobile zoom disabled; text selection disabled; no empty unavailable sections; no unsupported prices/discounts/guarantees; all real-world contact actions remain demo-locked; verified social/source links are functional.
--->
-</body></html>
+</body>
+</html>
