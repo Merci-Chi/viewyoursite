@@ -988,12 +988,11 @@
                             <button class="have-code-button" id="developmentCodeToggle" type="button" aria-expanded="false">Have a code?</button>
                         </div>
                         <div class="discount-code-field" id="developmentCodeField" hidden>
-                            <label for="developmentBypassCode">Internal Code</label>
+                            <label for="developmentBypassCode">Code</label>
                             <div class="discount-code-row">
                                 <input id="developmentBypassCode" type="password" placeholder="Enter code" autocomplete="off" spellcheck="false">
                                 <button class="discount-apply" id="developmentCodeApply" type="button">Apply</button>
                             </div>
-                            <small>Valid internal codes can bypass the one-time website development payment.</small>
                             <div class="discount-message" id="developmentCodeMessage" role="status"></div>
                         </div>
                         <p class="payment-state" id="developmentStatus">Sign the agreement first to continue.</p>
@@ -1291,14 +1290,19 @@
         };
         const localHostingCheckoutPlans = {
             standard: [
-                { key: "standard-monthly", label: "$10/month — Standard Website Hosting · local price", type: "standard", localPrice: true }
+                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · local price", type: "standard", localPrice: true }
             ],
             backend: [
-                { key: "backend-monthly", label: "$20/month — Backend Website Hosting · local price", type: "backend", localPrice: true }
+                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · local price", type: "backend", localPrice: true }
             ]
         };
         function activeHostingPlans(type) {
             return localHostingPricingActive ? (localHostingCheckoutPlans[type] || []) : (hostingCheckoutPlans[type] || []);
+        }
+        function activeLocalHostingCode() {
+            return localHostingPricingActive
+                ? (appliedDiscountCodes.claim || appliedDiscountCodes.subscriptions || appliedDiscountCode || "")
+                : "";
         }
         function renderLocalPriceMarkup(type) {
             if (!localHostingPricingActive) return type === "backend" ? "$30/month" : "$20/month";
@@ -1571,7 +1575,7 @@
                     claimPlanSelections.set(type, { plan, confirmed: false });
                 }
                 startVerifiedCheckout(plan, {
-                    discountCode: localHostingPricingActive ? (appliedDiscountCodes.claim || appliedDiscountCodes.subscriptions || null) : null,
+                    discountCode: activeLocalHostingCode() || null,
                     claimType: isClaimPlan ? "all" : null,
                     statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
                 });
@@ -1691,8 +1695,8 @@
             claimCheckout.classList.toggle("is-collapsed", !developmentPurchaseConfirmed || hostingReady);
             purchaseDevelopmentButton.disabled = !agreementSigned || developmentPurchaseConfirmed;
             developmentStatus.textContent = developmentPurchaseConfirmed
-                ? (developmentSkipNote ? "Step 2 bypassed with an approved internal code ✓" : "Website development purchase verified ✓")
-                : agreementSigned ? "Ready for your one-time $100 payment." : "Sign the agreement first to continue.";
+                ? (developmentSkipNote ? "Code accepted ✓" : "Website development purchase verified ✓")
+                : agreementSigned ? "" : "Sign the agreement first to continue.";
             if (agreementSigned && !claimCheckoutLinks.children.length) {
                 renderClaimPlanChoices();
             }
@@ -1757,7 +1761,7 @@
                         selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
                         startVerifiedCheckout(plan, {
-                            discountCode: localHostingPricingActive ? (appliedDiscountCodes.claim || appliedDiscountCodes.subscriptions || null) : null,
+                            discountCode: activeLocalHostingCode() || null,
                             claimType: type,
                             statusElement: selectedNote
                         });
@@ -2541,11 +2545,11 @@
                 return;
             }
 
-            developmentSkipNote = "Internal code approved";
+            developmentSkipNote = "Code approved";
             developmentPurchaseConfirmed = true;
             developmentStep.classList.add("is-complete");
-            document.getElementById("developmentStepSummary").textContent = "Step 2 bypassed with internal code ✓";
-            developmentCodeMessage.textContent = "Code accepted. Step 2 has been bypassed.";
+            document.getElementById("developmentStepSummary").textContent = "Step 2 complete ✓";
+            developmentCodeMessage.textContent = "Code accepted ✓";
             developmentCodeMessage.className = "discount-message success";
             developmentBypassCode.value = "";
             updateClaimSubmitAvailability();
@@ -2614,7 +2618,7 @@
                     websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
                     websiteDevelopmentSkipped: Boolean(developmentSkipNote),
                     discountCode: appliedDiscountCode || null,
-                    message: developmentSkipNote ? `Step 2 skipped. Note: ${developmentSkipNote}` : ""
+                    message: developmentSkipNote ? "Code approved" : ""
                 }
             });
             submitClaimButton.textContent = "Submit Claim Request";
