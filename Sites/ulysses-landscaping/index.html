@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#f2efe6">
+<title>Ulysses Landscaping</title>
+<meta name="description" content="Ulysses Landscaping website preview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f2efe6;color:#173421;font-family:"DM Sans",sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}body.modal-open{overflow:hidden}a{text-decoration:none;color:inherit}.wrap{width:min(1180px,calc(100% - 52px));margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:20;background:#f2efe6e8;backdrop-filter:blur(14px);border-bottom:1px solid #1734211c}.nav{height:82px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:Fraunces,serif;font-size:1.35rem;font-weight:700}.desktop-nav{display:flex;align-items:center;gap:30px}.desktop-nav a{font-size:.93rem}.leaf-cta{border:0;background:#1d5b32;color:#fff;padding:13px 19px;font-weight:700;cursor:pointer}.menu-button{display:none;border:1px solid #17342133;background:transparent;width:44px;height:44px;color:#173421}.mobile-menu{display:none}
+.hero{padding:138px 0 76px}.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:stretch}.hero-copy{padding:68px 24px 55px 0}.tag{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;text-transform:uppercase;letter-spacing:.17em;font-weight:800;color:#5d7b63}.tag:before{content:"";width:26px;height:1px;background:#5d7b63}h1{font-family:Fraunces,serif;font-size:clamp(4rem,7.6vw,7.3rem);line-height:.9;letter-spacing:-.045em;margin:24px 0 24px}.hero-copy p{max-width:520px;color:#52685a;line-height:1.75;font-size:1.03rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}.primary,.secondary{padding:13px 19px;font-weight:700;cursor:pointer}.primary{border:1px solid #1d5b32;background:#1d5b32;color:white}.secondary{border:1px solid #1d5b32;background:transparent;color:#1d5b32}
+.hero-photo{min-height:660px;position:relative;background:url("https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1700&q=88") center/cover no-repeat}.hero-photo:after{content:"";position:absolute;inset:22px;border:1px solid #fff8}.photo-note{position:absolute;right:-18px;bottom:24px;background:#dbe6d7;color:#24452d;padding:16px 20px;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.info{padding:28px 0 112px}.info-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #17342128;border-bottom:1px solid #17342128}.info-item{padding:28px 24px;border-right:1px solid #17342128}.info-item:last-child{border-right:0}.info-item span{display:block;color:#728177;font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;margin-bottom:8px}.info-item strong{font-family:Fraunces;font-size:1.35rem}
+.feature{position:relative;min-height:560px;display:grid;align-items:center;background:linear-gradient(90deg,#14351fea 0%,#14351fbf 50%,#14351f4a 100%),url("https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=2200&q=88") center/cover no-repeat;color:white}.feature-copy{max-width:610px;padding:90px 0}.feature h2{font-family:Fraunces;font-size:clamp(3rem,6vw,5.3rem);line-height:.95;margin:14px 0 20px}.feature p{color:#d7e1d7;line-height:1.8;max-width:480px}
+footer{padding:38px 0 48px}.footer-row{display:flex;justify-content:space-between;gap:22px;color:#66796c}.footer-row strong{font-family:Fraunces;color:#173421}
+.lock-modal[hidden]{display:none}.lock-modal{position:fixed;inset:0;z-index:100;background:#102217b3;display:grid;place-items:center;padding:24px}.lock-dialog{width:min(460px,100%);background:#f6f3e9;padding:40px;position:relative;box-shadow:0 26px 80px #0d25187a}.modal-x{position:absolute;right:14px;top:14px;border:0;background:transparent;color:#435e4b;font-size:1.2rem;cursor:pointer}.modal-icon{display:grid;place-items:center;width:50px;height:50px;background:#1d5b32;color:white;margin-bottom:20px}.lock-dialog h2{font-family:Fraunces;font-size:2rem;margin:0 0 12px}.lock-dialog p{line-height:1.65;color:#5a6f60}.modal-close{margin-top:12px;border:0;background:#1d5b32;color:#fff;padding:13px 22px;font-weight:700;cursor:pointer}
+@media(max-width:800px){.wrap{width:min(100% - 30px,1180px)}.desktop-nav{display:none}.menu-button{display:grid;place-items:center}.mobile-menu{position:absolute;top:82px;left:15px;right:15px;background:#f7f4ec;border:1px solid #17342124;padding:9px;flex-direction:column;box-shadow:0 15px 50px #1734211a}.mobile-menu.open{display:flex}.mobile-menu a,.mobile-menu button{padding:15px;border:0;border-bottom:1px solid #17342115;background:transparent;text-align:left;color:#173421;font:inherit}.hero{padding-top:112px}.hero-grid{grid-template-columns:1fr}.hero-copy{padding:42px 0 0}.hero-photo{min-height:480px}.photo-note{right:14px}.info{padding-bottom:80px}.info-grid{grid-template-columns:1fr}.info-item{border-right:0;border-bottom:1px solid #17342128}.feature{min-height:500px}.footer-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<!-- Stock imagery: Unsplash landscaping/garden photography. It is not imagery of the actual business. -->
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#top" data-scroll-link>Ulysses Landscaping</a>
+  <nav class="desktop-nav"><a href="#overview" data-scroll-link>Overview</a><button class="leaf-cta" type="button" data-locked="true">Contact</button></nav>
+  <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  <nav class="mobile-menu" data-mobile-menu><a href="#overview" data-scroll-link>Overview</a><button type="button" data-locked="true">Contact</button></nav>
+ </div>
+</header>
+<main id="top">
+ <section class="hero">
+  <div class="wrap hero-grid">
+   <div class="hero-copy">
+    <div class="tag">Website Preview</div>
+    <h1>Ulysses<br>Landscaping</h1>
+    <p>A clean, nature-led website direction for Ulysses Landscaping.</p>
+    <div class="actions"><a class="primary" href="#overview" data-scroll-link>View Site</a><button class="secondary" type="button" data-locked="true">Contact</button></div>
+   </div>
+   <div class="hero-photo" role="img" aria-label="Stock photo of landscaping work"><span class="photo-note">Stock imagery</span></div>
+  </div>
+ </section>
+ <section class="info" id="overview"><div class="wrap info-grid">
+  <div class="info-item"><span>Business</span><strong>Ulysses Landscaping</strong></div>
+  <div class="info-item"><span>Category</span><strong>Landscaping</strong></div>
+  <div class="info-item"><span>Website</span><strong>Preview</strong></div>
+ </div></section>
+ <section class="feature">
+  <div class="wrap feature-copy"><div class="tag" style="color:#c4d9c5">Ulysses Landscaping</div><h2>Designed with the outdoors in mind.</h2><p>This preview uses industry-relevant stock photography for presentation only.</p><div class="actions"><button class="primary" type="button" data-locked="true">Contact</button></div></div>
+ </section>
+</main>
+<footer><div class="wrap footer-row"><strong>Ulysses Landscaping</strong><span>Website preview</span></div></footer>
+
+<div class="lock-modal" data-lock-modal hidden role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-dialog">
+    <button class="modal-x" type="button" data-modal-close aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+    <span class="modal-icon"><i class="fa-solid fa-lock"></i></span>
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="modal-close" type="button" data-modal-close>Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const mobileMenu = document.querySelector('[data-mobile-menu]');
+  const modal = document.querySelector('[data-lock-modal]');
+  const closeButton = modal.querySelector('[data-modal-close]');
+  let lastFocused = null;
+
+  function openModal(event) {
+    if (event) event.preventDefault();
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    closeButton.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach((item) => {
+    item.addEventListener('click', openModal);
+  });
+
+  menuButton.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!expanded));
+    mobileMenu.classList.toggle('open', !expanded);
+  });
+
+  document.querySelectorAll('[data-scroll-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      mobileMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  closeButton.addEventListener('click', closeModal);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+</script>
+
+</body>
+</html>
