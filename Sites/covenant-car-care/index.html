@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Covenant Car Care | Las Vegas Mobile Detailing</title>
+<meta name="description" content="Covenant Car Care is publicly listed as a Las Vegas-area mobile car-detailing service.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;-webkit-text-size-adjust:100%;user-select:none;-webkit-user-select:none}
+a,button{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.lock-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);z-index:9999}
+.lock-modal.open{display:flex}
+.lock-card{width:min(440px,100%);background:#fff;color:#181818;padding:28px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.lock-card h2{margin:0 0 10px;font-size:1.4rem}
+.lock-card p{margin:0 0 22px;color:#555;line-height:1.55}
+.lock-close{border:0;border-radius:9px;background:#181818;color:#fff;padding:11px 18px;font-weight:800}
+body.modal-open{overflow:hidden}
+
+:root{--black:#080a0d;--blue:#2ea4df;--ice:#eff9fd;--text:#f7fbfd;--muted:#b7c4cc;--line:rgba(255,255,255,.16);--panel:rgba(7,12,16,.86)}
+body{font-family:"Manrope",sans-serif;color:var(--text);background:
+linear-gradient(rgba(4,8,12,.45),rgba(4,8,12,.75)),
+url('https://images.pexels.com/photos/4876675/pexels-photo-4876675.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover fixed no-repeat;min-height:100vh}
+header{position:sticky;top:0;z-index:50;background:rgba(7,10,14,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;height:75px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{color:#fff;text-decoration:none;font-weight:800}.brand span{color:var(--blue)}
+.desktop{display:flex;gap:23px;align-items:center}.desktop a,.mobile a{color:#fff;text-decoration:none;font-weight:700;font-size:.92rem}
+.menu-btn{display:none;border:0;background:transparent;color:#fff;font-size:1.45rem}
+.mobile{display:none;background:#080a0d;padding:0 24px 18px}.mobile.open{display:grid}.mobile a{padding:12px 0;border-bottom:1px solid var(--line)}
+.hero{max-width:1200px;margin:auto;padding:120px 24px 76px}
+.hero-card{max-width:780px;background:var(--panel);padding:52px;border-top:6px solid var(--blue)}
+.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.2em;color:#71c8f1;font-weight:800}
+h1{font-size:clamp(3.7rem,8vw,7.3rem);line-height:.86;letter-spacing:-.06em;margin:18px 0 22px}
+.lead{color:var(--muted);font-size:1.05rem;line-height:1.75;max-width:700px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 16px;background:var(--blue);color:#061018;text-decoration:none;font-weight:900;border:1px solid var(--blue)}.btn.alt{background:transparent;color:#fff;border-color:#fff}
+.section{max-width:1200px;margin:0 auto 28px;padding:66px 24px;background:var(--panel);border:1px solid var(--line)}
+.section h2{font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.045em;margin:0 0 15px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.service{border-top:2px solid var(--blue);padding:22px 0}.service h3{font-size:1.08rem;margin:0 0 8px}.service p{color:var(--muted);line-height:1.6;margin:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:36px}.facts{list-style:none;padding:0;margin:18px 0}.facts li{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);color:#dbe6eb}.facts i{color:#66c2ec;width:20px}
+.caution{background:rgba(234,174,65,.12);border:1px solid rgba(234,174,65,.5);padding:18px;color:#f1deb5;line-height:1.65}
+.stock{font-size:.76rem;color:#a7b4bb;margin-top:26px}.stock a{color:#fff}
+footer{padding:30px 24px;text-align:center;background:#080a0d;color:#a5b0b6;font-size:.85rem}
+@media(max-width:800px){.desktop{display:none}.menu-btn{display:block}.hero-card{padding:34px 26px}.grid3,.split{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<header>
+<nav class="nav">
+  <a class="brand" href="#home">Covenant <span>Car Care</span></a>
+  <div class="desktop"><a href="#services">Services</a><a href="#about">About</a><a href="#reviews">Google / Yelp</a><a href="#social">Facebook</a></div>
+  <button class="menu-btn" data-menu-button aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</nav>
+<div class="mobile" data-mobile-menu><a href="#services">Services</a><a href="#about">About</a><a href="#reviews">Google / Yelp</a><a href="#social">Facebook</a></div>
+</header>
+
+<main id="home">
+<section class="hero reveal">
+  <div class="hero-card">
+    <div class="eyebrow">Mobile car detailing · Las Vegas</div>
+    <h1>Covenant Car Care</h1>
+    <p class="lead">Public business data describes Covenant Car Care as a Las Vegas-area mobile car-detailing service. Julian Martinez publicly identifies himself as the owner and a professional mobile car detailer.</p>
+    <div class="actions">
+      <a class="btn" href="tel:+13074334435" data-locked="true"><i class="fa-solid fa-phone"></i> (307) 433-4435</a>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="services">
+  <div class="eyebrow">Publicly supported service categories</div>
+  <h2>Mobile vehicle care</h2>
+  <div class="grid3">
+    <article class="service"><h3>Mobile car detailing</h3><p>Public listing data describes a mobile detailing service that comes to customers.</p></article>
+    <article class="service"><h3>Auto detailing</h3><p>Auto detailing / car detailing service is a listed business category.</p></article>
+    <article class="service"><h3>Car wash / vehicle cleaning</h3><p>Car wash is also included in the public business category data.</p></article>
+  </div>
+</section>
+
+<section class="section reveal" id="about">
+  <div class="split">
+    <div>
+      <div class="eyebrow">Owner & service area</div>
+      <h2>Las Vegas mobile detailing</h2>
+      <ul class="facts">
+        <li><i class="fa-solid fa-user"></i><span>Julian Martinez publicly identifies himself as Owner at Covenant Car Care.</span></li>
+        <li><i class="fa-solid fa-location-dot"></i><span>Las Vegas, Nevada; public listing data includes the 89131 area.</span></li>
+        <li><i class="fa-solid fa-phone"></i><span>(307) 433-4435</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow">Hours review needed</div>
+      <h2>Conflicting directory hours</h2>
+      <div class="caution">Public sources show different hours, so operating hours are intentionally omitted from this demo until the business confirms the correct schedule.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="reviews">
+  <div class="eyebrow">Review pages</div>
+  <h2>Google & Yelp</h2>
+  <p class="lead">The local-business result reviewed showed a 5.0/5 rating based on one review. A clean dedicated Yelp business URL was not surfaced, so the Yelp link below is the search reference used during research.</p>
+  <div class="actions">
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Covenant+Car+Care+Las+Vegas+NV+89131" data-locked="true"><i class="fa-brands fa-google"></i> Google</a>
+    <a class="btn alt" href="https://www.yelp.com/search?find_desc=Covenant+Car+Care&find_loc=Las+Vegas%2C+NV" data-locked="true"><i class="fa-brands fa-yelp"></i> Yelp</a>
+  </div>
+</section>
+
+<section class="section reveal" id="social">
+  <div class="eyebrow">Public social profile</div>
+  <h2>Facebook</h2>
+  <p class="lead">The public Facebook profile below identifies Julian Martinez as Owner at Covenant Car Care.</p>
+  <div class="actions">
+    <a class="btn alt" href="https://www.facebook.com/people/Julian-Martinez/61581636984649/" data-locked="true"><i class="fa-brands fa-facebook"></i> Facebook</a>
+  </div>
+  <p class="stock"><i class="fa-regular fa-image"></i> Full-page background is a generic car-wash/detailing stock photo and does not depict Covenant Car Care, its owner, vehicles, or completed work. <a href="https://www.pexels.com/photo/male-driver-washing-car-with-power-washer-4876675/" data-locked="true">Pexels source</a>.</p>
+</section>
+</main>
+
+<footer>Covenant Car Care · Las Vegas, Nevada</footer>
+
+<div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-card">
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="lock-close" type="button">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  if (menuButton && menu) {
+    menuButton.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  const modal = document.querySelector('.lock-modal');
+  const closeButton = modal ? modal.querySelector('.lock-close') : null;
+
+  function openLock() {
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeLock() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      openLock();
+    });
+  });
+
+  if (closeButton) closeButton.addEventListener('click', closeLock);
+  if (modal) modal.addEventListener('click', event => {
+    if (event.target === modal) closeLock();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal && modal.classList.contains('open')) closeLock();
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Quality check: business hours omitted because they conflict; no storefront address shown; only real Google/Yelp/Facebook references included; no invented pricing, packages, email, license, or years in business. -->
+</body>
+</html>
