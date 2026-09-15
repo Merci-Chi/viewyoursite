@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<title>Tranz Business Center | Business Support</title>
+<meta name="description" content="Tranz Business Center provides business financial assistance, tax preparation assistance, and support through a network of specialized companies.">
+<style>
+:root{--ink:#0b1830;--cream:#f5f1e8;--gold:#c39a4a;--panel:#fff;--text:#0b1830;--accent:#c39a4a;--accentText:#0b1830}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--cream);user-select:none;-webkit-user-select:none}a{color:inherit}
+nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,24,48,.12)}.nav-wrap{max-width:1180px;margin:auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:Georgia,serif;font-size:1.25rem;font-weight:800;letter-spacing:.02em}.nav-links{display:flex;gap:26px;align-items:center}.nav-links a{text-decoration:none;font-weight:700;font-size:.92rem}.menu-btn{display:none;background:none;border:0;font-size:1.4rem;color:var(--ink)}
+.hero{min-height:78vh;display:grid;grid-template-columns:1.05fr .95fr;max-width:1240px;margin:auto;align-items:center;padding:64px 28px 74px;gap:46px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:800;color:#7e6534}h1{font:700 clamp(3.1rem,6vw,6.7rem)/.96 Georgia,serif;margin:14px 0 24px;letter-spacing:-.045em}.lead{font-size:1.16rem;line-height:1.72;max-width:680px;color:#34405a}.hero-art{min-height:540px;border-radius:2px;background:linear-gradient(135deg,rgba(7,20,45,.15),rgba(7,20,45,.7)),url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=82') center/cover;position:relative}.hero-art:after{content:"";position:absolute;left:-22px;bottom:-22px;width:55%;height:55%;border:2px solid var(--gold);z-index:-1}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 19px;border:1px solid var(--ink);text-decoration:none;font-weight:800}.btn.primary{background:var(--ink);color:#fff}
+section{padding:88px 28px}.inner{max-width:1180px;margin:auto}.section-title{font:700 clamp(2.1rem,4vw,4rem)/1.05 Georgia,serif;margin:0 0 14px}.section-copy{max-width:760px;color:#4a5366;line-height:1.75}
+.services{background:#0b1830;color:#fff}.services .section-copy{color:#cfd6e2}.service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.14);margin-top:38px}.service{background:#0b1830;padding:38px}.service i{color:var(--gold);font-size:1.6rem}.service h3{font:700 1.55rem Georgia,serif;margin:20px 0 12px}.service p{color:#cfd6e2;line-height:1.7}
+.network{display:grid;grid-template-columns:.7fr 1.3fr;gap:64px;align-items:start}.names{display:flex;flex-wrap:wrap;gap:10px}.names span{border:1px solid #c8c0b0;padding:10px 12px;background:#fff;font-weight:700;font-size:.9rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}.info-row{display:flex;gap:14px;margin:20px 0;align-items:flex-start}.info-row i{margin-top:4px;color:#9d7b39}.locations{display:grid;grid-template-columns:1fr 1fr;gap:14px}.loc{border-top:2px solid var(--ink);padding:18px 0;line-height:1.55}footer{background:#071225;color:#d8deea;padding:34px 28px}footer .inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.socials{display:flex;gap:12px}.socials button{width:42px;height:42px;border:1px solid #59657a;background:transparent;color:white;cursor:pointer}
+
+.locked-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.72);z-index:9999;padding:20px}
+.locked-modal.open{display:flex}.locked-dialog{width:min(440px,100%);background:var(--panel,#fff);color:var(--text,#111);border:1px solid rgba(127,127,127,.25);box-shadow:0 24px 80px rgba(0,0,0,.35);padding:30px;border-radius:18px}
+.locked-dialog h2{margin:0 0 10px;font-size:1.55rem}.locked-dialog p{margin:0 0 22px;line-height:1.6}.locked-dialog button{border:0;padding:12px 20px;border-radius:10px;font-weight:800;cursor:pointer;background:var(--accent,#111);color:var(--accentText,#fff)}
+
+@media(max-width:800px){.menu-btn{display:block}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);padding:20px 28px;flex-direction:column;align-items:flex-start;border-bottom:1px solid #ddd}.nav-links.open{display:flex}.hero{grid-template-columns:1fr;padding-top:42px}.hero-art{min-height:380px}.service-grid,.network,.contact-grid,.locations{grid-template-columns:1fr}section{padding:68px 22px}.nav-wrap{padding:16px 22px}}
+</style></head><body>
+<nav><div class="nav-wrap"><div class="brand">TRANZ BUSINESS CENTER</div><button class="menu-btn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><div class="nav-links"><a href="#services">Services</a><a href="#network">Network</a><a href="#locations">Locations</a><a href="#contact">Contact</a></div></div></nav>
+<main>
+<section class="hero"><div><div class="eyebrow">Business support & specialized services</div><h1>Empowering success through a connected network.</h1><p class="lead">Tranz Business Center brings together specialized companies and business support services, including business financial assistance and tax preparation assistance.</p><div class="actions"><a class="btn primary" href="#services">Explore services</a><a class="btn" href="#contact">View contact details</a></div></div><div class="hero-art" role="img" aria-label="Stock photo of a professional team meeting"></div></section>
+<section class="services" id="services"><div class="inner"><div class="eyebrow">What we do</div><h2 class="section-title">Practical business support.</h2><p class="section-copy">Public information from Tranz Business Center identifies dedicated assistance for business finances and tax preparation.</p><div class="service-grid"><article class="service"><i class="fa-solid fa-chart-line"></i><h3>Business Financial Assistant</h3><p>Support designed to help businesses navigate financial challenges, streamline processes, and improve financial organization.</p></article><article class="service"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Tax Preparation Assistant</h3><p>Tax preparation assistance is listed among Tranz Business Center's core services.</p></article></div></div></section>
+<section id="network"><div class="inner network"><div><div class="eyebrow">Connected expertise</div><h2 class="section-title">A network of specialized companies.</h2></div><div><p class="section-copy">Tranz Business Center publicly identifies a network that includes the following organizations.</p><div class="names"><span>Tranz Business Center</span><span>VBFast</span><span>WFG</span><span>EBALIC</span><span>SCSC Foundation</span><span>VBFastCareer</span><span>VBFastEducation</span><span>MightyGuardiansLLC</span><span>Tax Tranz</span></div></div></div></section>
+<section id="contact"><div class="inner contact-grid"><div><div class="eyebrow">Contact</div><h2 class="section-title">Connect with the team.</h2><div class="info-row"><i class="fa-solid fa-phone"></i><div><strong>(201) 918-3112</strong><br><small>Demo calling action remains locked.</small></div></div><div class="info-row"><i class="fa-solid fa-envelope"></i><div><strong>contact@tranzbusinesscenter.net</strong><br><small>Demo email action remains locked.</small></div></div><div class="actions"><button class="btn primary" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Contact Tranz</button></div></div>
+<div id="locations"><div class="eyebrow">Publicly listed locations</div><div class="locations"><div class="loc">1931 Lincoln Highway<br>Edison, NJ 08817</div><div class="loc">2390 E Camelback Rd. #130<br>Phoenix, AZ 85016</div><div class="loc">90-02 Queens Blvd, Suite 2D<br>Elmhurst, NY 11373</div><div class="loc">30 Knightsbridge Rd<br>2nd Floor Unit 525, Rm 224<br>Piscataway, NJ 08854</div></div></div></div></section>
+</main>
+<footer><div class="inner"><div>© Tranz Business Center · Demo website</div><div class="socials" aria-label="Social media"><button data-locked="true" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></button><button data-locked="true" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></button><button data-locked="true" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></button></div></div></footer>
+
+<div class="locked-modal" id="lockedModal" aria-hidden="true">
+  <div class="locked-dialog" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" id="closeLocked">Close</button>
+  </div>
+</div>
+<script>
+const menuBtn=document.querySelector('.menu-btn'), nav=document.querySelector('.nav-links');
+if(menuBtn&&nav){menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open))});
+nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));}
+
+const modal=document.getElementById('lockedModal'), closeBtn=document.getElementById('closeLocked');
+let lastFocused=null;
+function openLocked(e){e.preventDefault();lastFocused=document.activeElement;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';closeBtn.focus()}
+function closeLocked(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocused)lastFocused.focus()}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',openLocked));
+closeBtn.addEventListener('click',closeLocked);
+modal.addEventListener('click',e=>{if(e.target===modal)closeLocked()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked()});
+</script>
+<!-- SOURCE NOTES: Public details used from tranzbusinesscenter.net. Hero image is stock imagery and does not depict the company or its staff. Social URLs were not verified, so social actions are locked in this demo. -->
+</body></html>
