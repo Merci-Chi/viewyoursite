@@ -269,3 +269,137 @@ const HEADER_TAB_POSITIONS = {
     link.addEventListener('click', closeMenu);
   });
 })();
+
+// ============================================================
+// CLICK-TO-FALL HEADER LEAF
+// The logo leaf detaches visually and falls with a smooth,
+// wind-swept motion: steady downward movement, broad sweeping
+// drifts, and 3D rotation so it no longer looks flat.
+// ============================================================
+(() => {
+  const leaf = document.querySelector('.brand-leaf');
+  if (!leaf) return;
+
+  let falling = false;
+
+  const randomBetween = (min, max) => min + Math.random() * (max - min);
+
+  function makeFallKeyframes(startRect) {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const startX = startRect.left;
+    const leafW = startRect.width;
+
+    const fallDistance = Math.max(vh - startRect.top + startRect.height + 70, 300);
+    const mainSweep = Math.min(Math.max(vw * 0.085, 54), 130);
+    const detailSweep = mainSweep * 0.28;
+    const breezeBias = randomBetween(-28, 28);
+    const phase = randomBetween(-0.5, 0.5);
+    const steps = 56;
+
+    const leftRoom = -(startX - 10);
+    const rightRoom = vw - (startX + leafW) - 10;
+    const clampX = x => Math.max(leftRoom, Math.min(rightRoom, x));
+
+    return Array.from({ length: steps + 1 }, (_, i) => {
+      const p = i / steps;
+      const eased = 1 - Math.pow(1 - p, 1.18);
+
+      // Broad wind sweep + smaller flutter. The vertical gust term intentionally
+      // pushes upward at parts of each swing so the leaf traces soft arcs instead
+      // of dropping in a straight line.
+      const sweep = Math.sin(p * Math.PI * 2.2 + phase) * mainSweep * (0.68 + p * 0.5);
+      const flutter = Math.sin(p * Math.PI * 5.2 + phase * 2.1) * detailSweep;
+      const glide = breezeBias * (0.25 + p * 0.95);
+      const x = clampX(sweep + flutter + glide);
+
+      const gustLift = Math.sin(p * Math.PI * 4.4 + phase * 1.35) * fallDistance * 0.028;
+      const arcLift = Math.abs(Math.sin(p * Math.PI * 2.2 + phase)) * fallDistance * 0.018;
+      const y = fallDistance * eased - gustLift - arcLift;
+
+      const rotateZ = Math.sin(p * Math.PI * 3.6 + phase * 1.7) * 24 + x * 0.065;
+      const rotateY = Math.sin(p * Math.PI * 8.2 + phase * 3.1) * 42;
+      const rotateX = Math.cos(p * Math.PI * 5.3 + phase * 1.2) * 12;
+      const scaleX = 0.9 + (1 - Math.min(1, Math.abs(rotateY) / 52)) * 0.16;
+      const opacity = p > 0.92 ? 1 - ((p - 0.92) / 0.08) : 1;
+
+      return {
+        offset: p,
+        transform: `perspective(900px) translate3d(${x}px, ${y}px, 0) rotateZ(${rotateZ}deg) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scaleX(${scaleX})`,
+        opacity,
+        easing: 'linear'
+      };
+    });
+  }
+
+  function restoreLeaf(clone) {
+    clone?.remove();
+    leaf.classList.remove('is-falling-source');
+    falling = false;
+  }
+
+  function fallLeaf(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (falling) return;
+    falling = true;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      leaf.animate(
+        [
+          { transform: 'rotate(-8deg)', opacity: 1 },
+          { transform: 'translateY(22px) rotate(12deg)', opacity: 0 }
+        ],
+        { duration: 420, easing: 'ease-in', fill: 'none' }
+      ).finished.finally(() => {
+        leaf.style.opacity = '';
+        falling = false;
+      });
+      return;
+    }
+
+    const rect = leaf.getBoundingClientRect();
+    const clone = leaf.cloneNode(true);
+    clone.className = 'falling-brand-leaf';
+    clone.removeAttribute('aria-hidden');
+    clone.alt = '';
+
+    Object.assign(clone.style, {
+      position: 'fixed',
+      left: `${rect.left}px`,
+      top: `${rect.top}px`,
+      width: `${rect.width}px`,
+      height: `${rect.height}px`,
+      margin: '0',
+      pointerEvents: 'none',
+      zIndex: '9999',
+      transformOrigin: '50% 50%',
+      transformStyle: 'preserve-3d',
+      backfaceVisibility: 'visible',
+      willChange: 'transform, opacity'
+    });
+
+    document.body.appendChild(clone);
+    leaf.classList.add('is-falling-source');
+
+    const duration = Math.round(randomBetween(7600, 9200));
+    const animation = clone.animate(makeFallKeyframes(rect), {
+      duration,
+      iterations: 1,
+      fill: 'forwards'
+    });
+
+    animation.finished
+      .then(() => restoreLeaf(clone))
+      .catch(() => restoreLeaf(clone));
+  }
+
+  leaf.setAttribute('role', 'button');
+  leaf.setAttribute('tabindex', '0');
+  leaf.setAttribute('aria-label', 'Drop the leaf');
+  leaf.addEventListener('click', fallLeaf);
+  leaf.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') fallLeaf(event);
+  });
+})();
