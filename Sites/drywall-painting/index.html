@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Drywall Painting</title>
+<meta name="description" content="Drywall Painting — demo website.">
+
+<style>
+:root{
+--bg:#171715;--text:#f6f5f1;--muted:#c8c7bf;--accent:#f1c24a;--btn-text:#1c1809;
+--surface:rgba(31,31,27,.82);--header-bg:rgba(24,24,21,.88);--mobile-bg:#1c1c18;
+--footer-bg:rgba(20,20,17,.95);--line:rgba(255,255,255,.12);--line-strong:rgba(255,255,255,.3);
+--page-overlay:linear-gradient(90deg,rgba(20,20,17,.93),rgba(20,20,17,.7));--modal-bg:#24231d;--modal-text:#fff;--modal-muted:#ceccc0;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{-webkit-user-select:none;user-select:none;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+body.modal-open{overflow:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+button,a{font:inherit}
+.wrap{width:min(1180px,calc(100% - 40px));margin:0 auto}
+.site-bg{position:fixed;inset:0;z-index:-3;background-size:cover;background-position:center}
+.site-bg:after{content:"";position:absolute;inset:0;background:var(--page-overlay);z-index:1}
+header{position:sticky;top:0;z-index:30;background:var(--header-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:800;letter-spacing:.01em;text-decoration:none;font-size:1.05rem;max-width:58vw}
+nav{display:flex;align-items:center;gap:24px}
+nav a{text-decoration:none;font-weight:700;font-size:.92rem;opacity:.9}
+nav a:hover{opacity:1}
+.menu-btn{display:none;border:0;background:transparent;color:inherit;padding:8px;cursor:pointer}
+.hero{min-height:74vh;display:grid;align-items:center;padding:94px 0 76px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.16em;font-weight:800;font-size:.76rem;margin-bottom:18px}
+h1{font-size:clamp(3.1rem,7vw,6.8rem);line-height:.93;letter-spacing:-.055em;margin:0 0 24px;max-width:920px}
+.hero p{font-size:1.12rem;max-width:680px;margin:0 0 30px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;background:var(--accent);color:var(--btn-text);text-decoration:none;padding:13px 19px;min-height:48px;font-weight:800;cursor:pointer}
+.btn.alt{background:transparent;border-color:var(--line-strong);color:var(--text)}
+.visual{min-height:430px;background-size:cover;background-position:center;position:relative;border:1px solid var(--line)}
+.visual:after{content:"Stock image";position:absolute;left:14px;bottom:12px;padding:5px 8px;font-size:.72rem;letter-spacing:.04em;background:rgba(0,0,0,.65);color:#fff}
+section{padding:84px 0;border-top:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
+.section-head h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;letter-spacing:-.04em;margin:0}
+.section-head p{max-width:560px;margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{padding:26px;border:1px solid var(--line);background:var(--surface)}
+.card i{width:24px;height:24px;margin-bottom:18px;color:var(--accent)}
+.card h3{font-size:1.08rem;margin:0 0 8px}
+.card p{margin:0;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.info-list{display:grid;gap:0;border-top:1px solid var(--line)}
+.info-row{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.info-row strong{font-size:.84rem;text-transform:uppercase;letter-spacing:.08em}
+.info-row span,.info-row a{color:var(--muted);text-decoration:none}
+.notice{padding:22px;border-left:4px solid var(--accent);background:var(--surface)}
+.notice strong{display:block;margin-bottom:6px}
+footer{padding:34px 0;border-top:1px solid var(--line);background:var(--footer-bg)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--muted);font-size:.88rem}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.footer-links a{text-decoration:none}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.74);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal-backdrop.show{display:flex}
+.modal{width:min(460px,100%);background:var(--modal-bg);color:var(--modal-text);padding:32px;position:relative;border:1px solid var(--line-strong);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.modal h2{margin:8px 0 10px;font-size:1.55rem}
+.modal p{margin:0 0 24px;color:var(--modal-muted)}
+.modal-icon i{width:30px;height:30px;color:var(--accent)}
+.modal-x{position:absolute;right:12px;top:12px;border:0;background:transparent;color:inherit;cursor:pointer;padding:8px}
+.modal-x i{width:20px;height:20px}
+.modal-close{width:100%}
+@media(max-width:820px){
+  .wrap{width:min(100% - 28px,1180px)}
+  .header-inner{height:68px}
+  .menu-btn{display:inline-flex}
+  nav{display:none;position:absolute;left:0;right:0;top:68px;background:var(--mobile-bg);border-bottom:1px solid var(--line);padding:18px 20px;flex-direction:column;align-items:flex-start;gap:8px}
+  nav.open{display:flex}
+  nav a{display:block;width:100%;padding:10px 2px}
+  .hero{padding:62px 0 48px;min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  h1{font-size:clamp(2.8rem,13vw,5rem)}
+  .visual{min-height:300px}
+  .grid{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr;gap:28px}
+  .section-head{display:block}
+  .section-head p{margin-top:12px}
+  section{padding:62px 0}
+  .info-row{grid-template-columns:1fr;gap:5px}
+  .footer-inner{align-items:flex-start;flex-direction:column}
+}
+
+.site-bg{background-image:url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1800&q=82')}
+.visual{background-image:url('https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?auto=format&fit=crop&w=1200&q=82')}
+</style>
+</head>
+<body>
+<div class="site-bg" aria-hidden="true"></div>
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="#home">Drywall Painting</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button><i data-lucide="menu"></i></button>
+    <nav data-mobile-nav><a href="#details">Details</a></nav>
+  </div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><i data-lucide="sparkles"></i>Demo website</div>
+        <h1>Drywall Painting</h1>
+        <p>A construction-focused visual concept based only on the supplied business name. Specific services and business claims remain omitted until verified.</p>
+        <div class="actions">
+          <a class="btn" href="#details"><i data-lucide="arrow-down"></i>View details</a>
+        </div>
+      </div>
+      <div class="visual" role="img" aria-label="Relevant stock photograph"></div>
+    </div>
+  </section>
+  
+<section id="details">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Business details</h2>
+      <p>The supplied name is too broad to safely match to a specific public company without additional identifying information.</p>
+    </div>
+    <div class="notice">
+      <strong>Unsupported claims are omitted.</strong>
+      No phone number, address, service area, license, pricing, reviews, business hours, or social profile has been added.
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="wrap footer-inner">
+    <div>Drywall Painting</div>
+    <div class="footer-links"><a href="#home">Home</a></div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="lockedModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <button class="modal-x" type="button" aria-label="Close" data-close-modal><i data-lucide="x"></i></button>
+    <div class="modal-icon"><i data-lucide="lock-keyhole"></i></div>
+    <h2 id="lockedTitle">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn modal-close" type="button" data-close-modal>Close</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.lucide) { lucide.createIcons(); }
+
+  const menuBtn = document.querySelector('[data-menu-button]');
+  const nav = document.querySelector('[data-mobile-nav]');
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', function () {
+      const open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      const id = link.getAttribute('href');
+      if (id && id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    });
+  });
+
+  const modal = document.getElementById('lockedModal');
+  let lastFocus = null;
+  function openLocked(e) {
+    e.preventDefault();
+    lastFocus = document.activeElement;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    const close = modal.querySelector('[data-close-modal]');
+    if (close) close.focus();
+  }
+  function closeLocked() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-locked="true"]').forEach(function (el) {
+    el.addEventListener('click', openLocked);
+  });
+  modal.querySelectorAll('[data-close-modal]').forEach(function (el) {
+    el.addEventListener('click', closeLocked);
+  });
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeLocked();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('show')) closeLocked();
+  });
+});
+</script>
+
+</body>
+</html>
