@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Mcc</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{-webkit-user-select:none;user-select:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+.lock-modal[hidden]{display:none}
+.lock-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:rgba(5,7,10,.78);backdrop-filter:blur(8px)}
+.lock-dialog{width:min(460px,100%);background:#fff;color:#151719;padding:28px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.38)}
+.lock-dialog h2{margin:0 0 10px;font-size:1.6rem}
+.lock-dialog p{margin:0 0 22px;line-height:1.6;color:#4d555d}
+.lock-dialog button{border:0;border-radius:9px;padding:12px 18px;background:#111827;color:#fff;font-weight:800;cursor:pointer}
+body.modal-open{overflow:hidden}
+
+:root{--black:#080a0d;--graphite:#141922;--lime:#b5d26d;--silver:#a9b3bd}
+body{font-family:Arial,Helvetica,sans-serif;background:#080a0d;color:#fff}
+.nav{position:sticky;top:0;z-index:30;background:rgba(8,10,13,.95);border-bottom:1px solid rgba(255,255,255,.1)}
+.nav-in{max-width:1250px;margin:auto;height:74px;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:900;letter-spacing:.28em}.menu-btn{display:none;border:0;background:none;color:#fff;font-size:1.4rem}.menu{display:flex;gap:24px}.menu a{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:#cbd4dc;font-weight:800}
+.hero{min-height:82vh;max-width:1250px;margin:auto;padding:100px 28px;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
+.kicker{font-size:.72rem;text-transform:uppercase;letter-spacing:.23em;color:var(--lime);font-weight:900}
+h1{font-size:clamp(7rem,18vw,16rem);line-height:.72;letter-spacing:-.075em;margin:20px 0}
+.hero p{max-width:560px;color:#9eabb7;line-height:1.75}
+.visual{height:500px;border:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden;background:linear-gradient(145deg,#0f141c,#171e28)}
+.visual:before,.visual:after{content:"";position:absolute;border:1px solid rgba(181,210,109,.4);transform:rotate(45deg)}.visual:before{width:260px;height:260px;top:25px;right:-45px}.visual:after{width:170px;height:170px;left:40px;bottom:-55px}
+.section{padding:80px 28px;background:#10141b}.wrap{max-width:1250px;margin:auto}.section h2{font-size:clamp(2.2rem,4vw,3.6rem);margin:0 0 18px}.section p{max-width:740px;color:#9eabb7;line-height:1.8}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}.panel{border:1px solid rgba(255,255,255,.1);padding:28px;min-height:220px;background:#0c1016}.panel i{font-size:1.4rem;color:var(--lime)}.panel h3{text-transform:uppercase;letter-spacing:.08em;font-size:1rem}.panel p{font-size:.95rem}
+footer{padding:24px 28px;background:#07090b;color:#7f8993}.foot{max-width:1250px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+@media(max-width:800px){.menu-btn{display:block}.menu{position:absolute;top:74px;left:18px;right:18px;display:none;flex-direction:column;background:#0d1016;padding:18px}.menu.open{display:flex}.hero{grid-template-columns:1fr}.visual{height:320px}.grid{grid-template-columns:1fr}h1{font-size:8rem}}
+
+</style>
+</head>
+<body>
+
+<div id="top"><nav class="nav"><div class="nav-in"><a class="brand" href="#top">MCC</a><button class="menu-btn" data-menu-button aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><div class="menu" data-menu><a href="#identity">Identity</a><a href="#presentation">Presentation</a></div></div></nav>
+<header class="hero"><div><div class="kicker">MCC</div><h1>MCC</h1><p>The supplied information identifies the business only as MCC. This design keeps the content deliberately brand-led rather than assigning an industry, service, location, or company description that was not provided.</p></div><div class="visual" aria-hidden="true"></div></header>
+<section class="section" id="identity"><div class="wrap"><div class="kicker">Identity</div><h2>MCC</h2><p>The three-letter name is treated as the central visual asset. No expansion of the initials is shown because none was supplied.</p>
+<div class="grid"><div class="panel"><i class="fa-solid fa-font"></i><h3>Typography</h3><p>Large letterforms create a strong identity without adding unsupported business information.</p></div><div class="panel"><i class="fa-solid fa-shapes"></i><h3>Geometry</h3><p>Abstract shapes provide visual depth while remaining neutral about the business category.</p></div><div class="panel"><i class="fa-solid fa-layer-group"></i><h3>Structure</h3><p>A minimal structure keeps the site polished without inventing services or contact details.</p></div></div></div></section>
+<section class="section" id="presentation" style="background:#0b0e13"><div class="wrap"><div class="kicker">Presentation</div><h2>Compact by design.</h2><p>With only the name supplied, the website focuses on clear hierarchy, visual balance, responsive behavior, and a distinct brand treatment.</p></div></section>
+<footer><div class="foot"><strong>MCC</strong><span>Brand-led website</span></div></footer></div>
+
+<div class="lock-modal" hidden role="dialog" aria-modal="true" aria-labelledby="locked-title">
+  <div class="lock-dialog">
+    <h2 id="locked-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" data-close-lock>Close</button>
+  </div>
+</div>
+<script>
+const menuButton = document.querySelector('[data-menu-button]');
+const menu = document.querySelector('[data-menu]');
+if (menuButton && menu) {
+  menuButton.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+    menu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  }));
+}
+const modal = document.querySelector('.lock-modal');
+const closeButton = document.querySelector('[data-close-lock]');
+let lastFocus = null;
+function openLocked(e) {
+  if (e) e.preventDefault();
+  lastFocus = document.activeElement;
+  modal.hidden = false;
+  document.body.classList.add('modal-open');
+  closeButton.focus();
+}
+function closeLocked() {
+  modal.hidden = true;
+  document.body.classList.remove('modal-open');
+  if (lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLocked));
+closeButton.addEventListener('click', closeLocked);
+modal.addEventListener('click', e => { if (e.target === modal) closeLocked(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeLocked(); });
+</script>
+</body></html>
