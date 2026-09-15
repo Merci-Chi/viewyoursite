@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>3D Hair Salon | Las Vegas Hair Salon</title>
+<meta name="description" content="3D Hair Salon in Las Vegas. Publicly listed services include blowouts, highlights, and hair washing.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;-webkit-text-size-adjust:100%;user-select:none;-webkit-user-select:none}
+a,button{-webkit-tap-highlight-color:transparent}
+img{max-width:100%;display:block}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.lock-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.68);z-index:9999}
+.lock-modal.open{display:flex}
+.lock-box{max-width:430px;width:100%;background:#fff;color:#171717;padding:28px;border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.lock-box h2{margin:0 0 10px;font-size:1.45rem}
+.lock-box p{margin:0 0 20px;line-height:1.55;color:#555}
+.lock-close{border:0;border-radius:10px;padding:11px 18px;background:#171717;color:#fff;font-weight:700}
+body.modal-open{overflow:hidden}
+
+:root{--ink:#1d1716;--cream:#f8f3ed;--rose:#9e6259;--line:#d9cdc4;--white:#fff;--muted:#675d59}
+body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink)}
+.top{position:sticky;top:0;z-index:50;background:rgba(248,243,237,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(120,94,83,.15)}
+.nav{max-width:1180px;margin:auto;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 26px}
+.brand{font-family:"Playfair Display",serif;font-size:1.35rem;font-weight:700;color:var(--ink)}
+.links{display:flex;gap:26px;align-items:center} .links a{color:var(--ink);font-weight:600;font-size:.94rem}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 18px;border-radius:999px;font-weight:700;border:1px solid var(--ink);color:var(--ink)}
+.btn.solid{background:var(--ink);color:#fff}
+.menu-btn{display:none;border:0;background:transparent;font-size:1.45rem;color:var(--ink)}
+.mobile{display:none;padding:0 26px 20px;border-top:1px solid var(--line)} .mobile.open{display:grid} .mobile a{padding:12px 0;color:var(--ink);font-weight:700}
+.hero{min-height:700px;display:grid;grid-template-columns:1.02fr .98fr;max-width:1280px;margin:auto}
+.hero-copy{padding:90px 54px 70px 64px;display:flex;flex-direction:column;justify-content:center}
+.kicker{text-transform:uppercase;letter-spacing:.17em;font-size:.78rem;font-weight:800;color:var(--rose)}
+h1{font-family:"Playfair Display",serif;font-size:clamp(3.3rem,7vw,6.6rem);line-height:.92;margin:18px 0 24px;max-width:650px}
+.hero p{font-size:1.08rem;line-height:1.8;color:var(--muted);max-width:570px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-photo{min-height:620px;background:linear-gradient(rgba(20,14,12,.07),rgba(20,14,12,.18)),url('https://images.unsplash.com/photo-1781450090585-1a511b7066d9?auto=format&fit=crop&w=1800&q=82') center/cover no-repeat}
+.section{max-width:1180px;margin:auto;padding:84px 26px}
+.section h2{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,5vw,3.8rem);margin:0 0 12px}
+.intro{max-width:680px;color:var(--muted);line-height:1.75}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.service{background:#fff;border:1px solid var(--line);padding:28px} .service h3{font-family:"Playfair Display",serif;font-size:1.5rem;margin:0 0 8px} .price{font-size:1.9rem;font-weight:800;color:var(--rose)}
+.info-band{background:var(--ink);color:#fff} .info-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:start}
+.info-band h2{color:#fff} .info-band p,.info-band li{color:#dfd6d1} .detail-list{list-style:none;padding:0;margin:22px 0 0} .detail-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.13)}
+.review{margin-top:28px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.rating{font-family:"Playfair Display",serif;font-size:3.2rem} .muted{color:var(--muted)}
+.profiles{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px} .profile{display:inline-flex;align-items:center;gap:8px;padding:11px 14px;border:1px solid var(--line);color:var(--ink);background:#fff}
+.asset-note{font-size:.75rem;color:#766a66;margin-top:24px}
+footer{padding:34px 26px;border-top:1px solid var(--line);text-align:center;color:#6c625e;font-size:.86rem}
+.reveal{opacity:0;transform:translateY(16px);transition:.55s ease} .reveal.in{opacity:1;transform:none}
+@media(max-width:850px){.links{display:none}.menu-btn{display:block}.hero{grid-template-columns:1fr}.hero-copy{padding:68px 26px 48px}.hero-photo{min-height:420px}.services{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+
+<body>
+<header class="top">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#home">3D Hair Salon</a>
+    <div class="links">
+      <a href="#services">Services</a><a href="#details">Hours & Location</a><a href="#reviews">Reviews</a>
+      <a class="btn solid" href="https://booksy.com/en-us/s/blow-dry/132565_pittman" target="_blank" rel="noopener"><i class="fa-solid fa-calendar-check"></i> Booksy</a>
+    </div>
+    <button class="menu-btn" data-menu-button aria-expanded="false" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  </nav>
+  <div class="mobile" data-mobile-menu>
+    <a href="#services">Services</a><a href="#details">Hours & Location</a><a href="#reviews">Reviews</a>
+    <a href="https://booksy.com/en-us/s/blow-dry/132565_pittman" target="_blank" rel="noopener">Booksy</a>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="kicker">Hair salon · Las Vegas</div>
+    <h1>3D Hair Salon</h1>
+    <p>Hair services in Las Vegas with publicly listed pricing for blowouts, highlights, and hair washing.</p>
+    <div class="hero-actions">
+      <a class="btn solid" href="https://booksy.com/en-us/s/blow-dry/132565_pittman" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> View on Booksy</a>
+      <a class="btn" href="tel:+17025763175"><i class="fa-solid fa-phone"></i> (702) 576-3175</a>
+    </div>
+  </div>
+  <div class="hero-photo" role="img" aria-label="Stock image of a modern hair salon interior"></div>
+</section>
+
+<section class="section reveal" id="services">
+  <div class="kicker">Services & pricing</div>
+  <h2>Publicly listed services</h2>
+  <p class="intro">These prices were listed publicly on Booksy at the time of research.</p>
+  <div class="services">
+    <article class="service"><h3>Blowout hair</h3><p class="muted">Hair blowout service</p><div class="price">$45</div></article>
+    <article class="service"><h3>Highlights</h3><p class="muted">Hair highlighting service</p><div class="price">$150</div></article>
+    <article class="service"><h3>Hair wash</h3><p class="muted">Shampoo / wash service</p><div class="price">$25</div></article>
+  </div>
+</section>
+
+<section class="info-band" id="details">
+  <div class="section info-grid reveal">
+    <div>
+      <div class="kicker" style="color:#d9a69d">Visit</div>
+      <h2>Hours & location</h2>
+      <ul class="detail-list">
+        <li><i class="fa-solid fa-location-dot"></i><span>3050 E Desert Inn Rd, Suite 120, Las Vegas, NV 89121</span></li>
+        <li><i class="fa-regular fa-clock"></i><span>Monday–Saturday · 10:00 AM–7:00 PM</span></li>
+        <li><i class="fa-solid fa-phone"></i><span>(702) 576-3175</span></li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn" style="border-color:#fff;color:#fff" href="https://www.google.com/maps/place/?q=place_id:ChIJD0D05vPFyIAR0r6rsVE43mY" target="_blank" rel="noopener"><i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
+      </div>
+    </div>
+    <div id="reviews">
+      <div class="kicker" style="color:#d9a69d">Reputation</div>
+      <h2>Google Maps rating</h2>
+      <div class="review">
+        <div class="rating">5.0/5</div>
+        <div><strong>6 reviews</strong><br><span style="color:#dfd6d1">Count and rating from the map listing reviewed.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="kicker">Verified profiles</div>
+  <h2>Find the salon online</h2>
+  <div class="profiles">
+    <a class="profile" href="https://www.google.com/maps/place/?q=place_id:ChIJD0D05vPFyIAR0r6rsVE43mY" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i> Google Maps</a>
+    <a class="profile" href="https://booksy.com/en-us/s/blow-dry/132565_pittman" target="_blank" rel="noopener"><i class="fa-solid fa-calendar-days"></i> Booksy</a>
+    <a class="profile" href="https://www.atly.com/location/3DHairSalon" target="_blank" rel="noopener"><i class="fa-solid fa-location-arrow"></i> Atly</a>
+  </div>
+  <p class="asset-note"><i class="fa-regular fa-image"></i> Demo imagery is industry stock photography and does not depict the actual business. <a href="https://unsplash.com/photos/a-modern-hair-salon-interior-with-stylish-chairs-and-mirrors-_Fy7Kq0w6OI" target="_blank" rel="noopener">Unsplash photo source</a>.</p>
+</section>
+</main>
+<footer>3D Hair Salon · Las Vegas, Nevada</footer>
+
+<div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+  <div class="lock-box">
+    <h2 id="lockTitle">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="lock-close" type="button">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const mobileMenu = document.querySelector('[data-mobile-menu]');
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  const modal = document.querySelector('.lock-modal');
+  const closeButton = modal ? modal.querySelector('.lock-close') : null;
+  const closeModal = () => {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  };
+  const openModal = () => {
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    if (closeButton) closeButton.focus();
+  };
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+  if (closeButton) closeButton.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  const reveal = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
+})();
+</script>
+
+<!--
+FINAL QUALITY CHECKLIST
+- Mobile menu works.
+- Mobile viewport prevents zooming in and out.
+- Text highlighting/selection is disabled.
+- Unavailable sections and unsupported claims are omitted.
+- No unsupported business facts were added.
+- Real verified profile/map/phone links used on the page are functional.
+- No fake form, payment, account, or booking success behavior is present.
+- One reusable locked-action modal is included for locked actions.
+-->
+</body></html>
