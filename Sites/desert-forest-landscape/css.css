@@ -104,6 +104,36 @@ button, input { font: inherit; }
   margin-left: 10px;
   margin-bottom: -30px;
   transform: rotate(70deg);
+  cursor: pointer;
+  transform-origin: 48% 52%;
+  transition: filter .2s ease, opacity .18s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.brand-leaf:hover {
+  filter: drop-shadow(0 3px 6px rgba(215, 179, 96, .35));
+}
+
+.brand-leaf.is-falling-source {
+  opacity: 0;
+}
+
+.falling-brand-leaf {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform, opacity, filter;
+  transform-origin: 48% 52%;
+  filter: drop-shadow(0 8px 7px rgba(0, 0, 0, .24));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-leaf {
+    transition: opacity .15s ease;
+  }
 }
 
 .main-nav {
