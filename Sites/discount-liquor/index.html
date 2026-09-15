@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#111318">
+  <title>Discount Liquor</title>
+  <meta name="description" content="Discount Liquor website preview">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg:#0f1115;
+      --panel:#171a20;
+      --panel2:#1f232b;
+      --text:#f7f5f1;
+      --muted:#aeb4be;
+      --accent:#c79a5b;
+      --accent2:#6e2031;
+      --line:rgba(255,255,255,.12);
+      --shadow:0 24px 60px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,-apple-system,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+    a,button{font:inherit}
+    button{cursor:pointer}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    .shell{width:min(1180px,calc(100% - 40px));margin:auto}
+    header{position:fixed;inset:0 0 auto 0;z-index:20;background:linear-gradient(to bottom,rgba(8,10,13,.92),rgba(8,10,13,.15),transparent);backdrop-filter:blur(5px)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{color:#fff;text-decoration:none;font-weight:800;letter-spacing:-.02em;font-size:18px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .desktop-nav{display:flex;align-items:center;gap:28px}
+    .desktop-nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:650;opacity:.9}
+    .desktop-nav a:hover{opacity:1;color:var(--accent)}
+    .menu-btn{display:none;border:1px solid var(--line);background:#171a20;color:#fff;width:44px;height:44px}
+    .hero{min-height:100vh;position:relative;display:grid;align-items:end;isolation:isolate}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,13,.92) 0%,rgba(8,10,13,.72) 46%,rgba(8,10,13,.28) 100%),url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;z-index:-2}
+    .hero::after{content:"";position:absolute;inset:auto 0 0;height:35%;background:linear-gradient(transparent,var(--bg));z-index:-1}
+    .hero-content{padding:170px 0 110px;max-width:760px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:36px;height:2px;background:var(--accent)}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(48px,8vw,88px);line-height:.98;letter-spacing:-.04em;margin:22px 0 22px;max-width:920px}
+    .hero p{max-width:620px;font-size:18px;line-height:1.75;color:#e3e6ea;margin:0 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border:1px solid var(--accent);background:var(--accent);color:#0c0e11;text-decoration:none;font-weight:800}
+    .btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+    section{padding:96px 0}
+    .intro-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    h2{font-family:"Playfair Display",serif;font-size:clamp(36px,5vw,56px);line-height:1.05;margin:12px 0 20px;letter-spacing:-.03em}
+    .intro-copy p{color:var(--muted);font-size:17px;line-height:1.8;margin:0}
+    .feature-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#13161b}
+    .features{display:grid;grid-template-columns:repeat(3,1fr)}
+    .feature{padding:34px 28px;border-right:1px solid var(--line)}
+    .feature:last-child{border-right:0}
+    .feature i{font-size:24px;color:var(--accent);margin-bottom:16px}
+    .feature strong{display:block;font-size:16px;margin-bottom:7px}
+    .feature span{display:block;color:var(--muted);font-size:13px;line-height:1.6}
+    .visual{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;min-height:480px}
+    .visual-card{position:relative;overflow:hidden;background:var(--panel)}
+    .visual-card:first-child{min-height:480px}
+    .visual-card.small{min-height:480px;background:linear-gradient(160deg,var(--accent2),var(--panel2));padding:42px;display:flex;align-items:flex-end}
+    .visual-card.small::before{content:"";position:absolute;inset:22px;border:1px solid rgba(255,255,255,.15)}
+    .visual-card.small h3{position:relative;margin:0;font-family:"Playfair Display",serif;font-size:40px;line-height:1.08;max-width:360px}
+    .final-cta{padding-top:30px}
+    .cta-box{padding:54px;border:1px solid var(--line);background:linear-gradient(135deg,var(--panel),#101318);box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:30px}
+    .cta-box h2{font-size:42px;margin:0 0 10px}
+    .cta-box p{margin:0;color:var(--muted)}
+    footer{padding:38px 0 50px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:none;place-items:center;padding:20px}
+    .modal.open{display:grid}
+    .modal-card{width:min(460px,100%);background:#171a20;border:1px solid var(--line);box-shadow:var(--shadow);padding:30px}
+    .modal-card h3{font-family:"Playfair Display",serif;font-size:30px;margin:0 0 10px}
+    .modal-card p{color:var(--muted);line-height:1.7;margin:0 0 22px}
+    .mobile-menu{display:none;position:fixed;inset:76px 0 auto 0;z-index:19;background:#0d1014;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 20px}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 4px;color:#fff;text-decoration:none;border-bottom:1px solid var(--line)}
+    @media(max-width:800px){
+      .shell{width:min(100% - 28px,1180px)}
+      .desktop-nav{display:none} .menu-btn{display:grid;place-items:center}
+      .hero-content{padding:145px 0 80px}
+      h1{font-size:clamp(44px,13vw,66px)}
+      .intro-grid,.visual{grid-template-columns:1fr;gap:28px}
+      .features{grid-template-columns:1fr}
+      .feature{border-right:0;border-bottom:1px solid var(--line)} .feature:last-child{border-bottom:0}
+      .visual-card:first-child,.visual-card.small{min-height:360px}
+      .cta-box{padding:34px 24px;display:block} .cta-box .btn{margin-top:22px;width:100%}
+      .footer-row{display:block} .footer-row span{display:block;margin-top:8px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="#top">Discount Liquor</a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#overview">Overview</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#overview">Overview</a>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-content">
+        <div class="eyebrow">DISCOUNT LIQUOR</div>
+        <h1>A refined digital presence for Discount Liquor</h1>
+        <p>A modern demo site designed around the Discount Liquor name and a warm retail-inspired visual direction.</p>
+        <div class="actions">
+          <a class="btn" href="#about"><i class="fa-solid fa-arrow-down"></i> Explore</a>
+          <button class="btn secondary" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Contact</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="shell intro-grid">
+        <div>
+          <div class="kicker">About</div>
+          <h2>A focused storefront-style presentation</h2>
+        </div>
+        <div class="intro-copy">
+          <p>No products, prices, promotions, hours, address, or other business details are shown because they were not supplied.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="feature-strip" id="overview">
+      <div class="shell features">
+        <div class="feature">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <strong>Responsive design</strong>
+          <span>Built to adapt cleanly across desktop, tablet, and mobile screens.</span>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-bolt"></i>
+          <strong>Focused presentation</strong>
+          <span>A streamlined layout that keeps attention on the business name and brand presence.</span>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-lock"></i>
+          <strong>Demo-safe actions</strong>
+          <span>Real-world actions remain locked until the full website is purchased and configured.</span>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="shell visual">
+        <div class="visual-card">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1600&q=85" alt="Stock image used for visual presentation">
+        </div>
+        <div class="visual-card small">
+          <h3>Discount Liquor</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="shell cta-box">
+        <div>
+          <div class="kicker">Website Demo</div>
+          <h2>Discount Liquor</h2>
+          <p>This sample is ready for real business details when they are supplied and approved.</p>
+        </div>
+        <button class="btn" data-locked="true"><i class="fa-solid fa-arrow-right"></i> Contact</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <strong>Discount Liquor</strong>
+      <span>Demo website • Stock imagery used for presentation</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <h3 id="modalTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    const modal=document.getElementById('lockedModal');
+    const closeModal=document.getElementById('closeModal');
+
+    menuBtn.addEventListener('click',()=>{
+      mobileMenu.classList.toggle('open');
+      menuBtn.innerHTML=mobileMenu.classList.contains('open')
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>{
+      mobileMenu.classList.remove('open');
+      menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+    }));
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{
+      e.preventDefault();
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      closeModal.focus();
+    }));
+
+    function closeLocked(){
+      modal.classList.remove('open');
+      document.body.style.overflow='';
+    }
+    closeModal.addEventListener('click',closeLocked);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeLocked()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked()});
+  </script>
+</body>
+</html>
