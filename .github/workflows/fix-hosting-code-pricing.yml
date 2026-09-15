@@ -1,63 +1,25 @@
-name: Fix hosting code pricing
+name: Fix hosting pricing
 
 on:
   push:
-    branches: [main]
-    paths:
-      - '.github/workflows/fix-hosting-code-pricing.yml'
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   patch:
+    if: contains(github.event.head_commit.message, 'Run hosting pricing patch')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch index.html
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('index.html')
-          s = p.read_text()
-
-          replacements = [
-            ('<span class="plan-name" data-static-plan-price="standard">$10/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-local-monthly" data-hosting-type="standard">Choose</button>',
-             '<span class="plan-name" data-static-plan-price="standard">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly" data-hosting-type="standard">Choose</button>'),
-            ('<span class="plan-name" data-static-plan-price="backend">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-local-monthly" data-hosting-type="backend">Choose</button>',
-             '<span class="plan-name" data-static-plan-price="backend">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly" data-hosting-type="backend">Choose</button>'),
-            ('{ key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · billed monthly", type: "standard" }',
-             '{ key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly", type: "standard" }'),
-            ('{ key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · billed monthly", type: "backend" }',
-             '{ key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly", type: "backend" }'),
-          ]
-
-          for old, new in replacements:
-              if old not in s:
-                  raise SystemExit(f'Missing expected text: {old[:100]}')
-              s = s.replace(old, new, 1)
-
-          # When a valid code is active, visually show the regular price struck out next to the discounted price.
-          old_func = '''function renderLocalPriceMarkup(type) {
-    return type === "backend" ? "$20/month" : "$10/month";
-}'''
-          new_func = '''function renderLocalPriceMarkup(type) {
-    const regular = type === "backend" ? "$30/month" : "$20/month";
-    const discounted = type === "backend" ? "$20/month" : "$10/month";
-    return `<span style="text-decoration:line-through;opacity:.55;margin-right:.45rem">${regular}</span><span>${discounted}</span>`;
-}'''
-          if old_func in s:
-              s = s.replace(old_func, new_func, 1)
-          else:
-              # tolerate indentation differences
-              s = s.replace('return type === "backend" ? "$20/month" : "$10/month";', 'const regular = type === "backend" ? "$30/month" : "$20/month";\n            const discounted = type === "backend" ? "$20/month" : "$10/month";\n            return `<span style="text-decoration:line-through;opacity:.55;margin-right:.45rem">${regular}</span><span>${discounted}</span>`;', 1)
-
-          p.write_text(s)
-          PY
-
+      - run: python3 .github/scripts/fix_hosting_pricing.py
+      - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           rm .github/workflows/fix-hosting-code-pricing.yml
-          git add index.html .github/workflows/fix-hosting-code-pricing.yml
+          rm .github/scripts/fix_hosting_pricing.py
+          git add index.html .github/workflows/fix-hosting-code-pricing.yml .github/scripts/fix_hosting_pricing.py
           git commit -m "Fix hosting prices and code discount display"
           git push
