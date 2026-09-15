@@ -592,6 +592,7 @@
 
         const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/functions/v1/site-claims";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
+        const CRM_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/crm?select=company,sitekey,businessrank&sitekey=not.is.null";
 
         let sites = [];
         const claimedSitePaths = new Set();
@@ -611,28 +612,83 @@
             claimRegistryLoaded = true;
         }
 
+        async function fetchConnectedCrmSites() {
+            const response = await fetch(CRM_API_URL, {
+                headers: {
+                    apikey: CLAIMS_API_KEY,
+                    Authorization: `Bearer ${CLAIMS_API_KEY}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`CRM lookup failed (${response.status})`);
+            }
+
+            const rows = await response.json();
+            const bySiteKey = new Map();
+
+            rows.forEach(row => {
+                const sitekey = String(row?.sitekey || "").trim();
+                const company = String(row?.company || "").trim();
+                if (!sitekey || !company) return;
+
+                // One visible card per connected sitekey.
+                if (!bySiteKey.has(sitekey)) {
+                    const parsedRank = Number(row.businessrank);
+                    bySiteKey.set(sitekey, {
+                        sitekey,
+                        company,
+                        businessRank:
+                            Number.isInteger(parsedRank) && parsedRank >= 1 && parsedRank <= 50
+                                ? parsedRank
+                                : null
+                    });
+                }
+            });
+
+            return bySiteKey;
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
         async function fetchSites() {
             try {
                 const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${SITES_FOLDER}`);
                 if (!response.ok) throw new Error("API failed");
                 const data = await response.json();
 
+                const crmSites = await fetchConnectedCrmSites();
+
+                // Only show folders that are BOTH:
+                // 1) real folders in GitHub /Sites, and
+                // 2) connected to a CRM record through crm.sitekey.
                 const discoveredSites = data
-                    .filter(item => item.type === "dir")
+                    .filter(item => item.type === "dir" && crmSites.has(item.name))
                     .map(folder => {
-                        const prettyName = folder.name
-                            .replace(/-/g, " ")
-                            .replace(/\b\w/g, c => c.toUpperCase());
-                        // Default hostingType to "standard" since we don't know it from the folder name
-                        return { name: prettyName, path: folder.name, hostingType: "standard" };
+                        const crm = crmSites.get(folder.name);
+                        const site = {
+                            name: crm.company,
+                            path: folder.name,
+                            hostingType: "standard"
+                        };
+
+                        return {
+                            ...site,
+                            businessRank: crm.businessRank ?? getBusinessRank(site)
+                        };
                     });
 
-                sites = discoveredSites
-                    .map(site => ({ ...site, businessRank: getBusinessRank(site) }))
-                    .sort((a, b) =>
-                        a.businessRank - b.businessRank ||
-                        a.name.localeCompare(b.name)
-                    );
+                sites = discoveredSites.sort((a, b) =>
+                    a.businessRank - b.businessRank ||
+                    a.name.localeCompare(b.name)
+                );
 
                 try {
                     await fetchClaimedSitePaths();
@@ -660,7 +716,10 @@
 
             const filteredSites = sites.filter(site =>
                 (!claimRegistryLoaded || !claimedSitePaths.has(site.path)) &&
-                site.name.toLowerCase().includes(search)
+                (
+                    site.name.toLowerCase().includes(search) ||
+                    site.path.toLowerCase().includes(search)
+                )
             );
 
             gallery.innerHTML = "";
@@ -693,7 +752,7 @@
                         ></iframe>
                     </div>
 
-                    <div class="card-label">${site.name}</div>
+                    <div class="card-label">${escapeHtml(site.name)}</div>
                     <div class="hosting-type-label">${site.hostingType} hosting</div>
                 `;
 
