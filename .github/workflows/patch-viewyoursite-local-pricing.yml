@@ -1,0 +1,46 @@
+name: Patch ViewYourSite local pricing
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/patch-viewyoursite-local-pricing.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Patch index.html
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path("index.html")
+          s = p.read_text()
+          s = s.replace('<label for="developmentBypassCode">Internal Code</label>', '<label for="developmentBypassCode">Code</label>')
+          s = s.replace('                            <small>Valid internal codes can bypass the one-time website development payment.</small>\n', '')
+          required = [
+              'standard-local-monthly',
+              'backend-local-monthly',
+              'discountCode: activeLocalHostingCode() || null',
+          ]
+          missing = [x for x in required if x not in s]
+          if missing:
+              raise SystemExit(f"Missing required local-pricing code: {missing}")
+          p.write_text(s)
+      - name: Commit patch if needed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "No index.html changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Clean code messaging and keep local pricing checkout"
+          git push origin main
