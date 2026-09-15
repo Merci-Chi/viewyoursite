@@ -1,150 +1,230 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Elite Tax And Business Solutions Inc | Richmond Hill, NY</title>
-<meta name="description" content="Elite Tax And Business Solutions Inc provides tax preparation, IRS representation, and business tax consulting in Richmond Hill, New York.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-:root{--primary:#d8c27a;--secondary:#5b4930;--ink:#f5f7fb;--muted:#c2c8d1;--line:rgba(255,255,255,.14);--panel:rgba(10,14,20,.80)}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-html,body{margin:0;min-height:100%;overflow-x:hidden}
-body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#111820;user-select:none;-webkit-user-select:none}
-body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(110deg,rgba(4,8,13,.92),rgba(4,8,13,.62) 58%,rgba(4,8,13,.83)),url("https://images.pexels.com/photos/6863331/pexels-photo-6863331.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat}
-body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 18% 10%,rgba(255,255,255,.08),transparent 30%)}
-a{color:inherit;text-decoration:none} button{font:inherit}
-.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
-header{position:sticky;top:0;z-index:30;background:rgba(6,10,15,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.head{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{font-weight:900;letter-spacing:.02em}
-nav{display:flex;gap:24px;align-items:center}
-nav a{font-size:.93rem;color:#e3e7ee}
-.menu{display:none;background:none;border:0;color:white;font-size:1.45rem;padding:10px}
-.hero{min-height:74vh;display:grid;align-items:center;padding:88px 0 70px}
-.kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:900;color:var(--primary)}
-h1{font-size:clamp(3rem,8vw,6.8rem);line-height:.92;letter-spacing:-.055em;margin:.22em 0 .25em;max-width:940px}
-.lead{max-width:760px;color:#d8dde5;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.65}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{min-height:48px;padding:0 18px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;cursor:pointer;transition:.2s ease}
-.btn.primary{background:var(--primary);color:#0a0e13}
-.btn.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28);color:white}
-.btn:hover{transform:translateY(-2px)}
-.section{padding:72px 0;border-top:1px solid var(--line)}
-.section h2{font-size:clamp(2rem,4.2vw,3.5rem);line-height:1.06;letter-spacing:-.035em;margin:0 0 15px}
-.intro{max-width:800px;color:var(--muted);line-height:1.65;margin-bottom:28px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--panel);border:1px solid var(--line);padding:24px;backdrop-filter:blur(10px)}
-.card i{font-size:1.3rem;color:var(--primary);margin-bottom:17px}
-.card h3{margin:0 0 8px} .card p{margin:0;color:#cfd4dc;line-height:1.6}
-.info{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.row{display:flex;gap:13px;background:var(--panel);border:1px solid var(--line);padding:18px}
-.row i{color:var(--primary);width:20px;margin-top:3px}
-.row strong{display:block;margin-bottom:3px}
-.muted{color:var(--muted)}
-.notice{border-left:3px solid var(--primary);padding:16px 18px;background:rgba(255,255,255,.055);color:#d8dde6;max-width:860px}
-.footer{padding:34px 0 44px;border-top:1px solid var(--line);font-size:.9rem;color:#aeb6c3}
-.footer-in{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.asset-note{max-width:700px;font-size:.78rem;color:#919aa8}
-.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.74);place-items:center;padding:20px}
-.modal.show{display:grid}
-.modal-box{width:min(440px,100%);background:#111720;border:1px solid rgba(255,255,255,.18);padding:28px;box-shadow:0 26px 90px rgba(0,0,0,.5)}
-.modal-box h2{margin:0 0 10px;font-size:1.7rem} .modal-box p{color:#cbd1da;line-height:1.6}
-.modal-open{overflow:hidden}
-h1{font-family:Georgia,"Times New Roman",serif;font-weight:600}.seal{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);padding:10px 14px;background:rgba(255,255,255,.05);margin-top:18px}
-@media(max-width:780px){
-.wrap{width:min(100% - 28px,1160px)} .head{min-height:68px} .menu{display:block}
-nav{position:absolute;left:14px;right:14px;top:68px;display:none;flex-direction:column;align-items:stretch;gap:0;background:#10161f;border:1px solid var(--line);padding:8px}
-nav.open{display:flex} nav a{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08)} nav a:last-child{border-bottom:0}
-.hero{min-height:68vh;padding:65px 0 52px} h1{font-size:clamp(2.75rem,15vw,4.8rem)} .grid,.info{grid-template-columns:1fr}
-.section{padding:54px 0} .actions .btn{width:100%}
-}
-</style>
-</head><body><!--
-RESEARCH BASIS / SOURCES
-1. Official website: https://www.wetalktaxes.com/
-Supported facts used:
-- Elite Tax & Business Solutions Inc. branding/copyright
-- Nadera Ramnaraine / Nadera R. identified as tax professional and business consulting specialist
-- IRS Enrolled Agent; NAEA board member; Certified Acceptance Agent (CAA)
-- Services: Individual Tax Preparation, IRS Representation, Business Tax Preparation, Business Tax Consulting
-- Phone: 646-387-7242
-- Address: 113-19 Liberty Ave., Richmond Hill, NY 11419
-- Hours: Mon-Sat 10am-7pm; Sun 11am-6pm
-- Slogan: “Affordable Tax Solutions Just A Click Away”
-MISSING / NOT ADDED
-- No verified Instagram/Facebook/TikTok/Yelp/Google direct review link found in the research used for this build.
-- No pricing, review claims, discounts, customer counts, or guarantees added.
-ASSET
-- Background: Pexels stock tax documents image, not the actual business or staff.
-QUALITY CHECK
-- Mobile menu functional; mobile zoom disabled; text selection disabled; no unavailable sections; real-world actions remain locked under demo rules.
--->
-<header><div class="wrap head"><a class="brand" href="#top">Elite Tax And Business Solutions Inc</a><button class="menu" data-menu aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><nav data-nav><a href="#services">Services</a><a href="#about">About</a><a href="#hours">Hours</a><a href="#contact">Contact</a></nav></div></header>
-<main id="top">
-<section class="hero"><div class="wrap"><div class="kicker">Tax & business services</div><h1>Elite Tax And Business Solutions Inc</h1><p class="lead">Affordable Tax Solutions Just A Click Away</p>
-<div class="seal"><i class="fa-solid fa-scale-balanced"></i><span>IRS Enrolled Agent • Certified Acceptance Agent (CAA)</span></div>
-<div class="actions"><a class="btn primary" href="#services"><i class="fa-solid fa-file-invoice-dollar"></i> View services</a><button class="btn secondary" data-locked="true"><i class="fa-solid fa-phone"></i> Call 646-387-7242</button></div></div></section>
-<section class="section" id="services"><div class="wrap"><div class="kicker">Services</div><h2>Tax and business support</h2><div class="grid">
-<article class="card"><i class="fa-solid fa-user"></i><h3>Individual Tax Preparation</h3></article>
-<article class="card"><i class="fa-solid fa-landmark"></i><h3>IRS Representation</h3></article>
-<article class="card"><i class="fa-solid fa-building"></i><h3>Business Tax Preparation</h3></article>
-<article class="card"><i class="fa-solid fa-chart-line"></i><h3>Business Tax Consulting</h3></article>
-</div></div></section>
-<section class="section" id="about"><div class="wrap"><div class="kicker">About</div><h2>Nadera R.</h2><p class="intro">Nadera Ramnaraine is identified on the official website as a local tax professional and business consulting specialist. The site states that she is an IRS Enrolled Agent, a member of the NAEA board, and a Certified Acceptance Agent.</p></div></section>
-<section class="section" id="hours"><div class="wrap"><div class="kicker">Business hours</div><h2>Publicly listed hours</h2><div class="info">
-<div class="row"><i class="fa-solid fa-clock"></i><div><strong>Monday–Saturday</strong><span class="muted">10am–7pm</span></div></div>
-<div class="row"><i class="fa-solid fa-clock"></i><div><strong>Sunday</strong><span class="muted">11am–6pm</span></div></div></div></div></section>
-<section class="section" id="contact"><div class="wrap"><div class="kicker">Contact</div><h2>Richmond Hill, New York</h2><div class="info">
-<div class="row"><i class="fa-solid fa-phone"></i><div><strong>646-387-7242</strong><span class="muted">Public business phone</span></div></div>
-<div class="row"><i class="fa-solid fa-location-dot"></i><div><strong>113-19 Liberty Ave.</strong><span class="muted">Richmond Hill, NY 11419</span></div></div></div>
-<div class="actions"><button class="btn primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call now</button><button class="btn secondary" data-locked="true"><i class="fa-solid fa-globe"></i> Visit official website</button></div></div></section>
-</main><footer class="footer"><div class="wrap footer-in"><div><strong>Elite Tax And Business Solutions Inc</strong></div><div class="asset-note">Background is relevant stock photography from Pexels and does not depict the actual business, employees, or clients.</div></div></footer><div class="modal" id="locked-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lock-title">
-<div class="modal-box"><h2 id="lock-title">This is currently locked.</h2>
-<p>This feature is part of the full website. Purchase the site to unlock it.</p>
-<button class="btn primary" type="button" data-close>Close</button></div></div><script>
-const menuBtn=document.querySelector('[data-menu]');
-const nav=document.querySelector('[data-nav]');
-if(menuBtn&&nav){
-  menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));});
-  nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
-}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id=a.getAttribute('href');
-    if(id&&id.length>1){const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}
-  });
-});
-const modal=document.getElementById('locked-modal');
-const closeBtn=modal?.querySelector('[data-close]');
-let lastFocus=null;
-function openModal(){
-  if(!modal)return;
-  lastFocus=document.activeElement;
-  modal.classList.add('show');
-  modal.setAttribute('aria-hidden','false');
-  document.body.classList.add('modal-open');
-  closeBtn?.focus();
-}
-function closeModal(){
-  if(!modal)return;
-  modal.classList.remove('show');
-  modal.setAttribute('aria-hidden','true');
-  document.body.classList.remove('modal-open');
-  lastFocus?.focus();
-}
-document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal();}));
-closeBtn?.addEventListener('click',closeModal);
-modal?.addEventListener('click',e=>{if(e.target===modal)closeModal();});
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&modal?.classList.contains('show'))closeModal();
-  if(e.key==='Tab'&&modal?.classList.contains('show')){
-    const f=[...modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')];
-    if(!f.length)return;
-    const first=f[0],last=f[f.length-1];
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
-    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
-  }
-});
-</script></body></html>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#111318">
+  <title>Elite Tax &amp; Business Solutions Inc.</title>
+  <meta name="description" content="Elite Tax &amp; Business Solutions Inc. website preview">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --bg:#0f1115;
+      --panel:#171a20;
+      --panel2:#1f232b;
+      --text:#f7f5f1;
+      --muted:#aeb4be;
+      --accent:#2c6ba0;
+      --accent2:#d8e7f4;
+      --line:rgba(255,255,255,.12);
+      --shadow:0 24px 60px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,-apple-system,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+    a,button{font:inherit}
+    button{cursor:pointer}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    .shell{width:min(1180px,calc(100% - 40px));margin:auto}
+    header{position:fixed;inset:0 0 auto 0;z-index:20;background:linear-gradient(to bottom,rgba(8,10,13,.92),rgba(8,10,13,.15),transparent);backdrop-filter:blur(5px)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{color:#fff;text-decoration:none;font-weight:800;letter-spacing:-.02em;font-size:18px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .desktop-nav{display:flex;align-items:center;gap:28px}
+    .desktop-nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:650;opacity:.9}
+    .desktop-nav a:hover{opacity:1;color:var(--accent)}
+    .menu-btn{display:none;border:1px solid var(--line);background:#171a20;color:#fff;width:44px;height:44px}
+    .hero{min-height:100vh;position:relative;display:grid;align-items:end;isolation:isolate}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,13,.92) 0%,rgba(8,10,13,.72) 46%,rgba(8,10,13,.28) 100%),url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=85') center/cover no-repeat;z-index:-2}
+    .hero::after{content:"";position:absolute;inset:auto 0 0;height:35%;background:linear-gradient(transparent,var(--bg));z-index:-1}
+    .hero-content{padding:170px 0 110px;max-width:760px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:36px;height:2px;background:var(--accent)}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(48px,8vw,88px);line-height:.98;letter-spacing:-.04em;margin:22px 0 22px;max-width:920px}
+    .hero p{max-width:620px;font-size:18px;line-height:1.75;color:#e3e6ea;margin:0 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border:1px solid var(--accent);background:var(--accent);color:#0c0e11;text-decoration:none;font-weight:800}
+    .btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+    section{padding:96px 0}
+    .intro-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    h2{font-family:"Playfair Display",serif;font-size:clamp(36px,5vw,56px);line-height:1.05;margin:12px 0 20px;letter-spacing:-.03em}
+    .intro-copy p{color:var(--muted);font-size:17px;line-height:1.8;margin:0}
+    .feature-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#13161b}
+    .features{display:grid;grid-template-columns:repeat(3,1fr)}
+    .feature{padding:34px 28px;border-right:1px solid var(--line)}
+    .feature:last-child{border-right:0}
+    .feature i{font-size:24px;color:var(--accent);margin-bottom:16px}
+    .feature strong{display:block;font-size:16px;margin-bottom:7px}
+    .feature span{display:block;color:var(--muted);font-size:13px;line-height:1.6}
+    .visual{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;min-height:480px}
+    .visual-card{position:relative;overflow:hidden;background:var(--panel)}
+    .visual-card:first-child{min-height:480px}
+    .visual-card.small{min-height:480px;background:linear-gradient(160deg,var(--accent2),var(--panel2));padding:42px;display:flex;align-items:flex-end}
+    .visual-card.small::before{content:"";position:absolute;inset:22px;border:1px solid rgba(255,255,255,.15)}
+    .visual-card.small h3{position:relative;margin:0;font-family:"Playfair Display",serif;font-size:40px;line-height:1.08;max-width:360px}
+    .final-cta{padding-top:30px}
+    .cta-box{padding:54px;border:1px solid var(--line);background:linear-gradient(135deg,var(--panel),#101318);box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:30px}
+    .cta-box h2{font-size:42px;margin:0 0 10px}
+    .cta-box p{margin:0;color:var(--muted)}
+    footer{padding:38px 0 50px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:none;place-items:center;padding:20px}
+    .modal.open{display:grid}
+    .modal-card{width:min(460px,100%);background:#171a20;border:1px solid var(--line);box-shadow:var(--shadow);padding:30px}
+    .modal-card h3{font-family:"Playfair Display",serif;font-size:30px;margin:0 0 10px}
+    .modal-card p{color:var(--muted);line-height:1.7;margin:0 0 22px}
+    .mobile-menu{display:none;position:fixed;inset:76px 0 auto 0;z-index:19;background:#0d1014;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 20px}
+    .mobile-menu.open{display:grid}
+    .mobile-menu a{padding:14px 4px;color:#fff;text-decoration:none;border-bottom:1px solid var(--line)}
+    @media(max-width:800px){
+      .shell{width:min(100% - 28px,1180px)}
+      .desktop-nav{display:none} .menu-btn{display:grid;place-items:center}
+      .hero-content{padding:145px 0 80px}
+      h1{font-size:clamp(44px,13vw,66px)}
+      .intro-grid,.visual{grid-template-columns:1fr;gap:28px}
+      .features{grid-template-columns:1fr}
+      .feature{border-right:0;border-bottom:1px solid var(--line)} .feature:last-child{border-bottom:0}
+      .visual-card:first-child,.visual-card.small{min-height:360px}
+      .cta-box{padding:34px 24px;display:block} .cta-box .btn{margin-top:22px;width:100%}
+      .footer-row{display:block} .footer-row span{display:block;margin-top:8px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="#top">Elite Tax &amp; Business Solutions Inc.</a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#overview">Overview</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#overview">Overview</a>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-content">
+        <div class="eyebrow">TAX &amp; BUSINESS SOLUTIONS</div>
+        <h1>A clear, professional presence for Elite Tax &amp; Business Solutions Inc.</h1>
+        <p>A polished demo website that keeps the company name front and center without inventing business details.</p>
+        <div class="actions">
+          <a class="btn" href="#about"><i class="fa-solid fa-arrow-down"></i> Explore</a>
+          <button class="btn secondary" data-locked="true"><i class="fa-solid fa-paper-plane"></i> Contact</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="shell intro-grid">
+        <div>
+          <div class="kicker">About</div>
+          <h2>Professional presentation, without unsupported claims</h2>
+        </div>
+        <div class="intro-copy">
+          <p>The site does not add services, credentials, pricing, hours, reviews, contact information, or other facts that were not provided.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="feature-strip" id="overview">
+      <div class="shell features">
+        <div class="feature">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <strong>Responsive design</strong>
+          <span>Built to adapt cleanly across desktop, tablet, and mobile screens.</span>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-bolt"></i>
+          <strong>Focused presentation</strong>
+          <span>A streamlined layout that keeps attention on the business name and brand presence.</span>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-lock"></i>
+          <strong>Demo-safe actions</strong>
+          <span>Real-world actions remain locked until the full website is purchased and configured.</span>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="shell visual">
+        <div class="visual-card">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=85" alt="Stock image used for visual presentation">
+        </div>
+        <div class="visual-card small">
+          <h3>Elite Tax &amp; Business Solutions Inc.</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="shell cta-box">
+        <div>
+          <div class="kicker">Website Demo</div>
+          <h2>Elite Tax &amp; Business Solutions Inc.</h2>
+          <p>This sample is ready for real business details when they are supplied and approved.</p>
+        </div>
+        <button class="btn" data-locked="true"><i class="fa-solid fa-arrow-right"></i> Contact</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <strong>Elite Tax &amp; Business Solutions Inc.</strong>
+      <span>Demo website • Stock imagery used for presentation</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <h3 id="modalTitle">This is currently locked.</h3>
+      <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+      <button class="btn" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    const modal=document.getElementById('lockedModal');
+    const closeModal=document.getElementById('closeModal');
+
+    menuBtn.addEventListener('click',()=>{
+      mobileMenu.classList.toggle('open');
+      menuBtn.innerHTML=mobileMenu.classList.contains('open')
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>{
+      mobileMenu.classList.remove('open');
+      menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+    }));
+
+    document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{
+      e.preventDefault();
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      closeModal.focus();
+    }));
+
+    function closeLocked(){
+      modal.classList.remove('open');
+      document.body.style.overflow='';
+    }
+    closeModal.addEventListener('click',closeLocked);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeLocked()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeLocked()});
+  </script>
+</body>
+</html>
