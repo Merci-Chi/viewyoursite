@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0f1110">
+<title>Liquor Locker</title>
+<meta name="description" content="Liquor Locker">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root {
+  --bg:#0f1110;
+  --panel:#171a18;
+  --text:#f6f7f4;
+  --muted:#b8bdb7;
+  --accent:#c99162;
+  --accent2:#ecd2bb;
+  --line:rgba(255,255,255,.13);
+  --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-user-select:none;user-select:none;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{display:block;max-width:100%}
+.shell{width:min(calc(100% - 40px),var(--max));margin:auto}
+.site-header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  background:linear-gradient(to bottom,rgba(10,12,11,.88),rgba(10,12,11,.45),transparent);
+}
+.nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:800;letter-spacing:-.03em;font-size:1.03rem;max-width:70%}
+.nav-links{display:flex;align-items:center;gap:26px;color:#e5e8e2;font-size:.94rem}
+.nav-links a:hover{color:var(--accent2)}
+.menu-btn{
+  display:none;background:none;border:0;color:white;width:44px;height:44px;
+  align-items:center;justify-content:center;font-size:1.35rem;cursor:pointer
+}
+.hero{
+  min-height:100svh;position:relative;display:grid;align-items:end;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(9,11,10,.88) 0%,rgba(9,11,10,.58) 43%,rgba(9,11,10,.18) 75%),
+    linear-gradient(0deg,rgba(9,11,10,.95) 0%,transparent 45%),
+    url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 72% 32%,transparent 0 25%,rgba(8,10,9,.12) 55%,rgba(8,10,9,.55) 100%);
+  pointer-events:none
+}
+.hero-inner{position:relative;z-index:2;padding:180px 0 90px;max-width:830px}
+.eyebrow{display:flex;align-items:center;gap:10px;color:var(--accent2);font-size:.78rem;text-transform:uppercase;letter-spacing:.2em;font-weight:800}
+.eyebrow:before{content:"";width:42px;height:2px;background:var(--accent)}
+h1{font-size:clamp(3.5rem,8vw,7.8rem);line-height:.91;letter-spacing:-.065em;margin:24px 0 24px;max-width:1000px}
+.lead{font-size:clamp(1.05rem,1.8vw,1.35rem);line-height:1.55;color:#e1e5df;max-width:650px;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{
+  min-height:50px;padding:0 20px;border:1px solid var(--line);display:inline-flex;align-items:center;gap:10px;
+  text-transform:uppercase;letter-spacing:.09em;font-size:.78rem;font-weight:800;cursor:pointer;
+  background:rgba(255,255,255,.04);color:white
+}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#10120f}
+.btn:hover{transform:translateY(-1px)}
+.fact-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#111412}
+.fact-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.fact{padding:34px 26px;border-right:1px solid var(--line)}
+.fact:first-child{padding-left:0}
+.fact:last-child{border-right:0}
+.fact small{display:block;color:var(--accent2);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;font-weight:800}
+.fact strong{font-size:1.05rem;line-height:1.4}
+.section{padding:96px 0}
+.two-col{display:grid;grid-template-columns:.82fr 1.18fr;gap:80px;align-items:start}
+.kicker{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.76rem}
+h2{font-size:clamp(2.4rem,4.5vw,4.6rem);line-height:1;letter-spacing:-.05em;margin:16px 0 0}
+.copy{color:var(--muted);font-size:1.08rem;line-height:1.75}
+.copy p{margin-top:0}
+.preview-band{position:relative;min-height:520px;display:grid;align-items:center;background:
+linear-gradient(90deg,rgba(9,11,10,.92),rgba(9,11,10,.48)),
+url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1800&q=85") center 58%/cover no-repeat;background-attachment:fixed}
+.preview-card{width:min(620px,100%);padding:42px;border-left:3px solid var(--accent);background:rgba(13,16,14,.80);backdrop-filter:blur(10px)}
+.preview-card h3{font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.045em;margin:10px 0 16px}
+.preview-card p{color:#d8ddd6;line-height:1.7;margin:0}
+.footer{padding:40px 0 55px;border-top:1px solid var(--line);color:#9ca29b}
+.footer-row{display:flex;justify-content:space-between;gap:24px;align-items:center}
+.modal{
+  position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);
+  display:none;align-items:center;justify-content:center;padding:20px
+}
+.modal.open{display:flex}
+.modal-box{width:min(460px,100%);background:#171a18;border:1px solid var(--line);padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.45)}
+.modal-box h3{font-size:1.7rem;margin:0 0 10px}
+.modal-box p{color:var(--muted);line-height:1.6;margin:0 0 22px}
+.modal-close{width:100%;min-height:48px;border:0;background:var(--accent);color:#111;font-weight:800;cursor:pointer}
+.mobile-panel{display:none}
+@media(max-width:800px){
+  .shell{width:min(calc(100% - 28px),var(--max))}
+  .nav{height:72px}
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .mobile-panel{
+    position:fixed;top:72px;left:14px;right:14px;z-index:60;background:#151815;border:1px solid var(--line);
+    padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.38)
+  }
+  .mobile-panel.open{display:block}
+  .mobile-panel a{display:block;padding:15px 14px;border-bottom:1px solid var(--line)}
+  .mobile-panel a:last-child{border-bottom:0}
+  .hero{min-height:820px;background-position:center}
+  .hero-inner{padding:135px 0 60px}
+  h1{font-size:clamp(3.2rem,14vw,5.2rem)}
+  .fact-grid{grid-template-columns:1fr}
+  .fact{border-right:0;border-bottom:1px solid var(--line);padding:24px 0}
+  .fact:last-child{border-bottom:0}
+  .two-col{grid-template-columns:1fr;gap:36px}
+  .section{padding:72px 0}
+  .preview-band{min-height:480px;background-attachment:scroll}
+  .preview-card{padding:28px}
+  .footer-row{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="shell nav">
+    <a class="brand" href="#top" aria-label="Liquor Locker home">Liquor Locker</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#overview">Overview</a>
+      <a href="#preview">Preview</a>
+      <a href="#" data-locked="true">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel" aria-label="Mobile navigation">
+  <a href="#overview">Overview</a>
+  <a href="#preview">Preview</a>
+  <a href="#" data-locked="true">Contact</a>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div class="eyebrow">Website Preview</div>
+      <h1>Liquor Locker</h1>
+      <p class="lead">A refined retail concept built only from the name provided.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#overview"><span>View Preview</span><i class="fa-solid fa-arrow-down"></i></a>
+        <a class="btn" href="#" data-locked="true"><span>Contact</span><i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fact-strip" aria-label="Available information">
+    <div class="shell fact-grid">
+      <div class="fact"><small>Business name</small><strong>Liquor Locker</strong></div>
+      <div class="fact"><small>Site type</small><strong>Single-file responsive HTML demo</strong></div>
+      <div class="fact"><small>Data policy</small><strong>No unsupported business details added</strong></div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="shell two-col">
+      <div>
+        <div class="kicker">Overview</div>
+        <h2>Built around what is actually known.</h2>
+      </div>
+      <div class="copy">
+        <p>This preview uses the exact business name supplied for Liquor Locker. No address, phone number, email address, hours, pricing, reviews, services, team members, social profiles, or other business claims were provided in the source files, so they are intentionally not presented as facts.</p>
+        <p>The layout is designed as a polished visual starting point while keeping real-world actions locked until verified business information is available.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-band" id="preview">
+    <div class="shell">
+      <div class="preview-card">
+        <div class="kicker">Demo Website</div>
+        <h3>Liquor Locker</h3>
+        <p>This section is intentionally content-light because the source material did not provide verified business details to publish. Additional sections can be populated once reliable company research is supplied.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-row">
+    <strong>Liquor Locker</strong>
+    <span>Website preview</span>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+  <div class="modal-box">
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="modal-close" id="modalClose">Close</button>
+  </div>
+</div>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const mobilePanel = document.getElementById('mobilePanel');
+const modal = document.getElementById('lockedModal');
+const modalClose = document.getElementById('modalClose');
+
+menuBtn.addEventListener('click', () => {
+  const open = mobilePanel.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+
+document.querySelectorAll('.mobile-panel a[href^="#"]:not([data-locked])').forEach(link => {
+  link.addEventListener('click', () => {
+    mobilePanel.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  });
+});
+
+function openLockedModal(event) {
+  event.preventDefault();
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modalClose.focus();
+}
+function closeLockedModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLockedModal));
+modalClose.addEventListener('click', closeLockedModal);
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeLockedModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal.classList.contains('open')) closeLockedModal();
+});
+</script>
+</body>
+</html>
