@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Beauty Salon Unisex | Beauty Salon</title>
+<meta name="description" content="Beauty Salon Unisex — beauty salon information page.">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://images.pexels.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--primary:#f0b6d2;--secondary:#7d3658;--text:#f5f7fb;--muted:#c5cad4;--panel:rgba(11,14,20,.78);--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:#10131a;user-select:none;-webkit-user-select:none}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+linear-gradient(115deg,rgba(8,11,16,.92),rgba(8,11,16,.63) 55%,rgba(8,11,16,.78)),
+url("https://images.pexels.com/photos/7750113/pexels-photo-7750113.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.08),transparent 32%)}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+.site-header{position:sticky;top:0;z-index:20;background:rgba(8,11,16,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:900;letter-spacing:.02em;font-size:1.05rem}
+.nav{display:flex;align-items:center;gap:24px}
+.nav a{font-size:.93rem;color:#e8ebf1}
+.nav a:hover{color:white}
+.menu-btn{display:none;border:0;background:transparent;color:white;font-size:1.5rem;padding:10px}
+.hero{min-height:72vh;display:grid;align-items:center;padding:84px 0 70px}
+.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-weight:800;font-size:.74rem;color:var(--primary)}
+h1{font-size:clamp(3rem,8vw,6.8rem);line-height:.93;letter-spacing:-.055em;margin:.25em 0 .25em;max-width:920px}
+.lede{font-size:clamp(1.04rem,2vw,1.28rem);line-height:1.65;color:#d8dce4;max-width:740px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 18px;border:1px solid transparent;font-weight:800;cursor:pointer;transition:.2s ease}
+.btn-primary{background:var(--primary);color:#0b0d12}
+.btn-secondary{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:white}
+.btn:hover{transform:translateY(-2px)}
+.section{padding:72px 0;border-top:1px solid var(--line)}
+.section h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;margin:0 0 16px;letter-spacing:-.035em}
+.section-intro{color:var(--muted);max-width:760px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);padding:24px;backdrop-filter:blur(10px)}
+.card i{font-size:1.25rem;color:var(--primary);margin-bottom:18px}
+.card h3{margin:0 0 8px;font-size:1.12rem}
+.card p{color:#cfd4de;margin:0;line-height:1.6}
+.info-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.info-row{display:flex;gap:13px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);padding:18px}
+.info-row i{width:20px;color:var(--primary);margin-top:3px}
+.info-row strong{display:block;margin-bottom:4px}
+.muted{color:var(--muted)}
+.notice{border-left:3px solid var(--primary);background:rgba(255,255,255,.05);padding:16px 18px;color:#d9dde5;max-width:820px}
+.footer{padding:34px 0 44px;border-top:1px solid var(--line);color:#aeb5c1;font-size:.9rem}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.stock-note{font-size:.78rem;color:#9098a6;max-width:680px}
+.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.72)}
+.modal.show{display:grid}
+.modal-card{width:min(440px,100%);background:#11151d;border:1px solid rgba(255,255,255,.18);padding:28px;box-shadow:0 24px 90px rgba(0,0,0,.5)}
+.modal-card h2{margin:0 0 10px;font-size:1.7rem}
+.modal-card p{color:#c9ced8;line-height:1.6}
+.modal-open{overflow:hidden}
+
+:root{--primary:#f0b6d2;--secondary:#7d3658}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:500}
+.hero .lede{max-width:620px}
+.card{border-radius:0}
+.signature{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:#f6d9e8}
+
+@media (max-width:780px){
+  .container{width:min(100% - 28px,1160px)}
+  .header-inner{min-height:68px}
+  .menu-btn{display:block}
+  .nav{position:absolute;left:14px;right:14px;top:68px;display:none;flex-direction:column;align-items:stretch;gap:0;background:#10141c;border:1px solid var(--line);padding:8px}
+  .nav.open{display:flex}
+  .nav a{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav a:last-child{border-bottom:0}
+  .hero{min-height:68vh;padding:68px 0 52px}
+  h1{font-size:clamp(2.75rem,15vw,4.8rem)}
+  .grid{grid-template-columns:1fr}
+  .info-list{grid-template-columns:1fr}
+  .section{padding:54px 0}
+  .actions .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<!--
+BUILD NOTES
+- Factual source used: prior business research report.
+- Verified/supported visible facts: company name; business category as beauty salon.
+- The Paradise / Las Vegas-area directory match was marked unverified in research, so it is not presented as a confirmed street location or service area on the website.
+- No phone, email, street address, service menu, pricing, social profile, Google/Yelp review page, owner, certifications, or current official website were verified, so those sections/actions are omitted.
+- Stock image only; does not depict the actual business, staff, services, or storefront.
+ASSET LIST
+- Stock background: https://www.pexels.com/photo/black-seats-and-round-vanity-mirrors-in-a-beauty-salon-7750113/ (Max Vakhtbovych / Pexels)
+SEO / LOCAL SEO
+- Title and description avoid unsupported local claims.
+- Add confirmed city, address, phone, service menu, and booking URL only after owner approval.
+QUALITY CHECK
+- Mobile hamburger works.
+- Mobile zoom disabled.
+- Text selection disabled.
+- No unavailable sections included.
+- No unsupported claims added.
+- Locked-action modal included and keyboard closable.
+-->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#top">Beauty Salon Unisex</a>
+    <button class="menu-btn" type="button" data-menu aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav" data-nav aria-label="Primary">
+      <a href="#overview">Overview</a>
+      <a href="#website-notice">Information</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">Beauty Salon</div>
+      <h1>Beauty Salon Unisex</h1>
+      <p class="lede">A focused website preview built only from currently verified public business information.</p>
+      <div class="actions"><a class="btn btn-secondary" href="#overview"><i class="fa-solid fa-arrow-down"></i> View overview</a></div>
+    </div>
+  </section>
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="eyebrow">Business overview</div>
+      <h2>Beauty Salon Unisex</h2>
+      <p class="section-intro">Public research identifies the business category as a beauty salon. A detailed service menu, pricing, confirmed street address, and direct contact details were not reliably verified.</p>
+      <div class="grid">
+        <article class="card"><i class="fa-solid fa-scissors"></i><h3>Business category</h3><p>Beauty salon</p></article>
+        <article class="card"><i class="fa-solid fa-circle-info"></i><h3>Service details</h3><p>Not publicly verified in the available research.</p></article>
+        <article class="card"><i class="fa-solid fa-location-dot"></i><h3>Business address</h3><p>Not publicly verified at street level in the available research.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="website-notice">
+    <div class="container">
+      <div class="eyebrow">Information</div>
+      <h2>Built around confirmed details only.</h2>
+      <p class="notice">Additional services, contact options, social links, reviews, pricing, and location details should be added only after they are confirmed by the business.</p>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="container footer-inner">
+  <div><strong>Beauty Salon Unisex</strong><div class="muted">Beauty salon</div></div>
+  <div class="stock-note">Background imagery is stock photography for design presentation only and does not show the actual business. Stock source: <a href="https://www.pexels.com/photo/black-seats-and-round-vanity-mirrors-in-a-beauty-salon-7750113/" data-locked="true">Pexels</a>.</div>
+</div></footer>
+
+<div class="modal" id="locked-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="locked-title">
+  <div class="modal-card">
+    <h2 id="locked-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn btn-primary" type="button" data-close-modal>Close</button>
+  </div>
+</div>
+
+<script>
+const menuButton = document.querySelector('[data-menu]');
+const nav = document.querySelector('[data-nav]');
+if (menuButton && nav) {
+  menuButton.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const id = link.getAttribute('href');
+    if (id && id.length > 1) {
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
+
+const modal = document.getElementById('locked-modal');
+const closeButton = modal?.querySelector('[data-close-modal]');
+let lastFocused = null;
+
+function openLockedModal() {
+  if (!modal) return;
+  lastFocused = document.activeElement;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  closeButton?.focus();
+}
+function closeLockedModal() {
+  if (!modal) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  lastFocused?.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    openLockedModal();
+  });
+});
+closeButton?.addEventListener('click', closeLockedModal);
+modal?.addEventListener('click', e => {
+  if (e.target === modal) closeLockedModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal?.classList.contains('show')) closeLockedModal();
+  if (e.key === 'Tab' && modal?.classList.contains('show')) {
+    const focusables = modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    if (!focusables.length) return;
+    const first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  }
+});
+</script>
+</body></html>
