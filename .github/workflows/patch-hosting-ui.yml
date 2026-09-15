@@ -1,0 +1,116 @@
+name: Patch hosting checkout UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-hosting-ui.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Patch hosting UI and checkout wiring
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text()
+          original = text
+
+          def replace_once(old, new, label):
+              global text
+              if old not in text:
+                  raise SystemExit(f'Missing expected block: {label}')
+              text = text.replace(old, new, 1)
+
+          # Remove helper/note copy from the hosting purchase area.
+          replace_once(
+          '''                        <p>Choose the monthly hosting plan your website needs.</p>\n                        <div class="section-heading-row">\n                            <span class="claim-selected-note">Choose a subscription to continue.</span>\n                            <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>\n                        </div>''',
+          '''                        <div class="section-heading-row">\n                            <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>\n                        </div>''',
+          'claim hosting helper notes')
+
+          text = text.replace('''                            <p class="payment-state" id="claimDiscountStatus">Choose this plan to open secure checkout.</p>\n''', '')
+          text = text.replace('<h3 class="section-heading">Choose a subscription to continue.</h3>', '<h3 class="section-heading">Hosting Plans</h3>')
+
+          # Show the intended $10 / $20 plans directly.
+          text = text.replace('''<span class="plan-name" data-static-plan-price="standard">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly" data-hosting-type="standard">Choose</button>''', '''<span class="plan-name" data-static-plan-price="standard">$10/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-local-monthly" data-hosting-type="standard">Choose</button>''')
+          text = text.replace('''<span class="plan-name" data-static-plan-price="backend">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly" data-hosting-type="backend">Choose</button>''', '''<span class="plan-name" data-static-plan-price="backend">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-local-monthly" data-hosting-type="backend">Choose</button>''')
+
+          replace_once(
+          '''        const hostingHelpContent = {\n            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $20 per month." },\n            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }\n        };''',
+          '''        const hostingHelpContent = {\n            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $10 per month." },\n            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $20 per month." }\n        };''',
+          'hosting help prices')
+
+          replace_once(
+          '''        const hostingCheckoutPlans = {\n            standard: [\n                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly", type: "standard" }\n            ],\n            backend: [\n                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly", type: "backend" }\n            ]\n        };''',
+          '''        const hostingCheckoutPlans = {\n            standard: [\n                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · billed monthly", type: "standard" }\n            ],\n            backend: [\n                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · billed monthly", type: "backend" }\n            ]\n        };''',
+          'primary hosting plans')
+
+          # Local-code aliases stay compatible, but they now point at the same two plans.
+          text = text.replace('$10/month — Standard Website Hosting · local price', '$10/month — Standard Website Hosting · billed monthly')
+          text = text.replace('$20/month — Backend Website Hosting · local price', '$20/month — Backend Website Hosting · billed monthly')
+
+          replace_once(
+          '''        function renderLocalPriceMarkup(type) {\n            if (!localHostingPricingActive) return type === "backend" ? "$30/month" : "$20/month";\n            return type === "backend"\n                ? '<span class="local-price"><del>$30/month</del><strong>$20/month</strong></span><span class="local-price-badge">LOCAL</span>'\n                : '<span class="local-price"><del>$20/month</del><strong>$10/month</strong></span><span class="local-price-badge">LOCAL</span>';\n        }''',
+          '''        function renderLocalPriceMarkup(type) {\n            return type === "backend" ? "$20/month" : "$10/month";\n        }''',
+          'static hosting price rendering')
+
+          # Remove the first Square waiting status completely.
+          replace_once(
+          '''            if (statusElement) {\n                statusElement.className = "payment-state verifying";\n                statusElement.textContent = "Waiting for Square to confirm your subscription…";\n            }\n''',
+          '',
+          'Square waiting note')
+
+          # Never render a status/note directly underneath the claim hosting choices.
+          replace_once(
+          '''            const selectedNote = document.createElement("p");\n            selectedNote.className = "payment-state";\n            selectedNote.textContent = "Select Standard or Backend hosting to continue.";\n            group.appendChild(heading);''',
+          '''            group.appendChild(heading);''',
+          'generated hosting note')
+
+          text = text.replace('''                        selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;\n''', '''                        claimMessageStatus.textContent = "";\n''')
+          text = text.replace('''                            statusElement: selectedNote\n''', '''                            statusElement: claimMessageStatus\n''')
+          text = text.replace('''            group.append(selectedNote);\n''', '')
+          text = text.replace('''statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage''', '''statusElement: isClaimPlan ? claimMessageStatus : subscriptionMessage''')
+
+          # Update admin-access pricing logic/copy to match $10 Standard / $20 Backend.
+          replace_once(
+          '''            if (active.some(subscription => /backend/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 3000)) return "backend";\n            if (active.some(subscription => /standard/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 2000)) return "standard";''',
+          '''            if (active.some(subscription => /backend/i.test(subscription.planName || ""))) return "backend";\n            if (active.some(subscription => /standard/i.test(subscription.planName || ""))) return "standard";\n            if (active.some(subscription => monthlyAmount(subscription) >= 2000)) return "backend";\n            if (active.some(subscription => monthlyAmount(subscription) >= 1000)) return "standard";''',
+          'hosting level detection')
+
+          text = text.replace('Your $30/month Backend Website Hosting plan includes admin access.', 'Your $20/month Backend Website Hosting plan includes admin access.')
+          text = text.replace('Your current $20/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($30/month total).', 'Your current $10/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($20/month total).')
+          text = text.replace('Admin access requires Backend Website Hosting for $30/month.', 'Admin access requires Backend Website Hosting for $20/month.')
+
+          if text == original:
+              raise SystemExit('No changes were made')
+          path.write_text(text)
+
+          # Only patch an admin.html if it actually contains the same hosting-plan helper copy.
+          # There is no root admin.html today, and unrelated client admin pages are intentionally untouched.
+          admin = Path('admin.html')
+          if admin.exists():
+              admin_text = admin.read_text()
+              admin_text = admin_text.replace('Select Standard or Backend hosting to continue.', '')
+              admin_text = admin_text.replace('Waiting for Square to confirm your subscription…', '')
+              admin.write_text(admin_text)
+          PY
+
+      - name: Commit patched files and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/patch-hosting-ui.yml
+          git add index.html admin.html 2>/dev/null || true
+          git commit -m "Update hosting plans and Square checkout UI"
+          git push origin main
