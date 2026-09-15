@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Irrigation Pros | Website Preview</title>
+<meta name="description" content="Irrigation Pros website preview awaiting exact business identity confirmation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;-webkit-text-size-adjust:100%;user-select:none;-webkit-user-select:none}
+a,button{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.lock-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);z-index:9999}
+.lock-modal.open{display:flex}
+.lock-card{width:min(440px,100%);background:#fff;color:#181818;padding:28px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.lock-card h2{margin:0 0 10px;font-size:1.4rem}
+.lock-card p{margin:0 0 22px;color:#555;line-height:1.55}
+.lock-close{border:0;border-radius:9px;background:#181818;color:#fff;padding:11px 18px;font-weight:800}
+body.modal-open{overflow:hidden}
+
+:root{--blue:#246a8d;--green:#4c7654;--paper:rgba(247,250,245,.94);--ink:#19302a;--muted:#5b7068;--line:#cbd8d1}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:linear-gradient(rgba(19,63,73,.38),rgba(19,63,73,.64)),url('https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=2000&q=84') center/cover fixed no-repeat;min-height:100vh}
+header{position:sticky;top:0;z-index:50;background:rgba(36,106,141,.95)}.nav{max-width:1180px;height:76px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:"Playfair Display",serif;color:#fff;text-decoration:none;font-size:1.4rem}.desktop{display:flex;gap:22px}.desktop a,.mobile a{color:#fff;text-decoration:none;font-weight:700}.menu-btn{display:none;border:0;background:transparent;color:#fff;font-size:1.45rem}.mobile{display:none;background:#246a8d;padding:0 24px 18px}.mobile.open{display:grid}.mobile a{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+main{min-height:calc(100vh - 76px);display:flex;align-items:center;padding:76px 24px}.wrap{width:min(1100px,100%);margin:auto}.box{max-width:820px;background:var(--paper);padding:52px;border-bottom:7px solid var(--green)}.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.2em;color:var(--blue);font-weight:800}h1{font-family:"Playfair Display",serif;font-size:clamp(3.4rem,8vw,7rem);line-height:.9;color:var(--green);margin:18px 0 22px}p{line-height:1.78;color:var(--muted)}.notice{margin-top:28px;background:#fff4d9;border-left:4px solid #c69436;padding:18px;line-height:1.65}.stock{font-size:.76rem;margin-top:26px}.stock a{color:var(--blue)}footer{padding:30px 24px;background:#246a8d;color:#e1eef3;text-align:center;font-size:.85rem}
+@media(max-width:720px){.desktop{display:none}.menu-btn{display:block}.box{padding:34px 26px}}
+</style>
+</head>
+
+<body>
+<header>
+<nav class="nav">
+<a class="brand" href="#home">Irrigation Pros</a>
+<div class="desktop"><a href="#verification">Verification</a></div>
+<button class="menu-btn" data-menu-button aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</nav>
+<div class="mobile" data-mobile-menu><a href="#verification">Verification</a></div>
+</header>
+<main id="home">
+  <div class="wrap">
+    <section class="box reveal">
+      <div class="eyebrow">Website preview</div>
+      <h1>Irrigation Pros</h1>
+      <p id="verification">Multiple unrelated irrigation businesses use the exact name “Irrigation Pros,” including public listings in California, South Carolina, Louisiana, and Texas. The uploaded CRM file does not provide a location, phone number, owner, or other identifier that safely distinguishes the intended business.</p>
+      <div class="notice"><strong>Identity confirmation required:</strong> services, service area, owner, contact information, hours, Google/Yelp pages, social profiles, reviews, licensing, and years in business are intentionally omitted until the correct Irrigation Pros business is identified.</div>
+      <p class="stock"><i class="fa-regular fa-image"></i> Generic irrigation stock imagery is used only for the demo and does not depict the intended business, employees, equipment, or projects. <a href="https://unsplash.com/s/photos/irrigation" data-locked="true">Stock source</a>.</p>
+    </section>
+  </div>
+</main>
+<footer>Irrigation Pros</footer>
+
+<div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-card">
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="lock-close" type="button">Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  if (menuButton && menu) {
+    menuButton.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  const modal = document.querySelector('.lock-modal');
+  const closeButton = modal ? modal.querySelector('.lock-close') : null;
+  const openLock = () => {
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    if (closeButton) closeButton.focus();
+  };
+  const closeLock = () => {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  };
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      openLock();
+    });
+  });
+
+  if (closeButton) closeButton.addEventListener('click', closeLock);
+  if (modal) modal.addEventListener('click', event => {
+    if (event.target === modal) closeLock();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal && modal.classList.contains('open')) closeLock();
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Final quality check: exact business identity unresolved; no wrong location or company assigned; no invented services, links, reviews, or contacts added. -->
+</body>
+
+</html>
