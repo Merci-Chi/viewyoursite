@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>1 Hour Laundromat — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Faster+One&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --yellow:#FFD600;
+  --yellow-deep:#E6C200;
+  --black:#111111;
+  --ink:#1C1C1C;
+  --muted:#666;
+  --white:#FFFFFF;
+  --line:#E3E3E3;
+  --soft:#F6F6F4;
+  --danger:#C6272F;
+  --success:#2E9E44;
+  --sidebar:250px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--soft);
+  color:var(--ink);
+  min-height:100vh;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.app{min-height:100vh;display:flex}
+.sidebar{
+  width:var(--sidebar);
+  background:var(--black);
+  color:#fff;
+  position:fixed;
+  inset:0 auto 0 0;
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+  border-right:4px solid var(--yellow);
+}
+.brand{
+  padding:18px 18px 16px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.brand-mark{
+  width:40px;height:46px;display:grid;place-items:center;flex:none;
+}
+.brand-mark i{font-size:31px;color:var(--yellow)}
+.brand strong{
+  display:block;
+  font-family:'Faster One',cursive;
+  font-weight:400;
+  font-size:1.18rem;
+  line-height:1.05;
+}
+.brand small{
+  color:var(--yellow);
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.63rem;
+  font-weight:700;
+}
+.nav{
+  padding:14px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  overflow:auto;
+}
+.nav button{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#ddd;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-align:left;
+  padding:11px 12px;
+  border-radius:8px;
+  font-weight:700;
+}
+.nav button i{width:20px;text-align:center}
+.nav button:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav button.active{
+  background:var(--yellow);
+  color:var(--black);
+}
+.side-foot{
+  margin-top:auto;
+  padding:14px;
+  border-top:1px solid rgba(255,255,255,.12);
+  color:#aaa;
+  font-size:.78rem;
+}
+.main{
+  margin-left:var(--sidebar);
+  width:calc(100% - var(--sidebar));
+  min-height:100vh;
+}
+.topbar{
+  height:72px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 26px;
+}
+.top-left{display:flex;align-items:center;gap:12px}
+.menu-btn{
+  display:none;
+  border:2px solid var(--black);
+  background:#fff;
+  width:42px;height:42px;
+  align-items:center;justify-content:center;
+  border-radius:8px;
+}
+.page-title{font-size:1.35rem;font-weight:800}
+.top-actions{display:flex;gap:10px;align-items:center}
+.btn{
+  border:0;
+  border-radius:8px;
+  padding:11px 16px;
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  text-decoration:none;
+}
+.btn-primary{background:var(--yellow);color:var(--black);border:2px solid var(--black)}
+.btn-dark{background:var(--black);color:var(--yellow);border:2px solid var(--black)}
+.btn-light{background:#fff;color:var(--black);border:2px solid var(--black)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn:hover{transform:translateY(-1px)}
+.content{padding:26px;max-width:1400px;margin:0 auto}
+.view{display:none}
+.view.active{display:block}
+.hero-strip{
+  background:var(--black);
+  color:#fff;
+  border-bottom:5px solid var(--yellow);
+  padding:24px;
+  margin-bottom:22px;
+}
+.hero-strip h1{margin:0 0 5px;font-size:1.8rem}
+.hero-strip p{margin:0;color:#ccc}
+.grid{display:grid;gap:18px}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:20px;
+}
+.card h2,.card h3{margin:0 0 14px}
+.stat{
+  border-top:5px solid var(--yellow);
+  min-height:132px;
+}
+.stat .label{font-size:.82rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:800}
+.stat .value{font-size:2rem;font-weight:800;margin-top:8px}
+.stat .sub{font-size:.88rem;color:var(--muted);margin-top:6px}
+.section-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin:0 0 16px;
+}
+.section-head h2{margin:0}
+.section-head p{margin:4px 0 0;color:var(--muted)}
+.quick{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+.quick button{
+  border:2px solid var(--black);
+  background:#fff;
+  padding:17px 12px;
+  border-radius:9px;
+  font-weight:800;
+}
+.quick button i{display:block;font-size:1.25rem;margin-bottom:7px}
+.quick button:hover{background:var(--yellow)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+input,textarea,select{
+  width:100%;
+  border:2px solid #cfcfcf;
+  border-radius:8px;
+  background:#fff;
+  padding:11px 12px;
+  color:var(--ink);
+}
+input:focus,textarea:focus,select:focus{outline:3px solid rgba(255,214,0,.5);border-color:var(--black)}
+textarea{min-height:110px;resize:vertical}
+.help{font-size:.78rem;color:var(--muted)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{background:#fafafa;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-weight:800;
+  font-size:.8rem;
+  padding:6px 9px;
+  border-radius:999px;
+}
+.status.live{background:#eaf6ed;color:#237b34}
+.status.demo{background:#fff6bf;color:#6d5b00}
+.badge{
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:6px;
+  font-size:.78rem;
+  font-weight:800;
+  background:#eee;
+}
+.hours-row{
+  display:grid;
+  grid-template-columns:100px 1fr 1fr 100px;
+  gap:10px;
+  align-items:center;
+  margin-bottom:10px;
+}
+.toggle{
+  position:relative;
+  width:46px;height:26px;
+  background:#bbb;border-radius:999px;
+  border:0;padding:0;
+}
+.toggle::after{
+  content:"";
+  position:absolute;top:3px;left:3px;
+  width:20px;height:20px;border-radius:50%;
+  background:#fff;transition:.18s;
+}
+.toggle.on{background:var(--success)}
+.toggle.on::after{left:23px}
+.image-preview{
+  aspect-ratio:16/9;
+  background:#eee center/cover no-repeat;
+  border:2px solid var(--black);
+  border-radius:8px;
+}
+.preview-shell{
+  background:#fff;
+  border:2px solid var(--black);
+  border-radius:10px;
+  overflow:hidden;
+}
+.preview-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  background:var(--black);
+  color:#fff;
+}
+.preview-frame{
+  min-height:520px;
+  background:
+    linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),
+    url("https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1600&q=80") center/cover;
+  display:grid;
+  place-items:center;
+  padding:40px;
+  text-align:center;
+}
+.preview-frame h2{
+  font-family:'Faster One',cursive;
+  font-weight:400;
+  font-size:clamp(2.8rem,6vw,5rem);
+  margin:0;
+}
+.preview-frame p{max-width:620px;margin:14px auto;color:#444}
+.preview-chip{display:inline-block;background:var(--yellow);border:2px solid var(--black);padding:9px 14px;border-radius:999px;font-weight:800}
+.notice{
+  border-left:5px solid var(--yellow);
+  background:#fffbe5;
+  padding:14px 16px;
+  margin-bottom:16px;
+}
+.lock-box{
+  border:2px dashed var(--black);
+  padding:18px;
+  background:#fff;
+  border-radius:10px;
+}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap}
+.small-btn{
+  border:1px solid #bbb;background:#fff;border-radius:7px;padding:7px 10px;font-weight:700
+}
+.toast{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:300;
+  background:var(--black);
+  color:#fff;
+  border-left:6px solid var(--yellow);
+  padding:14px 17px;
+  min-width:260px;
+  box-shadow:0 14px 35px rgba(0,0,0,.25);
+  display:none;
+}
+.toast.show{display:block}
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.72);
+  z-index:400;display:none;align-items:center;justify-content:center;padding:20px
+}
+.modal-backdrop.show{display:flex}
+.modal{
+  width:min(470px,100%);
+  background:#fff;
+  border:3px solid var(--black);
+  box-shadow:8px 8px 0 var(--yellow);
+  padding:24px;
+}
+.modal h3{margin:0 0 10px;font-size:1.45rem}
+.modal p{color:var(--muted)}
+.backdrop-mobile{display:none}
+@media(max-width:1100px){
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .quick{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:780px){
+  .sidebar{transform:translateX(-100%);transition:.2s}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;width:100%}
+  .menu-btn{display:flex}
+  .topbar{padding:0 14px}
+  .content{padding:16px}
+  .top-actions .btn span{display:none}
+  .grid-4,.grid-3,.grid-2,.form-grid{grid-template-columns:1fr}
+  .quick{grid-template-columns:repeat(2,1fr)}
+  .hours-row{grid-template-columns:80px 1fr 1fr}
+  .hours-row .toggle{grid-column:2/4}
+  .backdrop-mobile{
+    position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90
+  }
+  .backdrop-mobile.show{display:block}
+}
+@media(max-width:480px){
+  .quick{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><i class="fa-regular fa-clock"></i></div>
+      <div>
+        <strong>1 Hour Laundromat</strong>
+        <small>Admin Panel</small>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <button class="active" data-view="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</button>
+      <button data-view="content"><i class="fa-solid fa-pen-to-square"></i> Website Content</button>
+      <button data-view="pages"><i class="fa-regular fa-file-lines"></i> Pages</button>
+      <button data-view="business"><i class="fa-solid fa-store"></i> Business Info</button>
+      <button data-view="hours"><i class="fa-regular fa-clock"></i> Hours</button>
+      <button data-view="reviews"><i class="fa-solid fa-star"></i> Reviews</button>
+      <button data-view="images"><i class="fa-regular fa-image"></i> Images</button>
+      <button data-view="contact"><i class="fa-solid fa-address-card"></i> Contact</button>
+      <button data-view="seo"><i class="fa-solid fa-magnifying-glass"></i> SEO</button>
+      <button data-view="protection"><i class="fa-solid fa-lock"></i> Demo Protection</button>
+      <button data-view="preview"><i class="fa-solid fa-eye"></i> Preview</button>
+      <button data-view="settings"><i class="fa-solid fa-gear"></i> Settings</button>
+    </nav>
+    <div class="side-foot">Frontend admin demo · data saves only in this browser.</div>
+  </aside>
+
+  <div class="backdrop-mobile" id="mobileBackdrop"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="top-left">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="page-title" id="pageTitle">Dashboard</div>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-light" data-open-view="preview"><i class="fa-solid fa-eye"></i><span>Preview Website</span></button>
+        <button class="btn btn-primary" id="saveAll"><i class="fa-solid fa-floppy-disk"></i><span>Save Changes</span></button>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="view active" id="view-dashboard">
+        <div class="hero-strip">
+          <h1>Website Admin</h1>
+          <p>Manage the 1 Hour Laundromat demo website from one place.</p>
+        </div>
+
+        <div class="grid grid-4">
+          <div class="card stat"><div class="label">Website</div><div class="value">1</div><div class="sub">1 Hour Laundromat</div></div>
+          <div class="card stat"><div class="label">Public Sections</div><div class="value">4</div><div class="sub">Home, Wash, Reviews, Visit</div></div>
+          <div class="card stat"><div class="label">Mode</div><div class="value" style="font-size:1.35rem">Demo</div><div class="sub">Protected actions enabled</div></div>
+          <div class="card stat"><div class="label">Local Changes</div><div class="value" id="savedState" style="font-size:1.35rem">Not saved</div><div class="sub">Browser-local storage</div></div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="section-head">
+            <div><h2>Quick Edit</h2><p>Jump directly to common website controls.</p></div>
+          </div>
+          <div class="quick">
+            <button data-open-view="content"><i class="fa-solid fa-house"></i>Edit Home</button>
+            <button data-open-view="hours"><i class="fa-regular fa-clock"></i>Edit Hours</button>
+            <button data-open-view="reviews"><i class="fa-solid fa-star"></i>Edit Reviews</button>
+            <button data-open-view="contact"><i class="fa-solid fa-address-card"></i>Edit Contact</button>
+            <button data-open-view="preview"><i class="fa-solid fa-eye"></i>Preview</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h2>Site Status</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Page</th><th>Status</th><th>Route</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Home</td><td><span class="status live">Visible</span></td><td>#/home</td><td><button class="small-btn" data-open-view="content">Edit</button></td></tr>
+                <tr><td>The Wash</td><td><span class="status live">Visible</span></td><td>#/wash</td><td><button class="small-btn" data-open-view="pages">Edit</button></td></tr>
+                <tr><td>Reviews</td><td><span class="status live">Visible</span></td><td>#/reviews</td><td><button class="small-btn" data-open-view="reviews">Edit</button></td></tr>
+                <tr><td>Visit</td><td><span class="status live">Visible</span></td><td>#/visit</td><td><button class="small-btn" data-open-view="contact">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-content">
+        <div class="section-head">
+          <div><h2>Website Content</h2><p>Edit the homepage copy currently shown on the public site.</p></div>
+        </div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="field full">
+              <label>Eyebrow / Location</label>
+              <input data-key="homeEyebrow" value="2226 Handley Dr · Fort Worth, TX">
+            </div>
+            <div class="field full">
+              <label>Main Headline</label>
+              <input data-key="homeHeadline" value="1 Hour Laundromat">
+            </div>
+            <div class="field full">
+              <label>Hero Description</label>
+              <textarea data-key="homeDescription">The name is the promise: get in, get washed, get out. A no-hassle, self-service stop for busy individuals and families, with a staff that is friendly and always ready to assist.</textarea>
+            </div>
+            <div class="field">
+              <label>Primary Button</label>
+              <input data-key="homePrimaryBtn" value="The wash">
+            </div>
+            <div class="field">
+              <label>Secondary Button</label>
+              <input data-key="homeSecondaryBtn" value="Visit us">
+            </div>
+            <div class="field full">
+              <label>Yellow Band Text</label>
+              <textarea data-key="homeBand">One load. One visit. One hour, give or take. That is how the neighborhood has been doing laundry here, and the 5.0 Google rating says it is working.</textarea>
+            </div>
+            <div class="field full">
+              <label>Stock Image Disclaimer</label>
+              <textarea data-key="stockDisclaimer">Stock laundromat imagery is used in this demo and does not depict the actual business, staff, machines, or location.</textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-pages">
+        <div class="section-head">
+          <div><h2>Pages</h2><p>Edit the four public sections and their visible text.</p></div>
+        </div>
+
+        <div class="card">
+          <h3>The Wash</h3>
+          <div class="form-grid">
+            <div class="field full"><label>Eyebrow</label><input data-key="washEyebrow" value="The Wash"></div>
+            <div class="field full"><label>Headline</label><input data-key="washHeadline" value="Keep it moving"></div>
+            <div class="field full"><label>Description</label><textarea data-key="washDescription">Self-service washers and dryers, open every day from 8 in the morning to 8 at night. Built to be a hassle-free experience for busy individuals and families.</textarea></div>
+            <div class="field"><label>Service 1</label><input data-key="washService1" value="Self-service washers"></div>
+            <div class="field"><label>Service 1 Description</label><input data-key="washService1Desc" value="Start a load on your schedule and keep the day on track."></div>
+            <div class="field"><label>Service 2</label><input data-key="washService2" value="Dryers ready"></div>
+            <div class="field"><label>Service 2 Description</label><input data-key="washService2Desc" value="Swap over and finish the cycle without a wait in the way."></div>
+            <div class="field"><label>Service 3</label><input data-key="washService3" value="Friendly staff"></div>
+            <div class="field"><label>Service 3 Description</label><input data-key="washService3Desc" value="Always ready to assist, which is exactly what the regulars say."></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Visit Page</h3>
+          <div class="form-grid">
+            <div class="field"><label>Eyebrow</label><input data-key="visitEyebrow" value="Visit"></div>
+            <div class="field"><label>Headline</label><input data-key="visitHeadline" value="Start the clock"></div>
+            <div class="field full"><label>Description</label><textarea data-key="visitDescription">Find us on Handley Dr in Fort Worth. Bring the loads any day of the week between 8 AM and 8 PM.</textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-business">
+        <div class="section-head"><div><h2>Business Info</h2><p>Core business information used throughout the website.</p></div></div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="field"><label>Business Name</label><input data-key="businessName" value="1 Hour Laundromat"></div>
+            <div class="field"><label>City / State</label><input data-key="businessCity" value="Fort Worth, TX"></div>
+            <div class="field full"><label>Public Address</label><input data-key="businessAddress" value="2226 Handley Dr · Fort Worth, TX"></div>
+            <div class="field"><label>Business Type</label><input data-key="businessType" value="Laundromat"></div>
+            <div class="field"><label>Timezone</label><input data-key="timezone" value="America/Chicago"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-hours">
+        <div class="section-head"><div><h2>Business Hours</h2><p>Manage the hours shown on the site and used by the open/closed indicator.</p></div></div>
+        <div class="card">
+          <div id="hoursEditor"></div>
+          <div class="field" style="margin-top:16px">
+            <label>Hours Disclaimer</label>
+            <textarea data-key="hoursDisclaimer">Hours are estimated. Please confirm current and holiday hours with the business.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-reviews">
+        <div class="section-head"><div><h2>Reviews</h2><p>Edit the review summary displayed on the public site.</p></div></div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="field"><label>Rating</label><input data-key="rating" value="5.0"></div>
+            <div class="field"><label>Platform</label><input data-key="ratingPlatform" value="Google"></div>
+            <div class="field full"><label>Page Eyebrow</label><input data-key="reviewsEyebrow" value="Reviews"></div>
+            <div class="field full"><label>Headline</label><input data-key="reviewsHeadline" value="A perfect score"></div>
+            <div class="field full"><label>Summary</label><textarea data-key="reviewsSummary">A small shop with a spotless record so far. The Google listing has the full story.</textarea></div>
+            <div class="field full"><label>Review Button Label</label><input data-key="reviewsButton" value="See every review on Google"></div>
+          </div>
+          <div class="notice" style="margin-top:16px">The original public site keeps the external Google action locked in demo mode.</div>
+        </div>
+      </section>
+
+      <section class="view" id="view-images">
+        <div class="section-head"><div><h2>Images</h2><p>Manage the remote stock-image URLs used by the public website.</p></div></div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Homepage Hero</h3>
+            <div class="image-preview" id="heroImagePreview"></div>
+            <div class="field" style="margin-top:12px"><label>Image URL</label><input data-key="heroImage" id="heroImageInput" value="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=1800&q=84"></div>
+          </div>
+          <div class="card">
+            <h3>Wash Background</h3>
+            <div class="image-preview" id="washImagePreview"></div>
+            <div class="field" style="margin-top:12px"><label>Image URL</label><input data-key="washImage" id="washImageInput" value="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=1900&q=84"></div>
+          </div>
+        </div>
+        <div class="notice" style="margin-top:18px">These are stock images. Keep the disclaimer visible unless real business photos replace them.</div>
+      </section>
+
+      <section class="view" id="view-contact">
+        <div class="section-head"><div><h2>Contact</h2><p>Control what appears in the Visit section.</p></div></div>
+        <div class="card">
+          <div class="notice">The public demo currently protects contact actions instead of exposing live contact details.</div>
+          <div class="form-grid">
+            <div class="field"><label>Phone Number</label><input data-key="phone" placeholder="Not provided"></div>
+            <div class="field"><label>Email</label><input data-key="email" placeholder="Not provided"></div>
+            <div class="field full"><label>Contact Protection Text</label><input data-key="contactProtection" value="CONTACT DETAILS PROTECTED IN THIS DEMO"></div>
+            <div class="field full"><label>Contact Form Heading</label><input data-key="contactHeading" value="Send a note to the desk"></div>
+            <div class="field full"><label>Contact Form Note</label><textarea data-key="contactNote">This demo shows the contact form layout, but submission is locked until the full site is unlocked.</textarea></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-seo">
+        <div class="section-head"><div><h2>SEO</h2><p>Edit browser titles and basic page metadata.</p></div></div>
+        <div class="card">
+          <div class="form-grid">
+            <div class="field full"><label>Home Title</label><input data-key="seoHomeTitle" value="Handley Dr Laundromat, Fort Worth | 1 Hour Laundromat"></div>
+            <div class="field full"><label>Meta Description</label><textarea data-key="seoDescription">1 Hour Laundromat on Handley Dr in Fort Worth. Self-service washers and dryers, open daily from 8 AM to 8 PM.</textarea></div>
+            <div class="field"><label>Wash Page Title</label><input data-key="seoWashTitle" value="The Wash | 1 Hour Laundromat"></div>
+            <div class="field"><label>Reviews Page Title</label><input data-key="seoReviewsTitle" value="Reviews | 1 Hour Laundromat"></div>
+            <div class="field"><label>Visit Page Title</label><input data-key="seoVisitTitle" value="Visit Us | 1 Hour Laundromat"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-protection">
+        <div class="section-head"><div><h2>Demo Protection</h2><p>Choose which real-world actions stay protected in the demo.</p></div></div>
+        <div class="grid grid-2">
+          <div class="lock-box">
+            <h3>Protected Actions</h3>
+            <div class="field"><label><input type="checkbox" data-check-key="lockGoogle" checked> Lock Google review link</label></div>
+            <div class="field"><label><input type="checkbox" data-check-key="lockPhone" checked> Lock phone action</label></div>
+            <div class="field"><label><input type="checkbox" data-check-key="lockForm" checked> Lock contact form submission</label></div>
+          </div>
+          <div class="card">
+            <h3>Locked Modal Copy</h3>
+            <div class="field"><label>Title</label><input data-key="lockTitle" value="This is currently locked."></div>
+            <div class="field" style="margin-top:12px"><label>Message</label><textarea data-key="lockMessage">This feature is part of the full website. Purchase the site to unlock it.</textarea></div>
+            <div class="field" style="margin-top:12px"><label>Button</label><input data-key="lockButton" value="Close"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-preview">
+        <div class="section-head"><div><h2>Preview</h2><p>Live preview of the homepage using the current admin values.</p></div></div>
+        <div class="preview-shell">
+          <div class="preview-toolbar">
+            <strong>1 Hour Laundromat</strong>
+            <span class="status demo">Demo Preview</span>
+          </div>
+          <div class="preview-frame" id="livePreview">
+            <div>
+              <div class="preview-chip" id="previewEyebrow">2226 Handley Dr · Fort Worth, TX</div>
+              <h2 id="previewHeadline">1 Hour Laundromat</h2>
+              <p id="previewDescription">The name is the promise: get in, get washed, get out. A no-hassle, self-service stop for busy individuals and families, with a staff that is friendly and always ready to assist.</p>
+              <button class="btn btn-dark" id="previewPrimary">The wash</button>
+              <button class="btn btn-light" id="previewSecondary">Visit us</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="section-head"><div><h2>Settings</h2><p>Admin-demo preferences and local data controls.</p></div></div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Admin Preferences</h3>
+            <div class="field"><label>Admin Panel Name</label><input data-key="adminName" value="1 Hour Laundromat Admin"></div>
+            <div class="field" style="margin-top:12px"><label>Content Width</label><select data-key="contentWidth"><option value="standard">Standard</option><option value="wide">Wide</option></select></div>
+          </div>
+          <div class="card">
+            <h3>Local Data</h3>
+            <p style="color:var(--muted)">This admin demo stores edits only in this browser using localStorage.</p>
+            <div class="row-actions">
+              <button class="btn btn-dark" id="exportBtn"><i class="fa-solid fa-download"></i> Export JSON</button>
+              <button class="btn btn-danger" id="resetBtn"><i class="fa-solid fa-rotate-left"></i> Reset Local Changes</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast">Changes saved locally.</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3 id="modalTitle">Reset local changes?</h3>
+    <p id="modalMessage">This will remove saved edits from this browser and restore the default admin values.</p>
+    <div class="row-actions">
+      <button class="btn btn-light" id="modalCancel">Cancel</button>
+      <button class="btn btn-danger" id="modalConfirm">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = "oneHourLaundromatAdminData";
+  var sidebar = document.getElementById("sidebar");
+  var backdrop = document.getElementById("mobileBackdrop");
+  var menuBtn = document.getElementById("menuBtn");
+  var pageTitle = document.getElementById("pageTitle");
+  var toast = document.getElementById("toast");
+
+  var titleMap = {
+    dashboard:"Dashboard",
+    content:"Website Content",
+    pages:"Pages",
+    business:"Business Info",
+    hours:"Hours",
+    reviews:"Reviews",
+    images:"Images",
+    contact:"Contact",
+    seo:"SEO",
+    protection:"Demo Protection",
+    preview:"Preview",
+    settings:"Settings"
+  };
+
+  function openView(name){
+    document.querySelectorAll(".view").forEach(function(v){ v.classList.remove("active"); });
+    document.querySelectorAll(".nav button").forEach(function(b){ b.classList.remove("active"); });
+    var view = document.getElementById("view-" + name);
+    if (view) view.classList.add("active");
+    var navBtn = document.querySelector('.nav button[data-view="' + name + '"]');
+    if (navBtn) navBtn.classList.add("active");
+    pageTitle.textContent = titleMap[name] || "Admin";
+    sidebar.classList.remove("open");
+    backdrop.classList.remove("show");
+    if(name === "preview") updatePreview();
+    window.scrollTo({top:0, behavior:"instant"});
+  }
+
+  document.addEventListener("click", function(e){
+    var nav = e.target.closest("[data-view]");
+    if(nav){ openView(nav.getAttribute("data-view")); }
+    var jump = e.target.closest("[data-open-view]");
+    if(jump){ openView(jump.getAttribute("data-open-view")); }
+  });
+
+  menuBtn.addEventListener("click", function(){
+    sidebar.classList.toggle("open");
+    backdrop.classList.toggle("show");
+  });
+  backdrop.addEventListener("click", function(){
+    sidebar.classList.remove("open");
+    backdrop.classList.remove("show");
+  });
+
+  var defaultHours = [
+    ["Sunday","08:00","20:00",true],
+    ["Monday","08:00","20:00",true],
+    ["Tuesday","08:00","20:00",true],
+    ["Wednesday","08:00","20:00",true],
+    ["Thursday","08:00","20:00",true],
+    ["Friday","08:00","20:00",true],
+    ["Saturday","08:00","20:00",true]
+  ];
+
+  function renderHours(saved){
+    var root = document.getElementById("hoursEditor");
+    root.innerHTML = "";
+    var hours = saved || defaultHours;
+    hours.forEach(function(h, i){
+      var row = document.createElement("div");
+      row.className = "hours-row";
+      row.innerHTML =
+        '<strong>' + h[0] + '</strong>' +
+        '<input type="time" data-hour-index="' + i + '" data-hour-part="open" value="' + h[1] + '">' +
+        '<input type="time" data-hour-index="' + i + '" data-hour-part="close" value="' + h[2] + '">' +
+        '<button type="button" class="toggle ' + (h[3] ? 'on' : '') + '" aria-label="Toggle ' + h[0] + '" data-hour-toggle="' + i + '"></button>';
+      root.appendChild(row);
+    });
+  }
+  renderHours();
+
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("[data-hour-toggle]");
+    if(t) t.classList.toggle("on");
+  });
+
+  function collectData(){
+    var data = {};
+    document.querySelectorAll("[data-key]").forEach(function(el){
+      data[el.getAttribute("data-key")] = el.value;
+    });
+    document.querySelectorAll("[data-check-key]").forEach(function(el){
+      data[el.getAttribute("data-check-key")] = el.checked;
+    });
+    data.hours = [];
+    document.querySelectorAll("#hoursEditor .hours-row").forEach(function(row){
+      var name = row.querySelector("strong").textContent;
+      var open = row.querySelector('[data-hour-part="open"]').value;
+      var close = row.querySelector('[data-hour-part="close"]').value;
+      var enabled = row.querySelector(".toggle").classList.contains("on");
+      data.hours.push([name,open,close,enabled]);
+    });
+    return data;
+  }
+
+  function applyData(data){
+    if(!data) return;
+    document.querySelectorAll("[data-key]").forEach(function(el){
+      var key = el.getAttribute("data-key");
+      if(Object.prototype.hasOwnProperty.call(data,key)) el.value = data[key];
+    });
+    document.querySelectorAll("[data-check-key]").forEach(function(el){
+      var key = el.getAttribute("data-check-key");
+      if(Object.prototype.hasOwnProperty.call(data,key)) el.checked = !!data[key];
+    });
+    if(Array.isArray(data.hours)) renderHours(data.hours);
+    refreshImages();
+    updatePreview();
+  }
+
+  function save(){
+    var data = collectData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    var now = new Date();
+    document.getElementById("savedState").textContent = now.toLocaleTimeString([], {hour:"numeric", minute:"2-digit"});
+    showToast("Changes saved locally.");
+  }
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(function(){ toast.classList.remove("show"); }, 2200);
+  }
+
+  document.getElementById("saveAll").addEventListener("click", save);
+
+  function updatePreview(){
+    var data = collectData();
+    document.getElementById("previewEyebrow").textContent = data.homeEyebrow || "";
+    document.getElementById("previewHeadline").textContent = data.homeHeadline || "";
+    document.getElementById("previewDescription").textContent = data.homeDescription || "";
+    document.getElementById("previewPrimary").textContent = data.homePrimaryBtn || "";
+    document.getElementById("previewSecondary").textContent = data.homeSecondaryBtn || "";
+    var p = document.getElementById("livePreview");
+    if(data.heroImage){
+      p.style.backgroundImage = 'linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.88)),url("' + data.heroImage.replace(/"/g,"") + '")';
+    }
+  }
+
+  document.addEventListener("input", function(e){
+    if(e.target.matches("[data-key],[data-check-key]")){
+      if(document.getElementById("view-preview").classList.contains("active")) updatePreview();
+      if(e.target.id === "heroImageInput" || e.target.id === "washImageInput") refreshImages();
+    }
+  });
+
+  function refreshImages(){
+    var hero = document.getElementById("heroImageInput").value;
+    var wash = document.getElementById("washImageInput").value;
+    document.getElementById("heroImagePreview").style.backgroundImage = 'url("' + hero.replace(/"/g,"") + '")';
+    document.getElementById("washImagePreview").style.backgroundImage = 'url("' + wash.replace(/"/g,"") + '")';
+  }
+  refreshImages();
+
+  var modalBackdrop = document.getElementById("modalBackdrop");
+  var modalCancel = document.getElementById("modalCancel");
+  var modalConfirm = document.getElementById("modalConfirm");
+
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    modalBackdrop.classList.add("show");
+  });
+  modalCancel.addEventListener("click", function(){ modalBackdrop.classList.remove("show"); });
+  modalBackdrop.addEventListener("click", function(e){
+    if(e.target === modalBackdrop) modalBackdrop.classList.remove("show");
+  });
+  modalConfirm.addEventListener("click", function(){
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+
+  document.getElementById("exportBtn").addEventListener("click", function(){
+    var data = collectData();
+    var blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "1-hour-laundromat-admin-data.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      sidebar.classList.remove("open");
+      backdrop.classList.remove("show");
+      modalBackdrop.classList.remove("show");
+    }
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s"){
+      e.preventDefault();
+      save();
+    }
+  });
+
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if(saved){
+    try{
+      applyData(JSON.parse(saved));
+      document.getElementById("savedState").textContent = "Saved";
+    }catch(err){}
+  }
+})();
+</script>
+</body>
+</html>
