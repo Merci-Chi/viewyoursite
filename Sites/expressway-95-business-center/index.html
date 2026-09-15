@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Expressway 95 Business Center | Bensalem, PA</title>
+<meta name="description" content="Expressway 95 Business Center in Bensalem, Pennsylvania.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--primary:#f4b75e;--secondary:#71512b;--ink:#f5f7fb;--muted:#c2c8d1;--line:rgba(255,255,255,.14);--panel:rgba(10,14,20,.80)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#111820;user-select:none;-webkit-user-select:none}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(110deg,rgba(4,8,13,.92),rgba(4,8,13,.62) 58%,rgba(4,8,13,.83)),url("https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 18% 10%,rgba(255,255,255,.08),transparent 30%)}
+a{color:inherit;text-decoration:none} button{font:inherit}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(6,10,15,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.head{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:900;letter-spacing:.02em}
+nav{display:flex;gap:24px;align-items:center}
+nav a{font-size:.93rem;color:#e3e7ee}
+.menu{display:none;background:none;border:0;color:white;font-size:1.45rem;padding:10px}
+.hero{min-height:74vh;display:grid;align-items:center;padding:88px 0 70px}
+.kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:900;color:var(--primary)}
+h1{font-size:clamp(3rem,8vw,6.8rem);line-height:.92;letter-spacing:-.055em;margin:.22em 0 .25em;max-width:940px}
+.lead{max-width:760px;color:#d8dde5;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.65}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{min-height:48px;padding:0 18px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;cursor:pointer;transition:.2s ease}
+.btn.primary{background:var(--primary);color:#0a0e13}
+.btn.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28);color:white}
+.btn:hover{transform:translateY(-2px)}
+.section{padding:72px 0;border-top:1px solid var(--line)}
+.section h2{font-size:clamp(2rem,4.2vw,3.5rem);line-height:1.06;letter-spacing:-.035em;margin:0 0 15px}
+.intro{max-width:800px;color:var(--muted);line-height:1.65;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);padding:24px;backdrop-filter:blur(10px)}
+.card i{font-size:1.3rem;color:var(--primary);margin-bottom:17px}
+.card h3{margin:0 0 8px} .card p{margin:0;color:#cfd4dc;line-height:1.6}
+.info{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.row{display:flex;gap:13px;background:var(--panel);border:1px solid var(--line);padding:18px}
+.row i{color:var(--primary);width:20px;margin-top:3px}
+.row strong{display:block;margin-bottom:3px}
+.muted{color:var(--muted)}
+.notice{border-left:3px solid var(--primary);padding:16px 18px;background:rgba(255,255,255,.055);color:#d8dde6;max-width:860px}
+.footer{padding:34px 0 44px;border-top:1px solid var(--line);font-size:.9rem;color:#aeb6c3}
+.footer-in{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.asset-note{max-width:700px;font-size:.78rem;color:#919aa8}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.74);place-items:center;padding:20px}
+.modal.show{display:grid}
+.modal-box{width:min(440px,100%);background:#111720;border:1px solid rgba(255,255,255,.18);padding:28px;box-shadow:0 26px 90px rgba(0,0,0,.5)}
+.modal-box h2{margin:0 0 10px;font-size:1.7rem} .modal-box p{color:#cbd1da;line-height:1.6}
+.modal-open{overflow:hidden}
+h1{font-weight:950;text-transform:uppercase}.hero .lead{max-width:650px}.big-num{font-size:2.2rem;font-weight:950;color:var(--primary)}
+@media(max-width:780px){
+.wrap{width:min(100% - 28px,1160px)} .head{min-height:68px} .menu{display:block}
+nav{position:absolute;left:14px;right:14px;top:68px;display:none;flex-direction:column;align-items:stretch;gap:0;background:#10161f;border:1px solid var(--line);padding:8px}
+nav.open{display:flex} nav a{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08)} nav a:last-child{border-bottom:0}
+.hero{min-height:68vh;padding:65px 0 52px} h1{font-size:clamp(2.75rem,15vw,4.8rem)} .grid,.info{grid-template-columns:1fr}
+.section{padding:54px 0} .actions .btn{width:100%}
+}
+</style>
+</head><body><!--
+RESEARCH BASIS / SOURCES
+1. Yellow Pages: https://www.yellowpages.com/bensalem-pa/mip/expressway-95-business-center-16319176
+2. Pennsylvania Commonwealth Court decision: https://law.justia.com/cases/pennsylvania/commonwealth-court/2007/1665cd06-4-3-07.html
+3. Haskel service-center listing references Expressway 95 Business Center, 3557 Progress Drive, Bensalem.
+Supported facts used:
+- Category: Office Buildings & Parks, Commercial Real Estate, Real Estate Rental Service
+- Public business listing address: 3466 Progress Dr, Bensalem, PA 19020
+- Public phone: (215) 244-2149
+- Court record describes the center as 10 industrial buildings in Bensalem Township on three parcels.
+- Historical building mailing addresses include Progress Drive and 3599 Marshall Lane.
+MISSING / NOT ADDED
+- Current leasing availability, rents, square footage, tenant roster, operating hours, management contact, social links, Google/Yelp review link.
+ASSET
+- Stock office-building image only; not the actual property.
+QUALITY CHECK
+- Mobile menu functional; mobile zoom disabled; text selection disabled; no invented leasing claims.
+--><header><div class="wrap head"><a class="brand" href="#top">EXPRESSWAY 95 BUSINESS CENTER</a><button class="menu" data-menu aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><nav data-nav><a href="#overview">Overview</a><a href="#location">Location</a><a href="#contact">Contact</a></nav></div></header>
+<main id="top"><section class="hero"><div class="wrap"><div class="kicker">Office • Industrial • Commercial real estate</div><h1>Expressway 95 Business Center</h1><p class="lead">Public records identify the property as a multi-building business center in Bensalem Township, Pennsylvania.</p><div class="actions"><a class="btn primary" href="#overview"><i class="fa-solid fa-building"></i> Property overview</a><button class="btn secondary" data-locked="true"><i class="fa-solid fa-phone"></i> Call (215) 244-2149</button></div></div></section>
+<section class="section" id="overview"><div class="wrap"><div class="kicker">Business overview</div><h2>Commercial business center</h2><p class="intro">Public directory classifications include office buildings and parks, commercial real estate, and real estate rental service. A Pennsylvania court decision describes the center as ten industrial buildings located on three parcels in Bensalem Township.</p><div class="grid">
+<article class="card"><div class="big-num">10</div><h3>Industrial buildings</h3><p>Count stated in the 2007 Pennsylvania Commonwealth Court decision.</p></article>
+<article class="card"><i class="fa-solid fa-city"></i><h3>Bensalem Township</h3><p>Bucks County, Pennsylvania.</p></article>
+<article class="card"><i class="fa-solid fa-building-user"></i><h3>Commercial property use</h3><p>Public listings classify the center under office, commercial real estate, and rental services.</p></article>
+</div></div></section>
+<section class="section" id="location"><div class="wrap"><div class="kicker">Location</div><h2>Progress Drive</h2><p class="intro">The current public directory listing gives the business-center address below. Historical court records identify multiple building addresses along Progress Drive and Marshall Lane.</p><div class="row"><i class="fa-solid fa-location-dot"></i><div><strong>3466 Progress Dr</strong><span class="muted">Bensalem, PA 19020</span></div></div></div></section>
+<section class="section" id="contact"><div class="wrap"><div class="kicker">Contact</div><h2>Public listing</h2><div class="info">
+<div class="row"><i class="fa-solid fa-phone"></i><div><strong>(215) 244-2149</strong><span class="muted">Public business phone</span></div></div>
+<div class="row"><i class="fa-solid fa-location-dot"></i><div><strong>3466 Progress Dr</strong><span class="muted">Bensalem, PA 19020</span></div></div></div>
+<div class="actions"><button class="btn primary" data-locked="true"><i class="fa-solid fa-phone"></i> Call business center</button><button class="btn secondary" data-locked="true"><i class="fa-solid fa-map"></i> View map</button></div></div></section></main>
+<footer class="footer"><div class="wrap footer-in"><div><strong>Expressway 95 Business Center</strong><div class="muted">Bensalem, Pennsylvania</div></div><div class="asset-note">Background is stock office-building photography and does not depict the actual Expressway 95 Business Center property.</div></div></footer><div class="modal" id="locked-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lock-title">
+<div class="modal-box"><h2 id="lock-title">This is currently locked.</h2>
+<p>This feature is part of the full website. Purchase the site to unlock it.</p>
+<button class="btn primary" type="button" data-close>Close</button></div></div><script>
+const menuBtn=document.querySelector('[data-menu]');
+const nav=document.querySelector('[data-nav]');
+if(menuBtn&&nav){
+  menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));});
+  nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id&&id.length>1){const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}
+  });
+});
+const modal=document.getElementById('locked-modal');
+const closeBtn=modal?.querySelector('[data-close]');
+let lastFocus=null;
+function openModal(){
+  if(!modal)return;
+  lastFocus=document.activeElement;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeBtn?.focus();
+}
+function closeModal(){
+  if(!modal)return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  lastFocus?.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal();}));
+closeBtn?.addEventListener('click',closeModal);
+modal?.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&modal?.classList.contains('show'))closeModal();
+  if(e.key==='Tab'&&modal?.classList.contains('show')){
+    const f=[...modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')];
+    if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
+</script></body></html>
