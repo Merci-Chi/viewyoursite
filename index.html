@@ -953,9 +953,7 @@
                         <span class="step-check" aria-hidden="true">✓</span>
                         <h4>3. Purchase Website Hosting</h4>
                         <p class="step-summary" id="hostingStepSummary">Hosting purchase confirmed ✓</p>
-                        <p>Choose the monthly hosting plan your website needs.</p>
                         <div class="section-heading-row">
-                            <span class="claim-selected-note">Choose a subscription to continue.</span>
                             <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
                         </div>
                         <div class="discount-code-field" data-discount-field="claim" hidden>
@@ -972,7 +970,6 @@
                                 <div><span class="plan-name" data-discount-plan-name>Special Membership</span><span class="plan-price" data-discount-plan-price></span></div>
                                 <button class="plan-link" type="button" data-discount-checkout="claim">Choose</button>
                             </div>
-                            <p class="payment-state" id="claimDiscountStatus">Choose this plan to open secure checkout.</p>
                         </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
@@ -1019,7 +1016,7 @@
                     </div>
 
                     <div class="section-heading-row">
-                        <h3 class="section-heading">Choose a subscription to continue.</h3>
+                        <h3 class="section-heading">Hosting Plans</h3>
                         <button class="have-code-button" type="button" data-discount-toggle="subscriptions" aria-expanded="false">Have a code?</button>
                     </div>
                     <div class="discount-code-field" data-discount-field="subscriptions" hidden>
@@ -1040,11 +1037,11 @@
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="standard">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly" data-hosting-type="standard">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="standard">$10/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-local-monthly" data-hosting-type="standard">Choose</button></div>
                         </article>
                         <article class="plan-group">
                             <h4>Backend Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="backend">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly" data-hosting-type="backend">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="backend">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-local-monthly" data-hosting-type="backend">Choose</button></div>
                         </article>
                     </div>
                 </section>
@@ -1191,8 +1188,8 @@
         const adminLockedText = document.getElementById("adminLockedText");
         const adminLockedAction = document.getElementById("adminLockedAction");
         const hostingHelpContent = {
-            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $20 per month." },
-            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }
+            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $10 per month." },
+            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $20 per month." }
         };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let pendingProgressScrollTarget = null;
@@ -1282,18 +1279,18 @@
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
-                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly", type: "standard" }
+                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · billed monthly", type: "standard" }
             ],
             backend: [
-                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly", type: "backend" }
+                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · billed monthly", type: "backend" }
             ]
         };
         const localHostingCheckoutPlans = {
             standard: [
-                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · local price", type: "standard", localPrice: true }
+                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · billed monthly", type: "standard", localPrice: true }
             ],
             backend: [
-                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · local price", type: "backend", localPrice: true }
+                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · billed monthly", type: "backend", localPrice: true }
             ]
         };
         function activeHostingPlans(type) {
@@ -1305,10 +1302,7 @@
                 : "";
         }
         function renderLocalPriceMarkup(type) {
-            if (!localHostingPricingActive) return type === "backend" ? "$30/month" : "$20/month";
-            return type === "backend"
-                ? '<span class="local-price"><del>$30/month</del><strong>$20/month</strong></span><span class="local-price-badge">LOCAL</span>'
-                : '<span class="local-price"><del>$20/month</del><strong>$10/month</strong></span><span class="local-price-badge">LOCAL</span>';
+            return type === "backend" ? "$20/month" : "$10/month";
         }
         function refreshStaticHostingPrices() {
             document.querySelectorAll("[data-static-plan-price]").forEach(el => {
@@ -1410,10 +1404,6 @@
 
         async function verifyPendingCheckout(pending, statusElement) {
             if (!pending?.checkoutId) return false;
-            if (statusElement) {
-                statusElement.className = "payment-state verifying";
-                statusElement.textContent = "Waiting for Square to confirm your subscription…";
-            }
             const deadline = Date.now() + 10 * 60 * 1000;
             while (Date.now() < deadline) {
                 const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
@@ -1577,7 +1567,7 @@
                 startVerifiedCheckout(plan, {
                     discountCode: activeLocalHostingCode() || null,
                     claimType: isClaimPlan ? "all" : null,
-                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
+                    statusElement: isClaimPlan ? claimMessageStatus : subscriptionMessage
                 });
             });
         });
@@ -1595,7 +1585,7 @@
                 startVerifiedCheckout(discountPlan, {
                     discountCode: code,
                     claimType: isClaimPlan ? "all" : null,
-                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
+                    statusElement: isClaimPlan ? claimMessageStatus : subscriptionMessage
                 });
             });
         });
@@ -1714,9 +1704,6 @@
             group.className = "plan-group";
             const heading = document.createElement("h4");
             heading.textContent = "Choose one hosting plan";
-            const selectedNote = document.createElement("p");
-            selectedNote.className = "payment-state";
-            selectedNote.textContent = "Select Standard or Backend hosting to continue.";
             group.appendChild(heading);
 
             ["standard", "backend"].forEach(type => {
@@ -1737,14 +1724,8 @@
                     helpButton.addEventListener("click", event => { event.stopPropagation(); showHostingHelp(type); });
                     const details = document.createElement("span");
                     details.className = "plan-price";
-                    if (localHostingPricingActive) {
-                        details.innerHTML = type === "backend"
-                            ? '<span class="local-price"><del>$30/month</del><strong>$20/month</strong></span> · local price'
-                            : '<span class="local-price"><del>$20/month</del><strong>$10/month</strong></span> · local price';
-                    } else {
-                        const parts = plan.label.split(" — ");
-                        details.textContent = `${parts[0]} · ${parts[1] || "billed monthly"}`;
-                    }
+                    const parts = plan.label.split(" — ");
+                    details.textContent = `${parts[0]} · ${parts[1] || "billed monthly"}`;
                     titleRow.append(title, helpButton);
                     copy.append(titleRow, details);
                     const chooseButton = document.createElement("button");
@@ -1758,19 +1739,18 @@
                         chooseButton.textContent = "Selected";
                         claimPlanSelections.clear();
                         claimPlanSelections.set(type, { plan, confirmed: false });
-                        selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
+                        claimMessageStatus.textContent = "";
                         updateClaimSubmitAvailability();
                         startVerifiedCheckout(plan, {
                             discountCode: activeLocalHostingCode() || null,
                             claimType: type,
-                            statusElement: selectedNote
+                            statusElement: claimMessageStatus
                         });
                     });
                     row.append(copy, chooseButton);
                     group.appendChild(row);
                 });
             });
-            group.append(selectedNote);
             claimCheckoutLinks.appendChild(group);
         }
 
@@ -1955,8 +1935,10 @@
                 const months = ({ MONTHLY: 1, EVERY_SIX_MONTHS: 6, ANNUAL: 12 })[subscription.billingCadence] || 1;
                 return typeof subscription.amountCents === "number" ? subscription.amountCents / months : 0;
             };
-            if (active.some(subscription => /backend/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 3000)) return "backend";
-            if (active.some(subscription => /standard/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 2000)) return "standard";
+            if (active.some(subscription => /backend/i.test(subscription.planName || ""))) return "backend";
+            if (active.some(subscription => /standard/i.test(subscription.planName || ""))) return "standard";
+            if (active.some(subscription => monthlyAmount(subscription) >= 2000)) return "backend";
+            if (active.some(subscription => monthlyAmount(subscription) >= 1000)) return "standard";
             return "none";
         }
         function closeAdminLockedPopup() {
@@ -1967,21 +1949,21 @@
             const hostingLevel = activeHostingLevel();
             adminLockedAction.onclick = null;
             if (hostingLevel === "backend") {
-                adminLockedText.textContent = "Your $30/month Backend Website Hosting plan includes admin access. Submit a claim so we can connect and unlock your admin site.";
+                adminLockedText.textContent = "Your $20/month Backend Website Hosting plan includes admin access. Submit a claim so we can connect and unlock your admin site.";
                 adminLockedAction.textContent = "Submit a Claim";
                 adminLockedAction.onclick = () => {
                     closeAdminLockedPopup();
                     enterSiteSelection();
                 };
             } else if (hostingLevel === "standard") {
-                adminLockedText.textContent = "Your current $20/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($30/month total).";
+                adminLockedText.textContent = "Your current $10/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($20/month total).";
                 adminLockedAction.textContent = "View Backend Hosting";
                 adminLockedAction.onclick = () => {
                     closeAdminLockedPopup();
                     showPortalPanel("subscriptionsPanel");
                 };
             } else {
-                adminLockedText.textContent = "Admin access requires Backend Website Hosting for $30/month. Choose that plan, then submit a claim so we can connect and unlock your admin site.";
+                adminLockedText.textContent = "Admin access requires Backend Website Hosting for $20/month. Choose that plan, then submit a claim so we can connect and unlock your admin site.";
                 adminLockedAction.textContent = "View Backend Hosting";
                 adminLockedAction.onclick = () => {
                     closeAdminLockedPopup();
