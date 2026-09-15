@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#173a2a">
+  <meta name="description" content="Royal Green Landscape Llc website preview.">
+  <title>Royal Green Landscape Llc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    :root{--dark:#173a2a;--accent:#86b96f;--light:#f4f0e6;--soft:#d7e4d6;--ink:#14181d;--white:#fff;}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--light);color:var(--ink);overflow-x:hidden;-webkit-user-select:none;user-select:none;}
+    a{color:inherit;text-decoration:none}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .shell{width:min(1180px,calc(100% - 40px));margin:auto}
+    header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(10,15,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.12)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;color:#fff}
+    .brand{font-weight:700;letter-spacing:-.02em;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .links{display:flex;gap:28px;align-items:center;font-size:.94rem}
+    .links a{opacity:.86} .links a:hover{opacity:1}
+    .menu{display:none;border:0;background:none;color:#fff;font-size:1.45rem;padding:8px}
+    .hero{min-height:100vh;display:grid;align-items:end;position:relative;color:#fff;background:
+      linear-gradient(90deg,rgba(8,12,15,.9) 0%,rgba(8,12,15,.66) 45%,rgba(8,12,15,.24) 100%),
+      url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:180px;background:linear-gradient(transparent,var(--light));opacity:.98}
+    .hero-content{position:relative;z-index:2;padding:160px 0 150px;max-width:800px}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;text-transform:uppercase;letter-spacing:.17em;font-size:.76rem;font-weight:700;color:var(--accent);margin-bottom:18px}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(3.1rem,7vw,6.6rem);line-height:.93;letter-spacing:-.045em;margin:0 0 24px;text-wrap:balance}
+    .lead{font-size:clamp(1.05rem,1.8vw,1.3rem);line-height:1.7;max-width:640px;color:rgba(255,255,255,.86);margin:0 0 34px}
+    .actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 22px;border-radius:4px;border:1px solid transparent;font-weight:700;cursor:pointer;font:inherit}
+    .btn-primary{background:var(--accent);color:#101317}
+    .btn-ghost{border-color:rgba(255,255,255,.42);color:#fff;background:rgba(255,255,255,.06)}
+    section{padding:96px 0}
+    .intro{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+    .kicker{text-transform:uppercase;letter-spacing:.15em;font-size:.74rem;font-weight:800;color:var(--accent);margin-bottom:12px}
+    h2{font-family:"Playfair Display",serif;font-size:clamp(2.3rem,4.5vw,4.1rem);line-height:1.04;letter-spacing:-.03em;margin:0 0 20px;color:var(--dark)}
+    .copy{font-size:1.05rem;line-height:1.8;color:#4a5259;max-width:670px}
+    .photo{min-height:520px;background:linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),url('https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1800&q=85') center/cover;border-radius:2px;box-shadow:0 26px 80px rgba(20,24,29,.14)}
+    .band{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+    .band:before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(255,255,255,.1);border-radius:50%;right:-160px;top:-180px}
+    .band-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;z-index:2}
+    .band h2{color:#fff;max-width:760px}
+    .band p{color:rgba(255,255,255,.7);line-height:1.75;max-width:720px}
+    footer{background:#0c0f12;color:rgba(255,255,255,.72);padding:34px 0}
+    .foot{display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:.9rem}
+    .socials{display:flex;gap:10px}
+    .icon-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;border-radius:50%;color:#fff;background:transparent;cursor:pointer}
+    .modal{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.68)}
+    .modal.open{display:flex}
+    .dialog{width:min(460px,100%);background:#fff;color:#171b20;padding:30px;border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+    .dialog h3{font-family:"Playfair Display",serif;font-size:2rem;margin:0 0 12px}
+    .dialog p{color:#5a6269;line-height:1.65;margin:0 0 24px}
+    .dialog .btn{background:var(--dark);color:#fff;width:100%}
+    @media(max-width:800px){
+      .shell{width:min(100% - 28px,1180px)}
+      .nav{height:68px}
+      .menu{display:block}
+      .links{position:absolute;top:68px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;background:rgba(10,15,20,.97);padding:12px 20px 22px}
+      .links.open{display:flex}
+      .links a{padding:15px 4px;border-bottom:1px solid rgba(255,255,255,.1)}
+      .hero{min-height:88vh;background-position:center}
+      .hero-content{padding:140px 0 110px}
+      h1{font-size:clamp(2.8rem,15vw,4.6rem)}
+      .intro{grid-template-columns:1fr;gap:32px}
+      .photo{min-height:360px}
+      .band-grid{grid-template-columns:1fr}
+      section{padding:72px 0}
+      .foot{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="shell nav">
+    <a class="brand" href="#top">Royal Green Landscape Llc</a>
+    <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#preview">Overview</a>
+      <a href="#" data-locked="true">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="shell hero-content">
+      <div class="eyebrow"><i class="fa-solid fa-circle" style="font-size:.45rem"></i> Website Preview</div>
+      <h1>Royal Green Landscape Llc</h1>
+      <p class="lead">A clean, modern website presentation built around the business name and available source information.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#about">Explore the Site <i class="fa-solid fa-arrow-down"></i></a>
+        <button class="btn btn-ghost" data-locked="true">Contact <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="shell intro">
+      <div>
+        <div class="kicker">About</div>
+        <h2>Royal Green Landscape Llc</h2>
+        <p class="copy">This preview keeps the public-facing content limited to information supplied in the source file. Additional business details can be added once they are verified and approved.</p>
+      </div>
+      <div class="photo" role="img" aria-label="Relevant stock image"></div>
+    </div>
+  </section>
+
+  <section class="band" id="preview">
+    <div class="shell band-grid">
+      <div>
+        <div class="kicker">Website Preview</div>
+        <h2>A focused presentation ready for verified business content.</h2>
+        <p>The layout is responsive across desktop and mobile, with concise navigation, high-contrast typography, relevant stock imagery, and locked real-world actions for demo use.</p>
+      </div>
+      <button class="btn btn-primary" data-locked="true">Get in Touch <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell foot">
+    <div>© 2026 Royal Green Landscape Llc</div>
+    <div class="socials" aria-label="Social media">
+      <button class="icon-btn" aria-label="Instagram" data-locked="true"><i class="fa-brands fa-instagram"></i></button>
+      <button class="icon-btn" aria-label="Facebook" data-locked="true"><i class="fa-brands fa-facebook-f"></i></button>
+      <button class="icon-btn" aria-label="TikTok" data-locked="true"><i class="fa-brands fa-tiktok"></i></button>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="lockedModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="dialog">
+    <h3 id="modalTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn" id="closeModal">Close</button>
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const modal = document.getElementById('lockedModal');
+  const closeModal = document.getElementById('closeModal');
+  let lastFocus = null;
+
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+
+  navLinks.querySelectorAll('a[href^="#"]:not([data-locked])').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  function openLocked(event) {
+    event.preventDefault();
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeModal.focus();
+  }
+
+  function closeLocked() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLocked));
+  closeModal.addEventListener('click', closeLocked);
+  modal.addEventListener('click', e => { if (e.target === modal) closeLocked(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeLocked(); });
+</script>
+</body>
+</html>
