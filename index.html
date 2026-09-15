@@ -1310,8 +1310,8 @@
             document.querySelectorAll("[data-static-plan-price]").forEach(el => {
                 el.innerHTML = renderLocalPriceMarkup(el.dataset.staticPlanPrice);
             });
-            if (agreementSigned && document.getElementById("claimCheckoutLinks")?.children.length) {
-                renderClaimPlanChoices([...selectedSitePaths].map(path => sites.find(site => site.path === path)).filter(Boolean));
+            if (agreementSigned) {
+                renderClaimPlanChoices();
             }
         }
         const checkoutPlansByKey = new Map([
@@ -1693,6 +1693,9 @@
             developmentStatus.textContent = developmentPurchaseConfirmed
                 ? (developmentSkipNote ? "Step 2 bypassed with an approved internal code ✓" : "Website development purchase verified ✓")
                 : agreementSigned ? "Ready for your one-time $100 payment." : "Sign the agreement first to continue.";
+            if (agreementSigned && !claimCheckoutLinks.children.length) {
+                renderClaimPlanChoices();
+            }
             const selectedHosting = [...claimPlanSelections.values()].find(selection => selection.plan)?.plan;
             document.getElementById("hostingStepSummary").textContent = selectedHosting ? `${selectedHosting.label} confirmed ✓` : "Hosting purchase confirmed ✓";
             const ready = agreementSigned && hostingReady && developmentPurchaseConfirmed;
