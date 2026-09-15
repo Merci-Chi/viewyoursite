@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Forever Green Landscape | Landscaping</title>
+<meta name="description" content="Forever Green Landscape provides landscape design, yard maintenance, consultation, horticulture, and water-management services.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--primary:#a7d46f;--secondary:#355b28;--ink:#f5f7fb;--muted:#c2c8d1;--line:rgba(255,255,255,.14);--panel:rgba(10,14,20,.80)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#111820;user-select:none;-webkit-user-select:none}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(110deg,rgba(4,8,13,.92),rgba(4,8,13,.62) 58%,rgba(4,8,13,.83)),url("https://images.pexels.com/photos/6728926/pexels-photo-6728926.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 18% 10%,rgba(255,255,255,.08),transparent 30%)}
+a{color:inherit;text-decoration:none} button{font:inherit}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(6,10,15,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.head{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:900;letter-spacing:.02em}
+nav{display:flex;gap:24px;align-items:center}
+nav a{font-size:.93rem;color:#e3e7ee}
+.menu{display:none;background:none;border:0;color:white;font-size:1.45rem;padding:10px}
+.hero{min-height:74vh;display:grid;align-items:center;padding:88px 0 70px}
+.kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:900;color:var(--primary)}
+h1{font-size:clamp(3rem,8vw,6.8rem);line-height:.92;letter-spacing:-.055em;margin:.22em 0 .25em;max-width:940px}
+.lead{max-width:760px;color:#d8dde5;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.65}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{min-height:48px;padding:0 18px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;cursor:pointer;transition:.2s ease}
+.btn.primary{background:var(--primary);color:#0a0e13}
+.btn.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28);color:white}
+.btn:hover{transform:translateY(-2px)}
+.section{padding:72px 0;border-top:1px solid var(--line)}
+.section h2{font-size:clamp(2rem,4.2vw,3.5rem);line-height:1.06;letter-spacing:-.035em;margin:0 0 15px}
+.intro{max-width:800px;color:var(--muted);line-height:1.65;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);padding:24px;backdrop-filter:blur(10px)}
+.card i{font-size:1.3rem;color:var(--primary);margin-bottom:17px}
+.card h3{margin:0 0 8px} .card p{margin:0;color:#cfd4dc;line-height:1.6}
+.info{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.row{display:flex;gap:13px;background:var(--panel);border:1px solid var(--line);padding:18px}
+.row i{color:var(--primary);width:20px;margin-top:3px}
+.row strong{display:block;margin-bottom:3px}
+.muted{color:var(--muted)}
+.notice{border-left:3px solid var(--primary);padding:16px 18px;background:rgba(255,255,255,.055);color:#d8dde6;max-width:860px}
+.footer{padding:34px 0 44px;border-top:1px solid var(--line);font-size:.9rem;color:#aeb6c3}
+.footer-in{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.asset-note{max-width:700px;font-size:.78rem;color:#919aa8}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.74);place-items:center;padding:20px}
+.modal.show{display:grid}
+.modal-box{width:min(440px,100%);background:#111720;border:1px solid rgba(255,255,255,.18);padding:28px;box-shadow:0 26px 90px rgba(0,0,0,.5)}
+.modal-box h2{margin:0 0 10px;font-size:1.7rem} .modal-box p{color:#cbd1da;line-height:1.6}
+.modal-open{overflow:hidden}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:600}.tagline{font-size:1.1rem;color:#dff0cd;margin-top:10px}.green-rule{height:1px;background:linear-gradient(90deg,var(--primary),transparent);margin:24px 0}
+@media(max-width:780px){
+.wrap{width:min(100% - 28px,1160px)} .head{min-height:68px} .menu{display:block}
+nav{position:absolute;left:14px;right:14px;top:68px;display:none;flex-direction:column;align-items:stretch;gap:0;background:#10161f;border:1px solid var(--line);padding:8px}
+nav.open{display:flex} nav a{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08)} nav a:last-child{border-bottom:0}
+.hero{min-height:68vh;padding:65px 0 52px} h1{font-size:clamp(2.75rem,15vw,4.8rem)} .grid,.info{grid-template-columns:1fr}
+.section{padding:54px 0} .actions .btn{width:100%}
+}
+</style>
+</head><body><!--
+RESEARCH BASIS / SOURCES
+1. Official website: https://forevergreenlandscape.org/
+2. Services page: https://forevergreenlandscape.org/services
+3. Contact page: https://forevergreenlandscape.org/contact-us
+4. Angi: https://www.angi.com/companylist/us/nv/las-vegas/forever-green-landscape-llc-reviews-1.htm
+Supported facts used:
+- Phone 702-373-8758
+- Email jorge@forevergreenlandscape.org
+- Hours Mon-Fri 7am-5pm; Sat by appointment; Sun closed
+- Services: Full Design Services, Yard Maintenance, Consultation Services
+- Official site describes horticulture and 3D design, sustainable landscaping, and a specialty mixing non-native and native plants.
+- Official site states necessary licenses and insurance for its projects.
+- Angi lists 3D Design, Horticulture, Landscaping, Water Management Control and Spanish-speaking service.
+MISSING / NOT ADDED
+- Street address not shown because the official contact page did not provide one.
+- No verified direct Instagram/Facebook/TikTok/Yelp/Google review profile URL used.
+ASSET
+- Stock landscaping background only; not actual company work or crew.
+QUALITY CHECK
+- Mobile menu functional; zoom disabled; text selection disabled; real-world actions locked in demo.
+--><header><div class="wrap head"><a class="brand" href="#top">FOREVER GREEN LANDSCAPE</a><button class="menu" data-menu aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><nav data-nav><a href="#services">Services</a><a href="#about">About</a><a href="#hours">Hours</a><a href="#contact">Contact</a></nav></div></header>
+<main id="top"><section class="hero"><div class="wrap"><div class="kicker">Landscape design & maintenance</div><h1>Forever Green Landscape</h1><div class="green-rule"></div><p class="lead">We help keep your landscape greener and sustainable!</p><div class="actions"><a class="btn primary" href="#services"><i class="fa-solid fa-leaf"></i> Explore services</a><button class="btn secondary" data-locked="true"><i class="fa-solid fa-phone"></i> Call 702-373-8758</button></div></div></section>
+<section class="section" id="services"><div class="wrap"><div class="kicker">Services</div><h2>Landscape services</h2><div class="grid">
+<article class="card"><i class="fa-solid fa-pen-ruler"></i><h3>Full Design Services</h3><p>Outdoor-space design beginning with how the client wants to use the yard.</p></article>
+<article class="card"><i class="fa-solid fa-seedling"></i><h3>Yard Maintenance</h3><p>Maintenance focused on helping living landscape elements stay healthy and mature.</p></article>
+<article class="card"><i class="fa-solid fa-comments"></i><h3>Consultation Services</h3><p>Consultation for clients who want to change a landscape and need help developing a plan.</p></article>
+<article class="card"><i class="fa-solid fa-cube"></i><h3>3D Design</h3></article>
+<article class="card"><i class="fa-solid fa-tree"></i><h3>Horticulture</h3></article>
+<article class="card"><i class="fa-solid fa-droplet"></i><h3>Water Management Control</h3></article>
+</div></div></section>
+<section class="section" id="about"><div class="wrap"><div class="kicker">About</div><h2>Horticulture and design</h2><p class="intro">The official site describes a team with horticulture practices and 3D design experience. Its FAQ says the company works across many kinds of landscaping, with a specialty in mixing non-native and native plants to fit local ecology and client needs.</p><div class="notice">The official site states that the company has the necessary licenses and insurance for its projects, while larger construction projects may require special licenses or certifications handled with trusted members of the landscaping community.</div></div></section>
+<section class="section" id="hours"><div class="wrap"><div class="kicker">Hours</div><h2>Business hours</h2><div class="info">
+<div class="row"><i class="fa-solid fa-clock"></i><div><strong>Monday–Friday</strong><span class="muted">7am–5pm</span></div></div>
+<div class="row"><i class="fa-solid fa-calendar-check"></i><div><strong>Saturday</strong><span class="muted">By appointment</span></div></div>
+<div class="row"><i class="fa-solid fa-door-closed"></i><div><strong>Sunday</strong><span class="muted">Closed</span></div></div>
+</div></div></section>
+<section class="section" id="contact"><div class="wrap"><div class="kicker">Contact</div><h2>Get in touch</h2><div class="info">
+<div class="row"><i class="fa-solid fa-phone"></i><div><strong>702-373-8758</strong><span class="muted">Public business phone</span></div></div>
+<div class="row"><i class="fa-solid fa-envelope"></i><div><strong>jorge@forevergreenlandscape.org</strong><span class="muted">Public business email</span></div></div></div>
+<div class="actions"><button class="btn primary" data-locked="true"><i class="fa-solid fa-file-signature"></i> Get A Free Quote</button><button class="btn secondary" data-locked="true"><i class="fa-solid fa-globe"></i> Visit official website</button></div></div></section></main>
+<footer class="footer"><div class="wrap footer-in"><div><strong>Forever Green Landscape</strong></div><div class="asset-note">Background is relevant stock landscaping photography and does not depict the actual company, crew, equipment, or completed work.</div></div></footer><div class="modal" id="locked-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lock-title">
+<div class="modal-box"><h2 id="lock-title">This is currently locked.</h2>
+<p>This feature is part of the full website. Purchase the site to unlock it.</p>
+<button class="btn primary" type="button" data-close>Close</button></div></div><script>
+const menuBtn=document.querySelector('[data-menu]');
+const nav=document.querySelector('[data-nav]');
+if(menuBtn&&nav){
+  menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));});
+  nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}));
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id&&id.length>1){const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}
+  });
+});
+const modal=document.getElementById('locked-modal');
+const closeBtn=modal?.querySelector('[data-close]');
+let lastFocus=null;
+function openModal(){
+  if(!modal)return;
+  lastFocus=document.activeElement;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeBtn?.focus();
+}
+function closeModal(){
+  if(!modal)return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  lastFocus?.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal();}));
+closeBtn?.addEventListener('click',closeModal);
+modal?.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&modal?.classList.contains('show'))closeModal();
+  if(e.key==='Tab'&&modal?.classList.contains('show')){
+    const f=[...modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')];
+    if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
+</script></body></html>
