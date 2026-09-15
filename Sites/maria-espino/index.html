@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Maria Espino</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{-webkit-user-select:none;user-select:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+.lock-modal[hidden]{display:none}
+.lock-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:rgba(5,7,10,.78);backdrop-filter:blur(8px)}
+.lock-dialog{width:min(460px,100%);background:#fff;color:#151719;padding:28px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.38)}
+.lock-dialog h2{margin:0 0 10px;font-size:1.6rem}
+.lock-dialog p{margin:0 0 22px;line-height:1.6;color:#4d555d}
+.lock-dialog button{border:0;border-radius:9px;padding:12px 18px;background:#2a211e;color:#fff;font-weight:800;cursor:pointer}
+body.modal-open{overflow:hidden}
+
+:root{--ink:#181514;--paper:#f7f0e9;--rose:#b88e87;--clay:#70564e;--line:#d9ccc3}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(247,240,233,.96);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1240px;margin:auto;height:76px;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:Georgia,serif;font-size:1.2rem;font-weight:700}
+.menu-btn{display:none;border:0;background:none;font-size:1.35rem;color:var(--ink)}
+.menu{display:flex;gap:24px}.menu a{font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800}
+.hero{max-width:1240px;margin:auto;display:grid;grid-template-columns:.9fr 1.1fr;min-height:82vh}
+.hero-copy{padding:110px 52px 90px 28px;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.24em;color:var(--clay);font-weight:900}
+h1{font-family:Georgia,serif;font-size:clamp(4rem,8vw,8rem);line-height:.86;letter-spacing:-.055em;font-weight:400;margin:18px 0}
+.hero-copy p{max-width:540px;line-height:1.8;color:#6d5f59;font-size:1.05rem}
+.hero-photo{min-height:620px;background:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1500&q=82') center/cover}
+.section{padding:86px 28px}.wrap{max-width:1240px;margin:auto}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+h2{font-family:Georgia,serif;font-size:clamp(2.1rem,4vw,3.7rem);font-weight:400;margin:0 0 18px}
+.copy{line-height:1.8;color:#6b5f59;max-width:700px}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:14px;margin-top:34px}.g{min-height:300px;background-size:cover;background-position:center}.g1{background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=82')}.g2{background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=82')}.g3{background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=82')}
+.panel{background:#2a211e;color:#f7f0e9;padding:64px 28px}.panel-in{max-width:1240px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:46px}.panel p{color:#d7cbc5;line-height:1.8}
+footer{padding:26px 28px;border-top:1px solid var(--line);color:#776a64}.foot{max-width:1240px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:800px){.menu-btn{display:block}.menu{position:absolute;left:18px;right:18px;top:76px;display:none;flex-direction:column;background:var(--paper);padding:18px;border:1px solid var(--line)}.menu.open{display:flex}.hero,.split,.panel-in{grid-template-columns:1fr}.hero-photo{min-height:50vh}.gallery{grid-template-columns:1fr}.hero-copy{padding:78px 24px 50px}}
+
+</style>
+</head>
+<body>
+
+<div id="top">
+<nav class="nav"><div class="nav-in"><a class="brand" href="#top">Maria Espino</a><button class="menu-btn" data-menu-button aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><div class="menu" data-menu><a href="#about">About</a><a href="#visuals">Visuals</a></div></div></nav>
+<header class="hero"><section class="hero-copy"><div class="eyebrow">Maria Espino</div><h1>Maria<br>Espino</h1><p>A focused personal website built around the supplied name, using editorial typography and neutral visual presentation without unsupported biography or service claims.</p></section><div class="hero-photo" role="img" aria-label="Decorative stock interior photograph"></div></header>
+<section class="section" id="about"><div class="wrap split"><div><div class="eyebrow">Identity</div><h2>Maria Espino</h2></div><div><p class="copy">This site presents the supplied name with a clean, editorial visual system. No profession, location, contact information, biography, services, or social profiles are displayed because none were supplied.</p></div></div></section>
+<section class="section" id="visuals"><div class="wrap"><div class="eyebrow">Visual direction</div><h2>Quiet, polished, editorial.</h2><div class="gallery"><div class="g g1"></div><div class="g g2"></div><div class="g g3"></div></div></div></section>
+<section class="panel"><div class="panel-in"><div><div class="eyebrow" style="color:#d9bdb4">Maria Espino</div><h2>A restrained digital presence.</h2></div><p>Large photography, open spacing, serif typography, and a muted palette create a complete presentation without inventing information that was not provided.</p></div></section>
+<footer><div class="foot"><strong>Maria Espino</strong><span>Personal website</span></div></footer>
+</div>
+
+<div class="lock-modal" hidden role="dialog" aria-modal="true" aria-labelledby="locked-title">
+  <div class="lock-dialog">
+    <h2 id="locked-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button type="button" data-close-lock>Close</button>
+  </div>
+</div>
+<script>
+const menuButton = document.querySelector('[data-menu-button]');
+const menu = document.querySelector('[data-menu]');
+if (menuButton && menu) {
+  menuButton.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+    menu.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+  }));
+}
+const modal = document.querySelector('.lock-modal');
+const closeButton = document.querySelector('[data-close-lock]');
+let lastFocus = null;
+function openLocked(e) {
+  if (e) e.preventDefault();
+  lastFocus = document.activeElement;
+  modal.hidden = false;
+  document.body.classList.add('modal-open');
+  closeButton.focus();
+}
+function closeLocked() {
+  modal.hidden = true;
+  document.body.classList.remove('modal-open');
+  if (lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el => el.addEventListener('click', openLocked));
+closeButton.addEventListener('click', closeLocked);
+modal.addEventListener('click', e => { if (e.target === modal) closeLocked(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeLocked(); });
+</script>
+</body></html>
