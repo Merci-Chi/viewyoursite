@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Closed The Group</title>
+<meta name="description" content="Closed The Group website preview using only verified public information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;-webkit-text-size-adjust:100%;user-select:none;-webkit-user-select:none}
+a,button{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.lock-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);z-index:9999}
+.lock-modal.open{display:flex}
+.lock-card{width:min(440px,100%);background:#fff;color:#181818;padding:28px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.lock-card h2{margin:0 0 10px;font-size:1.4rem}
+.lock-card p{margin:0 0 22px;color:#555;line-height:1.55}
+.lock-close{border:0;border-radius:9px;background:#181818;color:#fff;padding:11px 18px;font-weight:800}
+body.modal-open{overflow:hidden}
+
+:root{--ink:#f4f4f2;--muted:#c5c7c7;--line:rgba(255,255,255,.18);--panel:rgba(15,18,21,.82);--accent:#d5b887}
+body{font-family:"Manrope",sans-serif;color:var(--ink);background:
+linear-gradient(rgba(7,10,12,.70),rgba(7,10,12,.85)),
+url('https://images.pexels.com/photos/36766701/pexels-photo-36766701/free-photo-of-business-meeting-in-modern-office-setting.jpeg?auto=compress&dpr=1&w=1800') center/cover fixed no-repeat;min-height:100vh}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(8,10,12,.76);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;height:74px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.01em;color:#fff;text-decoration:none}
+.menu-btn{display:none;border:1px solid var(--line);background:transparent;color:#fff;width:44px;height:44px;font-size:1.2rem}
+.desktop a,.mobile a{color:#fff;text-decoration:none;font-weight:700}
+.desktop{display:flex;gap:24px}
+.mobile{display:none;padding:0 24px 18px;background:rgba(8,10,12,.95)}.mobile.open{display:grid}.mobile a{padding:12px 0;border-bottom:1px solid var(--line)}
+main{min-height:100vh;display:flex;align-items:center;padding:120px 24px 70px}
+.wrap{width:min(1100px,100%);margin:auto}
+.hero{max-width:780px;background:var(--panel);border:1px solid var(--line);padding:54px}
+.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:800}
+h1{font-size:clamp(3.4rem,8vw,7rem);line-height:.9;letter-spacing:-.055em;margin:18px 0 24px}
+p{color:var(--muted);line-height:1.8}
+.note{margin-top:28px;border-top:1px solid var(--line);padding-top:22px;font-size:.92rem}
+.stock{font-size:.76rem;margin-top:26px;color:#afb3b3}.stock a{color:#fff}
+footer{padding:26px 24px;text-align:center;background:rgba(8,10,12,.9);border-top:1px solid var(--line);color:#aeb4b4;font-size:.84rem}
+@media(max-width:720px){.desktop{display:none}.menu-btn{display:block}.hero{padding:34px 26px}}
+</style>
+</head>
+
+<body>
+<header>
+<nav class="nav">
+  <a class="brand" href="#home">Closed The Group</a>
+  <div class="desktop"><a href="#home">Home</a><a href="#verification">Verification</a></div>
+  <button class="menu-btn" data-menu-button aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</nav>
+<div class="mobile" data-mobile-menu><a href="#home">Home</a><a href="#verification">Verification</a></div>
+</header>
+<main id="home">
+  <div class="wrap">
+    <section class="hero reveal">
+      <div class="eyebrow">Website preview</div>
+      <h1>Closed The Group</h1>
+      <p id="verification">No reliable exact-name public business profile was identified in the available research. Business category, contact information, services, location, hours, reviews, social profiles, and official website details are therefore intentionally not published.</p>
+      <p class="note"><strong>For review:</strong> business identity and public details need to be confirmed before customer-facing content or calls to action are added.</p>
+      <p class="stock"><i class="fa-regular fa-image"></i> Generic stock image used only for this visual demo; it does not depict this business or its employees. <a href="https://www.pexels.com/photo/business-meeting-in-modern-office-setting-36766701/" data-locked="true">Pexels source</a>.</p>
+    </section>
+  </div>
+</main>
+<footer>Closed The Group</footer>
+
+<div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-card">
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="lock-close" type="button">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  if (menuButton && menu) {
+    menuButton.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  const modal = document.querySelector('.lock-modal');
+  const closeButton = modal ? modal.querySelector('.lock-close') : null;
+
+  function openLock() {
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeLock() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      openLock();
+    });
+  });
+
+  if (closeButton) closeButton.addEventListener('click', closeLock);
+  if (modal) modal.addEventListener('click', event => {
+    if (event.target === modal) closeLock();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal && modal.classList.contains('open')) closeLock();
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Quality check: mobile menu enabled; zoom disabled; selection disabled; unsupported business sections omitted; no invented claims or contact actions added. -->
+</body>
+</html>
