@@ -592,7 +592,7 @@
 
         const CLAIMS_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/functions/v1/site-claims";
         const CLAIMS_API_KEY = "sb_publishable_VZbed_uuOXSE744UrAfHXw_z2xDdYtr";
-        const CRM_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/crm?select=company,sitekey,businessrank&sitekey=not.is.null";
+        const CRM_API_URL = "https://glonbvrcudwuzjundrii.supabase.co/rest/v1/rpc/gallery_crm_sites";
 
         let sites = [];
         const claimedSitePaths = new Set();
@@ -614,10 +614,13 @@
 
         async function fetchConnectedCrmSites() {
             const response = await fetch(CRM_API_URL, {
+                method: "POST",
                 headers: {
                     apikey: CLAIMS_API_KEY,
-                    Authorization: `Bearer ${CLAIMS_API_KEY}`
-                }
+                    Authorization: `Bearer ${CLAIMS_API_KEY}`,
+                    "Content-Type": "application/json"
+                },
+                body: "{}"
             });
 
             if (!response.ok) {
