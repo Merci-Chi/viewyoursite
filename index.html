@@ -1037,11 +1037,11 @@
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="standard">$10/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-local-monthly" data-hosting-type="standard">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="standard">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly" data-hosting-type="standard">Choose</button></div>
                         </article>
                         <article class="plan-group">
                             <h4>Backend Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="backend">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-local-monthly" data-hosting-type="backend">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="backend">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly" data-hosting-type="backend">Choose</button></div>
                         </article>
                     </div>
                 </section>
@@ -1188,8 +1188,8 @@
         const adminLockedText = document.getElementById("adminLockedText");
         const adminLockedAction = document.getElementById("adminLockedAction");
         const hostingHelpContent = {
-            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $10 per month." },
-            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $20 per month." }
+            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. Standard hosting is $20 per month, or $10 per month when a valid discount code is applied." },
+            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. Backend hosting is $30 per month, or $20 per month when a valid discount code is applied." }
         };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let pendingProgressScrollTarget = null;
@@ -1279,10 +1279,10 @@
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
-                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · billed monthly", type: "standard" }
+                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly", type: "standard" }
             ],
             backend: [
-                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · billed monthly", type: "backend" }
+                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly", type: "backend" }
             ]
         };
         const localHostingCheckoutPlans = {
@@ -1302,7 +1302,10 @@
                 : "";
         }
         function renderLocalPriceMarkup(type) {
-            return type === "backend" ? "$20/month" : "$10/month";
+            if (!localHostingPricingActive) return type === "backend" ? "$30/month" : "$20/month";
+            const regular = type === "backend" ? "$30/month" : "$20/month";
+            const discounted = type === "backend" ? "$20/month" : "$10/month";
+            return `<span class="local-price"><del>${regular}</del><strong>${discounted}</strong></span>`;
         }
         function refreshStaticHostingPrices() {
             document.querySelectorAll("[data-static-plan-price]").forEach(el => {
