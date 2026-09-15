@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Corral Landscapes | Website Preview</title>
+<meta name="description" content="Corral Landscapes website preview using the likely matching Corral Custom Landscapes public business data, clearly marked for owner confirmation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;-webkit-text-size-adjust:100%;user-select:none;-webkit-user-select:none}
+a,button{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.lock-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);z-index:9999}
+.lock-modal.open{display:flex}
+.lock-card{width:min(440px,100%);background:#fff;color:#181818;padding:28px;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.lock-card h2{margin:0 0 10px;font-size:1.4rem}
+.lock-card p{margin:0 0 22px;color:#555;line-height:1.55}
+.lock-close{border:0;border-radius:9px;background:#181818;color:#fff;padding:11px 18px;font-weight:800}
+body.modal-open{overflow:hidden}
+
+:root{--green:#264f35;--lime:#a8c57b;--sand:#eee6d5;--ink:#18221a;--glass:rgba(248,247,240,.92);--line:#cfcbbd}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:
+linear-gradient(rgba(17,35,24,.35),rgba(17,35,24,.48)),
+url('https://images.pexels.com/photos/7546775/pexels-photo-7546775.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover fixed no-repeat;min-height:100vh}
+header{position:sticky;top:0;z-index:50;background:rgba(31,64,43,.95);backdrop-filter:blur(12px)}
+.nav{max-width:1180px;height:76px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:"Playfair Display",serif;color:#fff;text-decoration:none;font-size:1.35rem}
+.desktop{display:flex;gap:22px;align-items:center}.desktop a,.mobile a{color:#fff;text-decoration:none;font-weight:700;font-size:.92rem}
+.menu-btn{display:none;border:0;background:transparent;color:#fff;font-size:1.45rem}
+.mobile{display:none;background:#264f35;padding:0 24px 18px}.mobile.open{display:grid}.mobile a{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.hero{max-width:1180px;margin:auto;padding:115px 24px 72px}
+.hero-box{max-width:760px;background:var(--glass);padding:52px;border-bottom:7px solid var(--green)}
+.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.18em;color:#52713d;font-weight:800}
+h1{font-family:"Playfair Display",serif;font-size:clamp(3.4rem,8vw,6.8rem);line-height:.9;color:var(--green);margin:18px 0 22px}
+.lead{line-height:1.78;color:#526056}
+.notice{margin-top:24px;padding:18px;background:#fff5d9;border-left:4px solid #bd8d33;line-height:1.65}
+.section{max-width:1180px;margin:0 auto 28px;background:var(--glass);padding:68px 24px}
+.section h2{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,5vw,3.8rem);color:var(--green);margin:0 0 16px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}.service{background:#fff;border:1px solid var(--line);padding:24px}.service i{color:var(--green);font-size:1.25rem}.service h3{font-size:1.05rem;margin:16px 0 7px}.service p{margin:0;color:#637068;line-height:1.6}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 16px;background:var(--green);color:#fff;text-decoration:none;font-weight:800}.btn.alt{background:transparent;color:var(--green);border:1px solid var(--green)}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:32px}.facts{list-style:none;padding:0;margin:18px 0}.facts li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.facts i{color:var(--green);width:20px}
+.stock{font-size:.76rem;color:#6b736d;margin-top:26px}.stock a{color:var(--green)}
+footer{padding:30px 24px;background:rgba(31,64,43,.96);color:#dce6dc;text-align:center;font-size:.85rem}
+@media(max-width:820px){.desktop{display:none}.menu-btn{display:block}.hero-box{padding:34px 26px}.services{grid-template-columns:1fr}.meta{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<header>
+<nav class="nav">
+  <a class="brand" href="#home">Corral Landscapes</a>
+  <div class="desktop"><a href="#match">Public Match</a><a href="#services">Services</a><a href="#details">Details</a><a href="#social">Instagram</a></div>
+  <button class="menu-btn" data-menu-button aria-label="Open menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+</nav>
+<div class="mobile" data-mobile-menu><a href="#match">Public Match</a><a href="#services">Services</a><a href="#details">Details</a><a href="#social">Instagram</a></div>
+</header>
+
+<main id="home">
+<section class="hero reveal">
+  <div class="hero-box">
+    <div class="eyebrow">Landscape website preview</div>
+    <h1>Corral Landscapes</h1>
+    <p class="lead">The public business that closely matches the research record uses the name “Corral Custom Landscapes Inc.” The CRM name is preserved here exactly and the name relationship remains marked for confirmation.</p>
+    <div class="notice" id="match"><strong>Needs owner confirmation:</strong> public services, phone, licensing, and social information below belong to the likely matching “Corral Custom Landscapes Inc.” profile. The two names should not be merged in a live site until confirmed.</div>
+  </div>
+</section>
+
+<section class="section reveal" id="services">
+  <div class="eyebrow">Likely matching public service profile</div>
+  <h2>Outdoor landscape services</h2>
+  <div class="services">
+    <article class="service"><i class="fa-solid fa-compass-drafting"></i><h3>Custom landscape design</h3><p>Residential and commercial landscape design/build.</p></article>
+    <article class="service"><i class="fa-solid fa-seedling"></i><h3>Artificial turf</h3><p>Artificial turf installation.</p></article>
+    <article class="service"><i class="fa-solid fa-border-all"></i><h3>Pavers / patios</h3><p>Paver walkways, patios, and outdoor hardscape.</p></article>
+    <article class="service"><i class="fa-regular fa-lightbulb"></i><h3>Landscape lighting</h3><p>LED landscape lighting installation.</p></article>
+    <article class="service"><i class="fa-solid fa-layer-group"></i><h3>Retaining / stone walls</h3><p>Retaining wall and stone-wall work.</p></article>
+    <article class="service"><i class="fa-solid fa-house-chimney"></i><h3>Patio covers / pergolas</h3><p>Patio-cover and pergola-related outdoor construction.</p></article>
+  </div>
+</section>
+
+<section class="section reveal" id="details">
+  <div class="meta">
+    <div>
+      <div class="eyebrow">Likely matching business details</div>
+      <h2>Las Vegas & Henderson</h2>
+      <ul class="facts">
+        <li><i class="fa-solid fa-phone"></i><span>(702) 379-3535</span></li>
+        <li><i class="fa-solid fa-location-dot"></i><span>Service area publicly references Las Vegas and Henderson.</span></li>
+        <li><i class="fa-solid fa-id-card"></i><span>Nevada C-10 Landscape Contracting license #0060409A appears in public contractor directories.</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="tel:+17023793535" data-locked="true"><i class="fa-solid fa-phone"></i> Call</a>
+      </div>
+    </div>
+    <div id="social">
+      <div class="eyebrow">Verified social link for likely match</div>
+      <h2>Instagram</h2>
+      <p class="lead">The official “Corral Custom Landscapes Inc” website links to the Instagram handle below.</p>
+      <div class="actions">
+        <a class="btn alt" href="https://www.instagram.com/corralcustomlandscapes/" data-locked="true"><i class="fa-brands fa-instagram"></i> Instagram</a>
+      </div>
+      <p class="stock"><i class="fa-regular fa-image"></i> Full-page background is a generic landscaping stock photo and does not depict this company or its completed work. <a href="https://www.pexels.com/photo/house-backyard-with-lawn-green-grass-7546775/" data-locked="true">Pexels source</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>Corral Landscapes · CRM name preserved exactly</footer>
+
+<div class="lock-modal" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-card">
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="lock-close" type="button">Close</button>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  if (menuButton && menu) {
+    menuButton.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  const modal = document.querySelector('.lock-modal');
+  const closeButton = modal ? modal.querySelector('.lock-close') : null;
+
+  function openLock() {
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeLock() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach(el => {
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      openLock();
+    });
+  });
+
+  if (closeButton) closeButton.addEventListener('click', closeLock);
+  if (modal) modal.addEventListener('click', event => {
+    if (event.target === modal) closeLock();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal && modal.classList.contains('open')) closeLock();
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+</script>
+
+<!-- Quality check: exact CRM name preserved; likely-match relationship clearly flagged; conflicting physical addresses omitted; no unsupported Google/Yelp review section added. -->
+</body>
+</html>
