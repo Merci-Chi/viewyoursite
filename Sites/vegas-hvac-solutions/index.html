@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#07111d">
+<title>Vegas Hvac Solutions</title>
+<meta name="description" content="Vegas Hvac Solutions website preview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#07111d;color:#f7fbff;font-family:Inter,sans-serif;overflow-x:hidden;-webkit-user-select:none;user-select:none}body.modal-open{overflow:hidden}a{text-decoration:none;color:inherit}.wrap{width:min(1200px,calc(100% - 52px));margin:auto}
+header{position:absolute;left:0;right:0;top:0;z-index:20;padding:24px 0}.nav{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:12px;font-family:Oswald;font-size:1.35rem;text-transform:uppercase;letter-spacing:.04em}.brand-mark{width:36px;height:36px;display:grid;place-items:center;background:#ff6b2c;color:#07111d}.desktop-nav{display:flex;align-items:center;gap:28px}.desktop-nav a{color:#ced9e3}.cta{background:#ff6b2c;color:#07111d;border:0;padding:13px 19px;font-weight:800;cursor:pointer}.menu-button{display:none;width:44px;height:44px;border:1px solid #ffffff35;background:#07111da8;color:white}.mobile-menu{display:none}
+.hero{position:relative;min-height:780px;display:flex;align-items:center;background:linear-gradient(90deg,#07111df5 0%,#07111ddc 47%,#07111d4d 77%),url("https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=2200&q=88") center/cover no-repeat}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#07111d 0%,transparent 20%)}.hero-copy{position:relative;z-index:2;max-width:760px;padding-top:72px}.micro{font-weight:800;color:#75c9ff;text-transform:uppercase;letter-spacing:.19em;font-size:.74rem}.hero h1{font-family:Oswald;font-size:clamp(4.2rem,9vw,8rem);text-transform:uppercase;line-height:.9;letter-spacing:-.025em;margin:20px 0 24px}.hero h1 span{color:#ff6b2c}.hero p{max-width:520px;color:#b7c5d2;line-height:1.75}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.ghost{border:1px solid #ffffff45;color:white;background:#07111d7a;padding:13px 19px;font-weight:700;cursor:pointer}
+.strip{position:relative;z-index:5;margin-top:-56px}.strip-grid{display:grid;grid-template-columns:repeat(3,1fr);background:#0d1b2a;border:1px solid #ffffff14;box-shadow:0 30px 70px #0006}.strip-item{padding:28px 30px;border-right:1px solid #ffffff14}.strip-item:last-child{border-right:0}.strip-item small{display:block;text-transform:uppercase;letter-spacing:.16em;color:#71869a;font-size:.67rem;margin-bottom:9px}.strip-item strong{font-family:Oswald;font-size:1.45rem;text-transform:uppercase}
+.visual{padding:116px 0}.visual-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:center}.visual-photo{min-height:530px;background:url("https://images.unsplash.com/photo-1631545806609-53f782e50b0a?auto=format&fit=crop&w=1700&q=88") center/cover no-repeat;position:relative}.visual-photo:after{content:"Stock imagery";position:absolute;bottom:18px;left:18px;background:#07111de8;color:#dbe6ef;padding:12px 15px;text-transform:uppercase;letter-spacing:.13em;font-size:.68rem}.visual h2{font-family:Oswald;font-size:clamp(3rem,6vw,5.5rem);line-height:.95;text-transform:uppercase;margin:16px 0 20px}.visual p{color:#98abba;line-height:1.8}
+footer{border-top:1px solid #ffffff14;padding:36px 0 44px;color:#73889a}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:22px}.footer-row strong{font-family:Oswald;color:white;text-transform:uppercase}
+.lock-modal[hidden]{display:none}.lock-modal{position:fixed;inset:0;z-index:100;background:#000c;display:grid;place-items:center;padding:24px}.lock-dialog{width:min(460px,100%);background:#0c1927;border:1px solid #ffffff1c;padding:40px;position:relative;box-shadow:0 30px 100px #000b}.modal-x{position:absolute;top:14px;right:14px;border:0;background:transparent;color:#90a3b5;font-size:1.2rem;cursor:pointer}.modal-icon{display:grid;place-items:center;width:50px;height:50px;background:#ff6b2c;color:#07111d;margin-bottom:20px}.lock-dialog h2{font-family:Oswald;text-transform:uppercase;font-size:2rem;margin:0 0 12px}.lock-dialog p{color:#a8b8c6;line-height:1.65}.modal-close{margin-top:12px;background:#ff6b2c;color:#07111d;border:0;padding:13px 22px;font-weight:800;cursor:pointer}
+@media(max-width:800px){.wrap{width:min(100% - 30px,1200px)}.desktop-nav{display:none}.menu-button{display:grid;place-items:center}.mobile-menu{position:absolute;top:80px;left:15px;right:15px;background:#0c1927;border:1px solid #ffffff1b;padding:9px;flex-direction:column}.mobile-menu.open{display:flex}.mobile-menu a,.mobile-menu button{padding:15px;border:0;border-bottom:1px solid #ffffff13;background:transparent;color:white;text-align:left;font:inherit}.hero{min-height:720px;background-position:66% center}.hero-copy{padding-top:90px}.hero h1{font-size:clamp(4rem,20vw,6.4rem)}.strip{margin-top:-28px}.strip-grid{grid-template-columns:1fr}.strip-item{border-right:0;border-bottom:1px solid #ffffff14}.visual{padding:84px 0}.visual-grid{grid-template-columns:1fr;gap:34px}.visual-photo{min-height:420px;order:2}.footer-row{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<!-- Stock imagery: Unsplash HVAC/technician photography. It is not imagery of the actual business. -->
+<header><div class="wrap nav">
+<a class="brand" href="#top" data-scroll-link><span class="brand-mark"><i class="fa-solid fa-snowflake"></i></span>Vegas Hvac Solutions</a>
+<nav class="desktop-nav"><a href="#overview" data-scroll-link>Overview</a><button class="cta" type="button" data-locked="true">Contact</button></nav>
+<button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+<nav class="mobile-menu" data-mobile-menu><a href="#overview" data-scroll-link>Overview</a><button type="button" data-locked="true">Contact</button></nav>
+</div></header>
+<main id="top">
+<section class="hero"><div class="wrap hero-copy"><div class="micro">Website Preview</div><h1>Vegas Hvac<br><span>Solutions</span></h1><p>A bold, technical website direction for Vegas Hvac Solutions.</p><div class="actions"><a class="cta" href="#overview" data-scroll-link>View Site</a><button class="ghost" type="button" data-locked="true">Contact</button></div></div></section>
+<section class="strip" id="overview"><div class="wrap strip-grid">
+<div class="strip-item"><small>Business</small><strong>Vegas Hvac Solutions</strong></div>
+<div class="strip-item"><small>Category</small><strong>Hvac Solutions</strong></div>
+<div class="strip-item"><small>Website</small><strong>Preview</strong></div>
+</div></section>
+<section class="visual"><div class="wrap visual-grid"><div class="visual-photo" role="img" aria-label="Stock image related to HVAC work"></div><div><div class="micro">Vegas Hvac Solutions</div><h2>Clear. Direct. Built to work.</h2><p>This preview uses industry-relevant stock photography for presentation only.</p><div class="actions"><button class="cta" type="button" data-locked="true">Contact</button></div></div></div></section>
+</main>
+<footer><div class="wrap footer-row"><strong>Vegas Hvac Solutions</strong><span>Website preview</span></div></footer>
+
+<div class="lock-modal" data-lock-modal hidden role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-dialog">
+    <button class="modal-x" type="button" data-modal-close aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+    <span class="modal-icon"><i class="fa-solid fa-lock"></i></span>
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="modal-close" type="button" data-modal-close>Close</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  const menuButton = document.querySelector('[data-menu-button]');
+  const mobileMenu = document.querySelector('[data-mobile-menu]');
+  const modal = document.querySelector('[data-lock-modal]');
+  const closeButton = modal.querySelector('[data-modal-close]');
+  let lastFocused = null;
+
+  function openModal(event) {
+    if (event) event.preventDefault();
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    closeButton.focus();
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-locked="true"]').forEach((item) => {
+    item.addEventListener('click', openModal);
+  });
+
+  menuButton.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!expanded));
+    mobileMenu.classList.toggle('open', !expanded);
+  });
+
+  document.querySelectorAll('[data-scroll-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      mobileMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  closeButton.addEventListener('click', closeModal);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.hidden) closeModal();
+  });
+})();
+</script>
+
+</body>
+</html>
