@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Lv Tree Service</title>
+<meta name="description" content="Lv Tree Service">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://images.pexels.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--primary:#9ac56f;--secondary:#1f331f;--accent:#f2f8ec;--text:#f5f7fb;--muted:#c6ccd5;--line:rgba(255,255,255,.14);--panel:rgba(8,12,18,.74)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:#0f1319;user-select:none;-webkit-user-select:none}
+body::before{content:"";position:fixed;inset:0;z-index:-3;background:url("https://images.pexels.com/photos/165509/pexels-photo-165509.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover no-repeat}
+body::after{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(110deg,rgba(5,8,12,.94),rgba(5,8,12,.62) 58%,rgba(5,8,12,.84))}
+a{color:inherit;text-decoration:none}button{font:inherit}
+.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:30;background:rgba(7,10,15,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.head{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:900;letter-spacing:.02em;max-width:70%}
+nav{display:flex;align-items:center;gap:24px}nav a{font-size:.93rem;color:#e4e8ef}
+.menu{display:none;background:none;border:0;color:white;font-size:1.48rem;padding:10px}
+.hero{min-height:78vh;display:grid;align-items:center;padding:88px 0 72px}
+.eyebrow{text-transform:uppercase;letter-spacing:.19em;font-size:.72rem;font-weight:900;color:var(--primary)}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(3.2rem,8vw,7rem);line-height:.92;letter-spacing:-.055em;margin:.2em 0 .22em;max-width:980px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{min-height:49px;padding:0 19px;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;font-weight:800;cursor:pointer;transition:.2s ease}
+.btn.primary{background:var(--primary);color:#111}.btn.secondary{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff}
+.btn:hover{transform:translateY(-2px)}
+.section{padding:78px 0;border-top:1px solid var(--line)}
+.section h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.2rem,4.2vw,3.8rem);line-height:1.05;letter-spacing:-.035em;margin:0 0 16px}
+.intro{max-width:760px;color:var(--muted);line-height:1.7}
+.split{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:stretch}
+.identity{background:var(--panel);border-left:4px solid var(--primary);padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:300px}
+.identity .icon{font-size:2rem;color:var(--primary)}
+.identity .category{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;margin-top:40px}
+.feature-image{min-height:380px;background:url("https://images.pexels.com/photos/589/garden-gardening-grass-lawn.jpg?auto=compress&cs=tinysrgb&w=1200") center/cover no-repeat;position:relative}
+.feature-image:after{content:"Stock image";position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.64);padding:6px 9px;font-size:.7rem;color:#d7dce3}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px}
+.gallery figure{margin:0;position:relative;min-height:290px;overflow:hidden;border:1px solid var(--line)}
+.gallery figure:first-child{min-height:420px}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.gallery figure:hover img{transform:scale(1.025)}
+.gallery figcaption{position:absolute;left:12px;bottom:12px;background:rgba(6,9,13,.72);padding:7px 10px;font-size:.76rem;color:#e8ebf0}
+.visual-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.visual-item{background:rgba(8,12,18,.84);padding:28px}
+.visual-item i{font-size:1.4rem;color:var(--primary);margin-bottom:16px}
+.visual-item strong{display:block;font-size:1.04rem}
+.stock-disclaimer{font-size:.8rem;color:#9aa3b0;max-width:840px;line-height:1.6}
+.footer{padding:35px 0 44px;border-top:1px solid var(--line);color:#abb3c0}
+.footer-in{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.76);place-items:center;padding:20px}
+.modal.show{display:grid}
+.modal-box{width:min(440px,100%);background:#111720;border:1px solid rgba(255,255,255,.18);padding:28px;box-shadow:0 26px 90px rgba(0,0,0,.55)}
+.modal-box h2{margin:0 0 10px;font-size:1.7rem}.modal-box p{color:#cad0d9;line-height:1.6}
+.modal-open{overflow:hidden}
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+[data-reveal].in{opacity:1;transform:none}
+
+.hero h1{font-weight:600}.hero-inner{max-width:760px}.leafline{height:4px;width:92px;background:var(--primary);margin:24px 0}
+        
+@media(max-width:900px){.split{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.gallery figure:first-child{grid-column:1/-1;min-height:360px}}
+@media(max-width:780px){
+.wrap{width:min(100% - 28px,1180px)}.head{min-height:68px}.menu{display:block}
+nav{position:absolute;left:14px;right:14px;top:68px;display:none;flex-direction:column;align-items:stretch;gap:0;background:#10161f;border:1px solid var(--line);padding:8px}
+nav.open{display:flex}nav a{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08)}nav a:last-child{border-bottom:0}
+.hero{min-height:70vh;padding:65px 0 52px}h1{font-size:clamp(2.8rem,15vw,4.8rem)}.section{padding:56px 0}
+.visual-strip{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.gallery figure,.gallery figure:first-child{grid-column:auto;min-height:290px}
+.actions .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap head">
+<a class="brand" href="#top">Lv Tree Service</a>
+<button class="menu" type="button" data-menu aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+<nav data-nav aria-label="Primary"><a href="#overview">Overview</a><a href="#visuals">Visuals</a></nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap"><div class="hero-inner"><div class="eyebrow">Tree Service</div><h1>Lv Tree Service</h1><div class="leafline"></div><div class="actions"><a class="btn secondary" href="#overview"><i class="fa-solid fa-arrow-down"></i> Explore</a></div></div></div></section>
+
+<section class="section" id="overview"><div class="wrap">
+<div class="split">
+  <div class="identity" data-reveal>
+    <div class="icon"><i class="fa-solid fa-tree"></i></div>
+    <div><div class="eyebrow">Business category</div><div class="category">Tree Service</div></div>
+  </div>
+  <div class="feature-image" data-reveal aria-label="Stock image representing the business category"></div>
+</div>
+</div></section>
+
+<section class="section"><div class="wrap">
+<div class="visual-strip" data-reveal>
+  <div class="visual-item"><i class="fa-solid fa-tree"></i><strong>Tree Service</strong></div>
+  <div class="visual-item"><i class="fa-solid fa-image"></i><strong>Outdoor Work</strong></div>
+  <div class="visual-item"><i class="fa-solid fa-layer-group"></i><strong>Tree-Care Environment</strong></div>
+</div>
+</div></section>
+
+<section class="section" id="visuals"><div class="wrap">
+<div class="eyebrow">Visual direction</div>
+<h2>Tree Service</h2>
+<div class="gallery" data-reveal>
+  <figure><img src="https://images.pexels.com/photos/589/garden-gardening-grass-lawn.jpg?auto=compress&cs=tinysrgb&w=1200" alt="Stock imagery representing Tree Service" loading="lazy"><figcaption>Stock imagery</figcaption></figure>
+  <figure><img src="https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Stock imagery representing Tree Service" loading="lazy"><figcaption>Stock imagery</figcaption></figure>
+  <figure><img src="https://images.pexels.com/photos/1458694/pexels-photo-1458694.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Stock imagery representing Tree Service" loading="lazy"><figcaption>Stock imagery</figcaption></figure>
+</div>
+<p class="stock-disclaimer">Stock photography is used only to represent the general industry or atmosphere. It does not depict the actual owner, employees, customers, products, location, projects, or completed work.</p>
+</div></section>
+</main>
+
+<footer class="footer"><div class="wrap footer-in"><div><strong>Lv Tree Service</strong></div><div class="stock-disclaimer">Demo website</div></div></footer>
+
+<div class="modal" id="locked-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lock-title">
+  <div class="modal-box">
+    <h2 id="lock-title">This is currently locked.</h2>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="btn primary" type="button" data-close>Close</button>
+  </div>
+</div>
+
+<script>
+const menuBtn=document.querySelector('[data-menu]');
+const nav=document.querySelector('[data-nav]');
+if(menuBtn&&nav){
+  menuBtn.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+  nav.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{
+    nav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }));
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id&&id.length>1){
+      const t=document.querySelector(id);
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    }
+  });
+});
+const modal=document.getElementById('locked-modal');
+const closeBtn=modal?.querySelector('[data-close]');
+let lastFocus=null;
+function openLocked(){
+  if(!modal)return;
+  lastFocus=document.activeElement;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  closeBtn?.focus();
+}
+function closeLocked(){
+  if(!modal)return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  lastFocus?.focus();
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openLocked();}));
+closeBtn?.addEventListener('click',closeLocked);
+modal?.addEventListener('click',e=>{if(e.target===modal)closeLocked();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&modal?.classList.contains('show'))closeLocked();
+  if(e.key==='Tab'&&modal?.classList.contains('show')){
+    const f=[...modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')];
+    if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
+const reveals=[...document.querySelectorAll('[data-reveal]')];
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target);}});
+},{threshold:.12});
+reveals.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
