@@ -386,14 +386,7 @@
             <h2 class="projects-heading">Recent Projects</h2>
           </div>
         </div>
-        <div class="projects-grid projects-preview-grid">
-          <img src="Projects/1.png" alt="Desert Forest Landscape project 1" loading="lazy" />
-          <img src="Projects/2.png" alt="Desert Forest Landscape project 2" loading="lazy" />
-          <img src="Projects/3.png" alt="Desert Forest Landscape project 3" loading="lazy" />
-          <img src="Projects/4.png" alt="Desert Forest Landscape project 4" loading="lazy" />
-          <img src="Projects/5.png" alt="Desert Forest Landscape project 5" loading="lazy" />
-          <img class="mobile-extra-project" src="Projects/6.png" alt="Desert Forest Landscape project 6" loading="lazy" />
-        </div>
+        <div class="projects-grid projects-preview-grid" id="projectsPreview" aria-live="polite"></div>
         <div class="project-button-row"><a href="gallery.html" class="small-button center-button">VIEW MORE PROJECTS <img src="images/leaf.png" alt="" aria-hidden="true"></a></div>
       </div>
     </section>
@@ -727,6 +720,55 @@
       if (now - lastTouchEnd <= 300) event.preventDefault();
       lastTouchEnd = now;
     }, { passive: false });
+  </script>
+
+  <script>
+    // Dynamically load ANY PNG files currently inside the GitHub Projects folder.
+    // No filenames are hard-coded, so adding/removing PNGs in Projects updates this preview automatically.
+    (() => {
+      const preview = document.getElementById('projectsPreview');
+      if (!preview) return;
+
+      const apiUrl = 'https://api.github.com/repos/Merci-Chi/viewyoursite/contents/Sites/desert-forest-landscape/Projects?ref=main';
+
+      function shuffle(items) {
+        const copy = [...items];
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      }
+
+      function renderProjects(files) {
+        const pngs = shuffle(files.filter(file =>
+          file.type === 'file' && /\.png$/i.test(file.name) && file.download_url
+        ));
+
+        const amount = window.matchMedia('(max-width: 767px)').matches ? 6 : 5;
+        preview.innerHTML = '';
+
+        pngs.slice(0, amount).forEach((file, index) => {
+          const img = document.createElement('img');
+          img.src = file.download_url;
+          img.alt = `Desert Forest Landscape project ${index + 1}`;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          preview.appendChild(img);
+        });
+      }
+
+      fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } })
+        .then(response => {
+          if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+          return response.json();
+        })
+        .then(renderProjects)
+        .catch(error => {
+          console.error('Could not load project images:', error);
+          preview.innerHTML = '<p style="grid-column:1/-1;text-align:center;">Project photos are temporarily unavailable.</p>';
+        });
+    })();
   </script>
   <script src="js.js"></script>
 </body>

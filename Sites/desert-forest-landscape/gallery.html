@@ -48,36 +48,75 @@
     <p>Take a closer look at landscaping projects completed by Desert Forest Landscape.</p>
   </section>
   <main class="wrap">
-    <div class="gallery">
-        <button class="gallery-item" type="button" data-src="Projects/1.png" aria-label="Open project 1"><img src="Projects/1.png" alt="Desert Forest Landscape project 1" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/2.png" aria-label="Open project 2"><img src="Projects/2.png" alt="Desert Forest Landscape project 2" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/3.png" aria-label="Open project 3"><img src="Projects/3.png" alt="Desert Forest Landscape project 3" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/4.png" aria-label="Open project 4"><img src="Projects/4.png" alt="Desert Forest Landscape project 4" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/5.png" aria-label="Open project 5"><img src="Projects/5.png" alt="Desert Forest Landscape project 5" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/6.png" aria-label="Open project 6"><img src="Projects/6.png" alt="Desert Forest Landscape project 6" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/7.png" aria-label="Open project 7"><img src="Projects/7.png" alt="Desert Forest Landscape project 7" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/8.png" aria-label="Open project 8"><img src="Projects/8.png" alt="Desert Forest Landscape project 8" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/9.png" aria-label="Open project 9"><img src="Projects/9.png" alt="Desert Forest Landscape project 9" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/10.png" aria-label="Open project 10"><img src="Projects/10.png" alt="Desert Forest Landscape project 10" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/11.png" aria-label="Open project 11"><img src="Projects/11.png" alt="Desert Forest Landscape project 11" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/12.png" aria-label="Open project 12"><img src="Projects/12.png" alt="Desert Forest Landscape project 12" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-src="Projects/13.png" aria-label="Open project 13"><img src="Projects/13.png" alt="Desert Forest Landscape project 13" loading="lazy"></button>
-    </div>
+    <div class="gallery" id="projectGallery" aria-live="polite"></div>
   </main>
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project image preview">
     <button class="close" type="button" aria-label="Close preview">×</button>
     <img id="lightboxImage" src="" alt="Expanded project image">
   </div>
   <script>
+    const gallery = document.getElementById('projectGallery');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
-    document.querySelectorAll('.gallery-item').forEach(item => item.addEventListener('click', () => {
-      lightboxImage.src = item.dataset.src; lightbox.classList.add('open'); document.body.style.overflow='hidden';
-    }));
-    function closeBox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; lightboxImage.src=''; }
+    const apiUrl = 'https://api.github.com/repos/Merci-Chi/viewyoursite/contents/Sites/desert-forest-landscape/Projects?ref=main';
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function openBox(src) {
+      lightboxImage.src = src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxImage.src = '';
+    }
+
+    fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } })
+      .then(response => {
+        if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
+        return response.json();
+      })
+      .then(files => {
+        const pngs = shuffle(files.filter(file =>
+          file.type === 'file' && /\.png$/i.test(file.name) && file.download_url
+        ));
+
+        gallery.innerHTML = '';
+        pngs.forEach((file, index) => {
+          const button = document.createElement('button');
+          button.className = 'gallery-item';
+          button.type = 'button';
+          button.setAttribute('aria-label', `Open project image ${index + 1}`);
+
+          const img = document.createElement('img');
+          img.src = file.download_url;
+          img.alt = `Desert Forest Landscape project ${index + 1}`;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+
+          button.appendChild(img);
+          button.addEventListener('click', () => openBox(file.download_url));
+          gallery.appendChild(button);
+        });
+      })
+      .catch(error => {
+        console.error('Could not load project images:', error);
+        gallery.innerHTML = '<p style="grid-column:1/-1;text-align:center;">Project photos are temporarily unavailable.</p>';
+      });
+
     document.querySelector('.close').addEventListener('click', closeBox);
-    lightbox.addEventListener('click', e => { if(e.target===lightbox) closeBox(); });
-    document.addEventListener('keydown', e => { if(e.key==='Escape') closeBox(); });
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeBox(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeBox(); });
   </script>
 </body>
 </html>
