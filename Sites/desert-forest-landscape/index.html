@@ -107,6 +107,15 @@
     }
   </style>
 
+
+  <style>
+    /* Project preview: 5 images on desktop, 6 on phones. */
+    .projects-preview-grid .mobile-extra-project { display: none; }
+    @media (max-width: 767px) {
+      .projects-preview-grid .mobile-extra-project { display: block; }
+    }
+  </style>
+
 </head>
 <body class="brand-refresh">
   <header class="site-header">
@@ -377,22 +386,15 @@
             <h2 class="projects-heading">Recent Projects</h2>
           </div>
         </div>
-        <div class="projects-grid">
+        <div class="projects-grid projects-preview-grid">
           <img src="Projects/1.png" alt="Desert Forest Landscape project 1" loading="lazy" />
           <img src="Projects/2.png" alt="Desert Forest Landscape project 2" loading="lazy" />
           <img src="Projects/3.png" alt="Desert Forest Landscape project 3" loading="lazy" />
           <img src="Projects/4.png" alt="Desert Forest Landscape project 4" loading="lazy" />
           <img src="Projects/5.png" alt="Desert Forest Landscape project 5" loading="lazy" />
-          <img src="Projects/6.png" alt="Desert Forest Landscape project 6" loading="lazy" />
-          <img src="Projects/7.png" alt="Desert Forest Landscape project 7" loading="lazy" />
-          <img src="Projects/8.png" alt="Desert Forest Landscape project 8" loading="lazy" />
-          <img src="Projects/9.png" alt="Desert Forest Landscape project 9" loading="lazy" />
-          <img src="Projects/10.png" alt="Desert Forest Landscape project 10" loading="lazy" />
-          <img src="Projects/11.png" alt="Desert Forest Landscape project 11" loading="lazy" />
-          <img src="Projects/12.png" alt="Desert Forest Landscape project 12" loading="lazy" />
-          <img src="Projects/13.png" alt="Desert Forest Landscape project 13" loading="lazy" />
+          <img class="mobile-extra-project" src="Projects/6.png" alt="Desert Forest Landscape project 6" loading="lazy" />
         </div>
-        <div class="project-button-row"><a href="#contact" class="small-button center-button">VIEW MORE PROJECTS <img src="images/leaf.png" alt="" aria-hidden="true"></a></div>
+        <div class="project-button-row"><a href="gallery.html" class="small-button center-button">VIEW MORE PROJECTS <img src="images/leaf.png" alt="" aria-hidden="true"></a></div>
       </div>
     </section>
 <section class="testimonials-section" id="testimonials">
