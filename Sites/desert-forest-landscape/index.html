@@ -47,6 +47,66 @@
     }
   </script>
 
+
+  <style>
+    /* Partner / supplier rotating strip */
+    .company-rotator {
+      overflow: hidden;
+      background: #fff;
+      border-top: 1px solid rgba(18,59,42,.12);
+      border-bottom: 1px solid rgba(18,59,42,.12);
+      padding: 18px 0;
+    }
+
+    .company-rotator-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      gap: 56px;
+      animation: companyTicker 18s linear infinite;
+      will-change: transform;
+    }
+
+    .company-rotator-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+      color: #123b2a;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.7vw, 1.22rem);
+      font-weight: 800;
+      letter-spacing: .035em;
+      text-transform: uppercase;
+    }
+
+    .company-rotator-item::after {
+      content: '•';
+      color: #d8752c;
+      font-size: 1.1em;
+      margin-left: 42px;
+    }
+
+    .company-rotator:hover .company-rotator-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes companyTicker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .company-rotator-track { animation: none; }
+    }
+
+    @media (max-width: 640px) {
+      .company-rotator { padding: 14px 0; }
+      .company-rotator-track { gap: 36px; animation-duration: 14s; }
+      .company-rotator-item::after { margin-left: 22px; }
+    }
+  </style>
+
 </head>
 <body class="brand-refresh">
   <header class="site-header">
@@ -81,7 +141,7 @@
     <div class="sub-header-inner shell-wide">
       <a class="phone-link" href="tel:+17028752612">
         <span>Call Us</span>
-        <strong>(702) 241-9668</strong>
+        <strong>(702) 875-2616</strong>
       </a>
 
       <form class="site-search" role="search">
@@ -102,7 +162,7 @@
           <p>Maintenance, Trees, Turf, Irrigation, Pavers &amp; more.</p>
           <div class="compact-hero-actions">
             <a class="hero-cta hero-cta-primary" href="#contact">GET A FREE ESTIMATE</a>
-            <a class="hero-cta hero-cta-secondary" href="tel:+17028752612">(702) 241-9668</a>
+            <a class="hero-cta hero-cta-secondary" href="tel:+17028752612">(702) 875-2616</a>
           </div>
         </div>
       </div>
@@ -143,6 +203,18 @@
       </div>
     </section>
 
+
+    <section class="company-rotator" aria-label="Companies we work with">
+      <div class="company-rotator-track">
+        <span class="company-rotator-item">A&amp;L Handyman</span>
+        <span class="company-rotator-item">Star Nursery</span>
+        <span class="company-rotator-item">Moon Valley Nursery</span>
+        <span class="company-rotator-item" aria-hidden="true">A&amp;L Handyman</span>
+        <span class="company-rotator-item" aria-hidden="true">Star Nursery</span>
+        <span class="company-rotator-item" aria-hidden="true">Moon Valley Nursery</span>
+      </div>
+    </section>
+
     <section class="consultation-strip">
       <div class="consultation-strip-bg" aria-hidden="true"></div>
       <div class="consultation-strip-overlay"></div>
@@ -154,7 +226,7 @@
         </div>
         <div class="consultation-strip-actions">
           <a href="#contact" class="consultation-button primary">FREE CONSULTATION</a>
-          <a href="tel:+17028752612" class="consultation-button secondary">CALL (702) 241-9668</a>
+          <a href="tel:+17028752612" class="consultation-button secondary">CALL (702) 875-2616</a>
         </div>
       </div>
     </section>
@@ -306,12 +378,19 @@
           </div>
         </div>
         <div class="projects-grid">
-          <img src="https://images.pexels.com/photos/8288955/pexels-photo-8288955.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Landscaped backyard and patio" />
-          <img src="https://images.pexels.com/photos/7546775/pexels-photo-7546775.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Modern home with a manicured lawn" />
-          <img src="https://images.pexels.com/photos/8031887/pexels-photo-8031887.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Wooden patio surrounded by greenery" />
-          <img src="https://images.pexels.com/photos/8031881/pexels-photo-8031881.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Landscaped front yard of a modern home" />
-          <img src="https://images.pexels.com/photos/38220905/pexels-photo-38220905.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Outdoor patio furniture in a garden" />
-          <img src="https://images.unsplash.com/photo-1558521958-0a228e77e984?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Residential backyard landscaping with patio and greenery" />
+          <img src="Projects/1.png" alt="Desert Forest Landscape project 1" loading="lazy" />
+          <img src="Projects/2.png" alt="Desert Forest Landscape project 2" loading="lazy" />
+          <img src="Projects/3.png" alt="Desert Forest Landscape project 3" loading="lazy" />
+          <img src="Projects/4.png" alt="Desert Forest Landscape project 4" loading="lazy" />
+          <img src="Projects/5.png" alt="Desert Forest Landscape project 5" loading="lazy" />
+          <img src="Projects/6.png" alt="Desert Forest Landscape project 6" loading="lazy" />
+          <img src="Projects/7.png" alt="Desert Forest Landscape project 7" loading="lazy" />
+          <img src="Projects/8.png" alt="Desert Forest Landscape project 8" loading="lazy" />
+          <img src="Projects/9.png" alt="Desert Forest Landscape project 9" loading="lazy" />
+          <img src="Projects/10.png" alt="Desert Forest Landscape project 10" loading="lazy" />
+          <img src="Projects/11.png" alt="Desert Forest Landscape project 11" loading="lazy" />
+          <img src="Projects/12.png" alt="Desert Forest Landscape project 12" loading="lazy" />
+          <img src="Projects/13.png" alt="Desert Forest Landscape project 13" loading="lazy" />
         </div>
         <div class="project-button-row"><a href="#contact" class="small-button center-button">VIEW MORE PROJECTS <img src="images/leaf.png" alt="" aria-hidden="true"></a></div>
       </div>
@@ -541,7 +620,7 @@
           <div class="mobile-footer-contact-hours">
             <div class="mobile-footer-contact-block">
               <h3>CONTACT</h3>
-              <a href="tel:+17028752612"><img src="icons/phone.png" alt="" aria-hidden="true" style="width:18px;height:18px;object-fit:contain;"><span>(702) 241-9668</span></a>
+              <a href="tel:+17028752612"><img src="icons/phone.png" alt="" aria-hidden="true" style="width:18px;height:18px;object-fit:contain;"><span>(702) 875-2616</span></a>
               <p><img src="icons/location.png" alt="" aria-hidden="true" style="width:18px;height:18px;object-fit:contain;"><span>Las Vegas Valley, Nevada</span></p>
             </div>
             <div class="mobile-footer-hours-block">
@@ -601,7 +680,7 @@
               <div class="footer-right-top">
                 <div class="footer-column footer-contact-area">
                   <h3>CONTACT</h3>
-                  <a class="footer-contact-link" href="tel:+17028752612"><img src="icons/phone.png" alt="" aria-hidden="true" style="width:18px;height:18px;object-fit:contain;"><span>(702) 241-9668</span></a>
+                  <a class="footer-contact-link" href="tel:+17028752612"><img src="icons/phone.png" alt="" aria-hidden="true" style="width:18px;height:18px;object-fit:contain;"><span>(702) 875-2616</span></a>
                   <div class="footer-location"><img src="icons/location.png" alt="" aria-hidden="true" style="width:18px;height:18px;object-fit:contain;"><span>Las Vegas Valley, Nevada</span></div>
                 </div>
 
