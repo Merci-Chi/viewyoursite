@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Hair by Kiwi | Hair Stylist</title>
+<meta name="description" content="Hair by Kiwi — Hair Stylist. View services and contact information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--ink:#1b0b18;--paper:#fff6fb;--accent:#d55ba0;--soft:#f0c4df;}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden;user-select:none;-webkit-user-select:none}
+a{color:inherit;text-decoration:none} button{font:inherit} img{display:block;width:100%;height:100%;object-fit:cover;background:var(--ink)}
+header{position:fixed;z-index:40;top:0;left:0;right:0;height:74px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:color-mix(in srgb,var(--ink) 92%,transparent);color:white;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
+.logo{font-family:"Playfair Display",serif;font-size:clamp(20px,2vw,28px);font-weight:700;letter-spacing:.01em}
+nav{display:flex;gap:28px;align-items:center} nav a{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.menu{display:none;border:0;background:none;color:#fff;font-size:24px}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:var(--ink);color:#fff;padding-top:74px}
+.hero-copy{padding:9vw 7vw 7vw;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.22em;color:var(--soft);font-weight:800}
+h1,h2,h3{font-family:"Playfair Display",serif} h1{font-size:clamp(58px,8vw,112px);line-height:.9;margin:18px 0 24px;letter-spacing:-.035em}
+.hero p{max-width:600px;font-size:clamp(18px,2vw,24px);line-height:1.55;color:rgba(255,255,255,.78)}
+.hero-image{position:relative;min-height:700px;overflow:hidden}
+.hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--ink) 70%,transparent),transparent 45%)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn,.social{border:0;display:inline-flex;align-items:center;gap:9px;justify-content:center;min-height:50px;padding:0 22px;background:var(--accent);color:white;font-weight:800;cursor:pointer}
+.btn.alt{background:transparent;border:1px solid rgba(255,255,255,.35)} .btn:hover,.social:hover{filter:brightness(1.08)}
+section.content{padding:95px 7vw}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:42px}
+.section-head h2{font-size:clamp(44px,6vw,78px);line-height:.95;margin:0}
+.section-head p{max-width:470px;color:#777;line-height:1.7}
+.services{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+.service{display:flex;justify-content:space-between;gap:24px;padding:24px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+.service:nth-child(odd){padding-right:28px} .service:nth-child(even){padding-left:28px;border-left:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+.service-name{display:block;font-size:18px;font-weight:800;margin-bottom:5px} .service small{color:#777} .service strong{font-size:21px;color:var(--accent)}
+.gallery-section{background:var(--ink);color:#fff}
+.gallery-section .section-head p{color:rgba(255,255,255,.65)}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:285px 285px;gap:14px;height:auto}.gallery figure:first-child{grid-row:1/3}.gallery figure:nth-child(4){grid-column:2/4}
+.gallery figure{margin:0;overflow:hidden;position:relative} .gallery img{transition:transform .45s ease} .gallery figure:hover img{transform:scale(1.035)}
+.gallery figure::after{content:"";display:none}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.about-photo{height:580px;border:2px solid var(--accent);padding:10px}
+.about h2{font-size:clamp(46px,6vw,80px);line-height:.95;margin:0 0 22px}
+.about p{font-size:18px;line-height:1.8;color:#6f6a63}
+.location{padding:22px 0;border-top:1px solid color-mix(in srgb,var(--ink) 14%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,transparent);margin:28px 0;display:flex;gap:12px}
+.location i{color:var(--accent);margin-top:4px}
+.contact{background:color-mix(in srgb,var(--soft) 22%,var(--paper));}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-card{padding:25px;border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);background:color-mix(in srgb,var(--paper) 90%,white)}
+.contact-card i{color:var(--accent);margin-right:10px}
+footer{padding:34px 7vw;background:var(--ink);color:#fff;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.78);display:none;place-items:center;padding:20px} .modal.open{display:grid}
+.modal-card{width:min(460px,100%);padding:35px;background:var(--paper);color:var(--ink)} .modal-card h3{font-size:31px;margin:0 0 12px}
+.close{width:100%;padding:14px;border:0;background:var(--ink);color:#fff;font-weight:800;cursor:pointer}
+@media(max-width:850px){nav{display:none;position:absolute;top:74px;left:0;right:0;background:var(--ink);padding:24px 5vw;flex-direction:column;align-items:flex-start} nav.open{display:flex} .menu{display:block}
+.hero{grid-template-columns:1fr} .hero-copy{padding:80px 6vw 55px} .hero-image{min-height:480px} section.content{padding:68px 6vw}
+.services,.about,.contact-grid{grid-template-columns:1fr} .service:nth-child(n){padding:21px 0;border-left:0}
+.gallery{height:auto;grid-template-columns:1fr 1fr} .gallery figure:first-child{grid-column:1/-1;height:350px} .gallery figure:not(:first-child){height:240px} .about-photo{height:440px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="#home">Hair by Kiwi</a>
+<button class="menu" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+<nav><a href="#services">Services</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main id="home">
+<section class="hero">
+<div class="hero-copy">
+<div class="eyebrow">Hair Stylist · Nevada</div>
+<h1>Hair by Kiwi</h1>
+<p>Installs, braids, twists, locs, and custom hair services.</p>
+<div class="actions">
+<a class="btn" data-locked="true" href="https://booksy.com/en-us/713229_hair-by-kiwi_hair-salon_29251_las-vegas"><i class="fa-regular fa-calendar"></i> Book Appointment</a>
+<a class="btn alt" data-locked="true" href="tel:7026005300"><i class="fa-solid fa-phone"></i> (702) 600-5300</a>
+</div>
+</div>
+<div class="hero-image"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/713229/biz_photo/83c1bbb1a71f40948f11432c10a698-hair-by-kiwi-biz-photo-c87f8e6dfe554ccca80de558bc81b4-booksy.jpeg?size=640x427" referrerpolicy="no-referrer" alt="Hair by Kiwi public profile photo"></div>
+</section>
+
+<section class="content" id="services">
+<div class="section-head"><div><div class="eyebrow" style="color:var(--accent)">Services</div><h2>Current services</h2></div><p>Services and pricing shown here are based on the business's current public booking profile.</p></div>
+<div class="services"><article class="service"><div><span class="service-name">Sew In Weave</span><small>3 hr</small></div><strong>$175</strong></article>
+<article class="service"><div><span class="service-name">Full Sew In Weave</span><small>3 hr</small></div><strong>$160</strong></article>
+<article class="service"><div><span class="service-name">Wig Install</span><small>3 hr</small></div><strong>$150</strong></article>
+<article class="service"><div><span class="service-name">Quick Weave</span><small>3 hr</small></div><strong>$145</strong></article>
+<article class="service"><div><span class="service-name">Loc / Dread Retwist</span><small>3 hr</small></div><strong>$100</strong></article>
+<article class="service"><div><span class="service-name">Goddess Locs</span><small>4 hr 30 min</small></div><strong>$200</strong></article></div>
+</section>
+
+<section class="content gallery-section" id="work">
+<div class="section-head"><div><div class="eyebrow">Public portfolio</div><h2>Style &amp; work</h2></div><p>Public photos from Hair by Kiwi’s current Booksy profile.</p></div>
+<div class="gallery">
+<figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/713229/review_photos/65a71d2bdcfe4c9f990d04b5d8334e2d.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Hair by Kiwi public work photo 1"></figure>
+<figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/713229/inspiration/0631dfa3eff14721841b83f4385e00-hair-by-kiwi-inspiration-9e680c8bcf41423b946d4aad5a0acf-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Hair by Kiwi public work photo 2"></figure>
+<figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/713229/inspiration/8786cc18e2ce44789c2d1e269a8bdd-hair-by-kiwi-inspiration-39cb3920e68548efaae697486d0484-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Hair by Kiwi public work photo 3"></figure>
+<figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/713229/inspiration/5e8e573306984b4b87e737f6bfbc4e-hair-by-kiwi-inspiration-4d28a5f9ace842e090a5f68e174983-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Hair by Kiwi public work photo 4"></figure>
+</div>
+</section>
+
+<section class="content about" id="about">
+<div class="about-photo"><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/713229/inspiration/d6329f3c749d4ec490343dafefe597-hair-by-kiwi-inspiration-b9c117b2a9af4eefa371103b9b91f9-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Hair by Kiwi public work photo"></div>
+<div>
+<div class="eyebrow" style="color:var(--accent)">About</div>
+<h2>Hair by Kiwi</h2>
+<p>Hair by Kiwi offers sew-ins, wig installs, braids, twists, loc services, ponytails, quick weaves, and other custom hair services in Las Vegas.</p>
+<div class="location"><i class="fa-solid fa-location-dot"></i><div><strong>Location</strong><br>4760 S Pecos Road, Las Vegas, NV 89121</div></div>
+<div class="actions"><a class="btn" data-locked="true" href="https://booksy.com/en-us/713229_hair-by-kiwi_hair-salon_29251_las-vegas">View Booking</a><a class="social" data-locked="true" href="https://www.instagram.com/hairbykiwi/"><i class="fa-brands fa-instagram"></i> Instagram</a></div>
+</div>
+</section>
+
+<section class="content contact" id="contact">
+<div class="section-head"><div><div class="eyebrow" style="color:var(--accent)">Contact</div><h2>Get in touch</h2></div><p>Demo contact actions remain locked until the full website is purchased.</p></div>
+<div class="contact-grid">
+<div class="contact-card"><i class="fa-solid fa-phone"></i><strong>(702) 600-5300</strong></div>
+<div class="contact-card"><i class="fa-solid fa-location-dot"></i><strong>4760 S Pecos Road, Las Vegas, NV 89121</strong></div>
+</div>
+</section>
+</main>
+
+<footer><strong>Hair by Kiwi</strong><span>Demo website</span></footer>
+
+<div class="modal" id="lockedModal" aria-hidden="true">
+<div class="modal-card" role="dialog" aria-modal="true">
+<h3>This is currently locked.</h3>
+<p>This feature is part of the full website. Purchase the site to unlock it.</p>
+<button class="close">Close</button>
+</div>
+</div>
+
+<script>
+const menu=document.querySelector('.menu'),nav=document.querySelector('nav');
+menu.addEventListener('click',()=>nav.classList.toggle('open'));
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const modal=document.getElementById('lockedModal');
+function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}));
+document.querySelector('.close').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>
