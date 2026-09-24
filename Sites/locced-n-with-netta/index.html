@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Locced N With Netta | Loc Specialist in Las Vegas</title>
+<meta name="description" content="Locced N With Netta — loc retwists, starter locs, styles and interlocking in Las Vegas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --ink:#111111;
+  --forest:#050505;
+  --forest-2:#151515;
+  --cream:#f5f1e8;
+  --sand:#e8dcc2;
+  --copper:#b68a35;
+  --copper-2:#e0bf68;
+  --white:#fffaf2;
+  --muted:#8b8273;
+  --line:rgba(17,17,17,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"DM Sans",sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+  user-select:none;
+  -webkit-user-select:none;
+}
+body.modal-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+button{font:inherit}
+
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:50;
+  height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5vw;
+  color:#fff;
+  background:linear-gradient(to bottom,rgba(9,15,10,.75),rgba(9,15,10,.28));
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:"Fraunces",serif;
+  font-size:clamp(19px,2vw,26px);
+  font-weight:700;
+}
+.brand-mark{
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.42);
+  color:var(--copper-2);
+}
+.desktop-nav{display:flex;align-items:center;gap:26px}
+.desktop-nav a{
+  position:relative;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.desktop-nav a::after{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:-6px;
+  height:2px;background:var(--copper-2);
+  transition:right .25s ease;
+}
+.desktop-nav a:hover::after{right:0}
+.menu-btn{
+  display:none;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:24px;
+  padding:8px;
+}
+
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  background:linear-gradient(180deg,#040404 0%,#0b0b0b 100%);
+  color:#fff;
+}
+.hero-copy{
+  padding:150px 7vw 90px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+}
+.hero-copy::before{
+  content:"";
+  position:absolute;
+  width:320px;height:320px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  right:-80px;top:160px;
+}
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--copper-2);
+}
+.eyebrow::before{content:"";width:44px;height:1px;background:var(--copper-2)}
+h1,h2,h3{font-family:"Fraunces",serif}
+h1{
+  margin:20px 0 24px;
+  font-size:clamp(58px,8.2vw,118px);
+  line-height:.88;
+  letter-spacing:-.045em;
+  max-width:850px;
+}
+.hero-lead{
+  max-width:590px;
+  font-size:clamp(18px,2vw,24px);
+  line-height:1.55;
+  color:#ece4d7;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:34px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:50px;
+  padding:0 22px;
+  border:1px solid transparent;
+  background:var(--copper);
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .2s ease,background .2s ease,border-color .2s ease;
+}
+.btn:hover{transform:translateY(-2px);background:var(--copper-2)}
+.btn.secondary{
+  background:transparent;
+  border-color:rgba(255,255,255,.36);
+}
+.btn.secondary:hover{background:rgba(255,255,255,.08)}
+
+.hero-visual{
+  position:relative;
+  min-height:760px;
+  overflow:hidden;
+}
+.hero-visual img{filter:saturate(.92) contrast(1.03)}
+.hero-visual::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,.7),rgba(0,0,0,.18) 38%,rgba(0,0,0,.12));
+}
+.hero-badge{
+  position:absolute;
+  z-index:2;
+  right:30px;
+  bottom:30px;
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  background:rgba(18,18,18,.94);
+  color:var(--copper-2);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:20px;
+  font-weight:800;
+  box-shadow:0 18px 50px rgba(0,0,0,.35), inset 0 0 0 1px rgba(224,191,104,.25);
+}
+.hero-badge span{display:block;color:var(--copper);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+
+.section{
+  padding:100px 7vw;
+}
+.section-kicker{
+  color:var(--copper);
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  margin-bottom:12px;
+}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  margin-bottom:46px;
+}
+.section-head h2{
+  margin:0;
+  font-size:clamp(42px,5.5vw,76px);
+  line-height:.95;
+  letter-spacing:-.035em;
+}
+.section-head p{
+  max-width:470px;
+  margin:0;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+.services-wrap{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:60px;
+  align-items:start;
+}
+.services-intro{
+  position:sticky;
+  top:120px;
+}
+.services-intro p{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:17px;
+}
+.services-list{
+  border-top:1px solid var(--line);
+}
+.service-row{
+  display:grid;
+  grid-template-columns:70px 1fr auto;
+  gap:18px;
+  align-items:center;
+  padding:26px 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-left .2s ease,background .2s ease;
+}
+.service-row:hover{padding-left:10px}
+.service-num{
+  font-family:"Fraunces",serif;
+  color:var(--copper);
+  font-size:24px;
+}
+.service-name{
+  font-size:19px;
+  font-weight:700;
+}
+.service-meta{
+  color:var(--muted);
+  margin-top:4px;
+  font-size:14px;
+}
+.service-price{
+  font-family:"Fraunces",serif;
+  font-size:28px;
+  color:var(--copper-2);
+}
+
+.work-section{
+  background:linear-gradient(180deg,#040404 0%,#0b0b0b 100%);
+  color:#fff;
+}
+.work-section .section-head p{color:#cfc8bd}
+.work-section .section-kicker{color:var(--copper-2)}
+.masonry{
+  display:grid;
+  grid-template-columns:1.2fr .8fr .8fr;
+  grid-template-rows:330px 330px;
+  gap:14px;
+}
+.masonry figure{
+  margin:0;
+  position:relative;
+  overflow:hidden;
+  background:#243025;
+}
+.masonry figure:first-child{grid-row:1/3}
+.masonry figure:nth-child(4){grid-column:2/4}
+.masonry img{
+  transition:transform .5s ease,filter .5s ease;
+}
+.masonry figure:hover img{
+  transform:scale(1.035);
+  filter:saturate(1.05);
+}
+.masonry figcaption{
+  position:absolute;
+  inset:auto 16px 16px 16px;
+  background:rgba(5,5,5,.78);
+  backdrop-filter:blur(8px);
+  padding:10px 12px;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.about-section{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+.about-photo{
+  min-height:620px;
+  position:relative;
+  overflow:hidden;
+}
+.about-photo::after{
+  content:"";
+  position:absolute;inset:20px -20px -20px 20px;
+  border:1px solid var(--copper);
+  z-index:-1;
+}
+.about-copy h2{
+  font-size:clamp(42px,5vw,72px);
+  margin:0 0 24px;
+  line-height:.95;
+}
+.about-copy p{
+  font-size:18px;
+  line-height:1.8;
+  color:var(--muted);
+}
+.location-chip{
+  margin-top:28px;
+  padding:20px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+.location-chip i{color:var(--copper);font-size:20px;margin-top:3px}
+
+.contact-section{
+  background:linear-gradient(180deg,#f5efe4 0%,#eadfca 100%);
+}
+.contact-shell{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:60px;
+  align-items:center;
+}
+.contact-copy h2{
+  margin:0 0 18px;
+  font-size:clamp(44px,6vw,82px);
+  line-height:.93;
+}
+.contact-copy p{
+  color:#6f665b;
+  line-height:1.75;
+  font-size:17px;
+}
+.contact-cards{
+  display:grid;
+  gap:14px;
+}
+.contact-card{
+  background:rgba(255,248,235,.72);
+  border:1px solid rgba(23,32,24,.12);
+  padding:22px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.contact-card .icon{
+  width:42px;height:42px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(180deg,#040404 0%,#0b0b0b 100%);
+  color:#fff;
+}
+.contact-card small{
+  display:block;
+  color:#80776e;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:10px;
+  margin-bottom:3px;
+}
+
+footer{
+  background:#050505;
+  color:#fff;
+  padding:32px 7vw;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+footer span{color:#a9a297}
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  place-items:center;
+  background:rgba(5,8,6,.78);
+  padding:20px;
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(470px,100%);
+  background:var(--white);
+  color:var(--ink);
+  padding:36px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+.modal-card h3{
+  margin:0 0 12px;
+  font-size:32px;
+}
+.modal-card p{color:var(--muted);line-height:1.6}
+.close-btn{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border:0;
+  background:#111111;
+  color:var(--copper-2);
+  font-weight:800;
+  cursor:pointer;
+}
+
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:145px 6vw 65px}
+  .hero-visual{min-height:560px}
+  .services-wrap,.about-section,.contact-shell{grid-template-columns:1fr}
+  .services-intro{position:static}
+  .masonry{grid-template-columns:1fr 1fr;grid-template-rows:340px 260px 260px}
+  .masonry figure:first-child{grid-column:1/3;grid-row:auto}
+  .masonry figure:nth-child(4){grid-column:1/3}
+  .about-photo{min-height:520px}
+}
+
+@media(max-width:760px){
+  .site-header{height:70px;padding:0 5vw}
+  .desktop-nav{
+    display:none;
+    position:absolute;
+    top:70px;left:0;right:0;
+    background:#090909;
+    padding:24px 5vw;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+  }
+  .desktop-nav.open{display:flex}
+  .menu-btn{display:block}
+  .hero-copy{padding:125px 6vw 52px}
+  h1{font-size:clamp(50px,15vw,76px)}
+  .hero-visual{min-height:440px}
+  .hero-badge{width:130px;height:130px;right:18px;bottom:18px;font-size:13px}
+  .section{padding:72px 6vw}
+  .section-head{display:block}
+  .section-head p{margin-top:18px}
+  .service-row{grid-template-columns:48px 1fr auto;gap:10px}
+  .service-price{font-size:23px}
+  .masonry{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .masonry figure{height:240px}
+  .masonry figure:first-child{grid-column:1/3;height:360px}
+  .masonry figure:nth-child(4){grid-column:1/3}
+  .about-photo{min-height:430px}
+}
+
+@media(max-width:520px){
+  .hero-actions{flex-direction:column}
+  .btn{width:100%}
+  .masonry{grid-template-columns:1fr}
+  .masonry figure,.masonry figure:first-child,.masonry figure:nth-child(4){grid-column:auto;height:300px}
+  .service-row{grid-template-columns:38px 1fr}
+  .service-price{grid-column:2;justify-self:start}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#home">
+    <span class="brand-mark"><i class="fa-solid fa-spa"></i></span>
+    <span>Locced N With Netta</span>
+  </a>
+  <button class="menu-btn" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+  <nav class="desktop-nav">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Loc Specialist · Las Vegas</div>
+      <h1>Luxury loc care with style and intention.</h1>
+      <p class="hero-lead">Retwists, starter locs, interlocking, and styled finishes from Locced N With Netta.</p>
+      <div class="hero-actions">
+        <a class="btn" data-locked="true" href="https://booksy.com/en-us/1043915_locced-n-with-netta_braids-locs_29251_las-vegas"><i class="fa-regular fa-calendar"></i> Book Appointment</a>
+        <a class="btn secondary" data-locked="true" href="tel:7025811143"><i class="fa-solid fa-phone"></i> Call (702) 581-1143</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/1043915/biz_photo/b813eba527154e4b9325cc195e0937-locced-n-with-netta-biz-photo-dca240b3fbe345f1965976f617ea3e-booksy.jpeg?size=640x427" referrerpolicy="no-referrer" alt="Locced N With Netta public work">
+      <div class="hero-badge"><div><span>Las Vegas</span>Loc Specialist</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="services-wrap">
+      <div class="services-intro">
+        <div class="section-kicker">Services</div>
+        <h2 style="font-size:clamp(42px,5vw,72px);margin:0 0 20px;line-height:.95;">Loc services designed around your routine.</h2>
+        <p>Choose from retwists, starter locs, styling, interlocking, and kids loc services currently listed for Locced N With Netta.</p>
+      </div>
+
+      <div class="services-list">
+        <div class="service-row">
+          <div class="service-num">01</div>
+          <div><div class="service-name">Loc Retwist</div><div class="service-meta">2 hr</div></div>
+          <div class="service-price">$95</div>
+        </div>
+        <div class="service-row">
+          <div class="service-num">02</div>
+          <div><div class="service-name">Loc Retwist / Style</div><div class="service-meta">2 hr 15 min</div></div>
+          <div class="service-price">$115</div>
+        </div>
+        <div class="service-row">
+          <div class="service-num">03</div>
+          <div><div class="service-name">Starter Locs</div><div class="service-meta">2 hr</div></div>
+          <div class="service-price">$125</div>
+        </div>
+        <div class="service-row">
+          <div class="service-num">04</div>
+          <div><div class="service-name">Interlock Retwist</div><div class="service-meta">3 hr 30 min</div></div>
+          <div class="service-price">$175</div>
+        </div>
+        <div class="service-row">
+          <div class="service-num">05</div>
+          <div><div class="service-name">Kids Loc Retwist</div><div class="service-meta">1 hr 30 min</div></div>
+          <div class="service-price">$85</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section work-section" id="work">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Portfolio</div>
+        <h2>Signature loc work,<br>up close.</h2>
+      </div>
+      <p>Public work images from Locced N With Netta’s current profile.</p>
+    </div>
+
+    <div class="masonry">
+      <figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/1043915/inspiration/4d153cd5a07648c2abd2b10833cb41-locced-n-with-netta-inspiration-a6ba6cc84d7c48c79c6c4a48b0532d-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Locced N With Netta loc work"><figcaption>Loc work</figcaption></figure>
+      <figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/1043915/inspiration/ae1f0b09cb3c4043b3c7a852817845-locced-n-with-netta-inspiration-b57a0eed218a4618bfc720e0f7e5a0-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Locced N With Netta loc work"><figcaption>Retwist detail</figcaption></figure>
+      <figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/1043915/inspiration/95cbfa69ed76479faf8c38e70f8b14-locced-n-with-netta-inspiration-f952981fab9d49559c5aa05def4cce-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Locced N With Netta loc work"><figcaption>Styled finish</figcaption></figure>
+      <figure><img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/1043915/inspiration/16a186e99703495da1ca39c25139c5-locced-n-with-netta-inspiration-bc5141f740eb476a9e3f9e656c2b9d-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Locced N With Netta loc work"><figcaption>Loc styling</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section about-section" id="about">
+    <div class="about-photo">
+      <img src="https://d2zdpiztbgorvt.cloudfront.net/region1/us/1043915/inspiration/bbfd9da670bc457ebd8a6a8987f575-locced-n-with-netta-inspiration-3a645541373d42e485339df56d3a53-booksy.jpeg?size=360x360" referrerpolicy="no-referrer" alt="Locced N With Netta work">
+    </div>
+    <div class="about-copy">
+      <div class="section-kicker">About</div>
+      <h2>Locced N With Netta</h2>
+      <p>Loc services in Las Vegas including retwists, styles, starter locs, interlocking, and kids loc care.</p>
+      <div class="location-chip">
+        <i class="fa-solid fa-location-dot"></i>
+        <div><strong>Nellis and Craig</strong><br><span style="color:var(--muted)">Las Vegas, NV 89115</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="contact">
+    <div class="contact-shell">
+      <div class="contact-copy">
+        <div class="section-kicker">Contact</div>
+        <h2>Ready for your next luxury loc appointment?</h2>
+        <p>Use the contact information below to reach Locced N With Netta. Demo actions remain locked until the full website is purchased.</p>
+        <div class="hero-actions">
+          <a class="btn" data-locked="true" href="https://booksy.com/en-us/1043915_locced-n-with-netta_braids-locs_29251_las-vegas"><i class="fa-regular fa-calendar"></i> Book Appointment</a>
+        </div>
+      </div>
+
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="icon"><i class="fa-solid fa-phone"></i></div>
+          <div><small>Phone</small><strong>(702) 581-1143</strong></div>
+        </div>
+        <div class="contact-card">
+          <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><small>Location</small><strong>Nellis and Craig, Las Vegas, NV 89115</strong></div>
+        </div>
+        <div class="contact-card">
+          <div class="icon"><i class="fa-brands fa-instagram"></i></div>
+          <div><small>Social</small><strong>Instagram</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>Locced N With Netta</strong>
+  <span>Demo website · Las Vegas</span>
+</footer>
+
+<div class="modal" id="lockedModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="close-btn">Close</button>
+  </div>
+</div>
+
+<script>
+const menuBtn=document.querySelector('.menu-btn');
+const nav=document.querySelector('.desktop-nav');
+menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
+document.querySelectorAll('.desktop-nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+const modal=document.getElementById('lockedModal');
+function openModal(){
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+}
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openModal();}));
+document.querySelector('.close-btn').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>

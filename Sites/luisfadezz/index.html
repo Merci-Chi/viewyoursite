@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>LuisFadezz | Las Vegas</title>
+<meta name="description" content="LuisFadezz — Barber in Las Vegas. View services and booking information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--ink:#0d1b2a;--paper:#f7f4ef;--accent:#3d8bfd;}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);user-select:none;-webkit-user-select:none}
+a{color:inherit;text-decoration:none} img{display:block;width:100%;height:100%;object-fit:cover}
+header{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:18px 5vw;background:color-mix(in srgb,var(--ink) 92%,transparent);color:white;backdrop-filter:blur(12px)}
+.brand{font:700 clamp(18px,2.4vw,28px) "Playfair Display",serif} nav{display:flex;gap:26px;align-items:center} nav a{font-size:14px;font-weight:600}
+.menu{display:none;background:none;border:0;color:white;font-size:24px}
+.hero{min-height:92vh;position:relative;display:grid;place-items:end start;padding:140px 7vw 80px;color:white;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.18)),url('https://d2qlh82l0ac1bk.cloudfront.net/33f00c8b-08fe-4911-a9c0-b6b7144e2a35/business/logo?t=1761143712297&v=1761143712297') center/cover}
+.hero-inner{max-width:720px} .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:13px;font-weight:700;color:var(--accent)}
+h1{font:700 clamp(54px,8vw,108px)/.92 "Playfair Display",serif;margin:14px 0 22px} .lead{font-size:clamp(18px,2vw,24px);max-width:600px;line-height:1.5}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px} .btn{border:0;padding:15px 22px;font-weight:700;cursor:pointer;background:var(--accent);color:var(--ink)} .btn.alt{background:white}
+section{padding:90px 7vw} .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:36px} h2{font:700 clamp(38px,5vw,68px)/1 "Playfair Display",serif;margin:0} .muted{opacity:.7}
+.services{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid color-mix(in srgb,var(--ink) 20%,transparent)} .service{display:grid;grid-template-columns:1fr auto;gap:10px;padding:24px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 20%,transparent)} .service:nth-child(odd){padding-right:25px} .service:nth-child(even){padding-left:25px;border-left:1px solid color-mix(in srgb,var(--ink) 20%,transparent)} .service strong{font-size:18px} .price{font-weight:800;color:var(--accent)}
+.gallery{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:14px;height:560px} .gallery figure{margin:0;overflow:hidden} .gallery img{transition:transform .5s ease} .gallery figure:hover img{transform:scale(1.035)} 
+.about{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center} .about-card{border-left:4px solid var(--accent);padding-left:26px} .about p{font-size:18px;line-height:1.7} .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px} .info{padding:28px;border:1px solid color-mix(in srgb,var(--ink) 18%,transparent)} .info i{color:var(--accent);margin-right:10px}
+footer{padding:34px 7vw;background:var(--ink);color:white;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.72);display:none;place-items:center;padding:20px} .modal.open{display:grid} .modal-box{background:var(--paper);color:var(--ink);max-width:460px;padding:36px;width:100%} .modal-box h3{font:700 32px "Playfair Display",serif;margin-top:0} .close{width:100%;padding:14px;border:0;background:var(--ink);color:white;font-weight:700;cursor:pointer}
+@media(max-width:800px){nav{display:none;position:absolute;top:72px;left:0;right:0;background:var(--ink);padding:22px 5vw;flex-direction:column;align-items:flex-start} nav.open{display:flex} .menu{display:block} .hero{min-height:82vh;padding:120px 6vw 54px} section{padding:65px 6vw} .services,.about,.contact-grid{grid-template-columns:1fr} .service:nth-child(n){padding:20px 0;border-left:0} .gallery{height:auto;grid-template-columns:1fr 1fr} .gallery figure:first-child{grid-column:1/-1;height:360px} .gallery figure:not(:first-child){height:240px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#home">LuisFadezz</a>
+  <button class="menu" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Barber · Las Vegas</div>
+    <h1>LuisFadezz</h1>
+    <div class="lead">Fresh cuts with clean detail.</div>
+    <div class="actions">
+      <a class="btn" data-locked="true" href="https://book.heygoldie.com/Luisfadezz">Book Appointment</a>
+      <a class="btn alt" data-locked="true" href="tel:7026664426">Call (702) 666-4426</a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-head"><h2>Services</h2><div class="muted">Current publicly listed services</div></div>
+  <div class="services"><div class="service"><div><strong>Haircut</strong><div class="muted">40 min</div></div><div class="price">$25</div></div>
+<div class="service"><div><strong>Haircut + Design</strong><div class="muted">40 min</div></div><div class="price">$25</div></div>
+<div class="service"><div><strong>Haircut + Beard</strong><div class="muted">40 min</div></div><div class="price">$30</div></div></div>
+</section>
+
+<section id="work">
+  <div class="section-head"><h2>Style &amp; Work</h2><div class="muted">LuisFadezz public photo + barber imagery</div></div>
+  <div class="gallery">
+    <figure><img src="https://d2qlh82l0ac1bk.cloudfront.net/33f00c8b-08fe-4911-a9c0-b6b7144e2a35/business/logo?t=1761143712297&v=1761143712297" referrerpolicy="no-referrer" alt="LuisFadezz haircut work"></figure>
+    <figure><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1200&q=85" alt="Barber stock imagery"></figure>
+    <figure><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85" alt="Barber stock imagery"></figure>
+  </div>
+  <p class="muted" style="margin-top:16px;font-size:13px">First image is from LuisFadezz’s public booking profile. Remaining images are stock barber imagery used for this demo.</p>
+</section>
+
+<section class="about" id="about">
+  <div><div class="eyebrow">About</div><h2>LuisFadezz</h2></div>
+  <div class="about-card"><p>Las Vegas barber offering haircuts, designs and beard services.</p><p><strong>Location:</strong><br>Las Vegas, NV</p></div>
+</section>
+
+<section id="contact">
+  <div class="section-head"><h2>Contact</h2><div class="muted">Las Vegas, Nevada</div></div>
+  <div class="contact-grid">
+    <div class="info"><p><i class="fa-solid fa-phone"></i><strong>(702) 666-4426</strong></p><p class="muted">Phone number shown from public business listing.</p></div>
+    <div class="info"><p><i class="fa-solid fa-location-dot"></i><strong>Las Vegas, NV</strong></p><p class="muted">Publicly listed business area/location.</p></div>
+  </div>
+  <div style="margin-top:26px"><a class="btn" data-locked="true" href="https://www.instagram.com/luisfadezz__/"><i class="fa-brands fa-instagram"></i> Instagram</a></div>
+</section>
+</main>
+
+<footer><strong>LuisFadezz</strong><span>Demo website · Las Vegas</span></footer>
+
+<div class="modal" id="lockedModal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+    <h3 id="lockedTitle">This is currently locked.</h3>
+    <p>This feature is part of the full website. Purchase the site to unlock it.</p>
+    <button class="close">Close</button>
+  </div>
+</div>
+
+<script>
+const menu=document.querySelector('.menu');
+const nav=document.querySelector('nav');
+menu.addEventListener('click',()=>nav.classList.toggle('open'));
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const modal=document.getElementById('lockedModal');
+function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.querySelectorAll('[data-locked="true"]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}));
+document.querySelector('.close').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+
+<script>
+(function() {
+  const hero = document.querySelector('.hero');
+  const probe = new Image();
+  probe.referrerPolicy = 'no-referrer';
+  probe.src = 'https://d2qlh82l0ac1bk.cloudfront.net/33f00c8b-08fe-4911-a9c0-b6b7144e2a35/business/logo?t=1761143712297&v=1761143712297';
+  probe.onerror = function() {
+    hero.style.backgroundImage = "linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.18)),url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1200&q=85')";
+  };
+})();
+</script>
+
+</body>
+</html>
