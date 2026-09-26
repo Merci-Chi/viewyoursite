@@ -847,7 +847,7 @@ main { padding-top: 162px; }
 }
 
 .compact-hero-image {
-  background: url('https://images.pexels.com/photos/36777960/pexels-photo-36777960.jpeg?auto=compress&cs=tinysrgb&w=2000') center 48% / cover no-repeat;
+  background: url('images/hero-vegas-landscaping.png') center 48% / cover no-repeat;
   transform: scale(1.02);
 }
 
@@ -999,7 +999,7 @@ main { padding-top: 162px; }
 }
 
 .consultation-strip-bg {
-  background: url('https://images.unsplash.com/photo-1785162434673-835bb98ad923?auto=format&fit=crop&w=2000&q=85') center 58% / cover no-repeat;
+  background: url('images/consultation-vegas-landscaping.png') center 58% / cover no-repeat;
   transform: scale(1.025);
 }
 
@@ -3542,7 +3542,7 @@ textarea {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: -125px !important;
+  bottom: -110px !important;
   background-position: center 67% !important;
   z-index: 0 !important;
 }
@@ -3551,7 +3551,7 @@ textarea {
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: -125px !important;
+  bottom: -110px !important;
   z-index: 1 !important;
 }
 
@@ -3574,7 +3574,7 @@ textarea {
 @media (max-width: 760px) {
   .compact-hero-image,
   .compact-hero-overlay {
-    bottom: -105px !important;
+    bottom: -92px !important;
   }
 
   .compact-hero-image {
@@ -5575,7 +5575,7 @@ textarea {
     font-family: 'Inter', Arial, sans-serif;
     background:
       linear-gradient(180deg, rgba(2,34,22,.84), rgba(2,29,19,.96)),
-      url('https://images.pexels.com/photos/36777960/pexels-photo-36777960.jpeg?auto=compress&cs=tinysrgb&w=2000') center / cover no-repeat;
+      url('images/mobile-footer-vegas-landscaping.png') center / cover no-repeat;
     border-top: 1px solid rgba(226,181,61,.55);
   }
 
@@ -7434,7 +7434,7 @@ body.brand-refresh .site-footer-expanded {
   body.brand-refresh .mobile-footer-reference {
     background:
       linear-gradient(180deg, rgba(8,40,28,.88), rgba(8,40,28,.97)),
-      url('https://images.pexels.com/photos/36777960/pexels-photo-36777960.jpeg?auto=compress&cs=tinysrgb&w=2000') center / cover no-repeat !important;
+      url('images/mobile-footer-vegas-landscaping.png') center / cover no-repeat !important;
     border-top-color: var(--brand-orange-soft) !important;
   }
 
