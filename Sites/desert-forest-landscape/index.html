@@ -52,6 +52,7 @@
     /* Partner / supplier rotating strip */
     .company-rotator {
       overflow: hidden;
+      overflow-anchor: none;
       background: #fff;
       border-top: 1px solid rgba(18,59,42,.12);
       border-bottom: 1px solid rgba(18,59,42,.12);
@@ -60,11 +61,18 @@
 
     .company-rotator-track {
       display: flex;
+      overflow-anchor: none;
       width: max-content;
       align-items: center;
-      gap: 56px;
       animation: companyTicker 18s linear infinite;
       will-change: transform;
+    }
+
+    .company-rotator-group {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      padding-right: 56px;
     }
 
     .company-rotator-item {
@@ -78,6 +86,18 @@
       font-weight: 800;
       letter-spacing: .035em;
       text-transform: uppercase;
+      text-decoration: none;
+      margin-right: 56px;
+      flex: 0 0 auto;
+    }
+
+    .company-rotator-group .company-rotator-item:last-child {
+      margin-right: 0;
+    }
+
+    .company-rotator-name {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .company-rotator-item::after {
@@ -85,6 +105,8 @@
       color: #d8752c;
       font-size: 1.1em;
       margin-left: 42px;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .company-rotator:hover .company-rotator-track {
@@ -102,7 +124,9 @@
 
     @media (max-width: 640px) {
       .company-rotator { padding: 14px 0; }
-      .company-rotator-track { gap: 36px; animation-duration: 14s; }
+      .company-rotator-track { animation-duration: 14s; }
+      .company-rotator-item { margin-right: 36px; }
+      .company-rotator-group { padding-right: 36px; }
       .company-rotator-item::after { margin-left: 22px; }
     }
   </style>
@@ -167,9 +191,9 @@
       <div class="compact-hero-overlay"></div>
       <div class="compact-hero-content">
         <div class="compact-hero-copy">
-          <span class="compact-hero-kicker">LAS VEGAS LANDSCAPING</span>
-          <h1>Las Vegas Landscaping Done Right.</h1>
-          <p>Maintenance, Trees, Turf, Irrigation, Pavers &amp; more.</p>
+          <span class="compact-hero-kicker">PROUDLY SERVING</span>
+          <h1>Las Vegas Landscaping & Surrounding Areas</h1>
+          <p>Maintenance, Clean-Ups, Irregation Repairs, Artificial Turf, Pavers, Trees, Enhancements &amp; more.</p>
           <div class="compact-hero-actions">
             <a class="hero-cta hero-cta-primary" href="#contact">GET A FREE ESTIMATE</a>
             <a class="hero-cta hero-cta-secondary" href="tel:+17028752612">(702) 875-2616</a>
@@ -216,12 +240,16 @@
 
     <section class="company-rotator" aria-label="Companies we work with">
       <div class="company-rotator-track">
-        <span class="company-rotator-item">A&amp;L Handyman</span>
-        <span class="company-rotator-item">Star Nursery</span>
-        <span class="company-rotator-item">Moon Valley Nursery</span>
-        <span class="company-rotator-item" aria-hidden="true">A&amp;L Handyman</span>
-        <span class="company-rotator-item" aria-hidden="true">Star Nursery</span>
-        <span class="company-rotator-item" aria-hidden="true">Moon Valley Nursery</span>
+        <div class="company-rotator-group">
+          <span class="company-rotator-item" role="button" tabindex="0" onclick="alert('Waiting for link')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alert('Waiting for link')}"><span class="company-rotator-name">A&amp;L Handyman</span></span>
+          <a class="company-rotator-item" href="https://www.starnursery.com/" target="_blank" rel="noopener noreferrer"><span class="company-rotator-name">Star Nursery</span></a>
+          <a class="company-rotator-item" href="https://www.moonvalleynurseries.com/" target="_blank" rel="noopener noreferrer"><span class="company-rotator-name">Moon Valley Nursery</span></a>
+        </div>
+        <div class="company-rotator-group" aria-hidden="true">
+          <span class="company-rotator-item" role="button" tabindex="0" onclick="alert('Waiting for link')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();alert('Waiting for link')}"><span class="company-rotator-name">A&amp;L Handyman</span></span>
+          <a class="company-rotator-item" href="https://www.starnursery.com/" target="_blank" rel="noopener noreferrer"><span class="company-rotator-name">Star Nursery</span></a>
+          <a class="company-rotator-item" href="https://www.moonvalleynurseries.com/" target="_blank" rel="noopener noreferrer"><span class="company-rotator-name">Moon Valley Nursery</span></a>
+        </div>
       </div>
     </section>
 
@@ -582,8 +610,8 @@
           <div class="mobile-footer-hero">
             <div class="mobile-footer-brand">
               <img class="mobile-footer-logo" src="images/logo.png" alt="Desert Forest Landscape logo">
-              <div class="mobile-footer-title">DESERT FOREST<br>LANDSCAPE</div>
-              <div class="mobile-footer-tagline">TURNING OVER A NEW LEAF</div>
+              <img class="mobile-footer-title-image" src="images/text.png" alt="Desert Forest Landscape">
+              <img class="mobile-footer-slogan-image" src="images/slogan.png" alt="Turning Over a New Leaf">
             </div>
             <p class="mobile-footer-about">Proudly serving the Las Vegas Valley with quality landscaping, tree care, and outdoor solutions built to last.</p>
             <div class="mobile-footer-socials" aria-label="Social media">
@@ -640,9 +668,9 @@
             <div class="footer-brand-column">
               <div class="footer-brand-lockup">
                 <img class="footer-logo" src="images/logo.png" alt="Desert Forest Landscape logo">
-                <div>
-                  <strong class="footer-brand-name">DESERT FOREST<br>LANDSCAPE</strong>
-                  <span class="footer-tagline">TURNING OVER A NEW LEAF</span>
+                <div class="footer-brand-images">
+                  <img class="footer-title-image" src="images/text.png" alt="Desert Forest Landscape">
+                  <img class="footer-slogan-image" src="images/slogan.png" alt="Turning Over a New Leaf">
                 </div>
               </div>
               <p class="footer-about">Proudly serving the Las Vegas Valley with quality landscaping, tree care, and outdoor solutions built to last.</p>

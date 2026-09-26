@@ -81,7 +81,7 @@ button, input { font: inherit; }
 .brand-text {
   width: 100%;
   max-width: 540px;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .brand-tagline-row {
@@ -95,7 +95,7 @@ button, input { font: inherit; }
 .brand-slogan {
   max-width: 392px;
   max-height: 31px;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .brand-leaf {
@@ -7669,3 +7669,45 @@ body.brand-refresh .footer-socials a .google-logo-multicolor,
 body.brand-refresh .mobile-footer-socials a .google-logo-multicolor {
   filter: brightness(0) saturate(100%) invert(76%) sepia(49%) saturate(515%) hue-rotate(358deg) brightness(96%) contrast(91%);
 }
+
+/* Footer branding images: preserve the original PNG colors exactly. */
+.mobile-footer-title-image,
+.mobile-footer-slogan-image,
+.footer-title-image,
+.footer-slogan-image {
+  display: block;
+  filter: none !important;
+  -webkit-filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.mobile-footer-title-image {
+  width: min(250px, 78vw);
+  height: auto;
+  margin: 0 auto;
+}
+
+.mobile-footer-slogan-image {
+  width: min(210px, 66vw);
+  height: auto;
+  margin: 6px auto 0;
+}
+
+.footer-brand-images {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-title-image {
+  width: min(240px, 18vw);
+  height: auto;
+}
+
+.footer-slogan-image {
+  width: min(190px, 15vw);
+  height: auto;
+  margin-top: 5px;
+}
+

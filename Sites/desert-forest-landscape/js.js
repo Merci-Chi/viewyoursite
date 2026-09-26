@@ -232,7 +232,6 @@ const HEADER_TAB_POSITIONS = {
         behavior: 'smooth'
       });
 
-      history.replaceState(null, '', id);
 
       const nav = document.querySelector('.main-nav');
       if (nav) nav.classList.remove('open');
