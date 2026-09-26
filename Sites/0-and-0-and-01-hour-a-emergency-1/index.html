@@ -2,146 +2,578 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>0 &amp; 0 &amp; 01 Hour A Emergency 1 | Plumber in New York</title>
 <meta name="description" content="0 &amp; 0 &amp; 01 Hour A Emergency 1, Plumber serving New York. Call (646) 509-2136.">
-<style>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<style>
+:root{
+  --navy:#071f2c;
+  --blue:#0b4f6c;
+  --water:#1f8fb5;
+  --ice:#eaf6fb;
+  --white:#ffffff;
+  --ink:#13242d;
+  --muted:#60727b;
+  --accent:#f28b2d;
+  --line:rgba(255,255,255,.16);
+  --shadow:0 20px 55px rgba(3,24,34,.18);
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html{height:100%}
-body{min-height:100vh;display:flex;flex-direction:column;font-family:Georgia, serif;color:#23272e;line-height:1.6;background:#0f2f3a}
-main{flex:1;background:linear-gradient(180deg,#0f2f3a 0 300px,#d7e8dc 300px 100%)}
-.page{display:none}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  background:#eef5f8;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+}
+a,button,input,textarea{font:inherit}
+img{max-width:100%;display:block}
+button,a{touch-action:manipulation}
+.page{display:none;min-height:calc(100vh - 78px)}
 .page.active{display:block}
-.site-header{background:transparent;color:#faf8f2;position:relative;z-index:50}
-.bar{max-width:1100px;margin:0 auto;text-align:center;padding:1.8rem 1.2rem .6rem}
-.brand{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;font-size:1.9rem;cursor:pointer;letter-spacing:.02em}
-.brand small{display:block;font-family:Georgia, serif;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:#e07b39;margin-top:.3rem}
-.pillnav{display:flex;justify-content:center;padding:.8rem 1rem 1.6rem;position:relative}
-#navToggle{display:none;background:#e07b39;color:#faf8f2;border:none;font-size:1.2rem;padding:.4rem 1.1rem;border-radius:999px;cursor:pointer;font-weight:bold}
-#navLinks{display:flex;gap:.5rem;list-style:none;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.25);padding:.45rem;border-radius:999px}
-#navLinks a{color:#faf8f2;text-decoration:none;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1.2rem;border-radius:999px;cursor:pointer}
-#navLinks a:hover{background:rgba(255,255,255,.14)}
-#navLinks a.current{background:#e07b39;font-weight:bold}
-.seam{max-width:1100px;margin:0 auto;padding:0 1.4rem}
-.herocard{background:#fffdf8;border-radius:48px;box-shadow:0 24px 60px rgba(0,0,0,.30);padding:3rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;margin-top:2.2rem}
-.herocard h1{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;font-size:clamp(2rem,4.6vw,3.2rem);color:#0f2f3a;line-height:1.06;margin-bottom:.8rem}
-.herocard .cat{color:#e07b39;font-weight:bold;letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;margin-bottom:1rem}
-.herocard p{margin-bottom:1.6rem}
-.btn{display:inline-block;background:#e07b39;color:#faf8f2;text-decoration:none;padding:.9rem 2rem;border-radius:48px;font-weight:bold;cursor:pointer;border:none;font-size:1rem}
-.btn.dark{background:#0f2f3a}
-.btnrow{display:flex;gap:1rem;flex-wrap:wrap}
-.sidecard{background:#0f2f3a;color:#faf8f2;border-radius:48px;padding:2rem}
-.sidecard h3{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;color:#e07b39;margin-bottom:.7rem}
-.sidecard a{color:#faf8f2}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.6rem}
-.card{background:#fffdf8;border-radius:48px;padding:1.9rem;box-shadow:0 14px 34px rgba(0,0,0,.16);border-bottom:8px solid #e07b39}
-.card h3{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;color:#0f2f3a;font-size:1.2rem;margin-bottom:.5rem}
-.card p{font-size:.93rem}
-.pageband{background:#fffdf8;border-radius:48px;box-shadow:0 24px 60px rgba(0,0,0,.30);padding:3rem;margin-top:2.2rem}
-.pageband h2{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;font-size:2.2rem;color:#0f2f3a;margin-bottom:.5rem}
-.pageband .lede{margin-bottom:2rem;max-width:640px}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
-.blk{background:#0f2f3a;color:#faf8f2;border-radius:48px;padding:2.2rem}
-.blk h3{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;color:#e07b39;margin-bottom:.7rem}
-.blk a{color:#faf8f2;font-weight:bold}
-.wht{background:#d7e8dc;border-radius:48px;padding:2.2rem}
-.wht h3{font-family:"Gill Sans", "Gill Sans MT", Calibri, sans-serif;color:#0f2f3a;margin-bottom:.7rem}
-.ctr{text-align:center}
-.form{text-align:left;background:#d7e8dc;border-radius:48px;padding:2.2rem;max-width:640px;margin:0 auto}
-.form label{display:block;font-weight:bold;margin:1rem 0 .3rem;color:#0f2f3a}
-.form input,.form textarea{width:100%;padding:.8rem;border:2px solid #cfc6ad;border-radius:48px;font:inherit;background:#fff}
-.form textarea{min-height:120px;resize:vertical}
-#formNote{display:none;background:#fff;border-left:6px solid #e07b39;padding:1rem;margin-top:1.2rem}
-.note{font-size:.88rem;color:#55554e;margin-top:1rem}
-footer{margin-top:auto;background:#0f2f3a;color:#faf8f2;text-align:center;padding:1.3rem;font-size:.95rem}
-@media(max-width:880px){
-  .herocard{grid-template-columns:1fr;padding:2rem}
-  .cards{grid-template-columns:1fr}
-  .duo{grid-template-columns:1fr}
-  .pageband{padding:2rem}
-  #navToggle{display:inline-block}
-  #navLinks{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);flex-direction:column;background:#0f2f3a;border-radius:48px;padding:1rem;min-width:240px;box-shadow:0 18px 40px rgba(0,0,0,.4)}
-  #navLinks.open{display:flex}
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(7,31,44,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.navbar{
+  width:min(1180px,calc(100% - 40px));
+  margin:auto;
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.brand{
+  color:var(--white);
+  font-size:1.04rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  cursor:pointer;
+  line-height:1.15;
+  max-width:520px;
+}
+.brand small{
+  display:block;
+  margin-top:6px;
+  color:#7fd8f1;
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.22em;
+  font-weight:700;
+}
+#navLinks{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  list-style:none;
+}
+#navLinks a{
+  color:#dcecf2;
+  text-decoration:none;
+  font-weight:700;
+  font-size:.9rem;
+  padding:10px 13px;
+  border-radius:8px;
+  transition:.2s ease;
+}
+#navLinks a:hover,#navLinks a.current{
+  color:#fff;
+  background:rgba(255,255,255,.10);
+}
+#navToggle{
+  display:none;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:1.35rem;
+  width:44px;
+  height:44px;
+  cursor:pointer;
 }
 
-</style>
-<script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "0 & 0 & 01 Hour A Emergency 1", "telephone": "(646) 509-2136", "address": "1453 Amsterdam Ave, New York, NY 10027"}
-</script>
-<style>html{height:100%}body{min-height:100vh}</style></head>
-<body>
+.hero{
+  min-height:640px;
+  display:flex;
+  align-items:center;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(3,24,34,.90) 0%,rgba(3,24,34,.72) 48%,rgba(3,24,34,.26) 100%),
+    url("https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+.hero-inner{
+  width:min(1180px,calc(100% - 40px));
+  margin:auto;
+  padding:92px 0;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:#9ee7fa;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.77rem;
+  font-weight:800;
+  margin-bottom:18px;
+}
+.hero h1{
+  max-width:760px;
+  font-size:clamp(2.8rem,7vw,5.8rem);
+  line-height:.98;
+  letter-spacing:-.045em;
+  margin-bottom:22px;
+}
+.hero-copy{
+  max-width:620px;
+  color:#d7e7ed;
+  font-size:1.08rem;
+  margin-bottom:30px;
+}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:50px;
+  padding:13px 20px;
+  border:0;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .18s ease,background .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.secondary{background:#fff;color:var(--navy)}
 
+.quick-strip{
+  width:min(1080px,calc(100% - 40px));
+  margin:-48px auto 0;
+  position:relative;
+  z-index:5;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.quick-item{
+  padding:25px;
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+  border-right:1px solid #dde8ec;
+}
+.quick-item:last-child{border-right:0}
+.quick-item i{color:var(--water);font-size:1.35rem;margin-top:3px}
+.quick-item strong{display:block;color:var(--navy);margin-bottom:3px}
+.quick-item span,.quick-item a{color:var(--muted);font-size:.9rem;text-decoration:none}
+
+.section{
+  padding:90px 0;
+}
+.section-inner{
+  width:min(1180px,calc(100% - 40px));
+  margin:auto;
+}
+.section-head{
+  max-width:700px;
+  margin-bottom:38px;
+}
+.section-head .kicker{
+  color:var(--water);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.76rem;
+}
+.section-head h2{
+  color:var(--navy);
+  font-size:clamp(2rem,4vw,3.4rem);
+  line-height:1.05;
+  letter-spacing:-.035em;
+  margin-top:8px;
+}
+.section-head p{color:var(--muted);margin-top:13px}
+
+.services-bg{
+  background:
+    linear-gradient(rgba(238,245,248,.94),rgba(238,245,248,.94)),
+    url("https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1800&q=80") center/cover fixed;
+}
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.service{
+  background:#fff;
+  padding:30px;
+  min-height:220px;
+  border-top:4px solid var(--water);
+  box-shadow:0 10px 30px rgba(6,45,61,.08);
+  transition:.2s ease;
+}
+.service:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(6,45,61,.14)}
+.service i{
+  font-size:1.5rem;
+  color:var(--water);
+  margin-bottom:18px;
+}
+.service h3{color:var(--navy);font-size:1.12rem;margin-bottom:8px}
+.service p{color:var(--muted);font-size:.94rem}
+
+.split-hero{
+  min-height:390px;
+  display:flex;
+  align-items:center;
+  color:#fff;
+  background:
+    linear-gradient(90deg,rgba(3,24,34,.91),rgba(3,24,34,.60)),
+    url("https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+.split-hero .section-inner{padding:75px 0}
+.split-hero h2{
+  max-width:700px;
+  font-size:clamp(2.3rem,5vw,4rem);
+  line-height:1.02;
+  letter-spacing:-.04em;
+}
+.split-hero p{max-width:650px;color:#d6e9ef;margin:16px 0 24px}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:26px;
+}
+.info-panel{
+  background:#fff;
+  padding:38px;
+  box-shadow:0 12px 35px rgba(6,45,61,.08);
+}
+.info-panel.dark{background:var(--navy);color:#fff}
+.info-panel h3{font-size:1.35rem;margin-bottom:12px}
+.info-panel.dark h3{color:#7fd8f1}
+.info-panel p,.info-panel a{color:inherit}
+.info-panel:not(.dark) p,.info-panel:not(.dark) a{color:var(--muted)}
+.info-panel a{font-weight:800}
+
+.page-banner{
+  min-height:320px;
+  display:flex;
+  align-items:end;
+  color:#fff;
+  background:
+    linear-gradient(180deg,rgba(3,24,34,.28),rgba(3,24,34,.88)),
+    url("https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+.page-banner .section-inner{padding:72px 0 48px}
+.page-banner h1{
+  font-size:clamp(2.6rem,6vw,4.8rem);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.page-banner p{color:#d9e7ec;margin-top:12px;max-width:680px}
+
+.review-panel{
+  text-align:center;
+  max-width:820px;
+  margin:auto;
+  background:#fff;
+  padding:55px 30px;
+  box-shadow:var(--shadow);
+}
+.review-panel i{font-size:2rem;color:var(--accent);margin-bottom:18px}
+.review-panel h2{color:var(--navy);font-size:2.2rem;margin-bottom:10px}
+.review-panel p{color:var(--muted);margin-bottom:24px}
+
+.contact-wrap{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:24px;
+}
+.contact-card{
+  background:var(--navy);
+  color:#fff;
+  padding:38px;
+}
+.contact-card h2{font-size:2rem;margin-bottom:15px}
+.contact-card p,.contact-card a{color:#d9e9ef}
+.contact-card a{font-weight:800}
+.form{
+  background:#fff;
+  padding:38px;
+  box-shadow:0 12px 35px rgba(6,45,61,.08);
+}
+.form label{
+  display:block;
+  font-weight:800;
+  color:var(--navy);
+  margin:14px 0 6px;
+}
+.form input,.form textarea{
+  width:100%;
+  border:1px solid #c7d6dc;
+  background:#f8fbfc;
+  padding:13px 14px;
+  border-radius:6px;
+  outline:none;
+}
+.form input:focus,.form textarea:focus{border-color:var(--water)}
+.form textarea{min-height:135px;resize:vertical}
+.note{font-size:.88rem;color:var(--muted);margin-top:14px}
+#formNote{display:none;margin-top:16px;padding:14px;border-left:4px solid var(--accent);background:#fff4e8}
+
+footer{
+  background:#04151d;
+  color:#bcd0d8;
+  text-align:center;
+  padding:24px 20px;
+  font-size:.9rem;
+}
+
+@media(max-width:900px){
+  .navbar{width:min(100% - 28px,1180px)}
+  #navToggle{display:inline-grid;place-items:center}
+  #navLinks{
+    display:none;
+    position:absolute;
+    top:78px;
+    left:14px;
+    right:14px;
+    background:#082b3b;
+    padding:14px;
+    flex-direction:column;
+    align-items:stretch;
+    box-shadow:0 20px 40px rgba(0,0,0,.28);
+  }
+  #navLinks.open{display:flex}
+  #navLinks a{display:block}
+  .hero{min-height:590px;background-position:62% center}
+  .quick-strip{grid-template-columns:1fr;margin-top:0;width:100%}
+  .quick-item{border-right:0;border-bottom:1px solid #dde8ec}
+  .service-grid{grid-template-columns:1fr 1fr}
+  .info-grid,.contact-wrap{grid-template-columns:1fr}
+  .services-bg{background-attachment:scroll}
+}
+@media(max-width:620px){
+  .brand{font-size:.9rem;max-width:245px}
+  .hero-inner,.section-inner{width:min(100% - 28px,1180px)}
+  .hero{min-height:560px}
+  .hero-inner{padding:70px 0}
+  .hero h1{font-size:clamp(2.55rem,13vw,4.2rem)}
+  .actions{flex-direction:column}
+  .actions .btn{width:100%}
+  .section{padding:66px 0}
+  .service-grid{grid-template-columns:1fr}
+  .service{min-height:0}
+  .page-banner{min-height:270px}
+  .info-panel,.form,.contact-card{padding:28px 22px}
+}
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"0 & 0 & 01 Hour A Emergency 1","telephone":"(646) 509-2136","address":"1453 Amsterdam Ave, New York, NY 10027"}
+</script>
+</head>
+
+<body>
 <header class="site-header">
-<div class="bar"><div class="brand" onclick="navigateTo('home')">0 &amp; 0 &amp; 01 Hour A Emergency 1<small>Plumber</small></div></div>
-<div class="pillnav">
-<button id="navToggle" aria-expanded="false" aria-label="Menu">Menu &#9776;</button>
-<ul id="navLinks">
-<li><a data-nav="home" href="index.html#/home" onclick="navigateTo('home');return false;">Home</a></li>
-<li><a data-nav="services" href="index.html#/services" onclick="navigateTo('services');return false;">Services</a></li>
-<li><a data-nav="about" href="index.html#/about" onclick="navigateTo('about');return false;">About</a></li>
-<li><a data-nav="reviews" href="index.html#/reviews" onclick="navigateTo('reviews');return false;">Reviews</a></li>
-<li><a data-nav="contact" href="index.html#/contact" onclick="navigateTo('contact');return false;">Contact</a></li>
-</ul></div></header>
+  <div class="navbar">
+    <div class="brand" onclick="navigateTo('home')">
+      0 &amp; 0 &amp; 01 Hour A Emergency 1
+      <small>New York Plumber</small>
+    </div>
+    <button id="navToggle" aria-expanded="false" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+    <ul id="navLinks">
+      <li><a data-nav="home" href="#/home" onclick="navigateTo('home');return false;">Home</a></li>
+      <li><a data-nav="services" href="#/services" onclick="navigateTo('services');return false;">Services</a></li>
+      <li><a data-nav="about" href="#/about" onclick="navigateTo('about');return false;">About</a></li>
+      <li><a data-nav="reviews" href="#/reviews" onclick="navigateTo('reviews');return false;">Reviews</a></li>
+      <li><a data-nav="contact" href="#/contact" onclick="navigateTo('contact');return false;">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
 <main>
 <section class="page" data-page="home">
-<div class="seam">
-<div class="herocard">
-<div>
-<div class="cat">Plumber in New York</div>
-<h1>0 &amp; 0 &amp; 01 Hour A Emergency 1</h1>
-<p>Straightforward Plumber work for New York and the surrounding area. Call to confirm availability and pricing.</p>
-<div class="btnrow"><a class="btn" href="tel:6465092136">Call (646) 509-2136</a><a class="btn dark" onclick="navigateTo('services');return false;" href="index.html#/services">Services</a></div>
-</div>
-<div class="sidecard"><h3>Visit us</h3><p>1453 Amsterdam Ave, New York, NY 10027</p><p style="margin-top:1rem"><a href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener">Get directions on Google Maps</a></p></div>
-</div>
-<div class="cards"><div class="card"><h3>Drain cleaning</h3><p>Kitchen, bath, and main line drains cleared so water flows freely.</p></div><div class="card"><h3>Leak detection and repair</h3><p>Find the source of a leak and get it fixed the right way.</p></div><div class="card"><h3>Water heaters</h3><p>Repair and replacement for tank style water heaters.</p></div><div class="card"><h3>Fixture installation</h3><p>Faucets, toilets, and sinks installed cleanly and correctly.</p></div><div class="card"><h3>Sewer line service</h3><p>Sewer backups, line cleaning, and repair work.</p></div><div class="card"><h3>Emergency repairs</h3><p>Fast help when a pipe bursts or a drain backs up.</p></div></div>
-<div style="height:3rem"></div>
-</div></section>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow"><i class="fa-solid fa-droplet"></i> Plumber in New York</div>
+      <h1>Plumbing help with a cleaner, more professional look.</h1>
+      <p class="hero-copy">0 &amp; 0 &amp; 01 Hour A Emergency 1 serves New York with plumbing services including drain cleaning, leak repair, water heaters, fixture installation, sewer line service, and emergency repairs.</p>
+      <div class="actions">
+        <a class="btn primary" href="tel:6465092136"><i class="fa-solid fa-phone"></i> Call (646) 509-2136</a>
+        <a class="btn secondary" href="#/services" onclick="navigateTo('services');return false;"><i class="fa-solid fa-wrench"></i> View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="quick-strip">
+    <div class="quick-item"><i class="fa-solid fa-location-dot"></i><div><strong>New York</strong><span>1453 Amsterdam Ave, New York, NY 10027</span></div></div>
+    <div class="quick-item"><i class="fa-solid fa-phone"></i><div><strong>Phone</strong><a href="tel:6465092136">(646) 509-2136</a></div></div>
+    <div class="quick-item"><i class="fa-solid fa-map"></i><div><strong>Directions</strong><a href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener">Open Google Maps</a></div></div>
+  </div>
+
+  <section class="section services-bg">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="kicker">Plumbing Services</span>
+        <h2>Practical help for common plumbing problems.</h2>
+        <p>Call to confirm availability and pricing.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service"><i class="fa-solid fa-water"></i><h3>Drain cleaning</h3><p>Kitchen, bath, and main line drains cleared so water flows freely.</p></article>
+        <article class="service"><i class="fa-solid fa-magnifying-glass"></i><h3>Leak detection and repair</h3><p>Find the source of a leak and get it fixed the right way.</p></article>
+        <article class="service"><i class="fa-solid fa-fire-flame-simple"></i><h3>Water heaters</h3><p>Repair and replacement for tank style water heaters.</p></article>
+        <article class="service"><i class="fa-solid fa-faucet-drip"></i><h3>Fixture installation</h3><p>Faucets, toilets, and sinks installed cleanly and correctly.</p></article>
+        <article class="service"><i class="fa-solid fa-pipe-valve"></i><h3>Sewer line service</h3><p>Sewer backups, line cleaning, and repair work.</p></article>
+        <article class="service"><i class="fa-solid fa-triangle-exclamation"></i><h3>Emergency repairs</h3><p>Fast help when a pipe bursts or a drain backs up.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="split-hero">
+    <div class="section-inner">
+      <h2>Serving New York from Amsterdam Avenue.</h2>
+      <p>Reach the business directly by phone for service information, scheduling, and pricing.</p>
+      <a class="btn primary" href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener"><i class="fa-solid fa-route"></i> Get Directions</a>
+    </div>
+  </section>
+</section>
+
 <section class="page" data-page="services">
-<div class="seam"><div class="pageband">
-<h2>Services</h2>
-<p class="lede">The Plumber services 0 &amp; 0 &amp; 01 Hour A Emergency 1 provides. Details and pricing by phone: <a href="tel:6465092136" style="font-weight:bold;color:__DARK__">(646) 509-2136</a>.</p>
-<div class="cards" style="margin-top:0"><div class="card"><h3>Drain cleaning</h3><p>Kitchen, bath, and main line drains cleared so water flows freely.</p></div><div class="card"><h3>Leak detection and repair</h3><p>Find the source of a leak and get it fixed the right way.</p></div><div class="card"><h3>Water heaters</h3><p>Repair and replacement for tank style water heaters.</p></div><div class="card"><h3>Fixture installation</h3><p>Faucets, toilets, and sinks installed cleanly and correctly.</p></div><div class="card"><h3>Sewer line service</h3><p>Sewer backups, line cleaning, and repair work.</p></div><div class="card"><h3>Emergency repairs</h3><p>Fast help when a pipe bursts or a drain backs up.</p></div></div>
-<p class="note">Shown as a sample of typical work. Call to confirm what is available.</p>
-</div><div style="height:3rem"></div></div></section>
+  <section class="page-banner">
+    <div class="section-inner">
+      <h1>Services</h1>
+      <p>The plumbing services listed on the original site, presented in a cleaner niche-specific layout.</p>
+    </div>
+  </section>
+  <section class="section services-bg">
+    <div class="section-inner">
+      <div class="service-grid">
+        <article class="service"><i class="fa-solid fa-water"></i><h3>Drain cleaning</h3><p>Kitchen, bath, and main line drains cleared so water flows freely.</p></article>
+        <article class="service"><i class="fa-solid fa-magnifying-glass"></i><h3>Leak detection and repair</h3><p>Find the source of a leak and get it fixed the right way.</p></article>
+        <article class="service"><i class="fa-solid fa-fire-flame-simple"></i><h3>Water heaters</h3><p>Repair and replacement for tank style water heaters.</p></article>
+        <article class="service"><i class="fa-solid fa-faucet-drip"></i><h3>Fixture installation</h3><p>Faucets, toilets, and sinks installed cleanly and correctly.</p></article>
+        <article class="service"><i class="fa-solid fa-pipe-valve"></i><h3>Sewer line service</h3><p>Sewer backups, line cleaning, and repair work.</p></article>
+        <article class="service"><i class="fa-solid fa-triangle-exclamation"></i><h3>Emergency repairs</h3><p>Fast help when a pipe bursts or a drain backs up.</p></article>
+      </div>
+      <p class="note">Shown as a sample of typical work. Call to confirm what is available.</p>
+    </div>
+  </section>
+</section>
+
 <section class="page" data-page="about">
-<div class="seam"><div class="pageband">
-<h2>About</h2>
-<p class="lede">0 &amp; 0 &amp; 01 Hour A Emergency 1, a Plumber serving New York.</p>
-<div class="duo">
-<div class="blk"><h3>Who we are</h3><p>0 &amp; 0 &amp; 01 Hour A Emergency 1 is a Plumber based at 1453 Amsterdam Ave, New York, NY 10027. Customers in New York and nearby can reach us directly by phone for service information, scheduling, and pricing.</p></div>
-<div class="wht"><h3>Reach us</h3><p>1453 Amsterdam Ave, New York, NY 10027<br><a href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener" style="font-weight:bold;color:__DARK__">Get directions</a><br><br>Phone: <a href="tel:6465092136" style="font-weight:bold;color:__DARK__">(646) 509-2136</a></p></div>
-</div></div><div style="height:3rem"></div></div></section>
+  <section class="page-banner">
+    <div class="section-inner">
+      <h1>About</h1>
+      <p>0 &amp; 0 &amp; 01 Hour A Emergency 1, a Plumber serving New York.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-inner">
+      <div class="info-grid">
+        <div class="info-panel dark">
+          <h3>Who we are</h3>
+          <p>0 &amp; 0 &amp; 01 Hour A Emergency 1 is a Plumber based at 1453 Amsterdam Ave, New York, NY 10027. Customers in New York and nearby can reach us directly by phone for service information, scheduling, and pricing.</p>
+        </div>
+        <div class="info-panel">
+          <h3>Reach us</h3>
+          <p>1453 Amsterdam Ave, New York, NY 10027</p>
+          <p style="margin-top:16px"><a href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener">Get directions</a></p>
+          <p style="margin-top:10px"><a href="tel:6465092136">(646) 509-2136</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
 <section class="page" data-page="reviews">
-<div class="seam"><div class="pageband ctr">
-<h2>Reviews</h2>
-<p class="lede" style="margin-left:auto;margin-right:auto">See what customers say about 0 &amp; 0 &amp; 01 Hour A Emergency 1 on Google Maps.</p>
-<a class="btn" href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener">See reviews on Google Maps</a>
-</div><div style="height:3rem"></div></div></section>
+  <section class="page-banner">
+    <div class="section-inner">
+      <h1>Reviews</h1>
+      <p>See what customers say on Google Maps.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-inner">
+      <div class="review-panel">
+        <i class="fa-solid fa-star"></i>
+        <h2>Customer feedback</h2>
+        <p>See what customers say about 0 &amp; 0 &amp; 01 Hour A Emergency 1 on Google Maps.</p>
+        <a class="btn primary" href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener">See reviews on Google Maps</a>
+      </div>
+    </div>
+  </section>
+</section>
+
 <section class="page" data-page="contact">
-<div class="seam"><div class="pageband ctr">
-<h2>Contact</h2>
-<p class="lede" style="margin-left:auto;margin-right:auto">The fastest way to reach us is by phone: <a href="tel:6465092136" style="font-weight:bold;color:__DARK__">(646) 509-2136</a></p>
-<div class="form"><form id="contactForm">
-<label for="cfName">Your name</label><input id="cfName" name="name" type="text" autocomplete="name">
-<label for="cfPhone">Your phone</label><input id="cfPhone" name="phone" type="tel" autocomplete="tel">
-<label for="cfMsg">Message</label><textarea id="cfMsg" name="message"></textarea>
-<div style="margin-top:1.2rem"><button class="btn" type="submit">Send message</button></div>
-<div id="formNote"></div>
-<p class="note">This form does not submit online. To reach us, please call <a href="tel:6465092136">(646) 509-2136</a>.</p>
-</form></div>
-</div><div style="height:3rem"></div></div></section>
+  <section class="page-banner">
+    <div class="section-inner">
+      <h1>Contact</h1>
+      <p>The fastest way to reach us is by phone.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-inner contact-wrap">
+      <div class="contact-card">
+        <h2>Call the business</h2>
+        <p><a href="tel:6465092136">(646) 509-2136</a></p>
+        <p style="margin-top:18px">1453 Amsterdam Ave<br>New York, NY 10027</p>
+        <p style="margin-top:18px"><a href="https://www.google.com/maps/place/?q=place_id:ChIJk6exzG72wokRlOsAXn7mMx4" target="_blank" rel="noopener">Get directions on Google Maps</a></p>
+      </div>
+      <div class="form">
+        <form id="contactForm">
+          <label for="cfName">Your name</label>
+          <input id="cfName" name="name" type="text" autocomplete="name">
+          <label for="cfPhone">Your phone</label>
+          <input id="cfPhone" name="phone" type="tel" autocomplete="tel">
+          <label for="cfMsg">Message</label>
+          <textarea id="cfMsg" name="message"></textarea>
+          <div style="margin-top:18px"><button class="btn primary" type="submit">Send message</button></div>
+          <div id="formNote"></div>
+          <p class="note">This form does not submit online. To reach us, please call <a href="tel:6465092136">(646) 509-2136</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</section>
 </main>
+
 <footer>&copy; 0 &amp; 0 &amp; 01 Hour A Emergency 1</footer>
-<script>var PAGES=['home','services','about','reviews','contact'];
+
+<script>
+var PAGES=['home','services','about','reviews','contact'];
 var SITE_NAME="0 & 0 & 01 Hour A Emergency 1";
-function pageTitle(p){var t={home:'Home',services:'Services',about:'About',reviews:'Reviews',contact:'Contact'};return SITE_NAME+' | '+t[p];}
+var SITE_PHONE="(646) 509-2136";
+
+function pageTitle(p){
+  var t={home:'Home',services:'Services',about:'About',reviews:'Reviews',contact:'Contact'};
+  return SITE_NAME+' | '+t[p];
+}
 function showPage(p){
-  var pages=document.querySelectorAll('.page');
-  for(var i=0;i<pages.length;i++){pages[i].classList.toggle('active',pages[i].getAttribute('data-page')===p);}
-  var links=document.querySelectorAll('[data-nav]');
-  for(var j=0;j<links.length;j++){links[j].classList.toggle('current',links[j].getAttribute('data-nav')===p);}
+  document.querySelectorAll('.page').forEach(function(page){
+    page.classList.toggle('active',page.getAttribute('data-page')===p);
+  });
+  document.querySelectorAll('[data-nav]').forEach(function(link){
+    link.classList.toggle('current',link.getAttribute('data-nav')===p);
+  });
   document.title=pageTitle(p);
 }
 function navigateTo(p){
@@ -149,38 +581,44 @@ function navigateTo(p){
   showPage(p);
   var u='#/'+p;
   if(location.hash!==u){history.pushState({p:p},'',u);}
-  window.scrollTo(0,0);
-  var nl=document.getElementById('navLinks');if(nl){nl.classList.remove('open');}
-  var nb=document.getElementById('navToggle');if(nb){nb.setAttribute('aria-expanded','false');}
+  window.scrollTo({top:0,behavior:'smooth'});
+  var nl=document.getElementById('navLinks');
+  var nb=document.getElementById('navToggle');
+  if(nl) nl.classList.remove('open');
+  if(nb) nb.setAttribute('aria-expanded','false');
 }
-function pageFromHash(){var h=(location.hash||'').replace(/^#\/?/,'');return PAGES.indexOf(h)>=0?h:'home';}
+function pageFromHash(){
+  var h=(location.hash||'').replace(/^#\/?/,'');
+  return PAGES.indexOf(h)>=0?h:'home';
+}
 window.addEventListener('popstate',function(){showPage(pageFromHash());});
+window.addEventListener('hashchange',function(){showPage(pageFromHash());});
+
 document.addEventListener('DOMContentLoaded',function(){
   showPage(pageFromHash());
+
   var nb=document.getElementById('navToggle');
   var nl=document.getElementById('navLinks');
-  if(nb&&nl){nb.addEventListener('click',function(){
-    var open=nl.classList.toggle('open');
-    nb.setAttribute('aria-expanded',open?'true':'false');
-  });}
-  var f=document.getElementById('contactForm');
-  if(f){f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var n=document.getElementById('cfName');
-    var note=document.getElementById('formNote');
-    var who=n&&n.value?n.value:'there';
-    note.style.display='block';
-    note.textContent='Thanks '+who+'. This form does not send online, so please call us at '+SITE_PHONE+' and we will help you right away.';
-    f.reset();
-  });}
-});</script>
+  if(nb&&nl){
+    nb.addEventListener('click',function(){
+      var open=nl.classList.toggle('open');
+      nb.setAttribute('aria-expanded',open?'true':'false');
+    });
+  }
 
-<script>
-/* sticky-footer-fix-v1 */
-(function(){function s(){var f=document.querySelector('footer');if(!f||f.getBoundingClientRect().bottom>=window.innerHeight-2)return;var b=document.body;b.style.minHeight='100vh';b.style.display='flex';b.style.flexDirection='column';var e=f;while(e&&e!==b){if(e===f){e.style.marginTop='auto';}else{e.style.display='flex';e.style.flexDirection='column';e.style.flex='1 0 auto';}e=e.parentElement;}}
-if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',s);}else{s();}
-window.addEventListener('hashchange',function(){setTimeout(s,60);});
-window.addEventListener('popstate',function(){setTimeout(s,60);});
-var _n=window.navigateTo;if(typeof _n==='function'){window.navigateTo=function(){var r=_n.apply(this,arguments);setTimeout(s,60);return r;};}})();
-</script></body>
+  var f=document.getElementById('contactForm');
+  if(f){
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var n=document.getElementById('cfName');
+      var note=document.getElementById('formNote');
+      var who=n&&n.value?n.value:'there';
+      note.style.display='block';
+      note.textContent='Thanks '+who+'. This form does not send online, so please call us at '+SITE_PHONE+' and we will help you right away.';
+      f.reset();
+    });
+  }
+});
+</script>
+</body>
 </html>
