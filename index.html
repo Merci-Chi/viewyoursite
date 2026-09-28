@@ -1268,6 +1268,7 @@
         document.getElementById("agreementSignatureClear").addEventListener("click", resetAgreementSignature);
         let developmentPurchaseConfirmed = false;
         let developmentSkipNote = "";
+        let restoredPortalProgress = null;
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
@@ -1393,7 +1394,6 @@
                         pendingProgressScrollTarget = claimForm;
                     }
                     await loadSubscriptions();
-                    if (currentPortalUser && pending.claimType) await restoreClaimProgressFromAccount(currentPortalUser);
                     showPurchaseComplete(pending.planLabel);
                     return true;
                 }
@@ -1578,43 +1578,102 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        async function restoreClaimProgressFromAccount(user) {
-            if (!user?.id) return;
+        async function loadSavedClaimProgress(user) {
+            if (!user?.id) return null;
 
-            developmentStatus.textContent = "Checking your saved account progress…";
-
-            const [{ data: agreementRows, error: agreementError }, { data: squareRows, error: squareError }] = await Promise.all([
+            const [agreementResult, squareResult, overrideResult] = await Promise.all([
                 portalSupabase
                     .from("agreements")
-                    .select("id,name,company,email,signature,terms,signed,accepted,original,created")
+                    .select("id,name,company,email,signature,terms,signed,accepted,plan,original,created")
                     .eq("userid", user.id)
                     .eq("accepted", true)
                     .order("signed", { ascending: false, nullsFirst: false })
-                    .limit(1),
+                    .order("created", { ascending: false })
+                    .limit(1)
+                    .maybeSingle(),
                 portalSupabase
                     .from("square")
                     .select("id,plan,amount,cadence,status,original,created")
                     .eq("userid", user.id)
-                    .order("created", { ascending: false })
+                    .order("created", { ascending: false }),
+                portalSupabase
+                    .from("client_portal_progress")
+                    .select("agreement_signed,development_paid,standard_hosting,backend_hosting")
+                    .eq("user_id", user.id)
+                    .maybeSingle()
             ]);
 
-            if (!agreementError && agreementRows?.length) {
-                const agreement = agreementRows[0];
-                baseAgreementId = agreement.id;
-                agreementSigned = true;
-                signedAgreement = {
-                    signer: agreement.name || "",
-                    business: agreement.company || "",
-                    email: agreement.email || user.email || "",
-                    signature: agreement.signature || "",
-                    signedAt: agreement.signed || agreement.created || new Date().toISOString(),
-                    version: agreement.terms || AGREEMENT_VERSION
-                };
+            const agreementRow = agreementResult.data || null;
+            const squareRows = squareResult.data || [];
+            // If the SQL table has not been created yet, keep using the real agreement/Square history.
+            const overrides = overrideResult.error ? null : (overrideResult.data || null);
 
+            const isVerified = row => ["COMPLETED", "ACTIVE"].includes(String(row?.status || "").toUpperCase());
+            const isDevelopment = row => {
+                const key = String(row?.original?.plankey || "").toLowerCase();
+                const plan = String(row?.plan || "").toLowerCase();
+                return isVerified(row) && (
+                    key === "website-development" ||
+                    (String(row?.cadence || "").toUpperCase() === "ONE_TIME" && Number(row?.amount) === 10000) ||
+                    plan.includes("website development")
+                );
+            };
+            const isStandard = row => {
+                const key = String(row?.original?.plankey || "").toLowerCase();
+                const plan = String(row?.plan || "").toLowerCase();
+                return isVerified(row) && String(row?.cadence || "").toUpperCase() === "MONTHLY" &&
+                    (key.includes("standard") || plan.includes("standard website hosting"));
+            };
+            const isBackend = row => {
+                const key = String(row?.original?.plankey || "").toLowerCase();
+                const plan = String(row?.plan || "").toLowerCase();
+                return isVerified(row) && String(row?.cadence || "").toUpperCase() === "MONTHLY" &&
+                    (key.includes("backend") || plan.includes("backend website hosting"));
+            };
+
+            const realProgress = {
+                agreementSigned: Boolean(agreementRow?.accepted && (agreementRow?.signed || agreementRow?.created)),
+                developmentPaid: squareRows.some(isDevelopment),
+                standardHosting: squareRows.some(isStandard),
+                backendHosting: squareRows.some(isBackend)
+            };
+
+            return {
+                agreementRow,
+                agreementSigned: overrides?.agreement_signed ?? realProgress.agreementSigned,
+                developmentPaid: overrides?.development_paid ?? realProgress.developmentPaid,
+                standardHosting: overrides?.standard_hosting ?? realProgress.standardHosting,
+                backendHosting: overrides?.backend_hosting ?? realProgress.backendHosting,
+                overrides
+            };
+        }
+
+        function applySavedClaimProgress(progress, user) {
+            if (!progress) {
+                updateClaimSubmitAvailability();
+                return;
+            }
+
+            restoredPortalProgress = progress;
+            agreementSigned = Boolean(progress.agreementSigned);
+            developmentPurchaseConfirmed = Boolean(progress.developmentPaid);
+
+            if (agreementSigned) {
+                const row = progress.agreementRow;
+                baseAgreementId = row?.id || null;
+                signedAgreement = {
+                    signer: row?.name || user?.user_metadata?.name || user?.email || "Account holder",
+                    business: row?.company || user?.user_metadata?.company || "",
+                    email: row?.email || user?.email || "",
+                    signature: row?.signature || "",
+                    version: row?.terms || AGREEMENT_VERSION,
+                    signedAt: row?.signed || row?.created || new Date().toISOString(),
+                    restored: true
+                };
+                agreementStep.classList.add("is-complete");
                 agreementSigner.value = signedAgreement.signer;
                 agreementBusiness.value = signedAgreement.business;
                 agreementEmail.value = signedAgreement.email;
-                agreementSignature.value = signedAgreement.signature;
                 agreementSigner.disabled = true;
                 agreementBusiness.disabled = true;
                 agreementEmail.disabled = true;
@@ -1622,60 +1681,64 @@
                 document.getElementById("agreementSignatureClear").disabled = true;
                 agreementAccepted.checked = true;
                 agreementAccepted.disabled = true;
-                const signButton = document.getElementById("signAgreementButton");
-                signButton.disabled = true;
-                signButton.textContent = "Agreement Signed";
-                agreementStep.classList.add("is-complete");
-                agreementStatus.textContent = `Signed electronically by ${signedAgreement.signer || "you"} and saved ✓`;
+                document.getElementById("signAgreementButton").disabled = true;
+                document.getElementById("signAgreementButton").textContent = "Agreement Signed";
+                agreementStatus.textContent = row
+                    ? `Signed electronically by ${signedAgreement.signer} and saved ✓`
+                    : "Agreement step unlocked on your account ✓";
             }
 
-            if (!squareError) {
-                const purchases = squareRows || [];
-                const developmentPurchase = purchases.find(row => {
-                    const status = String(row.status || "").toUpperCase();
-                    const cadence = String(row.cadence || "").toUpperCase();
-                    const planKey = String(row.original?.plankey || "").toLowerCase();
-                    return status === "COMPLETED" && cadence === "ONE_TIME" &&
-                        (planKey === "website-development" || Number(row.amount) === 10000 || /website development/i.test(row.plan || ""));
-                });
+            if (developmentPurchaseConfirmed) {
+                developmentStep.classList.add("is-complete");
+                developmentStatus.textContent = "Website development purchase verified ✓";
+            }
 
-                developmentPurchaseConfirmed = Boolean(developmentPurchase);
-                if (developmentPurchaseConfirmed) {
-                    developmentStep.classList.add("is-complete");
-                    developmentStatus.className = "payment-state verified";
-                    developmentStatus.textContent = "Website development purchase verified ✓";
-                }
+            let restoredHostingType = null;
+            if (progress.backendHosting) restoredHostingType = "backend";
+            else if (progress.standardHosting) restoredHostingType = "standard";
 
-                const activeHosting = purchases.find(row => {
-                    const status = String(row.status || "").toUpperCase();
-                    const cadence = String(row.cadence || "").toUpperCase();
-                    return status === "ACTIVE" && cadence === "MONTHLY";
-                });
-
-                if (activeHosting) {
-                    const planKey = String(activeHosting.original?.plankey || "");
-                    const hostingType = /backend/i.test(planKey) || /backend/i.test(activeHosting.plan || "") ? "backend" : "standard";
-                    const knownPlan = checkoutPlansByKey.get(planKey) || (hostingCheckoutPlans[hostingType] || [])[0];
-                    if (knownPlan) {
-                        claimPlanSelections.clear();
-                        claimPlanSelections.set(hostingType, { plan: knownPlan, confirmed: true });
+            if (restoredHostingType) {
+                const plan = hostingCheckoutPlans[restoredHostingType]?.[0];
+                if (plan) {
+                    claimPlanSelections.clear();
+                    claimPlanSelections.set(restoredHostingType, { plan, confirmed: true });
+                    const group = claimCheckoutLinks.querySelector(".plan-group");
+                    if (group) {
+                        const rows = [...group.querySelectorAll(".plan-option")];
+                        rows.forEach(row => {
+                            const name = row.querySelector(".plan-name")?.textContent || "";
+                            const match = restoredHostingType === "backend"
+                                ? name.includes("Backend")
+                                : name.includes("Standard");
+                            row.classList.toggle("selected", match);
+                            const button = row.querySelector(".plan-link");
+                            if (button) button.textContent = match ? "Current Plan ✓" : "Choose";
+                        });
+                        const note = group.querySelector(".payment-state");
+                        if (note) note.textContent = `${plan.label} is already active on your account ✓`;
                     }
                 }
             }
 
             updateClaimSubmitAvailability();
+        }
 
-            if (!agreementSigned && agreementError) {
-                agreementStatus.textContent = "Your saved agreement could not be loaded right now.";
+        async function restoreClaimProgressForSignedInUser() {
+            const user = currentPortalUser;
+            if (!user?.id) {
+                updateClaimSubmitAvailability();
+                return;
             }
-            if (!developmentPurchaseConfirmed && squareError) {
-                developmentStatus.textContent = agreementSigned
-                    ? "Your saved purchase status could not be loaded. Refresh and try again."
-                    : "Sign the agreement first to continue.";
+            try {
+                const progress = await loadSavedClaimProgress(user);
+                applySavedClaimProgress(progress, user);
+            } catch (error) {
+                console.warn("Could not restore saved claim progress.", error);
+                updateClaimSubmitAvailability();
             }
         }
 
-        function renderClaimSelection() {
+        async function renderClaimSelection() {
             const selectedSites = sites.filter(site => selectedSitePaths.has(site.path));
             claimList.replaceChildren();
             selectedSites.forEach(site => {
@@ -1722,10 +1785,10 @@
             purchaseDevelopmentButton.disabled = true;
             developmentStatus.textContent = "Sign the agreement first to continue.";
             renderClaimPlanChoices(selectedSites);
+            await restoreClaimProgressForSignedInUser();
             showPortalPanel("claimPanel");
             openPortal();
             window.requestAnimationFrame(prepareAgreementSignaturePad);
-            if (currentPortalUser) restoreClaimProgressFromAccount(currentPortalUser);
         }
 
         function updateClaimSubmitAvailability() {
@@ -2528,11 +2591,11 @@
             startVerifiedCheckout(plan, { claimType: "development", statusElement: developmentStatus });
         });
         document.getElementById("cancelSiteSelection").addEventListener("click", exitSiteSelection);
-        addSelectedSitesButton.addEventListener("click", () => {
+        addSelectedSitesButton.addEventListener("click", async () => {
             if (!selectedSitePaths.size) return;
             document.body.classList.remove("selection-mode");
             claimSelectionBar.hidden = true;
-            renderClaimSelection();
+            await renderClaimSelection();
         });
         claimForm.addEventListener("submit", async event => {
             event.preventDefault();
