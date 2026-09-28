@@ -739,15 +739,25 @@
         let currentGalleryPage = 1;
         let currentGallerySearch = "";
 
+        function prettifySiteName(path) {
+            return String(path || "")
+                .replace(/[-_]+/g, " ")
+                .replace(/\b\w/g, char => char.toUpperCase())
+                .trim();
+        }
+
         async function fetchSites() {
             try {
-                // Use GitHub's recursive tree instead of /contents/Sites.
-                // /contents is capped at 1,000 directory entries.
+                // GitHub is the source of truth for what actually exists.
+                // Use the recursive tree so we are not limited to the first
+                // 1,000 entries returned by /contents/Sites.
                 const response = await fetch(
                     `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/git/trees/main?recursive=1`
                 );
 
-                if (!response.ok) throw new Error(`GitHub API failed (${response.status})`);
+                if (!response.ok) {
+                    throw new Error(`GitHub API failed (${response.status})`);
+                }
 
                 const data = await response.json();
 
@@ -755,48 +765,51 @@
                     throw new Error("GitHub tree response was invalid");
                 }
 
-                if (data.truncated) {
-                    console.warn("GitHub returned a truncated repository tree.");
-                }
-
-                const crmSites = await fetchConnectedCrmSites();
                 const prefix = `${SITES_FOLDER}/`;
 
-                // Keep only direct folders under /Sites.
-                // Nested folders/files such as Sites/example/index.html are ignored here.
                 const githubFolders = data.tree
                     .filter(item =>
                         item.type === "tree" &&
                         item.path.startsWith(prefix) &&
                         !item.path.slice(prefix.length).includes("/")
                     )
-                    .map(item => ({
-                        name: item.path.slice(prefix.length)
-                    }));
+                    .map(item => item.path.slice(prefix.length))
+                    .filter(Boolean);
 
-                // Only show folders that are BOTH:
-                // 1) real folders in GitHub /Sites, and
-                // 2) connected to a CRM record through crm.sitekey.
-                const discoveredSites = githubFolders
-                    .filter(folder => crmSites.has(folder.name))
-                    .map(folder => {
-                        const crm = crmSites.get(folder.name);
+                // IMPORTANT:
+                // The gallery must still work even if Supabase is temporarily
+                // unavailable or a CRM pagination request fails.
+                let crmSites = new Map();
+
+                try {
+                    crmSites = await fetchConnectedCrmSites();
+                } catch (crmError) {
+                    console.warn(
+                        "CRM lookup failed; using GitHub folder names instead.",
+                        crmError
+                    );
+                }
+
+                sites = githubFolders
+                    .map(folderName => {
+                        const crm = crmSites.get(folderName);
+
                         const site = {
-                            name: crm.company,
-                            path: folder.name,
+                            name: crm?.company || prettifySiteName(folderName),
+                            path: folderName,
                             hostingType: "standard"
                         };
 
                         return {
                             ...site,
-                            businessRank: crm.businessRank ?? getBusinessRank(site)
+                            businessRank:
+                                crm?.businessRank ?? getBusinessRank(site)
                         };
-                    });
-
-                sites = discoveredSites.sort((a, b) =>
-                    a.businessRank - b.businessRank ||
-                    a.name.localeCompare(b.name)
-                );
+                    })
+                    .sort((a, b) =>
+                        a.businessRank - b.businessRank ||
+                        a.name.localeCompare(b.name)
+                    );
 
                 try {
                     await fetchClaimedSitePaths();
@@ -811,8 +824,9 @@
 
                 currentGalleryPage = 1;
                 renderSites();
+
             } catch (error) {
-                console.error("Failed to fetch available sites:", error);
+                console.error("Failed to fetch GitHub sites:", error);
                 sites = [];
                 claimRegistryLoaded = false;
                 currentGalleryPage = 1;
