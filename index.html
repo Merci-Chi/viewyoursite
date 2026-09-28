@@ -93,6 +93,20 @@
         .selection-mode .hosting-type-label { display: block; }
         .claim-selection-bar { position: fixed; z-index: 800; left: 50%; bottom: 1.25rem; display: flex; width: min(620px, calc(100% - 2rem)); align-items: center; justify-content: space-between; gap: 1rem; padding: .8rem; border: 1px solid #3a3a3a; border-radius: 14px; background: rgba(24,24,24,.96); box-shadow: 0 16px 45px rgba(0,0,0,.45); transform: translateX(-50%); }
         .claim-selection-bar[hidden] { display: none !important; }
+        .previous-claim-overlay { position: fixed; inset: 0; z-index: 4300; display: grid; place-items: center; padding: 1rem; background: rgba(0,0,0,.78); }
+        .previous-claim-overlay[hidden] { display: none !important; }
+        .previous-claim-dialog { width: min(460px, 100%); padding: 1.5rem; border: 1px solid #3a3a3a; border-radius: 16px; background: #171717; box-shadow: 0 24px 70px rgba(0,0,0,.55); text-align: center; }
+        .previous-claim-dialog h3 { margin-bottom: .7rem; font-size: 1.15rem; font-weight: 600; }
+        .previous-claim-dialog p { color: #aaa; line-height: 1.55; }
+        .previous-claim-dialog strong { color: #fff; }
+        .previous-claim-actions { display: flex; gap: .7rem; margin-top: 1.2rem; }
+        .previous-claim-actions button { flex: 1; padding: .8rem 1rem; border-radius: 9px; cursor: pointer; font: inherit; }
+        .previous-claim-continue { border: 0; background: #f1f1f1; color: #111; font-weight: 700; }
+        .previous-claim-change { border: 1px solid #444; background: #252525; color: #ddd; }
+        body.light-mode .previous-claim-dialog { border-color: #d4d4d0; background: #f8f8f6; }
+        body.light-mode .previous-claim-dialog p { color: #666; }
+        body.light-mode .previous-claim-dialog strong { color: #111; }
+        body.light-mode .previous-claim-change { border-color: #ccc; background: #fff; color: #222; }
         .claim-selection-count { padding-left: .35rem; color: #bbb; }
         .claim-selection-actions { display: flex; gap: .55rem; }
         .claim-selection-actions button { padding: .7rem .9rem; border-radius: 9px; cursor: pointer; font: inherit; }
@@ -497,6 +511,17 @@
             <button class="claim-cancel" id="cancelSiteSelection" type="button">Cancel</button>
             <button class="claim-add" id="addSelectedSites" type="button" disabled>Continue with Selected Site</button>
         </div>
+    </div>
+
+    <div class="previous-claim-overlay" id="previousClaimOverlay" hidden>
+        <section class="previous-claim-dialog" role="dialog" aria-modal="true" aria-labelledby="previousClaimTitle">
+            <h3 id="previousClaimTitle">Continue your previous selection?</h3>
+            <p>You've previously selected <strong id="previousClaimSiteName"></strong>. Would you like to continue?</p>
+            <div class="previous-claim-actions">
+                <button class="previous-claim-change" id="previousClaimChooseAnother" type="button">Choose Another Site</button>
+                <button class="previous-claim-continue" id="previousClaimContinue" type="button">Continue</button>
+            </div>
+        </section>
     </div>
 
     <script>
@@ -1163,6 +1188,11 @@
         const purchaseCompleteMessage = document.getElementById("purchaseCompleteMessage");
         const claimSubmittedOverlay = document.getElementById("claimSubmittedOverlay");
         const claimSubmittedContinue = document.getElementById("claimSubmittedContinue");
+        const previousClaimOverlay = document.getElementById("previousClaimOverlay");
+        const previousClaimSiteName = document.getElementById("previousClaimSiteName");
+        const previousClaimContinue = document.getElementById("previousClaimContinue");
+        const previousClaimChooseAnother = document.getElementById("previousClaimChooseAnother");
+        let previousClaimSelection = null;
         const requestSubmittedOverlay = document.getElementById("requestSubmittedOverlay");
         const mainSiteButton = document.getElementById("mainSiteButton");
         const portalSiteButton = document.getElementById("portalSiteButton");
@@ -1677,6 +1707,80 @@
             renderSites();
             updateSelectionBar();
             window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        async function savePreviouslySelectedSite(site) {
+            if (!currentPortalUser?.id || !site?.path) return;
+
+            const { error } = await portalSupabase
+                .from("client_portal_progress")
+                .upsert({
+                    user_id: currentPortalUser.id,
+                    selected_sitekey: site.path,
+                    selected_site_name: site.name,
+                    updated_at: new Date().toISOString()
+                }, { onConflict: "user_id" });
+
+            if (error) {
+                console.warn("Could not save the selected site.", error);
+            }
+        }
+
+        async function loadPreviouslySelectedSite() {
+            if (!currentPortalUser?.id) return null;
+
+            const { data, error } = await portalSupabase
+                .from("client_portal_progress")
+                .select("selected_sitekey,selected_site_name")
+                .eq("user_id", currentPortalUser.id)
+                .maybeSingle();
+
+            if (error) {
+                console.warn("Could not load the previously selected site.", error);
+                return null;
+            }
+
+            const sitekey = String(data?.selected_sitekey || "").trim();
+            const name = String(data?.selected_site_name || "").trim();
+
+            if (!sitekey) return null;
+
+            const currentSite = sites.find(site => site.path === sitekey);
+
+            return {
+                sitekey,
+                name: name || currentSite?.name || sitekey
+            };
+        }
+
+        async function clearPreviouslySelectedSite() {
+            if (!currentPortalUser?.id) return;
+
+            const { error } = await portalSupabase
+                .from("client_portal_progress")
+                .upsert({
+                    user_id: currentPortalUser.id,
+                    selected_sitekey: null,
+                    selected_site_name: null,
+                    updated_at: new Date().toISOString()
+                }, { onConflict: "user_id" });
+
+            if (error) {
+                console.warn("Could not clear the previously selected site.", error);
+            }
+        }
+
+        function showPreviousClaimPrompt(selection) {
+            previousClaimSelection = selection;
+            previousClaimSiteName.textContent = selection.name;
+            previousClaimOverlay.hidden = false;
+            document.body.style.overflow = "hidden";
+        }
+
+        function hidePreviousClaimPrompt() {
+            previousClaimOverlay.hidden = true;
+            previousClaimSelection = null;
+            document.body.style.overflow = portalOverlay.hidden ? "" : "hidden";
         }
 
         async function loadSavedClaimProgress(user) {
@@ -2411,7 +2515,13 @@
         });
         clientNavButtons.forEach(button => button.addEventListener("click", async () => {
             if (button.hasAttribute("data-claim-aware") && !currentManagedSites.length) {
-                enterSiteSelection();
+                const previousSelection = await loadPreviouslySelectedSite();
+
+                if (previousSelection && sites.some(site => site.path === previousSelection.sitekey)) {
+                    showPreviousClaimPrompt(previousSelection);
+                } else {
+                    enterSiteSelection();
+                }
                 return;
             }
             pendingPanel = button.dataset.openPanel;
@@ -2419,6 +2529,38 @@
             const { data: { session } } = await portalSupabase.auth.getSession();
             await updatePortal(session);
         }));
+        previousClaimContinue.addEventListener("click", async () => {
+            if (!previousClaimSelection?.sitekey) {
+                hidePreviousClaimPrompt();
+                enterSiteSelection();
+                return;
+            }
+
+            const selectedSite = sites.find(site => site.path === previousClaimSelection.sitekey);
+
+            if (!selectedSite) {
+                hidePreviousClaimPrompt();
+                enterSiteSelection();
+                return;
+            }
+
+            selectedSitePaths.clear();
+            selectedSitePaths.add(selectedSite.path);
+            saveClaimSelectionSession();
+            hidePreviousClaimPrompt();
+            await renderClaimSelection();
+        });
+
+        previousClaimChooseAnother.addEventListener("click", () => {
+            hidePreviousClaimPrompt();
+            enterSiteSelection();
+        });
+
+        previousClaimOverlay.addEventListener("click", event => {
+            if (event.target !== previousClaimOverlay) return;
+            hidePreviousClaimPrompt();
+        });
+
         portalClose.addEventListener("click", closePortal);
         reviewAgreementButton.addEventListener("click", () => {
             if (!agreementFrame.src) agreementFrame.src = agreementFrame.dataset.src;
@@ -2699,6 +2841,10 @@
             if (!selectedSitePaths.size) return;
             document.body.classList.remove("selection-mode");
             claimSelectionBar.hidden = true;
+
+            const selectedSite = sites.find(site => selectedSitePaths.has(site.path));
+            if (selectedSite) await savePreviouslySelectedSite(selectedSite);
+
             await renderClaimSelection();
         });
         claimForm.addEventListener("submit", async event => {
@@ -2761,7 +2907,9 @@
                 return;
             }
             (data.sites || selectedSites).forEach(site => claimedSitePaths.add(site.path));
+            await clearPreviouslySelectedSite();
             selectedSitePaths.clear();
+            clearClaimSelectionSession();
             renderSites();
             claimMessageStatus.textContent = "Your claim has been submitted.";
             closePortal();
