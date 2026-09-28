@@ -227,6 +227,150 @@
         }
       }
     </style>
+
+    <style id="review-card-layout">
+      /* Review area: 3 cards per page on desktop, 2 on tablet, 1 on mobile. */
+      #testimonials .review-carousel-shell {
+        display: block !important;
+        grid-template-columns: none !important;
+        grid-template-rows: none !important;
+        width: 100% !important;
+        max-width: 1180px !important;
+        min-width: 0 !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+      }
+
+      #testimonials .review-carousel-viewport {
+        display: block !important;
+        position: static !important;
+        grid-column: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+      }
+
+      #testimonials #reviewCarousel,
+      #testimonials .review-cards-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 22px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        transform: none !important;
+        align-items: stretch !important;
+      }
+
+      #testimonials .review-card {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        min-height: 360px !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        padding: 28px !important;
+        border: 1px solid rgba(18, 59, 42, 0.18) !important;
+        border-radius: 22px !important;
+        background: #fff !important;
+        box-shadow: 0 12px 30px rgba(18, 59, 42, 0.08) !important;
+      }
+
+      #testimonials .review-copy {
+        width: auto !important;
+        max-width: none !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        overflow-wrap: break-word !important;
+        word-break: normal !important;
+        line-height: 1.65 !important;
+        flex: 1 1 auto !important;
+      }
+
+      #testimonials .review-card-bottom {
+        margin-top: auto !important;
+      }
+
+      #testimonials .review-navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      #testimonials .review-nav-button {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        place-items: center;
+        border: 1px solid rgba(18, 59, 42, 0.3);
+        border-radius: 50%;
+        background: #123b2a;
+        color: #fff;
+        cursor: pointer;
+        font: inherit;
+        font-size: 1.35rem;
+        line-height: 1;
+        transition:
+          transform 0.18s ease,
+          opacity 0.18s ease;
+      }
+
+      #testimonials .review-nav-button:hover:not(:disabled) {
+        transform: translateY(-2px);
+      }
+
+      #testimonials .review-nav-button:disabled {
+        cursor: default;
+        opacity: 0.32;
+      }
+
+      #testimonials .review-page-status {
+        min-width: 74px;
+        text-align: center;
+        color: #123b2a;
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 800;
+      }
+
+      @media (max-width: 900px) {
+        #testimonials #reviewCarousel,
+        #testimonials .review-cards-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+      }
+
+      @media (max-width: 640px) {
+        #testimonials #reviewCarousel,
+        #testimonials .review-cards-grid {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+        }
+
+        #testimonials .review-card {
+          min-height: 0 !important;
+          padding: 20px !important;
+        }
+
+        #testimonials .review-navigation {
+          margin-top: 18px;
+        }
+      }
+
+      .nextdoor-review-icon {
+        background: #8ed500 !important;
+        color: #123b2a !important;
+        font-family: Arial, sans-serif;
+        font-size: 1.35rem;
+        font-weight: 900;
+      }
+    </style>
   </head>
 
   <body class="brand-refresh">
@@ -434,6 +578,7 @@
 
             <a href="#contact" class="small-button"
               >LEARN MORE ABOUT US
+
               <img src="images/leaf.png" alt="" aria-hidden="true"
             /></a>
           </div>
@@ -452,7 +597,7 @@
               href="https://a-l-handyman.com"
               target="_blank"
               rel="noopener noreferrer"
-              ><span class="company-rotator-name">A&amp;L Handyman</span></a
+              ><span class="company-rotator-name">A&L Handyman</span></a
             >
 
             <a
@@ -470,12 +615,13 @@
               rel="noopener noreferrer"
               ><span class="company-rotator-name">Moon Valley Nursery</span></a
             >
+
             <a
               class="company-rotator-item"
               href="http://www.wheresthepoop.info"
               target="_blank"
               rel="noopener noreferrer"
-              ><span class="company-rotator-name">Where&#39;s The Poop</span></a
+              ><span class="company-rotator-name">Where's The Poop</span></a
             >
           </div>
 
@@ -485,7 +631,7 @@
               href="https://a-l-handyman.com"
               target="_blank"
               rel="noopener noreferrer"
-              ><span class="company-rotator-name">A&amp;L Handyman</span></a
+              ><span class="company-rotator-name">A&L Handyman</span></a
             >
 
             <a
@@ -503,12 +649,13 @@
               rel="noopener noreferrer"
               ><span class="company-rotator-name">Moon Valley Nursery</span></a
             >
+
             <a
               class="company-rotator-item"
               href="http://www.wheresthepoop.info"
               target="_blank"
               rel="noopener noreferrer"
-              ><span class="company-rotator-name">Where&#39;s The Poop</span></a
+              ><span class="company-rotator-name">Where's The Poop</span></a
             >
           </div>
         </div>
@@ -815,6 +962,7 @@
           <div class="project-button-row">
             <a href="gallery.html" class="small-button center-button"
               >VIEW MORE PROJECTS
+
               <img src="images/leaf.png" alt="" aria-hidden="true"
             /></a>
           </div>
@@ -841,10 +989,10 @@
                 <article class="review-card">
                   <div class="review-card-top">
                     <div
-                      class="review-platform review-platform-logo"
-                      aria-label="Facebook recommendation"
+                      class="review-platform review-platform-logo nextdoor-review-icon"
+                      aria-label="Nextdoor App recommendation"
                     >
-                      <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                      <span aria-hidden="true">N</span>
                     </div>
                   </div>
 
@@ -861,14 +1009,40 @@
                   <div class="review-card-bottom">
                     <div class="review-author">
                       <div class="review-avatar">P</div>
+
                       <div class="review-author-meta">
                         <strong>Philip Pinkus</strong>
-                        <span>Facebook recommendation</span>
+
+                        <span>Nextdoor App recommendation</span>
                       </div>
                     </div>
                   </div>
                 </article>
               </div>
+            </div>
+
+            <div class="review-navigation" aria-label="Review navigation">
+              <button
+                class="review-nav-button"
+                id="previousReview"
+                type="button"
+                aria-label="Previous reviews"
+              >
+                &#8592;
+              </button>
+
+              <span class="review-page-status" id="reviewPageStatus"
+                >1 / 1</span
+              >
+
+              <button
+                class="review-nav-button"
+                id="nextReview"
+                type="button"
+                aria-label="Next reviews"
+              >
+                &#8594;
+              </button>
             </div>
           </div>
 
@@ -1248,27 +1422,35 @@
 
       document.addEventListener(
         "gesturestart",
+
         (event) => event.preventDefault(),
+
         { passive: false },
       );
 
       document.addEventListener(
         "gesturechange",
+
         (event) => event.preventDefault(),
+
         { passive: false },
       );
 
       document.addEventListener(
         "gestureend",
+
         (event) => event.preventDefault(),
+
         { passive: false },
       );
 
       document.addEventListener(
         "wheel",
+
         (event) => {
           if (event.ctrlKey || event.metaKey) event.preventDefault();
         },
+
         { passive: false },
       );
 
@@ -1282,6 +1464,7 @@
 
       document.addEventListener(
         "touchend",
+
         (event) => {
           const now = Date.now();
 
@@ -1289,6 +1472,7 @@
 
           lastTouchEnd = now;
         },
+
         { passive: false },
       );
     </script>
@@ -1365,6 +1549,73 @@
             preview.innerHTML =
               '<p style="grid-column:1/-1;text-align:center;">Project photos are temporarily unavailable.</p>';
           });
+      })();
+    </script>
+
+    <script>
+      (() => {
+        const carousel = document.getElementById("reviewCarousel");
+        const previousButton = document.getElementById("previousReview");
+        const nextButton = document.getElementById("nextReview");
+        const pageStatus = document.getElementById("reviewPageStatus");
+
+        if (!carousel || !previousButton || !nextButton || !pageStatus) return;
+
+        let currentPage = 0;
+
+        function cardsPerPage() {
+          if (window.innerWidth <= 640) return 1;
+          if (window.innerWidth <= 900) return 2;
+          return 3;
+        }
+
+        function renderReviewPage() {
+          const cards = [...carousel.querySelectorAll(".review-card")];
+          const perPage = cardsPerPage();
+          const totalPages = Math.max(1, Math.ceil(cards.length / perPage));
+
+          if (currentPage >= totalPages) currentPage = totalPages - 1;
+          if (currentPage < 0) currentPage = 0;
+
+          const start = currentPage * perPage;
+          const end = start + perPage;
+
+          cards.forEach((card, index) => {
+            card.hidden = index < start || index >= end;
+          });
+
+          pageStatus.textContent = `${currentPage + 1} / ${totalPages}`;
+          previousButton.disabled = currentPage === 0;
+          nextButton.disabled = currentPage >= totalPages - 1;
+        }
+
+        previousButton.addEventListener("click", () => {
+          if (currentPage === 0) return;
+          currentPage -= 1;
+          renderReviewPage();
+        });
+
+        nextButton.addEventListener("click", () => {
+          const cards = [...carousel.querySelectorAll(".review-card")];
+          const totalPages = Math.max(
+            1,
+            Math.ceil(cards.length / cardsPerPage()),
+          );
+          if (currentPage >= totalPages - 1) return;
+          currentPage += 1;
+          renderReviewPage();
+        });
+
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+            currentPage = 0;
+            renderReviewPage();
+          }, 120);
+        });
+
+        renderReviewPage();
       })();
     </script>
 
