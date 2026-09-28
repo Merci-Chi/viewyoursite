@@ -69,6 +69,56 @@
             gap: 1.8rem;
         }
 
+        .gallery-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .75rem;
+            margin: 2.25rem auto 0;
+        }
+
+        .gallery-pagination[hidden] {
+            display: none !important;
+        }
+
+        .gallery-page-button {
+            min-width: 92px;
+            padding: .72rem 1rem;
+            border: 1px solid #444;
+            border-radius: 999px;
+            background: #202020;
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .gallery-page-button:hover:not(:disabled) {
+            border-color: #777;
+            background: #292929;
+        }
+
+        .gallery-page-button:disabled {
+            cursor: not-allowed;
+            opacity: .38;
+        }
+
+        .gallery-page-status {
+            min-width: 130px;
+            color: #999;
+            text-align: center;
+            font-size: .9rem;
+        }
+
+        body.light-mode .gallery-page-button {
+            border-color: #ccc;
+            background: #fff;
+            color: #181818;
+        }
+
+        body.light-mode .gallery-page-status {
+            color: #666;
+        }
+
         .site-card {
             display: block;
             overflow: hidden;
@@ -503,6 +553,12 @@
         </header>
 
         <section class="gallery" id="gallery"></section>
+
+        <nav class="gallery-pagination" id="galleryPagination" aria-label="Website pages" hidden>
+            <button class="gallery-page-button" id="previousGalleryPage" type="button">Previous</button>
+            <span class="gallery-page-status" id="galleryPageStatus">Page 1 of 1</span>
+            <button class="gallery-page-button" id="nextGalleryPage" type="button">Next</button>
+        </nav>
     </main>
 
     <div class="claim-selection-bar" id="claimSelectionBar" hidden>
@@ -669,19 +725,50 @@
                 .replace(/'/g, "&#039;");
         }
 
+        const SITES_PER_PAGE = 100;
+        let currentGalleryPage = 1;
+        let currentGallerySearch = "";
+
         async function fetchSites() {
             try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${SITES_FOLDER}`);
-                if (!response.ok) throw new Error("API failed");
+                // Use GitHub's recursive tree instead of /contents/Sites.
+                // /contents is capped at 1,000 directory entries.
+                const response = await fetch(
+                    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/git/trees/main?recursive=1`
+                );
+
+                if (!response.ok) throw new Error(`GitHub API failed (${response.status})`);
+
                 const data = await response.json();
 
+                if (!Array.isArray(data.tree)) {
+                    throw new Error("GitHub tree response was invalid");
+                }
+
+                if (data.truncated) {
+                    console.warn("GitHub returned a truncated repository tree.");
+                }
+
                 const crmSites = await fetchConnectedCrmSites();
+                const prefix = `${SITES_FOLDER}/`;
+
+                // Keep only direct folders under /Sites.
+                // Nested folders/files such as Sites/example/index.html are ignored here.
+                const githubFolders = data.tree
+                    .filter(item =>
+                        item.type === "tree" &&
+                        item.path.startsWith(prefix) &&
+                        !item.path.slice(prefix.length).includes("/")
+                    )
+                    .map(item => ({
+                        name: item.path.slice(prefix.length)
+                    }));
 
                 // Only show folders that are BOTH:
                 // 1) real folders in GitHub /Sites, and
                 // 2) connected to a CRM record through crm.sitekey.
-                const discoveredSites = data
-                    .filter(item => item.type === "dir" && crmSites.has(item.name))
+                const discoveredSites = githubFolders
+                    .filter(folder => crmSites.has(folder.name))
                     .map(folder => {
                         const crm = crmSites.get(folder.name);
                         const site = {
@@ -704,15 +791,21 @@
                 try {
                     await fetchClaimedSitePaths();
                 } catch (claimError) {
-                    console.warn("Claim registry is unavailable; showing the website directory without claim filtering.", claimError);
+                    console.warn(
+                        "Claim registry is unavailable; showing the website directory without claim filtering.",
+                        claimError
+                    );
                     claimedSitePaths.clear();
                     claimRegistryLoaded = false;
                 }
+
+                currentGalleryPage = 1;
                 renderSites();
             } catch (error) {
                 console.error("Failed to fetch available sites:", error);
                 sites = [];
                 claimRegistryLoaded = false;
+                currentGalleryPage = 1;
                 renderSites();
             }
         }
@@ -720,23 +813,48 @@
 
         const gallery = document.getElementById("gallery");
         const searchInput = document.getElementById("searchInput");
+        const galleryPagination = document.getElementById("galleryPagination");
+        const previousGalleryPage = document.getElementById("previousGalleryPage");
+        const nextGalleryPage = document.getElementById("nextGalleryPage");
+        const galleryPageStatus = document.getElementById("galleryPageStatus");
         const selectedSitePaths = new Set();
 
-        function renderSites(filter = "") {
+        function getVisibleFilteredSites(filter = "") {
             const search = filter.trim().toLowerCase();
 
-            const filteredSites = sites.filter(site =>
+            return sites.filter(site =>
                 (!claimRegistryLoaded || !claimedSitePaths.has(site.path)) &&
                 (
+                    !search ||
                     site.name.toLowerCase().includes(search) ||
                     site.path.toLowerCase().includes(search)
                 )
             );
+        }
+
+        function updateGalleryPagination(totalResults) {
+            const totalPages = Math.max(1, Math.ceil(totalResults / SITES_PER_PAGE));
+
+            if (currentGalleryPage > totalPages) {
+                currentGalleryPage = totalPages;
+            }
+
+            galleryPagination.hidden = totalResults <= SITES_PER_PAGE;
+            galleryPageStatus.textContent = `Page ${currentGalleryPage} of ${totalPages}`;
+            previousGalleryPage.disabled = currentGalleryPage <= 1;
+            nextGalleryPage.disabled = currentGalleryPage >= totalPages;
+        }
+
+        function renderSites(filter = currentGallerySearch) {
+            currentGallerySearch = filter;
+            const filteredSites = getVisibleFilteredSites(filter);
 
             gallery.innerHTML = "";
 
             if (!filteredSites.length) {
-                if (search && sites.length) {
+                galleryPagination.hidden = true;
+
+                if (filter.trim() && sites.length) {
                     gallery.innerHTML = '<div class="empty-state"><strong>No matching websites</strong>Try a different search.</div>';
                 } else {
                     gallery.innerHTML = '<div class="empty-state"><strong>No websites are currently available.</strong>Please check back soon.</div>';
@@ -744,7 +862,17 @@
                 return;
             }
 
-            filteredSites.forEach(site => {
+            const totalPages = Math.ceil(filteredSites.length / SITES_PER_PAGE);
+            if (currentGalleryPage > totalPages) currentGalleryPage = totalPages;
+            if (currentGalleryPage < 1) currentGalleryPage = 1;
+
+            const startIndex = (currentGalleryPage - 1) * SITES_PER_PAGE;
+            const pageSites = filteredSites.slice(
+                startIndex,
+                startIndex + SITES_PER_PAGE
+            );
+
+            pageSites.forEach(site => {
                 const card = document.createElement("a");
 
                 card.className = "site-card";
@@ -768,25 +896,70 @@
                 `;
 
                 card.classList.toggle("selected", selectedSitePaths.has(site.path));
+
                 card.addEventListener("click", event => {
                     if (!document.body.classList.contains("selection-mode")) return;
+
                     event.preventDefault();
+
                     const wasSelected = selectedSitePaths.has(site.path);
                     selectedSitePaths.clear();
-                    if (!wasSelected) selectedSitePaths.add(site.path);
+
+                    if (!wasSelected) {
+                        selectedSitePaths.add(site.path);
+                    }
+
                     saveClaimSelectionSession();
+
                     gallery.querySelectorAll(".site-card").forEach(siteCard => {
-                        siteCard.classList.toggle("selected", selectedSitePaths.has(siteCard.dataset.sitePath));
+                        siteCard.classList.toggle(
+                            "selected",
+                            selectedSitePaths.has(siteCard.dataset.sitePath)
+                        );
                     });
+
                     updateSelectionBar();
                 });
 
                 gallery.appendChild(card);
             });
+
+            updateGalleryPagination(filteredSites.length);
         }
 
         searchInput.addEventListener("input", event => {
+            currentGalleryPage = 1;
             renderSites(event.target.value);
+        });
+
+        previousGalleryPage.addEventListener("click", () => {
+            if (currentGalleryPage <= 1) return;
+
+            currentGalleryPage -= 1;
+            renderSites();
+
+            document.querySelector("main.container")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+
+        nextGalleryPage.addEventListener("click", () => {
+            const filteredSites = getVisibleFilteredSites(currentGallerySearch);
+            const totalPages = Math.max(
+                1,
+                Math.ceil(filteredSites.length / SITES_PER_PAGE)
+            );
+
+            if (currentGalleryPage >= totalPages) return;
+
+            currentGalleryPage += 1;
+            renderSites();
+
+            document.querySelector("main.container")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
         });
 
         fetchSites();
