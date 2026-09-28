@@ -749,6 +749,7 @@
                     const wasSelected = selectedSitePaths.has(site.path);
                     selectedSitePaths.clear();
                     if (!wasSelected) selectedSitePaths.add(site.path);
+                    saveClaimSelectionSession();
                     gallery.querySelectorAll(".site-card").forEach(siteCard => {
                         siteCard.classList.toggle("selected", selectedSitePaths.has(siteCard.dataset.sitePath));
                     });
@@ -1209,6 +1210,36 @@
             backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }
         };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
+        const CLAIM_SELECTION_SESSION_KEY = "claimSelectedSitePaths";
+
+        function saveClaimSelectionSession() {
+            sessionStorage.setItem(
+                CLAIM_SELECTION_SESSION_KEY,
+                JSON.stringify([...selectedSitePaths])
+            );
+        }
+
+        function restoreClaimSelectionSession() {
+            selectedSitePaths.clear();
+            try {
+                const saved = JSON.parse(
+                    sessionStorage.getItem(CLAIM_SELECTION_SESSION_KEY) || "[]"
+                );
+                if (Array.isArray(saved)) {
+                    saved.forEach(path => {
+                        if (typeof path === "string" && path.trim()) {
+                            selectedSitePaths.add(path);
+                        }
+                    });
+                }
+            } catch (_error) {
+                sessionStorage.removeItem(CLAIM_SELECTION_SESSION_KEY);
+            }
+        }
+
+        function clearClaimSelectionSession() {
+            sessionStorage.removeItem(CLAIM_SELECTION_SESSION_KEY);
+        }
         let pendingProgressScrollTarget = null;
         const appliedCodes = { claim: "", subscriptions: "" };
         const localHostingPricing = { claim: null, subscriptions: null };
@@ -1632,12 +1663,14 @@
             document.body.classList.remove("selection-mode");
             claimSelectionBar.hidden = true;
             selectedSitePaths.clear();
+            clearClaimSelectionSession();
             renderSites(searchInput.value);
         }
 
         function enterSiteSelection() {
             closePortal();
             selectedSitePaths.clear();
+            clearClaimSelectionSession();
             document.body.classList.add("selection-mode");
             claimSelectionBar.hidden = false;
             searchInput.value = "";
@@ -1807,6 +1840,7 @@
         }
 
         async function renderClaimSelection() {
+            saveClaimSelectionSession();
             const selectedSites = sites.filter(site => selectedSitePaths.has(site.path));
             claimList.replaceChildren();
             selectedSites.forEach(site => {
@@ -2759,19 +2793,51 @@
 
         async function initializeClientMenu() {
             const savedPanel = sessionStorage.getItem("clientPortalPanel");
-            if (savedPanel && document.getElementById(savedPanel)?.classList.contains("portal-panel")) pendingPanel = savedPanel;
-            const { data: { session }, error } = await portalSupabase.auth.getSession();
+            if (
+                savedPanel &&
+                document.getElementById(savedPanel)?.classList.contains("portal-panel")
+            ) {
+                pendingPanel = savedPanel;
+            }
+
+            const { data: { session }, error } =
+                await portalSupabase.auth.getSession();
+
             if (error) {
                 setClientMenuLoggedIn(false);
                 return;
             }
+
             await updatePortal(session);
-            if (session?.user && sessionStorage.getItem("keepClientPortalOpen") === "true") openPortal();
+
+            const shouldReopenPortal =
+                session?.user &&
+                sessionStorage.getItem("keepClientPortalOpen") === "true";
+
+            // A normal browser refresh while the user is in Claim Your Site should
+            // reconstruct the claim workflow, reload the saved agreement/payment
+            // progress, and keep the same selected site.
+            if (shouldReopenPortal && savedPanel === "claimPanel") {
+                restoreClaimSelectionSession();
+
+                if (selectedSitePaths.size) {
+                    await renderClaimSelection();
+                } else {
+                    showPortalPanel("claimPanel");
+                    await restoreClaimProgressForSignedInUser();
+                    openPortal();
+                }
+            } else if (shouldReopenPortal) {
+                openPortal();
+            }
+
             const rawPending = sessionStorage.getItem(PURCHASE_PENDING_KEY);
             if (session?.user && rawPending) {
                 try {
                     const pending = JSON.parse(rawPending);
-                    const statusElement = pending.claimType ? claimMessageStatus : subscriptionMessage;
+                    const statusElement = pending.claimType
+                        ? claimMessageStatus
+                        : subscriptionMessage;
                     verifyPendingCheckout(pending, statusElement);
                 } catch (_error) {
                     sessionStorage.removeItem(PURCHASE_PENDING_KEY);
