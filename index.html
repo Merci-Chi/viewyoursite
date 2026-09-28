@@ -677,51 +677,41 @@
         }
 
         async function fetchConnectedCrmSites() {
-            const PAGE_SIZE = 1000;
-            const bySiteKey = new Map();
-            let offset = 0;
+            const response = await fetch(CRM_API_URL, {
+                method: "POST",
+                headers: {
+                    apikey: CLAIMS_API_KEY,
+                    Authorization: `Bearer ${CLAIMS_API_KEY}`,
+                    "Content-Type": "application/json"
+                },
+                body: "{}"
+            });
 
-            while (true) {
-                const response = await fetch(CRM_API_URL, {
-                    method: "POST",
-                    headers: {
-                        apikey: CLAIMS_API_KEY,
-                        Authorization: `Bearer ${CLAIMS_API_KEY}`,
-                        "Content-Type": "application/json",
-                        "Range-Unit": "items",
-                        Range: `${offset}-${offset + PAGE_SIZE - 1}`
-                    },
-                    body: "{}"
-                });
-
-                if (!response.ok) {
-                    throw new Error(`CRM lookup failed (${response.status})`);
-                }
-
-                const rows = await response.json();
-
-                rows.forEach(row => {
-                    const sitekey = String(row?.sitekey || "").trim();
-                    const company = String(row?.company || "").trim();
-                    if (!sitekey || !company) return;
-
-                    // One visible card per connected sitekey.
-                    if (!bySiteKey.has(sitekey)) {
-                        const parsedRank = Number(row.businessrank);
-                        bySiteKey.set(sitekey, {
-                            sitekey,
-                            company,
-                            businessRank:
-                                Number.isInteger(parsedRank) && parsedRank >= 1 && parsedRank <= 50
-                                    ? parsedRank
-                                    : null
-                        });
-                    }
-                });
-
-                if (rows.length < PAGE_SIZE) break;
-                offset += PAGE_SIZE;
+            if (!response.ok) {
+                throw new Error(`CRM lookup failed (${response.status})`);
             }
+
+            const rows = await response.json();
+            const bySiteKey = new Map();
+
+            rows.forEach(row => {
+                const sitekey = String(row?.sitekey || "").trim();
+                const company = String(row?.company || "").trim();
+                if (!sitekey || !company) return;
+
+                // One visible card per connected sitekey.
+                if (!bySiteKey.has(sitekey)) {
+                    const parsedRank = Number(row.businessrank);
+                    bySiteKey.set(sitekey, {
+                        sitekey,
+                        company,
+                        businessRank:
+                            Number.isInteger(parsedRank) && parsedRank >= 1 && parsedRank <= 50
+                                ? parsedRank
+                                : null
+                    });
+                }
+            });
 
             return bySiteKey;
         }
@@ -739,25 +729,15 @@
         let currentGalleryPage = 1;
         let currentGallerySearch = "";
 
-        function prettifySiteName(path) {
-            return String(path || "")
-                .replace(/[-_]+/g, " ")
-                .replace(/\b\w/g, char => char.toUpperCase())
-                .trim();
-        }
-
         async function fetchSites() {
             try {
-                // GitHub is the source of truth for what actually exists.
-                // Use the recursive tree so we are not limited to the first
-                // 1,000 entries returned by /contents/Sites.
+                // Use GitHub's recursive tree instead of /contents/Sites.
+                // /contents is capped at 1,000 directory entries.
                 const response = await fetch(
                     `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/git/trees/main?recursive=1`
                 );
 
-                if (!response.ok) {
-                    throw new Error(`GitHub API failed (${response.status})`);
-                }
+                if (!response.ok) throw new Error(`GitHub API failed (${response.status})`);
 
                 const data = await response.json();
 
@@ -765,51 +745,48 @@
                     throw new Error("GitHub tree response was invalid");
                 }
 
+                if (data.truncated) {
+                    console.warn("GitHub returned a truncated repository tree.");
+                }
+
+                const crmSites = await fetchConnectedCrmSites();
                 const prefix = `${SITES_FOLDER}/`;
 
+                // Keep only direct folders under /Sites.
+                // Nested folders/files such as Sites/example/index.html are ignored here.
                 const githubFolders = data.tree
                     .filter(item =>
                         item.type === "tree" &&
                         item.path.startsWith(prefix) &&
                         !item.path.slice(prefix.length).includes("/")
                     )
-                    .map(item => item.path.slice(prefix.length))
-                    .filter(Boolean);
+                    .map(item => ({
+                        name: item.path.slice(prefix.length)
+                    }));
 
-                // IMPORTANT:
-                // The gallery must still work even if Supabase is temporarily
-                // unavailable or a CRM pagination request fails.
-                let crmSites = new Map();
-
-                try {
-                    crmSites = await fetchConnectedCrmSites();
-                } catch (crmError) {
-                    console.warn(
-                        "CRM lookup failed; using GitHub folder names instead.",
-                        crmError
-                    );
-                }
-
-                sites = githubFolders
-                    .map(folderName => {
-                        const crm = crmSites.get(folderName);
-
+                // Only show folders that are BOTH:
+                // 1) real folders in GitHub /Sites, and
+                // 2) connected to a CRM record through crm.sitekey.
+                const discoveredSites = githubFolders
+                    .filter(folder => crmSites.has(folder.name))
+                    .map(folder => {
+                        const crm = crmSites.get(folder.name);
                         const site = {
-                            name: crm?.company || prettifySiteName(folderName),
-                            path: folderName,
+                            name: crm.company,
+                            path: folder.name,
                             hostingType: "standard"
                         };
 
                         return {
                             ...site,
-                            businessRank:
-                                crm?.businessRank ?? getBusinessRank(site)
+                            businessRank: crm.businessRank ?? getBusinessRank(site)
                         };
-                    })
-                    .sort((a, b) =>
-                        a.businessRank - b.businessRank ||
-                        a.name.localeCompare(b.name)
-                    );
+                    });
+
+                sites = discoveredSites.sort((a, b) =>
+                    a.businessRank - b.businessRank ||
+                    a.name.localeCompare(b.name)
+                );
 
                 try {
                     await fetchClaimedSitePaths();
@@ -824,9 +801,8 @@
 
                 currentGalleryPage = 1;
                 renderSites();
-
             } catch (error) {
-                console.error("Failed to fetch GitHub sites:", error);
+                console.error("Failed to fetch available sites:", error);
                 sites = [];
                 claimRegistryLoaded = false;
                 currentGalleryPage = 1;
