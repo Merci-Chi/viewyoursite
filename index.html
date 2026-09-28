@@ -528,6 +528,320 @@
         @media (max-width: 480px) {
             .portal-nav, .portal-nav.no-site { grid-template-columns: 1fr; }
         }
+
+        /* Mobile fit / popup scrolling improvements */
+        @media (max-width: 760px) {
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+
+            body {
+                padding: 1rem .75rem 6rem;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            header {
+                margin-bottom: 1.4rem;
+            }
+
+            h1 {
+                margin-bottom: 1rem;
+                font-size: clamp(1.8rem, 8vw, 2.2rem);
+            }
+
+            #searchInput,
+            .portal-form input,
+            .portal-form textarea,
+            .agreement-form input[type="text"],
+            .agreement-form input[type="email"],
+            .discount-code-field input,
+            .management-form input,
+            .management-form select,
+            .management-form textarea,
+            .custom-select-trigger {
+                min-height: 44px;
+                font-size: 16px;
+            }
+
+            .portal-overlay {
+                display: block;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                -webkit-overflow-scrolling: touch;
+                padding: max(.6rem, env(safe-area-inset-top)) .6rem max(.8rem, env(safe-area-inset-bottom));
+            }
+
+            .portal-dialog {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                max-height: none;
+                min-height: 0;
+                margin: 0 auto;
+                padding: 1rem;
+                overflow: visible;
+                border-radius: 14px;
+            }
+
+            .portal-close {
+                position: sticky;
+                z-index: 10;
+                top: .15rem;
+                float: right;
+                margin: -.15rem -.15rem .35rem .5rem;
+            }
+
+            .portal-account-header {
+                padding-right: 0;
+                clear: both;
+            }
+
+            .portal-description {
+                margin-bottom: 1rem;
+            }
+
+            .portal-nav,
+            .portal-nav.no-site {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: .35rem;
+                overflow: visible;
+            }
+
+            .portal-nav-button {
+                min-width: 0;
+                padding: .7rem .45rem;
+                font-size: .9rem;
+                white-space: normal;
+            }
+
+            .claim-list,
+            .purchase-workflow,
+            .agreement-form,
+            .subscription-list {
+                min-width: 0;
+            }
+
+            .claim-item,
+            .subscription-row,
+            .section-heading-row,
+            .subscription-status-row {
+                align-items: flex-start;
+            }
+
+            .claim-item,
+            .subscription-row,
+            .section-heading-row {
+                flex-direction: column;
+            }
+
+            .purchase-step {
+                min-width: 0;
+                padding: 1rem .85rem 1rem 3.2rem;
+                border-radius: 10px;
+            }
+
+            .purchase-step.is-collapsed {
+                min-height: 58px;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .purchase-step::after {
+                top: 1rem;
+                right: .75rem;
+            }
+
+            .step-check {
+                top: .85rem;
+                left: .75rem;
+                width: 28px;
+                height: 28px;
+            }
+
+            .purchase-step h4 {
+                padding-right: 1.5rem;
+                line-height: 1.35;
+            }
+
+            .claim-checkout,
+            .claim-plan-group,
+            .discount-code-field {
+                min-width: 0;
+                padding: .85rem;
+            }
+
+            .claim-checkout .available-plans,
+            .available-plans {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-option {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: .7rem;
+            }
+
+            .plan-link,
+            .step-action,
+            .portal-primary,
+            .portal-secondary {
+                width: 100%;
+                min-height: 44px;
+            }
+
+            .discount-code-row {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: .55rem;
+            }
+
+            .discount-apply {
+                width: 100%;
+                min-height: 44px;
+            }
+
+            .development-price {
+                flex-wrap: wrap;
+                gap: .4rem .65rem;
+            }
+
+            .development-price strong {
+                font-size: 2rem;
+            }
+
+            .agreement-viewer {
+                overflow: visible;
+            }
+
+            .agreement-viewer-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: .55rem;
+            }
+
+            .agreement-viewer-close {
+                width: 100%;
+            }
+
+            .agreement-viewer iframe {
+                width: 100%;
+                height: 58vh;
+                min-height: 360px;
+            }
+
+            .signature-pad-wrap {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .signature-pad {
+                width: 100%;
+                height: 125px;
+                touch-action: none;
+            }
+
+            .portal-actions,
+            .previous-claim-actions {
+                flex-direction: column;
+            }
+
+            .previous-claim-overlay {
+                display: block;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: max(.7rem, env(safe-area-inset-top)) .7rem max(.8rem, env(safe-area-inset-bottom));
+            }
+
+            .previous-claim-dialog {
+                width: 100%;
+                max-width: 460px;
+                margin: 0 auto;
+                padding: 1.15rem;
+            }
+
+            .claim-selection-bar {
+                left: .6rem;
+                right: .6rem;
+                bottom: max(.6rem, env(safe-area-inset-bottom));
+                width: auto;
+                max-width: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: .65rem;
+                transform: none;
+            }
+
+            .claim-selection-count {
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .claim-selection-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+            }
+
+            .claim-selection-actions button {
+                min-width: 0;
+                min-height: 44px;
+                white-space: normal;
+            }
+
+            .management-modal-backdrop {
+                display: block;
+                overflow-y: auto;
+                padding: .6rem;
+            }
+
+            .management-modal {
+                width: 100%;
+                max-width: 100%;
+                max-height: none;
+                margin: 0 auto;
+                overflow: visible;
+                padding: 1rem;
+                border-radius: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .portal-dialog {
+                padding: .85rem;
+                border-radius: 12px;
+            }
+
+            .portal-nav,
+            .portal-nav.no-site {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .purchase-step {
+                padding: .9rem .75rem .9rem 3rem;
+            }
+
+            .agreement-viewer iframe {
+                height: 54vh;
+                min-height: 320px;
+            }
+
+            .claim-selection-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 
