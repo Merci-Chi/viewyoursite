@@ -279,10 +279,6 @@
         .discount-message { min-height: 1.2rem; margin-top: .55rem; font-size: .88rem; }
         .discount-message.success { color: #a8d99b; }
         .discount-message.error { color: #e39a9a; }
-        .discount-plan { margin-bottom: 1rem; padding: 1rem; border: 1px solid #4b5d3d; border-radius: 12px; background: #1b2418; }
-        .discount-plan[hidden] { display: none; }
-        .discount-plan h4 { margin-bottom: .45rem; }
-        .discount-plan .plan-option { border-top: 0; padding: 0; }
         .claim-plan-group { margin-top: 1rem; padding: 1rem; border: 1px solid #303030; border-radius: 10px; background: #181818; }
         .claim-plan-group label { display: block; margin-bottom: .55rem; color: #ddd; font-weight: 700; }
         .claim-checkout .available-plans { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1rem; }
@@ -347,7 +343,6 @@
         body.light-mode .discount-code-field label { color: #222; }
         body.light-mode .discount-code-field input { border-color: #ccc; background: #fff; color: #222; }
         body.light-mode .discount-code-field { border-color: #d7d7d2; background: #fff; }
-        body.light-mode .discount-plan { border-color: #b9c9aa; background: #f2f8ed; }
         body.light-mode .have-code-button { color: #555; }
         body.light-mode .claim-checkout .plan-option.selected { background: #ecece8; }
         body.light-mode .purchase-step { border-color: #d7d7d2; background: #fff; }
@@ -955,21 +950,13 @@
                             <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
                         </div>
                         <div class="discount-code-field" data-discount-field="claim" hidden>
-                            <label for="claimDiscountCode">Discount Code</label>
+                            <label for="claimDiscountCode">Code</label>
                             <div class="discount-code-row">
-                                <input id="claimDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                                <input id="claimDiscountCode" type="text" placeholder="Enter code" autocomplete="off" spellcheck="false">
                                 <button class="discount-apply" type="button" data-discount-apply="claim">Apply</button>
                             </div>
                             <div class="discount-message" data-discount-message="claim" role="status"></div>
                         </div>
-                        <article class="discount-plan" data-discount-plan="claim" hidden>
-                            <h4 data-discount-plan-heading>Special Membership</h4>
-                            <div class="plan-option">
-                                <div><span class="plan-name" data-discount-plan-name>Special Membership</span><span class="plan-price" data-discount-plan-price></span></div>
-                                <button class="plan-link" type="button" data-discount-checkout="claim">Choose</button>
-                            </div>
-                            <p class="payment-state" id="claimDiscountStatus">Choose this plan to open secure checkout.</p>
-                        </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
                     <section class="purchase-step is-locked is-collapsed" id="developmentStep" style="order:2">
@@ -996,13 +983,13 @@
                         </div>
 
                         <div class="discount-code-field" data-discount-field="development" hidden>
-                            <label for="developmentDiscountCode">Discount Code</label>
+                            <label for="developmentDiscountCode">Code</label>
 
                             <div class="discount-code-row">
                                 <input
                                     id="developmentDiscountCode"
                                     type="text"
-                                    placeholder="Enter discount code"
+                                    placeholder="Enter code"
                                     autocomplete="off"
                                     spellcheck="false"
                                 >
@@ -1022,29 +1009,6 @@
                                 role="status"
                             ></div>
                         </div>
-
-                        <article
-                            class="discount-plan"
-                            data-discount-plan="development"
-                            hidden
-                        >
-                            <h4 data-discount-plan-heading>Special Price</h4>
-
-                            <div class="plan-option">
-                                <div>
-                                    <span class="plan-name" data-discount-plan-name>Special Price</span>
-                                    <span class="plan-price" data-discount-plan-price></span>
-                                </div>
-
-                                <button
-                                    class="plan-link"
-                                    type="button"
-                                    data-discount-checkout="development"
-                                >
-                                    Choose
-                                </button>
-                            </div>
-                        </article>
 
                         <button
                             class="portal-primary step-action"
@@ -1085,28 +1049,21 @@
                         <button class="have-code-button" type="button" data-discount-toggle="subscriptions" aria-expanded="false">Have a code?</button>
                     </div>
                     <div class="discount-code-field" data-discount-field="subscriptions" hidden>
-                        <label for="subscriptionDiscountCode">Discount Code</label>
+                        <label for="subscriptionDiscountCode">Code</label>
                         <div class="discount-code-row">
-                            <input id="subscriptionDiscountCode" type="text" placeholder="Enter discount code" autocomplete="off" spellcheck="false">
+                            <input id="subscriptionDiscountCode" type="text" placeholder="Enter code" autocomplete="off" spellcheck="false">
                             <button class="discount-apply" type="button" data-discount-apply="subscriptions">Apply</button>
                         </div>
                         <div class="discount-message" data-discount-message="subscriptions" role="status"></div>
                     </div>
-                    <article class="discount-plan" data-discount-plan="subscriptions" hidden>
-                        <h4 data-discount-plan-heading>Special Membership</h4>
-                        <div class="plan-option">
-                            <div><span class="plan-name" data-discount-plan-name>Special Membership</span><span class="plan-price" data-discount-plan-price></span></div>
-                            <button class="plan-link" type="button" data-discount-checkout="subscriptions">Choose</button>
-                        </div>
-                    </article>
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly" data-hosting-type="standard">Choose</button></div>
                         </article>
                         <article class="plan-group">
                             <h4>Backend Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly" data-hosting-type="backend">Choose</button></div>
                         </article>
                     </div>
                 </section>
@@ -1253,9 +1210,9 @@
         };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let pendingProgressScrollTarget = null;
-        let appliedDiscountCode = "";
-        const appliedDiscountCodes = { claim: "", subscriptions: "" };
-        const appliedDiscountPlans = { claim: null, subscriptions: null };
+        const appliedCodes = { claim: "", subscriptions: "" };
+        const localHostingPricing = { claim: null, subscriptions: null };
+        let developmentCodeAccepted = false;
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
@@ -1337,12 +1294,32 @@
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
-                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
+                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly", type: "standard" }
             ],
             backend: [
-                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly" }
+                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly", type: "backend" }
             ]
         };
+        function activeHostingCode(scope) {
+            return appliedCodes[scope] || "";
+        }
+        function activeHostingPlan(type, scope = "claim") {
+            const base = hostingCheckoutPlans[type]?.[0] || null;
+            if (!base) return null;
+            const serverPricing = localHostingPricing[scope]?.[type];
+            return serverPricing?.label
+                ? { ...base, label: serverPricing.label }
+                : base;
+        }
+        function refreshSubscriptionPlanDisplay() {
+            document.querySelectorAll('#subscriptionsPanel [data-hosting-type]').forEach(button => {
+                const type = button.dataset.hostingType;
+                const plan = activeHostingPlan(type, "subscriptions");
+                if (!plan) return;
+                const price = button.closest(".plan-option")?.querySelector(".plan-name");
+                if (price) price.textContent = plan.label.split(" — ")[0];
+            });
+        }
         const checkoutPlansByKey = new Map([
             ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.key, plan]),
             ["website-development", { key: "website-development", label: "$100 — Website Development · one-time payment" }]
@@ -1384,27 +1361,67 @@
                 const field = document.querySelector(`[data-discount-field="${scope}"]`);
                 const input = field.querySelector("input");
                 const message = document.querySelector(`[data-discount-message="${scope}"]`);
-                const plan = document.querySelector(`[data-discount-plan="${scope}"]`);
-                const code = input.value.trim().toUpperCase();
+                const code = input.value.trim();
+
+                if (!code) {
+                    message.textContent = "Enter a code.";
+                    message.className = "discount-message error";
+                    return;
+                }
+
+                const purpose = scope === "development" ? "development_bypass" : "local_hosting";
+
                 button.disabled = true;
                 message.textContent = "Checking code…";
+
                 const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
                     method: "POST",
-                    body: { action: "validate-discount-code", code }
+                    body: {
+                        action: "validate-discount-code",
+                        code,
+                        purpose
+                    }
                 });
+
                 button.disabled = false;
                 const accepted = !error && data?.valid === true;
-                plan.hidden = !accepted;
-                if (accepted && data.plan) {
-                    plan.querySelector("[data-discount-plan-heading]").textContent = data.plan.label;
-                    plan.querySelector("[data-discount-plan-name]").textContent = data.plan.label;
-                    plan.querySelector("[data-discount-plan-price]").textContent = data.plan.price || "";
+
+                if (!accepted) {
+                    message.textContent = "Invalid code.";
+                    message.className = "discount-message error";
+
+                    if (scope === "development") {
+                        developmentCodeAccepted = false;
+                    } else {
+                        appliedCodes[scope] = "";
+                        localHostingPricing[scope] = null;
+                        refreshSubscriptionPlanDisplay();
+                        if (scope === "claim") renderClaimPlanChoices();
+                    }
+                    return;
                 }
-                message.textContent = accepted ? "Code accepted. Your special plan is available above." : "Invalid discount code.";
-                message.className = `discount-message ${accepted ? "success" : "error"}`;
-                appliedDiscountCodes[scope] = accepted ? code : "";
-                appliedDiscountPlans[scope] = accepted ? { key: data.plan.key, label: `${data.plan.label} — ${data.plan.price}` } : null;
-                if (scope === "claim") appliedDiscountCode = appliedDiscountCodes[scope];
+
+                message.textContent = "Code accepted ✓";
+                message.className = "discount-message success";
+                input.value = "";
+
+                if (scope === "development") {
+                    developmentCodeAccepted = true;
+                    developmentPurchaseConfirmed = true;
+                    developmentStep.classList.add("is-complete");
+                    document.getElementById("developmentStepSummary").textContent = "Code accepted ✓";
+                    updateClaimSubmitAvailability();
+                    smoothlyScrollToStep(claimCheckout);
+                    return;
+                }
+
+                appliedCodes[scope] = code;
+                localHostingPricing[scope] = data?.pricing || null;
+                refreshSubscriptionPlanDisplay();
+
+                if (scope === "claim") {
+                    renderClaimPlanChoices();
+                }
             });
         });
         document.querySelectorAll("[data-discount-field] input").forEach(input => {
@@ -1580,38 +1597,24 @@
         }
 
         document.querySelectorAll("[data-hosting-plan]").forEach(link => {
-            const plan = checkoutPlansByKey.get(link.dataset.hostingPlan);
-            if (!plan) return;
             link.removeAttribute("target");
             link.addEventListener("click", event => {
                 event.preventDefault();
+
+                const type = link.dataset.hostingType || (link.dataset.hostingPlan.includes("backend") ? "backend" : "standard");
+                const plan = activeHostingPlan(type, isClaimPlan ? "claim" : "subscriptions");
+                if (!plan) return;
+
                 const isClaimPlan = Boolean(link.closest("#claimPanel"));
                 if (isClaimPlan) {
-                    claimPlanSelections.forEach((_selection, type) => {
-                        claimPlanSelections.set(type, { plan, confirmed: false });
-                    });
-                }
-                startVerifiedCheckout(plan, {
-                    claimType: isClaimPlan ? "all" : null,
-                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
-                });
-            });
-        });
-        document.querySelectorAll("[data-discount-checkout]").forEach(button => {
-            button.addEventListener("click", () => {
-                const scope = button.dataset.discountCheckout;
-                const code = appliedDiscountCodes[scope];
-                const discountPlan = appliedDiscountPlans[scope];
-                if (!code || !discountPlan) return;
-                const isClaimPlan = scope === "claim";
-                if (isClaimPlan) {
                     claimPlanSelections.clear();
-                    claimPlanSelections.set(discountPlan.key.includes("backend") ? "backend" : "standard", { plan: discountPlan, confirmed: false });
+                    claimPlanSelections.set(type, { plan, confirmed: false });
                 }
-                startVerifiedCheckout(discountPlan, {
-                    discountCode: code,
-                    claimType: isClaimPlan ? "all" : null,
-                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
+
+                startVerifiedCheckout(plan, {
+                    discountCode: activeHostingCode(isClaimPlan ? "claim" : "subscriptions") || null,
+                    claimType: isClaimPlan ? type : null,
+                    statusElement: isClaimPlan ? claimMessageStatus : subscriptionMessage
                 });
             });
         });
@@ -1822,6 +1825,7 @@
             baseAgreementId = null;
             savedAgreementIds.clear();
             developmentPurchaseConfirmed = false;
+            developmentCodeAccepted = false;
             agreementSigner.value = "";
             agreementSigner.disabled = false;
             agreementBusiness.value = "";
@@ -1864,7 +1868,9 @@
             claimCheckout.classList.toggle("is-locked", !developmentPurchaseConfirmed);
             claimCheckout.classList.toggle("is-collapsed", !developmentPurchaseConfirmed || hostingReady);
             purchaseDevelopmentButton.disabled = !agreementSigned || developmentPurchaseConfirmed;
-            developmentStatus.textContent = developmentPurchaseConfirmed ? "Website development purchase verified ✓" : agreementSigned ? "Ready for your one-time $100 payment." : "Sign the agreement first to continue.";
+            developmentStatus.textContent = developmentPurchaseConfirmed
+                ? (developmentCodeAccepted ? "Code accepted ✓" : "Website development purchase verified ✓")
+                : agreementSigned ? "Ready for your one-time $100 payment." : "Sign the agreement first to continue.";
             const selectedHosting = [...claimPlanSelections.values()].find(selection => selection.plan)?.plan;
             document.getElementById("hostingStepSummary").textContent = selectedHosting ? `${selectedHosting.label} confirmed ✓` : "Hosting purchase confirmed ✓";
             const ready = agreementSigned && hostingReady && developmentPurchaseConfirmed;
@@ -1885,7 +1891,7 @@
             group.appendChild(heading);
 
             ["standard", "backend"].forEach(type => {
-                (hostingCheckoutPlans[type] || []).forEach(plan => {
+                ([activeHostingPlan(type, "claim")].filter(Boolean)).forEach(plan => {
                     const row = document.createElement("div");
                     row.className = "plan-option";
                     const copy = document.createElement("div");
@@ -1919,7 +1925,7 @@
                         claimPlanSelections.set(type, { plan, confirmed: false });
                         selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
-                        startVerifiedCheckout(plan, { claimType: type, statusElement: selectedNote });
+                        startVerifiedCheckout(plan, { discountCode: activeHostingCode("claim") || null, claimType: type, statusElement: selectedNote });
                     });
                     row.append(copy, chooseButton);
                     group.appendChild(row);
@@ -2710,9 +2716,8 @@
                         accepted: true
                     },
                     websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
-                    websiteDevelopmentSkipped: false,
-                    discountCode: appliedDiscountCode || null,
-                    message: "" 
+                    websiteDevelopmentSkipped: developmentCodeAccepted,
+                    message: developmentCodeAccepted ? "Development code approved" : "" 
                 }
             });
             submitClaimButton.textContent = "Submit Claim Request";
