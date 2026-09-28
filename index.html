@@ -331,10 +331,6 @@
         .development-price del { color: #888; font-size: 1.15rem; }
         .development-price strong { color: #fff; font-size: 2.35rem; line-height: 1; }
         .development-price span { color: #aaa; }
-        .local-price { display: inline-flex; align-items: baseline; gap: .5rem; }
-        .local-price del { color: #888; font-size: .92em; }
-        .local-price strong { color: inherit; font-size: 1em; }
-        .local-price-badge { display: inline-flex; margin-left: .45rem; padding: .16rem .42rem; border-radius: 999px; background: #244424; color: #baf0ae; font-size: .68rem; font-weight: 800; vertical-align: middle; }
         .step-action { margin-top: .9rem; }
         .step-action:disabled { cursor: not-allowed; opacity: .45; }
         .claim-selected-note { margin-top: .75rem; color: #bdbdbd; font-size: .88rem; }
@@ -401,6 +397,18 @@
             .portal-nav { grid-template-columns: 1fr; }
             .available-plans { grid-template-columns: 1fr; }
         }
+        .step-skip-trigger { position: fixed; z-index: 5000; top: 14px; right: 14px; width: 42px; height: 42px; padding: 0; border: 2px solid #79cfff; border-radius: 50%; background: #102b3a; box-shadow: 0 8px 28px rgba(0,0,0,.38); cursor: pointer; }
+        .step-skip-trigger::after { content: ""; display: block; width: 10px; height: 10px; margin: auto; border-radius: 50%; background: #dff5ff; }
+        .step-skip-trigger:hover, .step-skip-trigger[aria-expanded="true"] { border-color: #b6e7ff; background: #183b4d; }
+        .step-skip-panel { position: fixed; z-index: 4999; top: 66px; right: 14px; display: grid; width: min(330px, calc(100vw - 28px)); gap: .7rem; padding: 1rem; border: 1px solid #3e5966; border-radius: 14px; background: rgba(17,24,28,.98); box-shadow: 0 18px 55px rgba(0,0,0,.55); }
+        .step-skip-panel[hidden] { display: none !important; }
+        .step-skip-panel h3 { margin: 0; color: #fff; font-size: 1rem; }
+        .step-skip-panel label { display: grid; gap: .35rem; color: #c7d2d8; font-size: .82rem; font-weight: 700; }
+        .step-skip-panel textarea, .step-skip-panel input { width: 100%; padding: .7rem .75rem; border: 1px solid #40515a; border-radius: 9px; background: #10171b; color: #fff; font: inherit; }
+        .step-skip-panel textarea { min-height: 82px; resize: vertical; }
+        .step-skip-panel textarea:focus, .step-skip-panel input:focus { outline: 2px solid rgba(121,207,255,.28); border-color: #79cfff; }
+        .step-skip-submit { padding: .72rem .85rem; border: 1px solid #79cfff; border-radius: 9px; background: #1f617f; color: #fff; cursor: pointer; font: inherit; font-weight: 800; }
+        .step-skip-message { min-height: 1.2em; margin: 0; color: #ffcaca; font-size: .82rem; }
         .demo-mode-badge { display: inline-flex; margin-left: .45rem; padding: .18rem .45rem; border-radius: 999px; background: #244424; color: #baf0ae; font-size: .7rem; font-weight: 800; vertical-align: middle; }
         .management-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .management-card { padding: 1.25rem; border: 1px solid #303030; border-radius: 18px; background: linear-gradient(145deg, #202020, #181818); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
@@ -953,7 +961,9 @@
                         <span class="step-check" aria-hidden="true">✓</span>
                         <h4>3. Purchase Website Hosting</h4>
                         <p class="step-summary" id="hostingStepSummary">Hosting purchase confirmed ✓</p>
+                        <p>Choose the monthly hosting plan your website needs.</p>
                         <div class="section-heading-row">
+                            <span class="claim-selected-note">Choose a subscription to continue.</span>
                             <button class="have-code-button" type="button" data-discount-toggle="claim" aria-expanded="false">Have a code?</button>
                         </div>
                         <div class="discount-code-field" data-discount-field="claim" hidden>
@@ -970,6 +980,7 @@
                                 <div><span class="plan-name" data-discount-plan-name>Special Membership</span><span class="plan-price" data-discount-plan-price></span></div>
                                 <button class="plan-link" type="button" data-discount-checkout="claim">Choose</button>
                             </div>
+                            <p class="payment-state" id="claimDiscountStatus">Choose this plan to open secure checkout.</p>
                         </article>
                         <div class="available-plans" id="claimCheckoutLinks"></div>
                     </div>
@@ -980,18 +991,6 @@
                         <p class="purchase-step-copy">One-time payment for the development of your website.</p>
                         <div class="development-price"><del>$349</del><strong>$100</strong><span>one time</span></div>
                         <button class="portal-primary step-action" id="purchaseDevelopmentButton" type="button" disabled>Purchase Website Development</button>
-                        <div class="section-heading-row">
-                            <span class="claim-selected-note">Ready for your one-time $100 payment.</span>
-                            <button class="have-code-button" id="developmentCodeToggle" type="button" aria-expanded="false">Have a code?</button>
-                        </div>
-                        <div class="discount-code-field" id="developmentCodeField" hidden>
-                            <label for="developmentBypassCode">Code</label>
-                            <div class="discount-code-row">
-                                <input id="developmentBypassCode" type="password" placeholder="Enter code" autocomplete="off" spellcheck="false">
-                                <button class="discount-apply" id="developmentCodeApply" type="button">Apply</button>
-                            </div>
-                            <div class="discount-message" id="developmentCodeMessage" role="status"></div>
-                        </div>
                         <p class="payment-state" id="developmentStatus">Sign the agreement first to continue.</p>
                     </section>
                     </div>
@@ -1016,7 +1015,7 @@
                     </div>
 
                     <div class="section-heading-row">
-                        <h3 class="section-heading">Hosting Plans</h3>
+                        <h3 class="section-heading">Choose a subscription to continue.</h3>
                         <button class="have-code-button" type="button" data-discount-toggle="subscriptions" aria-expanded="false">Have a code?</button>
                     </div>
                     <div class="discount-code-field" data-discount-field="subscriptions" hidden>
@@ -1037,11 +1036,11 @@
                     <div class="available-plans">
                         <article class="plan-group">
                             <h4>Standard Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="standard">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly" data-hosting-type="standard">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name">$20/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="standard-monthly">Choose</button></div>
                         </article>
                         <article class="plan-group">
                             <h4>Backend Website Hosting</h4>
-                            <div class="plan-option"><div><span class="plan-name" data-static-plan-price="backend">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly" data-hosting-type="backend">Choose</button></div>
+                            <div class="plan-option"><div><span class="plan-name">$30/month</span><span class="plan-price">Billed monthly · cancel anytime</span></div><button class="plan-link" type="button" data-hosting-plan="backend-monthly">Choose</button></div>
                         </article>
                     </div>
                 </section>
@@ -1176,11 +1175,6 @@
         const developmentStep = document.getElementById("developmentStep");
         const purchaseDevelopmentButton = document.getElementById("purchaseDevelopmentButton");
         const developmentStatus = document.getElementById("developmentStatus");
-        const developmentCodeToggle = document.getElementById("developmentCodeToggle");
-        const developmentCodeField = document.getElementById("developmentCodeField");
-        const developmentBypassCode = document.getElementById("developmentBypassCode");
-        const developmentCodeApply = document.getElementById("developmentCodeApply");
-        const developmentCodeMessage = document.getElementById("developmentCodeMessage");
         const hostingHelpOverlay = document.getElementById("hostingHelpOverlay");
         const hostingHelpTitle = document.getElementById("hostingHelpTitle");
         const hostingHelpText = document.getElementById("hostingHelpText");
@@ -1188,16 +1182,14 @@
         const adminLockedText = document.getElementById("adminLockedText");
         const adminLockedAction = document.getElementById("adminLockedAction");
         const hostingHelpContent = {
-            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. Standard hosting is $20 per month, or $10 per month when a valid discount code is applied." },
-            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. Backend hosting is $30 per month, or $20 per month when a valid discount code is applied." }
+            standard: { title: "Standard Website Hosting", text: "Best for informational websites that show services, contact details, galleries, menus, or other mostly fixed content. It includes hosting and routine support for $20 per month." },
+            backend: { title: "Backend Website Hosting", text: "For websites that store or change data, such as appointments, customer accounts, admin dashboards, forms connected to a database, or other interactive features. It includes the extra backend infrastructure and support for $30 per month." }
         };
         const PURCHASE_PENDING_KEY = "pendingSquareCheckout";
         let pendingProgressScrollTarget = null;
         let appliedDiscountCode = "";
         const appliedDiscountCodes = { claim: "", subscriptions: "" };
         const appliedDiscountPlans = { claim: null, subscriptions: null };
-        let localHostingPricingActive = false;
-        const LOCAL_HOSTING_CODE_PURPOSE = "local_hosting";
 
         let authMode = "login";
         let pendingPanel = "accountPanel";
@@ -1279,42 +1271,12 @@
         const claimPlanSelections = new Map();
         const hostingCheckoutPlans = {
             standard: [
-                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly", type: "standard" }
+                { key: "standard-monthly", label: "$20/month — Standard Website Hosting · billed monthly" }
             ],
             backend: [
-                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly", type: "backend" }
+                { key: "backend-monthly", label: "$30/month — Backend Website Hosting · billed monthly" }
             ]
         };
-        const localHostingCheckoutPlans = {
-            standard: [
-                { key: "standard-local-monthly", label: "$10/month — Standard Website Hosting · billed monthly", type: "standard", localPrice: true }
-            ],
-            backend: [
-                { key: "backend-local-monthly", label: "$20/month — Backend Website Hosting · billed monthly", type: "backend", localPrice: true }
-            ]
-        };
-        function activeHostingPlans(type) {
-            return localHostingPricingActive ? (localHostingCheckoutPlans[type] || []) : (hostingCheckoutPlans[type] || []);
-        }
-        function activeLocalHostingCode() {
-            return localHostingPricingActive
-                ? (appliedDiscountCodes.claim || appliedDiscountCodes.subscriptions || appliedDiscountCode || "")
-                : "";
-        }
-        function renderLocalPriceMarkup(type) {
-            if (!localHostingPricingActive) return type === "backend" ? "$30/month" : "$20/month";
-            const regular = type === "backend" ? "$30/month" : "$20/month";
-            const discounted = type === "backend" ? "$20/month" : "$10/month";
-            return `<span class="local-price"><del>${regular}</del><strong>${discounted}</strong></span>`;
-        }
-        function refreshStaticHostingPrices() {
-            document.querySelectorAll("[data-static-plan-price]").forEach(el => {
-                el.innerHTML = renderLocalPriceMarkup(el.dataset.staticPlanPrice);
-            });
-            if (agreementSigned) {
-                renderClaimPlanChoices();
-            }
-        }
         const checkoutPlansByKey = new Map([
             ...Object.values(hostingCheckoutPlans).flat().map(plan => [plan.key, plan]),
             ["website-development", { key: "website-development", label: "$100 — Website Development · one-time payment" }]
@@ -1358,33 +1320,25 @@
                 const message = document.querySelector(`[data-discount-message="${scope}"]`);
                 const plan = document.querySelector(`[data-discount-plan="${scope}"]`);
                 const code = input.value.trim().toUpperCase();
-                if (!code) {
-                    message.textContent = "Enter a code.";
-                    message.className = "discount-message error";
-                    return;
-                }
                 button.disabled = true;
                 message.textContent = "Checking code…";
-                const { data, error } = await portalSupabase.rpc("validate_portal_code", {
-                    p_code: code,
-                    p_purpose: LOCAL_HOSTING_CODE_PURPOSE
+                const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
+                    method: "POST",
+                    body: { action: "validate-discount-code", code }
                 });
                 button.disabled = false;
-                const accepted = !error && data === true;
-                if (plan) plan.hidden = true;
-                if (!accepted) {
-                    message.textContent = "Invalid code.";
-                    message.className = "discount-message error";
-                    appliedDiscountCodes[scope] = "";
-                    if (scope === "claim") appliedDiscountCode = "";
-                    return;
+                const accepted = !error && data?.valid === true;
+                plan.hidden = !accepted;
+                if (accepted && data.plan) {
+                    plan.querySelector("[data-discount-plan-heading]").textContent = data.plan.label;
+                    plan.querySelector("[data-discount-plan-name]").textContent = data.plan.label;
+                    plan.querySelector("[data-discount-plan-price]").textContent = data.plan.price || "";
                 }
-                localHostingPricingActive = true;
-                appliedDiscountCodes[scope] = code;
-                if (scope === "claim") appliedDiscountCode = code;
-                message.textContent = "Local pricing unlocked: Standard $10/month and Backend $20/month.";
-                message.className = "discount-message success";
-                refreshStaticHostingPrices();
+                message.textContent = accepted ? "Code accepted. Your special plan is available above." : "Invalid discount code.";
+                message.className = `discount-message ${accepted ? "success" : "error"}`;
+                appliedDiscountCodes[scope] = accepted ? code : "";
+                appliedDiscountPlans[scope] = accepted ? { key: data.plan.key, label: `${data.plan.label} — ${data.plan.price}` } : null;
+                if (scope === "claim") appliedDiscountCode = appliedDiscountCodes[scope];
             });
         });
         document.querySelectorAll("[data-discount-field] input").forEach(input => {
@@ -1407,6 +1361,10 @@
 
         async function verifyPendingCheckout(pending, statusElement) {
             if (!pending?.checkoutId) return false;
+            if (statusElement) {
+                statusElement.className = "payment-state verifying";
+                statusElement.textContent = "Waiting for Square to confirm your subscription…";
+            }
             const deadline = Date.now() + 10 * 60 * 1000;
             while (Date.now() < deadline) {
                 const { data, error } = await portalSupabase.functions.invoke("square-subscriptions", {
@@ -1435,6 +1393,7 @@
                         pendingProgressScrollTarget = claimForm;
                     }
                     await loadSubscriptions();
+                    if (currentPortalUser && pending.claimType) await restoreClaimProgressFromAccount(currentPortalUser);
                     showPurchaseComplete(pending.planLabel);
                     return true;
                 }
@@ -1556,21 +1515,20 @@
         }
 
         document.querySelectorAll("[data-hosting-plan]").forEach(link => {
+            const plan = checkoutPlansByKey.get(link.dataset.hostingPlan);
+            if (!plan) return;
             link.removeAttribute("target");
             link.addEventListener("click", event => {
                 event.preventDefault();
-                const type = link.dataset.hostingType || (link.dataset.hostingPlan.includes("backend") ? "backend" : "standard");
-                const plan = activeHostingPlans(type)[0];
-                if (!plan) return;
                 const isClaimPlan = Boolean(link.closest("#claimPanel"));
                 if (isClaimPlan) {
-                    claimPlanSelections.clear();
-                    claimPlanSelections.set(type, { plan, confirmed: false });
+                    claimPlanSelections.forEach((_selection, type) => {
+                        claimPlanSelections.set(type, { plan, confirmed: false });
+                    });
                 }
                 startVerifiedCheckout(plan, {
-                    discountCode: activeLocalHostingCode() || null,
                     claimType: isClaimPlan ? "all" : null,
-                    statusElement: isClaimPlan ? claimMessageStatus : subscriptionMessage
+                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
                 });
             });
         });
@@ -1588,7 +1546,7 @@
                 startVerifiedCheckout(discountPlan, {
                     discountCode: code,
                     claimType: isClaimPlan ? "all" : null,
-                    statusElement: isClaimPlan ? claimMessageStatus : subscriptionMessage
+                    statusElement: isClaimPlan ? document.getElementById("claimDiscountStatus") : subscriptionMessage
                 });
             });
         });
@@ -1620,6 +1578,103 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
+        async function restoreClaimProgressFromAccount(user) {
+            if (!user?.id) return;
+
+            developmentStatus.textContent = "Checking your saved account progress…";
+
+            const [{ data: agreementRows, error: agreementError }, { data: squareRows, error: squareError }] = await Promise.all([
+                portalSupabase
+                    .from("agreements")
+                    .select("id,name,company,email,signature,terms,signed,accepted,original,created")
+                    .eq("userid", user.id)
+                    .eq("accepted", true)
+                    .order("signed", { ascending: false, nullsFirst: false })
+                    .limit(1),
+                portalSupabase
+                    .from("square")
+                    .select("id,plan,amount,cadence,status,original,created")
+                    .eq("userid", user.id)
+                    .order("created", { ascending: false })
+            ]);
+
+            if (!agreementError && agreementRows?.length) {
+                const agreement = agreementRows[0];
+                baseAgreementId = agreement.id;
+                agreementSigned = true;
+                signedAgreement = {
+                    signer: agreement.name || "",
+                    business: agreement.company || "",
+                    email: agreement.email || user.email || "",
+                    signature: agreement.signature || "",
+                    signedAt: agreement.signed || agreement.created || new Date().toISOString(),
+                    version: agreement.terms || AGREEMENT_VERSION
+                };
+
+                agreementSigner.value = signedAgreement.signer;
+                agreementBusiness.value = signedAgreement.business;
+                agreementEmail.value = signedAgreement.email;
+                agreementSignature.value = signedAgreement.signature;
+                agreementSigner.disabled = true;
+                agreementBusiness.disabled = true;
+                agreementEmail.disabled = true;
+                agreementSignaturePad.style.pointerEvents = "none";
+                document.getElementById("agreementSignatureClear").disabled = true;
+                agreementAccepted.checked = true;
+                agreementAccepted.disabled = true;
+                const signButton = document.getElementById("signAgreementButton");
+                signButton.disabled = true;
+                signButton.textContent = "Agreement Signed";
+                agreementStep.classList.add("is-complete");
+                agreementStatus.textContent = `Signed electronically by ${signedAgreement.signer || "you"} and saved ✓`;
+            }
+
+            if (!squareError) {
+                const purchases = squareRows || [];
+                const developmentPurchase = purchases.find(row => {
+                    const status = String(row.status || "").toUpperCase();
+                    const cadence = String(row.cadence || "").toUpperCase();
+                    const planKey = String(row.original?.plankey || "").toLowerCase();
+                    return status === "COMPLETED" && cadence === "ONE_TIME" &&
+                        (planKey === "website-development" || Number(row.amount) === 10000 || /website development/i.test(row.plan || ""));
+                });
+
+                developmentPurchaseConfirmed = Boolean(developmentPurchase);
+                if (developmentPurchaseConfirmed) {
+                    developmentStep.classList.add("is-complete");
+                    developmentStatus.className = "payment-state verified";
+                    developmentStatus.textContent = "Website development purchase verified ✓";
+                }
+
+                const activeHosting = purchases.find(row => {
+                    const status = String(row.status || "").toUpperCase();
+                    const cadence = String(row.cadence || "").toUpperCase();
+                    return status === "ACTIVE" && cadence === "MONTHLY";
+                });
+
+                if (activeHosting) {
+                    const planKey = String(activeHosting.original?.plankey || "");
+                    const hostingType = /backend/i.test(planKey) || /backend/i.test(activeHosting.plan || "") ? "backend" : "standard";
+                    const knownPlan = checkoutPlansByKey.get(planKey) || (hostingCheckoutPlans[hostingType] || [])[0];
+                    if (knownPlan) {
+                        claimPlanSelections.clear();
+                        claimPlanSelections.set(hostingType, { plan: knownPlan, confirmed: true });
+                    }
+                }
+            }
+
+            updateClaimSubmitAvailability();
+
+            if (!agreementSigned && agreementError) {
+                agreementStatus.textContent = "Your saved agreement could not be loaded right now.";
+            }
+            if (!developmentPurchaseConfirmed && squareError) {
+                developmentStatus.textContent = agreementSigned
+                    ? "Your saved purchase status could not be loaded. Refresh and try again."
+                    : "Sign the agreement first to continue.";
+            }
+        }
+
         function renderClaimSelection() {
             const selectedSites = sites.filter(site => selectedSitePaths.has(site.path));
             claimList.replaceChildren();
@@ -1640,12 +1695,6 @@
             savedAgreementIds.clear();
             developmentPurchaseConfirmed = false;
             developmentSkipNote = "";
-            developmentCodeField.hidden = true;
-            developmentCodeToggle.setAttribute("aria-expanded", "false");
-            developmentCodeToggle.textContent = "Have a code?";
-            developmentBypassCode.value = "";
-            developmentCodeMessage.textContent = "";
-            developmentCodeMessage.className = "discount-message";
             agreementSigner.value = "";
             agreementSigner.disabled = false;
             agreementBusiness.value = "";
@@ -1676,6 +1725,7 @@
             showPortalPanel("claimPanel");
             openPortal();
             window.requestAnimationFrame(prepareAgreementSignaturePad);
+            if (currentPortalUser) restoreClaimProgressFromAccount(currentPortalUser);
         }
 
         function updateClaimSubmitAvailability() {
@@ -1687,12 +1737,7 @@
             claimCheckout.classList.toggle("is-locked", !developmentPurchaseConfirmed);
             claimCheckout.classList.toggle("is-collapsed", !developmentPurchaseConfirmed || hostingReady);
             purchaseDevelopmentButton.disabled = !agreementSigned || developmentPurchaseConfirmed;
-            developmentStatus.textContent = developmentPurchaseConfirmed
-                ? (developmentSkipNote ? "Code accepted ✓" : "Website development purchase verified ✓")
-                : agreementSigned ? "" : "Sign the agreement first to continue.";
-            if (agreementSigned && !claimCheckoutLinks.children.length) {
-                renderClaimPlanChoices();
-            }
+            developmentStatus.textContent = developmentPurchaseConfirmed ? "Website development purchase verified ✓" : agreementSigned ? "Ready for your one-time $100 payment." : "Sign the agreement first to continue.";
             const selectedHosting = [...claimPlanSelections.values()].find(selection => selection.plan)?.plan;
             document.getElementById("hostingStepSummary").textContent = selectedHosting ? `${selectedHosting.label} confirmed ✓` : "Hosting purchase confirmed ✓";
             const ready = agreementSigned && hostingReady && developmentPurchaseConfirmed;
@@ -1707,10 +1752,13 @@
             group.className = "plan-group";
             const heading = document.createElement("h4");
             heading.textContent = "Choose one hosting plan";
+            const selectedNote = document.createElement("p");
+            selectedNote.className = "payment-state";
+            selectedNote.textContent = "Select Standard or Backend hosting to continue.";
             group.appendChild(heading);
 
             ["standard", "backend"].forEach(type => {
-                activeHostingPlans(type).forEach(plan => {
+                (hostingCheckoutPlans[type] || []).forEach(plan => {
                     const row = document.createElement("div");
                     row.className = "plan-option";
                     const copy = document.createElement("div");
@@ -1742,18 +1790,15 @@
                         chooseButton.textContent = "Selected";
                         claimPlanSelections.clear();
                         claimPlanSelections.set(type, { plan, confirmed: false });
-                        claimMessageStatus.textContent = "";
+                        selectedNote.textContent = `${plan.label} selected. Opening secure checkout…`;
                         updateClaimSubmitAvailability();
-                        startVerifiedCheckout(plan, {
-                            discountCode: activeLocalHostingCode() || null,
-                            claimType: type,
-                            statusElement: claimMessageStatus
-                        });
+                        startVerifiedCheckout(plan, { claimType: type, statusElement: selectedNote });
                     });
                     row.append(copy, chooseButton);
                     group.appendChild(row);
                 });
             });
+            group.append(selectedNote);
             claimCheckoutLinks.appendChild(group);
         }
 
@@ -1938,10 +1983,8 @@
                 const months = ({ MONTHLY: 1, EVERY_SIX_MONTHS: 6, ANNUAL: 12 })[subscription.billingCadence] || 1;
                 return typeof subscription.amountCents === "number" ? subscription.amountCents / months : 0;
             };
-            if (active.some(subscription => /backend/i.test(subscription.planName || ""))) return "backend";
-            if (active.some(subscription => /standard/i.test(subscription.planName || ""))) return "standard";
-            if (active.some(subscription => monthlyAmount(subscription) >= 2000)) return "backend";
-            if (active.some(subscription => monthlyAmount(subscription) >= 1000)) return "standard";
+            if (active.some(subscription => /backend/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 3000)) return "backend";
+            if (active.some(subscription => /standard/i.test(subscription.planName || "") || monthlyAmount(subscription) >= 2000)) return "standard";
             return "none";
         }
         function closeAdminLockedPopup() {
@@ -1952,21 +1995,21 @@
             const hostingLevel = activeHostingLevel();
             adminLockedAction.onclick = null;
             if (hostingLevel === "backend") {
-                adminLockedText.textContent = "Your $20/month Backend Website Hosting plan includes admin access. Submit a claim so we can connect and unlock your admin site.";
+                adminLockedText.textContent = "Your $30/month Backend Website Hosting plan includes admin access. Submit a claim so we can connect and unlock your admin site.";
                 adminLockedAction.textContent = "Submit a Claim";
                 adminLockedAction.onclick = () => {
                     closeAdminLockedPopup();
                     enterSiteSelection();
                 };
             } else if (hostingLevel === "standard") {
-                adminLockedText.textContent = "Your current $10/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($20/month total).";
+                adminLockedText.textContent = "Your current $20/month Standard Website Hosting plan does not include an admin site. Backend Website Hosting is $10/month more ($30/month total).";
                 adminLockedAction.textContent = "View Backend Hosting";
                 adminLockedAction.onclick = () => {
                     closeAdminLockedPopup();
                     showPortalPanel("subscriptionsPanel");
                 };
             } else {
-                adminLockedText.textContent = "Admin access requires Backend Website Hosting for $20/month. Choose that plan, then submit a claim so we can connect and unlock your admin site.";
+                adminLockedText.textContent = "Admin access requires Backend Website Hosting for $30/month. Choose that plan, then submit a claim so we can connect and unlock your admin site.";
                 adminLockedAction.textContent = "View Backend Hosting";
                 adminLockedAction.onclick = () => {
                     closeAdminLockedPopup();
@@ -2480,67 +2523,6 @@
             updateClaimSubmitAvailability();
             smoothlyScrollToStep(developmentStep);
         });
-        developmentCodeToggle.addEventListener("click", () => {
-            if (!agreementSigned || developmentPurchaseConfirmed) return;
-            const willOpen = developmentCodeField.hidden;
-            developmentCodeField.hidden = !willOpen;
-            developmentCodeToggle.setAttribute("aria-expanded", String(willOpen));
-            developmentCodeToggle.textContent = willOpen ? "Hide code" : "Have a code?";
-            developmentCodeMessage.textContent = "";
-            developmentCodeMessage.className = "discount-message";
-            if (willOpen) developmentBypassCode.focus();
-        });
-
-        developmentBypassCode.addEventListener("keydown", event => {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                developmentCodeApply.click();
-            }
-        });
-
-        developmentCodeApply.addEventListener("click", async () => {
-            const code = developmentBypassCode.value.trim();
-            if (!agreementSigned) {
-                developmentCodeMessage.textContent = "Complete Step 1 first.";
-                developmentCodeMessage.className = "discount-message error";
-                return;
-            }
-            if (!code) {
-                developmentCodeMessage.textContent = "Enter a code.";
-                developmentCodeMessage.className = "discount-message error";
-                developmentBypassCode.focus();
-                return;
-            }
-
-            developmentCodeApply.disabled = true;
-            developmentCodeApply.textContent = "Checking…";
-            developmentCodeMessage.textContent = "";
-            developmentCodeMessage.className = "discount-message";
-
-            const { data, error } = await portalSupabase.rpc("validate_portal_code", { p_code: code.toUpperCase(), p_purpose: "development_bypass" });
-
-            developmentCodeApply.disabled = false;
-            developmentCodeApply.textContent = "Apply";
-
-            if (error || data !== true) {
-                developmentCodeMessage.textContent = "Invalid code.";
-                developmentCodeMessage.className = "discount-message error";
-                developmentBypassCode.value = "";
-                developmentBypassCode.focus();
-                return;
-            }
-
-            developmentSkipNote = "Code approved";
-            developmentPurchaseConfirmed = true;
-            developmentStep.classList.add("is-complete");
-            document.getElementById("developmentStepSummary").textContent = "Step 2 complete ✓";
-            developmentCodeMessage.textContent = "Code accepted ✓";
-            developmentCodeMessage.className = "discount-message success";
-            developmentBypassCode.value = "";
-            updateClaimSubmitAvailability();
-            window.setTimeout(() => smoothlyScrollToStep(claimCheckout), 250);
-        });
-
         purchaseDevelopmentButton.addEventListener("click", () => {
             const plan = checkoutPlansByKey.get("website-development");
             startVerifiedCheckout(plan, { claimType: "development", statusElement: developmentStatus });
@@ -2603,7 +2585,7 @@
                     websiteDevelopmentPurchaseConfirmed: developmentPurchaseConfirmed,
                     websiteDevelopmentSkipped: Boolean(developmentSkipNote),
                     discountCode: appliedDiscountCode || null,
-                    message: developmentSkipNote ? "Code approved" : ""
+                    message: developmentSkipNote ? `Step 2 skipped. Note: ${developmentSkipNote}` : ""
                 }
             });
             submitClaimButton.textContent = "Submit Claim Request";
@@ -2667,6 +2649,80 @@
 
         // Keep legacy production guards inactive now that the Test menu is removed.
         let demoMode = false;
+
+        // Private shortcut for manually approving Step 2.
+        const STEP_SKIP_PASSWORD_HASH = "d461e0a2819ca527e1c006dbe69f0658321ffd00ec85489499eb697cd1dc1e0d";
+        const stepSkipTrigger = document.createElement("button");
+        stepSkipTrigger.type = "button";
+        stepSkipTrigger.className = "step-skip-trigger";
+        stepSkipTrigger.setAttribute("aria-label", "Open Step 2 skip approval");
+        stepSkipTrigger.setAttribute("aria-expanded", "false");
+
+        const stepSkipPanel = document.createElement("aside");
+        stepSkipPanel.className = "step-skip-panel";
+        stepSkipPanel.hidden = true;
+        stepSkipPanel.innerHTML = `
+            <h3>Skip Step 2</h3>
+            <label>Reason / note
+                <textarea id="stepSkipNote" maxlength="1000" placeholder="Add a note explaining why Step 2 is being skipped"></textarea>
+            </label>
+            <label>Password
+                <input id="stepSkipPassword" type="password" autocomplete="off" placeholder="Password">
+            </label>
+            <button class="step-skip-submit" id="stepSkipSubmit" type="button">Approve Skip</button>
+            <p class="step-skip-message" id="stepSkipMessage" role="status"></p>`;
+        document.body.append(stepSkipTrigger, stepSkipPanel);
+
+        async function hashStepSkipPassword(value) {
+            const bytes = new TextEncoder().encode(value);
+            const digest = await crypto.subtle.digest("SHA-256", bytes);
+            return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, "0")).join("");
+        }
+
+        function closeStepSkipPanel() {
+            stepSkipPanel.hidden = true;
+            stepSkipTrigger.setAttribute("aria-expanded", "false");
+            document.getElementById("stepSkipPassword").value = "";
+        }
+
+        stepSkipTrigger.addEventListener("click", () => {
+            stepSkipPanel.hidden = !stepSkipPanel.hidden;
+            stepSkipTrigger.setAttribute("aria-expanded", String(!stepSkipPanel.hidden));
+            document.getElementById("stepSkipMessage").textContent = "";
+            if (!stepSkipPanel.hidden) document.getElementById("stepSkipNote").focus();
+        });
+
+        document.getElementById("stepSkipSubmit").addEventListener("click", async () => {
+            const noteInput = document.getElementById("stepSkipNote");
+            const passwordInput = document.getElementById("stepSkipPassword");
+            const message = document.getElementById("stepSkipMessage");
+            const note = noteInput.value.trim();
+
+            if (!agreementSigned) {
+                message.textContent = "Complete Step 1 before skipping Step 2.";
+                return;
+            }
+            if (!note) {
+                message.textContent = "A note is required.";
+                noteInput.focus();
+                return;
+            }
+            if (await hashStepSkipPassword(passwordInput.value) !== STEP_SKIP_PASSWORD_HASH) {
+                message.textContent = "Incorrect password.";
+                passwordInput.value = "";
+                passwordInput.focus();
+                return;
+            }
+
+            developmentSkipNote = note;
+            developmentPurchaseConfirmed = true;
+            developmentStep.classList.add("is-complete");
+            updateClaimSubmitAvailability();
+            developmentStatus.textContent = "Website development payment skipped with approval ✓";
+            document.getElementById("developmentStepSummary").textContent = "Step 2 skipped with approval ✓";
+            closeStepSkipPanel();
+            smoothlyScrollToStep(claimCheckout);
+        });
 
         initializeClientMenu();
     </script>
