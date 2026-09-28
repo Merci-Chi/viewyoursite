@@ -977,9 +977,87 @@
                         <h4>2. Purchase Website Development</h4>
                         <p class="step-summary" id="developmentStepSummary">Website development purchase confirmed ✓</p>
                         <p class="purchase-step-copy">One-time payment for the development of your website.</p>
-                        <div class="development-price"><del>$349</del><strong>$100</strong><span>one time</span></div>
-                        <button class="portal-primary step-action" id="purchaseDevelopmentButton" type="button" disabled>Purchase Website Development</button>
-                        <p class="payment-state" id="developmentStatus">Sign the agreement first to continue.</p>
+                        <div class="development-price">
+                            <del>$349</del>
+                            <strong>$100</strong>
+                            <span>one time</span>
+                        </div>
+
+                        <div class="section-heading-row">
+                            <span></span>
+                            <button
+                                class="have-code-button"
+                                type="button"
+                                data-discount-toggle="development"
+                                aria-expanded="false"
+                            >
+                                Have a code?
+                            </button>
+                        </div>
+
+                        <div class="discount-code-field" data-discount-field="development" hidden>
+                            <label for="developmentDiscountCode">Discount Code</label>
+
+                            <div class="discount-code-row">
+                                <input
+                                    id="developmentDiscountCode"
+                                    type="text"
+                                    placeholder="Enter discount code"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                >
+
+                                <button
+                                    class="discount-apply"
+                                    type="button"
+                                    data-discount-apply="development"
+                                >
+                                    Apply
+                                </button>
+                            </div>
+
+                            <div
+                                class="discount-message"
+                                data-discount-message="development"
+                                role="status"
+                            ></div>
+                        </div>
+
+                        <article
+                            class="discount-plan"
+                            data-discount-plan="development"
+                            hidden
+                        >
+                            <h4 data-discount-plan-heading>Special Price</h4>
+
+                            <div class="plan-option">
+                                <div>
+                                    <span class="plan-name" data-discount-plan-name>Special Price</span>
+                                    <span class="plan-price" data-discount-plan-price></span>
+                                </div>
+
+                                <button
+                                    class="plan-link"
+                                    type="button"
+                                    data-discount-checkout="development"
+                                >
+                                    Choose
+                                </button>
+                            </div>
+                        </article>
+
+                        <button
+                            class="portal-primary step-action"
+                            id="purchaseDevelopmentButton"
+                            type="button"
+                            disabled
+                        >
+                            Purchase Website Development
+                        </button>
+
+                        <p class="payment-state" id="developmentStatus">
+                            Sign the agreement first to continue.
+                        </p>
                     </section>
                     </div>
                     <form class="portal-form claim-form" id="claimForm">
