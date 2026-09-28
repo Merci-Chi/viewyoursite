@@ -677,41 +677,51 @@
         }
 
         async function fetchConnectedCrmSites() {
-            const response = await fetch(CRM_API_URL, {
-                method: "POST",
-                headers: {
-                    apikey: CLAIMS_API_KEY,
-                    Authorization: `Bearer ${CLAIMS_API_KEY}`,
-                    "Content-Type": "application/json"
-                },
-                body: "{}"
-            });
-
-            if (!response.ok) {
-                throw new Error(`CRM lookup failed (${response.status})`);
-            }
-
-            const rows = await response.json();
+            const PAGE_SIZE = 1000;
             const bySiteKey = new Map();
+            let offset = 0;
 
-            rows.forEach(row => {
-                const sitekey = String(row?.sitekey || "").trim();
-                const company = String(row?.company || "").trim();
-                if (!sitekey || !company) return;
+            while (true) {
+                const response = await fetch(CRM_API_URL, {
+                    method: "POST",
+                    headers: {
+                        apikey: CLAIMS_API_KEY,
+                        Authorization: `Bearer ${CLAIMS_API_KEY}`,
+                        "Content-Type": "application/json",
+                        "Range-Unit": "items",
+                        Range: `${offset}-${offset + PAGE_SIZE - 1}`
+                    },
+                    body: "{}"
+                });
 
-                // One visible card per connected sitekey.
-                if (!bySiteKey.has(sitekey)) {
-                    const parsedRank = Number(row.businessrank);
-                    bySiteKey.set(sitekey, {
-                        sitekey,
-                        company,
-                        businessRank:
-                            Number.isInteger(parsedRank) && parsedRank >= 1 && parsedRank <= 50
-                                ? parsedRank
-                                : null
-                    });
+                if (!response.ok) {
+                    throw new Error(`CRM lookup failed (${response.status})`);
                 }
-            });
+
+                const rows = await response.json();
+
+                rows.forEach(row => {
+                    const sitekey = String(row?.sitekey || "").trim();
+                    const company = String(row?.company || "").trim();
+                    if (!sitekey || !company) return;
+
+                    // One visible card per connected sitekey.
+                    if (!bySiteKey.has(sitekey)) {
+                        const parsedRank = Number(row.businessrank);
+                        bySiteKey.set(sitekey, {
+                            sitekey,
+                            company,
+                            businessRank:
+                                Number.isInteger(parsedRank) && parsedRank >= 1 && parsedRank <= 50
+                                    ? parsedRank
+                                    : null
+                        });
+                    }
+                });
+
+                if (rows.length < PAGE_SIZE) break;
+                offset += PAGE_SIZE;
+            }
 
             return bySiteKey;
         }
