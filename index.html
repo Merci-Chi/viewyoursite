@@ -258,12 +258,16 @@
         .portal-primary { border: 0; background: #f1f1f1; color: #111; font-weight: 700; }
         .portal-secondary { border: 1px solid #3a3a3a; background: #202020; color: #ddd; }
         .portal-message { min-height: 1.5rem; margin-top: 1rem; color: #aaa; line-height: 1.5; }
-        .portal-account-header { margin-bottom: 1.25rem; padding-right: 2rem; text-align: left; }
+        .portal-account-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; padding-right: 3.25rem; text-align: left; }
+        .portal-account-heading-copy { min-width: 0; }
+        .portal-header-help { flex: 0 0 auto; margin-top: .1rem; padding: .55rem .85rem; border: 1px solid #3a3a3a; border-radius: 9px; background: #202020; color: #ddd; cursor: pointer; font: inherit; font-weight: 700; }
+        .portal-header-help:hover { border-color: #777; background: #292929; }
         .portal-account-email { color: #888; }
-        .portal-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; margin-bottom: 1.5rem; padding: .35rem; border-radius: 12px; background: #202020; }
-        .portal-nav.no-site { grid-template-columns: repeat(3, 1fr); }
+        .portal-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: .4rem; margin-bottom: 1.5rem; padding: .35rem; border-radius: 12px; background: #202020; }
+        .portal-nav.no-site { grid-template-columns: repeat(2, 1fr); }
         .portal-nav-button { padding: .75rem .5rem; border: 0; border-radius: 9px; background: transparent; color: #8b8b8b; cursor: pointer; font: inherit; }
         .portal-nav-button.active { background: #383838; color: #fff; }
+        #portalSubscriptionButton { display: none !important; }
         .portal-panel h3 { margin-bottom: .75rem; font-weight: 500; }
         .account-summary, .site-summary { padding: 1.1rem; border: 1px solid #303030; border-radius: 12px; background: #1c1c1c; }
         .account-summary p, .site-summary p { color: #aaa; line-height: 1.6; }
@@ -313,6 +317,7 @@
         body.light-mode .portal-nav, body.light-mode .auth-tabs { background: #e9e9e5; }
         body.light-mode .portal-nav-button, body.light-mode .auth-tab { color: #666; }
         body.light-mode .portal-nav-button.active, body.light-mode .auth-tab.active { background: #fff; color: #111; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+        body.light-mode .portal-header-help { border-color: #ccc; background: #fff; color: #222; }
         body.light-mode .account-summary, body.light-mode .site-summary, body.light-mode .subscription-card, body.light-mode .plan-group, body.light-mode .theme-setting { border-color: #d7d7d2; background: #fff; }
         body.light-mode .current-subscriptions-box { border-color: #d7d7d2; background: linear-gradient(145deg, #fff, #f2f2ef); }
         body.light-mode .subscription-status-icon { border-color: #d3d3cf; background: #ecece8; color: #555; }
@@ -453,7 +458,7 @@
             }
 
             .portal-dialog { padding: 1.35rem; }
-            .portal-nav { grid-template-columns: 1fr; }
+            .portal-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .available-plans { grid-template-columns: 1fr; }
         }
         .demo-mode-badge { display: inline-flex; margin-left: .45rem; padding: .18rem .45rem; border-radius: 999px; background: #244424; color: #baf0ae; font-size: .7rem; font-weight: 800; vertical-align: middle; }
@@ -526,7 +531,7 @@
             .support-action span { font-size: .86rem; }
         }
         @media (max-width: 480px) {
-            .portal-nav, .portal-nav.no-site { grid-template-columns: 1fr; }
+            .portal-nav, .portal-nav.no-site { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
 
         /* Mobile fit / popup scrolling improvements */
@@ -839,6 +844,23 @@
 
             .claim-selection-actions {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portal-account-header {
+                align-items: flex-start;
+                gap: .75rem;
+                padding-right: 3rem;
+            }
+            .portal-header-help {
+                padding: .5rem .7rem;
+                font-size: .9rem;
+            }
+            .portal-nav-button {
+                min-width: 0;
+                padding: .8rem .45rem;
+                white-space: nowrap;
             }
         }
 
@@ -1316,15 +1338,17 @@
             </div>
             <div id="portalAccountView" hidden>
                 <header class="portal-account-header">
-                    <h2>Client Portal</h2>
-                    <p class="portal-account-email" id="portalAccountEmail"></p>
+                    <div class="portal-account-heading-copy">
+                        <h2>Client Portal</h2>
+                        <p class="portal-account-email" id="portalAccountEmail"></p>
+                    </div>
+                    <button class="portal-header-help" type="button" data-portal-panel="helpPanel">Help</button>
                 </header>
 
                 <nav class="portal-nav no-site" id="portalNavigation" aria-label="Client portal">
                     <button class="portal-nav-button" id="portalSiteButton" type="button" data-portal-panel="sitePanel">Claim Your Site</button>
                     <button class="portal-nav-button" id="portalSubscriptionButton" type="button" data-portal-panel="subscriptionsPanel" hidden>Manage Subscription</button>
                     <button class="portal-nav-button active" type="button" data-portal-panel="accountPanel">Settings</button>
-                    <button class="portal-nav-button" type="button" data-portal-panel="helpPanel">Help</button>
                 </nav>
 
                 <section class="portal-panel" id="accountPanel">
