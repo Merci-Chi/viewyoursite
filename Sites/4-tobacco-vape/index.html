@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>4 Tobacco & vape</title>
+
+
+<meta name="description" content="4 Tobacco & vape provides professional retail services.">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --primary:#15151A;
+  --secondary:#403D47;
+  --accent:#B7874C;
+  --paper:#EFEDE9;
+  --dark:#09090C;
+  --white:#fff;
+  --muted:#687176;
+  --line:rgba(20,30,35,.12);
+  --radius:2px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--paper);
+  color:var(--dark);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{font:inherit;}
+
+.wrap{
+  width:min(1180px,calc(100% - 40px));
+  margin:auto;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);
+}
+
+.nav{
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand{
+  font-weight:900;
+  color:var(--primary);
+  font-size:1.05rem;
+  max-width:420px;
+}
+
+.navlinks{
+  display:flex;
+  gap:5px;
+  align-items:center;
+}
+
+.navlinks a{
+  padding:10px 12px;
+  font-weight:750;
+  font-size:.92rem;
+}
+
+.navlinks .nav-cta{
+  background:var(--primary);
+  color:white;
+  margin-left:6px;
+}
+
+.menu{
+  width:46px;
+  height:46px;
+  background:none;
+  border:0;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+}
+
+.menu span{
+  width:24px;
+  height:2px;
+  background:var(--dark);
+}
+
+.hero{
+  min-height:690px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  color:white;
+  background:
+    linear-gradient(90deg,rgba(8,15,20,.91) 0%,rgba(8,15,20,.66) 48%,rgba(8,15,20,.18) 100%),
+    url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+
+.hero-soft{
+  background:
+    linear-gradient(90deg,rgba(20,35,38,.86),rgba(20,35,38,.48),rgba(20,35,38,.10)),
+    url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+
+.hero-editorial{
+  min-height:760px;
+  background:
+    linear-gradient(90deg,rgba(20,18,17,.78),rgba(20,18,17,.28)),
+    url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+
+.hero-dark{
+  min-height:700px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.58),rgba(0,0,0,.16)),
+    url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=1800&q=85") center/cover no-repeat;
+}
+
+.hero-copy{
+  width:min(780px,100%);
+  padding:110px 0;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:19px;
+  font-size:.76rem;
+  font-weight:900;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+.eyebrow:before{
+  content:"";
+  width:34px;
+  height:2px;
+  background:var(--accent);
+}
+
+h1,h2,h3{
+  font-family:'Arial Black', 'Helvetica Neue', sans-serif;
+}
+
+.hero h1{
+  font-size:clamp(3rem,7.8vw,6.6rem);
+  line-height:.94;
+  letter-spacing:-.05em;
+  margin-bottom:22px;
+}
+
+.hero p{
+  max-width:680px;
+  font-size:1.08rem;
+  color:rgba(255,255,255,.87);
+  margin-bottom:30px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:11px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:49px;
+  gap:9px;
+  padding:0 20px;
+  background:var(--accent);
+  color:white;
+  font-weight:850;
+  border-radius:var(--radius);
+}
+
+.btn.alt{
+  background:white;
+  color:var(--primary);
+}
+
+.intro-strip{
+  background:var(--primary);
+  color:white;
+}
+
+.intro-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:50px;
+  align-items:center;
+  padding:44px 0;
+}
+
+.intro-grid p{
+  color:rgba(255,255,255,.76);
+}
+
+.section{
+  padding:92px 0;
+}
+
+.section.white{
+  background:white;
+}
+
+.section-label{
+  color:var(--accent);
+  text-transform:uppercase;
+  font-size:.74rem;
+  font-weight:900;
+  letter-spacing:.16em;
+  margin-bottom:10px;
+}
+
+.section-title{
+  font-size:clamp(2.1rem,4.5vw,4.2rem);
+  line-height:1.02;
+  letter-spacing:-.035em;
+  color:var(--primary);
+  max-width:760px;
+  margin-bottom:18px;
+}
+
+.lead{
+  max-width:760px;
+  color:#5f686c;
+  font-size:1.03rem;
+}
+
+.services{
+  margin-top:38px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.service{
+  min-height:170px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+}
+
+.service:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:4px;
+  height:100%;
+  background:var(--accent);
+}
+
+.service i{
+  color:var(--accent);
+  font-size:1.1rem;
+  margin-bottom:16px;
+}
+
+.service h3{
+  font-size:1.08rem;
+  color:var(--primary);
+}
+
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:580px;
+}
+
+.split-photo{
+  background:url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1500&q=82") center/cover no-repeat;
+  min-height:480px;
+}
+
+.split-copy{
+  background:var(--dark);
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:70px max(6vw,45px);
+}
+
+.split-copy h2{
+  font-size:clamp(2.2rem,4.7vw,4.4rem);
+  line-height:1;
+  letter-spacing:-.04em;
+  margin-bottom:22px;
+}
+
+.split-copy p{
+  color:rgba(255,255,255,.76);
+  margin-bottom:16px;
+}
+
+.details{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:36px;
+}
+
+.detail{
+  background:white;
+  padding:25px;
+}
+
+.detail i{
+  color:var(--accent);
+  margin-bottom:11px;
+}
+
+.detail strong{
+  display:block;
+  color:var(--primary);
+  margin-bottom:5px;
+}
+
+.detail span,.detail a{
+  color:#687176;
+  overflow-wrap:anywhere;
+}
+
+.contact-band{
+  background:var(--primary);
+  color:white;
+  padding:75px 0;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:40px;
+  align-items:center;
+}
+
+.contact-grid h2{
+  font-size:clamp(2.1rem,4vw,4rem);
+  line-height:1;
+  margin-bottom:14px;
+}
+
+.contact-grid p{
+  color:rgba(255,255,255,.72);
+}
+
+footer{
+  background:#0d1316;
+  color:rgba(255,255,255,.62);
+  padding:34px 0;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+
+.footer-inner strong{
+  color:white;
+}
+
+@media(max-width:850px){
+  .wrap{width:min(100% - 28px,1180px);}
+
+  .menu{display:flex;}
+
+  .navlinks{
+    position:absolute;
+    top:78px;
+    left:14px;
+    right:14px;
+    background:white;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    padding:12px;
+    box-shadow:0 18px 45px rgba(0,0,0,.15);
+  }
+
+  .navlinks.open{display:flex;}
+
+  .navlinks a{
+    color:var(--dark);
+    padding:13px;
+  }
+
+  .navlinks .nav-cta{
+    color:white;
+    margin-left:0;
+  }
+
+  .hero,.hero-dark,.hero-soft,.hero-editorial{
+    min-height:620px;
+    background-position:center;
+  }
+
+  .hero-copy{padding:85px 0;}
+
+  .hero h1{
+    font-size:clamp(2.7rem,14vw,4.6rem);
+  }
+
+  .intro-grid,
+  .split,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .details{
+    grid-template-columns:1fr;
+  }
+
+  .split-photo{
+    min-height:340px;
+  }
+
+  .split-copy{
+    padding:55px 26px;
+  }
+
+  .contact-grid .actions{
+    justify-content:flex-start;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="brand">4 Tobacco & vape</a>
+
+    <button class="menu" id="menuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="navlinks" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero hero-dark">
+  <div class="wrap hero-copy">
+    <div class="eyebrow">Specialty Smoke & Vape</div>
+
+    <h1>4 Tobacco & vape</h1>
+
+    
+      <p>4 Tobacco & vape provides professional retail services.</p>
+    
+
+    <div class="actions">
+      
+      <a class="btn" href="tel:(843) 944-0474">
+        <i class="fa-solid fa-phone"></i>
+        Call
+      </a>
+      
+
+      <a class="btn alt" href="#services">
+        View Services
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="intro-strip">
+  <div class="wrap intro-grid">
+    <h2>4 Tobacco & vape</h2>
+
+    <p>
+      
+        4 Tobacco & vape provides professional retail services.
+      
+    </p>
+  </div>
+</section>
+
+<section class="section white" id="services">
+  <div class="wrap">
+
+    <div class="section-label">What We Do</div>
+
+    <h2 class="section-title">
+      Services built around the work you need.
+    </h2>
+
+    
+
+      
+      <p class="lead">4 Tobacco & vape provides professional retail services.</p>
+      
+
+    
+
+  </div>
+</section>
+
+<section class="split" id="about">
+
+  
+  <div class="split-photo"></div>
+  
+
+  <div class="split-copy">
+    <div>
+
+      <div class="section-label">About</div>
+
+      <h2>
+        4 Tobacco & vape
+      </h2>
+
+      
+        <p>4 Tobacco & vape provides professional retail services.</p>
+      
+
+    </div>
+  </div>
+
+  
+
+</section>
+
+<section class="section white">
+  <div class="wrap">
+
+    <div class="section-label">Business Information</div>
+
+    <h2 class="section-title">
+      Get in touch.
+    </h2>
+
+    <div class="details">
+
+      
+      <div class="detail">
+        <i class="fa-solid fa-phone"></i>
+        <strong>Phone</strong>
+        <a href="tel:(843) 944-0474">(843) 944-0474</a>
+      </div>
+      
+
+      
+
+      
+
+    </div>
+  </div>
+</section>
+
+<section class="contact-band" id="contact">
+  <div class="wrap contact-grid">
+
+    <div>
+      <h2>4 Tobacco & vape</h2>
+
+      
+        <p>4 Tobacco & vape provides professional retail services.</p>
+      
+    </div>
+
+    <div class="actions">
+      
+      <a class="btn" href="tel:(843) 944-0474">
+        <i class="fa-solid fa-phone"></i>
+        (843) 944-0474
+      </a>
+      
+
+      
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+
+    <strong>
+      4 Tobacco & vape
+    </strong>
+
+    <span>
+      
+    </span>
+
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+if(menuBtn && navLinks){
+  menuBtn.addEventListener("click",()=>{
+    navLinks.classList.toggle("open");
+  });
+
+  navLinks.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click",()=>{
+      navLinks.classList.remove("open");
+    });
+  });
+}
+</script>
+
+</body>
+</html>
