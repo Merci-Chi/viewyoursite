@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Contact Green House Water Heaters for water heater service in Las Vegas and surrounding areas." name="description"/>
 <title>Contact | Green House Water Heaters</title>
-<link href="styles(1).css" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body class="contact-page">
 <header class="site-header">
@@ -30,6 +30,13 @@
 </div>
 </header>
 <main>
+<section class="page-hero page-hero-contact">
+<div class="container page-hero-inner">
+<p class="eyebrow">Contact Green House Water Heaters</p>
+<h1>Schedule Service or Request a Free Estimate</h1>
+<p>Call, email or send your request online and we’ll help you get your hot water back fast.</p>
+</div>
+</section>
 <section class="contact section" id="contact">
 <div class="container contact-grid">
 <div class="contact-intro">
@@ -42,12 +49,12 @@
 <a class="contact-method" href="mailto:greenhouseplumbing@yahoo.com"><span class="contact-method-icon"><i data-lucide="mail"></i></span><span class="contact-method-copy"><strong>greenhouseplumbing@yahoo.com</strong><small>Email Us</small></span></a>
 <div class="contact-method"><span class="contact-method-icon"><i data-lucide="map-pin"></i></span><span class="contact-method-copy"><strong>Las Vegas, NV &amp; Surrounding Areas</strong><small>Proudly Serving Southern Nevada</small></span></div>
 </div>
-<form class="estimate-form" id="estimateForm">
-<div class="form-row"><input name="name" placeholder="Full Name" required=""/><input name="phone" placeholder="Phone Number" required=""/></div>
-<div class="form-row"><input name="email" placeholder="Email Address" required="" type="email"/><select name="service" required=""><option value="">Service Needed</option><option>Installation</option><option>Repair</option><option>Maintenance</option><option>Tune-Up &amp; Flush</option></select></div>
+<form class="estimate-form" id="estimateForm" aria-label="Free estimate request">
+<div class="form-row"><input name="name" placeholder="Full Name" autocomplete="name" required=""/><input name="phone" placeholder="Phone Number" type="tel" autocomplete="tel" required=""/></div>
+<div class="form-row"><input name="email" placeholder="Email Address" autocomplete="email" required="" type="email"/><select name="service" required=""><option value="">Service Needed</option><option>Installation</option><option>Repair</option><option>Maintenance</option><option>Tune-Up &amp; Flush</option></select></div>
 <textarea name="message" placeholder="Tell us about your project..."></textarea>
 <button class="btn btn-solid btn-form" type="submit">Request a Free Estimate →</button>
-<p class="form-status" role="status"></p>
+<p class="form-status" role="status" aria-live="polite"></p><p class="form-help">Submitting opens your email app with your request filled in. Please press Send in your email app to finish.</p>
 </form>
 </div>
 </section>
