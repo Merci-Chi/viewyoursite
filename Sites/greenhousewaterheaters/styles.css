@@ -2230,3 +2230,115 @@ body{
     padding:24px 18px;
   }
 }
+
+
+/* ===== DARKER PREMIUM TONE PASS ===== */
+:root{
+  --green:#2a7313;
+  --green-dark:#0a1e12;
+  --green-deep:#05110b;
+  --green-soft:#e2ebdf;
+  --ink:#171c20;
+}
+
+body{
+  background:linear-gradient(180deg,#eef3ee 0%,#e8eee8 100%);
+}
+
+.site-header{
+  background:rgba(248,250,248,.96);
+  border-bottom:1px solid #d6ddd6;
+  box-shadow:0 12px 28px rgba(8,20,12,.09);
+}
+
+.phone-pill{
+  background:#f7faf6;
+  border-color:#7c9773;
+}
+
+.btn-solid{
+  background:linear-gradient(180deg,#3d8d1d,#276811);
+  box-shadow:0 8px 18px rgba(39,104,17,.23);
+}
+
+.btn-outline{
+  background:#fdfefd;
+  border-color:#4d7e42;
+}
+
+.home-page .hero{
+  background:
+    linear-gradient(90deg,rgba(250,252,250,.97) 0%,rgba(245,248,245,.92) 44%,rgba(226,233,227,.84) 100%),
+    url("assets/tankless-installation-wide.jpg") center/cover no-repeat;
+}
+
+.home-page .hero::before{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(57,116,28,.18),transparent 34%),
+    radial-gradient(circle at 82% 75%,rgba(8,27,14,.15),transparent 30%);
+}
+
+.trust-item{
+  background:rgba(251,253,251,.90);
+  border:1px solid rgba(127,149,124,.52);
+  box-shadow:0 12px 24px rgba(10,23,13,.07);
+}
+
+.benefits-strip{
+  background:linear-gradient(180deg,#dfe7df 0%,#d6dfd6 100%);
+  border-top:1px solid #c6d0c6;
+  border-bottom:1px solid #c6d0c6;
+}
+
+.page-hero{
+  background:#07150d;
+}
+
+.page-hero::after{
+  background:linear-gradient(90deg,rgba(4,14,8,.95) 0%,rgba(4,14,8,.88) 38%,rgba(4,14,8,.60) 72%,rgba(4,14,8,.46) 100%);
+}
+
+.page-hero .eyebrow{
+  color:#b8eb93;
+}
+
+.services-page .services > .container,
+.about-page .about > .container,
+.contact-page .contact > .container{
+  background:rgba(252,253,252,.98);
+  border:1px solid #d7e0d6;
+  box-shadow:0 24px 58px rgba(7,20,11,.12);
+}
+
+.service-card{
+  background:linear-gradient(180deg,#ffffff 0%,#f7faf7 100%);
+  border:1px solid #dde6db;
+  box-shadow:0 16px 36px rgba(8,20,12,.08);
+}
+
+.service-card:hover{
+  box-shadow:0 22px 42px rgba(8,20,12,.12);
+}
+
+.about-page .about-copy,
+.contact-page .estimate-form,
+.contact-page .contact-details .contact-method,
+.about-page .about-stats > div{
+  border-color:#dbe4da;
+  box-shadow:0 12px 28px rgba(8,20,12,.07);
+}
+
+.specials-page .special-bg{
+  background:linear-gradient(90deg,rgba(3,12,7,.45),rgba(3,12,7,.92) 42%),url("assets/hero-heaters.png") right center/contain no-repeat, url("assets/tankless-water-heater-installation.jpg") center/cover no-repeat !important;
+  box-shadow:0 24px 58px rgba(2,10,5,.28);
+}
+
+.footer{
+  background:linear-gradient(180deg,#08140d 0%,#040b07 100%);
+}
+
+@media (max-width:620px){
+  .page-hero::after{
+    background:linear-gradient(180deg,rgba(4,14,8,.90),rgba(4,14,8,.76));
+  }
+}
