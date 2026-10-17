@@ -22,3 +22,7 @@ Applying SQL alone does not fix the old function's insert. Deploying the new fun
 Mocked handler tests cover portal vs legacy foreign-key routing, the checkout/verification response contract, inaccessible projects, missing or incorrect agreements, cross-project and payment-purpose rejection, and pending/active monthly hosting. The portal checkout caller was also tested against the patched handler. No live Square payment or Supabase migration has been executed from this environment.
 
 Run the checked-in handler tests with `npm install --prefix supabase/tests` followed by `npm test --prefix supabase/tests`.
+
+## Required payment order
+
+Portal hosting checkout requires a completed development checkout for the same authenticated user and website. Before issuing a hosting link, the function also checks Square's development order is completed with at least $100 USD paid. A signed current project agreement is required before either payment link. No additional SQL beyond the migration above is needed for this ordering check.

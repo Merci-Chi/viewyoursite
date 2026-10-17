@@ -136,6 +136,22 @@ Deno.serve(async (req) => {
         }
         portalProject = projectResult.data;
         portalAgreement = agreementResult.data;
+        if (requestedPlanKey !== "website-development") {
+          const development = await db.from("square").select("id,original")
+            .eq("userid", user.id).eq("portal_project_id", portalProject.id)
+            .eq("original->>plankey", "website-development").eq("status", "COMPLETED")
+            .limit(1).maybeSingle();
+          if (development.error) throw development.error;
+          const orderId = development.data?.original?.orderid;
+          if (!orderId) {
+            return json({ message: "Complete development payment for this website before hosting checkout." }, 409);
+          }
+          const paid = await squareApi(`/v2/orders/${encodeURIComponent(orderId)}`);
+          if (paid.order?.state !== "COMPLETED" || paid.order?.total_money?.currency !== "USD" ||
+              Number(paid.order?.total_money?.amount || 0) < 10000) {
+            return json({ message: "Square has not confirmed this website's development payment." }, 409);
+          }
+        }
       }
 
       if (!portalProject && body.discountCode && ["standard-monthly", "backend-monthly"].includes(requestedPlanKey)) {
