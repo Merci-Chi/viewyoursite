@@ -1,0 +1,6 @@
+{
+  "name": "square-checkout-contract-tests",
+  "private": true,
+  "scripts": {"test": "node square-subscriptions.test.cjs"},
+  "devDependencies": {"typescript": "5.9.3"}
+}
