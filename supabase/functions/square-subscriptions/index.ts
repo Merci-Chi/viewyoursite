@@ -114,8 +114,47 @@ Deno.serve(async (req) => {
 
     if (body.action === "create-checkout") {
       let requestedPlanKey = String(body.planKey || "");
+      let portalProject: { id: string } | null = null;
+      let portalAgreement: { id: string } | null = null;
+      if (body.projectId) {
+        if (!["website-development", "standard-monthly", "backend-monthly"].includes(requestedPlanKey)) {
+          return json({ message: "Unknown project payment plan." }, 400);
+        }
+        const projectResult = await db.from("portal_website_projects")
+          .select("id,status").eq("id", body.projectId).eq("user_id", user.id).maybeSingle();
+        if (projectResult.error) throw projectResult.error;
+        if (!projectResult.data || projectResult.data.status !== "awaiting_payment") {
+          return json({ message: "This website is not available for payment." }, 403);
+        }
+        const agreementResult = await db.from("portal_project_agreements")
+          .select("id").eq("id", body.agreementId).eq("project_id", body.projectId)
+          .eq("user_id", user.id).eq("acknowledged", true)
+          .eq("agreement_version", "2026-10-14-project-v1").maybeSingle();
+        if (agreementResult.error) throw agreementResult.error;
+        if (!agreementResult.data) {
+          return json({ message: "Sign the current agreement for this website before payment." }, 403);
+        }
+        portalProject = projectResult.data;
+        portalAgreement = agreementResult.data;
+        if (requestedPlanKey !== "website-development") {
+          const development = await db.from("square").select("id,original")
+            .eq("userid", user.id).eq("portal_project_id", portalProject.id)
+            .eq("original->>plankey", "website-development").eq("status", "COMPLETED")
+            .limit(1).maybeSingle();
+          if (development.error) throw development.error;
+          const orderId = development.data?.original?.orderid;
+          if (!orderId) {
+            return json({ message: "Complete development payment for this website before hosting checkout." }, 409);
+          }
+          const paid = await squareApi(`/v2/orders/${encodeURIComponent(orderId)}`);
+          if (paid.order?.state !== "COMPLETED" || paid.order?.total_money?.currency !== "USD" ||
+              Number(paid.order?.total_money?.amount || 0) < 10000) {
+            return json({ message: "Square has not confirmed this website's development payment." }, 409);
+          }
+        }
+      }
 
-      if (body.discountCode && ["standard-monthly", "backend-monthly"].includes(requestedPlanKey)) {
+      if (!portalProject && body.discountCode && ["standard-monthly", "backend-monthly"].includes(requestedPlanKey)) {
         const { data: localAccepted, error: localError } = await client.rpc("validate_portal_code", {
           p_code: String(body.discountCode).toUpperCase(),
           p_purpose: "local_hosting",
@@ -183,7 +222,12 @@ Deno.serve(async (req) => {
         .insert({
           crmid: person?.id || null,
           userid: user.id,
-          agreementid: body.agreementId || null,
+          // Legacy agreements and portal project agreements have different FK targets.
+          agreementid: portalProject ? null : body.agreementId || null,
+          ...(portalProject ? {
+            portal_project_id: portalProject.id,
+            portal_agreement_id: portalAgreement!.id,
+          } : {}),
           source: "checkout",
           sourceid,
           checkoutid: link.id,
@@ -207,7 +251,14 @@ Deno.serve(async (req) => {
         .single();
 
       if (error) throw error;
-      return json({ checkoutUrl: link.url, checkoutId: session.id });
+      return json({
+        checkoutUrl: link.url, checkoutId: session.id,
+        ...(portalProject ? {
+          projectId: portalProject.id, agreementId: portalAgreement!.id,
+          purpose: requestedPlanKey === "website-development" ? "development"
+            : requestedPlanKey === "backend-monthly" ? "backend" : "standard",
+        } : {}),
+      });
     }
 
     if (body.action === "verify-checkout") {
@@ -219,14 +270,25 @@ Deno.serve(async (req) => {
         .single();
 
       if (error || !session) return json({ message: "Checkout was not found." }, 404);
+      const scope = session.portal_project_id ? {
+        projectId: session.portal_project_id,
+        purpose: session.original?.plankey === "website-development" ? "development" : "hosting",
+      } : {};
+      if (body.projectId && (session.portal_project_id !== body.projectId ||
+          scope.purpose !== body.purpose)) {
+        return json({ message: "Checkout is not linked to this website and payment purpose." }, 403);
+      }
+      if (session.portal_project_id && (!body.projectId || !body.purpose)) {
+        return json({ message: "Project and payment purpose are required for this checkout." }, 400);
+      }
       if (session.status === "COMPLETED" || session.status === "ACTIVE") {
-        return json({ verified: true });
+        return json({ verified: true, ...scope });
       }
 
       const result = await squareApi(`/v2/orders/${session.original?.orderid}`);
       const order = result.order;
       if (order?.state !== "COMPLETED") {
-        return json({ verified: false, status: order?.state || "PENDING" });
+        return json({ verified: false, status: order?.state || "PENDING", ...scope });
       }
 
       let subscriptionid = null;
@@ -248,8 +310,13 @@ Deno.serve(async (req) => {
         subscriptionid = (found.subscriptions || []).find(
           (x: any) =>
             x.plan_variation_id === expected &&
-            !["CANCELED", "DEACTIVATED"].includes(x.status),
+            (session.portal_project_id ? x.status === "ACTIVE"
+              : !["CANCELED", "DEACTIVATED"].includes(x.status)),
         )?.id || null;
+      }
+
+      if (session.portal_project_id && session.cadence === "MONTHLY" && !subscriptionid) {
+        return json({ verified: false, status: "SUBSCRIPTION_PENDING", ...scope });
       }
 
       const { error: updateError } = await db
@@ -264,7 +331,7 @@ Deno.serve(async (req) => {
         .eq("id", session.id);
 
       if (updateError) throw updateError;
-      return json({ verified: true });
+      return json({ verified: true, ...scope });
     }
 
     if (body.action === "cancel") {
@@ -297,6 +364,10 @@ Deno.serve(async (req) => {
     return json({ message: "Unknown action." }, 400);
   } catch (error) {
     console.error(error);
-    return json({ message: error instanceof Error ? error.message : "Unexpected server error." }, 500);
+    const failure = error as { code?: string; message?: string };
+    const message = failure?.code === "23503"
+      ? "Checkout could not be saved because its agreement reference is invalid. Apply the portal checkout migration and deploy the updated function."
+      : typeof failure?.message === "string" ? failure.message : "Unexpected server error.";
+    return json({ message }, 500);
   }
 });
